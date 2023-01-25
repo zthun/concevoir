@@ -1,2 +1,3 @@
-# concevoir
-A ui package that helps design and layout basic web pages
+# Description
+
+Concevoir is a frontend library that helps design and layout web pages.
