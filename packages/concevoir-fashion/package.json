@@ -1,0 +1,32 @@
+{
+  "name": "@zthun/concevoir-fashion",
+  "version": "1.0.0",
+  "description": "A frontend library that helps with color styles and sizing.",
+  "author": "Anthony Bonta",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zthun/concevoir",
+    "directory": "packages/concevoir-fashion"
+  },
+  "main": "./dist/lib/index.js",
+  "module": "./dist/lib/index.esm.js",
+  "types": "./dist/types/index.d.ts",
+  "scripts": {
+    "build": "microbundle --format esm,cjs --tsconfig tsconfig.prod.json --no-sourcemap"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "microbundle": "^0.15.1",
+    "typescript": "^4.9.4"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false
+}
