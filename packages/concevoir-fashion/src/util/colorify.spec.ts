@@ -1,6 +1,7 @@
 import { ZFashionBuilder } from '../color/fashion';
 import { ZPaletteBuilder } from '../color/palette';
 import { colorify, ZCssTransparent } from './colorify';
+import { describe, expect, it } from 'vitest';
 
 describe('Colorify', () => {
   it('should return the rgb string for transparency if the fashion represents transparency', () => {

@@ -1,5 +1,6 @@
 import { IZFashion, ZFashionBuilder } from '../color/fashion';
 import { stringify } from './stringify';
+import { describe, expect, it } from 'vitest';
 
 describe('Stringify', () => {
   function shouldReturnString(expected: string, fashion: IZFashion | null | undefined) {

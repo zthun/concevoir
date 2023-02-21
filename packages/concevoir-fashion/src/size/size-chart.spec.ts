@@ -8,6 +8,7 @@ import { ZSizeChartVaried, ZSizeVaried } from './size-varied';
 import { createSizeChartVoidCss } from './size-chart-void-css';
 import { createSizeChartVoidZero } from './size-chart-void-zero';
 import { ZSizeChartVoid, ZSizeVoid } from './size-void';
+import { describe, expect, it } from 'vitest';
 
 describe('Size Chart', () => {
   describe('Fixed', () => {

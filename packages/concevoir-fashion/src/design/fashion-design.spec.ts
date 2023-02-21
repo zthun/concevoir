@@ -3,6 +3,7 @@ import { ZFashionCoordinationBuilder } from '../color/fashion-coordination';
 import { ZHue } from '../color/hue';
 import { ZPaletteBuilder } from '../color/palette';
 import { ZFashionDesignBuilder } from './fashion-design';
+import { describe, expect, it } from 'vitest';
 
 describe('ZFashionDesignBuilder', () => {
   function createTestTarget() {

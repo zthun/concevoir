@@ -1,6 +1,7 @@
 import { ZFashionBuilder } from './fashion';
 import { ZHue } from './hue';
 import { ZShade } from './shade';
+import { describe, expect, it } from 'vitest';
 
 describe('ZFashion', () => {
   function createTestTarget() {
