@@ -1,6 +1,6 @@
 {
   "name": "@zthun/concevoir-fashion",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A frontend library that helps with color styles and sizing.",
   "author": "Anthony Bonta",
   "license": "MIT",
@@ -23,7 +23,8 @@
   },
   "devDependencies": {
     "microbundle": "^0.15.1",
-    "typescript": "^4.9.4"
+    "vite": "^4.1.3",
+    "vitest": "^0.28.5"
   },
   "files": [
     "dist"

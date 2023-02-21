@@ -3,7 +3,10 @@
   "compilerOptions": {
     "baseUrl": "packages",
     "target": "esnext",
-    "paths": {}
+    "paths": {
+      "@zthun/concevoir-fashion": ["concevoir-fashion/src/index"],
+      "@zthun/concevoir-react": ["concevoir-react/src/index"]
+    }
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["**/node_modules/**"]

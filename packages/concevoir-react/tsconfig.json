@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "sourceMap": true,
+    "declarationDir": "dist/types",
+    "paths": {
+      "@zthun/concevoir-fashion": ["../concevoir-fashion/src/index"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
+}
