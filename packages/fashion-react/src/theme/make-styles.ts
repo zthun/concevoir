@@ -89,13 +89,14 @@ export interface IZTheme extends Theme {
 }
 
 /**
- * Constructs the theme variables for zthunworks components.
+ * Constructs the theme variables for fashion components.
  *
  * See https://www.npmjs.com/package/tss-react for more information.
  *
- * @returns The zthunworks theme.
+ * @returns
+ *        The fashion theme.
  */
-export function useZthunworksTheme(): IZTheme {
+export function useFashionTheme(): IZTheme {
   const mui = useMuiTheme();
   const fashionTheme = useFashionDesign();
 
@@ -255,4 +256,4 @@ export function useZthunworksTheme(): IZTheme {
   return Object.assign({}, mui, base);
 }
 
-export const { makeStyles } = createMakeStyles({ useTheme: useZthunworksTheme });
+export const { makeStyles } = createMakeStyles({ useTheme: useFashionTheme });
