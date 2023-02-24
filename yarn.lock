@@ -4120,9 +4120,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/fashion-tailor@^0.0.1, @zthun/fashion-tailor@workspace:packages/fashion-tailor":
+"@zthun/fashion-designer@^0.0.1, @zthun/fashion-designer@workspace:packages/fashion-designer":
   version: 0.0.0-use.local
-  resolution: "@zthun/fashion-tailor@workspace:packages/fashion-tailor"
+  resolution: "@zthun/fashion-designer@workspace:packages/fashion-designer"
   dependencies:
     lodash: ^4.17.21
     microbundle: ^0.15.1
@@ -4142,7 +4142,7 @@ __metadata:
     "@mui/system": ^5.11.9
     "@zthun/cirque": ^4.2.0
     "@zthun/cirque-du-react": ^4.2.0
-    "@zthun/fashion-tailor": ^0.0.1
+    "@zthun/fashion-designer": ^0.0.1
     "@zthun/helpful-fn": ^0.2.0
     csstype: ^3.1.1
     history: ^5.3.0
@@ -4165,7 +4165,7 @@ __metadata:
     "@cucumber/cucumber": ^8.10.0
     "@zthun/cirque": ^4.2.0
     "@zthun/cirque-du-react": ^4.2.0
-    "@zthun/fashion-tailor": ^0.0.1
+    "@zthun/fashion-designer": ^0.0.1
     "@zthun/fashion-venue": ^0.0.1
     "@zthun/helpful-fn": ^0.2.0
     history: ^5.3.0

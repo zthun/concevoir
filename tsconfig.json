@@ -4,7 +4,7 @@
     "baseUrl": "packages",
     "target": "esnext",
     "paths": {
-      "@zthun/fashion-tailor": ["fashion-tailor/src/index"],
+      "@zthun/fashion-designer": ["fashion-designer/src/index"],
       "@zthun/fashion-react": ["fashion-react/src/index"]
     }
   },

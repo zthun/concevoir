@@ -5,7 +5,7 @@
     "sourceMap": true,
     "declarationDir": "dist/types",
     "paths": {
-      "@zthun/fashion-tailor": ["../fashion-tailor/src/index"],
+      "@zthun/fashion-designer": ["../fashion-designer/src/index"],
       "@zthun/fashion-venue": ["../fashion-show/src/index"]
     }
   },
