@@ -1,5 +1,5 @@
 {
-  "name": "@zthun/concevoir-react",
+  "name": "@zthun/fashion-react",
   "version": "0.0.1",
   "description": "A react component package that contains react based components for @zthun scoped packages.",
   "main": "dist/lib/index.js",
@@ -7,8 +7,8 @@
   "types": "dist/types/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zthun/concevoir",
-    "directory": "packages/concevoir-react"
+    "url": "https://github.com/zthun/fashion",
+    "directory": "packages/fashion-react"
   },
   "scripts": {
     "build": "microbundle --format esm,cjs --tsconfig tsconfig.prod.json --no-sourcemap"
