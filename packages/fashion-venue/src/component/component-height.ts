@@ -1,4 +1,4 @@
-import { ZSize } from '../fashion-designer/src';
+import { ZSize } from '@zthun/fashion-designer';
 
 /**
  * Represents a component that contains a height.

@@ -1,7 +1,5 @@
 import { Color, PaletteColor, Theme, useTheme as useMuiTheme } from '@mui/material';
 import { createSpacing } from '@mui/system';
-import { firstDefined } from '@zthun/helpful-fn';
-import { createMakeStyles } from 'tss-react';
 import {
   colorify,
   createSizeChartFixedArithmetic,
@@ -14,7 +12,9 @@ import {
   IZFashionDesign,
   ZSizeFixed,
   ZSizeVoid
-} from '../fashion-designer/src';
+} from '@zthun/fashion-designer';
+import { firstDefined } from '@zthun/helpful-fn';
+import { createMakeStyles } from 'tss-react';
 import { useFashionDesign } from '../fashion/fashion';
 
 export type IZColor = Color;

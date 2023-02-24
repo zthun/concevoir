@@ -1,8 +1,8 @@
 import { IZCircusDriver, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
+import { IZFashion, ZFashionBuilder, ZHue } from '@zthun/fashion-designer';
 import React from 'react';
 import { afterEach, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
-import { IZFashion, ZFashionBuilder, ZHue } from '../fashion-designer/src';
 import { ZFashionGrid } from './fashion-grid';
 import { ZFashionGridComponentModel } from './fashion-grid.cm';
 
