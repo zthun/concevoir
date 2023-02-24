@@ -1,7 +1,7 @@
-/* eslint-disable require-jsdoc */
 import { ZCircusSetupHook } from '@zthun/cirque-du-react';
-import { sleep } from '@zthun/works.core';
+import { sleep } from '@zthun/helpful-fn';
 import { noop } from 'lodash';
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 import {
   asStateData,
   asStateError,
@@ -13,7 +13,7 @@ import {
 } from './use-async-state';
 
 describe('useAsyncState', () => {
-  let load: jest.Mock;
+  let load: Mock;
 
   async function createTestTarget() {
     const target = await new ZCircusSetupHook(() => useAsyncState<string>(load)).setup();
@@ -34,7 +34,7 @@ describe('useAsyncState', () => {
   }
 
   beforeEach(() => {
-    load = jest.fn();
+    load = vi.fn();
   });
 
   describe('Success', () => {

@@ -1,5 +1,5 @@
-/* eslint-disable require-jsdoc */
 import { ZCircusSetupHook } from '@zthun/cirque-du-react';
+import { describe, expect, it } from 'vitest';
 import { useSafeState } from './use-safe-state';
 
 describe('useSafeState', () => {
