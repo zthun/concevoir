@@ -1,3 +1,3 @@
 # Description
 
-Concevoir is a frontend library that helps design and layout web pages.
+Fashion is a frontend library that helps design and layout web pages.

@@ -1,5 +1,5 @@
 {
-  "name": "@zthun/concevoir",
+  "name": "@zthun/fashion",
   "version": "0.0.0",
   "description": "Frontend library used to design and layout web pages.",
   "author": "Anthony Bonta",
@@ -7,7 +7,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/zthun/concevoir"
+    "url": "https://github.com/zthun/fashion"
   },
   "workspaces": [
     "packages/*"

@@ -1,6 +1,7 @@
 # Description
 
-The concevoir base package includes needed utils and objects that help with sizing and theming.
+The fashion-palette base package includes needed utils and objects that help with limited color palette that makes up a
+sites color design.
 
 ## Installation
 

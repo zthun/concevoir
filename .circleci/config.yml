@@ -55,9 +55,9 @@ jobs:
           command: |
             export DOCKER_BUILDKIT=1
             docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
-            docker build . --target concevoir-web -t zthun/concevoir-web:latest -t zthun/concevoir-web:$(npm show @zthun/concevoir-web version) --progress=plain
-            docker push zthun/concevoir-web:latest
-            docker push zthun/concevoir-web:$(npm show @zthun/concevoir-web version)
+            docker build . --target fashion-web -t zthun/fashion-web:latest -t zthun/fashion-web:$(npm show @zthun/fashion-web version) --progress=plain
+            docker push zthun/fashion-web:latest
+            docker push zthun/fashion-web:$(npm show @zthun/fashion-web version)
 
 workflows:
   make:
