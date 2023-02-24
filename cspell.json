@@ -12,7 +12,9 @@
     "DOCKERHUB",
     "microbundle",
     "npmrc",
-    "zthun"
+    "Roboto",
+    "zthun",
+    "zthunworks"
   ],
   "dictionaries": ["typescript", "node", "npm", "en_US"]
 }
