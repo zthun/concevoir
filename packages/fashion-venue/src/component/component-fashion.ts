@@ -1,4 +1,4 @@
-import { IZFashion } from '@zthun/fashion-tailor';
+import { IZFashion } from '../fashion-designer/src';
 
 /**
  * Represents a component that contains color.

@@ -18,8 +18,8 @@ import {
   teal,
   yellow
 } from '@mui/material/colors';
-import { ZFashionDesignBuilder, ZHue, ZPaletteBuilder } from '@zthun/fashion-tailor';
 import { createContext, useContext } from 'react';
+import { ZFashionDesignBuilder, ZHue, ZPaletteBuilder } from '../fashion-designer/src';
 
 /**
  * Creates a new instance of the default FashionDesign

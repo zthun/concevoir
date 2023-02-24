@@ -1,12 +1,4 @@
 import { Card, CardActions, CardContent, CardHeader, Paper } from '@mui/material';
-import {
-  createSizeChartFixedCss,
-  createSizeChartFixedGeometric,
-  createSizeChartVariedCss,
-  createSizeChartVoidCss,
-  ZSizeFixed,
-  ZSizeVaried
-} from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ReactNode } from 'react';
 import { IZComponentAvatar } from '../component/component-avatar';
@@ -16,6 +8,14 @@ import { IZComponentLoading } from '../component/component-loading';
 import { IZComponentName } from '../component/component-name';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentWidth } from '../component/component-width';
+import {
+  createSizeChartFixedCss,
+  createSizeChartFixedGeometric,
+  createSizeChartVariedCss,
+  createSizeChartVoidCss,
+  ZSizeFixed,
+  ZSizeVaried
+} from '../fashion-designer/src';
 import { makeStyles } from '../theme/make-styles';
 import { ZCaption, ZH2 } from '../typography/typography';
 

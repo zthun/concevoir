@@ -5,7 +5,7 @@
     "sourceMap": true,
     "declarationDir": "dist/types",
     "paths": {
-      "@zthun/fashion-tailor": ["../fashion-tailor/src/index"]
+      "@zthun/fashion-tailor": ["../fashion-designer/src/index"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"]

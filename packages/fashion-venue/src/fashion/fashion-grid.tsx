@@ -1,9 +1,9 @@
 import { ZCircusKeyboardQwerty } from '@zthun/cirque';
-import { colorify, IZFashion, ZFashionBuilder, ZHue, ZShade, ZShades, ZSizeFixed } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { KeyboardEvent, MouseEvent, useMemo } from 'react';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentValue } from '../component/component-value';
+import { colorify, IZFashion, ZFashionBuilder, ZHue, ZShade, ZShades, ZSizeFixed } from '../fashion-designer/src';
 import { useAmbassadorState } from '../state/use-ambassador-state';
 import { makeStyles } from '../theme/make-styles';
 import { useFashionDesign } from './fashion';
