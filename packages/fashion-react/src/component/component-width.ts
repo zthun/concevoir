@@ -1,4 +1,4 @@
-import { ZSize } from '@zthun/concevoir-fashion';
+import { ZSize } from '@zthun/fashion-palette';
 
 /**
  * Represents a component that contains an optional width.

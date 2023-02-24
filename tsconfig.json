@@ -4,8 +4,8 @@
     "baseUrl": "packages",
     "target": "esnext",
     "paths": {
-      "@zthun/concevoir-fashion": ["concevoir-fashion/src/index"],
-      "@zthun/concevoir-react": ["concevoir-react/src/index"]
+      "@zthun/fashion-palette": ["fashion-palette/src/index"],
+      "@zthun/fashion-react": ["fashion-react/src/index"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],

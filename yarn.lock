@@ -4094,20 +4094,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/concevoir-fashion@^0.0.1, @zthun/concevoir-fashion@workspace:packages/concevoir-fashion":
+"@zthun/concevoir-react@workspace:packages/fashion-react":
   version: 0.0.0-use.local
-  resolution: "@zthun/concevoir-fashion@workspace:packages/concevoir-fashion"
-  dependencies:
-    lodash: ^4.17.21
-    microbundle: ^0.15.1
-    vite: ^4.1.3
-    vitest: ^0.28.5
-  languageName: unknown
-  linkType: soft
-
-"@zthun/concevoir-react@workspace:packages/concevoir-react":
-  version: 0.0.0-use.local
-  resolution: "@zthun/concevoir-react@workspace:packages/concevoir-react"
+  resolution: "@zthun/concevoir-react@workspace:packages/fashion-react"
   dependencies:
     "@emotion/react": ^11.10.6
     "@emotion/styled": ^11.10.6
@@ -4116,7 +4105,7 @@ __metadata:
     "@mui/system": ^5.11.9
     "@zthun/cirque": ^4.2.0
     "@zthun/cirque-du-react": ^4.2.0
-    "@zthun/concevoir-fashion": ^0.0.1
+    "@zthun/fashion-palette": ^0.0.1
     csstype: ^3.1.1
     history: ^5.3.0
     lodash: ^4.17.21
@@ -4189,6 +4178,17 @@ __metadata:
   checksum: c09d42227cfc894ee3ee7d194ec68ee88a00d36fa638374c7bff736d55f5366d53487f0e85686e05ca508126a2ff4a530049de8f1483d6f2e0c166f88f275269
   languageName: node
   linkType: hard
+
+"@zthun/fashion-palette@^0.0.1, @zthun/fashion-palette@workspace:packages/fashion-palette":
+  version: 0.0.0-use.local
+  resolution: "@zthun/fashion-palette@workspace:packages/fashion-palette"
+  dependencies:
+    lodash: ^4.17.21
+    microbundle: ^0.15.1
+    vite: ^4.1.3
+    vitest: ^0.28.5
+  languageName: unknown
+  linkType: soft
 
 "@zthun/htmlhint-config@npm:^14.1.0":
   version: 14.1.0

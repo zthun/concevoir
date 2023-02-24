@@ -5,7 +5,7 @@
     "sourceMap": true,
     "declarationDir": "dist/types",
     "paths": {
-      "@zthun/concevoir-fashion": ["../concevoir-fashion/src/index"]
+      "@zthun/fashion-palette": ["../fashion-palette/src/index"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"]

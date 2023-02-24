@@ -6,7 +6,7 @@ The concevoir base package includes needed utils and objects that help with sizi
 
 ```sh
 # NPM
-npm install @zthun/concevoir-fashion
+npm install @zthun/fashion-palette
 # Yarn
-yarn add @zthun/concevoir-fashion
+yarn add @zthun/fashion-palette
 ```

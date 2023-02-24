@@ -6,8 +6,7 @@ import {
   createSizeChartVoidCss,
   ZSizeFixed,
   ZSizeVaried
-} from '@zthun/concevoir-fashion';
-import { cssClass } from '@zthun/works.core';
+} from '@zthun/fashion-palette';
 import React, { ReactNode } from 'react';
 import { IZComponentAvatar } from '../component/component-avatar';
 import { IZComponentHeading } from '../component/component-heading';
