@@ -1,5 +1,5 @@
 import { ZCircusKeyboardQwerty } from '@zthun/cirque';
-import { colorify, IZFashion, ZFashionBuilder, ZHue, ZShade, ZShades, ZSizeFixed } from '@zthun/fashion-palette';
+import { colorify, IZFashion, ZFashionBuilder, ZHue, ZShade, ZShades, ZSizeFixed } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { KeyboardEvent, MouseEvent, useMemo } from 'react';
 import { IZComponentStyle } from '../component/component-style';

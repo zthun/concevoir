@@ -12,7 +12,7 @@ import {
   IZFashionDesign,
   ZSizeFixed,
   ZSizeVoid
-} from '@zthun/fashion-palette';
+} from '@zthun/fashion-tailor';
 import { firstDefined } from '@zthun/helpful-fn';
 import { createMakeStyles } from 'tss-react';
 import { useFashionDesign } from '../fashion/fashion';

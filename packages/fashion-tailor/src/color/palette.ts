@@ -1,6 +1,6 @@
 import { keyBy, mapValues } from 'lodash';
-import { IZFashion, ZFashionBuilder } from '../color/fashion';
-import { ZHue } from '../color/hue';
+import { IZFashion, ZFashionBuilder } from './fashion';
+import { ZHue } from './hue';
 import { ZShade, ZShades } from './shade';
 
 /**
