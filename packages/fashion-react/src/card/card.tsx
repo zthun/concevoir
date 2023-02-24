@@ -7,6 +7,7 @@ import {
   ZSizeFixed,
   ZSizeVaried
 } from '@zthun/fashion-palette';
+import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ReactNode } from 'react';
 import { IZComponentAvatar } from '../component/component-avatar';
 import { IZComponentHeading } from '../component/component-heading';
@@ -65,7 +66,7 @@ export function ZCard(props: IZCard) {
   };
 
   return (
-    <Paper className={cssClass('ZCard-root', className, classes.root)} elevation={5} data-name={name}>
+    <Paper className={cssJoinDefined('ZCard-root', className, classes.root)} elevation={5} data-name={name}>
       <Card>
         <CardHeader
           className='ZCard-header'
