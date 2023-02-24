@@ -28,9 +28,9 @@ export type ZAsyncDataTuple<T> = [ZAsyncDataState<T>, (val?: T) => Promise<any>]
 /**
  * Represents a hook to use async data.
  *
- * @param load
+ * @param load -
  *        The load method for the data.
- * @param deps
+ * @param deps -
  *        The dependencies to force a refresh of the data.
  *
  * @returns
@@ -65,7 +65,7 @@ export function useAsyncState<T>(load: () => Promise<T>, deps: DependencyList = 
 /**
  * Gets whether data is loading.
  *
- * @param data
+ * @param data -
  *        The data to check.
  *
  * @returns
@@ -78,7 +78,7 @@ export function isStateLoading<T>(data: ZAsyncDataState<T>): data is Symbol {
 /**
  * Gets whether data has been loaded.
  *
- * @param data
+ * @param data -
  *        The data to check.
  *
  * @returns
@@ -91,7 +91,7 @@ export function isStateLoaded<T>(data: ZAsyncDataState<T>): data is T {
 /**
  * Gets whether data has errored.
  *
- * @param data
+ * @param data -
  *        The data to check.
  *
  * @returns
@@ -104,7 +104,7 @@ export function isStateErrored<T>(data: ZAsyncDataState<T>): data is Error {
 /**
  * Returns the loaded data.
  *
- * @param data
+ * @param data -
  *        The data to retrieve.
  *
  * @returns
@@ -118,7 +118,7 @@ export function asStateData<T>(data: ZAsyncDataState<T>): T | undefined {
 /**
  * Returns the data error.
  *
- * @param data
+ * @param data -
  *        The data that has possibly errored.
  *
  * @returns
