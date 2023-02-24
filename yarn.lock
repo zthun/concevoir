@@ -4120,9 +4120,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/fashion-react@^0.0.1, @zthun/fashion-react@workspace:packages/fashion-react":
+"@zthun/fashion-tailor@^0.0.1, @zthun/fashion-tailor@workspace:packages/fashion-tailor":
   version: 0.0.0-use.local
-  resolution: "@zthun/fashion-react@workspace:packages/fashion-react"
+  resolution: "@zthun/fashion-tailor@workspace:packages/fashion-tailor"
+  dependencies:
+    lodash: ^4.17.21
+    microbundle: ^0.15.1
+    vite: ^4.1.3
+    vitest: ^0.28.5
+  languageName: unknown
+  linkType: soft
+
+"@zthun/fashion-venue@^0.0.1, @zthun/fashion-venue@workspace:packages/fashion-venue":
+  version: 0.0.0-use.local
+  resolution: "@zthun/fashion-venue@workspace:packages/fashion-venue"
   dependencies:
     "@emotion/react": ^11.10.6
     "@emotion/styled": ^11.10.6
@@ -4147,17 +4158,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@zthun/fashion-tailor@^0.0.1, @zthun/fashion-tailor@workspace:packages/fashion-tailor":
-  version: 0.0.0-use.local
-  resolution: "@zthun/fashion-tailor@workspace:packages/fashion-tailor"
-  dependencies:
-    lodash: ^4.17.21
-    microbundle: ^0.15.1
-    vite: ^4.1.3
-    vitest: ^0.28.5
-  languageName: unknown
-  linkType: soft
-
 "@zthun/fashion-web@workspace:packages/fashion-web":
   version: 0.0.0-use.local
   resolution: "@zthun/fashion-web@workspace:packages/fashion-web"
@@ -4165,8 +4165,8 @@ __metadata:
     "@cucumber/cucumber": ^8.10.0
     "@zthun/cirque": ^4.2.0
     "@zthun/cirque-du-react": ^4.2.0
-    "@zthun/fashion-react": ^0.0.1
     "@zthun/fashion-tailor": ^0.0.1
+    "@zthun/fashion-venue": ^0.0.1
     "@zthun/helpful-fn": ^0.2.0
     history: ^5.3.0
     lodash: ^4.17.21
