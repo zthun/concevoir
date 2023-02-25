@@ -19,7 +19,6 @@ import {
   yellow
 } from '@mui/material/colors';
 import { ZFashionDesignBuilder, ZHue, ZPaletteBuilder } from '@zthun/fashion-designer';
-import { createContext, useContext } from 'react';
 
 /**
  * Creates a new instance of the default FashionDesign
@@ -54,18 +53,4 @@ export function createDefaultFashionDesign() {
     .build();
 
   return new ZFashionDesignBuilder().palette(palette).build();
-}
-/**
- * The context for setting the fashion design for the entire site theme.
- */
-export const ZFashionDesignContext = createContext(createDefaultFashionDesign());
-
-/**
- * Exports the fashion theme for zthunworks applications.
- *
- * @returns
- *        The theme for zthunworks applications.
- */
-export function useFashionDesign() {
-  return useContext(ZFashionDesignContext);
 }

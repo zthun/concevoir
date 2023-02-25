@@ -11,6 +11,10 @@ export interface IZBox extends IZComponentHierarchy, IZComponentStyle {
     | ZSizeFixed
     | ZSizeVoid
     | {
+        x?: ZSizeFixed | ZSizeVoid;
+        y?: ZSizeFixed | ZSizeVoid;
+      }
+    | {
         left?: ZSizeFixed | ZSizeVoid;
         right?: ZSizeFixed | ZSizeVoid;
         top?: ZSizeFixed | ZSizeVoid;
@@ -20,6 +24,10 @@ export interface IZBox extends IZComponentHierarchy, IZComponentStyle {
     | ZSizeFixed
     | ZSizeVaried.Fit
     | ZSizeVoid
+    | {
+        x?: ZSizeFixed | ZSizeVoid;
+        y?: ZSizeFixed | ZSizeVoid;
+      }
     | {
         left?: ZSizeFixed | ZSizeVoid | ZSizeVaried.Fit;
         right?: ZSizeFixed | ZSizeVoid | ZSizeVaried.Fit;
@@ -48,15 +56,15 @@ const useBoxStyles = makeStyles<IZBox>()((theme, props) => {
     return theme.gap(margin);
   };
 
-  const pLeft = firstDefined(ZSizeVoid.None, get(padding, 'left'), padding);
-  const pRight = firstDefined(ZSizeVoid.None, get(padding, 'right'), padding);
-  const pTop = firstDefined(ZSizeVoid.None, get(padding, 'top'), padding);
-  const pBottom = firstDefined(ZSizeVoid.None, get(padding, 'bottom'), padding);
+  const pLeft = firstDefined(ZSizeVoid.None, get(padding, 'left'), get(padding, 'x'), padding);
+  const pRight = firstDefined(ZSizeVoid.None, get(padding, 'right'), get(padding, 'x'), padding);
+  const pTop = firstDefined(ZSizeVoid.None, get(padding, 'top'), get(padding, 'y'), padding);
+  const pBottom = firstDefined(ZSizeVoid.None, get(padding, 'bottom'), get(padding, 'y'), padding);
 
-  const mLeft = firstDefined(ZSizeVoid.None, get(margin, 'left'), margin);
-  const mRight = firstDefined(ZSizeVoid.None, get(margin, 'right'), margin);
-  const mTop = firstDefined(ZSizeVoid.None, get(margin, 'top'), margin);
-  const mBottom = firstDefined(ZSizeVoid.None, get(margin, 'bottom'), margin);
+  const mLeft = firstDefined(ZSizeVoid.None, get(margin, 'left'), get(margin, 'x'), margin);
+  const mRight = firstDefined(ZSizeVoid.None, get(margin, 'right'), get(margin, 'x'), margin);
+  const mTop = firstDefined(ZSizeVoid.None, get(margin, 'top'), get(margin, 'y'), margin);
+  const mBottom = firstDefined(ZSizeVoid.None, get(margin, 'bottom'), get(margin, 'y'), margin);
 
   return {
     root: {

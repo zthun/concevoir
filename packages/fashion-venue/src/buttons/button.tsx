@@ -40,7 +40,7 @@ export interface IZButton
 const ButtonSizeChart = createSizeChartVariedCss();
 
 const useButtonStyles = makeStyles<IZButton>()((theme, props) => {
-  const { width = ZSizeVaried.Fit, fashion = theme.fashion().dark } = props;
+  const { width = ZSizeVaried.Fit, fashion = theme.design().dark } = props;
 
   const text = theme.colorify(fashion.contrast);
   const main = theme.colorify(fashion.main);

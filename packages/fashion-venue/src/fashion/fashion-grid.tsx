@@ -5,8 +5,7 @@ import React, { KeyboardEvent, MouseEvent, useMemo } from 'react';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentValue } from '../component/component-value';
 import { useAmbassadorState } from '../state/use-ambassador-state';
-import { makeStyles } from '../theme/theme';
-import { useFashionDesign } from './fashion';
+import { makeStyles, useFashionTheme } from '../theme/theme';
 
 /**
  * Represents a fashion wheel component
@@ -60,7 +59,8 @@ export function ZFashionGrid(props: IZFashionGrid) {
   const _transparent = new ZFashionBuilder().transparent().build();
   const [_value, _setValue] = useAmbassadorState(value, onValueChange, _transparent);
   const _valueJson = useMemo(() => JSON.stringify(_value), [_value]);
-  const { palette } = useFashionDesign();
+  const theme = useFashionTheme();
+  const { palette } = theme.design();
   const { classes } = useFashionGridStyles();
 
   const renderShade = (hue: ZHue, shade: ZShade) => {
