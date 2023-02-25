@@ -1,4 +1,4 @@
-import { Color, PaletteColor, Theme, useTheme as useMuiTheme } from '@mui/material';
+import { Color, createTheme, PaletteColor, Theme } from '@mui/material';
 import { createSpacing } from '@mui/system';
 import {
   colorify,
@@ -15,9 +15,10 @@ import {
 } from '@zthun/fashion-designer';
 import { firstDefined } from '@zthun/helpful-fn';
 import { createContext, useContext } from 'react';
-import { createMakeStyles } from 'tss-react';
-import { useFashionDesign } from '../fashion/fashion';
+import { createMakeStyles, CSSInterpolation } from 'tss-react';
+import { createDefaultFashionDesign } from '../fashion/fashion';
 
+export type IZCss = CSSInterpolation;
 export type IZColor = Color;
 
 const GapChart = {
@@ -31,12 +32,9 @@ const ThicknessChart = {
 };
 
 /**
- * Represents a theme for the fashion venue.
- *
- * This extends material main theme and adds
- * some helpers and size options.
+ * Mixin functions
  */
-export interface IZTheme extends Theme {
+export interface IZThemeMixins {
   /**
    * Converts from a fashion object to a css color.
    *
@@ -54,7 +52,7 @@ export interface IZTheme extends Theme {
    @returns
           The current fashion design.
    */
-  fashion(): Readonly<IZFashionDesign>;
+  design(): Readonly<IZFashionDesign>;
 
   /**
    * Converts a size enum to a spacing value.
@@ -90,7 +88,15 @@ export interface IZTheme extends Theme {
 }
 
 /**
- * Constructs the theme variables for fashion components.
+ * Represents a theme for the fashion venue.
+ *
+ * This extends material main theme and adds
+ * some helpers and size options.
+ */
+export interface IZTheme extends Theme, IZThemeMixins {}
+
+/**
+ * Constructs the default theme variables for fashion components.
  *
  * See https://www.npmjs.com/package/tss-react for more information.
  *
@@ -98,40 +104,31 @@ export interface IZTheme extends Theme {
  *        The fashion theme.
  */
 export function createDefaultFashionTheme(): IZTheme {
-  const mui = useMuiTheme();
-  const fashionTheme = useFashionDesign();
-
-  const base = {
-    colorify: (fashion: IZFashion) => colorify(fashionTheme.palette, fashion),
-
-    fashion: () => fashionTheme,
-
-    gap(size: ZSizeFixed | ZSizeVoid = ZSizeFixed.Medium): string {
-      return mui.spacing(GapChart[size]);
-    },
-
-    thickness(size: ZSizeFixed | ZSizeVoid = ZSizeFixed.ExtraSmall): string {
-      return ThicknessChart[size];
-    }
-  };
+  const mui = createTheme() as IZTheme;
+  const design = createDefaultFashionDesign();
 
   mui.spacing = createSpacing((abs: number) => `${abs * 0.5}rem`);
+  mui.colorify = (fashion: IZFashion) => colorify(design.palette, fashion);
+  mui.design = () => design;
+  mui.gap = (size: ZSizeFixed | ZSizeVoid = ZSizeFixed.Medium): string => mui.spacing(GapChart[size]);
+  mui.thickness = (size: ZSizeFixed | ZSizeVoid = ZSizeFixed.ExtraSmall): string => ThicknessChart[size];
+
   mui.components = firstDefined({}, mui.components);
 
-  const setCoordination = (mui: PaletteColor, fashion: IZFashionCoordination) => {
-    mui.main = base.colorify(fashion.main);
-    mui.contrastText = base.colorify(fashion.contrast);
-    mui.dark = base.colorify(firstDefined(fashion.main, fashion.dark));
-    mui.light = base.colorify(firstDefined(fashion.main, fashion.light));
+  const setCoordination = (palette: PaletteColor, coordination: IZFashionCoordination) => {
+    palette.main = mui.colorify(coordination.main);
+    palette.contrastText = mui.colorify(coordination.contrast);
+    palette.dark = mui.colorify(firstDefined(coordination.main, coordination.dark));
+    palette.light = mui.colorify(firstDefined(coordination.main, coordination.light));
   };
 
   // Palette
-  setCoordination(mui.palette.primary, base.fashion().primary);
-  setCoordination(mui.palette.secondary, base.fashion().secondary);
-  setCoordination(mui.palette.success, base.fashion().success);
-  setCoordination(mui.palette.warning, base.fashion().warning);
-  setCoordination(mui.palette.error, base.fashion().error);
-  setCoordination(mui.palette.info, base.fashion().info);
+  setCoordination(mui.palette.primary, mui.design().primary);
+  setCoordination(mui.palette.secondary, mui.design().secondary);
+  setCoordination(mui.palette.success, mui.design().success);
+  setCoordination(mui.palette.warning, mui.design().warning);
+  setCoordination(mui.palette.error, mui.design().error);
+  setCoordination(mui.palette.info, mui.design().info);
 
   // Typography
   const fonts = "'Roboto', 'Arial', 'sans-serif'";
@@ -186,7 +183,7 @@ export function createDefaultFashionTheme(): IZTheme {
   mui.components.MuiTypography = {
     styleOverrides: {
       gutterBottom: {
-        marginBottom: base.gap()
+        marginBottom: mui.gap()
       }
     }
   };
@@ -221,8 +218,8 @@ export function createDefaultFashionTheme(): IZTheme {
   mui.components.MuiCheckbox = {
     styleOverrides: {
       root: {
-        paddingTop: base.gap(ZSizeFixed.Small),
-        paddingBottom: base.gap(ZSizeFixed.Small)
+        paddingTop: mui.gap(ZSizeFixed.Small),
+        paddingBottom: mui.gap(ZSizeFixed.Small)
       }
     }
   };
@@ -254,17 +251,24 @@ export function createDefaultFashionTheme(): IZTheme {
     }
   };
 
-  return Object.assign({}, mui, base);
+  return mui;
 }
 
-/**
- * The theme context to apply.
- */
+export function createDefaultGlobalStyles(): IZCss {
+  return {
+    body: {
+      backgroundColor: 'whitesmoke',
+      margin: 0
+    }
+  };
+}
+
 export const ZFashionThemeContext = createContext(createDefaultFashionTheme());
 
-/**
- * Returns the contextual fashion theme.
- */
 export const useFashionTheme = () => useContext(ZFashionThemeContext);
 
-export const { makeStyles } = createMakeStyles({ useTheme: createDefaultFashionTheme });
+export const ZGlobalStylesContext = createContext(createDefaultGlobalStyles());
+
+export const useGlobalStyles = () => useContext(ZGlobalStylesContext);
+
+export const { makeStyles } = createMakeStyles({ useTheme: useFashionTheme });
