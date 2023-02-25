@@ -4,7 +4,7 @@ import { get } from 'lodash';
 import React from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy';
 import { IZComponentStyle } from '../component/component-style';
-import { makeStyles } from '../theme/make-styles';
+import { makeStyles } from '../theme/theme';
 
 export interface IZBox extends IZComponentHierarchy, IZComponentStyle {
   padding?:

@@ -18,7 +18,7 @@ import { IZComponentFashion } from '../component/component-fashion';
 import { IZComponentHierarchy } from '../component/component-hierarchy';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentWidth } from '../component/component-width';
-import { makeStyles } from '../theme/make-styles';
+import { makeStyles } from '../theme/theme';
 
 type ZBorderSize = ZSizeFixed | ZSizeVoid;
 

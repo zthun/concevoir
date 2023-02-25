@@ -5,7 +5,7 @@ import React, { KeyboardEvent, MouseEvent, useMemo } from 'react';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentValue } from '../component/component-value';
 import { useAmbassadorState } from '../state/use-ambassador-state';
-import { makeStyles } from '../theme/make-styles';
+import { makeStyles } from '../theme/theme';
 import { useFashionDesign } from './fashion';
 
 /**

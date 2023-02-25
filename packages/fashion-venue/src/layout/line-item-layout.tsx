@@ -3,7 +3,7 @@ import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ReactNode } from 'react';
 import { IZComponentAdornment } from '../component/component-adornment';
 import { IZComponentStyle } from '../component/component-style';
-import { makeStyles } from '../theme/make-styles';
+import { makeStyles } from '../theme/theme';
 
 export interface IZLineItemLayout extends IZComponentStyle, IZComponentAdornment {
   body?: ReactNode;

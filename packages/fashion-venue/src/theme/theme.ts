@@ -14,6 +14,7 @@ import {
   ZSizeVoid
 } from '@zthun/fashion-designer';
 import { firstDefined } from '@zthun/helpful-fn';
+import { createContext, useContext } from 'react';
 import { createMakeStyles } from 'tss-react';
 import { useFashionDesign } from '../fashion/fashion';
 
@@ -30,7 +31,7 @@ const ThicknessChart = {
 };
 
 /**
- * The overall theme for the Zthunworks domain.
+ * Represents a theme for the fashion venue.
  *
  * This extends material main theme and adds
  * some helpers and size options.
@@ -96,7 +97,7 @@ export interface IZTheme extends Theme {
  * @returns
  *        The fashion theme.
  */
-export function useFashionTheme(): IZTheme {
+export function createDefaultFashionTheme(): IZTheme {
   const mui = useMuiTheme();
   const fashionTheme = useFashionDesign();
 
@@ -256,4 +257,14 @@ export function useFashionTheme(): IZTheme {
   return Object.assign({}, mui, base);
 }
 
-export const { makeStyles } = createMakeStyles({ useTheme: useFashionTheme });
+/**
+ * The theme context to apply.
+ */
+export const ZFashionThemeContext = createContext(createDefaultFashionTheme());
+
+/**
+ * Returns the contextual fashion theme.
+ */
+export const useFashionTheme = () => useContext(ZFashionThemeContext);
+
+export const { makeStyles } = createMakeStyles({ useTheme: createDefaultFashionTheme });

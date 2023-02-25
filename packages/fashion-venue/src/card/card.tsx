@@ -16,7 +16,7 @@ import { IZComponentLoading } from '../component/component-loading';
 import { IZComponentName } from '../component/component-name';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentWidth } from '../component/component-width';
-import { makeStyles } from '../theme/make-styles';
+import { makeStyles } from '../theme/theme';
 import { ZCaption, ZH2 } from '../typography/typography';
 
 export interface IZCard

@@ -4,7 +4,7 @@ import React from 'react';
 import { IZComponentAdornment } from '../component/component-adornment';
 import { IZComponentDisabled } from '../component/component-disabled';
 import { IZComponentHeading } from '../component/component-heading';
-import { makeStyles } from '../theme/make-styles';
+import { makeStyles } from '../theme/theme';
 import { IZListItem } from './list-item';
 
 /**
