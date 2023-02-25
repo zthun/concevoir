@@ -6,7 +6,8 @@
     "declarationDir": "dist/types",
     "paths": {
       "@zthun/fashion-designer": ["../fashion-designer/src/index"],
-      "@zthun/fashion-venue": ["../fashion-show/src/index"]
+      "@zthun/fashion-runway": ["../fashion-runway/src/index"],
+      "@zthun/fashion-venue": ["../fashion-venue/src/index"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"]

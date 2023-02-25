@@ -4115,6 +4115,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@zthun/fashion-runway@^0.0.1, @zthun/fashion-runway@workspace:packages/fashion-runway":
+  version: 0.0.0-use.local
+  resolution: "@zthun/fashion-runway@workspace:packages/fashion-runway"
+  dependencies:
+    "@zthun/cirque": ^4.2.0
+    "@zthun/cirque-du-react": ^4.2.0
+    "@zthun/fashion-designer": ^0.0.1
+    "@zthun/fashion-venue": ^0.0.1
+    lodash: ^4.17.21
+    microbundle: ^0.15.1
+    vite: ^4.1.4
+    vitest: ^0.28.5
+  peerDependencies:
+    react: ^18.1.0
+    react-dom: ^18.1.0
+  languageName: unknown
+  linkType: soft
+
 "@zthun/fashion-venue@^0.0.1, @zthun/fashion-venue@workspace:packages/fashion-venue":
   version: 0.0.0-use.local
   resolution: "@zthun/fashion-venue@workspace:packages/fashion-venue"
@@ -4150,6 +4168,7 @@ __metadata:
     "@zthun/cirque": ^4.2.0
     "@zthun/cirque-du-react": ^4.2.0
     "@zthun/fashion-designer": ^0.0.1
+    "@zthun/fashion-runway": ^0.0.1
     "@zthun/fashion-venue": ^0.0.1
     "@zthun/helpful-fn": ^0.2.0
     history: ^5.3.0
