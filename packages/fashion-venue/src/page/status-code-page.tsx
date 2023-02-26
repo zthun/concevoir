@@ -18,7 +18,7 @@ import { get } from 'lodash';
 import React from 'react';
 import { ZCard } from '../card/card';
 import { IZComponentName } from '../component/component-name';
-import { ZGridLayout } from '../layout/grid-layout';
+import { ZGrid } from '../grid/grid';
 import { useParams } from '../router/router-dom';
 import { makeStyles } from '../theme/theme';
 import { ZParagraph } from '../typography/typography';
@@ -117,7 +117,7 @@ export function ZStatusCodePage(props: IZComponentName) {
   };
 
   return (
-    <ZGridLayout className='ZStatusCodePage-root' justifyContent='center'>
+    <ZGrid className='ZStatusCodePage-root' justifyContent='center'>
       <ZCard
         avatar={renderAvatar()}
         heading={getHttpCodeCategory(code)}
@@ -127,6 +127,6 @@ export function ZStatusCodePage(props: IZComponentName) {
         <ZParagraph className='ZStatusCodePage-description'>{getHttpCodeDescription(code)}</ZParagraph>
         <span className={cssJoinDefined('ZStatusCodePage-code', classes.code)}>{code}</span>
       </ZCard>
-    </ZGridLayout>
+    </ZGrid>
   );
 }

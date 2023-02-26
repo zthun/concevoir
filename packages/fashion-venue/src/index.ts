@@ -30,7 +30,7 @@ export * from './fashion/fashion-grid';
 export * from './fashion/fashion-grid.cm';
 export * from './image/image-source';
 export * from './image/image-source.cm';
-export * from './layout/grid-layout';
+export * from './layout/grid';
 export * from './layout/line-item-layout';
 export * from './layout/line-item-layout.cm';
 export * from './layout/styled-layout';
