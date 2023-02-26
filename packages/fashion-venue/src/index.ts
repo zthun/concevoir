@@ -48,6 +48,7 @@ export * from './router/breadcrumbs-location';
 export * from './router/breadcrumbs.cm';
 export * from './router/link';
 export * from './router/link.cm';
+export * from './router/route-map-app';
 export * from './router/router-dom';
 export * from './state/state-anchor';
 export * from './state/state-orientation';
