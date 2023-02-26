@@ -1,7 +1,8 @@
 import { ZSizeVaried } from '@zthun/fashion-designer';
 import { ZRunwayHeaderMain } from '@zthun/fashion-runway';
-import { ZCaption, ZH1, ZImageSource } from '@zthun/fashion-venue';
+import { ZCaption, ZH1, ZImageSource, ZRoute, ZRouteMapApp, ZRouter } from '@zthun/fashion-venue';
 import React from 'react';
+import { ZFashionHome } from '../fashion-home/fashion-home';
 
 /**
  * Represents the root entry point into the application.
@@ -18,8 +19,12 @@ export function ZFashionApp() {
     </div>
   );
   return (
-    <ZRunwayHeaderMain avatar={avatar} prefix={prefix}>
-      Content Here!
-    </ZRunwayHeaderMain>
+    <ZRouter>
+      <ZRunwayHeaderMain avatar={avatar} prefix={prefix}>
+        <ZRouteMapApp>
+          <ZRoute path='/' element={<ZFashionHome />} />
+        </ZRouteMapApp>
+      </ZRunwayHeaderMain>
+    </ZRouter>
   );
 }
