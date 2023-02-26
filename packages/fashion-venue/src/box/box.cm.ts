@@ -1,13 +1,13 @@
 import { ZCircusActBuilder, ZCircusComponentModel } from '@zthun/cirque';
 
 /**
- * The component model for a border layout component.
+ * The component model for a box component.
  */
 export class ZBoxComponentModel extends ZCircusComponentModel {
   public static readonly Selector = '.ZBox-root';
 
   /**
-   * Clicks the layout.
+   * Clicks the box.
    *
    * @returns
    *        A promise that resolves once the layout has been clicked.
