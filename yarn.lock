@@ -4146,6 +4146,7 @@ __metadata:
     "@zthun/fashion-designer": ^0.0.1
     "@zthun/helpful-fn": ^0.2.0
     "@zthun/helpful-obligation": ^0.2.0
+    "@zthun/webigail-url": ^0.1.0
     csstype: ^3.1.1
     history: ^5.3.0
     lodash: ^4.17.21
@@ -4305,6 +4306,16 @@ __metadata:
   peerDependencies:
     stylelint: ^14.2.0
   checksum: cf079883a5a6baea67884e2d4c768431c536b2b5bc163482565a2432e620a1014ad41cf7dd578279588bc70d3c0f1187a3d79f395e5e8b8da9cda41f1437d548
+  languageName: node
+  linkType: hard
+
+"@zthun/webigail-url@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@zthun/webigail-url@npm:0.1.0"
+  dependencies:
+    lodash: ^4.17.21
+    url-parse: ^1.5.10
+  checksum: f5e66d81276afc4a20fd4448dc0167195307c3bd8af2e4f9baa7fc9e0bb5ed73fb1ab9c8c66a19708e5876d8a869692f1973cdffe574e59521f073e96d7942dc
   languageName: node
   linkType: hard
 
@@ -13726,7 +13737,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"url-parse@npm:^1.5.3":
+"url-parse@npm:^1.5.10, url-parse@npm:^1.5.3":
   version: 1.5.10
   resolution: "url-parse@npm:1.5.10"
   dependencies:
