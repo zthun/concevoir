@@ -1,5 +1,6 @@
+import { ZSizeVaried } from '@zthun/fashion-designer';
 import { ZRunwayHeaderMain } from '@zthun/fashion-runway';
-import { ZCaption, ZH1 } from '@zthun/fashion-venue';
+import { ZCaption, ZH1, ZImageSource } from '@zthun/fashion-venue';
 import React from 'react';
 
 /**
@@ -9,11 +10,11 @@ import React from 'react';
  *        The jsx to render the fashion web application.
  */
 export function ZFashionApp() {
-  const avatar = <img src='images/svg/fashion.svg' />;
+  const avatar = <ZImageSource src='images/svg/fashion.svg' height={ZSizeVaried.Full} />;
   const prefix = (
     <div className='ZFashionApp-description'>
       <ZH1 compact>Fashion</ZH1>
-      <ZCaption compact>Welcome to the show</ZCaption>
+      <ZCaption compact>Make it look good</ZCaption>
     </div>
   );
   return (
