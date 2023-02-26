@@ -2,7 +2,7 @@ import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import React, { ReactNode } from 'react';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { ZLineItemLayout } from './line-item';
+import { ZLineItem } from './line-item';
 import { ZLineItemLayoutComponentModel } from './line-item.cm';
 
 describe('ZLineItem', () => {
@@ -17,7 +17,7 @@ describe('ZLineItem', () => {
   });
 
   async function createTestTarget() {
-    const element = <ZLineItemLayout prefix={prefix} body={body} suffix={suffix} />;
+    const element = <ZLineItem prefix={prefix} body={body} suffix={suffix} />;
     const driver = await new ZCircusSetupRenderer(element).setup();
     return ZCircusBy.first(driver, ZLineItemLayoutComponentModel);
   }

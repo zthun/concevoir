@@ -5,11 +5,11 @@ import { IZComponentAdornment } from '../component/component-adornment';
 import { IZComponentStyle } from '../component/component-style';
 import { makeStyles } from '../theme/theme';
 
-export interface IZLineItemLayout extends IZComponentStyle, IZComponentAdornment {
+export interface IZLineItem extends IZComponentStyle, IZComponentAdornment {
   body?: ReactNode;
 }
 
-const useLineItemLayoutStyles = makeStyles()((theme) => {
+const useLineItemStyles = makeStyles()((theme) => {
   return {
     root: {
       display: 'flex',
@@ -17,6 +17,7 @@ const useLineItemLayoutStyles = makeStyles()((theme) => {
       alignItems: 'center',
       width: '100%'
     },
+
     prefix: {
       flexGrow: 0,
       paddingRight: theme.gap(ZSizeFixed.Small)
@@ -44,15 +45,15 @@ const useLineItemLayoutStyles = makeStyles()((theme) => {
  *        The JSX element to render the line item.
  *
  */
-export function ZLineItemLayout(props: IZLineItemLayout) {
+export function ZLineItem(props: IZLineItem) {
   const { className, prefix, body, suffix } = props;
-  const { classes } = useLineItemLayoutStyles();
+  const { classes } = useLineItemStyles();
 
   return (
-    <div className={cssJoinDefined('ZLineItemLayout-root', className, classes.root)}>
-      <div className={cssJoinDefined('ZLineItemLayout-prefix', classes.prefix)}>{prefix}</div>
-      <div className={cssJoinDefined('ZLineItemLayout-body', classes.body)}>{body}</div>
-      <div className={cssJoinDefined('ZLineItemLayout-suffix', classes.suffix)}>{suffix}</div>
+    <div className={cssJoinDefined('ZLineItem-root', className, classes.root)}>
+      <div className={cssJoinDefined('ZLineItem-prefix', classes.prefix)}>{prefix}</div>
+      <div className={cssJoinDefined('ZLineItem-body', classes.body)}>{body}</div>
+      <div className={cssJoinDefined('ZLineItem-suffix', classes.suffix)}>{suffix}</div>
     </div>
   );
 }
