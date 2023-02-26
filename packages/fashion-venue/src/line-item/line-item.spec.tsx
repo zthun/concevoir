@@ -2,10 +2,10 @@ import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import React, { ReactNode } from 'react';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { ZLineItemLayout } from './line-item-layout';
-import { ZLineItemLayoutComponentModel } from './line-item-layout.cm';
+import { ZLineItemLayout } from './line-item';
+import { ZLineItemLayoutComponentModel } from './line-item.cm';
 
-describe('ZLineItemLayout', () => {
+describe('ZLineItem', () => {
   let prefix: ReactNode | undefined;
   let body: ReactNode | undefined;
   let suffix: ReactNode | undefined;
