@@ -1,5 +1,6 @@
 export * from './banner/banner';
 export * from './box/box';
+export * from './box/box.cm';
 export * from './buttons/button';
 export * from './buttons/button.cm';
 export * from './card/card';
@@ -29,8 +30,6 @@ export * from './fashion/fashion-grid';
 export * from './fashion/fashion-grid.cm';
 export * from './image/image-source';
 export * from './image/image-source.cm';
-export * from './layout/border-layout';
-export * from './layout/border-layout.cm';
 export * from './layout/grid-layout';
 export * from './layout/line-item-layout';
 export * from './layout/line-item-layout.cm';
