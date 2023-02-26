@@ -3,7 +3,7 @@ import { ZSizeFixed, ZSizeVoid } from '@zthun/fashion-designer';
 import { Property } from 'csstype';
 import React from 'react';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { ZGridLayout } from './grid-layout';
+import { ZGrid } from './grid';
 
 describe('ZGridLayout', () => {
   let gap: ZSizeFixed | ZSizeVoid | undefined;
@@ -24,7 +24,7 @@ describe('ZGridLayout', () => {
   });
 
   async function createTestTarget() {
-    const element = <ZGridLayout gap={gap} columns={xl} columnsLg={lg} columnsMd={md} columnsSm={sm} columnsXs={xs} />;
+    const element = <ZGrid gap={gap} columns={xl} columnsLg={lg} columnsMd={md} columnsSm={sm} columnsXs={xs} />;
     const driver = await new ZCircusSetupRenderer(element).setup();
     return driver;
   }

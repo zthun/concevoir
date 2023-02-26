@@ -6,7 +6,7 @@ import { IZComponentHierarchy } from '../component/component-hierarchy';
 import { IZComponentStyle } from '../component/component-style';
 import { makeStyles } from '../theme/theme';
 
-export interface IZGridLayout extends IZComponentStyle, IZComponentHierarchy {
+export interface IZGrid extends IZComponentStyle, IZComponentHierarchy {
   alignItems?: Property.AlignItems;
   justifyContent?: Property.JustifyContent;
   gap?: ZSizeFixed | ZSizeVoid;
@@ -18,7 +18,7 @@ export interface IZGridLayout extends IZComponentStyle, IZComponentHierarchy {
   rows?: Property.GridTemplateRows;
 }
 
-const useGridStyles = makeStyles<IZGridLayout>()((theme, props) => {
+const useGridStyles = makeStyles<IZGrid>()((theme, props) => {
   const {
     alignItems,
     justifyContent,
@@ -68,8 +68,8 @@ const useGridStyles = makeStyles<IZGridLayout>()((theme, props) => {
  * @returns
  *        The JSX used to render this layout.
  */
-export function ZGridLayout(props: IZGridLayout) {
+export function ZGrid(props: IZGrid) {
   const { className, children } = props;
   const { classes } = useGridStyles(props);
-  return <div className={cssJoinDefined('ZGridLayout-root', className, classes.grid)}>{children}</div>;
+  return <div className={cssJoinDefined('ZGrid-root', className, classes.grid)}>{children}</div>;
 }
