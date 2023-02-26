@@ -3,17 +3,19 @@ import React from 'react';
 import { GlobalStyles } from 'tss-react';
 import { IZComponentHierarchy } from '../component/component-hierarchy';
 import { IZComponentStyle } from '../component/component-style';
-import { useFashionTheme, useGlobalStyles } from '../theme/theme';
+import { useFashionTheme, useGlobalStyles } from './theme';
 
 /**
- * Properties for the styled layout.
+ * Properties for the styled application.
  */
-export interface IZStyledLayout extends IZComponentHierarchy, IZComponentStyle {}
+export interface IZStyledApplication extends IZComponentHierarchy, IZComponentStyle {}
 
 /**
- * Represents a styled layout at the root context.
+ * Represents the root element that sets the overall theme.
+ *
+ * Runways will always use this as the root element.
  */
-export function ZStyledLayout(props: IZStyledLayout) {
+export function ZStyledApplication(props: IZStyledApplication) {
   const { children, className } = props;
   const globals = useGlobalStyles();
   const theme = useFashionTheme();

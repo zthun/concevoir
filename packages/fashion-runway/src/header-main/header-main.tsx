@@ -7,7 +7,7 @@ import {
   ZBanner,
   ZBox,
   ZGrid,
-  ZStyledLayout
+  ZStyledApplication
 } from '@zthun/fashion-venue';
 import React from 'react';
 
@@ -22,7 +22,7 @@ export function ZRunwayHeaderMain(props: IZRunwayHeaderMain) {
   const { primary } = theme.design();
 
   return (
-    <ZStyledLayout className='ZHeaderMainApp-root'>
+    <ZStyledApplication className='ZHeaderMainApp-root'>
       <ZBanner className='ZHeaderMainApp-header' position='sticky' fashion={primary}>
         <ZBox padding={{ x: ZSizeFixed.Medium, y: ZSizeFixed.ExtraSmall }}>
           <ZGrid columns='auto auto 1fr auto' alignItems='center' gap={ZSizeFixed.Small}>
@@ -36,6 +36,6 @@ export function ZRunwayHeaderMain(props: IZRunwayHeaderMain) {
       <ZBox padding={ZSizeFixed.Large}>
         <main className='ZHeaderMainApp-content'>{children}</main>
       </ZBox>
-    </ZStyledLayout>
+    </ZStyledApplication>
   );
 }
