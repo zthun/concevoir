@@ -1,14 +1,18 @@
+import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-designer';
 import React from 'react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, Mock, vi } from 'vitest';
 import { ZBox } from './box';
+import { ZBoxComponentModel } from './box.cm';
 
 describe('ZBox', () => {
+  let onClick: Mock | undefined;
+
   async function createTestTarget() {
-    const element = <ZBox padding={ZSizeFixed.Large} margin={ZSizeVaried.Fit} />;
+    const element = <ZBox padding={ZSizeFixed.Large} margin={ZSizeVaried.Fit} onClick={onClick} />;
     const driver = await new ZCircusSetupRenderer(element).setup();
-    return driver;
+    return ZCircusBy.first(driver, ZBoxComponentModel);
   }
 
   it('should render the component', async () => {
@@ -17,5 +21,15 @@ describe('ZBox', () => {
     const target = await createTestTarget();
     // Assert.
     expect(target).toBeTruthy();
+  });
+
+  it('should raise the onClick event when the layout is clicked', async () => {
+    // Arrange.
+    onClick = vi.fn();
+    const target = await createTestTarget();
+    // Act.
+    await target.click();
+    // Assert.
+    expect(onClick).toHaveBeenCalled();
   });
 });

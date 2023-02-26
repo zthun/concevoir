@@ -3,8 +3,8 @@ import { ZCircusActBuilder, ZCircusComponentModel } from '@zthun/cirque';
 /**
  * The component model for a border layout component.
  */
-export class ZBorderLayoutComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZBorderLayout-root';
+export class ZBoxComponentModel extends ZCircusComponentModel {
+  public static readonly Selector = '.ZBox-root';
 
   /**
    * Clicks the layout.
