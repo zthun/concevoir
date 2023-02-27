@@ -2,7 +2,7 @@ import { ZRouteBuilder } from '@zthun/fashion-designer';
 
 export const ZFashionRouteHome = new ZRouteBuilder()
   .name('Fashion')
-  .path('/')
+  .path('')
   .description('Make it look good')
   .avatar('/images/svg/fashion.svg')
   .build();
