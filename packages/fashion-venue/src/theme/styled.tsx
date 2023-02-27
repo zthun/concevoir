@@ -8,14 +8,14 @@ import { useFashionTheme, useGlobalStyles } from './theme';
 /**
  * Properties for the styled application.
  */
-export interface IZStyledApplication extends IZComponentHierarchy, IZComponentStyle {}
+export interface IZStyled extends IZComponentHierarchy, IZComponentStyle {}
 
 /**
  * Represents the root element that sets the overall theme.
  *
  * Runways will always use this as the root element.
  */
-export function ZStyledApplication(props: IZStyledApplication) {
+export function ZStyled(props: IZStyled) {
   const { children, className } = props;
   const globals = useGlobalStyles();
   const theme = useFashionTheme();
