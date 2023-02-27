@@ -11,12 +11,12 @@ import {
 } from '@zthun/fashion-venue';
 import React from 'react';
 
-export interface IZRunwayHeaderMain extends IZComponentHierarchy, IZComponentAvatar, IZComponentAdornment {}
+export interface IZBannerMain extends IZComponentHierarchy, IZComponentAvatar, IZComponentAdornment {}
 
 /**
- * Represents an application that uses an app bar with main content.
+ * Represents a layout that uses a banner with main content.
  */
-export function ZRunwayHeaderMain(props: IZRunwayHeaderMain) {
+export function ZBannerMain(props: IZBannerMain) {
   const { children, avatar, prefix = <span />, suffix = <span /> } = props;
   const theme = useFashionTheme();
   const { primary } = theme.design();
