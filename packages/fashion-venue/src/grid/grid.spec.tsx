@@ -1,5 +1,5 @@
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZSizeFixed, ZSizeVoid } from '@zthun/fashion-designer';
+import { ZSizeFixed, ZSizeVaried, ZSizeVoid } from '@zthun/fashion-designer';
 import { Property } from 'csstype';
 import React from 'react';
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -7,6 +7,7 @@ import { ZGrid } from './grid';
 
 describe('ZGridLayout', () => {
   let gap: ZSizeFixed | ZSizeVoid | undefined;
+  let height: ZSizeVaried | undefined;
   let xs: Property.GridTemplateColumns | undefined;
   let sm: Property.GridTemplateColumns | undefined;
   let md: Property.GridTemplateColumns | undefined;
@@ -15,6 +16,7 @@ describe('ZGridLayout', () => {
 
   beforeEach(() => {
     gap = undefined;
+    height = undefined;
 
     xs = undefined;
     sm = undefined;
@@ -24,7 +26,18 @@ describe('ZGridLayout', () => {
   });
 
   async function createTestTarget() {
-    const element = <ZGrid gap={gap} columns={xl} columnsLg={lg} columnsMd={md} columnsSm={sm} columnsXs={xs} />;
+    const element = (
+      <ZGrid
+        className='ZTestGrid-root'
+        height={height}
+        gap={gap}
+        columns={xl}
+        columnsLg={lg}
+        columnsMd={md}
+        columnsSm={sm}
+        columnsXs={xs}
+      />
+    );
     const driver = await new ZCircusSetupRenderer(element).setup();
     return driver;
   }
@@ -32,6 +45,7 @@ describe('ZGridLayout', () => {
   it('should render with a gap', async () => {
     // Arrange.
     gap = ZSizeFixed.Medium;
+    height = ZSizeVaried.Full;
     // Act.
     const target = await createTestTarget();
     // Assert.

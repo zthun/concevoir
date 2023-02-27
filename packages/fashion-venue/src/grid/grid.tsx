@@ -1,13 +1,15 @@
-import { ZSizeFixed, ZSizeVoid } from '@zthun/fashion-designer';
+import { createSizeChartVariedCss, ZSizeFixed, ZSizeVaried, ZSizeVoid } from '@zthun/fashion-designer';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import React from 'react';
+import { IZComponentHeight } from '../component/component-height';
 import { IZComponentHierarchy } from '../component/component-hierarchy';
 import { IZComponentStyle } from '../component/component-style';
 import { makeStyles } from '../theme/theme';
 
-export interface IZGrid extends IZComponentStyle, IZComponentHierarchy {
+export interface IZGrid extends IZComponentStyle, IZComponentHierarchy, IZComponentHeight<ZSizeVaried> {
   alignItems?: Property.AlignItems;
+  alignContent?: Property.AlignContent;
   justifyContent?: Property.JustifyContent;
   gap?: ZSizeFixed | ZSizeVoid;
   columns?: Property.GridTemplateColumns;
@@ -18,9 +20,12 @@ export interface IZGrid extends IZComponentStyle, IZComponentHierarchy {
   rows?: Property.GridTemplateRows;
 }
 
+const GridHeightChart = createSizeChartVariedCss();
+
 const useGridStyles = makeStyles<IZGrid>()((theme, props) => {
   const {
     alignItems,
+    alignContent,
     justifyContent,
     gap = ZSizeVoid.None,
     columns,
@@ -28,7 +33,8 @@ const useGridStyles = makeStyles<IZGrid>()((theme, props) => {
     columnsMd = columnsLg,
     columnsSm = columnsMd,
     columnsXs = columnsSm,
-    rows
+    rows,
+    height = ZSizeVaried.Fit
   } = props;
 
   return {
@@ -38,7 +44,9 @@ const useGridStyles = makeStyles<IZGrid>()((theme, props) => {
       gridTemplateRows: rows,
       gap: theme.gap(gap),
       alignItems,
+      alignContent,
       justifyContent,
+      height: GridHeightChart[height],
 
       [theme.breakpoints.down(ZSizeFixed.Large)]: {
         gridTemplateColumns: columnsLg
