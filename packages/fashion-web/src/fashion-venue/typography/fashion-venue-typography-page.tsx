@@ -1,5 +1,19 @@
 // cspell:disable
-import { ZCaption, ZCard, ZH1, ZH2, ZH3, ZH4, ZH5, ZH6, ZOverline, ZParagraph, ZSubtitle } from '@zthun/fashion-venue';
+import { ZSizeFixed } from '@zthun/fashion-designer';
+import {
+  ZCaption,
+  ZCard,
+  ZH1,
+  ZH2,
+  ZH3,
+  ZH4,
+  ZH5,
+  ZH6,
+  ZImageSource,
+  ZOverline,
+  ZParagraph,
+  ZSubtitle
+} from '@zthun/fashion-venue';
 import React from 'react';
 import { ZFashionRouteVenueTypography } from '../../routes';
 
@@ -14,7 +28,7 @@ export function ZFashionVenueTypographyPage() {
       className='ZFashionVenueTypographyPage-root'
       heading={ZFashionRouteVenueTypography.name}
       subHeading={ZFashionRouteVenueTypography.description}
-      avatar={ZFashionRouteVenueTypography.avatar}
+      avatar={<ZImageSource src={ZFashionRouteVenueTypography.avatar} height={ZSizeFixed.Medium} />}
     >
       <ZH3>Description</ZH3>
 
