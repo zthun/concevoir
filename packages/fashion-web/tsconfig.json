@@ -10,5 +10,5 @@
       "@zthun/fashion-venue": ["../fashion-venue/src/index"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "features/**/*.ts"]
 }
