@@ -1,11 +1,10 @@
 // import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 
 import { cssJoinDefined } from '@zthun/helpful-fn';
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { IZButton, ZButton } from '../button/button';
 import { IZComponentHierarchy } from '../component/component-hierarchy';
 import { IZComponentStyle } from '../component/component-style';
-import { useSafeState } from '../state/use-safe-state';
 import { IZDrawer, ZDrawer } from './drawer';
 
 /**
@@ -32,7 +31,7 @@ export interface IZDrawerButton extends IZComponentHierarchy, IZComponentStyle {
  */
 export function ZDrawerButton(props: IZDrawerButton) {
   const { className, closeOnChange, ButtonProps, DrawerProps, children, icon = '-' } = props;
-  const [open, setOpen] = useSafeState(false);
+  const [open, setOpen] = useState(false);
   const _className = cssJoinDefined('ZDrawerButton-root', className);
 
   useEffect(() => {
