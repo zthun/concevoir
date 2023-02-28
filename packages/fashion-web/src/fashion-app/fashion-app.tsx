@@ -1,8 +1,11 @@
 import { ZSizeVaried } from '@zthun/fashion-designer';
-import { ZRunwayHeaderMain } from '@zthun/fashion-runway';
-import { ZCaption, ZH1, ZImageSource, ZRoute, ZRouteMapApp, ZRouter } from '@zthun/fashion-venue';
+import { ZBannerMain, ZBreadcrumbOutlet, ZNotFound } from '@zthun/fashion-runway';
+import { ZCaption, ZH1, ZImageSource, ZRoute, ZRouteMap, ZRouter } from '@zthun/fashion-venue';
 import React from 'react';
 import { ZFashionHome } from '../fashion-home/fashion-home';
+import { ZFashionVenuePage } from '../fashion-venue/fashion-venue-page';
+import { ZFashionVenueTypographyPage } from '../fashion-venue/typography/fashion-venue-typography-page';
+import { ZFashionRouteHome, ZFashionRouteVenue, ZFashionRouteVenueTypography } from '../routes';
 
 /**
  * Represents the root entry point into the application.
@@ -18,13 +21,19 @@ export function ZFashionApp() {
       <ZCaption compact>Make it look good</ZCaption>
     </div>
   );
+
   return (
     <ZRouter>
-      <ZRunwayHeaderMain avatar={avatar} prefix={prefix}>
-        <ZRouteMapApp>
-          <ZRoute path='/' element={<ZFashionHome />} />
-        </ZRouteMapApp>
-      </ZRunwayHeaderMain>
+      <ZBannerMain avatar={avatar} prefix={prefix}>
+        <ZRouteMap>
+          <ZRoute path={ZFashionRouteHome.path} element={<ZFashionHome />} />
+          <ZRoute path={ZFashionRouteVenue.path} element={<ZBreadcrumbOutlet />}>
+            <ZRoute path={ZFashionRouteVenueTypography.path} element={<ZFashionVenueTypographyPage />} />
+            <ZRoute path='' element={<ZFashionVenuePage />} />
+          </ZRoute>
+          <ZRoute path='*' element={<ZNotFound />} />
+        </ZRouteMap>
+      </ZBannerMain>
     </ZRouter>
   );
 }
