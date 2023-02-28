@@ -1,4 +1,5 @@
-import { ZCircusActBuilder, ZCircusComponentModel } from '@zthun/cirque';
+import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
+import { ZButtonComponentModel } from '@zthun/fashion-venue';
 
 /**
  * The component model for the ZNotFound component.
@@ -10,8 +11,7 @@ export class ZNotFoundComponentModel extends ZCircusComponentModel {
    * Clicks the return button.
    */
   public async returnHome() {
-    const button = await this.driver.select('.ZNotFound-back');
-    const action = new ZCircusActBuilder().click().build();
-    await button.perform(action);
+    const button = await ZCircusBy.first(this.driver, ZButtonComponentModel, 'return-home');
+    await button.click();
   }
 }
