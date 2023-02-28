@@ -4,13 +4,13 @@ export const ZFashionRouteHome = new ZRouteBuilder()
   .name('Fashion')
   .path('')
   .description('Make it look good')
-  .avatar('/images/svg/fashion.svg')
+  .avatar('/images/svg/fashion-alt.svg')
   .build();
 
 export const ZFashionRouteVenue = new ZRouteBuilder()
   .name('Venue')
   .path('venue')
-  .description('What are the building blocks?')
+  .description('Components for React')
   .avatar('/images/svg/venue.svg')
   .build();
 

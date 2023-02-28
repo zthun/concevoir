@@ -24,7 +24,7 @@ export function ZFashionApp() {
   const prefix = (
     <div className='ZFashionApp-description'>
       <ZH1 compact>Fashion</ZH1>
-      <ZCaption compact>Make it look good</ZCaption>
+      <ZCaption compact>Build Something Pretty</ZCaption>
     </div>
   );
 

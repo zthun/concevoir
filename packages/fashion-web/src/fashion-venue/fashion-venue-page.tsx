@@ -12,7 +12,7 @@ import {
 } from '@zthun/fashion-venue';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
-import { ZFashionRouteVenueAllComponents } from '../routes';
+import { ZFashionRouteVenue, ZFashionRouteVenueAllComponents } from '../routes';
 
 /**
  * Represents the venue page.
@@ -27,7 +27,7 @@ export function ZFashionVenuePage() {
 
   const renderComponent = (route: IZRoute) => (
     <ZBox
-      className={cssJoinDefined('ZFashionComponentsPage-component')}
+      className={cssJoinDefined('ZFashionVenuePage-component')}
       key={route.path}
       padding={ZSizeFixed.Large}
       border={{ fashion: light.dark, hover: primary.dark, width: ZSizeFixed.ExtraSmall }}
@@ -47,7 +47,12 @@ export function ZFashionVenuePage() {
   );
 
   return (
-    <ZCard className='ZFashionVenueComponents-root' heading='Components' subHeading='Standardize Your Interfaces'>
+    <ZCard
+      className='ZFashionVenuePage-root'
+      heading={ZFashionRouteVenue.name}
+      subHeading={ZFashionRouteVenue.description}
+      avatar={<ZImageSource src={ZFashionRouteVenue.avatar} height={ZSizeFixed.Medium} />}
+    >
       <ZGrid
         columns='auto auto auto auto'
         columnsLg='auto auto auto'
