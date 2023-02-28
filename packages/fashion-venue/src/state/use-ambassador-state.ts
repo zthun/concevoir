@@ -1,4 +1,4 @@
-import { useSafeState } from './use-safe-state';
+import { useState } from 'react';
 
 type SetCurrent<T> = ((val: T) => void) | undefined;
 
@@ -79,7 +79,7 @@ export function useAmbassadorState<T>(
   setCurrent: SetCurrent<T>,
   initial?: T
 ): [T | undefined, (val: T) => void] {
-  const [localCurrent, setLocalCurrent] = useSafeState<T | undefined>(current || initial);
+  const [localCurrent, setLocalCurrent] = useState<T | undefined>(current || initial);
 
   const _current = current === undefined ? localCurrent : current;
 
