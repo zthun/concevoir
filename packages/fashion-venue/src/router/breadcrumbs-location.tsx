@@ -20,7 +20,7 @@ import { useLocation } from './router-dom';
  *        The JSX that renders this component.
  */
 export function ZBreadcrumbsLocation(props: IZBreadcrumbs) {
-  const { className, onClick } = props;
+  const { className, name, onClick } = props;
   const location = useLocation();
   const sections = useMemo(() => {
     const all = location.pathname.split('/').filter((p) => !!p.trim());
@@ -48,7 +48,7 @@ export function ZBreadcrumbsLocation(props: IZBreadcrumbs) {
   );
 
   return (
-    <Breadcrumbs className={cssJoinDefined('ZBreadcrumbs-root', 'ZBreadcrumbs-location', className)}>
+    <Breadcrumbs className={cssJoinDefined('ZBreadcrumbs-root', 'ZBreadcrumbs-location', className)} data-name={name}>
       {sections.map(renderSection)}
     </Breadcrumbs>
   );
