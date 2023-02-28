@@ -13,7 +13,7 @@ import { IZDrawer, ZDrawer } from './drawer';
  */
 export interface IZDrawerButton extends IZComponentHierarchy, IZComponentStyle {
   ButtonProps?: Omit<IZButton, 'onClick' | 'avatar' | 'label'>;
-  DrawerProps?: Omit<IZDrawer, 'open' | 'onClose'>;
+  DrawerProps?: Omit<IZDrawer, 'open' | 'onClose' | 'children'>;
 
   closeOnChange?: any[];
   icon?: ReactNode;
