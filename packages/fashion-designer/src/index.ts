@@ -6,6 +6,8 @@ export * from './color/hue';
 export * from './color/palette';
 export * from './color/shade';
 export * from './design/fashion-design';
+export * from './position/anchor';
+export * from './position/orientation';
 export * from './route/route';
 export * from './size/size';
 export * from './size/size-chart-fixed-arithmetic';
