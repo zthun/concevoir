@@ -4,6 +4,8 @@ import { required } from '@zthun/helpful-obligation';
 import React, { ReactNode } from 'react';
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 import { ZList } from './list';
+import { ZListDivider } from './list-divider';
+import { ZListGroup } from './list-group';
 import { ZListLineItem } from './list-line-item';
 import { ZListLineItemComponentModel } from './list-line-item.cm';
 import { ZListComponentModel } from './list.cm';
@@ -16,7 +18,9 @@ describe('ZList', () => {
   async function createTestTarget() {
     const element = (
       <ZList>
+        <ZListGroup heading='Group' name='group'></ZListGroup>
         <ZListLineItem name='clickable' onClick={onClick} heading='Clickable' subHeading='Clicking raises an event' />
+        <ZListDivider name='divider' />
         <ZListLineItem name='no-click' heading={heading} subHeading={subHeading} />
       </ZList>
     );
@@ -37,7 +41,7 @@ describe('ZList', () => {
     // Act.
     const actual = await target.items();
     // Assert.
-    expect(actual.length).toEqual(2);
+    expect(actual.length).toEqual(4);
   });
 
   it('should not render an item that does not exist', async () => {
@@ -50,6 +54,17 @@ describe('ZList', () => {
   });
 
   describe('Line Items', () => {
+    it('should retrieve the correct item.', async () => {
+      // Arrange.
+      const expected = 'clickable';
+      const target = await createTestTarget();
+      const item = await required(target.item(expected));
+      // Act.
+      const actual = await item.name();
+      // Assert.
+      expect(actual).toEqual(expected);
+    });
+
     it('should render the line item without being able to click on it.', async () => {
       // Arrange.
       const target = await createTestTarget();

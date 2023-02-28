@@ -1,5 +1,6 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
+import { IZFashionCoordination, ZFashionBuilder, ZFashionCoordinationBuilder } from '@zthun/fashion-designer';
 import React, { ReactNode } from 'react';
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 import { ZButton } from './button';
@@ -12,6 +13,7 @@ describe('ZButton', () => {
   let disabled: boolean | undefined;
   let outline: boolean | undefined;
   let borderless: boolean | undefined;
+  let fashion: IZFashionCoordination | undefined;
   let name: string | undefined;
   let onClick: Mock | undefined;
 
@@ -26,6 +28,7 @@ describe('ZButton', () => {
         onClick={onClick}
         label={label}
         name={name}
+        fashion={fashion}
       />
     );
 
@@ -39,6 +42,7 @@ describe('ZButton', () => {
     outline = undefined;
     label = undefined;
     name = undefined;
+    fashion = undefined;
     onClick = undefined;
   });
 
@@ -125,6 +129,24 @@ describe('ZButton', () => {
     it('should not render the loader when undefined.', async () => {
       await assertIsLoading(false, undefined);
     });
+
+    it('should reject if the button never stops loading.', async () => {
+      // Arrange
+      loading = true;
+      const target = await createTestTarget();
+      // Act
+      // Assert
+      await expect(target.load()).rejects.toBeTruthy();
+    });
+
+    it('should continue if the button completes loading.', async () => {
+      // Arrange
+      loading = false;
+      const target = await createTestTarget();
+      // Act
+      // Assert
+      await expect(target.load()).resolves.toBeUndefined();
+    });
   });
 
   describe('Borderless', () => {
@@ -168,6 +190,33 @@ describe('ZButton', () => {
 
     it('should contain the button if the outline flag is undefined.', async () => {
       await assertOutline(false, undefined);
+    });
+  });
+
+  describe('Fashion', () => {
+    beforeEach(() => {
+      fashion = new ZFashionCoordinationBuilder()
+        .name('Test Fashion')
+        .main(new ZFashionBuilder().green(300).build())
+        .build();
+    });
+
+    it('should set the fashion coordination', async () => {
+      // Arrange.
+      const target = await createTestTarget();
+      // Act.
+      const actual = await target.fashion();
+      // Assert.
+      expect(actual).toEqual(fashion?.name);
+    });
+
+    it('should set the correct color', async () => {
+      // Arrange.
+      const target = await createTestTarget();
+      // Act.
+      const actual = await target.color();
+      // Assert.
+      expect(actual).toEqual(fashion?.main.hue);
     });
   });
 });
