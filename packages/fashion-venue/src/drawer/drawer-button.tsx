@@ -2,7 +2,7 @@
 
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ReactNode, useEffect } from 'react';
-import { IZButton, ZButton } from '../buttons/button';
+import { IZButton, ZButton } from '../button/button';
 import { IZComponentHierarchy } from '../component/component-hierarchy';
 import { IZComponentStyle } from '../component/component-style';
 import { useSafeState } from '../state/use-safe-state';

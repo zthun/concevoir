@@ -1,5 +1,5 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZButtonComponentModel } from '../buttons/button.cm';
+import { ZButtonComponentModel } from '../button/button.cm';
 import { ZDrawerComponentModel } from './drawer.cm';
 
 /**
