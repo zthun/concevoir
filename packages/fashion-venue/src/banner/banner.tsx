@@ -7,7 +7,7 @@ import {
   ZSizeFixed,
   ZSizeVaried
 } from '@zthun/fashion-designer';
-import { cssJoinDefined } from '@zthun/helpful-fn';
+import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { IZComponentFashion } from '../component/component-fashion';
 import { IZComponentHeight } from '../component/component-height';
@@ -33,15 +33,17 @@ const heightChart = {
 
 const useBannerStyles = makeStyles<IZBanner>()((theme, props) => {
   const { primary } = theme.design();
-  const { fashion = primary, height = ZSizeVaried.Fit } = props;
+  const { fashion, height } = props;
 
-  const _height = heightChart[height];
+  const _height = firstDefined(ZSizeVaried.Fit, height);
+  const __height = heightChart[_height];
+  const _fashion = firstDefined(primary, fashion);
 
   return {
     banner: {
-      backgroundColor: theme.colorify(fashion.main),
-      color: theme.colorify(fashion.contrast),
-      height: _height
+      backgroundColor: theme.colorify(_fashion.main),
+      color: theme.colorify(_fashion.contrast),
+      height: __height
     }
   };
 });
