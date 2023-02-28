@@ -10,7 +10,13 @@ describe('ZBox', () => {
   let onClick: Mock | undefined;
 
   async function createTestTarget() {
-    const element = <ZBox padding={ZSizeFixed.Large} margin={ZSizeVaried.Fit} onClick={onClick} />;
+    const element = (
+      <ZBox
+        padding={{ left: ZSizeFixed.Large, right: ZSizeFixed.ExtraLarge }}
+        margin={{ bottom: ZSizeVaried.Fit, top: ZSizeFixed.Medium }}
+        onClick={onClick}
+      />
+    );
     const driver = await new ZCircusSetupRenderer(element).setup();
     return ZCircusBy.first(driver, ZBoxComponentModel);
   }
