@@ -5,7 +5,8 @@
     "target": "esnext",
     "paths": {
       "@zthun/fashion-designer": ["fashion-designer/src/index"],
-      "@zthun/fashion-react": ["fashion-react/src/index"]
+      "@zthun/fashion-venue": ["fashion-venue/src/index"],
+      "@zthun/fashion-runway": ["fashion-runway/src/index"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],

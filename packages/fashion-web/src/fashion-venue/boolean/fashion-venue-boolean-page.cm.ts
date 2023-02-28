@@ -4,7 +4,7 @@ import { ZBooleanComponentModel, ZButtonComponentModel } from '@zthun/fashion-ve
 /**
  * Represents a component model for the boolean page.
  */
-export class ZBooleanPageComponentModel extends ZCircusComponentModel {
+export class ZFashionVenueBooleanPageComponentModel extends ZCircusComponentModel {
   public static readonly Selector = '.ZFashionVenueBooleanPage-root';
 
   /**
