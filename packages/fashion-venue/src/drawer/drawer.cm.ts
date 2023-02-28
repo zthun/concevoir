@@ -1,5 +1,5 @@
 import { IZCircusDriver, ZCircusActBuilder, ZCircusComponentModel, ZCircusKeyboardQwerty } from '@zthun/cirque';
-import { ZStateAnchor } from '../state/state-anchor';
+import { ZAnchor } from '@zthun/fashion-designer';
 
 /**
  * Represents the component model for a drawer.
@@ -59,7 +59,7 @@ export class ZDrawerComponentModel extends ZCircusComponentModel {
    * @returns
    *    The state anchor for the drawer.
    */
-  public async anchor(): Promise<ZStateAnchor> {
-    return await this.driver.attribute<ZStateAnchor>('data-anchor', ZStateAnchor.Left);
+  public async anchor(): Promise<ZAnchor> {
+    return await this.driver.attribute<ZAnchor>('data-anchor', ZAnchor.Left);
   }
 }

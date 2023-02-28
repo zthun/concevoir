@@ -1,14 +1,14 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
+import { ZAnchor } from '@zthun/fashion-designer';
 import React, { ReactNode } from 'react';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { ZStateAnchor } from '../state/state-anchor';
 import { ZDrawerButton } from './drawer-button';
 import { ZDrawerButtonComponentModel } from './drawer-button.cm';
 
 describe('ZDrawer', () => {
   let children: ReactNode;
-  let anchor: ZStateAnchor | undefined;
+  let anchor: ZAnchor | undefined;
 
   async function createTestTarget() {
     const element = <ZDrawerButton DrawerProps={{ anchor }}>{children}</ZDrawerButton>;
@@ -70,7 +70,7 @@ describe('ZDrawer', () => {
   });
 
   describe('Anchor', () => {
-    async function shouldAnchor(expected: ZStateAnchor) {
+    async function shouldAnchor(expected: ZAnchor) {
       // Arrange.
       anchor = expected;
       const target = await createTestTarget();
@@ -83,19 +83,19 @@ describe('ZDrawer', () => {
     }
 
     it('should anchor to the left', async () => {
-      await shouldAnchor(ZStateAnchor.Left);
+      await shouldAnchor(ZAnchor.Left);
     });
 
     it('should anchor to the right', async () => {
-      await shouldAnchor(ZStateAnchor.Right);
+      await shouldAnchor(ZAnchor.Right);
     });
 
     it('should anchor to the top', async () => {
-      await shouldAnchor(ZStateAnchor.Top);
+      await shouldAnchor(ZAnchor.Top);
     });
 
     it('should anchor to the bottom', async () => {
-      await shouldAnchor(ZStateAnchor.Bottom);
+      await shouldAnchor(ZAnchor.Bottom);
     });
   });
 });
