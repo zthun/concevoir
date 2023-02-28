@@ -63,7 +63,7 @@ export function ZFashionVenueBooleanPage() {
 
         <ZCaption compact>
           <span>Value:</span>
-          <span className='ZBooleanPage-value'>{JSON.stringify(value)}</span>
+          <span className='ZFashionVenueBooleanPage-value'>{JSON.stringify(value)}</span>
         </ZCaption>
       </ZBox>
 
