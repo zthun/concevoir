@@ -1,4 +1,4 @@
-import { ZSizeFixed } from '@zthun/fashion-designer';
+import { ZOrientation, ZSizeFixed } from '@zthun/fashion-designer';
 import {
   useFashionTheme,
   ZBooleanCheckbox,
@@ -10,7 +10,8 @@ import {
   ZGrid,
   ZH3,
   ZImageSource,
-  ZParagraph
+  ZParagraph,
+  ZStack
 } from '@zthun/fashion-venue';
 import React, { useState } from 'react';
 import { ZFashionRouteVenueBoolean } from '../../routes';
@@ -77,15 +78,17 @@ export function ZFashionVenueBooleanPage() {
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Operations</ZH3>
 
-        <ZButton outline fashion={success} onClick={setValue.bind(null, true)} label='True' name='on' />
-        <ZButton outline fashion={error} onClick={setValue.bind(null, false)} label='False' name='off' />
-        <ZButton
-          outline
-          fashion={warning}
-          onClick={setValue.bind(null, null)}
-          label='Indeterminate'
-          name='indeterminate'
-        />
+        <ZStack orientation={ZOrientation.Horizontal} gap={ZSizeFixed.Small}>
+          <ZButton outline fashion={success} onClick={setValue.bind(null, true)} label='True' name='on' />
+          <ZButton outline fashion={error} onClick={setValue.bind(null, false)} label='False' name='off' />
+          <ZButton
+            outline
+            fashion={warning}
+            onClick={setValue.bind(null, null)}
+            label='Indeterminate'
+            name='indeterminate'
+          />
+        </ZStack>
       </ZBox>
     </ZCard>
   );
