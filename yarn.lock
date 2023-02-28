@@ -4150,7 +4150,7 @@ __metadata:
     "@zthun/cirque-du-react": ^4.2.0
     "@zthun/fashion-designer": ^0.0.1
     "@zthun/fashion-venue": ^0.0.1
-    "@zthun/helpful-fn": ^0.2.0
+    "@zthun/helpful-fn": ^0.3.0
     "@zthun/webigail-http": ^0.1.0
     history: ^5.3.0
     lodash: ^4.17.21
@@ -4175,8 +4175,8 @@ __metadata:
     "@zthun/cirque": ^4.2.0
     "@zthun/cirque-du-react": ^4.2.0
     "@zthun/fashion-designer": ^0.0.1
-    "@zthun/helpful-fn": ^0.2.0
-    "@zthun/helpful-obligation": ^0.2.0
+    "@zthun/helpful-fn": ^0.3.0
+    "@zthun/helpful-obligation": ^0.3.0
     "@zthun/webigail-http": ^0.1.0
     "@zthun/webigail-url": ^0.1.0
     csstype: ^3.1.1
@@ -4204,7 +4204,7 @@ __metadata:
     "@zthun/fashion-designer": ^0.0.1
     "@zthun/fashion-runway": ^0.0.1
     "@zthun/fashion-venue": ^0.0.1
-    "@zthun/helpful-fn": ^0.2.0
+    "@zthun/helpful-fn": ^0.3.0
     "@zthun/webigail-url": ^0.1.0
     history: ^5.3.0
     lodash: ^4.17.21
@@ -4247,17 +4247,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@zthun/helpful-fn@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "@zthun/helpful-fn@npm:0.2.0"
-  checksum: db2bf743c586651c65bd7606aba6a88d335bed8d715a32cc4818fcdb358a66eb87aad4b5c2f882598e8fb7b4824b11652f6867c4fe6bb12bc215e7e4f21774c8
+"@zthun/helpful-fn@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "@zthun/helpful-fn@npm:0.3.0"
+  checksum: 6cea95f5354329226b688641e7e094f6ce108b1a7242c4d5c9134ed73e72be7335821229e988f64ceada7213104067c0f47d964aed2b77e696838f74f5b4ebed
   languageName: node
   linkType: hard
 
-"@zthun/helpful-obligation@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "@zthun/helpful-obligation@npm:0.2.0"
-  checksum: 708931ba268ac5394e883ec8d52bbeb3575f45f0644861e02a9372928cf9ca48919b9a077a9bb99f4fc70ad53f50cbf2a9f51989b06ee6cbd21e3bcf8a811b15
+"@zthun/helpful-obligation@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "@zthun/helpful-obligation@npm:0.3.0"
+  checksum: 78a4e894767f7022f9c0af191b63ebe0cb574eaf0829776287a7f62d3827d461cabe363b4734f010b533fbb5ae9fe4c668b59da599450449378ab35e3f4f1c20
   languageName: node
   linkType: hard
 
