@@ -1,5 +1,15 @@
 import { IZRoute, ZSizeFixed } from '@zthun/fashion-designer';
-import { useFashionTheme, useNavigate, ZBox, ZCaption, ZCard, ZGrid, ZH3, ZLineItem } from '@zthun/fashion-venue';
+import {
+  useFashionTheme,
+  useNavigate,
+  ZBox,
+  ZCaption,
+  ZCard,
+  ZGrid,
+  ZH3,
+  ZImageSource,
+  ZLineItem
+} from '@zthun/fashion-venue';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { ZFashionRouteVenueAllComponents } from '../routes';
@@ -25,7 +35,7 @@ export function ZFashionVenuePage() {
       onClick={() => navigate(route.path)}
     >
       <ZLineItem
-        prefix={route.avatar}
+        prefix={<ZImageSource src={route.avatar} width={ZSizeFixed.Small} height={ZSizeFixed.Small} />}
         body={
           <>
             <ZH3 compact>{route.name}</ZH3>
