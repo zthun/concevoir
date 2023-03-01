@@ -4,12 +4,14 @@ import { ZCaption, ZH1, ZImageSource, ZRoute, ZRouteMap, ZRouter } from '@zthun/
 import React from 'react';
 import { ZFashionHome } from '../fashion-home/fashion-home';
 import { ZFashionVenueBooleanPage } from '../fashion-venue/boolean/fashion-venue-boolean-page';
+import { ZButtonPage } from '../fashion-venue/button/button-page';
 import { ZFashionVenuePage } from '../fashion-venue/fashion-venue-page';
 import { ZFashionVenueTypographyPage } from '../fashion-venue/typography/fashion-venue-typography-page';
 import {
   ZFashionRouteHome,
   ZFashionRouteVenue,
   ZFashionRouteVenueBoolean,
+  ZFashionRouteVenueButton,
   ZFashionRouteVenueTypography
 } from '../routes';
 
@@ -35,6 +37,7 @@ export function ZFashionApp() {
           <ZRoute path={ZFashionRouteHome.path} element={<ZFashionHome />} />
           <ZRoute path={ZFashionRouteVenue.path} element={<ZBreadcrumbOutlet />}>
             <ZRoute path={ZFashionRouteVenueBoolean.path} element={<ZFashionVenueBooleanPage />} />
+            <ZRoute path={ZFashionRouteVenueButton.path} element={<ZButtonPage />} />
             <ZRoute path={ZFashionRouteVenueTypography.path} element={<ZFashionVenueTypographyPage />} />
             <ZRoute path='' element={<ZFashionVenuePage />} />
           </ZRoute>
