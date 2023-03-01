@@ -1,5 +1,4 @@
-// import MenuOpenIcon from '@mui/icons-material/MenuOpen';
-
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ReactNode, useEffect, useState } from 'react';
 import { IZButton, ZButton } from '../button/button';
@@ -30,7 +29,14 @@ export interface IZDrawerButton extends IZComponentHierarchy, IZComponentStyle {
  *        The JSX for this component.
  */
 export function ZDrawerButton(props: IZDrawerButton) {
-  const { className, closeOnChange, ButtonProps, DrawerProps, children, icon = '-' } = props;
+  const {
+    className,
+    closeOnChange,
+    ButtonProps,
+    DrawerProps,
+    children,
+    icon = <MenuOpenIcon fontSize='small' />
+  } = props;
   const [open, setOpen] = useState(false);
   const _className = cssJoinDefined('ZDrawerButton-root', className);
 
