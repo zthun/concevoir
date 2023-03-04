@@ -2,7 +2,7 @@ import { ZSizeVaried } from '@zthun/fashion-designer';
 import { ZBannerMain, ZBreadcrumbOutlet, ZNotFound } from '@zthun/fashion-runway';
 import { ZCaption, ZH1, ZImageSource, ZRoute, ZRouteMap, ZRouter } from '@zthun/fashion-venue';
 import React from 'react';
-import { ZFashionHome } from '../home/fashion-home';
+import { ZFashionHome } from '../home/home';
 import {
   ZFashionRouteHome,
   ZFashionRouteVenue,
@@ -12,8 +12,8 @@ import {
 } from '../routes';
 import { ZFashionVenueBooleanPage } from '../venue/boolean/boolean-page';
 import { ZButtonPage } from '../venue/button/button-page';
-import { ZFashionVenuePage } from '../venue/fashion-venue-page';
-import { ZFashionVenueTypographyPage } from '../venue/typography/fashion-venue-typography-page';
+import { ZFashionVenueTypographyPage } from '../venue/typography/typography-page';
+import { ZFashionVenuePage } from '../venue/venue-page';
 
 /**
  * Represents the root entry point into the application.

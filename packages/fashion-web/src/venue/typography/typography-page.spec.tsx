@@ -2,8 +2,8 @@ import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
-import { ZFashionVenueTypographyPage } from './fashion-venue-typography-page';
-import { ZFashionVenueTypographyPageComponentModel } from './fashion-venue-typography-page.cm';
+import { ZFashionVenueTypographyPage } from './typography-page';
+import { ZFashionVenueTypographyPageComponentModel } from './typography-page.cm';
 
 describe('ZTypographyPage', () => {
   async function createTestTarget() {
