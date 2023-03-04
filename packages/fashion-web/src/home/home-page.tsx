@@ -30,14 +30,14 @@ const useHomePageStyles = makeStyles()((theme) => ({
  *
  * @returns The jsx that renders the home page.
  */
-export function ZFashionHome() {
+export function ZHomePage() {
   const { classes } = useHomePageStyles();
   const navigate = useNavigate();
   const theme = useFashionTheme();
   const { primary } = theme.design();
 
   return (
-    <div className='ZFashionHome-root'>
+    <div className='ZHomePage-root'>
       <ZCard
         className={classes.section}
         width={ZSizeFixed.Large}

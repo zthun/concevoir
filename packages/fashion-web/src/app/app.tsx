@@ -2,7 +2,7 @@ import { ZSizeVaried } from '@zthun/fashion-designer';
 import { ZBannerMain, ZBreadcrumbOutlet, ZNotFound } from '@zthun/fashion-runway';
 import { ZCaption, ZH1, ZImageSource, ZRoute, ZRouteMap, ZRouter } from '@zthun/fashion-venue';
 import React from 'react';
-import { ZFashionHome } from '../home/home';
+import { ZHomePage } from '../home/home-page';
 import {
   ZFashionRouteHome,
   ZFashionRouteVenue,
@@ -34,7 +34,7 @@ export function ZFashionApp() {
     <ZRouter>
       <ZBannerMain avatar={avatar} prefix={prefix}>
         <ZRouteMap>
-          <ZRoute path={ZFashionRouteHome.path} element={<ZFashionHome />} />
+          <ZRoute path={ZFashionRouteHome.path} element={<ZHomePage />} />
           <ZRoute path={ZFashionRouteVenue.path} element={<ZBreadcrumbOutlet />}>
             <ZRoute path={ZFashionRouteVenueBoolean.path} element={<ZFashionVenueBooleanPage />} />
             <ZRoute path={ZFashionRouteVenueButton.path} element={<ZButtonPage />} />
