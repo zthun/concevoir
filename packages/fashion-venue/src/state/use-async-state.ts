@@ -1,5 +1,4 @@
-import { DependencyList, useEffect } from 'react';
-import { useSafeState } from './use-safe-state';
+import { DependencyList, useEffect, useState } from 'react';
 
 /**
  * The value that will be set on an ZAsyncDataState when the data is being loaded.
@@ -39,7 +38,7 @@ export type ZAsyncDataTuple<T> = [ZAsyncDataState<T>, (val?: T) => Promise<any>]
  *
  */
 export function useAsyncState<T>(load: () => Promise<T>, deps: DependencyList = []): ZAsyncDataTuple<T> {
-  const [current, setCurrent] = useSafeState<ZAsyncDataState<T>>(ZAsyncLoading);
+  const [current, setCurrent] = useState<ZAsyncDataState<T>>(ZAsyncLoading);
 
   const refresh = async (useThisData?: T) => {
     if (useThisData !== undefined) {

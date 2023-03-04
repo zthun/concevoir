@@ -3,7 +3,7 @@ import { useState } from 'react';
 type SetCurrent<T> = ((val: T) => void) | undefined;
 
 /**
- * A type of safe state where the value is used from the props in the case of them being set.
+ * A type of state where the value is used from the props in the case of them being set.
  *
  * Otherwise, an internal set of properties are used.  This is useful in the case that you
  * want to allow properties to control the state of the component, but this functionality is
@@ -27,7 +27,7 @@ export function useAmbassadorState<T>(
 ): [T | undefined, (val: T) => void];
 
 /**
- * A type of safe state where the value is used from the props in the case of them being set.
+ * A type of state where the value is used from the props in the case of them being set.
  *
  * Otherwise, an internal set of properties are used.  This is useful in the case that you
  * want to allow properties to control the state of the component, but this functionality is
@@ -54,7 +54,7 @@ export function useAmbassadorState<T>(
 ): [T, (val: T) => void];
 
 /**
- * A type of safe state where the value is used from the props in the case of them being set.
+ * A type of state where the value is used from the props in the case of them being set.
  *
  * Otherwise, an internal set of properties are used.  This is useful in the case that you
  * want to allow properties to control the state of the component, but this functionality is
