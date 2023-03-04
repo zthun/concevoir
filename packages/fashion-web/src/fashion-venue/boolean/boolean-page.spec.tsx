@@ -3,8 +3,8 @@ import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { ZBooleanComponentModel, ZButtonComponentModel } from '@zthun/fashion-venue';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
-import { ZFashionVenueBooleanPage } from './fashion-venue-boolean-page';
-import { ZFashionVenueBooleanPageComponentModel } from './fashion-venue-boolean-page.cm';
+import { ZFashionVenueBooleanPage } from './boolean-page';
+import { ZFashionVenueBooleanPageComponentModel } from './boolean-page.cm';
 
 describe('ZFashionVenueBooleanPage', () => {
   async function createTestTarget() {

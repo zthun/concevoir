@@ -3,7 +3,7 @@ import { ZBannerMain, ZBreadcrumbOutlet, ZNotFound } from '@zthun/fashion-runway
 import { ZCaption, ZH1, ZImageSource, ZRoute, ZRouteMap, ZRouter } from '@zthun/fashion-venue';
 import React from 'react';
 import { ZFashionHome } from '../fashion-home/fashion-home';
-import { ZFashionVenueBooleanPage } from '../fashion-venue/boolean/fashion-venue-boolean-page';
+import { ZFashionVenueBooleanPage } from '../fashion-venue/boolean/boolean-page';
 import { ZButtonPage } from '../fashion-venue/button/button-page';
 import { ZFashionVenuePage } from '../fashion-venue/fashion-venue-page';
 import { ZFashionVenueTypographyPage } from '../fashion-venue/typography/fashion-venue-typography-page';
