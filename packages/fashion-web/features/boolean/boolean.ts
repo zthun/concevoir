@@ -1,7 +1,7 @@
 import { Given, Then, When } from '@cucumber/cucumber';
 import assert from 'assert';
-import { ZFashionVenueBooleanPageComponentModel } from '../../src/fashion-venue/boolean/boolean-page.cm';
 import { ZFashionRouteVenue, ZFashionRouteVenueBoolean } from '../../src/routes';
+import { ZFashionVenueBooleanPageComponentModel } from '../../src/venue/boolean/boolean-page.cm';
 import { ZFashionWorld } from '../fashion-world';
 
 Given(
