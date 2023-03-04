@@ -28,6 +28,20 @@ export const ZFashionRouteVenueButton = new ZRouteBuilder()
   .avatar('/images/svg/button.svg')
   .build();
 
+export const ZFashionRouteVenueNumber = new ZRouteBuilder()
+  .name('Number')
+  .path('number')
+  .description('Numeric Spinners')
+  .avatar('/images/svg/number.svg')
+  .build();
+
+export const ZFashionRouteVenueText = new ZRouteBuilder()
+  .name('Text')
+  .path('text')
+  .description('Characters, Sentences, and Paragraphs')
+  .avatar('/images/svg/text.svg')
+  .build();
+
 export const ZFashionRouteVenueTypography = new ZRouteBuilder()
   .name('Typography')
   .path('typography')
@@ -38,5 +52,7 @@ export const ZFashionRouteVenueTypography = new ZRouteBuilder()
 export const ZFashionRouteVenueAllComponents = [
   ZFashionRouteVenueBoolean,
   ZFashionRouteVenueButton,
+  ZFashionRouteVenueNumber,
+  ZFashionRouteVenueText,
   ZFashionRouteVenueTypography
 ];
