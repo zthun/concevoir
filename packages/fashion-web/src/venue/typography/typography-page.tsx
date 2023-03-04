@@ -22,10 +22,10 @@ import { ZFashionRouteVenueTypography } from '../../routes';
  *
  * @returns The JSX to render the typography demo page.
  */
-export function ZFashionVenueTypographyPage() {
+export function ZTypographyPage() {
   return (
     <ZCard
-      className='ZFashionVenueTypographyPage-root'
+      className='ZTypographyPage-root'
       heading={ZFashionRouteVenueTypography.name}
       subHeading={ZFashionRouteVenueTypography.description}
       avatar={<ZImageSource src={ZFashionRouteVenueTypography.avatar} height={ZSizeFixed.Medium} />}

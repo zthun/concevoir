@@ -12,7 +12,7 @@ import {
 } from '../routes';
 import { ZBooleanPage } from '../venue/boolean/boolean-page';
 import { ZButtonPage } from '../venue/button/button-page';
-import { ZFashionVenueTypographyPage } from '../venue/typography/typography-page';
+import { ZTypographyPage } from '../venue/typography/typography-page';
 import { ZFashionVenuePage } from '../venue/venue-page';
 
 /**
@@ -38,7 +38,7 @@ export function ZFashionApp() {
           <ZRoute path={ZFashionRouteVenue.path} element={<ZBreadcrumbOutlet />}>
             <ZRoute path={ZFashionRouteVenueBoolean.path} element={<ZBooleanPage />} />
             <ZRoute path={ZFashionRouteVenueButton.path} element={<ZButtonPage />} />
-            <ZRoute path={ZFashionRouteVenueTypography.path} element={<ZFashionVenueTypographyPage />} />
+            <ZRoute path={ZFashionRouteVenueTypography.path} element={<ZTypographyPage />} />
             <ZRoute path='' element={<ZFashionVenuePage />} />
           </ZRoute>
           <ZRoute path='*' element={<ZNotFound />} />
