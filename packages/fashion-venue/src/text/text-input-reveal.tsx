@@ -5,6 +5,7 @@ import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { useState } from 'react';
 import { ZButton } from '../button/button';
 import { ZGrid } from '../grid/grid';
+import { useFashionTheme } from '../theme/theme';
 import { IZText } from './text';
 import { ZTextInput, ZTextType } from './text-input';
 
@@ -20,13 +21,21 @@ import { ZTextInput, ZTextType } from './text-input';
 export function ZTextInputReveal(props: IZText) {
   const { className, suffix } = props;
   const [revealed, setRevealed] = useState(false);
+  const theme = useFashionTheme();
   const type = revealed ? ZTextType.Text : ZTextType.Password;
   const visible = revealed ? <VisibilityOff /> : <VisibilityOn />;
+  const fashion = revealed ? theme.design().error : theme.design().success;
 
   const adornment = (
     <ZGrid columns='auto auto' alignItems='center' gap={ZSizeFixed.Small}>
       {suffix}
-      <ZButton className='ZText-revealer' borderless label={visible} onClick={() => setRevealed((r) => !r)} />
+      <ZButton
+        className='ZText-revealer'
+        borderless
+        label={visible}
+        fashion={fashion}
+        onClick={() => setRevealed((r) => !r)}
+      />
     </ZGrid>
   );
 
