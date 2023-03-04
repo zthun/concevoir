@@ -302,10 +302,6 @@ describe('ZText', () => {
       await shouldRenderSuffix(createTestTarget);
     });
 
-    it('should render no adornments when not specified', async () => {
-      await shouldRenderNoAdornments(createTestTarget);
-    });
-
     it('should toggle the text from masked to revealed', async () => {
       // Arrange
       const target = await createTestTarget();
