@@ -21,7 +21,7 @@ import { ZFashionRouteVenueBoolean } from '../../routes';
  *
  * @returns The JSX to render the alerts demo page.
  */
-export function ZFashionVenueBooleanPage() {
+export function ZBooleanPage() {
   const [disabled, setDisabled] = useState(false);
   const [value, setValue] = useState<boolean | null>(false);
   const theme = useFashionTheme();
@@ -29,7 +29,7 @@ export function ZFashionVenueBooleanPage() {
 
   return (
     <ZCard
-      className='ZFashionVenueBooleanPage-root'
+      className='ZBooleanPage-root'
       heading={ZFashionRouteVenueBoolean.name}
       subHeading={ZFashionRouteVenueBoolean.description}
       avatar={<ZImageSource src={ZFashionRouteVenueBoolean.avatar} height={ZSizeFixed.Medium} />}
@@ -63,7 +63,7 @@ export function ZFashionVenueBooleanPage() {
 
         <ZCaption compact>
           <span>Value:</span>
-          <span className='ZFashionVenueBooleanPage-value'>{JSON.stringify(value)}</span>
+          <span className='ZBooleanPage-value'>{JSON.stringify(value)}</span>
         </ZCaption>
       </ZBox>
 

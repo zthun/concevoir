@@ -3,21 +3,21 @@ import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { ZBooleanComponentModel, ZButtonComponentModel } from '@zthun/fashion-venue';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
-import { ZFashionVenueBooleanPage } from './boolean-page';
-import { ZFashionVenueBooleanPageComponentModel } from './boolean-page.cm';
+import { ZBooleanPage } from './boolean-page';
+import { ZBooleanPageComponentModel } from './boolean-page.cm';
 
-describe('ZFashionVenueBooleanPage', () => {
+describe('ZBooleanPage', () => {
   async function createTestTarget() {
-    const element = <ZFashionVenueBooleanPage />;
+    const element = <ZBooleanPage />;
 
     const driver = await new ZCircusSetupRenderer(element).setup();
-    return ZCircusBy.first(driver, ZFashionVenueBooleanPageComponentModel);
+    return ZCircusBy.first(driver, ZBooleanPageComponentModel);
   }
 
   async function shouldToggleToValue(
     expected: boolean,
-    togglerButton: (t: ZFashionVenueBooleanPageComponentModel) => Promise<ZButtonComponentModel>,
-    factoryDemo: (t: ZFashionVenueBooleanPageComponentModel) => Promise<ZBooleanComponentModel>
+    togglerButton: (t: ZBooleanPageComponentModel) => Promise<ZButtonComponentModel>,
+    factoryDemo: (t: ZBooleanPageComponentModel) => Promise<ZBooleanComponentModel>
   ) {
     // Arrange.
     const target = await createTestTarget();
@@ -35,7 +35,7 @@ describe('ZFashionVenueBooleanPage', () => {
 
   async function shouldDisable(
     expected: boolean,
-    factoryDemo: (t: ZFashionVenueBooleanPageComponentModel) => Promise<ZBooleanComponentModel>
+    factoryDemo: (t: ZBooleanPageComponentModel) => Promise<ZBooleanComponentModel>
   ) {
     // Arrange.
     const target = await createTestTarget();

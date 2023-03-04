@@ -4,8 +4,8 @@ import { ZBooleanComponentModel, ZButtonComponentModel } from '@zthun/fashion-ve
 /**
  * Represents a component model for the boolean page.
  */
-export class ZFashionVenueBooleanPageComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZFashionVenueBooleanPage-root';
+export class ZBooleanPageComponentModel extends ZCircusComponentModel {
+  public static readonly Selector = '.ZBooleanPage-root';
 
   /**
    * Gets the main checkbox demo component.
@@ -75,7 +75,7 @@ export class ZFashionVenueBooleanPageComponentModel extends ZCircusComponentMode
    *        The current value state.
    */
   public async value(): Promise<boolean> {
-    const label = await this.driver.select('.ZFashionVenueBooleanPage-value');
+    const label = await this.driver.select('.ZBooleanPage-value');
     const text = await label.text();
     return text === 'true';
   }

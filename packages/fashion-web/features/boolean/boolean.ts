@@ -1,21 +1,18 @@
 import { Given, Then, When } from '@cucumber/cucumber';
 import assert from 'assert';
 import { ZFashionRouteVenue, ZFashionRouteVenueBoolean } from '../../src/routes';
-import { ZFashionVenueBooleanPageComponentModel } from '../../src/venue/boolean/boolean-page.cm';
+import { ZBooleanPageComponentModel } from '../../src/venue/boolean/boolean-page.cm';
 import { ZFashionWorld } from '../fashion-world';
 
-Given(
-  'I have navigated to the boolean demo page',
-  async function (this: ZFashionWorld<ZFashionVenueBooleanPageComponentModel>) {
-    await this.open(ZFashionRouteVenue, ZFashionRouteVenueBoolean);
-    this.parameters.page = await this.create(ZFashionVenueBooleanPageComponentModel);
-  }
-);
+Given('I have navigated to the boolean demo page', async function (this: ZFashionWorld<ZBooleanPageComponentModel>) {
+  await this.open(ZFashionRouteVenue, ZFashionRouteVenueBoolean);
+  this.parameters.page = await this.create(ZBooleanPageComponentModel);
+});
 
 When(
   'I click on the {string} while it is {string} on the boolean page',
   async function (
-    this: ZFashionWorld<ZFashionVenueBooleanPageComponentModel>,
+    this: ZFashionWorld<ZBooleanPageComponentModel>,
     demo: 'checkbox' | 'switch',
     state: 'off' | 'on' | 'indeterminate'
   ) {
@@ -29,7 +26,7 @@ When(
 
 When(
   'I click the {string} button on the boolean page',
-  async function (this: ZFashionWorld<ZFashionVenueBooleanPageComponentModel>, state: 'on' | 'off' | 'indeterminate') {
+  async function (this: ZFashionWorld<ZBooleanPageComponentModel>, state: 'on' | 'off' | 'indeterminate') {
     const { page } = this.parameters;
     const button = await page[state]();
     await button.click();
@@ -38,7 +35,7 @@ When(
 
 When(
   'I toggle the switch for the disabled option to {string} on the boolean page',
-  async function (this: ZFashionWorld<ZFashionVenueBooleanPageComponentModel>, value: 'on' | 'off') {
+  async function (this: ZFashionWorld<ZBooleanPageComponentModel>, value: 'on' | 'off') {
     const { page } = this.parameters;
     const disabled = await page.disabled();
     const to = value === 'on';
@@ -48,7 +45,7 @@ When(
 
 Then(
   'all demo components are checked {string} on the boolean page',
-  async function (this: ZFashionWorld<ZFashionVenueBooleanPageComponentModel>, checked: 'on' | 'off') {
+  async function (this: ZFashionWorld<ZBooleanPageComponentModel>, checked: 'on' | 'off') {
     const { page } = this.parameters;
     const checkbox = await page.checkbox();
     const switcher = await page.switch();
@@ -62,7 +59,7 @@ Then(
 
 Then(
   'all demo components are disabled {string} on the boolean page',
-  async function (this: ZFashionWorld<ZFashionVenueBooleanPageComponentModel>, value: 'on' | 'off') {
+  async function (this: ZFashionWorld<ZBooleanPageComponentModel>, value: 'on' | 'off') {
     const { page } = this.parameters;
     const checkbox = await page.checkbox();
     const switcher = await page.switch();
@@ -76,7 +73,7 @@ Then(
 
 Then(
   'all demo components that support the indeterminate state on the page are indeterminate',
-  async function (this: ZFashionWorld<ZFashionVenueBooleanPageComponentModel>) {
+  async function (this: ZFashionWorld<ZBooleanPageComponentModel>) {
     const { page } = this.parameters;
     const checkbox = await page.checkbox();
     const value = await checkbox.value();
@@ -86,7 +83,7 @@ Then(
 
 Then(
   'all demo components that do not support the indeterminate state on the page are off',
-  async function (this: ZFashionWorld<ZFashionVenueBooleanPageComponentModel>) {
+  async function (this: ZFashionWorld<ZBooleanPageComponentModel>) {
     const { page } = this.parameters;
     const switcher = await page.switch();
     const value = await switcher.value();
