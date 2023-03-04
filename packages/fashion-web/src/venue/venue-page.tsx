@@ -20,14 +20,14 @@ import { ZFashionRouteVenue, ZFashionRouteVenueAllComponents } from '../routes';
  * @returns
  *        The JSX to render the page.
  */
-export function ZFashionVenuePage() {
+export function ZVenuePage() {
   const theme = useFashionTheme();
   const { light, primary } = theme.design();
   const navigate = useNavigate();
 
   const renderComponent = (route: IZRoute) => (
     <ZBox
-      className={cssJoinDefined('ZFashionVenuePage-component')}
+      className={cssJoinDefined('ZVenuePage-component')}
       key={route.path}
       padding={ZSizeFixed.Large}
       border={{ fashion: light.dark, hover: primary.dark, width: ZSizeFixed.ExtraSmall }}
@@ -48,7 +48,7 @@ export function ZFashionVenuePage() {
 
   return (
     <ZCard
-      className='ZFashionVenuePage-root'
+      className='ZVenuePage-root'
       heading={ZFashionRouteVenue.name}
       subHeading={ZFashionRouteVenue.description}
       avatar={<ZImageSource src={ZFashionRouteVenue.avatar} height={ZSizeFixed.Medium} />}
