@@ -42,6 +42,13 @@ export const ZFashionRouteVenueNumber = new ZRouteBuilder()
   .avatar('/images/svg/number.svg')
   .build();
 
+export const ZFashionRouteVenueSuspense = new ZRouteBuilder()
+  .name('Suspense')
+  .path('suspense')
+  .description('Loading and Waiting')
+  .avatar('/images/svg/suspense.svg')
+  .build();
+
 export const ZFashionRouteVenueText = new ZRouteBuilder()
   .name('Text')
   .path('text')
@@ -61,6 +68,7 @@ export const ZFashionRouteVenueAllComponents = [
   ZFashionRouteVenueButton,
   ZFashionRouteVenueDrawer,
   ZFashionRouteVenueNumber,
+  ZFashionRouteVenueSuspense,
   ZFashionRouteVenueText,
   ZFashionRouteVenueTypography
 ];
