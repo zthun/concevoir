@@ -95,7 +95,7 @@ export function ZChoiceAutocomplete<O, V>(props: IZChoice<O, V>) {
       className={cssJoinDefined('ZChoice-root', 'ZChoice-autocomplete', styles.classes.root, className)}
       data-name={name}
       componentsProps={{
-        clearIndicator: { className: cssJoinDefined('ZChoice-clear', [styles.classes.invisible, !!chosen.length]) },
+        clearIndicator: { className: cssJoinDefined('ZChoice-clear', [styles.classes.invisible, !chosen.length]) },
         popper: { className: 'ZChoice-options' },
         popupIndicator: { className: 'ZChoice-toggler' }
       }}
