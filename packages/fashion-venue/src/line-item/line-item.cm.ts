@@ -5,7 +5,7 @@ import { IZCircusDriver, ZCircusComponentModel } from '@zthun/cirque';
  *
  * This mostly is just here to help you get the containers for the prefix, body, and suffix.
  */
-export class ZLineItemLayoutComponentModel extends ZCircusComponentModel {
+export class ZLineItemComponentModel extends ZCircusComponentModel {
   public static readonly Selector = '.ZLineItem-root';
 
   /**
