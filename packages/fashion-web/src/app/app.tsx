@@ -8,6 +8,7 @@ import {
   ZFashionRouteVenue,
   ZFashionRouteVenueBoolean,
   ZFashionRouteVenueButton,
+  ZFashionRouteVenueChoice,
   ZFashionRouteVenueDrawer,
   ZFashionRouteVenueNumber,
   ZFashionRouteVenueSuspense,
@@ -16,6 +17,7 @@ import {
 } from '../routes';
 import { ZBooleanPage } from '../venue/boolean/boolean-page';
 import { ZButtonPage } from '../venue/button/button-page';
+import { ZChoicePage } from '../venue/choice/choice-page';
 import { ZDrawerPage } from '../venue/drawer/drawer-page';
 import { ZNumberPage } from '../venue/number/number-page';
 import { ZSuspensePage } from '../venue/suspense/suspense-page';
@@ -30,7 +32,7 @@ import { ZVenuePage } from '../venue/venue-page';
  *        The jsx to render the fashion web application.
  */
 export function ZFashionApp() {
-  const avatar = <ZImageSource src='images/svg/fashion.svg' height={ZSizeVaried.Full} />;
+  const avatar = <ZImageSource src='/images/svg/fashion.svg' height={ZSizeVaried.Full} />;
   const prefix = (
     <div className='ZFashionApp-description'>
       <ZH1 compact>Fashion</ZH1>
@@ -46,6 +48,7 @@ export function ZFashionApp() {
           <ZRoute path={ZFashionRouteVenue.path} element={<ZBreadcrumbOutlet />}>
             <ZRoute path={ZFashionRouteVenueBoolean.path} element={<ZBooleanPage />} />
             <ZRoute path={ZFashionRouteVenueButton.path} element={<ZButtonPage />} />
+            <ZRoute path={ZFashionRouteVenueChoice.path} element={<ZChoicePage />} />
             <ZRoute path={ZFashionRouteVenueDrawer.path} element={<ZDrawerPage />} />
             <ZRoute path={ZFashionRouteVenueNumber.path} element={<ZNumberPage />} />
             <ZRoute path={ZFashionRouteVenueSuspense.path} element={<ZSuspensePage />} />
