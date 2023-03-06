@@ -10,6 +10,7 @@ import {
   ZFashionRouteVenueButton,
   ZFashionRouteVenueChoice,
   ZFashionRouteVenueDrawer,
+  ZFashionRouteVenueList,
   ZFashionRouteVenueNumber,
   ZFashionRouteVenueSuspense,
   ZFashionRouteVenueText,
@@ -19,6 +20,7 @@ import { ZBooleanPage } from '../venue/boolean/boolean-page';
 import { ZButtonPage } from '../venue/button/button-page';
 import { ZChoicePage } from '../venue/choice/choice-page';
 import { ZDrawerPage } from '../venue/drawer/drawer-page';
+import { ZListPage } from '../venue/list/list-page';
 import { ZNumberPage } from '../venue/number/number-page';
 import { ZSuspensePage } from '../venue/suspense/suspense-page';
 import { ZTextPage } from '../venue/text/text-page';
@@ -50,6 +52,7 @@ export function ZFashionApp() {
             <ZRoute path={ZFashionRouteVenueButton.path} element={<ZButtonPage />} />
             <ZRoute path={ZFashionRouteVenueChoice.path} element={<ZChoicePage />} />
             <ZRoute path={ZFashionRouteVenueDrawer.path} element={<ZDrawerPage />} />
+            <ZRoute path={ZFashionRouteVenueList.path} element={<ZListPage />} />
             <ZRoute path={ZFashionRouteVenueNumber.path} element={<ZNumberPage />} />
             <ZRoute path={ZFashionRouteVenueSuspense.path} element={<ZSuspensePage />} />
             <ZRoute path={ZFashionRouteVenueText.path} element={<ZTextPage />} />

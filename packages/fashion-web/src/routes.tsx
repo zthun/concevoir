@@ -42,6 +42,13 @@ export const ZFashionRouteVenueDrawer = new ZRouteBuilder()
   .avatar('/images/svg/drawer.svg')
   .build();
 
+export const ZFashionRouteVenueList = new ZRouteBuilder()
+  .name('List')
+  .path('list')
+  .description('Line Items')
+  .avatar('/images/svg/list.svg')
+  .build();
+
 export const ZFashionRouteVenueNumber = new ZRouteBuilder()
   .name('Number')
   .path('number')
@@ -75,6 +82,7 @@ export const ZFashionRouteVenueAllComponents = [
   ZFashionRouteVenueButton,
   ZFashionRouteVenueChoice,
   ZFashionRouteVenueDrawer,
+  ZFashionRouteVenueList,
   ZFashionRouteVenueNumber,
   ZFashionRouteVenueSuspense,
   ZFashionRouteVenueText,
