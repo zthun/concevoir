@@ -1,13 +1,12 @@
 # Description
 
-The fashion-designer base package includes needed utils and objects that help with limited color palette that makes up a
-sites color design.
+The fashion-chroma package includes objects that help with building color palettes and themes.
 
 ## Installation
 
 ```sh
 # NPM
-npm install @zthun/fashion-designer
+npm install @zthun/fashion-chroma
 # Yarn
-yarn add @zthun/fashion-designer
+yarn add @zthun/fashion-chroma
 ```
