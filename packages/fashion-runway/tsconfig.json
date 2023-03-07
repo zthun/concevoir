@@ -6,6 +6,7 @@
     "declarationDir": "dist/types",
     "paths": {
       "@zthun/fashion-chroma": ["../fashion-chroma/src/index"],
+      "@zthun/fashion-tailor": ["../fashion-tailor/src/index"],
       "@zthun/fashion-venue": ["../fashion-venue/src/index"]
     }
   },
