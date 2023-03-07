@@ -1,5 +1,5 @@
 import { IZCircusDriver, ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZSizeFixed } from '@zthun/fashion-designer';
+import { ZSizeFixed } from '@zthun/fashion-chroma';
 
 /**
  * Represents a component model for suspense.

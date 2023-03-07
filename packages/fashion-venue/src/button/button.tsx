@@ -7,7 +7,7 @@ import {
   ZFashionBuilder,
   ZSizeFixed,
   ZSizeVaried
-} from '@zthun/fashion-designer';
+} from '@zthun/fashion-chroma';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import { noop } from 'lodash';
 import { IZComponentAvatar } from '../component/component-avatar';

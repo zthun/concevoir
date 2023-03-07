@@ -1,5 +1,5 @@
 // cspell:disable
-import { ZSizeFixed } from '@zthun/fashion-designer';
+import { ZSizeFixed } from '@zthun/fashion-chroma';
 import {
   ZCaption,
   ZCard,

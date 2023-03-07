@@ -12,7 +12,7 @@ import {
   IZFashionDesign,
   ZSizeFixed,
   ZSizeVoid
-} from '@zthun/fashion-designer';
+} from '@zthun/fashion-chroma';
 import { firstDefined } from '@zthun/helpful-fn';
 import { createContext, useContext } from 'react';
 import { createMakeStyles, CSSInterpolation } from 'tss-react';

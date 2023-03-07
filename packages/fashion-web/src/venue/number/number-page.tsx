@@ -1,4 +1,4 @@
-import { ZSizeFixed } from '@zthun/fashion-designer';
+import { ZSizeFixed } from '@zthun/fashion-chroma';
 
 import { ZBox, ZCaption, ZCard, ZGrid, ZH3, ZImageSource, ZNumberInput, ZParagraph } from '@zthun/fashion-venue';
 import React, { useState } from 'react';

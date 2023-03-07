@@ -5,7 +5,7 @@ import {
   ZOrientation,
   ZSizeFixed,
   ZSizeVoid
-} from '@zthun/fashion-designer';
+} from '@zthun/fashion-chroma';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import React from 'react';

@@ -1,5 +1,5 @@
 import { ZCircusComponentModel } from '@zthun/cirque';
-import { ZOrientation } from '@zthun/fashion-designer';
+import { ZOrientation } from '@zthun/fashion-chroma';
 
 export class ZStackComponentModel extends ZCircusComponentModel {
   public static readonly Selector = '.ZStack-root';

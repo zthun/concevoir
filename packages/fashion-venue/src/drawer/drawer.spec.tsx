@@ -1,6 +1,6 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZAnchor } from '@zthun/fashion-designer';
+import { ZAnchor } from '@zthun/fashion-chroma';
 import React, { ReactNode } from 'react';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { ZDrawerButton } from './drawer-button';

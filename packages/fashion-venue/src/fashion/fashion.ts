@@ -18,7 +18,7 @@ import {
   teal,
   yellow
 } from '@mui/material/colors';
-import { ZFashionDesignBuilder, ZHue, ZPaletteBuilder } from '@zthun/fashion-designer';
+import { ZFashionDesignBuilder, ZHue, ZPaletteBuilder } from '@zthun/fashion-chroma';
 
 /**
  * Creates a new instance of the default FashionDesign

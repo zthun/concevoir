@@ -1,4 +1,4 @@
-import { ZSizeFixed } from '@zthun/fashion-designer';
+import { ZSizeFixed } from '@zthun/fashion-chroma';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ReactNode } from 'react';
 import { IZComponentAdornment } from '../component/component-adornment';

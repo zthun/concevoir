@@ -1,4 +1,4 @@
-import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-designer';
+import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-chroma';
 import { useFashionTheme, useNavigate, ZButton, ZCard, ZFullScreen, ZGrid, ZParagraph } from '@zthun/fashion-venue';
 import { getHttpCodeDescription, getHttpCodeName, ZHttpCodeClient } from '@zthun/webigail-http';
 import React from 'react';

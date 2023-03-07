@@ -1,6 +1,6 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZOrientation } from '@zthun/fashion-designer';
+import { ZOrientation } from '@zthun/fashion-chroma';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZStack } from './stack';

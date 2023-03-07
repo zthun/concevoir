@@ -1,5 +1,5 @@
 import { Drawer } from '@mui/material';
-import { ZAnchor } from '@zthun/fashion-designer';
+import { ZAnchor } from '@zthun/fashion-chroma';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy';

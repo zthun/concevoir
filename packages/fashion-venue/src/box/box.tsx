@@ -10,7 +10,7 @@ import {
   ZSizeFixed,
   ZSizeVaried,
   ZSizeVoid
-} from '@zthun/fashion-designer';
+} from '@zthun/fashion-chroma';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import { get } from 'lodash';

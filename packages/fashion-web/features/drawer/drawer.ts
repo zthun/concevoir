@@ -1,5 +1,5 @@
 import { Then, When } from '@cucumber/cucumber';
-import { ZAnchor } from '@zthun/fashion-designer';
+import { ZAnchor } from '@zthun/fashion-chroma';
 import assert from 'assert';
 import { ZFashionRouteVenue, ZFashionRouteVenueDrawer } from '../../src/routes';
 import { ZDrawerPageComponentModel } from '../../src/venue/drawer/drawer-page.cm';

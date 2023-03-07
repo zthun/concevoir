@@ -1,6 +1,6 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZSizeFixed } from '@zthun/fashion-designer';
+import { ZSizeFixed } from '@zthun/fashion-chroma';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZSuspensePage } from './suspense-page';

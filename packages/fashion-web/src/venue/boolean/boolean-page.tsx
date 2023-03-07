@@ -1,4 +1,4 @@
-import { ZOrientation, ZSizeFixed } from '@zthun/fashion-designer';
+import { ZOrientation, ZSizeFixed } from '@zthun/fashion-chroma';
 import {
   useFashionTheme,
   ZBooleanCheckbox,

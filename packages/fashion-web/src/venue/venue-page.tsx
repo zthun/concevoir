@@ -1,4 +1,4 @@
-import { IZRoute, ZSizeFixed } from '@zthun/fashion-designer';
+import { IZRoute, ZSizeFixed } from '@zthun/fashion-chroma';
 import {
   useFashionTheme,
   useNavigate,

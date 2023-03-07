@@ -1,4 +1,4 @@
-import { ZSizeVaried } from '@zthun/fashion-designer';
+import { ZSizeVaried } from '@zthun/fashion-chroma';
 import { ZBannerMain, ZBreadcrumbOutlet, ZNotFound } from '@zthun/fashion-runway';
 import { ZCaption, ZH1, ZImageSource, ZRoute, ZRouteMap, ZRouter } from '@zthun/fashion-venue';
 import React from 'react';

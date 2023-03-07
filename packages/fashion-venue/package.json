@@ -28,7 +28,7 @@
     "@mui/material": "^5.11.10",
     "@mui/system": "^5.11.9",
     "@zthun/cirque": "^4.2.0",
-    "@zthun/fashion-designer": "^0.0.1",
+    "@zthun/fashion-chroma": "^0.0.1",
     "@zthun/helpful-fn": "^0.3.0",
     "@zthun/helpful-obligation": "^0.3.0",
     "@zthun/webigail-http": "^0.1.0",

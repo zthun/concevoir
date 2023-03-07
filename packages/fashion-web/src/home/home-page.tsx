@@ -1,4 +1,4 @@
-import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-designer';
+import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-chroma';
 import {
   makeStyles,
   useFashionTheme,

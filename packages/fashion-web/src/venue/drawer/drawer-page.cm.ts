@@ -1,5 +1,5 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZAnchor } from '@zthun/fashion-designer';
+import { ZAnchor } from '@zthun/fashion-chroma';
 import {
   ZButtonComponentModel,
   ZChoiceComponentModel,

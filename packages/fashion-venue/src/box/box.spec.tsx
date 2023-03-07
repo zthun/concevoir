@@ -1,6 +1,6 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-designer';
+import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-chroma';
 import React from 'react';
 import { describe, expect, it, Mock, vi } from 'vitest';
 import { ZBox } from './box';

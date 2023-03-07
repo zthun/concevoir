@@ -1,5 +1,5 @@
 import { ZCircusActBuilder, ZCircusComponentModel, ZCircusKeyboardQwerty } from '@zthun/cirque';
-import { IZFashion, ZHue, ZShade } from '@zthun/fashion-designer';
+import { IZFashion, ZHue, ZShade } from '@zthun/fashion-chroma';
 import { ZFashionBlockComponentModel } from './fashion-block.cm';
 
 /**

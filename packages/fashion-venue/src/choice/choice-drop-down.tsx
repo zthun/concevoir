@@ -1,6 +1,6 @@
 import ClearIcon from '@mui/icons-material/Clear';
 import { FormControl, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import { ZSizeFixed } from '@zthun/fashion-designer';
+import { ZSizeFixed } from '@zthun/fashion-chroma';
 import { createGuid, cssJoinDefined } from '@zthun/helpful-fn';
 import { castArray, isArray } from 'lodash';
 import React, { ReactNode, useMemo } from 'react';

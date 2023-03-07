@@ -6,7 +6,7 @@ import {
   createSizeChartVoidCss,
   ZSizeFixed,
   ZSizeVaried
-} from '@zthun/fashion-designer';
+} from '@zthun/fashion-chroma';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ReactNode } from 'react';
 import { IZComponentAvatar } from '../component/component-avatar';

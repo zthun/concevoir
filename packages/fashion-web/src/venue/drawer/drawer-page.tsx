@@ -1,4 +1,4 @@
-import { ZAnchor, ZSizeFixed } from '@zthun/fashion-designer';
+import { ZAnchor, ZSizeFixed } from '@zthun/fashion-chroma';
 import {
   useFashionTheme,
   ZBox,

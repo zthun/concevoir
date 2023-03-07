@@ -4,7 +4,7 @@
     "baseUrl": "packages",
     "target": "esnext",
     "paths": {
-      "@zthun/fashion-designer": ["fashion-designer/src/index"],
+      "@zthun/fashion-chroma": ["fashion-chroma/src/index"],
       "@zthun/fashion-venue": ["fashion-venue/src/index"],
       "@zthun/fashion-runway": ["fashion-runway/src/index"]
     }
