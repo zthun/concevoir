@@ -1,13 +1,9 @@
 import { Button, Tooltip } from '@mui/material';
 import React, { ReactNode } from 'react';
 
-import {
-  createSizeChartVariedCss,
-  IZFashionCoordination,
-  ZFashionBuilder,
-  ZSizeFixed,
-  ZSizeVaried
-} from '@zthun/fashion-chroma';
+import { IZFashionCoordination, ZFashionBuilder } from '@zthun/fashion-chroma';
+
+import { createSizeChartVariedCss, ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import { noop } from 'lodash';
 import { IZComponentAvatar } from '../component/component-avatar';

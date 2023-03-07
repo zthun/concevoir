@@ -1,5 +1,5 @@
 import { Given, Then, When } from '@cucumber/cucumber';
-import { ZSizeFixed } from '@zthun/fashion-chroma';
+import { ZSizeFixed } from '@zthun/fashion-tailor';
 import assert from 'assert';
 import { ZFashionRouteVenue, ZFashionRouteVenueSuspense } from '../../src/routes';
 import { ZSuspensePageComponentModel } from '../../src/venue/suspense/suspense-page.cm';

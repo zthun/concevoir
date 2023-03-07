@@ -4,7 +4,7 @@ import {
   createSizeChartVariedCss,
   createSizeChartVoidCss,
   ZSizeVaried
-} from '@zthun/fashion-chroma';
+} from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { ZDataUrlBuilder } from '@zthun/webigail-url';
 import React from 'react';

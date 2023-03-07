@@ -1,4 +1,4 @@
-import { ZOrientation, ZSizeFixed } from '@zthun/fashion-chroma';
+import { ZSizeFixed } from '@zthun/fashion-tailor';
 import {
   useFashionTheme,
   ZBooleanCheckbox,
@@ -78,7 +78,7 @@ export function ZBooleanPage() {
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Operations</ZH3>
 
-        <ZStack orientation={ZOrientation.Horizontal} gap={ZSizeFixed.Small}>
+        <ZStack orientation='horizontal' gap={ZSizeFixed.Small}>
           <ZButton outline fashion={success} onClick={setValue.bind(null, true)} label='True' name='on' />
           <ZButton outline fashion={error} onClick={setValue.bind(null, false)} label='False' name='off' />
           <ZButton

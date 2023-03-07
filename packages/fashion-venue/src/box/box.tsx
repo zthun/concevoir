@@ -1,16 +1,13 @@
+import { IZFashion, IZFashionCoordination, ZFashionBuilder, ZFashionCoordinationBuilder } from '@zthun/fashion-chroma';
 import {
   createSizeChartFixedCss,
   createSizeChartFixedGeometric,
   createSizeChartVariedCss,
   createSizeChartVoidCss,
-  IZFashion,
-  IZFashionCoordination,
-  ZFashionBuilder,
-  ZFashionCoordinationBuilder,
   ZSizeFixed,
   ZSizeVaried,
   ZSizeVoid
-} from '@zthun/fashion-chroma';
+} from '@zthun/fashion-tailor';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import { get } from 'lodash';

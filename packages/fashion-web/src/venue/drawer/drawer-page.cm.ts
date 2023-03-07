@@ -1,5 +1,4 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZAnchor } from '@zthun/fashion-chroma';
 import {
   ZButtonComponentModel,
   ZChoiceComponentModel,
@@ -42,7 +41,7 @@ export class ZDrawerPageComponentModel extends ZCircusComponentModel {
    * @param position -
    *        The position to set.
    */
-  public async anchor(position: ZAnchor): Promise<void> {
+  public async anchor(position: 'left' | 'right' | 'top' | 'bottom'): Promise<void> {
     const anchor = await ZCircusBy.first(this.driver, ZChoiceComponentModel, 'anchor');
     await anchor.select(position);
   }

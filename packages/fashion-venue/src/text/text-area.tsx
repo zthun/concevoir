@@ -1,5 +1,5 @@
 import { TextField } from '@mui/material';
-import { createSizeChartFixedArithmetic, ZSizeFixed } from '@zthun/fashion-chroma';
+import { createSizeChartFixedArithmetic, ZSizeFixed } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { IZComponentHeight } from '../component/component-height';

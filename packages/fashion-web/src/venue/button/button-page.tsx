@@ -1,4 +1,5 @@
-import { IZFashionCoordination, ZOrientation, ZSizeFixed } from '@zthun/fashion-chroma';
+import { IZFashionCoordination } from '@zthun/fashion-chroma';
+import { ZSizeFixed } from '@zthun/fashion-tailor';
 import {
   useFashionTheme,
   ZBooleanSwitch,
@@ -67,7 +68,7 @@ export function ZButtonPage() {
           button with a tooltip if you desire.
         </ZParagraph>
 
-        <ZStack orientation={ZOrientation.Horizontal} gap={ZSizeFixed.ExtraSmall} alignItems='center'>
+        <ZStack orientation='horizontal' gap={ZSizeFixed.ExtraSmall} alignItems='center'>
           <ZButton
             loading={loading}
             disabled={disabled}

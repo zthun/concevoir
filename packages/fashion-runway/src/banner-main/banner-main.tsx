@@ -1,4 +1,4 @@
-import { ZSizeFixed } from '@zthun/fashion-chroma';
+import { ZSizeFixed } from '@zthun/fashion-tailor';
 import {
   IZComponentAdornment,
   IZComponentAvatar,

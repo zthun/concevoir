@@ -1,4 +1,4 @@
-import { ZRouteBuilder } from '@zthun/fashion-chroma';
+import { ZRouteBuilder } from './route/route';
 
 export const ZFashionRouteHome = new ZRouteBuilder()
   .name('Fashion')

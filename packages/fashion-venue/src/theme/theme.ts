@@ -1,18 +1,15 @@
 import { Color, createTheme, PaletteColor, Theme } from '@mui/material';
 import { createSpacing } from '@mui/system';
+import { colorify, IZFashion, IZFashionCoordination, IZFashionDesign } from '@zthun/fashion-chroma';
 import {
-  colorify,
   createSizeChartFixedArithmetic,
   createSizeChartFixedCss,
   createSizeChartFixedFibonacci,
   createSizeChartVoidCss,
   createSizeChartVoidZero,
-  IZFashion,
-  IZFashionCoordination,
-  IZFashionDesign,
   ZSizeFixed,
   ZSizeVoid
-} from '@zthun/fashion-chroma';
+} from '@zthun/fashion-tailor';
 import { firstDefined } from '@zthun/helpful-fn';
 import { createContext, useContext } from 'react';
 import { createMakeStyles, CSSInterpolation } from 'tss-react';

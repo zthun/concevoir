@@ -1,4 +1,4 @@
-import { ZAnchor, ZSizeFixed } from '@zthun/fashion-chroma';
+import { ZSizeFixed } from '@zthun/fashion-tailor';
 import {
   useFashionTheme,
   ZBox,
@@ -12,7 +12,7 @@ import {
   ZParagraph
 } from '@zthun/fashion-venue';
 import { setFirst } from '@zthun/helpful-fn';
-import { identity, startCase, values } from 'lodash';
+import { identity, startCase } from 'lodash';
 import React, { useState } from 'react';
 import { ZFashionRouteVenueDrawer } from '../../routes';
 
@@ -22,11 +22,11 @@ import { ZFashionRouteVenueDrawer } from '../../routes';
  * @returns The JSX to render the page.
  */
 export function ZDrawerPage() {
-  const [anchor, setAnchor] = useState<ZAnchor>(ZAnchor.Left);
+  const [anchor, setAnchor] = useState<'left' | 'right' | 'top' | 'bottom'>('left');
   const theme = useFashionTheme();
   const { primary, success } = theme.design();
   const [timestamp, setTimestamp] = useState(new Date().getTime());
-  const anchors = values(ZAnchor);
+  const anchors = ['left', 'right', 'top', 'bottom'];
 
   const now = () => setTimestamp(new Date().getTime());
 
@@ -71,7 +71,7 @@ export function ZDrawerPage() {
         <ZGrid gap={ZSizeFixed.Medium}>
           <ZChoiceDropDown
             value={[anchor]}
-            onValueChange={setFirst.bind(null, setAnchor, ZAnchor.Left)}
+            onValueChange={setFirst.bind(null, setAnchor, 'left')}
             options={anchors}
             label='Anchor'
             identifier={identity}

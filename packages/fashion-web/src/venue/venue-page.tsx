@@ -1,4 +1,4 @@
-import { IZRoute, ZSizeFixed } from '@zthun/fashion-chroma';
+import { ZSizeFixed } from '@zthun/fashion-tailor';
 import {
   useFashionTheme,
   useNavigate,
@@ -12,6 +12,7 @@ import {
 } from '@zthun/fashion-venue';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
+import { IZRoute } from '../route/route';
 import { ZFashionRouteVenue, ZFashionRouteVenueAllComponents } from '../routes';
 
 /**

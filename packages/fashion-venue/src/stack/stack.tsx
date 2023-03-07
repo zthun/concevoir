@@ -1,11 +1,5 @@
 import { Stack } from '@mui/material';
-import {
-  createSizeChartFixedArithmetic,
-  createSizeChartVoidZero,
-  ZOrientation,
-  ZSizeFixed,
-  ZSizeVoid
-} from '@zthun/fashion-chroma';
+import { createSizeChartFixedArithmetic, createSizeChartVoidZero, ZSizeFixed, ZSizeVoid } from '@zthun/fashion-tailor';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import React from 'react';
@@ -19,7 +13,7 @@ interface IZStack extends IZComponentHierarchy, IZComponentStyle {
   alignItems?: Property.AlignItems;
   justifyContent?: Property.JustifyContent;
   gap?: ZSizeFixed | ZSizeVoid;
-  orientation?: ZOrientation;
+  orientation?: 'horizontal' | 'vertical';
 }
 
 const GapChart = {
@@ -30,7 +24,7 @@ const GapChart = {
 export function ZStack(props: IZStack) {
   const { className, alignItems, justifyContent, gap, orientation, children } = props;
   const _gap = firstDefined(ZSizeVoid.None, gap);
-  const direction = orientation === ZOrientation.Horizontal ? 'row' : 'column';
+  const direction = orientation === 'horizontal' ? 'row' : 'column';
   const spacing = GapChart[_gap];
 
   return (

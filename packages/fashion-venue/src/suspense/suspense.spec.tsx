@@ -3,7 +3,7 @@ import { ZSuspenseRotate } from './suspense-rotate';
 import { ZSuspenseComponentModel } from './suspense.cm';
 
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZSizeFixed } from '@zthun/fashion-chroma';
+import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 

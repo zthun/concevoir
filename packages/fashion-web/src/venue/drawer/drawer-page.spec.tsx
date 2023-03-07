@@ -1,6 +1,5 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZAnchor } from '@zthun/fashion-chroma';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZDrawerPage } from './drawer-page';
@@ -13,7 +12,7 @@ describe('ZDrawerPage', () => {
     return ZCircusBy.first(driver, ZDrawerPageComponentModel);
   }
 
-  async function shouldPositionDrawer(expected: ZAnchor) {
+  async function shouldPositionDrawer(expected: 'left' | 'right' | 'top' | 'bottom') {
     // Arrange.
     const target = await createTestTarget();
     await target.anchor(expected);
@@ -37,19 +36,19 @@ describe('ZDrawerPage', () => {
   });
 
   it('should position the drawer on the left', async () => {
-    await shouldPositionDrawer(ZAnchor.Left);
+    await shouldPositionDrawer('left');
   });
 
   it('should position the drawer on the right', async () => {
-    await shouldPositionDrawer(ZAnchor.Right);
+    await shouldPositionDrawer('right');
   });
 
   it('should position the drawer on the top', async () => {
-    await shouldPositionDrawer(ZAnchor.Top);
+    await shouldPositionDrawer('top');
   });
 
   it('should position the drawer on the bottom', async () => {
-    await shouldPositionDrawer(ZAnchor.Bottom);
+    await shouldPositionDrawer('bottom');
   });
 
   it('should close the drawer', async () => {

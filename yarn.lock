@@ -4163,6 +4163,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@zthun/fashion-tailor@^0.0.1, @zthun/fashion-tailor@workspace:packages/fashion-tailor":
+  version: 0.0.0-use.local
+  resolution: "@zthun/fashion-tailor@workspace:packages/fashion-tailor"
+  dependencies:
+    lodash: ^4.17.21
+    microbundle: ^0.15.1
+    vite: ^4.1.4
+    vitest: ^0.28.5
+  languageName: unknown
+  linkType: soft
+
 "@zthun/fashion-venue@^0.0.1, @zthun/fashion-venue@workspace:packages/fashion-venue":
   version: 0.0.0-use.local
   resolution: "@zthun/fashion-venue@workspace:packages/fashion-venue"
@@ -4175,6 +4186,7 @@ __metadata:
     "@zthun/cirque": ^4.2.0
     "@zthun/cirque-du-react": ^4.2.0
     "@zthun/fashion-chroma": ^0.0.1
+    "@zthun/fashion-tailor": ^0.0.1
     "@zthun/helpful-fn": ^0.3.0
     "@zthun/helpful-obligation": ^0.3.0
     "@zthun/webigail-http": ^0.1.0
@@ -4203,6 +4215,7 @@ __metadata:
     "@zthun/cirque-du-selenium": ^4.2.0
     "@zthun/fashion-chroma": ^0.0.1
     "@zthun/fashion-runway": ^0.0.1
+    "@zthun/fashion-tailor": ^0.0.1
     "@zthun/fashion-venue": ^0.0.1
     "@zthun/helpful-fn": ^0.3.0
     "@zthun/webigail-url": ^0.1.0

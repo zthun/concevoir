@@ -1,13 +1,12 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZOrientation } from '@zthun/fashion-chroma';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZStack } from './stack';
 import { ZStackComponentModel } from './stack.cm';
 
 describe('ZStack', () => {
-  let orientation: ZOrientation | undefined;
+  let orientation: 'horizontal' | 'vertical' | undefined;
 
   async function createTestTarget() {
     const element = <ZStack orientation={orientation} />;
@@ -23,12 +22,12 @@ describe('ZStack', () => {
       // Act.
       const actual = await target.orientation();
       // Assert.
-      expect(actual).toEqual(ZOrientation.Vertical);
+      expect(actual).toEqual('vertical');
     });
 
     it('should orient horizontally', async () => {
       // Arrange.
-      orientation = ZOrientation.Horizontal;
+      orientation = 'horizontal';
       const target = await createTestTarget();
       // Act.
       const actual = await target.orientation();
