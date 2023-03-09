@@ -1,7 +1,7 @@
 {
   "name": "@zthun/fashion-boutique-page",
   "version": "0.0.1",
-  "description": "A collection of web layouts built with the fashion venue.",
+  "description": "A collection of page layouts built with components from boutique.",
   "main": "dist/lib/index.js",
   "module": "dist/lib/index.js",
   "types": "dist/types/index.d.ts",

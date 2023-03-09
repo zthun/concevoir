@@ -52,7 +52,7 @@ export function ZHomePage() {
         />
 
         <ZParagraph>
-          Zthunworks fashion system is a set of helper libraries that make it easier to quickly build a small web
+          The Zthunworks fashion system is a set of helper libraries that make it easier to quickly build a small web
           application. Small web applications are easier to maintain and having a lot of small web applications that all
           look and feel similar creates a better user experience. One of the best examples of taking a Monolith
           application and converting it down to smaller pieces was iTunes by Apple. While iTunes was excellent for
@@ -63,8 +63,7 @@ export function ZHomePage() {
 
         <ZParagraph>
           Fashion is built around this philosophy; users are most productive when they are focused on a single task at a
-          time. The Fashion system is split into three layers, the <strong>designer</strong>, the <strong>venue</strong>
-          , and the <strong>runway</strong>.
+          time.
         </ZParagraph>
       </ZCard>
 
@@ -76,9 +75,9 @@ export function ZHomePage() {
         footer={
           <ZButton
             label='Get Started'
-            onClick={() => navigate('venue')}
+            onClick={() => navigate('boutique')}
             fashion={primary}
-            name='venue-get-started'
+            name='boutique-get-started'
             outline
             width={ZSizeVaried.Full}
           />
@@ -92,9 +91,9 @@ export function ZHomePage() {
         />
 
         <ZParagraph>
-          You need materials, tools, and designs to put on a show. This is where the fashion venue comes into play. The
-          fashion venue contains react components needed to build a web page. The primary focus of the venue is to help
-          form a common look and feel across several single page applications.
+          You need materials, tools, and designs to put on a show. The fashion boutique contains react components needed
+          to build a web page. The primary focus of the boutique is to help form a common look and feel across several
+          single page applications, given a single theme.
         </ZParagraph>
       </ZCard>
     </div>

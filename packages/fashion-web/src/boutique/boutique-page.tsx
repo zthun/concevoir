@@ -16,7 +16,7 @@ import { IZRoute } from '../route/route';
 import { ZFashionRouteAllComponents, ZFashionRouteBoutique } from '../routes';
 
 /**
- * Represents the venue page.
+ * Represents the components page.
  *
  * @returns
  *        The JSX to render the page.
@@ -28,7 +28,7 @@ export function ZBoutiquePage() {
 
   const renderComponent = (route: IZRoute) => (
     <ZBox
-      className={cssJoinDefined('ZVenuePage-component')}
+      className={cssJoinDefined('ZBoutiquePage-component')}
       key={route.path}
       padding={ZSizeFixed.Large}
       border={{ fashion: light.dark, hover: primary.dark, width: ZSizeFixed.ExtraSmall }}
@@ -49,7 +49,7 @@ export function ZBoutiquePage() {
 
   return (
     <ZCard
-      className='ZVenuePage-root'
+      className='ZBoutiquePage-root'
       heading={ZFashionRouteBoutique.name}
       subHeading={ZFashionRouteBoutique.description}
       avatar={<ZImageSource src={ZFashionRouteBoutique.avatar} height={ZSizeFixed.Medium} />}

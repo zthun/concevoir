@@ -11,7 +11,7 @@ export const ZFashionRouteBoutique = new ZRouteBuilder()
   .name('Boutique')
   .path('boutique')
   .description('Components for React')
-  .avatar('/images/svg/venue.svg')
+  .avatar('/images/svg/boutique.svg')
   .build();
 
 export const ZFashionRouteBoolean = new ZRouteBuilder()

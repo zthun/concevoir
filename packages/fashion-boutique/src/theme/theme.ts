@@ -85,7 +85,7 @@ export interface IZThemeMixins {
 }
 
 /**
- * Represents a theme for the fashion venue.
+ * Represents a theme.
  *
  * This extends material main theme and adds
  * some helpers and size options.

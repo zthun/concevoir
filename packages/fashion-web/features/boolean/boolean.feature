@@ -1,4 +1,3 @@
-@Venue
 @BooleanPage
 Feature: Boolean Page
 
