@@ -1,9 +1,9 @@
+import { describe, expect, it } from 'vitest';
 import { ZFashionBuilder } from '../color/fashion';
-import { ZFashionCoordinationBuilder } from '../color/fashion-coordination';
 import { ZHue } from '../color/hue';
 import { ZPaletteBuilder } from '../color/palette';
+import { ZFashionCoordinationBuilder } from '../coordination/fashion-coordination';
 import { ZFashionDesignBuilder } from './fashion-design';
-import { describe, expect, it } from 'vitest';
 
 describe('ZFashionDesignBuilder', () => {
   function createTestTarget() {

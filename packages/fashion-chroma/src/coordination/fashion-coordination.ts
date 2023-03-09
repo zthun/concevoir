@@ -1,4 +1,4 @@
-import { IZFashion, ZFashionBuilder } from './fashion';
+import { IZFashion, ZFashionBuilder } from '../color/fashion';
 
 /**
  * Represents a set of fashion colors that create a coordinated fashion grouping.

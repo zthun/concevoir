@@ -1,6 +1,6 @@
 import { ZFashionBuilder } from '../color/fashion';
-import { IZFashionCoordination, ZFashionCoordinationBuilder } from '../color/fashion-coordination';
 import { IZPalette, ZPaletteBuilder } from '../color/palette';
+import { IZFashionCoordination, ZFashionCoordinationBuilder } from '../coordination/fashion-coordination';
 
 /**
  * Represents the minimal fashion design that includes only the palette.
