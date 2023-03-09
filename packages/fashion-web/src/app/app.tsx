@@ -1,5 +1,5 @@
 import { ZCaption, ZH1, ZImageSource, ZRoute, ZRouteMap, ZRouter } from '@zthun/fashion-boutique';
-import { ZBannerMain, ZBreadcrumbOutlet, ZNotFound } from '@zthun/fashion-runway';
+import { ZBannerMain, ZBreadcrumbOutlet, ZNotFound } from '@zthun/fashion-boutique-page';
 import { ZSizeVaried } from '@zthun/fashion-tailor';
 import React from 'react';
 import { ZHomePage } from '../home/home-page';

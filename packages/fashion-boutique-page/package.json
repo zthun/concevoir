@@ -1,5 +1,5 @@
 {
-  "name": "@zthun/fashion-runway",
+  "name": "@zthun/fashion-boutique-page",
   "version": "0.0.1",
   "description": "A collection of web layouts built with the fashion venue.",
   "main": "dist/lib/index.js",
@@ -8,7 +8,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/zthun/fashion",
-    "directory": "packages/fashion-runway"
+    "directory": "packages/fashion-boutique-page"
   },
   "scripts": {
     "build": "microbundle --format esm,cjs --tsconfig tsconfig.prod.json --no-sourcemap"
