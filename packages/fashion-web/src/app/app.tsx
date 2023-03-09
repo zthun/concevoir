@@ -3,6 +3,7 @@ import { ZBannerMain, ZBreadcrumbOutlet, ZNotFound } from '@zthun/fashion-boutiq
 import { ZSizeVaried } from '@zthun/fashion-tailor';
 import React from 'react';
 import { ZBooleanPage } from '../boutique/boolean/boolean-page';
+import { ZBoutiquePage } from '../boutique/boutique-page';
 import { ZButtonPage } from '../boutique/button/button-page';
 import { ZChoicePage } from '../boutique/choice/choice-page';
 import { ZDrawerPage } from '../boutique/drawer/drawer-page';
@@ -11,7 +12,6 @@ import { ZNumberPage } from '../boutique/number/number-page';
 import { ZSuspensePage } from '../boutique/suspense/suspense-page';
 import { ZTextPage } from '../boutique/text/text-page';
 import { ZTypographyPage } from '../boutique/typography/typography-page';
-import { ZVenuePage } from '../boutique/venue-page';
 import { ZHomePage } from '../home/home-page';
 import {
   ZFashionRouteHome,
@@ -57,7 +57,7 @@ export function ZFashionApp() {
             <ZRoute path={ZFashionRouteVenueSuspense.path} element={<ZSuspensePage />} />
             <ZRoute path={ZFashionRouteVenueText.path} element={<ZTextPage />} />
             <ZRoute path={ZFashionRouteVenueTypography.path} element={<ZTypographyPage />} />
-            <ZRoute path='' element={<ZVenuePage />} />
+            <ZRoute path='' element={<ZBoutiquePage />} />
           </ZRoute>
           <ZRoute path='*' element={<ZNotFound />} />
         </ZRouteMap>

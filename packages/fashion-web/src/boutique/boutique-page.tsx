@@ -21,7 +21,7 @@ import { ZFashionRouteVenue, ZFashionRouteVenueAllComponents } from '../routes';
  * @returns
  *        The JSX to render the page.
  */
-export function ZVenuePage() {
+export function ZBoutiquePage() {
   const theme = useFashionTheme();
   const { light, primary } = theme.design();
   const navigate = useNavigate();
