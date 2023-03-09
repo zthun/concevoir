@@ -1,8 +1,8 @@
 import { setDefaultTimeout, setWorldConstructor, World } from '@cucumber/cucumber';
 import { IZCircusDriver, ZCircusBy, ZCircusComponentConstructor, ZCircusComponentModel } from '@zthun/cirque';
 import { ZCircusSetupChrome } from '@zthun/cirque-du-selenium';
-import { IZRoute } from '@zthun/fashion-chroma';
 import { ZUrlBuilder } from '@zthun/webigail-url';
+import { IZRoute } from '../src/route/route';
 
 /**
  * Represents a modifiable set of parameters.
