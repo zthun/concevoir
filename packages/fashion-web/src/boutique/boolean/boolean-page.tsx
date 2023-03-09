@@ -14,7 +14,7 @@ import {
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React, { useState } from 'react';
-import { ZFashionRouteVenueBoolean } from '../../routes';
+import { ZFashionRouteBoolean } from '../../routes';
 
 /**
  * Represents a demo for booleans.
@@ -30,9 +30,9 @@ export function ZBooleanPage() {
   return (
     <ZCard
       className='ZBooleanPage-root'
-      heading={ZFashionRouteVenueBoolean.name}
-      subHeading={ZFashionRouteVenueBoolean.description}
-      avatar={<ZImageSource src={ZFashionRouteVenueBoolean.avatar} height={ZSizeFixed.Medium} />}
+      heading={ZFashionRouteBoolean.name}
+      subHeading={ZFashionRouteBoolean.description}
+      avatar={<ZImageSource src={ZFashionRouteBoolean.avatar} height={ZSizeFixed.Medium} />}
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

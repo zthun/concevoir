@@ -13,7 +13,7 @@ import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { IZRoute } from '../route/route';
-import { ZFashionRouteVenue, ZFashionRouteVenueAllComponents } from '../routes';
+import { ZFashionRouteAllComponents, ZFashionRouteBoutique } from '../routes';
 
 /**
  * Represents the venue page.
@@ -50,9 +50,9 @@ export function ZBoutiquePage() {
   return (
     <ZCard
       className='ZVenuePage-root'
-      heading={ZFashionRouteVenue.name}
-      subHeading={ZFashionRouteVenue.description}
-      avatar={<ZImageSource src={ZFashionRouteVenue.avatar} height={ZSizeFixed.Medium} />}
+      heading={ZFashionRouteBoutique.name}
+      subHeading={ZFashionRouteBoutique.description}
+      avatar={<ZImageSource src={ZFashionRouteBoutique.avatar} height={ZSizeFixed.Medium} />}
     >
       <ZGrid
         columns='auto auto auto auto'
@@ -61,7 +61,7 @@ export function ZBoutiquePage() {
         columnsSm='auto'
         gap={ZSizeFixed.Medium}
       >
-        {ZFashionRouteVenueAllComponents.map(renderComponent)}
+        {ZFashionRouteAllComponents.map(renderComponent)}
       </ZGrid>
     </ZCard>
   );

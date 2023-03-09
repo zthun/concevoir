@@ -9,7 +9,7 @@ import {
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import React from 'react';
-import { ZFashionRouteHome, ZFashionRouteVenue } from '../routes';
+import { ZFashionRouteBoutique, ZFashionRouteHome } from '../routes';
 
 const useHomePageStyles = makeStyles()((theme) => ({
   section: {
@@ -71,8 +71,8 @@ export function ZHomePage() {
       <ZCard
         className={classes.section}
         width={ZSizeFixed.Large}
-        heading={ZFashionRouteVenue.name}
-        subHeading={ZFashionRouteVenue.description}
+        heading={ZFashionRouteBoutique.name}
+        subHeading={ZFashionRouteBoutique.description}
         footer={
           <ZButton
             label='Get Started'
@@ -86,7 +86,7 @@ export function ZHomePage() {
       >
         <ZImageSource
           className={classes.avatar}
-          src={ZFashionRouteVenue.avatar}
+          src={ZFashionRouteBoutique.avatar}
           height={ZSizeFixed.ExtraLarge}
           width={ZSizeVaried.Full}
         />

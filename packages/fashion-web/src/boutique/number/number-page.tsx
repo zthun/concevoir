@@ -2,7 +2,7 @@ import { ZSizeFixed } from '@zthun/fashion-tailor';
 
 import { ZBox, ZCaption, ZCard, ZGrid, ZH3, ZImageSource, ZNumberInput, ZParagraph } from '@zthun/fashion-boutique';
 import React, { useState } from 'react';
-import { ZFashionRouteVenueNumber } from '../../routes';
+import { ZFashionRouteNumber } from '../../routes';
 
 /**
  * Represents a demo for number inputs.
@@ -16,9 +16,9 @@ export function ZNumberPage() {
   return (
     <ZCard
       className='ZNumberPage-root'
-      heading={ZFashionRouteVenueNumber.name}
-      subHeading={ZFashionRouteVenueNumber.description}
-      avatar={<ZImageSource src={ZFashionRouteVenueNumber.avatar} height={ZSizeFixed.Medium} />}
+      heading={ZFashionRouteNumber.name}
+      subHeading={ZFashionRouteNumber.description}
+      avatar={<ZImageSource src={ZFashionRouteNumber.avatar} height={ZSizeFixed.Medium} />}
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

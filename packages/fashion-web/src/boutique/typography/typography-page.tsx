@@ -15,7 +15,7 @@ import {
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React from 'react';
-import { ZFashionRouteVenueTypography } from '../../routes';
+import { ZFashionRouteTypography } from '../../routes';
 
 /**
  * Represents a demo for typography.
@@ -26,9 +26,9 @@ export function ZTypographyPage() {
   return (
     <ZCard
       className='ZTypographyPage-root'
-      heading={ZFashionRouteVenueTypography.name}
-      subHeading={ZFashionRouteVenueTypography.description}
-      avatar={<ZImageSource src={ZFashionRouteVenueTypography.avatar} height={ZSizeFixed.Medium} />}
+      heading={ZFashionRouteTypography.name}
+      subHeading={ZFashionRouteTypography.description}
+      avatar={<ZImageSource src={ZFashionRouteTypography.avatar} height={ZSizeFixed.Medium} />}
     >
       <ZH3>Description</ZH3>
 

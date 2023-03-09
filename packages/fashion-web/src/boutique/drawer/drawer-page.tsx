@@ -14,7 +14,7 @@ import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { setFirst } from '@zthun/helpful-fn';
 import { identity, startCase } from 'lodash';
 import React, { useState } from 'react';
-import { ZFashionRouteVenueDrawer } from '../../routes';
+import { ZFashionRouteDrawer } from '../../routes';
 
 /**
  * Represents a demo for drawers.
@@ -33,9 +33,9 @@ export function ZDrawerPage() {
   return (
     <ZCard
       className='ZDrawerPage-root'
-      heading={ZFashionRouteVenueDrawer.name}
-      subHeading={ZFashionRouteVenueDrawer.description}
-      avatar={<ZImageSource src={ZFashionRouteVenueDrawer.avatar} height={ZSizeFixed.Medium} />}
+      heading={ZFashionRouteDrawer.name}
+      subHeading={ZFashionRouteDrawer.description}
+      avatar={<ZImageSource src={ZFashionRouteDrawer.avatar} height={ZSizeFixed.Medium} />}
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

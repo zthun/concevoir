@@ -1,7 +1,7 @@
 import { Given, Then, When } from '@cucumber/cucumber';
 import assert from 'assert';
 import { ZTextPageComponentModel } from '../../src/boutique/text/text-page.cm';
-import { ZFashionRouteVenue, ZFashionRouteVenueText } from '../../src/routes';
+import { ZFashionRouteBoutique, ZFashionRouteText } from '../../src/routes';
 import { ZFashionWorld } from '../fashion-world';
 
 type FieldName = 'text' | 'password' | 'reveal' | 'area';
@@ -14,7 +14,7 @@ const LOREM3 = 'Ut labore et dolore magna aliqua. Massa sed elementum tempus ege
 // cspell:enable
 
 Given('I navigate to the text demo page', async function (this: ZFashionWorld<ZTextPageComponentModel>) {
-  await this.open(ZFashionRouteVenue, ZFashionRouteVenueText);
+  await this.open(ZFashionRouteBoutique, ZFashionRouteText);
   this.parameters.page = await this.create(ZTextPageComponentModel);
 });
 

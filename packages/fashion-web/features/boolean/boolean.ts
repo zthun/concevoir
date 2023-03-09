@@ -1,11 +1,11 @@
 import { Given, Then, When } from '@cucumber/cucumber';
 import assert from 'assert';
 import { ZBooleanPageComponentModel } from '../../src/boutique/boolean/boolean-page.cm';
-import { ZFashionRouteVenue, ZFashionRouteVenueBoolean } from '../../src/routes';
+import { ZFashionRouteBoolean, ZFashionRouteBoutique } from '../../src/routes';
 import { ZFashionWorld } from '../fashion-world';
 
 Given('I have navigated to the boolean demo page', async function (this: ZFashionWorld<ZBooleanPageComponentModel>) {
-  await this.open(ZFashionRouteVenue, ZFashionRouteVenueBoolean);
+  await this.open(ZFashionRouteBoutique, ZFashionRouteBoolean);
   this.parameters.page = await this.create(ZBooleanPageComponentModel);
 });
 

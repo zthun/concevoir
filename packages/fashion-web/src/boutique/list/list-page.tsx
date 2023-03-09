@@ -13,7 +13,7 @@ import {
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React, { useState } from 'react';
-import { ZFashionRouteVenueList } from '../../routes';
+import { ZFashionRouteList } from '../../routes';
 
 /**
  * Represents a demo for lists.
@@ -34,9 +34,9 @@ export function ZListPage() {
   return (
     <ZCard
       className='ZListPage-root'
-      heading={ZFashionRouteVenueList.name}
-      subHeading={ZFashionRouteVenueList.description}
-      avatar={<ZImageSource src={ZFashionRouteVenueList.avatar} height={ZSizeFixed.Medium} />}
+      heading={ZFashionRouteList.name}
+      subHeading={ZFashionRouteList.description}
+      avatar={<ZImageSource src={ZFashionRouteList.avatar} height={ZSizeFixed.Medium} />}
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

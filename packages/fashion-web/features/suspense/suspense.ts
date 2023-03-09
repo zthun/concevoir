@@ -2,11 +2,11 @@ import { Given, Then, When } from '@cucumber/cucumber';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import assert from 'assert';
 import { ZSuspensePageComponentModel } from '../../src/boutique/suspense/suspense-page.cm';
-import { ZFashionRouteVenue, ZFashionRouteVenueSuspense } from '../../src/routes';
+import { ZFashionRouteBoutique, ZFashionRouteSuspense } from '../../src/routes';
 import { ZFashionWorld } from '../fashion-world';
 
 Given('I navigate to the suspense demo page', async function (this: ZFashionWorld<ZSuspensePageComponentModel>) {
-  await this.open(ZFashionRouteVenue, ZFashionRouteVenueSuspense);
+  await this.open(ZFashionRouteBoutique, ZFashionRouteSuspense);
   this.parameters.page = await this.create(ZSuspensePageComponentModel);
 });
 

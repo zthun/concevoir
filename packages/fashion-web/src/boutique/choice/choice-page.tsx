@@ -13,7 +13,7 @@ import {
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React, { useState } from 'react';
-import { ZFashionRouteVenueChoice } from '../../routes';
+import { ZFashionRouteChoice } from '../../routes';
 
 interface Superhero {
   id: string;
@@ -103,9 +103,9 @@ export function ZChoicePage() {
   return (
     <ZCard
       className='ZChoicePage-root'
-      heading={ZFashionRouteVenueChoice.name}
-      subHeading={ZFashionRouteVenueChoice.description}
-      avatar={<ZImageSource src={ZFashionRouteVenueChoice.avatar} height={ZSizeFixed.Medium} />}
+      heading={ZFashionRouteChoice.name}
+      subHeading={ZFashionRouteChoice.description}
+      avatar={<ZImageSource src={ZFashionRouteChoice.avatar} height={ZSizeFixed.Medium} />}
     >
       <ZBox padding={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

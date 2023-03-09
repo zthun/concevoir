@@ -16,7 +16,7 @@ import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { setFirst } from '@zthun/helpful-fn';
 import { identity } from 'lodash';
 import React, { useState } from 'react';
-import { ZFashionRouteVenueButton } from '../../routes';
+import { ZFashionRouteButton } from '../../routes';
 
 /**
  * Represents a demo for buttons.
@@ -51,9 +51,9 @@ export function ZButtonPage() {
   return (
     <ZCard
       className='ZButtonPage-root'
-      heading={ZFashionRouteVenueButton.name}
-      subHeading={ZFashionRouteVenueButton.description}
-      avatar={<ZImageSource src={ZFashionRouteVenueButton.avatar} height={ZSizeFixed.Medium} />}
+      heading={ZFashionRouteButton.name}
+      subHeading={ZFashionRouteButton.description}
+      avatar={<ZImageSource src={ZFashionRouteButton.avatar} height={ZSizeFixed.Medium} />}
     >
       <ZBox padding={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

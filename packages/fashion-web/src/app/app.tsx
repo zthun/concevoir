@@ -14,17 +14,17 @@ import { ZTextPage } from '../boutique/text/text-page';
 import { ZTypographyPage } from '../boutique/typography/typography-page';
 import { ZHomePage } from '../home/home-page';
 import {
+  ZFashionRouteBoolean,
+  ZFashionRouteBoutique,
+  ZFashionRouteButton,
+  ZFashionRouteChoice,
+  ZFashionRouteDrawer,
   ZFashionRouteHome,
-  ZFashionRouteVenue,
-  ZFashionRouteVenueBoolean,
-  ZFashionRouteVenueButton,
-  ZFashionRouteVenueChoice,
-  ZFashionRouteVenueDrawer,
-  ZFashionRouteVenueList,
-  ZFashionRouteVenueNumber,
-  ZFashionRouteVenueSuspense,
-  ZFashionRouteVenueText,
-  ZFashionRouteVenueTypography
+  ZFashionRouteList,
+  ZFashionRouteNumber,
+  ZFashionRouteSuspense,
+  ZFashionRouteText,
+  ZFashionRouteTypography
 } from '../routes';
 
 /**
@@ -47,16 +47,16 @@ export function ZFashionApp() {
       <ZBannerMain avatar={avatar} prefix={prefix}>
         <ZRouteMap>
           <ZRoute path={ZFashionRouteHome.path} element={<ZHomePage />} />
-          <ZRoute path={ZFashionRouteVenue.path} element={<ZBreadcrumbOutlet />}>
-            <ZRoute path={ZFashionRouteVenueBoolean.path} element={<ZBooleanPage />} />
-            <ZRoute path={ZFashionRouteVenueButton.path} element={<ZButtonPage />} />
-            <ZRoute path={ZFashionRouteVenueChoice.path} element={<ZChoicePage />} />
-            <ZRoute path={ZFashionRouteVenueDrawer.path} element={<ZDrawerPage />} />
-            <ZRoute path={ZFashionRouteVenueList.path} element={<ZListPage />} />
-            <ZRoute path={ZFashionRouteVenueNumber.path} element={<ZNumberPage />} />
-            <ZRoute path={ZFashionRouteVenueSuspense.path} element={<ZSuspensePage />} />
-            <ZRoute path={ZFashionRouteVenueText.path} element={<ZTextPage />} />
-            <ZRoute path={ZFashionRouteVenueTypography.path} element={<ZTypographyPage />} />
+          <ZRoute path={ZFashionRouteBoutique.path} element={<ZBreadcrumbOutlet />}>
+            <ZRoute path={ZFashionRouteBoolean.path} element={<ZBooleanPage />} />
+            <ZRoute path={ZFashionRouteButton.path} element={<ZButtonPage />} />
+            <ZRoute path={ZFashionRouteChoice.path} element={<ZChoicePage />} />
+            <ZRoute path={ZFashionRouteDrawer.path} element={<ZDrawerPage />} />
+            <ZRoute path={ZFashionRouteList.path} element={<ZListPage />} />
+            <ZRoute path={ZFashionRouteNumber.path} element={<ZNumberPage />} />
+            <ZRoute path={ZFashionRouteSuspense.path} element={<ZSuspensePage />} />
+            <ZRoute path={ZFashionRouteText.path} element={<ZTextPage />} />
+            <ZRoute path={ZFashionRouteTypography.path} element={<ZTypographyPage />} />
             <ZRoute path='' element={<ZBoutiquePage />} />
           </ZRoute>
           <ZRoute path='*' element={<ZNotFound />} />

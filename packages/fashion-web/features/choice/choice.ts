@@ -1,14 +1,14 @@
 import { Then, When } from '@cucumber/cucumber';
 import assert from 'assert';
 import { ZChoicePageComponentModel } from '../../src/boutique/choice/choice-page.cm';
-import { ZFashionRouteVenue, ZFashionRouteVenueChoice } from '../../src/routes';
+import { ZFashionRouteBoutique, ZFashionRouteChoice } from '../../src/routes';
 import { ZFashionWorld } from '../fashion-world';
 
 type ChoiceDemo = 'dropdown' | 'autocomplete';
 type OptionCheckbox = 'multiple' | 'disabled' | 'indelible';
 
 When('I navigate to the choice demo page', async function (this: ZFashionWorld<ZChoicePageComponentModel>) {
-  await this.open(ZFashionRouteVenue, ZFashionRouteVenueChoice);
+  await this.open(ZFashionRouteBoutique, ZFashionRouteChoice);
   this.parameters.page = await this.create(ZChoicePageComponentModel);
 });
 

@@ -1,11 +1,11 @@
 import { Then, When } from '@cucumber/cucumber';
 import assert from 'assert';
 import { ZDrawerPageComponentModel } from '../../src/boutique/drawer/drawer-page.cm';
-import { ZFashionRouteVenue, ZFashionRouteVenueDrawer } from '../../src/routes';
+import { ZFashionRouteBoutique, ZFashionRouteDrawer } from '../../src/routes';
 import { ZFashionWorld } from '../fashion-world';
 
 When('I navigate to the drawer demo page', async function (this: ZFashionWorld<ZDrawerPageComponentModel>) {
-  await this.open(ZFashionRouteVenue, ZFashionRouteVenueDrawer);
+  await this.open(ZFashionRouteBoutique, ZFashionRouteDrawer);
   this.parameters.page = await this.create(ZDrawerPageComponentModel);
 });
 

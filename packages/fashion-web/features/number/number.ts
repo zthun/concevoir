@@ -1,7 +1,7 @@
 import { Given, Then, When } from '@cucumber/cucumber';
 import assert from 'assert';
 import { ZNumberPageComponentModel } from '../../src/boutique/number/number-page.cm';
-import { ZFashionRouteVenue, ZFashionRouteVenueNumber } from '../../src/routes';
+import { ZFashionRouteBoutique, ZFashionRouteNumber } from '../../src/routes';
 import { ZFashionWorld } from '../fashion-world';
 
 type NumberDemoTarget = 'spinner';
@@ -18,7 +18,7 @@ Given(
 );
 
 When('I navigate to the number demo page', async function (this: ZFashionWorld<ZNumberPageComponentModel>) {
-  await this.open(ZFashionRouteVenue, ZFashionRouteVenueNumber);
+  await this.open(ZFashionRouteBoutique, ZFashionRouteNumber);
   this.parameters.page = await this.create(ZNumberPageComponentModel);
 });
 

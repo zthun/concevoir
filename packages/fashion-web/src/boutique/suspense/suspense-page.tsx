@@ -13,7 +13,7 @@ import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { setFirst } from '@zthun/helpful-fn';
 import { identity, startCase, values } from 'lodash';
 import React, { useState } from 'react';
-import { ZFashionRouteVenueSuspense } from '../../routes';
+import { ZFashionRouteSuspense } from '../../routes';
 
 /**
  * Represents a demo for suspense indicators.
@@ -30,9 +30,9 @@ export function ZSuspensePage() {
   return (
     <ZCard
       className='ZSuspensePage-root'
-      heading={ZFashionRouteVenueSuspense.name}
-      subHeading={ZFashionRouteVenueSuspense.description}
-      avatar={<ZImageSource src={ZFashionRouteVenueSuspense.avatar} height={ZSizeFixed.Medium} />}
+      heading={ZFashionRouteSuspense.name}
+      subHeading={ZFashionRouteSuspense.description}
+      avatar={<ZImageSource src={ZFashionRouteSuspense.avatar} height={ZSizeFixed.Medium} />}
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

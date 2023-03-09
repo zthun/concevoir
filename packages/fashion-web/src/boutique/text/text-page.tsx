@@ -14,7 +14,7 @@ import {
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React, { useState } from 'react';
-import { ZFashionRouteVenueText } from 'src/routes';
+import { ZFashionRouteText } from 'src/routes';
 
 /**
  * Represents a demo for text.
@@ -35,9 +35,9 @@ export function ZTextPage() {
   return (
     <ZCard
       className='ZTextPage-root'
-      heading={ZFashionRouteVenueText.name}
-      subHeading={ZFashionRouteVenueText.description}
-      avatar={<ZImageSource src={ZFashionRouteVenueText.avatar} height={ZSizeFixed.Medium} />}
+      heading={ZFashionRouteText.name}
+      subHeading={ZFashionRouteText.description}
+      avatar={<ZImageSource src={ZFashionRouteText.avatar} height={ZSizeFixed.Medium} />}
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>
