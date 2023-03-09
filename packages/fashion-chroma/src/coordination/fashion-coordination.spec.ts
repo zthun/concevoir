@@ -1,6 +1,6 @@
-import { ZFashionBuilder } from './fashion';
+import { describe, expect, it } from 'vitest';
+import { ZFashionBuilder } from '../color/fashion';
 import { ZFashionCoordinationBuilder } from './fashion-coordination';
-import { describe, it, expect } from 'vitest';
 
 describe('ZFashionComplements', () => {
   function createTestTarget() {
