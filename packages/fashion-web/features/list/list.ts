@@ -1,8 +1,8 @@
 import { Then, When } from '@cucumber/cucumber';
 import { ZListLineItemComponentModel } from '@zthun/fashion-boutique';
 import assert from 'assert';
+import { ZListPageComponentModel } from '../../src/boutique/list/list-page.cm';
 import { ZFashionRouteVenue, ZFashionRouteVenueList } from '../../src/routes';
-import { ZListPageComponentModel } from '../../src/venue/list/list-page.cm';
 import { ZFashionWorld } from '../fashion-world';
 
 When('I navigate to the list demo page', async function (this: ZFashionWorld<ZListPageComponentModel>) {

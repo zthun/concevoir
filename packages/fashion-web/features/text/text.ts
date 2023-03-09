@@ -1,7 +1,7 @@
 import { Given, Then, When } from '@cucumber/cucumber';
 import assert from 'assert';
+import { ZTextPageComponentModel } from '../../src/boutique/text/text-page.cm';
 import { ZFashionRouteVenue, ZFashionRouteVenueText } from '../../src/routes';
-import { ZTextPageComponentModel } from '../../src/venue/text/text-page.cm';
 import { ZFashionWorld } from '../fashion-world';
 
 type FieldName = 'text' | 'password' | 'reveal' | 'area';

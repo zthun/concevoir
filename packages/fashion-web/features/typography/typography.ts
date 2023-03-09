@@ -1,6 +1,6 @@
 import { When } from '@cucumber/cucumber';
+import { ZTypographyPageComponentModel } from '../../src/boutique/typography/typography-page.cm';
 import { ZFashionRouteVenue, ZFashionRouteVenueTypography } from '../../src/routes';
-import { ZTypographyPageComponentModel } from '../../src/venue/typography/typography-page.cm';
 import { ZFashionWorld } from '../fashion-world';
 
 When('I navigate to the typography demo page', async function (this: ZFashionWorld<ZTypographyPageComponentModel>) {

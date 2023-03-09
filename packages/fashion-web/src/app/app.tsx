@@ -2,6 +2,16 @@ import { ZCaption, ZH1, ZImageSource, ZRoute, ZRouteMap, ZRouter } from '@zthun/
 import { ZBannerMain, ZBreadcrumbOutlet, ZNotFound } from '@zthun/fashion-boutique-page';
 import { ZSizeVaried } from '@zthun/fashion-tailor';
 import React from 'react';
+import { ZBooleanPage } from '../boutique/boolean/boolean-page';
+import { ZButtonPage } from '../boutique/button/button-page';
+import { ZChoicePage } from '../boutique/choice/choice-page';
+import { ZDrawerPage } from '../boutique/drawer/drawer-page';
+import { ZListPage } from '../boutique/list/list-page';
+import { ZNumberPage } from '../boutique/number/number-page';
+import { ZSuspensePage } from '../boutique/suspense/suspense-page';
+import { ZTextPage } from '../boutique/text/text-page';
+import { ZTypographyPage } from '../boutique/typography/typography-page';
+import { ZVenuePage } from '../boutique/venue-page';
 import { ZHomePage } from '../home/home-page';
 import {
   ZFashionRouteHome,
@@ -16,16 +26,6 @@ import {
   ZFashionRouteVenueText,
   ZFashionRouteVenueTypography
 } from '../routes';
-import { ZBooleanPage } from '../venue/boolean/boolean-page';
-import { ZButtonPage } from '../venue/button/button-page';
-import { ZChoicePage } from '../venue/choice/choice-page';
-import { ZDrawerPage } from '../venue/drawer/drawer-page';
-import { ZListPage } from '../venue/list/list-page';
-import { ZNumberPage } from '../venue/number/number-page';
-import { ZSuspensePage } from '../venue/suspense/suspense-page';
-import { ZTextPage } from '../venue/text/text-page';
-import { ZTypographyPage } from '../venue/typography/typography-page';
-import { ZVenuePage } from '../venue/venue-page';
 
 /**
  * Represents the root entry point into the application.

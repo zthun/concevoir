@@ -1,7 +1,7 @@
 import { Given, Then, When } from '@cucumber/cucumber';
 import assert from 'assert';
+import { ZButtonPageComponentModel } from '../../src/boutique/button/button-page.cm';
 import { ZFashionRouteVenue, ZFashionRouteVenueButton } from '../../src/routes';
-import { ZButtonPageComponentModel } from '../../src/venue/button/button-page.cm';
 import { ZFashionWorld } from '../fashion-world';
 
 Given('I navigate to the button demo page', async function (this: ZFashionWorld<ZButtonPageComponentModel>) {

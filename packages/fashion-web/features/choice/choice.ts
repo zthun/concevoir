@@ -1,7 +1,7 @@
 import { Then, When } from '@cucumber/cucumber';
 import assert from 'assert';
+import { ZChoicePageComponentModel } from '../../src/boutique/choice/choice-page.cm';
 import { ZFashionRouteVenue, ZFashionRouteVenueChoice } from '../../src/routes';
-import { ZChoicePageComponentModel } from '../../src/venue/choice/choice-page.cm';
 import { ZFashionWorld } from '../fashion-world';
 
 type ChoiceDemo = 'dropdown' | 'autocomplete';

@@ -1,7 +1,7 @@
 import { Then, When } from '@cucumber/cucumber';
 import assert from 'assert';
+import { ZDrawerPageComponentModel } from '../../src/boutique/drawer/drawer-page.cm';
 import { ZFashionRouteVenue, ZFashionRouteVenueDrawer } from '../../src/routes';
-import { ZDrawerPageComponentModel } from '../../src/venue/drawer/drawer-page.cm';
 import { ZFashionWorld } from '../fashion-world';
 
 When('I navigate to the drawer demo page', async function (this: ZFashionWorld<ZDrawerPageComponentModel>) {

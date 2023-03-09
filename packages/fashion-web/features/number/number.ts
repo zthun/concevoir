@@ -1,7 +1,7 @@
 import { Given, Then, When } from '@cucumber/cucumber';
 import assert from 'assert';
+import { ZNumberPageComponentModel } from '../../src/boutique/number/number-page.cm';
 import { ZFashionRouteVenue, ZFashionRouteVenueNumber } from '../../src/routes';
-import { ZNumberPageComponentModel } from '../../src/venue/number/number-page.cm';
 import { ZFashionWorld } from '../fashion-world';
 
 type NumberDemoTarget = 'spinner';
