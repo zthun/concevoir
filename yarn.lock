@@ -4131,49 +4131,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/fashion-chroma@^0.0.1, @zthun/fashion-chroma@workspace:packages/fashion-chroma":
-  version: 0.0.0-use.local
-  resolution: "@zthun/fashion-chroma@workspace:packages/fashion-chroma"
-  dependencies:
-    lodash: ^4.17.21
-    microbundle: ^0.15.1
-    vite: ^4.1.4
-    vitest: ^0.28.5
-  languageName: unknown
-  linkType: soft
-
-"@zthun/fashion-runway@^0.0.1, @zthun/fashion-runway@workspace:packages/fashion-runway":
-  version: 0.0.0-use.local
-  resolution: "@zthun/fashion-runway@workspace:packages/fashion-runway"
-  dependencies:
-    "@zthun/cirque": ^4.2.0
-    "@zthun/cirque-du-react": ^4.2.0
-    "@zthun/fashion-chroma": ^0.0.1
-    "@zthun/fashion-boutique": ^0.0.1
-    "@zthun/helpful-fn": ^0.3.0
-    "@zthun/webigail-http": ^0.1.0
-    history: ^5.3.0
-    lodash: ^4.17.21
-    microbundle: ^0.15.1
-    vite: ^4.1.4
-    vitest: ^0.28.5
-  peerDependencies:
-    react: ^18.1.0
-    react-dom: ^18.1.0
-  languageName: unknown
-  linkType: soft
-
-"@zthun/fashion-tailor@^0.0.1, @zthun/fashion-tailor@workspace:packages/fashion-tailor":
-  version: 0.0.0-use.local
-  resolution: "@zthun/fashion-tailor@workspace:packages/fashion-tailor"
-  dependencies:
-    lodash: ^4.17.21
-    microbundle: ^0.15.1
-    vite: ^4.1.4
-    vitest: ^0.28.5
-  languageName: unknown
-  linkType: soft
-
 "@zthun/fashion-boutique@^0.0.1, @zthun/fashion-boutique@workspace:packages/fashion-boutique":
   version: 0.0.0-use.local
   resolution: "@zthun/fashion-boutique@workspace:packages/fashion-boutique"
@@ -4205,6 +4162,50 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@zthun/fashion-chroma@^0.0.1, @zthun/fashion-chroma@workspace:packages/fashion-chroma":
+  version: 0.0.0-use.local
+  resolution: "@zthun/fashion-chroma@workspace:packages/fashion-chroma"
+  dependencies:
+    lodash: ^4.17.21
+    microbundle: ^0.15.1
+    vite: ^4.1.4
+    vitest: ^0.28.5
+  languageName: unknown
+  linkType: soft
+
+"@zthun/fashion-runway@^0.0.1, @zthun/fashion-runway@workspace:packages/fashion-runway":
+  version: 0.0.0-use.local
+  resolution: "@zthun/fashion-runway@workspace:packages/fashion-runway"
+  dependencies:
+    "@zthun/cirque": ^4.2.0
+    "@zthun/cirque-du-react": ^4.2.0
+    "@zthun/fashion-boutique": ^0.0.1
+    "@zthun/fashion-chroma": ^0.0.1
+    "@zthun/fashion-tailor": ^0.0.1
+    "@zthun/helpful-fn": ^0.3.0
+    "@zthun/webigail-http": ^0.1.0
+    history: ^5.3.0
+    lodash: ^4.17.21
+    microbundle: ^0.15.1
+    vite: ^4.1.4
+    vitest: ^0.28.5
+  peerDependencies:
+    react: ^18.1.0
+    react-dom: ^18.1.0
+  languageName: unknown
+  linkType: soft
+
+"@zthun/fashion-tailor@^0.0.1, @zthun/fashion-tailor@workspace:packages/fashion-tailor":
+  version: 0.0.0-use.local
+  resolution: "@zthun/fashion-tailor@workspace:packages/fashion-tailor"
+  dependencies:
+    lodash: ^4.17.21
+    microbundle: ^0.15.1
+    vite: ^4.1.4
+    vitest: ^0.28.5
+  languageName: unknown
+  linkType: soft
+
 "@zthun/fashion-web@workspace:packages/fashion-web":
   version: 0.0.0-use.local
   resolution: "@zthun/fashion-web@workspace:packages/fashion-web"
@@ -4213,10 +4214,10 @@ __metadata:
     "@zthun/cirque": ^4.2.0
     "@zthun/cirque-du-react": ^4.2.0
     "@zthun/cirque-du-selenium": ^4.2.0
+    "@zthun/fashion-boutique": ^0.0.1
     "@zthun/fashion-chroma": ^0.0.1
     "@zthun/fashion-runway": ^0.0.1
     "@zthun/fashion-tailor": ^0.0.1
-    "@zthun/fashion-boutique": ^0.0.1
     "@zthun/helpful-fn": ^0.3.0
     "@zthun/webigail-url": ^0.1.0
     history: ^5.3.0
