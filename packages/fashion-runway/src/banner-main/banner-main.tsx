@@ -1,4 +1,3 @@
-import { ZSizeFixed } from '@zthun/fashion-tailor';
 import {
   IZComponentAdornment,
   IZComponentAvatar,
@@ -8,7 +7,8 @@ import {
   ZBox,
   ZGrid,
   ZStyled
-} from '@zthun/fashion-venue';
+} from '@zthun/fashion-boutique';
+import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React from 'react';
 
 export interface IZBannerMain extends IZComponentHierarchy, IZComponentAvatar, IZComponentAdornment {}

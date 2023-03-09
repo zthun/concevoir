@@ -1,4 +1,3 @@
-import { ZSizeFixed } from '@zthun/fashion-tailor';
 import {
   useFashionTheme,
   useNavigate,
@@ -9,7 +8,8 @@ import {
   ZH3,
   ZImageSource,
   ZLineItem
-} from '@zthun/fashion-venue';
+} from '@zthun/fashion-boutique';
+import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { IZRoute } from '../route/route';

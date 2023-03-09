@@ -1,4 +1,4 @@
-import { makeStyles } from '@zthun/fashion-venue';
+import { makeStyles } from '@zthun/fashion-boutique';
 import React from 'react';
 
 const useSadFaceStyle = makeStyles()(() => {

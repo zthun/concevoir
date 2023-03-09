@@ -4149,7 +4149,7 @@ __metadata:
     "@zthun/cirque": ^4.2.0
     "@zthun/cirque-du-react": ^4.2.0
     "@zthun/fashion-chroma": ^0.0.1
-    "@zthun/fashion-venue": ^0.0.1
+    "@zthun/fashion-boutique": ^0.0.1
     "@zthun/helpful-fn": ^0.3.0
     "@zthun/webigail-http": ^0.1.0
     history: ^5.3.0
@@ -4174,9 +4174,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@zthun/fashion-venue@^0.0.1, @zthun/fashion-venue@workspace:packages/fashion-venue":
+"@zthun/fashion-boutique@^0.0.1, @zthun/fashion-boutique@workspace:packages/fashion-boutique":
   version: 0.0.0-use.local
-  resolution: "@zthun/fashion-venue@workspace:packages/fashion-venue"
+  resolution: "@zthun/fashion-boutique@workspace:packages/fashion-boutique"
   dependencies:
     "@emotion/react": ^11.10.6
     "@emotion/styled": ^11.10.6
@@ -4216,7 +4216,7 @@ __metadata:
     "@zthun/fashion-chroma": ^0.0.1
     "@zthun/fashion-runway": ^0.0.1
     "@zthun/fashion-tailor": ^0.0.1
-    "@zthun/fashion-venue": ^0.0.1
+    "@zthun/fashion-boutique": ^0.0.1
     "@zthun/helpful-fn": ^0.3.0
     "@zthun/webigail-url": ^0.1.0
     history: ^5.3.0

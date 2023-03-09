@@ -1,5 +1,5 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZBooleanComponentModel, ZChoiceComponentModel } from '@zthun/fashion-venue';
+import { ZBooleanComponentModel, ZChoiceComponentModel } from '@zthun/fashion-boutique';
 
 /**
  * Represents the component model for the choice page demo.

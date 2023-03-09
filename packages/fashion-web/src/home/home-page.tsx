@@ -1,4 +1,3 @@
-import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import {
   makeStyles,
   useFashionTheme,
@@ -7,7 +6,8 @@ import {
   ZCard,
   ZImageSource,
   ZParagraph
-} from '@zthun/fashion-venue';
+} from '@zthun/fashion-boutique';
+import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import React from 'react';
 import { ZFashionRouteHome, ZFashionRouteVenue } from '../routes';
 

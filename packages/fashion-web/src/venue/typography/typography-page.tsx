@@ -1,5 +1,4 @@
 // cspell:disable
-import { ZSizeFixed } from '@zthun/fashion-tailor';
 import {
   ZCaption,
   ZCard,
@@ -13,7 +12,8 @@ import {
   ZOverline,
   ZParagraph,
   ZSubtitle
-} from '@zthun/fashion-venue';
+} from '@zthun/fashion-boutique';
+import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React from 'react';
 import { ZFashionRouteVenueTypography } from '../../routes';
 

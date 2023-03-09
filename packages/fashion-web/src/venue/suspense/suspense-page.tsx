@@ -1,4 +1,3 @@
-import { ZSizeFixed } from '@zthun/fashion-tailor';
 import {
   ZBooleanSwitch,
   ZBox,
@@ -9,7 +8,8 @@ import {
   ZImageSource,
   ZParagraph,
   ZSuspenseRotate
-} from '@zthun/fashion-venue';
+} from '@zthun/fashion-boutique';
+import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { setFirst } from '@zthun/helpful-fn';
 import { identity, startCase, values } from 'lodash';
 import React, { useState } from 'react';

@@ -1,6 +1,6 @@
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 
-import { ZBox, ZCaption, ZCard, ZGrid, ZH3, ZImageSource, ZNumberInput, ZParagraph } from '@zthun/fashion-venue';
+import { ZBox, ZCaption, ZCard, ZGrid, ZH3, ZImageSource, ZNumberInput, ZParagraph } from '@zthun/fashion-boutique';
 import React, { useState } from 'react';
 import { ZFashionRouteVenueNumber } from '../../routes';
 

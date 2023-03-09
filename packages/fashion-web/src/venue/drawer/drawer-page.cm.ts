@@ -4,7 +4,7 @@ import {
   ZChoiceComponentModel,
   ZDrawerButtonComponentModel,
   ZDrawerComponentModel
-} from '@zthun/fashion-venue';
+} from '@zthun/fashion-boutique';
 
 /**
  * Represents the component model for the drawer page.

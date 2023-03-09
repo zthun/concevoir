@@ -1,4 +1,3 @@
-import { ZSizeFixed } from '@zthun/fashion-tailor';
 import {
   useFashionTheme,
   ZBox,
@@ -11,7 +10,8 @@ import {
   ZListGroup,
   ZListLineItem,
   ZParagraph
-} from '@zthun/fashion-venue';
+} from '@zthun/fashion-boutique';
+import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React, { useState } from 'react';
 import { ZFashionRouteVenueList } from '../../routes';
 

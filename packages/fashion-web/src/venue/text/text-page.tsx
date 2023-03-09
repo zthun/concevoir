@@ -1,4 +1,3 @@
-import { ZSizeFixed } from '@zthun/fashion-tailor';
 import {
   ZBooleanSwitch,
   ZBox,
@@ -12,7 +11,8 @@ import {
   ZTextInput,
   ZTextInputReveal,
   ZTextType
-} from '@zthun/fashion-venue';
+} from '@zthun/fashion-boutique';
+import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React, { useState } from 'react';
 import { ZFashionRouteVenueText } from 'src/routes';
 

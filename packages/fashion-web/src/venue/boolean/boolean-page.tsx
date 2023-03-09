@@ -1,4 +1,3 @@
-import { ZSizeFixed } from '@zthun/fashion-tailor';
 import {
   useFashionTheme,
   ZBooleanCheckbox,
@@ -12,7 +11,8 @@ import {
   ZImageSource,
   ZParagraph,
   ZStack
-} from '@zthun/fashion-venue';
+} from '@zthun/fashion-boutique';
+import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React, { useState } from 'react';
 import { ZFashionRouteVenueBoolean } from '../../routes';
 

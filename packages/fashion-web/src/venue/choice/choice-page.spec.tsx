@@ -1,6 +1,6 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZChoiceComponentModel } from '@zthun/fashion-venue';
+import { ZChoiceComponentModel } from '@zthun/fashion-boutique';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZChoicePage } from './choice-page';

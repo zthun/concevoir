@@ -1,5 +1,3 @@
-import { IZFashionCoordination } from '@zthun/fashion-chroma';
-import { ZSizeFixed } from '@zthun/fashion-tailor';
 import {
   useFashionTheme,
   ZBooleanSwitch,
@@ -12,7 +10,9 @@ import {
   ZImageSource,
   ZParagraph,
   ZStack
-} from '@zthun/fashion-venue';
+} from '@zthun/fashion-boutique';
+import { IZFashionCoordination } from '@zthun/fashion-chroma';
+import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { setFirst } from '@zthun/helpful-fn';
 import { identity } from 'lodash';
 import React, { useState } from 'react';

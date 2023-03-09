@@ -1,4 +1,3 @@
-import { ZSizeFixed } from '@zthun/fashion-tailor';
 import {
   useFashionTheme,
   ZBox,
@@ -10,7 +9,8 @@ import {
   ZH3,
   ZImageSource,
   ZParagraph
-} from '@zthun/fashion-venue';
+} from '@zthun/fashion-boutique';
+import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { setFirst } from '@zthun/helpful-fn';
 import { identity, startCase } from 'lodash';
 import React, { useState } from 'react';
