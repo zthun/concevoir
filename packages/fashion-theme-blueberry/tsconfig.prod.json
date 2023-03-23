@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "sourceMap": false,
+    "paths": {
+      "@zthun/fashion-theme": ["../fashion-theme/src"]
+    }
+  },
+  "exclude": ["src/**/*.spec.ts"]
+}

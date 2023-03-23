@@ -4185,15 +4185,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@zthun/fashion-chroma@workspace:packages/fashion-theme-blueberry":
-  version: 0.0.0-use.local
-  resolution: "@zthun/fashion-chroma@workspace:packages/fashion-theme-blueberry"
-  dependencies:
-    "@zthun/fashion-theme": ^0.0.1
-    microbundle: ^0.15.1
-  languageName: unknown
-  linkType: soft
-
 "@zthun/fashion-tailor@^0.0.1, @zthun/fashion-tailor@workspace:packages/fashion-tailor":
   version: 0.0.0-use.local
   resolution: "@zthun/fashion-tailor@workspace:packages/fashion-tailor"
@@ -4202,6 +4193,15 @@ __metadata:
     microbundle: ^0.15.1
     vite: ^4.1.4
     vitest: ^0.29.2
+  languageName: unknown
+  linkType: soft
+
+"@zthun/fashion-theme-blueberry@workspace:packages/fashion-theme-blueberry":
+  version: 0.0.0-use.local
+  resolution: "@zthun/fashion-theme-blueberry@workspace:packages/fashion-theme-blueberry"
+  dependencies:
+    "@zthun/fashion-theme": ^0.0.1
+    microbundle: ^0.15.1
   languageName: unknown
   linkType: soft
 
