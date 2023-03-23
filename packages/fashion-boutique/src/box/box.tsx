@@ -1,4 +1,3 @@
-import { IZFashion, IZFashionCoordination, ZFashionBuilder, ZFashionCoordinationBuilder } from '@zthun/fashion-chroma';
 import {
   createSizeChartFixedCss,
   createSizeChartFixedGeometric,
@@ -8,6 +7,7 @@ import {
   ZSizeVaried,
   ZSizeVoid
 } from '@zthun/fashion-tailor';
+import { IZFashion, IZFashionCoordination, ZFashionBuilder, ZFashionCoordinationBuilder } from '@zthun/fashion-theme';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import { get } from 'lodash';

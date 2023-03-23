@@ -1,6 +1,6 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { IZFashionCoordination, ZFashionBuilder, ZFashionCoordinationBuilder } from '@zthun/fashion-chroma';
+import { IZFashionCoordination, ZFashionBuilder, ZFashionCoordinationBuilder } from '@zthun/fashion-theme';
 import React, { ReactNode } from 'react';
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 import { ZButton } from './button';

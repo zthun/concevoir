@@ -1,5 +1,4 @@
 import { AppBar } from '@mui/material';
-import { IZFashionCoordination } from '@zthun/fashion-chroma';
 import {
   createSizeChartFixedArithmetic,
   createSizeChartFixedCss,
@@ -7,6 +6,7 @@ import {
   ZSizeFixed,
   ZSizeVaried
 } from '@zthun/fashion-tailor';
+import { IZFashionCoordination } from '@zthun/fashion-theme';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { IZComponentFashion } from '../component/component-fashion';

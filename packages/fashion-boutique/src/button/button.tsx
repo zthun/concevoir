@@ -1,7 +1,7 @@
 import { Button, Tooltip } from '@mui/material';
 import React, { ReactNode } from 'react';
 
-import { IZFashionCoordination, ZFashionBuilder } from '@zthun/fashion-chroma';
+import { IZFashionCoordination, ZFashionBuilder } from '@zthun/fashion-theme';
 
 import { createSizeChartVariedCss, ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
