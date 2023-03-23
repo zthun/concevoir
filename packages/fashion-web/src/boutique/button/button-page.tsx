@@ -11,8 +11,8 @@ import {
   ZParagraph,
   ZStack
 } from '@zthun/fashion-boutique';
-import { IZFashionCoordination } from '@zthun/fashion-chroma';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
+import { IZFashionCoordination } from '@zthun/fashion-theme';
 import { setFirst } from '@zthun/helpful-fn';
 import { identity } from 'lodash';
 import React, { useState } from 'react';

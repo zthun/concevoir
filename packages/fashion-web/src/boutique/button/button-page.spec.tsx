@@ -1,7 +1,7 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { createDefaultFashionDesign, ZButtonComponentModel } from '@zthun/fashion-boutique';
-import { IZFashionCoordination } from '@zthun/fashion-chroma';
+import { IZFashionCoordination } from '@zthun/fashion-theme';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZButtonPage } from './button-page';
