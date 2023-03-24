@@ -19,6 +19,7 @@
     "access": "public"
   },
   "dependencies": {
+    "csstype": "*",
     "lodash": "^4.17.21"
   },
   "devDependencies": {

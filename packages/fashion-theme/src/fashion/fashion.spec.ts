@@ -1,27 +1,28 @@
 import { describe, expect, it } from 'vitest';
-import { ZFashionBuilder } from '../color/fashion';
-import { ZFashionCoordinationBuilder } from './fashion-coordination';
+import { hsl } from '../color/hsl';
+import { rgb, transparent, white } from '../color/rgb';
+import { ZFashionBuilder } from './fashion';
 
-describe('ZFashionComplements', () => {
+describe('ZFashion', () => {
   function createTestTarget() {
-    return new ZFashionCoordinationBuilder();
+    return new ZFashionBuilder();
   }
 
   describe('Properties', () => {
     it('should set the main fashion', () => {
-      const expected = new ZFashionBuilder().red(200).build();
-      expect(createTestTarget().main(expected).build().main).toEqual(expected);
+      const expected = rgb(255, 0, 0);
+      expect(createTestTarget().main(rgb(255, 0, 0)).build().main).toEqual(expected);
     });
 
     it('should set the contrast fashion', () => {
-      const expected = new ZFashionBuilder().green(800).build();
+      const expected = rgb(255, 255, 0, 0.5);
       expect(createTestTarget().contrast(expected).build().contrast).toEqual(expected);
     });
   });
 
   describe('Transparency', () => {
     it('should set the main to transparent', () => {
-      expect(createTestTarget().transparent().build().main.hue).toBeNull();
+      expect(createTestTarget().transparent().build().main).toEqual(transparent());
     });
 
     it('should remove the light', () => {
@@ -33,15 +34,14 @@ describe('ZFashionComplements', () => {
     });
 
     it('should set the contrast to inherit', () => {
-      const white = new ZFashionBuilder().white().build();
-      expect(createTestTarget().contrast(white).transparent().build().contrast.hue).toEqual('inherit');
+      expect(createTestTarget().contrast(white()).transparent().build().contrast).toEqual('inherit');
     });
   });
 
   describe('Copy', () => {
     it('should copy another complementary object', () => {
-      const main = new ZFashionBuilder().grey(800).build();
-      const contrast = new ZFashionBuilder().white().build();
+      const main = hsl(220, 56, 72, 0.32);
+      const contrast = white();
       const expected = createTestTarget().main(main).contrast(contrast).build();
       const actual = createTestTarget().copy(expected).build();
       expect(actual).toEqual(expected);

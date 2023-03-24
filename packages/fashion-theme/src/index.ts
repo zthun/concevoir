@@ -1,10 +1,8 @@
 /* istanbul ignore file */
 
-export * from './color/fashion';
-export * from './color/hue';
-export * from './color/palette';
-export * from './color/shade';
-export * from './coordination/fashion-coordination';
-export * from './design/fashion-design';
-export * from './util/colorify';
-export * from './util/stringify';
+export * from './color/color';
+export * from './color/hex';
+export * from './color/hsl';
+export * from './color/rgb';
+export * from './fashion/fashion';
+export * from './theme/fashion-theme';
