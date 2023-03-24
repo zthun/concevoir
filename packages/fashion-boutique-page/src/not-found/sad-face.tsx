@@ -1,7 +1,7 @@
-import { makeStyles } from '@zthun/fashion-boutique';
+import { createStyleHook } from '@zthun/fashion-boutique';
 import React from 'react';
 
-const useSadFaceStyle = makeStyles()(() => {
+const useSadFaceStyle = createStyleHook(() => {
   return {
     r: {
       height: '3rem'

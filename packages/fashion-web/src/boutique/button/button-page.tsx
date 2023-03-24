@@ -12,7 +12,7 @@ import {
   ZStack
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { IZFashionCoordination } from '@zthun/fashion-theme';
+import { IZFashion } from '@zthun/fashion-theme';
 import { setFirst } from '@zthun/helpful-fn';
 import { identity } from 'lodash';
 import React, { useState } from 'react';
@@ -25,24 +25,14 @@ import { ZFashionRouteButton } from '../../routes';
  */
 export function ZButtonPage() {
   const theme = useFashionTheme();
-  const design = theme.design();
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [outline, setOutline] = useState(false);
   const [borderless, setBorderless] = useState(false);
-  const [fashion, setFashion] = useState<IZFashionCoordination>(design.primary);
+  const [fashion, setFashion] = useState<IZFashion>(theme.primary);
   const [count, setCount] = useState<number>(0);
-  const _setFashion = setFirst.bind(null, setFashion, design.primary);
-  const designs = [
-    design.primary,
-    design.secondary,
-    design.success,
-    design.warning,
-    design.error,
-    design.info,
-    design.light,
-    design.dark
-  ];
+  const _setFashion = setFirst.bind(null, setFashion, theme.primary);
+  const designs = [theme.primary, theme.secondary, theme.success, theme.warning, theme.error, theme.info];
 
   async function handleClick() {
     setCount((c) => c + 1);

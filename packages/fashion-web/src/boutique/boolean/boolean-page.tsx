@@ -24,8 +24,7 @@ import { ZFashionRouteBoolean } from '../../routes';
 export function ZBooleanPage() {
   const [disabled, setDisabled] = useState(false);
   const [value, setValue] = useState<boolean | null>(false);
-  const theme = useFashionTheme();
-  const { success, warning, error } = theme.design();
+  const { success, warning, error } = useFashionTheme();
 
   return (
     <ZCard

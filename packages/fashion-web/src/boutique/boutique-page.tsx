@@ -22,17 +22,16 @@ import { ZFashionRouteAllComponents, ZFashionRouteBoutique } from '../routes';
  *        The JSX to render the page.
  */
 export function ZBoutiquePage() {
-  const theme = useFashionTheme();
-  const { light, primary } = theme.design();
+  const { secondary, primary, transparent } = useFashionTheme();
   const navigate = useNavigate();
 
   const renderComponent = (route: IZRoute) => (
     <ZBox
       className={cssJoinDefined('ZBoutiquePage-component')}
       key={route.path}
-      padding={ZSizeFixed.Large}
-      border={{ fashion: light.dark, hover: primary.dark, width: ZSizeFixed.ExtraSmall }}
-      background={{ fashion: light, hover: primary }}
+      padding={ZSizeFixed.Medium}
+      border={{ fashion: primary.dark, hover: secondary.dark, width: ZSizeFixed.ExtraSmall }}
+      background={{ fashion: transparent, hover: secondary }}
       onClick={() => navigate(route.path)}
     >
       <ZLineItem

@@ -1,5 +1,5 @@
 import {
-  makeStyles,
+  createStyleHook,
   useFashionTheme,
   useNavigate,
   ZButton,
@@ -11,16 +11,16 @@ import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import React from 'react';
 import { ZFashionRouteBoutique, ZFashionRouteHome } from '../routes';
 
-const useHomePageStyles = makeStyles()((theme) => ({
+const useHomePageStyles = createStyleHook(({ tailor }) => ({
   section: {
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginBottom: theme.gap()
+    marginBottom: tailor.gap()
   },
   avatar: {
-    padding: theme.gap(),
-    marginTop: theme.gap(),
-    marginBottom: theme.gap(),
+    padding: tailor.gap(),
+    marginTop: tailor.gap(),
+    marginBottom: tailor.gap(),
     textAlign: 'center'
   }
 }));
@@ -33,8 +33,7 @@ const useHomePageStyles = makeStyles()((theme) => ({
 export function ZHomePage() {
   const { classes } = useHomePageStyles();
   const navigate = useNavigate();
-  const theme = useFashionTheme();
-  const { primary } = theme.design();
+  const { primary } = useFashionTheme();
 
   return (
     <div className='ZHomePage-root'>

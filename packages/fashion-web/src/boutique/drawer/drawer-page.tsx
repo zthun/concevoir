@@ -23,8 +23,7 @@ import { ZFashionRouteDrawer } from '../../routes';
  */
 export function ZDrawerPage() {
   const [anchor, setAnchor] = useState<'left' | 'right' | 'top' | 'bottom'>('left');
-  const theme = useFashionTheme();
-  const { primary, success } = theme.design();
+  const { primary, success } = useFashionTheme();
   const [timestamp, setTimestamp] = useState(new Date().getTime());
   const anchors = ['left', 'right', 'top', 'bottom'];
 

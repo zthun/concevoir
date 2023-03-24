@@ -14,7 +14,7 @@ import {
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React, { useState } from 'react';
-import { ZFashionRouteText } from 'src/routes';
+import { ZFashionRouteText } from '../../routes';
 
 /**
  * Represents a demo for text.

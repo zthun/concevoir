@@ -18,8 +18,7 @@ export interface IZBannerMain extends IZComponentHierarchy, IZComponentAvatar, I
  */
 export function ZBannerMain(props: IZBannerMain) {
   const { children, avatar, prefix = <span />, suffix = <span /> } = props;
-  const theme = useFashionTheme();
-  const { primary } = theme.design();
+  const { primary } = useFashionTheme();
 
   return (
     <ZStyled className='ZBannerMain-root'>

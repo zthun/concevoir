@@ -10,12 +10,11 @@ export interface IZNotFound {
 
 export function ZNotFound(props: IZNotFound) {
   const { home = '/' } = props;
-  const theme = useFashionTheme();
   const description = getHttpCodeDescription(ZHttpCodeClient.NotFound);
   const name = getHttpCodeName(ZHttpCodeClient.NotFound);
   const title = `${name} (${ZHttpCodeClient.NotFound})`;
   const navigate = useNavigate();
-  const { error } = theme.design();
+  const { error } = useFashionTheme();
 
   return (
     <ZFullScreen>

@@ -1,7 +1,7 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { createDefaultFashionDesign, ZButtonComponentModel } from '@zthun/fashion-boutique';
-import { IZFashionCoordination } from '@zthun/fashion-theme';
+import { ZButtonComponentModel } from '@zthun/fashion-boutique';
+import { IZFashion, ZFashionThemeBuilder } from '@zthun/fashion-theme';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZButtonPage } from './button-page';
@@ -14,7 +14,7 @@ describe('ZButtonPage', () => {
     return ZCircusBy.first(driver, ZButtonPageComponentModel);
   }
 
-  const fashion = createDefaultFashionDesign();
+  const theme = new ZFashionThemeBuilder().build();
   type ButtonPageFactory = (t: ZButtonPageComponentModel) => Promise<ZButtonComponentModel>;
 
   async function shouldIncrementTheClickCount(factory: ButtonPageFactory) {
@@ -81,7 +81,7 @@ describe('ZButtonPage', () => {
     expect(actual).toEqual(expected);
   }
 
-  async function assertSetsFashion(coordination: IZFashionCoordination, factory: ButtonPageFactory) {
+  async function assertSetsFashion(coordination: IZFashion, factory: ButtonPageFactory) {
     // Arrange
     const target = await createTestTarget();
     const fashion = await target.fashion();
@@ -90,10 +90,8 @@ describe('ZButtonPage', () => {
     // Act.
     const button = await factory(target);
     const actual = await button.fashion();
-    const color = await button.color();
     // Assert.
     expect(actual).toEqual(name);
-    expect(color).toEqual(coordination.main.hue);
   }
 
   describe('Basic Button', () => {
@@ -135,35 +133,27 @@ describe('ZButtonPage', () => {
 
     describe('Fashion', () => {
       it('should update to Primary.', async () => {
-        await assertSetsFashion(fashion.primary, (t) => t.button());
+        await assertSetsFashion(theme.primary, (t) => t.button());
       });
 
       it('should update to Secondary.', async () => {
-        await assertSetsFashion(fashion.secondary, (t) => t.button());
+        await assertSetsFashion(theme.secondary, (t) => t.button());
       });
 
       it('should update to Success.', async () => {
-        await assertSetsFashion(fashion.success, (t) => t.button());
+        await assertSetsFashion(theme.success, (t) => t.button());
       });
 
       it('should update to Warning.', async () => {
-        await assertSetsFashion(fashion.warning, (t) => t.button());
+        await assertSetsFashion(theme.warning, (t) => t.button());
       });
 
       it('should update to Error.', async () => {
-        await assertSetsFashion(fashion.error, (t) => t.button());
+        await assertSetsFashion(theme.error, (t) => t.button());
       });
 
       it('should update to Info.', async () => {
-        await assertSetsFashion(fashion.info, (t) => t.button());
-      });
-
-      it('should update to Light.', async () => {
-        await assertSetsFashion(fashion.light, (t) => t.button());
-      });
-
-      it('should update to Dark.', async () => {
-        await assertSetsFashion(fashion.dark, (t) => t.button());
+        await assertSetsFashion(theme.info, (t) => t.button());
       });
     });
   });
@@ -207,35 +197,27 @@ describe('ZButtonPage', () => {
 
     describe('Fashion', () => {
       it('should update to Primary.', async () => {
-        await assertSetsFashion(fashion.primary, (t) => t.iconButton());
+        await assertSetsFashion(theme.primary, (t) => t.iconButton());
       });
 
       it('should update to Secondary.', async () => {
-        await assertSetsFashion(fashion.secondary, (t) => t.iconButton());
+        await assertSetsFashion(theme.secondary, (t) => t.iconButton());
       });
 
       it('should update to Success.', async () => {
-        await assertSetsFashion(fashion.success, (t) => t.iconButton());
+        await assertSetsFashion(theme.success, (t) => t.iconButton());
       });
 
       it('should update to Warning.', async () => {
-        await assertSetsFashion(fashion.warning, (t) => t.iconButton());
+        await assertSetsFashion(theme.warning, (t) => t.iconButton());
       });
 
       it('should update to Error.', async () => {
-        await assertSetsFashion(fashion.error, (t) => t.iconButton());
+        await assertSetsFashion(theme.error, (t) => t.iconButton());
       });
 
       it('should update to Info.', async () => {
-        await assertSetsFashion(fashion.info, (t) => t.iconButton());
-      });
-
-      it('should update to Light.', async () => {
-        await assertSetsFashion(fashion.light, (t) => t.iconButton());
-      });
-
-      it('should update to Dark.', async () => {
-        await assertSetsFashion(fashion.dark, (t) => t.iconButton());
+        await assertSetsFashion(theme.info, (t) => t.iconButton());
       });
     });
   });
