@@ -5,7 +5,7 @@ import React from 'react';
 import { IZComponentHeight } from '../component/component-height';
 import { IZComponentHierarchy } from '../component/component-hierarchy';
 import { IZComponentStyle } from '../component/component-style';
-import { makeStyles } from '../theme/theme';
+import { createStyleHook } from '../theme/styled';
 
 export interface IZGrid extends IZComponentStyle, IZComponentHierarchy, IZComponentHeight<ZSizeVaried> {
   alignItems?: Property.AlignItems;
@@ -22,7 +22,7 @@ export interface IZGrid extends IZComponentStyle, IZComponentHierarchy, IZCompon
 
 const GridHeightChart = createSizeChartVariedCss();
 
-const useGridStyles = makeStyles<IZGrid>()((theme, props) => {
+const useGridStyles = createStyleHook<IZGrid>(({ tailor, device }, props) => {
   const {
     alignItems,
     alignContent,
@@ -42,25 +42,25 @@ const useGridStyles = makeStyles<IZGrid>()((theme, props) => {
       display: 'grid',
       gridTemplateColumns: columns,
       gridTemplateRows: rows,
-      gap: theme.gap(gap),
+      gap: tailor.gap(gap),
       alignItems,
       alignContent,
       justifyContent,
       height: GridHeightChart[height],
 
-      [theme.breakpoints.down(ZSizeFixed.Large)]: {
+      [device.break(ZSizeFixed.Large)]: {
         gridTemplateColumns: columnsLg
       },
 
-      [theme.breakpoints.down(ZSizeFixed.Medium)]: {
+      [device.break(ZSizeFixed.Medium)]: {
         gridTemplateColumns: columnsMd
       },
 
-      [theme.breakpoints.down(ZSizeFixed.Small)]: {
+      [device.break(ZSizeFixed.Small)]: {
         gridTemplateColumns: columnsSm
       },
 
-      [theme.breakpoints.down(ZSizeFixed.ExtraSmall)]: {
+      [device.break(ZSizeFixed.ExtraSmall)]: {
         gridTemplateColumns: columnsXs
       }
     }

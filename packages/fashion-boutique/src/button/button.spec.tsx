@@ -1,6 +1,6 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { IZFashionCoordination, ZFashionBuilder, ZFashionCoordinationBuilder } from '@zthun/fashion-theme';
+import { black, IZFashion, white, ZFashionBuilder } from '@zthun/fashion-theme';
 import React, { ReactNode } from 'react';
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 import { ZButton } from './button';
@@ -13,7 +13,7 @@ describe('ZButton', () => {
   let disabled: boolean | undefined;
   let outline: boolean | undefined;
   let borderless: boolean | undefined;
-  let fashion: IZFashionCoordination | undefined;
+  let fashion: IZFashion | undefined;
   let name: string | undefined;
   let onClick: Mock | undefined;
 
@@ -195,28 +195,16 @@ describe('ZButton', () => {
 
   describe('Fashion', () => {
     beforeEach(() => {
-      fashion = new ZFashionCoordinationBuilder()
-        .name('Test Fashion')
-        .main(new ZFashionBuilder().green(300).build())
-        .build();
+      fashion = new ZFashionBuilder().name('Test Fashion').main(black()).contrast(white()).build();
     });
 
-    it('should set the fashion coordination', async () => {
+    it('should set the fashion', async () => {
       // Arrange.
       const target = await createTestTarget();
       // Act.
       const actual = await target.fashion();
       // Assert.
       expect(actual).toEqual(fashion?.name);
-    });
-
-    it('should set the correct color', async () => {
-      // Arrange.
-      const target = await createTestTarget();
-      // Act.
-      const actual = await target.color();
-      // Assert.
-      expect(actual).toEqual(fashion?.main.hue);
     });
   });
 });

@@ -6,10 +6,10 @@ import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { KeyboardEvent } from 'react';
 import { useAmbassadorState } from '../state/use-ambassador-state';
 import { IZText, useText, withEnterCommit } from '../text/text';
-import { makeStyles } from '../theme/theme';
+import { createStyleHook } from '../theme/styled';
 import { IZNumber } from './number';
 
-export const useNumberInputStyles = makeStyles()(() => {
+export const useNumberInputStyles = createStyleHook(() => {
   return {
     spinner: {
       display: 'flex',

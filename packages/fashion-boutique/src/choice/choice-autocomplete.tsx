@@ -2,14 +2,14 @@ import { Autocomplete, AutocompleteRenderInputParams, TextField } from '@mui/mat
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { castArray, first } from 'lodash';
 import React, { HTMLAttributes, SyntheticEvent } from 'react';
-import { makeStyles } from '../theme/theme';
+import { createStyleHook } from '../theme/styled';
 import { IZChoice, IZChoiceOption, useChoice } from './choice';
 
-const useChoiceAutocompleteStyles = makeStyles()((theme) => {
+const useChoiceAutocompleteStyles = createStyleHook(({ tailor }) => {
   return {
     root: {
       '.MuiSelect-select': {
-        padding: theme.gap()
+        padding: tailor.gap()
       }
     },
     invisible: {

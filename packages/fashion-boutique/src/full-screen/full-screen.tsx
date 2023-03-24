@@ -1,10 +1,10 @@
 import React from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy';
-import { makeStyles } from '../theme/theme';
+import { createStyleHook } from '../theme/styled';
 
-const useFullScreenStyles = makeStyles()((theme) => ({
+const useFullScreenStyles = createStyleHook(({ tailor }) => ({
   screen: {
-    padding: theme.gap(),
+    padding: tailor.gap(),
     position: 'absolute',
     left: 0,
     right: 0,

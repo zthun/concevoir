@@ -3,13 +3,13 @@ import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ReactNode } from 'react';
 import { IZComponentAdornment } from '../component/component-adornment';
 import { IZComponentStyle } from '../component/component-style';
-import { makeStyles } from '../theme/theme';
+import { createStyleHook } from '../theme/styled';
 
 export interface IZLineItem extends IZComponentStyle, IZComponentAdornment {
   body?: ReactNode;
 }
 
-const useLineItemStyles = makeStyles()((theme) => {
+const useLineItemStyles = createStyleHook(({ tailor }) => {
   return {
     root: {
       display: 'flex',
@@ -20,7 +20,7 @@ const useLineItemStyles = makeStyles()((theme) => {
 
     prefix: {
       flexGrow: 0,
-      paddingRight: theme.gap(ZSizeFixed.Small)
+      paddingRight: tailor.gap(ZSizeFixed.Small)
     },
 
     body: {
@@ -30,7 +30,7 @@ const useLineItemStyles = makeStyles()((theme) => {
 
     suffix: {
       flexGrow: 0,
-      paddingLeft: theme.gap(ZSizeFixed.Small)
+      paddingLeft: tailor.gap(ZSizeFixed.Small)
     }
   };
 });

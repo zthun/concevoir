@@ -6,21 +6,21 @@ import {
   ZSizeFixed,
   ZSizeVaried
 } from '@zthun/fashion-tailor';
-import { IZFashionCoordination } from '@zthun/fashion-theme';
+import { IZFashion } from '@zthun/fashion-theme';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { IZComponentFashion } from '../component/component-fashion';
 import { IZComponentHeight } from '../component/component-height';
 import { IZComponentHierarchy } from '../component/component-hierarchy';
 import { IZComponentStyle } from '../component/component-style';
-import { makeStyles } from '../theme/theme';
+import { createStyleHook } from '../theme/styled';
 
 /**
  * Properties for the banner bar.
  */
 export interface IZBanner
   extends IZComponentHierarchy,
-    IZComponentFashion<IZFashionCoordination>,
+    IZComponentFashion<IZFashion>,
     IZComponentHeight<ZSizeFixed | ZSizeVaried.Fit>,
     IZComponentStyle {
   position?: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative';
@@ -31,8 +31,8 @@ const heightChart = {
   ...createSizeChartVariedCss()
 };
 
-const useBannerStyles = makeStyles<IZBanner>()((theme, props) => {
-  const { primary } = theme.design();
+const useBannerStyles = createStyleHook<IZBanner>(({ theme }, props) => {
+  const { primary } = theme;
   const { fashion, height } = props;
 
   const _height = firstDefined(ZSizeVaried.Fit, height);
@@ -41,8 +41,8 @@ const useBannerStyles = makeStyles<IZBanner>()((theme, props) => {
 
   return {
     banner: {
-      backgroundColor: theme.colorify(_fashion.main),
-      color: theme.colorify(_fashion.contrast),
+      backgroundColor: _fashion.main,
+      color: _fashion.contrast,
       height: __height
     }
   };

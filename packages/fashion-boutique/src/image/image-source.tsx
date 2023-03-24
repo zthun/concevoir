@@ -13,7 +13,8 @@ import { IZComponentName } from '../component/component-name';
 import { IZComponentSource } from '../component/component-source';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentWidth } from '../component/component-width';
-import { makeStyles } from '../theme/theme';
+import { createStyleHook } from '../theme/styled';
+
 export interface IZImageSource
   extends IZComponentSource,
     IZComponentStyle,
@@ -27,7 +28,7 @@ const ImageSizeChart = {
   ...createSizeChartVoidCss()
 };
 
-const useImageSourceStyles = makeStyles<IZImageSource>()((theme, props) => {
+const useImageSourceStyles = createStyleHook<IZImageSource>((_, props) => {
   const { height = ZSizeVaried.Fit, width = ZSizeVaried.Fit } = props;
 
   const _height = ImageSizeChart[height];

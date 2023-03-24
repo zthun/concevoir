@@ -4,7 +4,7 @@ import React from 'react';
 import { IZComponentAdornment } from '../component/component-adornment';
 import { IZComponentDisabled } from '../component/component-disabled';
 import { IZComponentHeading } from '../component/component-heading';
-import { makeStyles } from '../theme/theme';
+import { createStyleHook } from '../theme/styled';
 import { IZListItem } from './list-item';
 
 /**
@@ -17,13 +17,13 @@ export interface IZListLineItem extends IZListItem, IZComponentHeading, IZCompon
   onClick?: () => any;
 }
 
-const useListLineItemStyles = makeStyles<IZListLineItem>()((theme, props) => {
-  const gap = props.onClick ? 0 : theme.gap();
+const useListLineItemStyles = createStyleHook<IZListLineItem>(({ tailor }, props) => {
+  const gap = props.onClick ? 0 : tailor.gap();
 
   return {
     avatar: {
       marginLeft: gap,
-      marginRight: theme.gap(),
+      marginRight: tailor.gap(),
       minWidth: 0
     }
   };

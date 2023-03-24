@@ -7,7 +7,7 @@ import {
   ZSizeVaried,
   ZSizeVoid
 } from '@zthun/fashion-tailor';
-import { IZFashion, IZFashionCoordination, ZFashionBuilder, ZFashionCoordinationBuilder } from '@zthun/fashion-theme';
+import { IZFashion, transparent, ZColor, ZFashionBuilder } from '@zthun/fashion-theme';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import { get } from 'lodash';
@@ -16,18 +16,18 @@ import { IZComponentFashion } from '../component/component-fashion';
 import { IZComponentHierarchy } from '../component/component-hierarchy';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentWidth } from '../component/component-width';
-import { makeStyles } from '../theme/theme';
+import { createStyleHook } from '../theme/styled';
 
 interface IZFashionProps<TFashion> extends IZComponentFashion<TFashion> {
   focus?: TFashion;
   hover?: TFashion;
 }
 
-interface IZBorderProps extends IZFashionProps<IZFashion>, IZComponentWidth<ZSizeFixed | ZSizeVoid> {
+interface IZBorderProps extends IZFashionProps<ZColor>, IZComponentWidth<ZSizeFixed | ZSizeVoid> {
   style?: Property.BorderStyle;
 }
 
-type ZBackgroundProps = IZFashionProps<IZFashionCoordination>;
+type ZBackgroundProps = IZFashionProps<IZFashion>;
 
 type ZDimensionProps<TSizes> =
   | TSizes
@@ -40,20 +40,16 @@ const BoxSizeChart = {
   ...createSizeChartVoidCss()
 };
 
-const normalizeBorderFields = (border?: IZBorderProps): Required<IZBorderProps> => {
-  const transparent = new ZFashionBuilder().transparent().build();
-
-  return {
-    width: firstDefined(ZSizeVoid.None, border?.width),
-    style: firstDefined('solid', border?.style),
-    fashion: firstDefined(transparent, border?.fashion),
-    focus: firstDefined(transparent, border?.focus, border?.fashion),
-    hover: firstDefined(transparent, border?.hover, border?.fashion)
-  };
-};
+const normalizeBorderFields = (border?: IZBorderProps): Required<IZBorderProps> => ({
+  width: firstDefined(ZSizeVoid.None, border?.width),
+  style: firstDefined('solid', border?.style),
+  fashion: firstDefined(transparent(), border?.fashion),
+  focus: firstDefined(transparent(), border?.focus, border?.fashion),
+  hover: firstDefined(transparent(), border?.hover, border?.fashion)
+});
 
 const normalizeBackgroundFields = (background?: ZBackgroundProps): Required<ZBackgroundProps> => {
-  const transparent = new ZFashionCoordinationBuilder().transparent().build();
+  const transparent = new ZFashionBuilder().transparent().build();
   return {
     fashion: firstDefined(transparent, background?.fashion),
     focus: firstDefined(transparent, background?.focus, background?.fashion),
@@ -71,29 +67,28 @@ export interface IZBox extends IZComponentHierarchy, IZComponentStyle, IZCompone
   onClick?: MouseEventHandler;
 }
 
-const useBoxStyles = makeStyles<IZBox>()((theme, props) => {
+const useBoxStyles = createStyleHook<IZBox>(({ tailor }, props) => {
   const { padding, margin, border, width, background, onClick } = props;
   const _border = normalizeBorderFields(border);
   const _background = normalizeBackgroundFields(background);
 
-  const __border = (fashion: IZFashion) =>
-    `${theme.thickness(_border.width)}  ${_border.style} ${theme.colorify(fashion)}`;
+  const __border = (fashion: ZColor) => `${tailor.thickness(_border.width)}  ${_border.style} ${fashion}`;
 
   const asPadding = (pad: ZSizeFixed | ZSizeVoid | object) => {
     const size = typeof pad === 'object' ? ZSizeVoid.None : pad;
-    return theme.gap(size);
+    return tailor.gap(size);
   };
 
   const asMargin = (margin: ZSizeFixed | ZSizeVoid | ZSizeVaried.Fit | object) => {
     if (typeof margin === 'object') {
-      return theme.gap(ZSizeVoid.None);
+      return tailor.gap(ZSizeVoid.None);
     }
 
     if (margin === ZSizeVaried.Fit) {
       return 'auto';
     }
 
-    return theme.gap(margin);
+    return tailor.gap(margin);
   };
 
   const pLeft = firstDefined(ZSizeVoid.None, get(padding, 'left'), get(padding, 'x'), padding);
@@ -111,19 +106,19 @@ const useBoxStyles = makeStyles<IZBox>()((theme, props) => {
       'cursor': onClick ? 'pointer' : 'default',
       'border': __border(_border.fashion),
       'width': BoxSizeChart[firstDefined(ZSizeVaried.Fit, width)],
-      'backgroundColor': theme.colorify(_background.fashion.main),
-      'color': theme.colorify(_background.fashion.contrast),
+      'backgroundColor': _background.fashion.main,
+      'color': _background.fashion.contrast,
 
       '&:focus': {
         border: __border(_border.focus),
-        backgroundColor: theme.colorify(_background.focus.main),
-        color: theme.colorify(_background.focus.contrast)
+        backgroundColor: _background.focus.main,
+        color: _background.focus.contrast
       },
 
       '&:hover': {
         border: __border(_border.hover),
-        backgroundColor: theme.colorify(_background.hover.main),
-        color: theme.colorify(_background.hover.contrast)
+        backgroundColor: _background.hover.main,
+        color: _background.hover.contrast
       },
       'paddingLeft': asPadding(pLeft),
       'paddingRight': asPadding(pRight),

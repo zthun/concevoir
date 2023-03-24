@@ -16,7 +16,7 @@ import { IZComponentLoading } from '../component/component-loading';
 import { IZComponentName } from '../component/component-name';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentWidth } from '../component/component-width';
-import { makeStyles } from '../theme/theme';
+import { createStyleHook } from '../theme/styled';
 import { ZCaption, ZH2 } from '../typography/typography';
 
 export interface IZCard
@@ -36,7 +36,7 @@ const ChartVaried = createSizeChartVariedCss();
 const ChartVoid = createSizeChartVoidCss();
 const CardSizeChart = { ...ChartFixed, ...ChartVaried, ...ChartVoid };
 
-const useCardStyles = makeStyles<IZCard>()((_, props) => {
+const useCardStyles = createStyleHook<IZCard>((_, props) => {
   const { width = ZSizeVaried.Fit } = props;
 
   return {

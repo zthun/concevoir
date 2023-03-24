@@ -1,7 +1,7 @@
 import { Button, Tooltip } from '@mui/material';
 import React, { ReactNode } from 'react';
 
-import { IZFashionCoordination, ZFashionBuilder } from '@zthun/fashion-theme';
+import { IZFashion, transparent } from '@zthun/fashion-theme';
 
 import { createSizeChartVariedCss, ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
@@ -15,7 +15,7 @@ import { IZComponentName } from '../component/component-name';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentWidth } from '../component/component-width';
 import { ZSuspenseRotate } from '../suspense/suspense-rotate';
-import { makeStyles } from '../theme/theme';
+import { createStyleHook } from '../theme/styled';
 
 export interface IZButton
   extends IZComponentAvatar,
@@ -24,7 +24,7 @@ export interface IZButton
     IZComponentLoading,
     IZComponentStyle,
     IZComponentName,
-    IZComponentFashion<IZFashionCoordination>,
+    IZComponentFashion<IZFashion>,
     IZComponentWidth<ZSizeVaried> {
   borderless?: boolean;
   outline?: boolean;
@@ -35,13 +35,13 @@ export interface IZButton
 
 const ButtonSizeChart = createSizeChartVariedCss();
 
-const useButtonStyles = makeStyles<IZButton>()((theme, props) => {
-  const { width = ZSizeVaried.Fit, fashion = theme.design().dark } = props;
+const useButtonStyles = createStyleHook<IZButton>(({ theme, tailor }, props) => {
+  const { width = ZSizeVaried.Fit, fashion = theme.body } = props;
 
-  const text = theme.colorify(fashion.contrast);
-  const main = theme.colorify(fashion.main);
-  const dark = theme.colorify(firstDefined(fashion.main, fashion.dark));
-  const light = theme.colorify(firstDefined(fashion.main, fashion.light));
+  const text = fashion.contrast;
+  const main = fashion.main;
+  const dark = firstDefined(fashion.main, fashion.dark);
+  const light = firstDefined(fashion.main, fashion.light);
 
   const borderless = {
     border: 0,
@@ -64,7 +64,7 @@ const useButtonStyles = makeStyles<IZButton>()((theme, props) => {
       'borderColor': dark,
 
       '&:hover': {
-        outline: `${theme.thickness()} solid ${light}`,
+        outline: `${tailor.thickness()} solid ${light}`,
         backgroundColor: dark
       },
 
@@ -73,7 +73,7 @@ const useButtonStyles = makeStyles<IZButton>()((theme, props) => {
       },
 
       '&.ZButton-outline': {
-        'backgroundColor': theme.colorify(new ZFashionBuilder().transparent().build()),
+        'backgroundColor': transparent(),
         'color': main,
         'borderColor': main,
 
@@ -99,7 +99,7 @@ const useButtonStyles = makeStyles<IZButton>()((theme, props) => {
     },
 
     loading: {
-      marginLeft: theme.gap(ZSizeFixed.ExtraSmall)
+      marginLeft: tailor.gap(ZSizeFixed.ExtraSmall)
     }
   };
 });
@@ -148,7 +148,6 @@ export function ZButton(props: IZButton) {
           onClick={onClick}
           name={name}
           data-fashion={fashion?.name}
-          data-color={fashion?.main?.hue}
         >
           {avatar}
           <div className={contentClass}>{label}</div>

@@ -1,23 +1,24 @@
 import ClearIcon from '@mui/icons-material/Clear';
 import { FormControl, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
+import { black, hex } from '@zthun/fashion-theme';
 import { createGuid, cssJoinDefined } from '@zthun/helpful-fn';
 import { castArray, isArray } from 'lodash';
 import React, { ReactNode, useMemo } from 'react';
-import { makeStyles } from '../theme/theme';
+import { createStyleHook } from '../theme/styled';
 import { IZChoice, IZChoiceOption, useChoice } from './choice';
 
-const useChoiceDropDownStyles = makeStyles()((theme) => {
+const useChoiceDropDownStyles = createStyleHook(({ tailor }) => {
   return {
     root: {
       '.MuiSelect-select': {
-        padding: theme.gap(ZSizeFixed.Small)
+        padding: tailor.gap(ZSizeFixed.Small)
       }
     },
     clear: {
       fontSize: '1.2rem',
-      padding: theme.gap(ZSizeFixed.Small),
-      marginRight: `${theme.gap()} !important`
+      padding: tailor.gap(ZSizeFixed.Small),
+      marginRight: `${tailor.gap()} !important`
     },
     chip: {
       'display': 'inline-flex',
@@ -25,13 +26,13 @@ const useChoiceDropDownStyles = makeStyles()((theme) => {
 
       '.ZChoice-value': {
         fontSize: '0.8125rem',
-        backgroundColor: theme.palette.grey[200],
-        color: theme.palette.common.black,
+        backgroundColor: hex(0xeeeeee),
+        color: black(),
         borderRadius: '1rem',
-        paddingLeft: theme.gap(),
-        paddingRight: theme.gap(),
-        paddingTop: theme.gap(ZSizeFixed.Small),
-        paddingBottom: theme.gap(ZSizeFixed.Small),
+        paddingLeft: tailor.gap(),
+        paddingRight: tailor.gap(),
+        paddingTop: tailor.gap(ZSizeFixed.Small),
+        paddingBottom: tailor.gap(ZSizeFixed.Small),
         margin: 3
       }
     }
