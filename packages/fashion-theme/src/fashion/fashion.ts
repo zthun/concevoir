@@ -1,5 +1,5 @@
 import { ZColor } from '../color/color';
-import { black, transparent, white } from '../color/rgb';
+import { black, white } from '../color/rgb';
 
 /**
  * Represents a set of colors that create a coordinated fashion grouping.
@@ -125,31 +125,6 @@ export class ZFashionBuilder {
    */
   public light(color: ZColor): this {
     this._fashion.light = color;
-    return this;
-  }
-
-  /**
-   * Builds a fashion for transparency.
-   *
-   * Note that you still need to set the contrast for this
-   * since now there is no way to tell whether or not
-   * the contract against the background can be.
-   *
-   * This sets the main to transparent and removes the light
-   * and dark compliments.
-   *
-   * @param name -
-   *        The optional name of the fashion.  Defaults to
-   *        Transparent.
-   *
-   * @returns
-   *        This object.
-   */
-  public transparent(): this {
-    this._fashion.main = transparent();
-    this._fashion.contrast = 'inherit';
-    delete this._fashion.light;
-    delete this._fashion.dark;
     return this;
   }
 

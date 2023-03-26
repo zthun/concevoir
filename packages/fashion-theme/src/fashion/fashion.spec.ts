@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { hsl } from '../color/hsl';
-import { rgb, transparent, white } from '../color/rgb';
+import { rgb, white } from '../color/rgb';
 import { ZFashionBuilder } from './fashion';
 
 describe('ZFashion', () => {
@@ -17,24 +17,6 @@ describe('ZFashion', () => {
     it('should set the contrast fashion', () => {
       const expected = rgb(255, 255, 0, 0.5);
       expect(createTestTarget().contrast(expected).build().contrast).toEqual(expected);
-    });
-  });
-
-  describe('Transparency', () => {
-    it('should set the main to transparent', () => {
-      expect(createTestTarget().transparent().build().main).toEqual(transparent());
-    });
-
-    it('should remove the light', () => {
-      expect(createTestTarget().transparent().build().light).toBeUndefined();
-    });
-
-    it('should remove the dark', () => {
-      expect(createTestTarget().transparent().build().dark).toBeUndefined();
-    });
-
-    it('should set the contrast to inherit', () => {
-      expect(createTestTarget().contrast(white()).transparent().build().contrast).toEqual('inherit');
     });
   });
 
