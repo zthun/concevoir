@@ -1,5 +1,6 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
+import { IZFashion, ZFashionBuilder } from '@zthun/fashion-theme';
 import React, { ReactElement } from 'react';
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 import { ZBooleanCheckbox } from './boolean-checkbox';
@@ -8,6 +9,7 @@ import { ZBooleanComponentModel } from './boolean.cm';
 
 describe('ZBoolean', () => {
   let disabled: boolean | undefined;
+  let fashion: IZFashion | undefined;
   let onCheckChanged: Mock | undefined;
 
   async function createComponentModel(element: ReactElement) {
@@ -17,6 +19,7 @@ describe('ZBoolean', () => {
 
   beforeEach(() => {
     disabled = undefined;
+    fashion = undefined;
     onCheckChanged = undefined;
   });
 
@@ -64,10 +67,26 @@ describe('ZBoolean', () => {
     expect(actual).toEqual(expected);
   }
 
+  async function assertSetsFashion(createTestTarget: () => Promise<ZBooleanComponentModel>) {
+    // Arrange.
+    fashion = new ZFashionBuilder().name('TestFashion').build();
+    const target = await createTestTarget();
+    // Act.
+    const actual = await target.fashion();
+    // Assert.
+    expect(actual).toEqual(fashion.name);
+  }
+
   describe('Checkbox', () => {
     async function createTestTarget(value?: boolean | null) {
       const element = (
-        <ZBooleanCheckbox value={value} onValueChange={onCheckChanged} disabled={disabled} label='Checkbox' />
+        <ZBooleanCheckbox
+          value={value}
+          onValueChange={onCheckChanged}
+          disabled={disabled}
+          label='Checkbox'
+          fashion={fashion}
+        />
       );
 
       return createComponentModel(element);
@@ -108,12 +127,22 @@ describe('ZBoolean', () => {
     it('should flip the state from false to true internally if no value is provided from the outside.', async () => {
       await assertChangesState(createTestTarget, false, true);
     });
+
+    it('should set the named fashion.', async () => {
+      await assertSetsFashion(createTestTarget);
+    });
   });
 
   describe('Switch', () => {
     async function createTestTarget(value?: boolean) {
       const element = (
-        <ZBooleanSwitch value={value} onValueChange={onCheckChanged} disabled={disabled} label='Switch' />
+        <ZBooleanSwitch
+          value={value}
+          onValueChange={onCheckChanged}
+          disabled={disabled}
+          label='Switch'
+          fashion={fashion}
+        />
       );
 
       return createComponentModel(element);
@@ -145,6 +174,10 @@ describe('ZBoolean', () => {
 
     it('should flip the state from false to true internally if no value is provided from the outside.', async () => {
       await assertChangesState(createTestTarget, false, true);
+    });
+
+    it('should set the named fashion.', async () => {
+      await assertSetsFashion(createTestTarget);
     });
   });
 });

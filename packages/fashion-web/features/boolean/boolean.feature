@@ -39,6 +39,22 @@ Scenario: The disabled option should enable all components when off
   When I toggle the switch for the disabled option to "off" on the boolean page
   Then all demo components are disabled "off" on the boolean page
 
+@BooleanPage-Fashion
+Scenario: Should select the correct fashion
+  When I select the "<fashion>" fashion option on the boolean page
+  Then the fashion on the "checkbox" should be "<fashion>" on the boolean page
+  And the fashion on the "switch" should be "<fashion>" on the boolean page
+  Examples:
+    |fashion|
+    |Primary|
+    |Secondary|
+    |Success|
+    |Warning|
+    |Error|
+    |Info|
+    |Light|
+    |Dark|
+
 @BooleanPage-ValueToggle
 Scenario: The demo components should toggle to true when the true button is clicked.
   When I click the "on" button on the boolean page

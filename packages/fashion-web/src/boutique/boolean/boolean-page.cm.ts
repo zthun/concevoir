@@ -1,5 +1,5 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZBooleanComponentModel, ZButtonComponentModel } from '@zthun/fashion-boutique';
+import { ZBooleanComponentModel, ZButtonComponentModel, ZChoiceComponentModel } from '@zthun/fashion-boutique';
 
 /**
  * Represents a component model for the boolean page.
@@ -35,6 +35,16 @@ export class ZBooleanPageComponentModel extends ZCircusComponentModel {
    */
   public disabled(): Promise<ZBooleanComponentModel> {
     return ZCircusBy.first(this.driver, ZBooleanComponentModel, 'disabled');
+  }
+
+  /**
+   * Gets the fashion drop down.
+   *
+   * @returns
+   *        The fashion drop down.
+   */
+  public async fashion(): Promise<ZChoiceComponentModel> {
+    return ZCircusBy.first(this.driver, ZChoiceComponentModel, 'fashion');
   }
 
   /**

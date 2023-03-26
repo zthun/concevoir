@@ -1,4 +1,5 @@
 import { IZComponentDisabled } from '../component/component-disabled';
+import { IZComponentFashion } from '../component/component-fashion';
 import { IZComponentLabel } from '../component/component-label';
 import { IZComponentName } from '../component/component-name';
 import { IZComponentStyle } from '../component/component-style';
@@ -9,4 +10,5 @@ export interface IZBoolean<T>
     IZComponentValue<T>,
     IZComponentStyle,
     IZComponentLabel,
-    IZComponentName {}
+    IZComponentName,
+    IZComponentFashion {}

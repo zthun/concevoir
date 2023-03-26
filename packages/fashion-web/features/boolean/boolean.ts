@@ -43,6 +43,14 @@ When(
   }
 );
 
+When(
+  'I select the {string} fashion option on the boolean page',
+  async function (this: ZFashionWorld<ZBooleanPageComponentModel>, fashion: string) {
+    const choice = await this.parameters.page.fashion();
+    await choice.select(fashion);
+  }
+);
+
 Then(
   'all demo components are checked {string} on the boolean page',
   async function (this: ZFashionWorld<ZBooleanPageComponentModel>, checked: 'on' | 'off') {
@@ -68,6 +76,15 @@ Then(
     const switchDisabled = await switcher.disabled();
     assert.equal(checkboxDisabled, expected);
     assert.equal(switchDisabled, expected);
+  }
+);
+
+Then(
+  'the fashion on the {string} should be {string} on the boolean page',
+  async function (this: ZFashionWorld<ZBooleanPageComponentModel>, name: 'switch' | 'checkbox', fashion: string) {
+    const bool = await this.parameters.page[name]();
+    const actual = await bool.fashion();
+    assert.equal(actual, fashion);
   }
 );
 

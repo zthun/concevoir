@@ -10,7 +10,7 @@ export class ZBooleanComponentModel extends ZCircusComponentModel {
    * Gets the underlying input element.
    *
    * @returns
-   *        The underlying input element.
+   *      The underlying input element.
    */
   private async _input(): Promise<IZCircusDriver> {
     return this.driver.select('input[type="checkbox"]');
@@ -25,6 +25,16 @@ export class ZBooleanComponentModel extends ZCircusComponentModel {
    */
   public async disabled(): Promise<boolean> {
     return (await this._input()).disabled();
+  }
+
+  /**
+   * Gets the fashion name.
+   *
+   * @returns
+   *        The fashion name.
+   */
+  public fashion(): Promise<string | null> {
+    return this.driver.attribute('data-fashion');
   }
 
   /**
