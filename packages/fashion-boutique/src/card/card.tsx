@@ -1,4 +1,4 @@
-import { Card, CardActions, CardContent, CardHeader, Paper } from '@mui/material';
+import { Card, CardActions, CardContent, CardHeader } from '@mui/material';
 import {
   createSizeChartFixedCss,
   createSizeChartFixedGeometric,
@@ -10,12 +10,14 @@ import {
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ReactNode } from 'react';
 import { IZComponentAvatar } from '../component/component-avatar';
+import { IZComponentFashion } from '../component/component-fashion';
 import { IZComponentHeading } from '../component/component-heading';
 import { IZComponentHierarchy } from '../component/component-hierarchy';
 import { IZComponentLoading } from '../component/component-loading';
 import { IZComponentName } from '../component/component-name';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentWidth } from '../component/component-width';
+import { useFashionTheme } from '../theme/fashion';
 import { createStyleHook } from '../theme/styled';
 import { ZCaption, ZH2 } from '../typography/typography';
 
@@ -24,6 +26,7 @@ export interface IZCard
     IZComponentAvatar,
     IZComponentHierarchy,
     IZComponentLoading,
+    IZComponentFashion,
     IZComponentStyle,
     IZComponentName,
     IZComponentWidth {
@@ -36,14 +39,16 @@ const ChartVaried = createSizeChartVariedCss();
 const ChartVoid = createSizeChartVoidCss();
 const CardSizeChart = { ...ChartFixed, ...ChartVaried, ...ChartVoid };
 
-const useCardStyles = createStyleHook<IZCard>((_, props) => {
-  const { width = ZSizeVaried.Fit } = props;
+const useCardStyles = createStyleHook<IZCard>(({ theme }, props) => {
+  const { width = ZSizeVaried.Fit, fashion = theme.surface } = props;
 
   return {
     root: {
       position: 'relative',
       maxWidth: CardSizeChart[width],
-      minWidth: ChartFixed[ZSizeFixed.ExtraSmall]
+      minWidth: ChartFixed[ZSizeFixed.ExtraSmall],
+      backgroundColor: fashion.main,
+      color: fashion.contrast
     }
   };
 });
@@ -58,7 +63,8 @@ const useCardStyles = createStyleHook<IZCard>((_, props) => {
  *        The JSX to render the card.
  */
 export function ZCard(props: IZCard) {
-  const { avatar, className, children, footer, heading, subHeading, name } = props;
+  const { surface } = useFashionTheme();
+  const { avatar, className, children, footer, heading, subHeading, fashion = surface, name } = props;
   const { classes } = useCardStyles(props);
 
   const renderFooter = () => {
@@ -66,25 +72,28 @@ export function ZCard(props: IZCard) {
   };
 
   return (
-    <Paper className={cssJoinDefined('ZCard-root', className, classes.root)} elevation={5} data-name={name}>
-      <Card>
-        <CardHeader
-          className='ZCard-header'
-          avatar={avatar}
-          title={
-            <ZH2 className='ZCard-header-heading' compact>
-              {heading}
-            </ZH2>
-          }
-          subheader={
-            <ZCaption className='ZCard-header-subheading' compact>
-              {subHeading}
-            </ZCaption>
-          }
-        />
-        <CardContent className='ZCard-content'>{children}</CardContent>
-        {renderFooter()}
-      </Card>
-    </Paper>
+    <Card
+      className={cssJoinDefined('ZCard-root', className, classes.root)}
+      elevation={5}
+      data-name={name}
+      data-fashion={fashion.name}
+    >
+      <CardHeader
+        className='ZCard-header'
+        avatar={avatar}
+        title={
+          <ZH2 className='ZCard-header-heading' compact>
+            {heading}
+          </ZH2>
+        }
+        subheader={
+          <ZCaption className='ZCard-header-subheading' compact>
+            {subHeading}
+          </ZCaption>
+        }
+      />
+      <CardContent className='ZCard-content'>{children}</CardContent>
+      {renderFooter()}
+    </Card>
   );
 }
