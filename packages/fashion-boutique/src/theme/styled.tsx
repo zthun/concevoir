@@ -18,7 +18,7 @@ function useBoutiqueTheme() {
   mui.spacing = createSpacing((abs: number) => `${abs * 0.5}rem`);
   mui.components = firstDefined({}, mui.components);
 
-  const setCoordination = (palette: PaletteColor, coordination: IZFashion) => {
+  const setFashion = (palette: PaletteColor, coordination: IZFashion) => {
     palette.main = coordination.main;
     palette.contrastText = coordination.contrast;
     palette.dark = firstDefined(coordination.main, coordination.dark);
@@ -26,12 +26,12 @@ function useBoutiqueTheme() {
   };
 
   // Palette
-  setCoordination(mui.palette.primary, theme.primary);
-  setCoordination(mui.palette.secondary, theme.secondary);
-  setCoordination(mui.palette.success, theme.success);
-  setCoordination(mui.palette.warning, theme.warning);
-  setCoordination(mui.palette.error, theme.error);
-  setCoordination(mui.palette.info, theme.info);
+  setFashion(mui.palette.primary, theme.primary);
+  setFashion(mui.palette.secondary, theme.secondary);
+  setFashion(mui.palette.success, theme.success);
+  setFashion(mui.palette.warning, theme.warning);
+  setFashion(mui.palette.error, theme.error);
+  setFashion(mui.palette.info, theme.info);
 
   // Typography
   const fonts = "'Roboto', 'Arial', 'sans-serif'";
@@ -145,28 +145,20 @@ function useBoutiqueTheme() {
     }
   };
 
-  // Toolbar
-  mui.components.MuiToolbar = {
-    styleOverrides: {
-      regular: {
-        minHeight: '6em'
-      }
-    }
-  };
-
-  return Object.assign({}, mui, { theme, tailor, device });
+  return useMemo(() => Object.assign({}, mui, { theme, tailor, device }), [theme, tailor, device, mui]);
 }
 
-function useGlobalStyles(fashion: IZFashion) {
+function useGlobalStyles() {
+  const { body } = useFashionTheme();
   return useMemo(
     () => ({
       body: {
-        backgroundColor: fashion.main,
-        color: fashion.contrast,
+        backgroundColor: body.main,
+        color: body.contrast,
         margin: 0
       }
     }),
-    [fashion]
+    [body]
   );
 }
 
@@ -196,8 +188,7 @@ export interface IZStyled extends IZComponentHierarchy, IZComponentStyle {}
  */
 export function ZStyled(props: IZStyled) {
   const { children, className } = props;
-  const { body } = useFashionTheme();
-  const globals = useGlobalStyles(body);
+  const globals = useGlobalStyles();
   const theme = useBoutiqueTheme();
 
   return (
