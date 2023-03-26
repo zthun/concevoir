@@ -22,7 +22,7 @@ import { ZFashionRouteList } from '../../routes';
  *    The JSX to render the list demo page.
  */
 export function ZListPage() {
-  const { body: background } = useFashionTheme();
+  const { body } = useFashionTheme();
   const [count, setCount] = useState(0);
 
   const prefix = <ZImageSource src='/images/svg/hero.svg' height={ZSizeFixed.Small} />;
@@ -51,7 +51,7 @@ export function ZListPage() {
           event to a truthy or falsy value respectively.
         </ZParagraph>
 
-        <ZBox border={{ fashion: background.dark }} background={{ fashion: background }} width={ZSizeFixed.Medium}>
+        <ZBox fashion={body} border={{ width: ZSizeFixed.ExtraSmall }} width={ZSizeFixed.Medium}>
           <ZList>
             <ZListGroup heading='Without Click Support' />
             <ZListLineItem prefix={prefix} name='avatar-and-text' heading='Prefix and Text (No Click)' />

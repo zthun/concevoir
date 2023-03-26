@@ -22,7 +22,7 @@ import { ZFashionRouteAllComponents, ZFashionRouteBoutique } from '../routes';
  *        The JSX to render the page.
  */
 export function ZBoutiquePage() {
-  const { secondary, primary, transparent } = useFashionTheme();
+  const { secondary, body } = useFashionTheme();
   const navigate = useNavigate();
 
   const renderComponent = (route: IZRoute) => (
@@ -30,8 +30,9 @@ export function ZBoutiquePage() {
       className={cssJoinDefined('ZBoutiquePage-component')}
       key={route.path}
       padding={ZSizeFixed.Medium}
-      border={{ fashion: primary.dark, hover: secondary.dark, width: ZSizeFixed.ExtraSmall }}
-      background={{ fashion: transparent, hover: secondary }}
+      fashion={body}
+      hover={secondary}
+      border={{ width: ZSizeFixed.ExtraSmall }}
       onClick={() => navigate(route.path)}
     >
       <ZLineItem

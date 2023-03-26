@@ -24,15 +24,15 @@ import { ZFashionRouteButton } from '../../routes';
  * @returns The JSX to render the alerts demo page.
  */
 export function ZButtonPage() {
-  const theme = useFashionTheme();
+  const { primary, secondary, success, warning, error, info, light, dark } = useFashionTheme();
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [outline, setOutline] = useState(false);
   const [borderless, setBorderless] = useState(false);
-  const [fashion, setFashion] = useState<IZFashion>(theme.primary);
+  const [fashion, setFashion] = useState<IZFashion>(primary);
   const [count, setCount] = useState<number>(0);
-  const _setFashion = setFirst.bind(null, setFashion, theme.primary);
-  const designs = [theme.primary, theme.secondary, theme.success, theme.warning, theme.error, theme.info];
+  const _setFashion = setFirst.bind(null, setFashion, primary);
+  const designs = [primary, secondary, success, warning, error, info, light, dark];
 
   async function handleClick() {
     setCount((c) => c + 1);
