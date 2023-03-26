@@ -1,9 +1,9 @@
 import { hex } from '../color/hex';
-import { black, white } from '../color/rgb';
+import { black, transparent, white } from '../color/rgb';
 import { IZFashion, ZFashionBuilder } from '../fashion/fashion';
 
 /**
- * Represents a fashion design scheme that contains a primary and secondary priority.
+ * Represents a fashion scheme that contains a primary and secondary priority.
  */
 export interface IZFashionThemePriority {
   /**
@@ -17,7 +17,7 @@ export interface IZFashionThemePriority {
 }
 
 /**
- * Represents a fashion design scheme that contains the severity fashions.
+ * Represents a fashion scheme that contains the severity fashions.
  */
 export interface IZFashionThemeSeverity {
   /**
@@ -43,26 +43,52 @@ export interface IZFashionThemeSeverity {
  */
 export interface IZFashionThemeSpace {
   /**
-   * The fashion for body.
+   * The fashion for body background.
    */
   readonly body: IZFashion;
+
+  /**
+   * Contrasting body fashion.
+   */
+  readonly surface: IZFashion;
+}
+
+/**
+ * A fashion scheme
+ */
+export interface IZFashionThemeContrast {
+  /**
+   * Fashion for less color contrast.
+   */
+  readonly light: IZFashion;
+  /**
+   * Fashion for heavier color contrast.
+   */
+  readonly dark: IZFashion;
 }
 
 /**
  * Represents a general fashion design that includes the common types.
  */
-export interface IZFashionTheme extends IZFashionThemePriority, IZFashionThemeSeverity, IZFashionThemeSpace {
+export interface IZFashionTheme<TCustom = {}>
+  extends IZFashionThemePriority,
+    IZFashionThemeSeverity,
+    IZFashionThemeSpace,
+    IZFashionThemeContrast {
   /**
    * The optional name of the design.
    */
   readonly name: string;
 
   /**
-   * Pre calculated transparent fashion.
-   *
-   * This is for convenience.
+   * Transparent fashion.
    */
   readonly transparent: IZFashion;
+
+  /**
+   * Custom fashions.
+   */
+  readonly custom: TCustom;
 }
 
 /**
@@ -132,7 +158,29 @@ export class ZFashionThemeBuilder {
         .dark(hex(0xbdbdbd))
         .contrast(black())
         .build(),
-      transparent: new ZFashionBuilder().name('Transparent').transparent().build()
+      surface: new ZFashionBuilder()
+        .name('Surface')
+        .main(hex(0xfafafa))
+        .light(white())
+        .dark(hex(0xf5f5f5))
+        .contrast(black())
+        .build(),
+      light: new ZFashionBuilder()
+        .name('Light')
+        .main(hex(0xfafafa))
+        .light(white())
+        .dark(hex(0xf5f5f5))
+        .contrast(black())
+        .build(),
+      dark: new ZFashionBuilder()
+        .name('Dark')
+        .main(hex(0x212121))
+        .light(hex(0x424242))
+        .dark(black())
+        .contrast(white())
+        .build(),
+      transparent: new ZFashionBuilder().name('Transparent').main(transparent()).contrast('inherit').build(),
+      custom: {}
     };
   }
 
@@ -245,6 +293,48 @@ export class ZFashionThemeBuilder {
    */
   public body(fashion: IZFashion): this {
     this._design.body = fashion;
+    return this;
+  }
+
+  /**
+   * Sets the surface fashion.
+   *
+   * @param fashion -
+   *        The value to set.
+   *
+   * @returns
+   *        This object.
+   */
+  public surface(fashion: IZFashion): this {
+    this._design.surface = fashion;
+    return this;
+  }
+
+  /**
+   * Sets the light fashion.
+   *
+   * @param fashion -
+   *        The value to set.
+   *
+   * @returns
+   *        This object.
+   */
+  public light(fashion: IZFashion): this {
+    this._design.light = fashion;
+    return this;
+  }
+
+  /**
+   * Sets the dark fashion.
+   *
+   * @param fashion -
+   *        The value to set.
+   *
+   * @returns
+   *        This object.
+   */
+  public dark(fashion: IZFashion): this {
+    this._design.dark = fashion;
     return this;
   }
 

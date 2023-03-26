@@ -54,6 +54,23 @@ describe('ZFashionDesignBuilder', () => {
       const expected = new ZFashionBuilder().build();
       expect(createTestTarget().body(expected).build().body).toEqual(expected);
     });
+
+    it('should set surface', () => {
+      const expected = new ZFashionBuilder().build();
+      expect(createTestTarget().surface(expected).build().surface).toEqual(expected);
+    });
+  });
+
+  describe('Contrast', () => {
+    it('should set light', () => {
+      const expected = new ZFashionBuilder().build();
+      expect(createTestTarget().light(expected).build().light).toEqual(expected);
+    });
+
+    it('should set dark', () => {
+      const expected = new ZFashionBuilder().build();
+      expect(createTestTarget().dark(expected).build().dark).toEqual(expected);
+    });
   });
 
   describe('Copy', () => {
