@@ -6,7 +6,6 @@ import {
   ZSizeFixed,
   ZSizeVaried
 } from '@zthun/fashion-tailor';
-import { IZFashion } from '@zthun/fashion-theme';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { IZComponentFashion } from '../component/component-fashion';
@@ -20,7 +19,7 @@ import { createStyleHook } from '../theme/styled';
  */
 export interface IZBanner
   extends IZComponentHierarchy,
-    IZComponentFashion<IZFashion>,
+    IZComponentFashion,
     IZComponentHeight<ZSizeFixed | ZSizeVaried.Fit>,
     IZComponentStyle {
   position?: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative';
