@@ -5,6 +5,7 @@ import React from 'react';
 import { ZBooleanPage } from '../boutique/boolean/boolean-page';
 import { ZBoutiquePage } from '../boutique/boutique-page';
 import { ZButtonPage } from '../boutique/button/button-page';
+import { ZCardPage } from '../boutique/card/card-page';
 import { ZChoicePage } from '../boutique/choice/choice-page';
 import { ZDrawerPage } from '../boutique/drawer/drawer-page';
 import { ZListPage } from '../boutique/list/list-page';
@@ -17,6 +18,7 @@ import {
   ZFashionRouteBoolean,
   ZFashionRouteBoutique,
   ZFashionRouteButton,
+  ZFashionRouteCard,
   ZFashionRouteChoice,
   ZFashionRouteDrawer,
   ZFashionRouteHome,
@@ -50,6 +52,7 @@ export function ZFashionApp() {
           <ZRoute path={ZFashionRouteBoutique.path} element={<ZBreadcrumbOutlet />}>
             <ZRoute path={ZFashionRouteBoolean.path} element={<ZBooleanPage />} />
             <ZRoute path={ZFashionRouteButton.path} element={<ZButtonPage />} />
+            <ZRoute path={ZFashionRouteCard.path} element={<ZCardPage />} />
             <ZRoute path={ZFashionRouteChoice.path} element={<ZChoicePage />} />
             <ZRoute path={ZFashionRouteDrawer.path} element={<ZDrawerPage />} />
             <ZRoute path={ZFashionRouteList.path} element={<ZListPage />} />
