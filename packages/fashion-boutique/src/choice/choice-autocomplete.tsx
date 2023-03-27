@@ -30,7 +30,7 @@ const useChoiceAutocompleteStyles = createStyleHook(({ tailor }) => {
 export function ZChoiceAutocomplete<O, V>(props: IZChoice<O, V>) {
   const { className, label, disabled, multiple, name, indelible, identifier } = props;
   const { choices, value, lookup, render, display, setValue } = useChoice(props);
-  const styles = useChoiceAutocompleteStyles();
+  const { classes } = useChoiceAutocompleteStyles();
 
   const handleSelect = (_: SyntheticEvent<any>, value: IZChoiceOption<O, V> | IZChoiceOption<O, V>[] | undefined) => {
     value = value == null ? [] : value;
@@ -83,7 +83,7 @@ export function ZChoiceAutocomplete<O, V>(props: IZChoice<O, V>) {
     return (
       <>
         <TextField {...props} label={label} />
-        <div className={cssJoinDefined('ZChoice-values', styles.classes.invisible)}>
+        <div className={cssJoinDefined('ZChoice-values', classes.invisible)}>
           {castArray(choice).map(_renderBackingValue)}
         </div>
       </>
@@ -92,10 +92,10 @@ export function ZChoiceAutocomplete<O, V>(props: IZChoice<O, V>) {
 
   return (
     <Autocomplete
-      className={cssJoinDefined('ZChoice-root', 'ZChoice-autocomplete', styles.classes.root, className)}
+      className={cssJoinDefined('ZChoice-root', 'ZChoice-autocomplete', classes.root, className)}
       data-name={name}
       componentsProps={{
-        clearIndicator: { className: cssJoinDefined('ZChoice-clear', [styles.classes.invisible, !chosen.length]) },
+        clearIndicator: { className: cssJoinDefined('ZChoice-clear', [classes.invisible, !chosen.length]) },
         popper: { className: 'ZChoice-options' },
         popupIndicator: { className: 'ZChoice-toggler' }
       }}

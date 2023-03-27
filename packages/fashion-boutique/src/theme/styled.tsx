@@ -170,10 +170,12 @@ interface IZThemeUtility {
   device: IZFashionDevice;
 }
 
-export function createStyleHook<T>(cb: (u: IZThemeUtility, p: T) => Record<string, CSSObject>): any;
-export function createStyleHook(cb: (u: IZThemeUtility) => Record<string, CSSObject>): any;
-export function createStyleHook<T>(cb: (u: IZThemeUtility, p?: T) => Record<string, CSSObject>) {
-  return makeStyles<T>()((_theme, _props) => cb(_theme, _props));
+export type ZStyleHook<T, R extends string> = (params?: T) => { classes: Record<R, string> };
+
+export function createStyleHook<T, R extends string>(
+  cb: (u: IZThemeUtility, p?: T) => Record<R, CSSObject>
+): ZStyleHook<T, R> {
+  return makeStyles<T | undefined>()((_theme, _props) => cb(_theme, _props));
 }
 
 /**

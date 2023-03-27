@@ -28,7 +28,7 @@ const ImageSizeChart = {
   ...createSizeChartVoidCss()
 };
 
-const useImageSourceStyles = createStyleHook<IZImageSource>((_, props) => {
+const useImageSourceStyles = createStyleHook((_, props: IZImageSource) => {
   const { height = ZSizeVaried.Fit, width = ZSizeVaried.Fit } = props;
 
   const _height = ImageSizeChart[height];
@@ -64,8 +64,8 @@ const useImageSourceStyles = createStyleHook<IZImageSource>((_, props) => {
  */
 export function ZImageSource(props: IZImageSource) {
   const { className, src, name } = props;
-  const styles = useImageSourceStyles(props);
-  const imageClass = cssJoinDefined('ZImageSource-root', className, styles.classes.root);
+  const { classes } = useImageSourceStyles(props);
+  const imageClass = cssJoinDefined('ZImageSource-root', className, classes.root);
 
   if (!src) {
     return <div className={imageClass} data-name={name} />;

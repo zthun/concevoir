@@ -39,16 +39,21 @@ const ChartVaried = createSizeChartVariedCss();
 const ChartVoid = createSizeChartVoidCss();
 const CardSizeChart = { ...ChartFixed, ...ChartVaried, ...ChartVoid };
 
-const useCardStyles = createStyleHook<IZCard>(({ theme }, props) => {
+const useCardStyles = createStyleHook(({ theme }, props: IZCard) => {
   const { width = ZSizeVaried.Fit, fashion = theme.surface } = props;
 
   return {
     root: {
-      position: 'relative',
-      maxWidth: CardSizeChart[width],
-      minWidth: ChartFixed[ZSizeFixed.ExtraSmall],
-      backgroundColor: fashion.main,
-      color: fashion.contrast
+      'position': 'relative',
+      'maxWidth': CardSizeChart[width],
+      'minWidth': ChartFixed[ZSizeFixed.ExtraSmall],
+      'backgroundColor': fashion.main,
+      'color': fashion.contrast,
+
+      '.MuiCardHeader-subheader': {
+        color: fashion.contrast,
+        opacity: 0.9
+      }
     }
   };
 });

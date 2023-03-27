@@ -45,7 +45,7 @@ export interface IZBox extends IZComponentHierarchy, IZComponentStyle, IZCompone
   onClick?: MouseEventHandler;
 }
 
-const useBoxStyles = createStyleHook<IZBox>(({ theme, tailor }, props) => {
+const useBoxStyles = createStyleHook(({ theme, tailor }, props: IZBox) => {
   const { padding, margin, border, width, fashion, focus, hover, onClick } = props;
 
   const _border = {

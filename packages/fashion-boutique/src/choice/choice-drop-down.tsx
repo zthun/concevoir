@@ -1,7 +1,7 @@
 import ClearIcon from '@mui/icons-material/Clear';
 import { FormControl, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { black, hex } from '@zthun/fashion-theme';
+import { hex } from '@zthun/fashion-theme';
 import { createGuid, cssJoinDefined } from '@zthun/helpful-fn';
 import { castArray, isArray } from 'lodash';
 import React, { ReactNode, useMemo } from 'react';
@@ -27,13 +27,15 @@ const useChoiceDropDownStyles = createStyleHook(({ tailor }) => {
       '.ZChoice-value': {
         fontSize: '0.8125rem',
         backgroundColor: hex(0xeeeeee),
-        color: black(),
+        color: 'inherit',
         borderRadius: '1rem',
-        paddingLeft: tailor.gap(),
-        paddingRight: tailor.gap(),
-        paddingTop: tailor.gap(ZSizeFixed.Small),
-        paddingBottom: tailor.gap(ZSizeFixed.Small),
+        padding: `calc(${tailor.gap(ZSizeFixed.ExtraSmall)} * 0.5)`,
         margin: 3
+      }
+    },
+    toggler: {
+      '.ZChoice-toggler': {
+        padding: tailor.gap(ZSizeFixed.ExtraSmall)
       }
     }
   };
@@ -52,7 +54,7 @@ export function ZChoiceDropDown<O, V>(props: IZChoice<O, V>) {
   const { className, label, disabled, multiple, name, indelible } = props;
   const { choices, value, lookup, cast, render, setValue } = useChoice(props);
   const labelId = useMemo(() => createGuid(), []);
-  const styles = useChoiceDropDownStyles();
+  const { classes } = useChoiceDropDownStyles();
 
   const handleSelect = (event: SelectChangeEvent<any>) => {
     const selected = castArray(event.target.value);
@@ -81,7 +83,7 @@ export function ZChoiceDropDown<O, V>(props: IZChoice<O, V>) {
     }
 
     return (
-      <IconButton className={cssJoinDefined('ZChoice-clear', styles.classes.clear)} onClick={setValue.bind(null, [])}>
+      <IconButton className={cssJoinDefined('ZChoice-clear', classes.clear)} onClick={setValue.bind(null, [])}>
         <ClearIcon fontSize='inherit' />
       </IconButton>
     );
@@ -102,7 +104,7 @@ export function ZChoiceDropDown<O, V>(props: IZChoice<O, V>) {
 
     if (isArray(value)) {
       return (
-        <div className={cssJoinDefined('ZChoice-chip-list', styles.classes.chip)}>
+        <div className={cssJoinDefined('ZChoice-chip-list', classes.chip)}>
           {value.map((v) => lookup.get(v)).map((option) => _renderSelected(option))}
         </div>
       );
@@ -114,12 +116,13 @@ export function ZChoiceDropDown<O, V>(props: IZChoice<O, V>) {
 
   return (
     <FormControl
-      className={cssJoinDefined('ZChoice-root', 'ZChoice-drop-down', styles.classes.root, className)}
+      className={cssJoinDefined('ZChoice-root', 'ZChoice-drop-down', classes.root, className)}
       fullWidth
       data-name={name}
     >
       <InputLabel id={labelId}>{label}</InputLabel>
       <Select
+        className={classes.toggler}
         classes={{ select: 'ZChoice-toggler' }}
         labelId={labelId}
         disabled={disabled}

@@ -6,7 +6,7 @@ import { useFashionTheme } from '../theme/fashion';
 import { createStyleHook } from '../theme/styled';
 import { IZBoolean } from './boolean';
 
-const useBooleanCheckboxStyles = createStyleHook<IZBoolean<boolean | null>>(({ theme }, props) => {
+const useBooleanCheckboxStyles = createStyleHook(({ theme }, props: IZBoolean<boolean | null>) => {
   const { fashion = theme.primary } = props;
   const svg = { color: fashion.main };
 
