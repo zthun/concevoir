@@ -30,7 +30,7 @@ const heightChart = {
   ...createSizeChartVariedCss()
 };
 
-const useBannerStyles = createStyleHook<IZBanner>(({ theme }, props) => {
+const useBannerStyles = createStyleHook(({ theme }, props: IZBanner) => {
   const { primary } = theme;
   const { fashion, height } = props;
 
