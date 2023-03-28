@@ -6,7 +6,7 @@ import { useFashionTheme } from '../theme/fashion';
 import { createStyleHook } from '../theme/styled';
 import { IZBoolean } from './boolean';
 
-const useBooleanSwitchStyles = createStyleHook<IZBoolean<boolean>>(({ theme }, props) => {
+const useBooleanSwitchStyles = createStyleHook(({ theme }, props: IZBoolean<boolean>) => {
   const { fashion = theme.primary, value } = props;
   const track = value ? fashion.main : undefined;
 
@@ -23,6 +23,7 @@ const useBooleanSwitchStyles = createStyleHook<IZBoolean<boolean>>(({ theme }, p
     }
   };
 });
+
 /**
  * A boolean component that can be checked, unchecked, or indeterminate
  *

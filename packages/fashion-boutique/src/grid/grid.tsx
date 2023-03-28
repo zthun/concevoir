@@ -22,7 +22,7 @@ export interface IZGrid extends IZComponentStyle, IZComponentHierarchy, IZCompon
 
 const GridHeightChart = createSizeChartVariedCss();
 
-const useGridStyles = createStyleHook<IZGrid>(({ tailor, device }, props) => {
+const useGridStyles = createStyleHook(({ tailor, device }, props: IZGrid) => {
   const {
     alignItems,
     alignContent,

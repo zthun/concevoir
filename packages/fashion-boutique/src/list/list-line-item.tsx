@@ -17,7 +17,7 @@ export interface IZListLineItem extends IZListItem, IZComponentHeading, IZCompon
   onClick?: () => any;
 }
 
-const useListLineItemStyles = createStyleHook<IZListLineItem>(({ tailor }, props) => {
+const useListLineItemStyles = createStyleHook(({ tailor }, props: IZListLineItem) => {
   const gap = props.onClick ? 0 : tailor.gap();
 
   return {
