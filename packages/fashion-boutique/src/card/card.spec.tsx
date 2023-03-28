@@ -1,19 +1,20 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import React, { ReactNode } from 'react';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { ZCard } from './card';
 import { ZCardComponentModel } from './card.cm';
-import { describe, it, expect, beforeEach } from 'vitest';
 
 describe('ZCard', () => {
   let footer: ReactNode | undefined;
   let heading: ReactNode | undefined;
   let content: ReactNode | undefined;
   let subHeading: ReactNode | undefined;
+  let loading: boolean | undefined;
 
   async function createTestTarget() {
     const element = (
-      <ZCard heading={heading} subHeading={subHeading} footer={footer}>
+      <ZCard heading={heading} subHeading={subHeading} footer={footer} loading={loading}>
         {content}
       </ZCard>
     );
@@ -27,6 +28,7 @@ describe('ZCard', () => {
     heading = undefined;
     subHeading = undefined;
     content = undefined;
+    loading = undefined;
   });
 
   describe('Header', () => {
@@ -79,6 +81,28 @@ describe('ZCard', () => {
       const actual = await _content.text();
       // Assert.
       expect(actual).toEqual(content);
+    });
+
+    it('should render as loading', async () => {
+      // Arrange.
+      loading = true;
+      const target = await createTestTarget();
+      // Act.
+      const actual = await target.loading();
+      // Assert.
+      expect(actual).toBeTruthy();
+    });
+
+    it('should not render content if loading', async () => {
+      // Arrange.
+      content = 'Test Content';
+      loading = true;
+      const target = await createTestTarget();
+      // Act.
+      const _content = await target.content();
+      const actual = await _content.text();
+      // Assert.
+      expect(actual).toBeFalsy();
     });
   });
 

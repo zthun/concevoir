@@ -91,7 +91,9 @@ export function ZCard(props: IZCard) {
   );
 
   const renderContent = () => {
-    const renderLoading = () => <ZSuspenseProgress className='ZCard-loading' name='card-loading' loading />;
+    const renderLoading = () => (
+      <ZSuspenseProgress className='ZCard-loading' name='card-loading' height={ZSizeFixed.Medium} />
+    );
     return <CardContent className='ZCard-content'>{loading ? renderLoading() : children}</CardContent>;
   };
 

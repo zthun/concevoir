@@ -29,10 +29,12 @@ export class ZCardComponentModel extends ZCircusComponentModel {
     return subHeading.text();
   }
 
-  /** */
+  /**
+   * Gets whether the card is in a loading state.
+   */
   public async loading(): Promise<boolean> {
     const content = await this.content();
-    return ZSuspenseComponentModel.loading(content);
+    return ZSuspenseComponentModel.loading(content, 'card-loading');
   }
 
   /**
