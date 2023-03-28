@@ -60,6 +60,7 @@ export * from './stack/stack';
 export * from './state/use-ambassador-state';
 export * from './state/use-async-state';
 export * from './suspense/suspense';
+export * from './suspense/suspense-progress';
 export * from './suspense/suspense-rotate';
 export * from './suspense/suspense.cm';
 export * from './text/text';
