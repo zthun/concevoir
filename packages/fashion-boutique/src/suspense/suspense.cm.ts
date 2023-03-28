@@ -1,5 +1,5 @@
 import { IZCircusDriver, ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZSizeFixed } from '@zthun/fashion-tailor';
+import { ZSize, ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 
 /**
  * Represents a component model for suspense.
@@ -11,10 +11,20 @@ export class ZSuspenseComponentModel extends ZCircusComponentModel {
    * Gets the size of the suspense.
    *
    * @returns
-   *        The size of the suspense.
+   *        The size height of the suspense.
    */
-  public width(): Promise<ZSizeFixed> {
+  public width(): Promise<ZSize> {
     return this.driver.attribute('data-width', ZSizeFixed.ExtraSmall);
+  }
+
+  /**
+   * Gets the height of the suspense.
+   *
+   * @returns
+   *      The size height of the suspense.
+   */
+  public height(): Promise<ZSize> {
+    return this.driver.attribute('data-height', ZSizeVaried.Fit);
   }
 
   /**

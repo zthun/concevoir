@@ -1,5 +1,10 @@
 import { CircularProgress } from '@mui/material';
-import { createSizeChartFixedArithmetic, createSizeChartFixedCss, ZSizeFixed } from '@zthun/fashion-tailor';
+import {
+  createSizeChartFixedArithmetic,
+  createSizeChartFixedCss,
+  ZSizeFixed,
+  ZSizeVaried
+} from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { IZSuspense } from './suspense';
@@ -29,6 +34,7 @@ export function ZSuspenseRotate(props: IZSuspense) {
       color='inherit'
       data-name={name}
       data-width={width}
+      data-height={ZSizeVaried.Fit}
     />
   );
 }
