@@ -24,7 +24,7 @@ When(
   'I select the width, {string}, from the width drop down on the suspense demo page',
   async function (this: ZFashionWorld<ZSuspensePageComponentModel>, value: ZSizeFixed) {
     const { page } = this.parameters;
-    const width = await page.width();
+    const width = await page.size();
     await width.select(value);
   }
 );

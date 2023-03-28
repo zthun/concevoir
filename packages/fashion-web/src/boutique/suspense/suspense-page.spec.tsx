@@ -28,7 +28,7 @@ describe('ZSuspensePage', () => {
   async function assertSetsWidth(expected: ZSizeFixed) {
     // Arrange
     const target = await createTestTarget();
-    const width = await target.width();
+    const width = await target.size();
     // Act.
     await width.select(expected);
     const suspense = await target.rotate();

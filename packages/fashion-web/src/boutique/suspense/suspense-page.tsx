@@ -7,6 +7,7 @@ import {
   ZH3,
   ZImageSource,
   ZParagraph,
+  ZSuspenseProgress,
   ZSuspenseRotate
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
@@ -22,10 +23,10 @@ import { ZFashionRouteSuspense } from '../../routes';
  *        The JSX to render the suspense page.
  */
 export function ZSuspensePage() {
-  const [width, setWidth] = useState<ZSizeFixed>(ZSizeFixed.ExtraSmall);
+  const [size, setSize] = useState(ZSizeFixed.ExtraSmall);
   const [loading, setLoading] = useState<boolean>(true);
   const sizes = values(ZSizeFixed);
-  const _setWidth = setFirst.bind(null, setWidth, ZSizeFixed.ExtraSmall);
+  const _setSize = setFirst.bind(null, setSize, ZSizeFixed.ExtraSmall);
 
   return (
     <ZCard
@@ -45,7 +46,10 @@ export function ZSuspensePage() {
           happening.
         </ZParagraph>
 
-        <ZSuspenseRotate loading={loading} width={width} name='suspense' />
+        <ZGrid gap={ZSizeFixed.Medium}>
+          <ZSuspenseRotate loading={loading} width={size} name='rotate' />
+          <ZSuspenseProgress loading={loading} height={size} name='progress' />
+        </ZGrid>
       </ZBox>
 
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
@@ -54,13 +58,13 @@ export function ZSuspensePage() {
         <ZGrid gap={ZSizeFixed.Medium}>
           <ZBooleanSwitch value={loading} onValueChange={setLoading} label='Loading' name='loading' />
           <ZChoiceDropDown
-            name='width'
-            value={[width]}
-            onValueChange={_setWidth}
+            name='size'
+            value={[size]}
+            onValueChange={_setSize}
             options={sizes}
             renderOption={startCase}
             identifier={identity}
-            label='Width'
+            label='Size'
           />
         </ZGrid>
       </ZBox>
