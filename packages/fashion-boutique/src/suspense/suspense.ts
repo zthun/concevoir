@@ -1,4 +1,5 @@
 import { ZSize, ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
+import { IZComponentFashion } from '../component/component-fashion';
 import { IZComponentHeight } from '../component/component-height';
 import { IZComponentLoading } from '../component/component-loading';
 import { IZComponentName } from '../component/component-name';
@@ -13,4 +14,5 @@ export interface IZSuspense<TWidth extends ZSize = ZSizeFixed, THeight extends Z
     IZComponentWidth<TWidth>,
     IZComponentHeight<THeight>,
     IZComponentLoading,
+    IZComponentFashion,
     IZComponentName {}

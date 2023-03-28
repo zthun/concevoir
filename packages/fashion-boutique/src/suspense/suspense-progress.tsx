@@ -5,7 +5,7 @@ import {
   ZSizeFixed,
   ZSizeVaried
 } from '@zthun/fashion-tailor';
-import { cssJoinDefined } from '@zthun/helpful-fn';
+import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { createStyleHook } from '../theme/styled';
 import { IZSuspense } from './suspense';
@@ -13,12 +13,14 @@ import { IZSuspense } from './suspense';
 const SuspenseProgressSizeChart = createSizeChartFixedCss(createSizeChartFixedArithmetic(0.25, 0.25), 'rem');
 
 const useSuspenseProgressStyles = createStyleHook((_, props: IZSuspense<ZSizeVaried.Full, ZSizeFixed>) => {
-  const { height = ZSizeFixed.ExtraSmall } = props;
+  const { height = ZSizeFixed.ExtraSmall, fashion } = props;
   const _height = SuspenseProgressSizeChart[height];
+  const color = firstDefined('inherit', fashion?.main);
 
   return {
     root: {
-      height: _height
+      height: _height,
+      color
     }
   };
 });
