@@ -4196,15 +4196,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@zthun/fashion-theme-blueberry@workspace:packages/fashion-theme-blueberry":
-  version: 0.0.0-use.local
-  resolution: "@zthun/fashion-theme-blueberry@workspace:packages/fashion-theme-blueberry"
-  dependencies:
-    "@zthun/fashion-theme": ^0.0.1
-    microbundle: ^0.15.1
-  languageName: unknown
-  linkType: soft
-
 "@zthun/fashion-theme@^0.0.1, @zthun/fashion-theme@workspace:packages/fashion-theme":
   version: 0.0.0-use.local
   resolution: "@zthun/fashion-theme@workspace:packages/fashion-theme"
