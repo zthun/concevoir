@@ -17,6 +17,7 @@ import { IZComponentLoading } from '../component/component-loading';
 import { IZComponentName } from '../component/component-name';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentWidth } from '../component/component-width';
+import { ZSuspenseProgress } from '../suspense/suspense-progress';
 import { useFashionTheme } from '../theme/fashion';
 import { createStyleHook } from '../theme/styled';
 import { ZCaption, ZH2 } from '../typography/typography';
@@ -69,12 +70,32 @@ const useCardStyles = createStyleHook(({ theme }, props: IZCard) => {
  */
 export function ZCard(props: IZCard) {
   const { surface } = useFashionTheme();
-  const { avatar, className, children, footer, heading, subHeading, fashion = surface, name } = props;
+  const { avatar, className, children, footer, heading, subHeading, loading, fashion = surface, name } = props;
   const { classes } = useCardStyles(props);
 
-  const renderFooter = () => {
-    return footer ? <CardActions className='ZCard-footer'>{footer}</CardActions> : null;
+  const renderHeader = () => (
+    <CardHeader
+      className='ZCard-header'
+      avatar={avatar}
+      title={
+        <ZH2 className='ZCard-header-heading' compact>
+          {heading}
+        </ZH2>
+      }
+      subheader={
+        <ZCaption className='ZCard-header-subheading' compact>
+          {subHeading}
+        </ZCaption>
+      }
+    />
+  );
+
+  const renderContent = () => {
+    const renderLoading = () => <ZSuspenseProgress className='ZCard-loading' name='card-loading' loading />;
+    return <CardContent className='ZCard-content'>{loading ? renderLoading() : children}</CardContent>;
   };
+
+  const renderFooter = () => (footer ? <CardActions className='ZCard-footer'>{footer}</CardActions> : null);
 
   return (
     <Card
@@ -83,21 +104,8 @@ export function ZCard(props: IZCard) {
       data-name={name}
       data-fashion={fashion.name}
     >
-      <CardHeader
-        className='ZCard-header'
-        avatar={avatar}
-        title={
-          <ZH2 className='ZCard-header-heading' compact>
-            {heading}
-          </ZH2>
-        }
-        subheader={
-          <ZCaption className='ZCard-header-subheading' compact>
-            {subHeading}
-          </ZCaption>
-        }
-      />
-      <CardContent className='ZCard-content'>{children}</CardContent>
+      {renderHeader()}
+      {renderContent()}
       {renderFooter()}
     </Card>
   );
