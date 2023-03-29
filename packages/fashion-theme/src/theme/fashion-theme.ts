@@ -152,7 +152,7 @@ export class ZFashionThemeBuilder {
         .contrast(white())
         .build(),
       body: new ZFashionBuilder()
-        .name('Background')
+        .name('Body')
         .main(hex(0xeeeeee))
         .light(hex(0xf5f5f5))
         .dark(hex(0xbdbdbd))
