@@ -16,9 +16,8 @@ import { ZColor } from './color';
  *        A css value that can render the color.
  */
 export function hsl(h: number, s: number, l: number, a = 1): ZColor {
-  h = Math.floor(Math.min(360, Math.max(0, h)));
-  s = Math.floor(Math.min(100, Math.max(0, s)));
-  l = Math.floor(Math.min(100, Math.max(0, l)));
+  s = Math.min(100, Math.max(0, s));
+  l = Math.min(100, Math.max(0, l));
   a = Math.min(1, Math.max(0, a));
-  return `hsla(${h}, ${s}, ${l}, ${a})`;
+  return `hsla(${h}, ${s}%, ${l}%, ${a})`;
 }
