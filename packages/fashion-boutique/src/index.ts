@@ -70,4 +70,5 @@ export * from './text/text-input-reveal';
 export * from './text/text.cm';
 export * from './theme/fashion';
 export * from './theme/styled';
+export * from './typography/text-color';
 export * from './typography/typography';
