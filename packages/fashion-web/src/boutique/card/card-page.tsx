@@ -1,20 +1,9 @@
-import {
-  useFashionTheme,
-  ZBooleanSwitch,
-  ZBox,
-  ZButton,
-  ZCard,
-  ZChoiceDropDown,
-  ZGrid,
-  ZH3,
-  ZImageSource,
-  ZParagraph
-} from '@zthun/fashion-boutique';
+import { ZBooleanSwitch, ZBox, ZButton, ZCard, ZGrid, ZH3, ZImageSource, ZParagraph } from '@zthun/fashion-boutique';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
-import { setFirst } from '@zthun/helpful-fn';
-import { identity } from 'lodash';
+import { IZFashion } from '@zthun/fashion-theme';
 import React, { useState } from 'react';
 import { ZFashionRouteCard } from '../../routes';
+import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
 
 // cspell: disable
 const LOREM =
@@ -33,11 +22,8 @@ const LOREM =
  * @returns The JSX to render the alerts demo page.
  */
 export function ZCardPage() {
-  const { primary, secondary, success, warning, error, info, light, dark, surface } = useFashionTheme();
-  const [fashion, setFashion] = useState(surface);
+  const [fashion, setFashion] = useState<IZFashion>();
   const [loading, setLoading] = useState(false);
-  const _setFashion = setFirst.bind(null, setFashion, primary);
-  const designs = [surface, primary, secondary, success, warning, error, info, light, dark];
 
   return (
     <ZCard
@@ -73,16 +59,7 @@ export function ZCardPage() {
 
         <ZGrid gap={ZSizeFixed.Medium}>
           <ZBooleanSwitch label='Loading' name='loading' value={loading} onValueChange={setLoading} />
-          <ZChoiceDropDown
-            label='Fashion'
-            indelible
-            value={[fashion]}
-            onValueChange={_setFashion}
-            options={designs}
-            renderOption={(f) => f.name}
-            identifier={identity}
-            name='fashion'
-          />
+          <ZChoiceDropDownFashion value={fashion} onValueChange={setFashion} name='fashion' />
         </ZGrid>
       </ZBox>
     </ZCard>

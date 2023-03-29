@@ -1,10 +1,8 @@
 import {
-  useFashionTheme,
   ZBooleanSwitch,
   ZBox,
   ZButton,
   ZCard,
-  ZChoiceDropDown,
   ZGrid,
   ZH3,
   ZImageSource,
@@ -13,10 +11,9 @@ import {
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { IZFashion } from '@zthun/fashion-theme';
-import { setFirst } from '@zthun/helpful-fn';
-import { identity } from 'lodash';
 import React, { useState } from 'react';
 import { ZFashionRouteButton } from '../../routes';
+import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
 
 /**
  * Represents a demo for buttons.
@@ -24,15 +21,12 @@ import { ZFashionRouteButton } from '../../routes';
  * @returns The JSX to render the alerts demo page.
  */
 export function ZButtonPage() {
-  const { primary, secondary, success, warning, error, info, light, dark } = useFashionTheme();
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [outline, setOutline] = useState(false);
   const [borderless, setBorderless] = useState(false);
-  const [fashion, setFashion] = useState<IZFashion>(primary);
+  const [fashion, setFashion] = useState<IZFashion>();
   const [count, setCount] = useState<number>(0);
-  const _setFashion = setFirst.bind(null, setFashion, primary);
-  const designs = [primary, secondary, success, warning, error, info, light, dark];
 
   async function handleClick() {
     setCount((c) => c + 1);
@@ -95,16 +89,7 @@ export function ZButtonPage() {
           <ZBooleanSwitch value={disabled} onValueChange={setDisabled} name='disabled' label='Disabled' />
           <ZBooleanSwitch value={outline} onValueChange={setOutline} name='outline' label='Outline' />
           <ZBooleanSwitch value={borderless} onValueChange={setBorderless} name='borderless' label='Borderless' />
-          <ZChoiceDropDown
-            label='Fashion'
-            indelible
-            value={[fashion]}
-            onValueChange={_setFashion}
-            options={designs}
-            renderOption={(f) => f.name}
-            identifier={identity}
-            name='fashion'
-          />
+          <ZChoiceDropDownFashion value={fashion} onValueChange={setFashion} name='fashion' />
         </ZGrid>
       </ZBox>
     </ZCard>

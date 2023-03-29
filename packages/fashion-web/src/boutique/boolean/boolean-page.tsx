@@ -6,7 +6,6 @@ import {
   ZButton,
   ZCaption,
   ZCard,
-  ZChoiceDropDown,
   ZGrid,
   ZH3,
   ZImageSource,
@@ -14,10 +13,9 @@ import {
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { IZFashion } from '@zthun/fashion-theme';
-import { setFirst } from '@zthun/helpful-fn';
-import { identity } from 'lodash';
 import React, { useState } from 'react';
 import { ZFashionRouteBoolean } from '../../routes';
+import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
 
 /**
  * Represents a demo for booleans.
@@ -27,10 +25,8 @@ import { ZFashionRouteBoolean } from '../../routes';
 export function ZBooleanPage() {
   const [disabled, setDisabled] = useState(false);
   const [value, setValue] = useState<boolean | null>(false);
-  const { primary, secondary, info, light, dark, success, warning, error } = useFashionTheme();
-  const [fashion, setFashion] = useState<IZFashion>(primary);
-  const _setFashion = setFirst.bind(null, setFashion, primary);
-  const designs = [primary, secondary, success, warning, error, info, light, dark];
+  const { success, warning, error } = useFashionTheme();
+  const [fashion, setFashion] = useState<IZFashion>();
 
   return (
     <ZCard
@@ -79,16 +75,7 @@ export function ZBooleanPage() {
 
         <ZGrid gap={ZSizeFixed.Medium}>
           <ZBooleanSwitch value={disabled} onValueChange={setDisabled} label='Disabled' name='disabled' />
-          <ZChoiceDropDown
-            label='Fashion'
-            indelible
-            value={[fashion]}
-            onValueChange={_setFashion}
-            options={designs}
-            renderOption={(f) => f.name}
-            identifier={identity}
-            name='fashion'
-          />
+          <ZChoiceDropDownFashion value={fashion} onValueChange={setFashion} name='fashion' />
         </ZGrid>
       </ZBox>
 
