@@ -28,6 +28,16 @@ export class ZSuspenseComponentModel extends ZCircusComponentModel {
   }
 
   /**
+   * Gets the current fashion theme.
+   *
+   * @returns
+   *      The name of the fashion theme.
+   */
+  public fashion(): Promise<string> {
+    return this.driver.attribute('data-fashion', 'Inherit');
+  }
+
+  /**
    * Gets whether there is suspense in a specific driver container.
    *
    * @param driver -

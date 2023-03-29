@@ -30,9 +30,10 @@ const useSuspenseRotateStyles = createStyleHook((_, props: IZSuspense) => {
  * @returns The jsx for a circular loading progress.
  */
 export function ZSuspenseRotate(props: IZSuspense) {
-  const { className, loading = true, name, width = ZSizeFixed.ExtraSmall } = props;
+  const { className, loading = true, name, width = ZSizeFixed.ExtraSmall, fashion } = props;
   const size = SuspenseRotateSizeChart[width];
   const { classes } = useSuspenseRotateStyles(props);
+  const _fashion = firstDefined('Inherit', fashion?.name);
 
   if (!loading) {
     return null;
@@ -46,6 +47,7 @@ export function ZSuspenseRotate(props: IZSuspense) {
       data-name={name}
       data-width={width}
       data-height={ZSizeVaried.Fit}
+      data-fashion={_fashion}
     />
   );
 }

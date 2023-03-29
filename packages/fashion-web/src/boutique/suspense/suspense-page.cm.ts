@@ -38,6 +38,16 @@ export class ZSuspensePageComponentModel extends ZCircusComponentModel {
   }
 
   /**
+   * Gets the choice for fashion options.
+   *
+   * @returns
+   *        The fashion options.
+   */
+  public fashion(): Promise<ZChoiceComponentModel> {
+    return ZCircusBy.first(this.driver, ZChoiceComponentModel, 'fashion');
+  }
+
+  /**
    * Gets the size drop down.
    *
    * @returns

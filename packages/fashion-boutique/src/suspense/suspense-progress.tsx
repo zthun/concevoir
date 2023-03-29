@@ -34,8 +34,9 @@ const useSuspenseProgressStyles = createStyleHook((_, props: IZSuspense<ZSizeVar
  * @returns The jsx for a circular loading progress.
  */
 export function ZSuspenseProgress(props: IZSuspense<ZSizeVaried.Full, ZSizeFixed>) {
-  const { className, loading = true, height = ZSizeFixed.ExtraSmall, name } = props;
+  const { className, loading = true, height = ZSizeFixed.ExtraSmall, name, fashion } = props;
   const { classes } = useSuspenseProgressStyles(props);
+  const _fashion = firstDefined('Inherit', fashion?.name);
 
   if (!loading) {
     return null;
@@ -48,6 +49,7 @@ export function ZSuspenseProgress(props: IZSuspense<ZSizeVaried.Full, ZSizeFixed
       data-name={name}
       data-width={ZSizeVaried.Full}
       data-height={height}
+      data-fashion={_fashion}
     />
   );
 }

@@ -1,12 +1,15 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
+import { ZFashionThemeBuilder } from '@zthun/fashion-theme';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZSuspensePage } from './suspense-page';
 import { ZSuspensePageComponentModel } from './suspense-page.cm';
 
 describe('ZSuspensePage', () => {
+  const theme = new ZFashionThemeBuilder().build();
+
   async function createTestTarget() {
     const element = <ZSuspensePage />;
     const driver = await new ZCircusSetupRenderer(element).setup();
@@ -20,48 +23,92 @@ describe('ZSuspensePage', () => {
     await loading.toggle(!expected);
     // Act.
     await loading.toggle(expected);
-    const actual = await target.rotate();
+    const rotate = await target.rotate();
+    const progress = await target.progress();
     // Assert.
-    expect(!!actual).toEqual(expected);
+    expect(!!progress).toEqual(expected);
+    expect(!!rotate).toEqual(expected);
   }
 
-  async function assertSetsWidth(expected: ZSizeFixed) {
+  async function assertSetsFashion(expected: string) {
     // Arrange
     const target = await createTestTarget();
-    const width = await target.size();
-    // Act.
-    await width.select(expected);
-    const suspense = await target.rotate();
-    const actual = await suspense?.width();
-    // Assert.
-    expect(actual).toEqual(expected);
+    const fashion = await target.fashion();
+    // Act
+    await fashion.select(expected);
+    const rotate = await (await target.rotate())?.fashion();
+    const progress = await (await target.progress())?.fashion();
+    // Assert
+    expect(rotate).toEqual(expected);
+    expect(progress).toEqual(expected);
   }
 
-  it('should show the loader when the loading option is checked.', async () => {
-    await assertDisplaysTheSuspenseWhenTheLoadingOptionIs(true);
+  async function assertSetsSize(expected: ZSizeFixed) {
+    // Arrange
+    const target = await createTestTarget();
+    const size = await target.size();
+    // Act.
+    await size.select(expected);
+    const rotate = await target.rotate();
+    const progress = await target.progress();
+    const width = await rotate?.width();
+    const height = await progress?.height();
+    // Assert.
+    expect(width).toEqual(expected);
+    expect(height).toEqual(expected);
+  }
+
+  describe('Display', () => {
+    it('should show the rotate loader when the loading option is checked.', async () => {
+      await assertDisplaysTheSuspenseWhenTheLoadingOptionIs(true);
+    });
+
+    it('should hide the loader when the loading option is unchecked.', async () => {
+      await assertDisplaysTheSuspenseWhenTheLoadingOptionIs(false);
+    });
   });
 
-  it('should hide the loader when the loading option is unchecked.', async () => {
-    await assertDisplaysTheSuspenseWhenTheLoadingOptionIs(false);
+  describe('Size', () => {
+    it('should adjust the suspense size to xs.', async () => {
+      await assertSetsSize(ZSizeFixed.ExtraSmall);
+    });
+
+    it('should adjust the suspense size to sm.', async () => {
+      await assertSetsSize(ZSizeFixed.Small);
+    });
+
+    it('should adjust the suspense size to md.', async () => {
+      await assertSetsSize(ZSizeFixed.Medium);
+    });
+
+    it('should adjust the suspense size to lg.', async () => {
+      await assertSetsSize(ZSizeFixed.Large);
+    });
+
+    it('should adjust the suspense size to xl.', async () => {
+      await assertSetsSize(ZSizeFixed.ExtraLarge);
+    });
   });
 
-  it('should adjust the suspense width to xs.', async () => {
-    await assertSetsWidth(ZSizeFixed.ExtraSmall);
-  });
+  describe('Fashion', () => {
+    it('should default the fashion to inherit the color.', async () => {
+      // Arrange
+      const target = await createTestTarget();
+      const expected = 'Inherit';
+      // Act
+      const rotate = await (await target.rotate())?.fashion();
+      const progress = await (await target.progress())?.fashion();
+      // Assert
+      expect(rotate).toEqual(expected);
+      expect(progress).toEqual(expected);
+    });
 
-  it('should adjust the suspense width to sm.', async () => {
-    await assertSetsWidth(ZSizeFixed.Small);
-  });
+    it('should set the fashion to primary.', async () => {
+      await assertSetsFashion(theme.primary.name!);
+    });
 
-  it('should adjust the suspense width to md.', async () => {
-    await assertSetsWidth(ZSizeFixed.Medium);
-  });
-
-  it('should adjust the suspense width to lg.', async () => {
-    await assertSetsWidth(ZSizeFixed.Large);
-  });
-
-  it('should adjust the suspense width to xl.', async () => {
-    await assertSetsWidth(ZSizeFixed.ExtraLarge);
+    it('should set the fashion to secondary.', async () => {
+      await assertSetsFashion(theme.secondary.name!);
+    });
   });
 });

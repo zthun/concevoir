@@ -11,10 +11,12 @@ import {
   ZSuspenseRotate
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
+import { IZFashion } from '@zthun/fashion-theme';
 import { setFirst } from '@zthun/helpful-fn';
 import { identity, startCase, values } from 'lodash';
 import React, { useState } from 'react';
 import { ZFashionRouteSuspense } from '../../routes';
+import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
 
 /**
  * Represents a demo for suspense indicators.
@@ -24,6 +26,7 @@ import { ZFashionRouteSuspense } from '../../routes';
  */
 export function ZSuspensePage() {
   const [size, setSize] = useState(ZSizeFixed.ExtraSmall);
+  const [fashion, setFashion] = useState<IZFashion | undefined>();
   const [loading, setLoading] = useState<boolean>(true);
   const sizes = values(ZSizeFixed);
   const _setSize = setFirst.bind(null, setSize, ZSizeFixed.ExtraSmall);
@@ -47,8 +50,8 @@ export function ZSuspensePage() {
         </ZParagraph>
 
         <ZGrid gap={ZSizeFixed.Medium}>
-          <ZSuspenseRotate loading={loading} width={size} name='rotate' />
-          <ZSuspenseProgress loading={loading} height={size} name='progress' />
+          <ZSuspenseRotate loading={loading} width={size} fashion={fashion} name='rotate' />
+          <ZSuspenseProgress loading={loading} height={size} fashion={fashion} name='progress' />
         </ZGrid>
       </ZBox>
 
@@ -57,6 +60,7 @@ export function ZSuspensePage() {
 
         <ZGrid gap={ZSizeFixed.Medium}>
           <ZBooleanSwitch value={loading} onValueChange={setLoading} label='Loading' name='loading' />
+          <ZChoiceDropDownFashion value={fashion} onValueChange={setFashion} name='fashion' />
           <ZChoiceDropDown
             name='size'
             value={[size]}
