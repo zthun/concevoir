@@ -3,10 +3,15 @@ import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { IZComponentFashion } from '../component/component-fashion';
 import { IZComponentHierarchy } from '../component/component-hierarchy';
+import { IZComponentName } from '../component/component-name';
 import { IZComponentStyle } from '../component/component-style';
 import { createStyleHook } from '../theme/styled';
 
-export interface IZTextColor extends IZComponentHierarchy, IZComponentFashion<IZFashion>, IZComponentStyle {}
+export interface IZTextColor
+  extends IZComponentHierarchy,
+    IZComponentFashion<IZFashion>,
+    IZComponentStyle,
+    IZComponentName {}
 
 const useTextColorStyles = createStyleHook((_, props: IZTextColor) => {
   const { fashion } = props;
@@ -24,12 +29,16 @@ const useTextColorStyles = createStyleHook((_, props: IZTextColor) => {
  *        The jsx to render the component.
  */
 export function ZTextColor(props: IZTextColor) {
-  const { children, className, fashion } = props;
+  const { children, className, fashion, name } = props;
   const { classes } = useTextColorStyles(props);
   const _fashion = firstDefined('Inherit', fashion?.name);
 
   return (
-    <div className={cssJoinDefined('ZTextColor-root', className, classes.text)} data-fashion={_fashion}>
+    <div
+      className={cssJoinDefined('ZTextColor-root', className, classes.text)}
+      data-name={name}
+      data-fashion={_fashion}
+    >
       {children}
     </div>
   );
