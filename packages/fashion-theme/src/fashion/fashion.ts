@@ -129,6 +129,14 @@ export class ZFashionBuilder {
   }
 
   /**
+   * Swaps the main and contrast.
+   */
+  public swap() {
+    const t = this._fashion.contrast;
+    return this.contrast(this._fashion.main).main(t);
+  }
+
+  /**
    * Clones another fashion complements object into this builder object.
    *
    * @param other -

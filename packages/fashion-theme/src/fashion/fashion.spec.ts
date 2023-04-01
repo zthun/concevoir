@@ -20,6 +20,16 @@ describe('ZFashion', () => {
     });
   });
 
+  describe('Swap', () => {
+    it('should swap the main and contrast', () => {
+      const main = rgb(0, 0, 0);
+      const contrast = rgb(255, 255, 255);
+      const target = createTestTarget().contrast(contrast).main(main).swap().build();
+      expect(target.main).toEqual(contrast);
+      expect(target.contrast).toEqual(main);
+    });
+  });
+
   describe('Copy', () => {
     it('should copy another complementary object', () => {
       const main = hsl(220, 56, 72, 0.32);
