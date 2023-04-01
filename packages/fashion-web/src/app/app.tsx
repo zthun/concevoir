@@ -46,11 +46,11 @@ import { ZThemePage } from '../theme/theme-page';
  *        The jsx to render the fashion web application.
  */
 export function ZFashionApp() {
-  const avatar = <ZImageSource src='/images/svg/fashion.svg' height={ZSizeVaried.Full} />;
+  const avatar = <ZImageSource src={ZFashionRouteHome.avatar} height={ZSizeVaried.Full} />;
   const prefix = (
     <div className='ZFashionApp-description'>
-      <ZH1 compact>Fashion</ZH1>
-      <ZCaption compact>Build Something Pretty</ZCaption>
+      <ZH1 compact>{ZFashionRouteHome.name}</ZH1>
+      <ZCaption compact>{ZFashionRouteHome.description}</ZCaption>
     </div>
   );
 
