@@ -1,10 +1,12 @@
 import { ZRouteBuilder } from './route/route';
 
-export const ZFashionRouteHome = new ZRouteBuilder()
-  .name('Fashion')
-  .path('')
+export const ZFashionRouteHome = new ZRouteBuilder().name('Fashion').path('').build();
+
+export const ZFashionRouteTheme = new ZRouteBuilder()
+  .name('Theme')
+  .path('theme')
   .description('Make it look good')
-  .avatar('/images/svg/fashion-alt.svg')
+  .avatar('/images/svg/theme.svg')
   .build();
 
 export const ZFashionRouteBoutique = new ZRouteBuilder()
