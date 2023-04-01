@@ -2,9 +2,10 @@ import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { identity, noop, range } from 'lodash';
 import React, { ReactNode } from 'react';
-import { afterEach, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
+import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ZChoiceAutocomplete } from './choice-autocomplete';
 import { ZChoiceDropDown } from './choice-drop-down';
+import { ZChoiceToggle } from './choice-toggle';
 import { ZChoiceComponentModel } from './choice.cm';
 
 describe('ZChoice', () => {
@@ -35,7 +36,7 @@ describe('ZChoice', () => {
   });
 
   afterEach(async () => {
-    await _target?.close();
+    await _target?.driver.destroy();
   });
 
   async function shouldRenderAllOptionsWhenOpened(createTestTarget: () => Promise<ZChoiceComponentModel>) {
@@ -298,6 +299,61 @@ describe('ZChoice', () => {
 
     it('should append selections if multiple is turned on', async () => {
       await shouldAppendSelectionIfMultipleOn(createTestTarget);
+    });
+
+    it('should not select anything if the selected option is not available', async () => {
+      await shouldSelectNothingIfOptionIsUnavailable(createTestTarget);
+    });
+  });
+
+  describe('Toggle', () => {
+    async function createTestTarget() {
+      const element = (
+        <ZChoiceToggle
+          options={options}
+          label='Choice Test'
+          indelible={indelible}
+          multiple={multiple}
+          disabled={disabled}
+          value={selected}
+          onValueChange={onValueChange}
+          identifier={identifier}
+          display={display}
+          renderOption={renderOption}
+        />
+      );
+
+      const driver = await new ZCircusSetupRenderer(element).setup();
+      _target = await ZCircusBy.first(driver, ZChoiceComponentModel);
+      return _target;
+    }
+
+    it('should render all options when opened', async () => {
+      await shouldRenderAllOptionsWhenOpened(createTestTarget);
+    });
+
+    it('should render a custom display for an option', async () => {
+      await shouldRenderCustomOptionDisplay(createTestTarget);
+    });
+
+    it('should select by an identifier', async () => {
+      await shouldSelectByIdentifier(createTestTarget);
+    });
+
+    it('should select by the entire object', async () => {
+      await shouldSelectByTheEntireObject(createTestTarget);
+    });
+
+    it('should change the selection to a single item if multiple is off', async () => {
+      await shouldChangeSelectionToSingleIfMultipleOff(createTestTarget);
+    });
+
+    it('should append selections if multiple is turned on', async () => {
+      await shouldAppendSelectionIfMultipleOn(createTestTarget);
+    });
+
+    it('should disable if disabled is true', async () => {
+      await shouldRenderDisabled(createTestTarget);
     });
 
     it('should not select anything if the selected option is not available', async () => {

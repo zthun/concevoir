@@ -26,8 +26,21 @@ export class ZChoiceComponentModel extends ZCircusComponentModel {
    *        True if the choice component is disabled.  False otherwise.
    */
   public async disabled(): Promise<boolean> {
-    const input = await this.driver.select('input');
+    // Choices can currently render inputs or buttons.
+    const input = await this.driver.select('input,button');
     return input.disabled();
+  }
+
+  /**
+   * Gets whether the options list can be closed or is always visible.
+   *
+   * @returns
+   *        True if the options list uses a pop mechanic, false if all
+   *        options are always displayed.
+   */
+  public async closable() {
+    const alwaysOpen = await this.driver.classes(['ZChoice-always-open']);
+    return alwaysOpen.length === 0;
   }
 
   /**
@@ -37,8 +50,14 @@ export class ZChoiceComponentModel extends ZCircusComponentModel {
    *        True if the options list is visible.  False otherwise.
    */
   public async opened() {
+    const closable = await this.closable();
+
+    if (!closable) {
+      return true;
+    }
+
     const body = await this.driver.body();
-    return body.peek('.ZChoice-options');
+    return body.peek('.ZChoice-options-popup');
   }
 
   /**
@@ -54,12 +73,25 @@ export class ZChoiceComponentModel extends ZCircusComponentModel {
       const toggler = await this.driver.select('.ZChoice-root .ZChoice-toggler');
       const act = new ZCircusActBuilder().click().build();
       await toggler.perform(act);
-      await toggler.wait(() => this.opened());
+      await toggler.wait(() => this.opened(), {
+        description: 'Attempting to open the choice component',
+        timeout: 2500
+      });
     }
 
-    const body = await this.driver.body();
-    const menu = await body.select('.ZChoice-options');
-    const options = await menu.query('.ZChoice-option');
+    const closable = await this.closable();
+
+    if (closable) {
+      // The options should be on the body in a popup.
+      const body = await this.driver.body();
+      const menu = await body.select('.ZChoice-options');
+      const options = await menu.query('.ZChoice-option');
+      return options.map((e) => new ZChoiceOptionComponentModel(e));
+    }
+
+    // The options are contained in the component itself and we can just get them
+    // directly.
+    const options = await this.driver.query('.ZChoice-option');
     return options.map((e) => new ZChoiceOptionComponentModel(e));
   }
 
@@ -73,6 +105,12 @@ export class ZChoiceComponentModel extends ZCircusComponentModel {
    *        hidden.
    */
   public async close(): Promise<void> {
+    const closable = await this.closable();
+
+    if (!closable) {
+      return;
+    }
+
     const act = new ZCircusActBuilder().press(ZCircusKeyboardQwerty.escape).build();
     await this.driver.perform(act);
     await this.driver.wait(() => this.opened().then((b) => !b));
@@ -108,7 +146,9 @@ export class ZChoiceComponentModel extends ZCircusComponentModel {
   }
 
   /**
-   * Clears the drop down selection if the drop down is not indelible
+   * Clears the selection if the selection is not indelible.
+   *
+   * A choice that does not support single click clears will do nothing.
    */
   public async clear(): Promise<void> {
     const [cross] = await this.driver.query('.ZChoice-clear');

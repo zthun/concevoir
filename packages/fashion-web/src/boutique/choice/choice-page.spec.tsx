@@ -2,16 +2,23 @@ import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { ZChoiceComponentModel } from '@zthun/fashion-boutique';
 import React from 'react';
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 import { ZChoicePage } from './choice-page';
 import { ZChoicePageComponentModel } from './choice-page.cm';
 
 describe('ZChoicePage', () => {
+  let _target: ZChoicePageComponentModel;
+
   async function createTestTarget() {
     const element = <ZChoicePage />;
     const driver = await new ZCircusSetupRenderer(element).setup();
-    return ZCircusBy.first(driver, ZChoicePageComponentModel);
+    _target = await ZCircusBy.first(driver, ZChoicePageComponentModel);
+    return _target;
   }
+
+  afterEach(async () => {
+    await _target.driver.destroy();
+  });
 
   type ChoicePageFactory = (t: ZChoicePageComponentModel) => Promise<ZChoiceComponentModel>;
 

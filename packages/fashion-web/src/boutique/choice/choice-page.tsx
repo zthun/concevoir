@@ -5,6 +5,7 @@ import {
   ZCard,
   ZChoiceAutocomplete,
   ZChoiceDropDown,
+  ZChoiceToggle,
   ZGrid,
   ZH3,
   ZImageSource,
@@ -25,9 +26,7 @@ const Superheroes: Superhero[] = [
   { id: 'batman', alias: 'Batman', name: 'Bruce Wayne' },
   { id: 'superman', alias: 'Superman', name: 'Clark Kent' },
   { id: 'wonder-woman', alias: 'Wonder Woman', name: 'Diana Prince' },
-  { id: 'green-lantern', alias: 'Green Lantern', name: 'Hal Jordan' },
-  { id: 'cyborg', alias: 'Cyborg', name: 'Vic Stone' },
-  { id: 'constantine', alias: 'Constantine', name: 'John Constantine' }
+  { id: 'green-lantern', alias: 'Green Lantern', name: 'Hal Jordan' }
 ];
 
 /**
@@ -41,12 +40,6 @@ export function ZChoicePage() {
   const [multiple, setMultiple] = useState(false);
   const [indelible, setIndelible] = useState(false);
 
-  /**
-   * Renders the selected items.
-   *
-   * @returns
-   *        The JSX that renders the selected items.
-   */
   function renderSelected() {
     return values.map((s) => (
       <li key={s} className='ZChoicePage-value'>
@@ -55,47 +48,18 @@ export function ZChoicePage() {
     ));
   }
 
-  /**
-   * Renders a superhero.
-   *
-   * @param h -
-   *        The hero to render.
-   *
-   * @returns
-   *        The JSX to render the superhero.
-   */
   function renderSuperhero(h: Superhero) {
-    return (
-      <ZLineItem
-        className='ZChoicePage-hero'
-        prefix={<ZImageSource src='images/svg/hero.svg' height={ZSizeFixed.Small} />}
-        body={getHeroDisplay(h)}
-      />
-    );
+    return <ZLineItem className='ZChoicePage-hero' prefix={getHeroAvatar(h)} body={getHeroDisplay(h)} />;
   }
 
-  /**
-   * Gets the identifier value of a superhero.
-   *
-   * @param h -
-   *        The hero to identity.
-   *
-   * @returns
-   *        The hero identity.
-   */
+  function getHeroAvatar(h: Superhero) {
+    return <ZImageSource src={`images/png/${h.id}.png`} height={ZSizeFixed.Small} width={ZSizeFixed.Small} />;
+  }
+
   function getHeroIdentity(h: Superhero) {
     return h.id;
   }
 
-  /**
-   * Gets the display for a hero.
-   *
-   * @param h -
-   *        The hero to display.
-   *
-   * @returns
-   *        The display name for the hero.
-   */
   function getHeroDisplay(h: Superhero) {
     return `${h.alias} (${h.name})`;
   }
@@ -119,7 +83,7 @@ export function ZChoicePage() {
           </ZParagraph>
         </ZBox>
 
-        <ZGrid alignItems='center' columns='1fr 1fr' gap={ZSizeFixed.Large}>
+        <ZGrid alignItems='center' columns='1fr 1fr' columnsSm='1fr' gap={ZSizeFixed.Large}>
           <ZChoiceDropDown
             disabled={disabled}
             label='Drop Down'
@@ -146,6 +110,20 @@ export function ZChoicePage() {
             options={Superheroes}
             renderOption={renderSuperhero}
             name='autocomplete'
+          />
+
+          <ZChoiceToggle
+            disabled={disabled}
+            label='Toggle'
+            indelible={indelible}
+            multiple={multiple}
+            value={values}
+            identifier={getHeroIdentity}
+            display={getHeroDisplay}
+            onValueChange={setValues}
+            options={Superheroes}
+            renderOption={getHeroAvatar}
+            name='toggle'
           />
         </ZGrid>
 

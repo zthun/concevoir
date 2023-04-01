@@ -129,7 +129,7 @@ export function ZChoiceDropDown<O, V>(props: IZChoice<O, V>) {
         value={cast(value, '')}
         label={label}
         multiple={multiple}
-        MenuProps={{ className: 'ZChoice-options' }}
+        MenuProps={{ className: 'ZChoice-options ZChoice-options-popup' }}
         onChange={handleSelect}
         renderValue={renderSelectedItem}
         endAdornment={renderClear()}
