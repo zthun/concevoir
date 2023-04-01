@@ -8,6 +8,16 @@ export class ZCardComponentModel extends ZCircusComponentModel {
   public static readonly Selector = '.ZCard-root';
 
   /**
+   * Gets the fashion name of the card.
+   *
+   * @returns
+   *        The fashion of the card.
+   */
+  public fashion(): Promise<string> {
+    return this.driver.attribute('data-fashion', 'Surface');
+  }
+
+  /**
    * Gets the text content of the heading.
    *
    * @returns
