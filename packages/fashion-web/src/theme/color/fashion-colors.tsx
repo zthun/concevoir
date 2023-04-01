@@ -1,49 +1,53 @@
-import {
-  IZComponentFashion,
-  ZBox,
-  ZCaption,
-  ZH4,
-  ZStack,
-  createStyleHook,
-  useFashionTheme
-} from '@zthun/fashion-boutique';
+import { IZComponentFashion, ZBox, ZCaption, ZH4, ZStack, ZTextColor, createStyleHook } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
+import { ZFashionBuilder } from '@zthun/fashion-theme';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 export interface IZFashionColors extends Required<IZComponentFashion> {}
 
-const useFashionColorsStyles = createStyleHook(({ theme, tailor }, props: IZFashionColors) => {
+const useFashionColorsStyles = createStyleHook(({ tailor }, props: IZFashionColors) => {
   const { fashion } = props;
+
+  const light = firstDefined(fashion.main, fashion.light);
+  const main = fashion.main;
+  const dark = firstDefined(fashion.main, fashion.dark);
+  const contrast = fashion.contrast;
+
   return {
     block: {
       height: '4rem',
       width: '4rem',
-      border: `${tailor.thickness()} solid ${theme.dark.dark}`
+      borderStyle: 'solid',
+      borderWidth: tailor.thickness()
     },
 
     light: {
-      backgroundColor: firstDefined(fashion.main, fashion.light)
+      backgroundColor: light,
+      borderColor: light
     },
 
     main: {
-      backgroundColor: fashion.main
+      backgroundColor: main,
+      borderColor: main
     },
 
     dark: {
-      backgroundColor: firstDefined(fashion.main, fashion.dark)
+      backgroundColor: dark,
+      borderColor: dark
     },
 
     contrast: {
-      backgroundColor: fashion.contrast
+      backgroundColor: contrast,
+      borderColor: main
     }
   };
 });
 
 export function ZFashionColors(props: IZFashionColors) {
   const { fashion } = props;
-  const theme = useFashionTheme();
   const { classes } = useFashionColorsStyles(props);
+  const boxFashion = useMemo(() => new ZFashionBuilder().copy(fashion).swap().build(), [fashion]);
 
   const renderColor = (name: string, c: string) => (
     <ZStack orientation='vertical' alignItems='center'>
@@ -55,14 +59,16 @@ export function ZFashionColors(props: IZFashionColors) {
   return (
     <ZBox
       className={cssJoinDefined('ZFashionColors-root')}
-      fashion={theme.body}
+      fashion={boxFashion}
       border={{ width: ZSizeFixed.Small }}
       padding={ZSizeFixed.Small}
       data-name={fashion.name}
       data-fashion={fashion.name}
     >
       <ZStack orientation='vertical' gap={ZSizeFixed.Small}>
-        <ZH4>{fashion.name}</ZH4>
+        <ZTextColor fashion={fashion}>
+          <ZH4>{fashion.name}</ZH4>
+        </ZTextColor>
         <ZStack orientation='horizontal' gap={ZSizeFixed.Medium}>
           {renderColor('Light', classes.light)}
           {renderColor('Main', classes.main)}
