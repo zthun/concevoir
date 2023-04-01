@@ -11,12 +11,13 @@ describe('ZBreadcrumbs', () => {
   describe('Location', () => {
     let path: string;
     let onClick: Mock | undefined;
+    let home: { name: string; path?: string } | undefined;
     let history: MemoryHistory;
 
     async function createTestTarget() {
       const element = (
         <ZTestRouter navigator={history} location={history.location}>
-          <ZBreadcrumbsLocation onClick={onClick} />
+          <ZBreadcrumbsLocation onClick={onClick} home={home} />
         </ZTestRouter>
       );
 
@@ -27,6 +28,7 @@ describe('ZBreadcrumbs', () => {
     beforeEach(() => {
       path = '/path/to/resource';
       history = createMemoryHistory({ initialEntries: [path] });
+      home = undefined;
     });
 
     it('should render each path separated by slash', async () => {
@@ -69,6 +71,35 @@ describe('ZBreadcrumbs', () => {
       await link?.click();
       // Assert.
       expect(onClick).toHaveBeenCalledWith(expected);
+    });
+
+    describe('Home', () => {
+      beforeEach(() => {
+        home = { name: 'Home' };
+      });
+
+      it('should render the named home path if provided', async () => {
+        // Arrange.
+        const target = await createTestTarget();
+        // Act.
+        const link = await target.item('/');
+        const actual = await link?.label();
+        // Assert.
+        expect(actual).toEqual(home!.name);
+      });
+
+      it('should raise the onClick event to the home path when clicked', async () => {
+        // Arrange.
+        onClick = vi.fn();
+        home!.path = '/home';
+        const target = await createTestTarget();
+        const link = await target.item('/home');
+        // Act.
+        const expected = await link?.reference();
+        await link?.click();
+        // Assert.
+        expect(onClick).toHaveBeenCalledWith(expected);
+      });
     });
   });
 });

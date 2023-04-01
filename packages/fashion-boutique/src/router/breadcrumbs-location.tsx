@@ -6,6 +6,22 @@ import { ZLink } from './link';
 import { useLocation } from './router-dom';
 
 /**
+ * Represents the properties for the BreadcrumbsLocation component.
+ */
+export interface IZBreadcrumbsLocation extends IZBreadcrumbs {
+  /**
+   * Whether or not to include the home path as the first
+   * item in the breadcrumb list.
+   *
+   * If this is set, then an additional item, name, will appear
+   * as the first element of the breadcrumb trail and it will
+   * route to the given optional path.  If path is not set,
+   * then it will default to the root '/'.
+   */
+  home?: { name: string; path?: string };
+}
+
+/**
  * Represents a breadcrumbs component that uses the current location pathname.
  *
  * This supports the full pathname of the location.  If you are using
@@ -19,12 +35,13 @@ import { useLocation } from './router-dom';
  * @returns
  *        The JSX that renders this component.
  */
-export function ZBreadcrumbsLocation(props: IZBreadcrumbs) {
-  const { className, name, onClick } = props;
+export function ZBreadcrumbsLocation(props: IZBreadcrumbsLocation) {
+  const { className, name, home, onClick } = props;
   const location = useLocation();
   const sections = useMemo(() => {
     const all = location.pathname.split('/').filter((p) => !!p.trim());
-    const _sections: { name: string; path: string }[] = [{ name: 'home', path: '/' }];
+    const _home = home ? { name: home.name, path: home.path || '/' } : undefined;
+    const _sections: { name: string; path: string }[] = [];
 
     for (let i = 0; i < all.length; ++i) {
       const previous = _sections[i - 1]?.path || '';
@@ -33,8 +50,9 @@ export function ZBreadcrumbsLocation(props: IZBreadcrumbs) {
       _sections.push({ name, path: subPath });
     }
 
-    return _sections;
-  }, [location]);
+    _home ? [_home, ..._sections] : _sections;
+    return _home ? [_home, ..._sections] : _sections;
+  }, [location, home]);
 
   const renderSection = (s: { name: string; path: string }) => (
     <ZLink
