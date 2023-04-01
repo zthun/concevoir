@@ -15,6 +15,28 @@ describe('CardPage', () => {
     return ZCircusBy.first(driver, ZCardPageComponentModel);
   }
 
+  describe('Loading', () => {
+    async function shouldBeLoading(expected: boolean) {
+      // Arrange.
+      const target = await createTestTarget();
+      const loading = await target.loading();
+      await loading.toggle(!expected);
+      // Act.
+      await loading.toggle(expected);
+      const actual = await (await target.card()).loading();
+      // Assert.
+      expect(actual).toEqual(expected);
+    }
+
+    it('should set the card to a loading state when the switch is on.', async () => {
+      await shouldBeLoading(true);
+    });
+
+    it('should set the card to a loading state when the switch is off.', async () => {
+      await shouldBeLoading(false);
+    });
+  });
+
   describe('Fashion', () => {
     async function shouldSetFashion(expected: string) {
       // Arrange.
