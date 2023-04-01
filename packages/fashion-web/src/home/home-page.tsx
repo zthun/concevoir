@@ -9,7 +9,7 @@ import {
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import React from 'react';
-import { ZFashionRouteBoutique, ZFashionRouteHome } from '../routes';
+import { ZFashionRouteBoutique, ZFashionRouteTheme } from '../routes';
 
 const useHomePageStyles = createStyleHook(({ tailor }) => ({
   section: {
@@ -35,17 +35,29 @@ export function ZHomePage() {
   const navigate = useNavigate();
   const { primary } = useFashionTheme();
 
+  const renderGetStarted = (where: string) => (
+    <ZButton
+      label='Get Started'
+      onClick={() => navigate(where)}
+      fashion={primary}
+      name={`${name}-get-started`}
+      outline
+      width={ZSizeVaried.Full}
+    />
+  );
+
   return (
     <div className='ZHomePage-root'>
       <ZCard
         className={classes.section}
         width={ZSizeFixed.Large}
-        heading={ZFashionRouteHome.name}
-        subHeading={ZFashionRouteHome.description}
+        heading={ZFashionRouteTheme.name}
+        subHeading={ZFashionRouteTheme.description}
+        footer={renderGetStarted('theme')}
       >
         <ZImageSource
           className={classes.avatar}
-          src={ZFashionRouteHome.avatar}
+          src={ZFashionRouteTheme.avatar}
           height={ZSizeFixed.ExtraLarge}
           width={ZSizeVaried.Full}
         />
@@ -64,6 +76,11 @@ export function ZHomePage() {
           Fashion is built around this philosophy; users are most productive when they are focused on a single task at a
           time.
         </ZParagraph>
+
+        <ZParagraph>
+          At the root of the entire system is the theme. The theme describes the color scheme of your page and
+          simplifies the way you handle the visual aspect of your site.
+        </ZParagraph>
       </ZCard>
 
       <ZCard
@@ -71,16 +88,7 @@ export function ZHomePage() {
         width={ZSizeFixed.Large}
         heading={ZFashionRouteBoutique.name}
         subHeading={ZFashionRouteBoutique.description}
-        footer={
-          <ZButton
-            label='Get Started'
-            onClick={() => navigate('boutique')}
-            fashion={primary}
-            name='boutique-get-started'
-            outline
-            width={ZSizeVaried.Full}
-          />
-        }
+        footer={renderGetStarted('boutique')}
       >
         <ZImageSource
           className={classes.avatar}

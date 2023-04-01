@@ -1,7 +1,15 @@
-import { ZCaption, ZH1, ZImageSource, ZRoute, ZRouteMap, ZRouter } from '@zthun/fashion-boutique';
+import {
+  IZBreadcrumbsLocation,
+  ZCaption,
+  ZH1,
+  ZImageSource,
+  ZRoute,
+  ZRouteMap,
+  ZRouter
+} from '@zthun/fashion-boutique';
 import { ZBannerMain, ZBreadcrumbOutlet, ZNotFound } from '@zthun/fashion-boutique-page';
 import { ZSizeVaried } from '@zthun/fashion-tailor';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { ZBooleanPage } from '../boutique/boolean/boolean-page';
 import { ZBoutiquePage } from '../boutique/boutique-page';
 import { ZButtonPage } from '../boutique/button/button-page';
@@ -26,8 +34,10 @@ import {
   ZFashionRouteNumber,
   ZFashionRouteSuspense,
   ZFashionRouteText,
+  ZFashionRouteTheme,
   ZFashionRouteTypography
 } from '../routes';
+import { ZThemePage } from '../theme/theme-page';
 
 /**
  * Represents the root entry point into the application.
@@ -44,12 +54,17 @@ export function ZFashionApp() {
     </div>
   );
 
+  const breadcrumbs: IZBreadcrumbsLocation = useMemo(() => ({ home: { name: 'home' } }), []);
+
   return (
     <ZRouter>
       <ZBannerMain avatar={avatar} prefix={prefix}>
         <ZRouteMap>
           <ZRoute path={ZFashionRouteHome.path} element={<ZHomePage />} />
-          <ZRoute path={ZFashionRouteBoutique.path} element={<ZBreadcrumbOutlet />}>
+          <ZRoute path={ZFashionRouteTheme.path} element={<ZBreadcrumbOutlet breadcrumbsProps={breadcrumbs} />}>
+            <ZRoute path='' element={<ZThemePage />} />
+          </ZRoute>
+          <ZRoute path={ZFashionRouteBoutique.path} element={<ZBreadcrumbOutlet breadcrumbsProps={breadcrumbs} />}>
             <ZRoute path={ZFashionRouteBoolean.path} element={<ZBooleanPage />} />
             <ZRoute path={ZFashionRouteButton.path} element={<ZButtonPage />} />
             <ZRoute path={ZFashionRouteCard.path} element={<ZCardPage />} />
