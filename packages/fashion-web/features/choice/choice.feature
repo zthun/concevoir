@@ -4,7 +4,6 @@ Feature: Choice Page
 Background:
   Given I navigate to the choice demo page
 
-@debug
 @ChoicePage-Select
 @ChoicePage-Select-Single
 Scenario: Selecting an item updates the value
