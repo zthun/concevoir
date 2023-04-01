@@ -24,7 +24,7 @@ export function ZBreadcrumbsLocation(props: IZBreadcrumbs) {
   const location = useLocation();
   const sections = useMemo(() => {
     const all = location.pathname.split('/').filter((p) => !!p.trim());
-    const _sections: { name: string; path: string }[] = [];
+    const _sections: { name: string; path: string }[] = [{ name: 'home', path: '/' }];
 
     for (let i = 0; i < all.length; ++i) {
       const previous = _sections[i - 1]?.path || '';
