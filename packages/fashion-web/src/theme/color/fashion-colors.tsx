@@ -2,7 +2,7 @@ import {
   IZComponentFashion,
   ZBox,
   ZCaption,
-  ZLabel,
+  ZH4,
   ZStack,
   createStyleHook,
   useFashionTheme
@@ -62,7 +62,7 @@ export function ZFashionColors(props: IZFashionColors) {
       data-fashion={fashion.name}
     >
       <ZStack orientation='vertical' gap={ZSizeFixed.Small}>
-        <ZLabel>{fashion.name}</ZLabel>
+        <ZH4>{fashion.name}</ZH4>
         <ZStack orientation='horizontal' gap={ZSizeFixed.Medium}>
           {renderColor('Light', classes.light)}
           {renderColor('Main', classes.main)}
