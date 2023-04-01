@@ -37,6 +37,7 @@ export * from './full-screen/full-screen';
 export * from './grid/grid';
 export * from './image/image-source';
 export * from './image/image-source.cm';
+export * from './label/label';
 export * from './line-item/line-item';
 export * from './line-item/line-item.cm';
 export * from './list/list';
