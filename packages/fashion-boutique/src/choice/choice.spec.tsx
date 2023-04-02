@@ -359,5 +359,32 @@ describe('ZChoice', () => {
     it('should not select anything if the selected option is not available', async () => {
       await shouldSelectNothingIfOptionIsUnavailable(createTestTarget);
     });
+
+    it('should remove the selection when clicked again', async () => {
+      // Arrange.
+      const [, value] = options;
+      const target = await createTestTarget();
+      await target.select(value);
+      // Act.
+      await target.select(value);
+      const actual = await target.selected();
+      // Assert.
+      expect(actual.length).toEqual(0);
+    });
+
+    it('should not remove the selection when the indelible flag is on and the mode is singular', async () => {
+      // Arrange.
+      multiple = false;
+      indelible = true;
+      const [, value] = options;
+      const target = await createTestTarget();
+      await target.select(value);
+      // Act.
+      await target.select(value);
+      const selection = await target.selected();
+      const [actual] = await Promise.all(selection.map((s) => s.value()));
+      // Assert.
+      expect(actual).toEqual(value);
+    });
   });
 });
