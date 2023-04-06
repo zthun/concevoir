@@ -108,7 +108,7 @@ export class ZFashionThemeBuilder {
    */
   public constructor() {
     this._design = {
-      name: 'Default',
+      name: 'Light',
       primary: new ZFashionBuilder()
         .name('Primary')
         .main(hex(0x1976d2))

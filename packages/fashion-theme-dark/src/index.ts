@@ -90,7 +90,7 @@ function createSurface() {
 
 export function createTheme() {
   return new ZFashionThemeBuilder()
-    .name('Default (Dark)')
+    .name('Dark')
     .primary(createPrimary())
     .secondary(createSecondary())
     .success(createSuccess())
