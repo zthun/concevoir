@@ -1,13 +1,8 @@
-import { ZBox, ZCard, ZChoiceDropDown, ZGrid, ZH3, ZImageSource, ZParagraph } from '@zthun/fashion-boutique';
+import { ZBox, ZCard, ZGrid, ZH3, ZImageSource, ZParagraph, useFashionTheme } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { ZFashionThemeBuilder } from '@zthun/fashion-theme';
-import { setFirst } from '@zthun/helpful-fn';
-import { identity } from 'lodash';
-import React, { useState } from 'react';
+import React from 'react';
 import { ZFashionRouteTheme } from '../routes';
 import { ZFashionColors } from './color/fashion-colors';
-
-const themeDefault = new ZFashionThemeBuilder().build();
 
 /**
  * Represents the theme page.
@@ -15,9 +10,7 @@ const themeDefault = new ZFashionThemeBuilder().build();
  * @returns The JSX to render the theme page.
  */
 export function ZThemePage() {
-  const [theme, setTheme] = useState(themeDefault);
-  const themes = [themeDefault];
-  const _setTheme = setFirst.bind(null, setTheme, themeDefault);
+  const { primary, secondary, success, warning, error, info, light, dark, body, surface } = useFashionTheme();
 
   return (
     <ZCard
@@ -35,33 +28,18 @@ export function ZThemePage() {
 
         <ZBox margin={{ bottom: ZSizeFixed.Medium }}>
           <ZGrid columns='1fr 1fr 1fr' columnsLg='1fr 1fr' columnsMd='1fr' gap={ZSizeFixed.Medium}>
-            <ZFashionColors fashion={theme.primary} />
-            <ZFashionColors fashion={theme.secondary} />
-            <ZFashionColors fashion={theme.success} />
-            <ZFashionColors fashion={theme.warning} />
-            <ZFashionColors fashion={theme.error} />
-            <ZFashionColors fashion={theme.info} />
-            <ZFashionColors fashion={theme.light} />
-            <ZFashionColors fashion={theme.dark} />
-            <ZFashionColors fashion={theme.body} />
-            <ZFashionColors fashion={theme.surface} />
+            <ZFashionColors fashion={primary} />
+            <ZFashionColors fashion={secondary} />
+            <ZFashionColors fashion={success} />
+            <ZFashionColors fashion={warning} />
+            <ZFashionColors fashion={error} />
+            <ZFashionColors fashion={info} />
+            <ZFashionColors fashion={light} />
+            <ZFashionColors fashion={dark} />
+            <ZFashionColors fashion={body} />
+            <ZFashionColors fashion={surface} />
           </ZGrid>
         </ZBox>
-      </ZBox>
-
-      <ZBox margin={{ bottom: ZSizeFixed.Large }}>
-        <ZH3>Options</ZH3>
-
-        <ZGrid gap={ZSizeFixed.Medium}>
-          <ZChoiceDropDown
-            indelible
-            options={themes}
-            value={[theme]}
-            onValueChange={_setTheme}
-            identifier={identity}
-            renderOption={(t) => t.name}
-          />
-        </ZGrid>
       </ZBox>
     </ZCard>
   );
