@@ -1,15 +1,24 @@
 import {
   IZBreadcrumbsLocation,
+  ZBox,
   ZCaption,
+  ZChoiceToggle,
+  ZDrawerButton,
+  ZFashionThemeContext,
   ZH1,
+  ZH6,
   ZImageSource,
   ZRoute,
   ZRouteMap,
   ZRouter
 } from '@zthun/fashion-boutique';
 import { ZBannerMain, ZBreadcrumbOutlet, ZNotFound } from '@zthun/fashion-boutique-page';
-import { ZSizeVaried } from '@zthun/fashion-tailor';
-import React, { useMemo } from 'react';
+import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
+import { createTheme as createLightTheme } from '@zthun/fashion-theme';
+import { createTheme as createDarkTheme } from '@zthun/fashion-theme-dark';
+import { setFirst } from '@zthun/helpful-fn';
+import { identity } from 'lodash';
+import React, { useMemo, useState } from 'react';
 import { ZBooleanPage } from '../boutique/boolean/boolean-page';
 import { ZBoutiquePage } from '../boutique/boutique-page';
 import { ZButtonPage } from '../boutique/button/button-page';
@@ -39,6 +48,10 @@ import {
 } from '../routes';
 import { ZThemePage } from '../theme/theme-page';
 
+const lightTheme = { theme: createLightTheme(), avatar: 'images/svg/light.svg' };
+const darkTheme = { theme: createDarkTheme(), avatar: 'images/svg/dark.svg' };
+const themes = [lightTheme, darkTheme];
+
 /**
  * Represents the root entry point into the application.
  *
@@ -47,6 +60,8 @@ import { ZThemePage } from '../theme/theme-page';
  */
 export function ZFashionApp() {
   const avatar = <ZImageSource src={ZFashionRouteHome.avatar} height={ZSizeVaried.Full} />;
+  const [theme, setTheme] = useState(lightTheme);
+  const _setTheme = setFirst.bind(null, setTheme, lightTheme);
   const prefix = (
     <div className='ZFashionApp-description'>
       <ZH1 compact>{ZFashionRouteHome.name}</ZH1>
@@ -56,30 +71,49 @@ export function ZFashionApp() {
 
   const breadcrumbs: IZBreadcrumbsLocation = useMemo(() => ({ home: { name: 'home' } }), []);
 
+  const suffix = (
+    <ZDrawerButton DrawerProps={{ anchor: 'right' }}>
+      <ZBox padding={ZSizeFixed.Medium}>
+        <ZH6>Theme</ZH6>
+        <ZChoiceToggle
+          label='Theme'
+          value={[theme]}
+          onValueChange={_setTheme}
+          options={themes}
+          renderOption={(o) => o.theme.name}
+          display={(t) => t.theme.name}
+          identifier={identity}
+        />
+      </ZBox>
+    </ZDrawerButton>
+  );
+
   return (
     <ZRouter>
-      <ZBannerMain avatar={avatar} prefix={prefix}>
-        <ZRouteMap>
-          <ZRoute path={ZFashionRouteHome.path} element={<ZHomePage />} />
-          <ZRoute path={ZFashionRouteTheme.path} element={<ZBreadcrumbOutlet breadcrumbsProps={breadcrumbs} />}>
-            <ZRoute path='' element={<ZThemePage />} />
-          </ZRoute>
-          <ZRoute path={ZFashionRouteBoutique.path} element={<ZBreadcrumbOutlet breadcrumbsProps={breadcrumbs} />}>
-            <ZRoute path={ZFashionRouteBoolean.path} element={<ZBooleanPage />} />
-            <ZRoute path={ZFashionRouteButton.path} element={<ZButtonPage />} />
-            <ZRoute path={ZFashionRouteCard.path} element={<ZCardPage />} />
-            <ZRoute path={ZFashionRouteChoice.path} element={<ZChoicePage />} />
-            <ZRoute path={ZFashionRouteDrawer.path} element={<ZDrawerPage />} />
-            <ZRoute path={ZFashionRouteList.path} element={<ZListPage />} />
-            <ZRoute path={ZFashionRouteNumber.path} element={<ZNumberPage />} />
-            <ZRoute path={ZFashionRouteSuspense.path} element={<ZSuspensePage />} />
-            <ZRoute path={ZFashionRouteText.path} element={<ZTextPage />} />
-            <ZRoute path={ZFashionRouteTypography.path} element={<ZTypographyPage />} />
-            <ZRoute path='' element={<ZBoutiquePage />} />
-          </ZRoute>
-          <ZRoute path='*' element={<ZNotFound />} />
-        </ZRouteMap>
-      </ZBannerMain>
+      <ZFashionThemeContext.Provider value={theme.theme}>
+        <ZBannerMain avatar={avatar} prefix={prefix} suffix={suffix}>
+          <ZRouteMap>
+            <ZRoute path={ZFashionRouteHome.path} element={<ZHomePage />} />
+            <ZRoute path={ZFashionRouteTheme.path} element={<ZBreadcrumbOutlet breadcrumbsProps={breadcrumbs} />}>
+              <ZRoute path='' element={<ZThemePage />} />
+            </ZRoute>
+            <ZRoute path={ZFashionRouteBoutique.path} element={<ZBreadcrumbOutlet breadcrumbsProps={breadcrumbs} />}>
+              <ZRoute path={ZFashionRouteBoolean.path} element={<ZBooleanPage />} />
+              <ZRoute path={ZFashionRouteButton.path} element={<ZButtonPage />} />
+              <ZRoute path={ZFashionRouteCard.path} element={<ZCardPage />} />
+              <ZRoute path={ZFashionRouteChoice.path} element={<ZChoicePage />} />
+              <ZRoute path={ZFashionRouteDrawer.path} element={<ZDrawerPage />} />
+              <ZRoute path={ZFashionRouteList.path} element={<ZListPage />} />
+              <ZRoute path={ZFashionRouteNumber.path} element={<ZNumberPage />} />
+              <ZRoute path={ZFashionRouteSuspense.path} element={<ZSuspensePage />} />
+              <ZRoute path={ZFashionRouteText.path} element={<ZTextPage />} />
+              <ZRoute path={ZFashionRouteTypography.path} element={<ZTypographyPage />} />
+              <ZRoute path='' element={<ZBoutiquePage />} />
+            </ZRoute>
+            <ZRoute path='*' element={<ZNotFound />} />
+          </ZRouteMap>
+        </ZBannerMain>
+      </ZFashionThemeContext.Provider>
     </ZRouter>
   );
 }
