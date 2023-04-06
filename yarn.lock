@@ -4196,6 +4196,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@zthun/fashion-theme-dark@^0.0.1, @zthun/fashion-theme-dark@workspace:packages/fashion-theme-dark":
+  version: 0.0.0-use.local
+  resolution: "@zthun/fashion-theme-dark@workspace:packages/fashion-theme-dark"
+  dependencies:
+    "@zthun/fashion-theme": ^0.0.1
+    microbundle: ^0.15.1
+    vite: ^4.1.4
+    vitest: ^0.29.2
+  languageName: unknown
+  linkType: soft
+
 "@zthun/fashion-theme@^0.0.1, @zthun/fashion-theme@workspace:packages/fashion-theme":
   version: 0.0.0-use.local
   resolution: "@zthun/fashion-theme@workspace:packages/fashion-theme"
@@ -4220,6 +4231,7 @@ __metadata:
     "@zthun/fashion-boutique-page": ^0.0.1
     "@zthun/fashion-tailor": ^0.0.1
     "@zthun/fashion-theme": ^0.0.1
+    "@zthun/fashion-theme-dark": ^0.0.1
     "@zthun/helpful-fn": ^0.3.0
     "@zthun/webigail-url": ^0.1.0
     history: ^5.3.0
