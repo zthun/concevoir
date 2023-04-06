@@ -61,11 +61,23 @@ function createInfo() {
 }
 
 function createDark() {
-  return new ZFashionBuilder().name('Dark').build();
+  return new ZFashionBuilder()
+    .name('Dark')
+    .light(hex(0x424242))
+    .main(hex(0x212121))
+    .dark(black())
+    .contrast(white())
+    .build();
 }
 
 function createLight() {
-  return new ZFashionBuilder().name('Light').build();
+  return new ZFashionBuilder()
+    .name('Light')
+    .main(hex(0xfafafa))
+    .light(white())
+    .dark(hex(0xf5f5f5))
+    .contrast(black())
+    .build();
 }
 
 function createBody() {
@@ -81,9 +93,9 @@ function createBody() {
 function createSurface() {
   return new ZFashionBuilder()
     .name('Surface')
-    .light(hex(0x9e9e9e))
-    .main(hex(0x757575))
-    .dark(hex(0x414141))
+    .light(hex(0x757575))
+    .main(hex(0x515151))
+    .dark(hex(0x212121))
     .contrast(white())
     .build();
 }
