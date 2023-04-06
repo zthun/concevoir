@@ -28,9 +28,11 @@ export function ZButtonPage() {
   const [fashion, setFashion] = useState<IZFashion>();
   const [count, setCount] = useState<number>(0);
 
-  async function handleClick() {
+  const handleClick = () => {
     setCount((c) => c + 1);
-  }
+  };
+
+  const avatar = <ZImageSource src='/images/png/batman.png' height={ZSizeFixed.Small} width={ZSizeFixed.Small} />;
 
   return (
     <ZCard
@@ -54,6 +56,7 @@ export function ZButtonPage() {
 
         <ZStack orientation='horizontal' gap={ZSizeFixed.ExtraSmall} alignItems='center'>
           <ZButton
+            avatar={avatar}
             loading={loading}
             disabled={disabled}
             borderless={borderless}
@@ -71,6 +74,7 @@ export function ZButtonPage() {
             outline={outline}
             onClick={handleClick}
             fashion={fashion}
+            label={<ZImageSource src='/images/png/batman.png' width={ZSizeFixed.Small} height={ZSizeFixed.Small} />}
             name='icon-button'
             tooltip='Iconography Button'
           />
