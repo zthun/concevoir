@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
-type SetCurrent<T> = ((val: T) => void) | undefined;
+type Reducer<T> = (current: T | undefined) => T;
+type SetCurrent<T> = ((val: T | Reducer<T>) => void) | undefined;
 
 /**
  * A type of state where the value is used from the props in the case of them being set.
@@ -83,7 +84,7 @@ export function useAmbassadorState<T>(
 
   const _current = current === undefined ? localCurrent : current;
 
-  const _setCurrent = (val: T) => {
+  const _setCurrent = (val: T | Reducer<T>) => {
     setLocalCurrent(val);
 
     if (setCurrent) {
