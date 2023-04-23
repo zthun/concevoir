@@ -4263,6 +4263,7 @@ __metadata:
     "@zthun/fashion-theme": ^0.0.1
     "@zthun/helpful-fn": ^0.4.0
     "@zthun/helpful-obligation": ^0.4.0
+    "@zthun/helpful-react": ^0.4.0
     "@zthun/webigail-http": ^0.1.0
     "@zthun/webigail-url": ^0.1.0
     csstype: ^3.1.1
@@ -4327,6 +4328,7 @@ __metadata:
     "@zthun/fashion-theme": ^0.0.1
     "@zthun/fashion-theme-dark": ^0.0.1
     "@zthun/helpful-fn": ^0.4.0
+    "@zthun/helpful-react": ^0.4.0
     "@zthun/webigail-url": ^0.1.0
     history: ^5.3.0
     lodash: ^4.17.21
@@ -4380,6 +4382,19 @@ __metadata:
   version: 0.4.0
   resolution: "@zthun/helpful-obligation@npm:0.4.0"
   checksum: 5d8b266dc37efe67618fc3e2dfb6b356de0be4e278afb73f63134cd5a1be3b825afe7d4fc9bba8be3e5f29ca445d5df0cbd26fab23e44cbd5a7fa14a31da2b97
+  languageName: node
+  linkType: hard
+
+"@zthun/helpful-react@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "@zthun/helpful-react@npm:0.4.0"
+  dependencies:
+    "@zthun/helpful-fn": ^0.4.0
+    lodash: ^4.17.21
+  peerDependencies:
+    react: ^18.1.0
+    react-dom: ^18.1.0
+  checksum: ad501f76af021c521c90a203075ca32d2ce52e6a04bd0beb3707de42f4ee1b9193fbc6efa0cc9614dc0828b4155bc55f74ffcc746a2fe3a51e59a5fc9692b7c5
   languageName: node
   linkType: hard
 

@@ -1,4 +1,5 @@
 import { createGuid } from '@zthun/helpful-fn';
+import { useAmbassadorState } from '@zthun/helpful-react';
 import { first } from 'lodash';
 import { ReactNode, useMemo } from 'react';
 import { IZComponentDisabled } from '../component/component-disabled';
@@ -6,7 +7,6 @@ import { IZComponentLabel } from '../component/component-label';
 import { IZComponentName } from '../component/component-name';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentValue } from '../component/component-value';
-import { useAmbassadorState } from '../state/use-ambassador-state';
 
 export interface IZChoiceOption<O, V> {
   key: string;

@@ -1,12 +1,7 @@
-import {
-  IZComponentName,
-  IZComponentValue,
-  useAmbassadorState,
-  useFashionTheme,
-  ZChoiceDropDown
-} from '@zthun/fashion-boutique';
+import { IZComponentName, IZComponentValue, useFashionTheme, ZChoiceDropDown } from '@zthun/fashion-boutique';
 import { IZFashion } from '@zthun/fashion-theme';
 import { setFirst } from '@zthun/helpful-fn';
+import { useAmbassadorState } from '@zthun/helpful-react';
 import { identity } from 'lodash';
 import React, { useMemo } from 'react';
 

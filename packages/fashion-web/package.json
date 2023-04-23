@@ -32,7 +32,7 @@
     "@zthun/fashion-tailor": "^0.0.1",
     "@zthun/fashion-theme": "^0.0.1",
     "@zthun/fashion-theme-dark": "^0.0.1",
-    "@zthun/helpful-fn": "^0.3.0",
+    "@zthun/helpful-fn": "^0.4.0",
     "history": "^5.3.0",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
@@ -44,6 +44,7 @@
   },
   "sideEffects": false,
   "dependencies": {
+    "@zthun/helpful-react": "^0.4.0",
     "@zthun/webigail-url": "^0.1.0"
   }
 }

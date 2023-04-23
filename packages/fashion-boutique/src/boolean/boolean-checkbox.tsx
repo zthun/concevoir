@@ -1,7 +1,7 @@
 import { Checkbox, FormControlLabel } from '@mui/material';
 import { cssJoinDefined } from '@zthun/helpful-fn';
+import { useAmbassadorState } from '@zthun/helpful-react';
 import React from 'react';
-import { useAmbassadorState } from '../state/use-ambassador-state';
 import { useFashionTheme } from '../theme/fashion';
 import { createStyleHook } from '../theme/styled';
 import { IZBoolean } from './boolean';
