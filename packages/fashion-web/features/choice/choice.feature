@@ -12,8 +12,9 @@ Scenario: Selecting an item updates the value
   Then the values should be updated to "<values>" on the choice demo page
   Examples:
   |choice|text|values|
-  |dropdown|Cyborg (Vic Stone)|cyborg|
-  |autocomplete|Superman (Clark Kent)|superman|
+  |dropdown|green-lantern|green-lantern|
+  |autocomplete|superman|superman|
+  |toggle|batman|batman|
 
 @ChoicePage-Select
 @ChoicePage-Select-Multiple
@@ -25,8 +26,9 @@ Scenario: Selection multiple items updates the values
   Then the values should be updated to "<values>" on the choice demo page
   Examples:
   |choice|first|second|values|
-  |dropdown|Cyborg (Vic Stone)|Green Lantern (Hal Jordan)|cyborg,green-lantern|
-  |autocomplete|Wonder Woman (Diana Prince)|Batman (Bruce Wayne)|wonder-woman,batman|
+  |dropdown|superman|green-lantern|superman,green-lantern|
+  |autocomplete|wonder-woman|batman|wonder-woman,batman|
+  |toggle|superman|batman|superman,batman|
 
 @ChoicePage-Option
 @ChoicePage-Option-Disabled
@@ -34,10 +36,12 @@ Scenario: Checking the disabled option disables the choice demos
   When I check the "disabled" option on the choice demo page
   Then the "dropdown" should be disabled on the choice demo page
   And the "autocomplete" should be disabled on the choice demo page
+  And the "toggle" should be disabled on the choice demo page
 
 @ChoicePage-Option
 @ChoicePage-Option-Indelible
 Scenario: Checking the indelible option removes the clear button
   When I check the "indelible" option on the choice demo page
-  Then the "dropdown" should be indelible
-  And the "autocomplete" should be indelible
+  Then the "dropdown" should be indelible on the choice demo page
+  And the "autocomplete" should be indelible on the choice demo page
+  And the "toggle" should be indelible on the choice demo page

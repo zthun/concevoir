@@ -55,7 +55,7 @@ Then(
 );
 
 Then(
-  'the {string} should be indelible',
+  'the {string} should be indelible on the choice demo page',
   async function (this: ZFashionWorld<ZChoicePageComponentModel>, name: ChoiceDemo) {
     const choice = await this.parameters.page[name]();
     await choice.clear();
