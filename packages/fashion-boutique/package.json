@@ -27,12 +27,12 @@
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.12",
     "@mui/system": "^5.11.12",
-    "@zthun/cirque": "^4.2.0",
+    "@zthun/cirque": "^4.3.0",
     "@zthun/fashion-tailor": "^0.0.1",
     "@zthun/fashion-theme": "^0.0.1",
-    "@zthun/helpful-fn": "^0.4.0",
-    "@zthun/helpful-obligation": "^0.4.0",
-    "@zthun/helpful-react": "^0.4.0",
+    "@zthun/helpful-fn": "^0.5.0",
+    "@zthun/helpful-obligation": "^0.5.0",
+    "@zthun/helpful-react": "^0.5.0",
     "@zthun/webigail-http": "^0.1.0",
     "@zthun/webigail-url": "^0.1.0",
     "csstype": "^3.1.1",
@@ -42,7 +42,7 @@
     "tss-react": "^4.7.2"
   },
   "devDependencies": {
-    "@zthun/cirque-du-react": "^4.2.0",
+    "@zthun/cirque-du-react": "^4.3.0",
     "microbundle": "^0.15.1",
     "vite": "^4.1.4",
     "vitest": "^0.29.2"
