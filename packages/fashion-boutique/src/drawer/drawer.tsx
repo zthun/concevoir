@@ -1,5 +1,5 @@
 import { Drawer } from '@mui/material';
-import { cssJoinDefined } from '@zthun/helpful-fn';
+import { ZSideAnchor, cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy';
 import { IZComponentStyle } from '../component/component-style';
@@ -8,7 +8,7 @@ import { IZComponentStyle } from '../component/component-style';
  * Represents props for the drawer.
  */
 export interface IZDrawer extends IZComponentHierarchy, IZComponentStyle {
-  anchor?: 'left' | 'right' | 'top' | 'bottom';
+  anchor?: ZSideAnchor;
   open: boolean;
 
   onClose?(): void;

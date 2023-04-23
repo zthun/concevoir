@@ -5,6 +5,7 @@ import {
   ZDrawerButtonComponentModel,
   ZDrawerComponentModel
 } from '@zthun/fashion-boutique';
+import { ZSideAnchor } from '@zthun/helpful-fn';
 
 /**
  * Represents the component model for the drawer page.
@@ -41,7 +42,7 @@ export class ZDrawerPageComponentModel extends ZCircusComponentModel {
    * @param position -
    *        The position to set.
    */
-  public async anchor(position: 'left' | 'right' | 'top' | 'bottom'): Promise<void> {
+  public async anchor(position: ZSideAnchor): Promise<void> {
     const anchor = await ZCircusBy.first(this.driver, ZChoiceComponentModel, 'anchor');
     await anchor.select(position);
   }

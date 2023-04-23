@@ -1,4 +1,5 @@
 import { IZCircusDriver, ZCircusActBuilder, ZCircusComponentModel, ZCircusKeyboardQwerty } from '@zthun/cirque';
+import { ZHorizontalAnchor, ZSideAnchor } from '@zthun/helpful-fn';
 
 /**
  * Represents the component model for a drawer.
@@ -58,7 +59,7 @@ export class ZDrawerComponentModel extends ZCircusComponentModel {
    * @returns
    *    The state anchor for the drawer.
    */
-  public async anchor(): Promise<'left' | 'right' | 'top' | 'bottom'> {
-    return await this.driver.attribute<'left' | 'right' | 'top' | 'bottom'>('data-anchor', 'left');
+  public async anchor(): Promise<ZSideAnchor> {
+    return await this.driver.attribute<ZSideAnchor>('data-anchor', ZHorizontalAnchor.Left);
   }
 }
