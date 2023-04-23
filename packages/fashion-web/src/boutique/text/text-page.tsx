@@ -48,7 +48,7 @@ export function ZTextPage() {
         </ZParagraph>
 
         <ZBox margin={{ bottom: ZSizeFixed.Medium }}>
-          <ZGrid alignItems='center' columns='16rem ' gap={ZSizeFixed.Medium}>
+          <ZGrid alignItems='center' columns='1fr 1fr 1fr' columnsSm='1fr' gap={ZSizeFixed.Medium}>
             <ZTextInput
               disabled={disabled}
               readOnly={readOnly}
@@ -86,19 +86,22 @@ export function ZTextPage() {
               prefix={adornments ? flag : null}
               suffix={adornments ? search : null}
             />
-            <ZTextArea
-              disabled={disabled}
-              readOnly={readOnly}
-              value={value}
-              required={required}
-              name='area'
-              placeholder='Text Area'
-              onValueChange={setValue}
-              label='Area'
-              prefix={adornments ? flag : null}
-              suffix={adornments ? search : null}
-            />
           </ZGrid>
+        </ZBox>
+
+        <ZBox margin={{ bottom: ZSizeFixed.Medium }}>
+          <ZTextArea
+            disabled={disabled}
+            readOnly={readOnly}
+            value={value}
+            required={required}
+            name='area'
+            placeholder='Text Area'
+            onValueChange={setValue}
+            label='Area'
+            prefix={adornments ? flag : null}
+            suffix={adornments ? search : null}
+          />
         </ZBox>
 
         <ZCaption className='ZTextPage-value' compact>
