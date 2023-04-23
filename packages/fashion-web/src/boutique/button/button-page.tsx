@@ -11,6 +11,7 @@ import {
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { IZFashion } from '@zthun/fashion-theme';
+import { ZOrientation } from '@zthun/helpful-fn';
 import React, { useState } from 'react';
 import { ZFashionRouteButton } from '../../routes';
 import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
@@ -54,7 +55,7 @@ export function ZButtonPage() {
           button with a tooltip if you desire.
         </ZParagraph>
 
-        <ZStack orientation='horizontal' gap={ZSizeFixed.ExtraSmall} alignItems='center'>
+        <ZStack orientation={ZOrientation.Horizontal} gap={ZSizeFixed.ExtraSmall} alignItems='center'>
           <ZButton
             avatar={avatar}
             loading={loading}
