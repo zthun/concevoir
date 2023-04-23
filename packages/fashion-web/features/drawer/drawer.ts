@@ -1,4 +1,5 @@
 import { Then, When } from '@cucumber/cucumber';
+import { ZSideAnchor } from '@zthun/helpful-fn';
 import assert from 'assert';
 import { ZDrawerPageComponentModel } from '../../src/boutique/drawer/drawer-page.cm';
 import { ZFashionRouteBoutique, ZFashionRouteDrawer } from '../../src/routes';
@@ -11,7 +12,7 @@ When('I navigate to the drawer demo page', async function (this: ZFashionWorld<Z
 
 When(
   'I anchor the drawer to the {string} on the drawer demo page',
-  async function (this: ZFashionWorld<ZDrawerPageComponentModel>, anchor: 'left' | 'right' | 'top' | 'bottom') {
+  async function (this: ZFashionWorld<ZDrawerPageComponentModel>, anchor: ZSideAnchor) {
     const { page } = this.parameters;
     await page.anchor(anchor);
   }
