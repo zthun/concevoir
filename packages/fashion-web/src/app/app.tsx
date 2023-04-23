@@ -16,7 +16,7 @@ import { ZBannerMain, ZBreadcrumbOutlet, ZNotFound } from '@zthun/fashion-boutiq
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { createTheme as createLightTheme } from '@zthun/fashion-theme';
 import { createTheme as createDarkTheme } from '@zthun/fashion-theme-dark';
-import { setFirst } from '@zthun/helpful-fn';
+import { ZHorizontalAnchor, setFirst } from '@zthun/helpful-fn';
 import { identity } from 'lodash';
 import React, { useMemo, useState } from 'react';
 import { ZBooleanPage } from '../boutique/boolean/boolean-page';
@@ -72,11 +72,12 @@ export function ZFashionApp() {
   const breadcrumbs: IZBreadcrumbsLocation = useMemo(() => ({ home: { name: 'home' } }), []);
 
   const suffix = (
-    <ZDrawerButton DrawerProps={{ anchor: 'right' }}>
+    <ZDrawerButton DrawerProps={{ anchor: ZHorizontalAnchor.Right }}>
       <ZBox padding={ZSizeFixed.Medium}>
-        <ZH6>Theme</ZH6>
+        <ZH6>Options</ZH6>
         <ZChoiceToggle
           label='Theme'
+          indelible
           value={[theme]}
           onValueChange={_setTheme}
           options={themes}
