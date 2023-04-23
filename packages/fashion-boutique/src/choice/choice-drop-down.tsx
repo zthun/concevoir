@@ -1,25 +1,31 @@
 import ClearIcon from '@mui/icons-material/Clear';
-import { FormControl, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { IconButton, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { hex } from '@zthun/fashion-theme';
-import { createGuid, cssJoinDefined } from '@zthun/helpful-fn';
+import { cssJoinDefined } from '@zthun/helpful-fn';
 import { castArray, isArray } from 'lodash';
-import React, { ReactNode, useMemo } from 'react';
+import React, { ReactNode } from 'react';
+import { ZLabeled } from '../label/labeled';
 import { createStyleHook } from '../theme/styled';
 import { IZChoice, IZChoiceOption, useChoice } from './choice';
 
-const useChoiceDropDownStyles = createStyleHook(({ tailor }) => {
+const useChoiceDropDownStyles = createStyleHook(({ theme, tailor }) => {
   return {
     root: {
+      '.MuiInputBase-root': {
+        backgroundColor: theme.light.main
+      },
       '.MuiSelect-select': {
         padding: tailor.gap(ZSizeFixed.Small)
       }
     },
+
     clear: {
       fontSize: '1.2rem',
       padding: tailor.gap(ZSizeFixed.Small),
       marginRight: `${tailor.gap()} !important`
     },
+
     chip: {
       'display': 'inline-flex',
       'flexWrap': 'wrap',
@@ -33,6 +39,7 @@ const useChoiceDropDownStyles = createStyleHook(({ tailor }) => {
         margin: 3
       }
     },
+
     toggler: {
       '.ZChoice-toggler': {
         padding: tailor.gap(ZSizeFixed.ExtraSmall)
@@ -53,7 +60,6 @@ const useChoiceDropDownStyles = createStyleHook(({ tailor }) => {
 export function ZChoiceDropDown<O, V>(props: IZChoice<O, V>) {
   const { className, label, disabled, multiple, name, indelible } = props;
   const { choices, value, lookup, cast, render, setValue } = useChoice(props);
-  const labelId = useMemo(() => createGuid(), []);
   const { classes } = useChoiceDropDownStyles();
 
   const handleSelect = (event: SelectChangeEvent<any>) => {
@@ -115,27 +121,28 @@ export function ZChoiceDropDown<O, V>(props: IZChoice<O, V>) {
   }
 
   return (
-    <FormControl
-      className={cssJoinDefined('ZChoice-root', 'ZChoice-drop-down', classes.root, className)}
-      fullWidth
-      data-name={name}
+    <ZLabeled
+      className={cssJoinDefined('ZChoice-root', 'ZChoice-drop-down', className, classes.root)}
+      label={label}
+      name={name}
     >
-      <InputLabel id={labelId}>{label}</InputLabel>
-      <Select
-        className={classes.toggler}
-        classes={{ select: 'ZChoice-toggler' }}
-        labelId={labelId}
-        disabled={disabled}
-        value={cast(value, '')}
-        label={label}
-        multiple={multiple}
-        MenuProps={{ className: 'ZChoice-options ZChoice-options-popup' }}
-        onChange={handleSelect}
-        renderValue={renderSelectedItem}
-        endAdornment={renderClear()}
-      >
-        {renderDropDownItems()}
-      </Select>
-    </FormControl>
+      {(id) => (
+        <Select
+          className={cssJoinDefined(classes.toggler)}
+          classes={{ select: 'ZChoice-toggler' }}
+          labelId={id}
+          disabled={disabled}
+          value={cast(value, '')}
+          multiple={multiple}
+          MenuProps={{ className: 'ZChoice-options ZChoice-options-popup' }}
+          onChange={handleSelect}
+          renderValue={renderSelectedItem}
+          endAdornment={renderClear()}
+          name={name}
+        >
+          {renderDropDownItems()}
+        </Select>
+      )}
+    </ZLabeled>
   );
 }

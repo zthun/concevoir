@@ -2,16 +2,22 @@ import { Autocomplete, AutocompleteRenderInputParams, TextField } from '@mui/mat
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { castArray, first } from 'lodash';
 import React, { HTMLAttributes, SyntheticEvent } from 'react';
+import { ZLabeled } from '../label/labeled';
 import { createStyleHook } from '../theme/styled';
 import { IZChoice, IZChoiceOption, useChoice } from './choice';
 
-const useChoiceAutocompleteStyles = createStyleHook(({ tailor }) => {
+const useChoiceAutocompleteStyles = createStyleHook(({ theme, tailor }) => {
   return {
     root: {
+      '.MuiInputBase-root': {
+        backgroundColor: theme.light.main
+      },
+
       '.MuiSelect-select': {
         padding: tailor.gap()
       }
     },
+
     invisible: {
       display: 'none'
     }
@@ -28,7 +34,7 @@ const useChoiceAutocompleteStyles = createStyleHook(({ tailor }) => {
  *        The JSX to render the choice component.
  */
 export function ZChoiceAutocomplete<O, V>(props: IZChoice<O, V>) {
-  const { className, label, disabled, multiple, name, indelible, identifier } = props;
+  const { className, disabled, multiple, name, label, indelible, identifier } = props;
   const { choices, value, lookup, render, display, setValue } = useChoice(props);
   const { classes } = useChoiceAutocompleteStyles();
 
@@ -82,7 +88,7 @@ export function ZChoiceAutocomplete<O, V>(props: IZChoice<O, V>) {
     // limited with MUI as MUI just renders the the value as the display for the autocomplete.
     return (
       <>
-        <TextField {...props} label={label} />
+        <TextField {...props} />
         <div className={cssJoinDefined('ZChoice-values', classes.invisible)}>
           {castArray(choice).map(_renderBackingValue)}
         </div>
@@ -91,25 +97,32 @@ export function ZChoiceAutocomplete<O, V>(props: IZChoice<O, V>) {
   }
 
   return (
-    <Autocomplete
+    <ZLabeled
       className={cssJoinDefined('ZChoice-root', 'ZChoice-autocomplete', classes.root, className)}
-      data-name={name}
-      componentsProps={{
-        clearIndicator: { className: cssJoinDefined('ZChoice-clear', [classes.invisible, !chosen.length]) },
-        popper: { className: 'ZChoice-options ZChoice-options-popup' },
-        popupIndicator: { className: 'ZChoice-toggler' }
-      }}
-      autoHighlight
-      disabled={disabled}
-      disableClearable={indelible}
-      options={choices}
-      value={choice}
-      onChange={handleSelect}
-      multiple={multiple}
-      getOptionLabel={getOptionLabel}
-      isOptionEqualToValue={isOptionEqualToValue}
-      renderOption={renderOption}
-      renderInput={renderInput}
-    />
+      label={label}
+      name={name}
+    >
+      {() => (
+        <Autocomplete
+          data-name={name}
+          componentsProps={{
+            clearIndicator: { className: cssJoinDefined('ZChoice-clear', [classes.invisible, !chosen.length]) },
+            popper: { className: 'ZChoice-options ZChoice-options-popup' },
+            popupIndicator: { className: 'ZChoice-toggler' }
+          }}
+          autoHighlight
+          disabled={disabled}
+          disableClearable={indelible}
+          options={choices}
+          value={choice}
+          onChange={handleSelect}
+          multiple={multiple}
+          getOptionLabel={getOptionLabel}
+          isOptionEqualToValue={isOptionEqualToValue}
+          renderOption={renderOption}
+          renderInput={renderInput}
+        />
+      )}
+    </ZLabeled>
   );
 }
