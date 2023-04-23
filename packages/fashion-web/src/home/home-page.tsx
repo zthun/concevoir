@@ -33,15 +33,14 @@ const useHomePageStyles = createStyleHook(({ tailor }) => ({
 export function ZHomePage() {
   const { classes } = useHomePageStyles();
   const navigate = useNavigate();
-  const { primary } = useFashionTheme();
+  const { secondary } = useFashionTheme();
 
   const renderGetStarted = (where: string) => (
     <ZButton
       label='Get Started'
       onClick={() => navigate(where)}
-      fashion={primary}
-      name={`${name}-get-started`}
-      outline
+      fashion={secondary}
+      name={`${where}-get-started`}
       width={ZSizeVaried.Full}
     />
   );
