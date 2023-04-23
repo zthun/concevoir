@@ -40,6 +40,16 @@ export class ZChoicePageComponentModel extends ZCircusComponentModel {
   }
 
   /**
+   * Gets the toggle choice component.
+   *
+   * @returns
+   *        The toggle choice component.
+   */
+  public toggle(): Promise<ZChoiceComponentModel> {
+    return ZCircusBy.first(this.driver, ZChoiceComponentModel, 'toggle');
+  }
+
+  /**
    * Gets the option to disable the drop downs.
    *
    * @returns
