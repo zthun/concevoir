@@ -1,7 +1,7 @@
 import { IZComponentFashion, ZBox, ZCaption, ZH4, ZStack, ZTextColor, createStyleHook } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionBuilder } from '@zthun/fashion-theme';
-import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
+import { ZOrientation, cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import React, { useMemo } from 'react';
 
 export interface IZFashionColors extends Required<IZComponentFashion> {}
@@ -50,7 +50,7 @@ export function ZFashionColors(props: IZFashionColors) {
   const boxFashion = useMemo(() => new ZFashionBuilder().copy(fashion).swap().build(), [fashion]);
 
   const renderColor = (name: string, c: string) => (
-    <ZStack orientation='vertical' alignItems='center'>
+    <ZStack orientation={ZOrientation.Vertical} alignItems='center'>
       <ZCaption compact>{name}</ZCaption>
       <div className={cssJoinDefined('ZFashionColors-block', classes.block, c)} />
     </ZStack>
@@ -65,11 +65,11 @@ export function ZFashionColors(props: IZFashionColors) {
       data-name={fashion.name}
       data-fashion={fashion.name}
     >
-      <ZStack orientation='vertical' gap={ZSizeFixed.Small}>
+      <ZStack orientation={ZOrientation.Vertical} gap={ZSizeFixed.Small}>
         <ZTextColor fashion={fashion}>
           <ZH4>{fashion.name}</ZH4>
         </ZTextColor>
-        <ZStack orientation='horizontal' gap={ZSizeFixed.Medium}>
+        <ZStack orientation={ZOrientation.Horizontal} gap={ZSizeFixed.Medium}>
           {renderColor('Light', classes.light)}
           {renderColor('Main', classes.main)}
           {renderColor('Dark', classes.dark)}
