@@ -1,19 +1,20 @@
 import { Stack } from '@mui/material';
 import { createSizeChartFixedArithmetic, createSizeChartVoidZero, ZSizeFixed, ZSizeVoid } from '@zthun/fashion-tailor';
-import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
+import { cssJoinDefined, firstDefined, ZOrientation } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import React from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy';
+import { IZComponentName } from '../component/component-name';
 import { IZComponentStyle } from '../component/component-style';
 
 /**
  * Represents a stack component.
  */
-interface IZStack extends IZComponentHierarchy, IZComponentStyle {
+interface IZStack extends IZComponentHierarchy, IZComponentStyle, IZComponentName {
   alignItems?: Property.AlignItems;
   justifyContent?: Property.JustifyContent;
   gap?: ZSizeFixed | ZSizeVoid;
-  orientation?: 'horizontal' | 'vertical';
+  orientation?: ZOrientation;
 }
 
 const GapChart = {
@@ -22,9 +23,9 @@ const GapChart = {
 };
 
 export function ZStack(props: IZStack) {
-  const { className, alignItems, justifyContent, gap, orientation, children } = props;
+  const { className, alignItems, justifyContent, gap, name, orientation, children } = props;
   const _gap = firstDefined(ZSizeVoid.None, gap);
-  const direction = orientation === 'horizontal' ? 'row' : 'column';
+  const direction = orientation === ZOrientation.Horizontal ? 'row' : 'column';
   const spacing = GapChart[_gap];
 
   return (
@@ -35,6 +36,7 @@ export function ZStack(props: IZStack) {
       spacing={spacing}
       direction={direction}
       data-orientation={orientation}
+      data-name={name}
     >
       {children}
     </Stack>
