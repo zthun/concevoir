@@ -125,4 +125,24 @@ describe('ZChoicePage', () => {
       await shouldBeIndelible(factory);
     });
   });
+
+  describe('Toggle', () => {
+    const factory = (t: ZChoicePageComponentModel) => t.toggle();
+
+    it('should select the value', async () => {
+      await shouldSelectTheValue(factory);
+    });
+
+    it('should disable the choice', async () => {
+      await shouldBeDisabled(factory);
+    });
+
+    it('should allow multiple selections in the choice', async () => {
+      await shouldAllowMultipleItems(factory);
+    });
+
+    it('should be indelible', async () => {
+      await shouldBeIndelible(factory);
+    });
+  });
 });

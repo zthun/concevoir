@@ -360,6 +360,10 @@ describe('ZChoice', () => {
       await shouldSelectNothingIfOptionIsUnavailable(createTestTarget);
     });
 
+    it('should clear the selection', async () => {
+      await shouldClearTheSelection(createTestTarget);
+    });
+
     it('should remove the selection when clicked again', async () => {
       // Arrange.
       const [, value] = options;
