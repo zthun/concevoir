@@ -1,12 +1,13 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
+import { ZOrientation } from '@zthun/helpful-fn';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZStack } from './stack';
 import { ZStackComponentModel } from './stack.cm';
 
 describe('ZStack', () => {
-  let orientation: 'horizontal' | 'vertical' | undefined;
+  let orientation: ZOrientation | undefined;
 
   async function createTestTarget() {
     const element = <ZStack orientation={orientation} />;
@@ -27,7 +28,7 @@ describe('ZStack', () => {
 
     it('should orient horizontally', async () => {
       // Arrange.
-      orientation = 'horizontal';
+      orientation = ZOrientation.Horizontal;
       const target = await createTestTarget();
       // Act.
       const actual = await target.orientation();
