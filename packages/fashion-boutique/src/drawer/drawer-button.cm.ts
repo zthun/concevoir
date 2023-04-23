@@ -1,4 +1,4 @@
-import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
+import { ZCircusBy, ZCircusComponentModel, ZCircusWaitOptionsBuilder } from '@zthun/cirque';
 import { ZButtonComponentModel } from '../button/button.cm';
 import { ZDrawerComponentModel } from './drawer.cm';
 
@@ -55,7 +55,8 @@ export class ZDrawerButtonComponentModel extends ZCircusComponentModel {
 
     const button = await this._button();
     await button.click();
-    await this.driver.wait(() => this.opened());
+    const options = new ZCircusWaitOptionsBuilder().description('Opening the drawer').debounce(1000).build();
+    await this.driver.wait(() => this.opened(), options);
     return this.drawer();
   }
 

@@ -1,4 +1,9 @@
-import { ZCircusActBuilder, ZCircusComponentModel, ZCircusKeyboardQwerty } from '@zthun/cirque';
+import {
+  ZCircusActBuilder,
+  ZCircusComponentModel,
+  ZCircusKeyboardQwerty,
+  ZCircusWaitOptionsBuilder
+} from '@zthun/cirque';
 import { findIndex } from 'lodash';
 import { ZChoiceOptionComponentModel } from './choice-option.cm';
 
@@ -73,10 +78,12 @@ export class ZChoiceComponentModel extends ZCircusComponentModel {
       const toggler = await this.driver.select('.ZChoice-root .ZChoice-toggler');
       const act = new ZCircusActBuilder().click().build();
       await toggler.perform(act);
-      await toggler.wait(() => this.opened(), {
-        description: 'Attempting to open the choice component',
-        timeout: 2500
-      });
+      const waitOptions = new ZCircusWaitOptionsBuilder()
+        .timeout(2500)
+        .description('Attempting to open the choice component')
+        .debounce(500)
+        .build();
+      await toggler.wait(() => this.opened(), waitOptions);
     }
 
     const closable = await this.closable();
@@ -84,7 +91,7 @@ export class ZChoiceComponentModel extends ZCircusComponentModel {
     if (closable) {
       // The options should be on the body in a popup.
       const body = await this.driver.body();
-      const menu = await body.select('.ZChoice-options');
+      const menu = await body.select('.ZChoice-options-popup');
       const options = await menu.query('.ZChoice-option');
       return options.map((e) => new ZChoiceOptionComponentModel(e));
     }
