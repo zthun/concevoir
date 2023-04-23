@@ -1,5 +1,5 @@
 import { ZCircusComponentModel } from '@zthun/cirque';
-import { ZLinkComponentModel } from './link.cm';
+import { ZLinkComponentModel } from '../link/link.cm';
 
 /**
  * Represents a component model a ZBreadcrumbs component.
