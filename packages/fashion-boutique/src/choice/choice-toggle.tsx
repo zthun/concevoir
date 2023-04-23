@@ -1,8 +1,8 @@
 import { ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { cssJoinDefined } from '@zthun/helpful-fn';
+import { ZOrientation, cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
-import { ZStack } from 'src/stack/stack';
+import { ZStack } from '../stack/stack';
 import { IZChoice, IZChoiceOption, useChoice } from './choice';
 
 /**
@@ -58,14 +58,15 @@ export function ZChoiceToggle<O, V>(props: IZChoice<O, V>) {
 
   return (
     <ZStack
-      orientation='vertical'
+      orientation={ZOrientation.Vertical}
       className={cssJoinDefined('ZChoice-root', 'ZChoice-toggle', 'ZChoice-always-open', className)}
       alignItems='left'
       gap={ZSizeFixed.ExtraSmall}
+      name={name}
     >
       <Tooltip title={label} placement='top-start'>
         <span>
-          <ToggleButtonGroup disabled={disabled} exclusive={!multiple} className='ZChoice-options' data-name={name}>
+          <ToggleButtonGroup disabled={disabled} exclusive={!multiple} className='ZChoice-options'>
             {choices.map(renderChoice)}
           </ToggleButtonGroup>
         </span>
