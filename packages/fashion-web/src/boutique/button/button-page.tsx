@@ -10,11 +10,11 @@ import {
   ZStack
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { IZFashion } from '@zthun/fashion-theme';
 import { ZOrientation } from '@zthun/helpful-fn';
 import React, { useState } from 'react';
 import { ZFashionRouteButton } from '../../routes';
 import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
+import { useFashionState } from '../common/useFashionState';
 
 /**
  * Represents a demo for buttons.
@@ -26,7 +26,7 @@ export function ZButtonPage() {
   const [disabled, setDisabled] = useState(false);
   const [outline, setOutline] = useState(false);
   const [borderless, setBorderless] = useState(false);
-  const [fashion, setFashion] = useState<IZFashion>();
+  const [fashion, fashionName, setFashion] = useFashionState();
   const [count, setCount] = useState<number>(0);
 
   const handleClick = () => {
@@ -94,7 +94,7 @@ export function ZButtonPage() {
           <ZBooleanSwitch value={disabled} onValueChange={setDisabled} name='disabled' label='Disabled' />
           <ZBooleanSwitch value={outline} onValueChange={setOutline} name='outline' label='Outline' />
           <ZBooleanSwitch value={borderless} onValueChange={setBorderless} name='borderless' label='Borderless' />
-          <ZChoiceDropDownFashion value={fashion} onValueChange={setFashion} name='fashion' />
+          <ZChoiceDropDownFashion value={fashionName} onValueChange={setFashion} name='fashion' />
         </ZGrid>
       </ZBox>
     </ZCard>

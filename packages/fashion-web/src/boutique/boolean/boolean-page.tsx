@@ -12,10 +12,10 @@ import {
   ZParagraph
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
-import { IZFashion } from '@zthun/fashion-theme';
 import React, { useState } from 'react';
 import { ZFashionRouteBoolean } from '../../routes';
 import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
+import { useFashionState } from '../common/useFashionState';
 
 /**
  * Represents a demo for booleans.
@@ -26,7 +26,7 @@ export function ZBooleanPage() {
   const [disabled, setDisabled] = useState(false);
   const [value, setValue] = useState<boolean | null>(false);
   const { success, warning, error } = useFashionTheme();
-  const [fashion, setFashion] = useState<IZFashion>();
+  const [fashion, fashionName, setFashion] = useFashionState();
 
   return (
     <ZCard
@@ -75,7 +75,7 @@ export function ZBooleanPage() {
 
         <ZGrid gap={ZSizeFixed.Medium}>
           <ZBooleanSwitch value={disabled} onValueChange={setDisabled} label='Disabled' name='disabled' />
-          <ZChoiceDropDownFashion value={fashion} onValueChange={setFashion} name='fashion' />
+          <ZChoiceDropDownFashion value={fashionName} onValueChange={setFashion} name='fashion' />
         </ZGrid>
       </ZBox>
 

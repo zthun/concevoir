@@ -1,9 +1,9 @@
 import { ZBooleanSwitch, ZBox, ZButton, ZCard, ZGrid, ZH3, ZImageSource, ZParagraph } from '@zthun/fashion-boutique';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
-import { IZFashion } from '@zthun/fashion-theme';
 import React, { useState } from 'react';
 import { ZFashionRouteCard } from '../../routes';
 import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
+import { useFashionState } from '../common/useFashionState';
 
 // cspell: disable
 const LOREM =
@@ -22,7 +22,7 @@ const LOREM =
  * @returns The JSX to render the alerts demo page.
  */
 export function ZCardPage() {
-  const [fashion, setFashion] = useState<IZFashion>();
+  const [fashion, fashionName, setFashion] = useFashionState();
   const [loading, setLoading] = useState(false);
 
   return (
@@ -59,7 +59,7 @@ export function ZCardPage() {
 
         <ZGrid gap={ZSizeFixed.Medium}>
           <ZBooleanSwitch label='Loading' name='loading' value={loading} onValueChange={setLoading} />
-          <ZChoiceDropDownFashion value={fashion} onValueChange={setFashion} name='fashion' />
+          <ZChoiceDropDownFashion value={fashionName} onValueChange={setFashion} name='fashion' />
         </ZGrid>
       </ZBox>
     </ZCard>

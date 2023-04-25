@@ -1,11 +1,11 @@
-import { IZComponentName, IZComponentValue, useFashionTheme, ZChoiceDropDown } from '@zthun/fashion-boutique';
-import { IZFashion } from '@zthun/fashion-theme';
+import { IZComponentName, IZComponentValue, ZChoiceDropDown } from '@zthun/fashion-boutique';
+import { ZFashionArea, ZFashionContrast, ZFashionName, ZFashionPriority, ZFashionSeverity } from '@zthun/fashion-theme';
 import { setFirst } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
-import { identity } from 'lodash';
+import { identity, startCase } from 'lodash';
 import React, { useMemo } from 'react';
 
-export interface IZChoiceDropDownFashion extends IZComponentValue<IZFashion>, IZComponentName {}
+export interface IZChoiceDropDownFashion extends IZComponentValue<ZFashionName>, IZComponentName {}
 
 /**
  * A drop down that allows the user to select a fashion from the theme.
@@ -19,10 +19,14 @@ export interface IZChoiceDropDownFashion extends IZComponentValue<IZFashion>, IZ
 export function ZChoiceDropDownFashion(props: IZChoiceDropDownFashion) {
   const { value, onValueChange, name } = props;
   const [_value, _setValue] = useAmbassadorState(value, onValueChange);
-  const { primary, secondary, success, warning, error, info, light, dark, body, surface } = useFashionTheme();
   const fashion = useMemo(() => (_value ? [_value] : undefined), [_value]);
   const _setFashion = setFirst.bind(null, _setValue, undefined);
-  const designs = [primary, secondary, success, warning, error, info, light, dark, body, surface];
+  const designs = [
+    ...Object.values(ZFashionPriority),
+    ...Object.values(ZFashionSeverity),
+    ...Object.values(ZFashionArea),
+    ...Object.values(ZFashionContrast)
+  ];
 
   return (
     <ZChoiceDropDown
@@ -30,7 +34,7 @@ export function ZChoiceDropDownFashion(props: IZChoiceDropDownFashion) {
       value={fashion}
       onValueChange={_setFashion}
       options={designs}
-      renderOption={(f) => f.name}
+      renderOption={startCase}
       identifier={identity}
       name={name}
     />

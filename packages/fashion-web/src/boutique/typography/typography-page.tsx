@@ -16,10 +16,10 @@ import {
   ZTextColor
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { IZFashion } from '@zthun/fashion-theme';
-import React, { useState } from 'react';
+import React from 'react';
 import { ZFashionRouteTypography } from '../../routes';
 import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
+import { useFashionState } from '../common/useFashionState';
 
 /**
  * Represents a demo for typography.
@@ -27,7 +27,7 @@ import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
  * @returns The JSX to render the typography demo page.
  */
 export function ZTypographyPage() {
-  const [fashion, setFashion] = useState<IZFashion>();
+  const [fashion, fashionName, setFashion] = useFashionState();
 
   return (
     <ZCard
@@ -79,7 +79,7 @@ export function ZTypographyPage() {
 
       <ZH3>Options</ZH3>
       <ZGrid gap={ZSizeFixed.Medium}>
-        <ZChoiceDropDownFashion value={fashion} onValueChange={setFashion} name='fashion' />
+        <ZChoiceDropDownFashion value={fashionName} onValueChange={setFashion} name='fashion' />
       </ZGrid>
     </ZCard>
   );
