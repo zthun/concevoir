@@ -1,11 +1,16 @@
 import { IZFashionDevice, IZFashionTailor, ZFashionDevice, ZFashionTailor } from '@zthun/fashion-tailor';
-import { ZFashionThemeBuilder } from '@zthun/fashion-theme';
+import { ZFashionName, ZFashionThemeBuilder } from '@zthun/fashion-theme';
 import { createContext, useContext } from 'react';
 
 export const ZFashionThemeContext = createContext(new ZFashionThemeBuilder().build());
 
 export function useFashionTheme() {
   return useContext(ZFashionThemeContext);
+}
+
+export function useFashion(name: ZFashionName | undefined) {
+  const context = useFashionTheme();
+  return name ? context[name] : undefined;
 }
 
 export const ZFashionTailorContext = createContext<IZFashionTailor>(new ZFashionTailor());
