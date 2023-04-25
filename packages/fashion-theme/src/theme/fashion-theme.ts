@@ -3,78 +3,81 @@ import { black, transparent, white } from '../color/rgb';
 import { IZFashion, ZFashionBuilder } from '../fashion/fashion';
 
 /**
- * Represents a fashion scheme that contains a primary and secondary priority.
+ * Priority fashions.
  */
-export interface IZFashionThemePriority {
+export enum ZFashionPriority {
   /**
-   * The fashion for the primary priority.
+   * Primary fashion.  Main color of your site.
    */
-  readonly primary: IZFashion;
+  Primary = 'primary',
   /**
-   * The fashion for the secondary priority.
+   * Secondary fashion.
    */
-  readonly secondary: IZFashion;
+  Secondary = 'secondary'
 }
 
 /**
- * Represents a fashion scheme that contains the severity fashions.
+ * Severity fashions.
+ *
+ * Often useful for alerts and buttons.
  */
-export interface IZFashionThemeSeverity {
+export enum ZFashionSeverity {
   /**
-   * The fashion for the success severity.
+   * Greens.
    */
-  readonly success: IZFashion;
+  Success = 'success',
   /**
-   * The fashion for the warning severity.
+   * Oranges.
    */
-  readonly warning: IZFashion;
+  Warning = 'warning',
   /**
-   * The fashion for the error severity.
+   * Reds.
    */
-  readonly error: IZFashion;
+  Error = 'error',
   /**
-   * The fashion for the info severity.
+   * Blues.
    */
-  readonly info: IZFashion;
+  Info = 'info'
 }
 
 /**
- * Represents a fashion design scheme for targeted spaces.
+ * Fashion that describes an area.
  */
-export interface IZFashionThemeSpace {
+export enum ZFashionArea {
   /**
-   * The fashion for body background.
+   * Site body background.
    */
-  readonly body: IZFashion;
-
+  Body = 'body',
   /**
-   * Contrasting body fashion.
+   * Card or modal surface on top of the body.
    */
-  readonly surface: IZFashion;
+  Surface = 'surface'
 }
 
 /**
- * A fashion scheme
+ * Constant contrast colors.
  */
-export interface IZFashionThemeContrast {
+export enum ZFashionContrast {
   /**
-   * Fashion for less color contrast.
+   * Dark.
+   *
+   * Usually black.
    */
-  readonly light: IZFashion;
+  Dark = 'dark',
   /**
-   * Fashion for heavier color contrast.
+   * Light.
+   *
+   * Usually white.
    */
-  readonly dark: IZFashion;
+  Light = 'light'
 }
+
+export type ZFashionName = ZFashionPriority | ZFashionSeverity | ZFashionArea | ZFashionContrast;
 
 /**
  * Represents a general fashion design that includes the common types.
  */
-export interface IZFashionTheme<TCustom = {}>
-  extends IZFashionThemePriority,
-    IZFashionThemeSeverity,
-    IZFashionThemeSpace,
-    IZFashionThemeContrast {
+export interface IZFashionTheme<TCustom = {}> extends Record<ZFashionName, IZFashion> {
   /**
    * The optional name of the design.
    */
