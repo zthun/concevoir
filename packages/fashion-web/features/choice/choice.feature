@@ -45,3 +45,11 @@ Scenario: Checking the indelible option removes the clear button
   Then the "dropdown" should be indelible on the choice demo page
   And the "autocomplete" should be indelible on the choice demo page
   And the "toggle" should be indelible on the choice demo page
+
+@ChoicePage-Option
+@ChoicePage-Option-Required
+Scenario: Checking the required option flags the labels as required
+  When I check the "required" option on the choice demo page
+  Then the "dropdown" label should be required on the choice demo page
+  And the "autocomplete" label should be required on the choice demo page
+  And the "toggle" label should be required on the choice demo page

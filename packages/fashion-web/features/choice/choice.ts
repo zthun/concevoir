@@ -4,8 +4,8 @@ import { ZChoicePageComponentModel } from '../../src/boutique/choice/choice-page
 import { ZFashionRouteBoutique, ZFashionRouteChoice } from '../../src/routes';
 import { ZFashionWorld } from '../fashion-world';
 
-type ChoiceDemo = 'dropdown' | 'autocomplete';
-type OptionCheckbox = 'multiple' | 'disabled' | 'indelible';
+type ChoiceDemo = 'dropdown' | 'autocomplete' | 'toggle';
+type OptionCheckbox = 'multiple' | 'disabled' | 'indelible' | 'required';
 
 When('I navigate to the choice demo page', async function (this: ZFashionWorld<ZChoicePageComponentModel>) {
   await this.open(ZFashionRouteBoutique, ZFashionRouteChoice);
@@ -61,5 +61,15 @@ Then(
     await choice.clear();
     const actual = await this.parameters.page.value();
     assert.ok(actual.length > 0);
+  }
+);
+
+Then(
+  'the {string} label should be required on the choice demo page',
+  async function (this: ZFashionWorld<ZChoicePageComponentModel>, name: ChoiceDemo) {
+    const choice = await this.parameters.page[name]();
+    const label = await choice.label();
+    const actual = await label?.required();
+    assert.ok(actual);
   }
 );
