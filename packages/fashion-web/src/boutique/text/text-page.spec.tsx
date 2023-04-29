@@ -59,7 +59,7 @@ describe('ZTextPage', () => {
   const shouldBeRequired = _shouldBe.bind(
     null,
     (t) => t.required(),
-    (c) => c.required()
+    (c) => c.label().then((l) => l?.required())
   );
 
   async function shouldHaveAdornments(factory: TextInputFactory) {
