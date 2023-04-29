@@ -16,6 +16,14 @@ export function ZLabeled(props: ZLabeled) {
   const { children, className, name, gap = ZSizeFixed.ExtraSmall, LabelProps } = props;
   const id = useMemo(() => createGuid(), []);
 
+  const renderLabel = () => {
+    if (!LabelProps?.label) {
+      return null;
+    }
+
+    return <ZLabel {...LabelProps} id={id} />;
+  };
+
   return (
     <ZStack
       className={cssJoinDefined('ZLabeled-root', className)}
@@ -23,7 +31,7 @@ export function ZLabeled(props: ZLabeled) {
       gap={gap}
       name={name}
     >
-      <ZLabel {...LabelProps} id={id} />
+      {renderLabel()}
       {children(id)}
     </ZStack>
   );
