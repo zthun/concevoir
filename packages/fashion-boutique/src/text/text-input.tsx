@@ -2,6 +2,7 @@ import { OutlinedInput } from '@mui/material';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { ZLabeled } from '../label/labeled';
+import { createStyleHook } from '../theme/styled';
 import { IZText, useText, withEnterCommit } from './text';
 
 /**
@@ -31,6 +32,12 @@ export interface IZTextInput extends IZText<string> {
   type?: ZTextType;
 }
 
+const useTextInputStyles = createStyleHook(({ theme }) => ({
+  input: {
+    backgroundColor: theme.light.main
+  }
+}));
+
 /**
  * Represents a free form text component that just displays an html input.
  *
@@ -44,6 +51,7 @@ export function ZTextInput(props: IZTextInput) {
   const { className, type = ZTextType.Text, name, label, required } = props;
   const InputProps = useText(props, '');
   const handleKeyDown = withEnterCommit(props);
+  const { classes } = useTextInputStyles();
 
   return (
     <ZLabeled
@@ -55,7 +63,7 @@ export function ZTextInput(props: IZTextInput) {
         <OutlinedInput
           {...InputProps}
           type={type}
-          className='ZText-input'
+          className={cssJoinDefined('ZText-input', classes.input)}
           onKeyDown={handleKeyDown}
           aria-labelledby={id}
         />

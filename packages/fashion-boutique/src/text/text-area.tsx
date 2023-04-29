@@ -4,11 +4,18 @@ import { cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { IZComponentHeight } from '../component/component-height';
 import { ZLabeled } from '../label/labeled';
+import { createStyleHook } from '../theme/styled';
 import { IZText, useText } from './text';
 
 export interface IZTextArea extends IZText, IZComponentHeight<ZSizeFixed> {}
 
 const TextAreaRows = createSizeChartFixedArithmetic(2, 2);
+
+const useTextAreaStyles = createStyleHook(({ theme }) => ({
+  input: {
+    backgroundColor: theme.light.main
+  }
+}));
 
 /**
  * Represents a text input that supports multiline.
@@ -23,6 +30,7 @@ export function ZTextArea(props: IZTextArea) {
   const { className, name, required, height = ZSizeFixed.Medium, label } = props;
   const InputProps = useText(props, '');
   const rows = TextAreaRows[height];
+  const { classes } = useTextAreaStyles();
 
   return (
     <ZLabeled
@@ -34,7 +42,7 @@ export function ZTextArea(props: IZTextArea) {
         <OutlinedInput
           {...InputProps}
           aria-labelledby={id}
-          className='ZText-area'
+          className={cssJoinDefined('ZText-area', classes.input)}
           multiline
           rows={rows}
           data-required={required}
