@@ -1,5 +1,12 @@
-import { IZCircusDriver, ZCircusActBuilder, ZCircusComponentModel, ZCircusKeyboardQwerty } from '@zthun/cirque';
+import {
+  IZCircusDriver,
+  ZCircusActBuilder,
+  ZCircusBy,
+  ZCircusComponentModel,
+  ZCircusKeyboardQwerty
+} from '@zthun/cirque';
 import { firstDefined } from '@zthun/helpful-fn';
+import { ZLabelComponentModel } from '../label/label.cm';
 
 /**
  * Represents the component model for a ZText component.
@@ -56,15 +63,14 @@ export class ZTextComponentModel extends ZCircusComponentModel {
   }
 
   /**
-   * Gets whether the text is marked as required.
+   * Gets the label for the text component.
    *
    * @returns
-   *        True if the component has the required
-   *        flag.  False otherwise.
+   *        The label for the text component or null if no such label exists.
    */
-  public async required(): Promise<boolean> {
-    const value = await this.driver.attribute('data-required');
-    return value === 'true';
+  public async label(): Promise<ZLabelComponentModel | null> {
+    const [label] = await ZCircusBy.all(this.driver, ZLabelComponentModel, '.ZText-label');
+    return firstDefined(null, label);
   }
 
   /**

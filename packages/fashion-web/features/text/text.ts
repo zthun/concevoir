@@ -82,7 +82,7 @@ Then(
   'the {string} field is required on the text demo page',
   async function (this: ZFashionWorld<ZTextPageComponentModel>, name: FieldName) {
     const field = await this.parameters.page[name]();
-    const actual = await field.required();
+    const actual = await (await field.label())?.required();
     assert.equal(actual, true);
   }
 );

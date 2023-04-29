@@ -1,6 +1,7 @@
-import { TextField } from '@mui/material';
+import { OutlinedInput } from '@mui/material';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
+import { ZLabeled } from '../label/labeled';
 import { IZText, useText, withEnterCommit } from './text';
 
 /**
@@ -40,18 +41,25 @@ export interface IZTextInput extends IZText<string> {
  *        The JSX to render the component.
  */
 export function ZTextInput(props: IZTextInput) {
-  const { className, type = ZTextType.Text, name, required } = props;
-  const _textField = useText(props, '');
+  const { className, type = ZTextType.Text, name, label, required } = props;
+  const InputProps = useText(props, '');
   const handleKeyDown = withEnterCommit(props);
 
   return (
-    <TextField
-      {..._textField}
-      type={type}
-      className={cssJoinDefined('ZText-root ZText-input', className)}
-      onKeyDown={handleKeyDown}
-      data-name={name}
-      data-required={required}
-    />
+    <ZLabeled
+      className={cssJoinDefined('ZText-root', className)}
+      LabelProps={{ label, required, className: 'ZText-label' }}
+      name={name}
+    >
+      {(id) => (
+        <OutlinedInput
+          {...InputProps}
+          type={type}
+          className='ZText-input'
+          onKeyDown={handleKeyDown}
+          aria-labelledby={id}
+        />
+      )}
+    </ZLabeled>
   );
 }

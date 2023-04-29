@@ -1,4 +1,4 @@
-import { InputAdornment, OutlinedInputProps, TextFieldProps } from '@mui/material';
+import { InputAdornment, InputBaseProps, OutlinedInputProps, TextFieldProps } from '@mui/material';
 import { ZCircusKeyboardQwerty } from '@zthun/cirque';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { get, noop } from 'lodash';
@@ -36,7 +36,55 @@ export interface IZText<T = string>
  * @returns
  *        The JSX to render the component.
  */
-export function useText<T extends string>(props: IZText<T>, initial: T): TextFieldProps {
+export function useText<T extends string>(props: IZText<T>, initial: T): InputBaseProps {
+  const { name, disabled, value, required, placeholder, readOnly, prefix, suffix, onValueChange = noop } = props;
+
+  const [current, setCurrent] = useState(value || initial);
+
+  useEffect(() => {
+    setCurrent(value || initial);
+  }, [value, initial]);
+
+  const getValue = (e: any): T => {
+    return get(e, 'value');
+  };
+
+  const renderAdornment = (adornment: ReactNode, position: 'start' | 'end') =>
+    adornment == null ? null : (
+      <InputAdornment className={cssJoinDefined('ZText-adornment', `ZText-adornment-${position}`)} position={position}>
+        {adornment}
+      </InputAdornment>
+    );
+
+  return {
+    disabled,
+    value: current,
+    name,
+    required,
+    placeholder: placeholder,
+    readOnly,
+    startAdornment: renderAdornment(prefix, 'start'),
+    endAdornment: renderAdornment(suffix, 'end'),
+    onBlur: () => onValueChange(current),
+    onInput: (e) => setCurrent(getValue(e.target))
+  };
+}
+
+/**
+ * Constructs a TextFieldProps object based on the props for an IZText component.
+ *
+ * @param props -
+ *        The properties for the IZText component.
+ * @param initial -
+ *        The initial value for the text field.
+ *
+ * @returns
+ *        The JSX to render the component.
+ *
+ * @deprecated
+ *        Use useText instead.
+ */
+export function useTextField<T extends string>(props: IZText<T>, initial: T): TextFieldProps {
   const { name, disabled, value, label, required, placeholder, readOnly, prefix, suffix, onValueChange = noop } = props;
 
   const [current, setCurrent] = useState(value || initial);

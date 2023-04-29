@@ -1,7 +1,7 @@
 import { IZCircusKey, ZCircusBy, ZCircusKeyboardQwerty } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import React, { ReactNode } from 'react';
-import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
+import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ZTextArea } from './text-area';
 import { ZTextInput, ZTextType } from './text-input';
 import { ZTextInputReveal } from './text-input-reveal';
@@ -17,6 +17,7 @@ describe('ZText', () => {
   let readOnly: boolean | undefined;
   let required: boolean | undefined;
   let value: string | undefined;
+  let label: ReactNode | undefined;
   let onValueChange: Mock | undefined;
 
   beforeEach(() => {
@@ -29,6 +30,8 @@ describe('ZText', () => {
 
     prefix = undefined;
     suffix = undefined;
+
+    label = undefined;
   });
 
   const shouldRenderTextValue = async (createTestTarget: () => Promise<ZTextComponentModel>) => {
@@ -108,10 +111,11 @@ describe('ZText', () => {
 
   const shouldBeRequired = async (createTestTarget: () => Promise<ZTextComponentModel>) => {
     // Arrange
+    label = 'Required Text Component';
     required = true;
     const target = await createTestTarget();
     // Act
-    const actual = await target.required();
+    const actual = await (await target.label())?.required();
     // Assert
     expect(actual).toBeTruthy();
   };
@@ -154,6 +158,7 @@ describe('ZText', () => {
     async function createTestTarget(type?: ZTextType) {
       const element = (
         <ZTextInput
+          label={label}
           type={type}
           value={value}
           disabled={disabled}
@@ -251,6 +256,7 @@ describe('ZText', () => {
           readOnly={readOnly}
           prefix={prefix}
           suffix={suffix}
+          label={label}
           onValueChange={onValueChange}
         />
       );
@@ -331,6 +337,7 @@ describe('ZText', () => {
           disabled={disabled}
           required={required}
           readOnly={readOnly}
+          label={label}
           prefix={prefix}
           suffix={suffix}
           onValueChange={onValueChange}
