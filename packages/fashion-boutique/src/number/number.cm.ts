@@ -2,10 +2,12 @@ import {
   IZCircusDriver,
   IZCircusKey,
   ZCircusActBuilder,
+  ZCircusBy,
   ZCircusComponentModel,
   ZCircusKeyboardQwerty
 } from '@zthun/cirque';
 import { firstDefined } from '@zthun/helpful-fn';
+import { ZLabelComponentModel } from '../label/label.cm';
 
 /**
  * Represents the component model for a number component.
@@ -78,10 +80,9 @@ export class ZNumberComponentModel extends ZCircusComponentModel {
    *        The label for the number component.  Returns
    *        the empty string if there is no label.
    */
-  public async label(): Promise<string> {
-    const [label] = await this.driver.query('label');
-    const text = await label?.text();
-    return firstDefined('', text);
+  public async label(): Promise<ZLabelComponentModel | null> {
+    const [label] = await ZCircusBy.all(this.driver, ZLabelComponentModel, '.ZNumber-label');
+    return firstDefined(null, label);
   }
 
   /**

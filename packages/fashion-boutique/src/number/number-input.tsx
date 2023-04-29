@@ -1,16 +1,20 @@
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
-import { TextField } from '@mui/material';
+import { OutlinedInput } from '@mui/material';
 import { ZCircusKeyboardQwerty } from '@zthun/cirque';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
 import React, { KeyboardEvent } from 'react';
-import { IZText, useTextField, withEnterCommit } from '../text/text';
+import { ZLabeled } from '../label/labeled';
+import { IZText, useText, withEnterCommit } from '../text/text';
 import { createStyleHook } from '../theme/styled';
 import { IZNumber } from './number';
 
-export const useNumberInputStyles = createStyleHook(() => {
+export const useNumberInputStyles = createStyleHook(({ theme }) => {
   return {
+    input: {
+      backgroundColor: theme.light.main
+    },
     spinner: {
       display: 'flex',
       flexDirection: 'column',
@@ -55,7 +59,7 @@ export const useNumberInputStyles = createStyleHook(() => {
  *        The JSX responsible for rendering this input.
  */
 export function ZNumberInput(props: IZNumber<number | null>) {
-  const { className, step = 1, min = -Infinity, max = Infinity, name, value, onValueChange } = props;
+  const { className, step = 1, min = -Infinity, max = Infinity, name, value, label, required, onValueChange } = props;
   const [_value, _setValue] = useAmbassadorState(value, onValueChange, null);
   const { classes } = useNumberInputStyles();
   const __value = _value != null ? String(_value) : '';
@@ -99,7 +103,7 @@ export function ZNumberInput(props: IZNumber<number | null>) {
   );
 
   const _propsForText: IZText = { ...props, value: __value, onValueChange: handleCommit, suffix: adornment };
-  const _text = useTextField<string>(_propsForText, '');
+  const _text = useText<string>(_propsForText, '');
 
   const handleKeyDown = withEnterCommit(_propsForText, (e: KeyboardEvent) => {
     if (e.code === ZCircusKeyboardQwerty.upArrow.code) {
@@ -114,12 +118,20 @@ export function ZNumberInput(props: IZNumber<number | null>) {
   });
 
   return (
-    <TextField
-      {..._text}
-      className={cssJoinDefined('ZNumber-root', 'ZNumber-input', className)}
-      onKeyDown={handleKeyDown}
-      inputProps={{ min, max, step }}
-      data-name={name}
-    />
+    <ZLabeled
+      className={cssJoinDefined('ZNumber-root', className)}
+      LabelProps={{ label, required, className: 'ZNumber-label' }}
+      name={name}
+    >
+      {(id) => (
+        <OutlinedInput
+          {..._text}
+          className={cssJoinDefined('ZNumber-input', classes.input)}
+          onKeyDown={handleKeyDown}
+          inputProps={{ min, max, step }}
+          aria-labelledby={id}
+        />
+      )}
+    </ZLabeled>
   );
 }

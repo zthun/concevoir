@@ -1,7 +1,7 @@
 import { ZCircusBy, ZCircusKeyboardQwerty } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import React, { ReactNode } from 'react';
-import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
+import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ZNumberInput } from './number-input';
 import { ZNumberComponentModel } from './number.cm';
 
@@ -11,6 +11,7 @@ describe('ZNumber', () => {
   let step: number | undefined;
   let value: number | undefined;
   let label: ReactNode | undefined;
+  let required: boolean | undefined;
   let onValueChange: Mock | undefined;
 
   beforeEach(() => {
@@ -19,6 +20,7 @@ describe('ZNumber', () => {
     value = undefined;
     step = undefined;
     label = undefined;
+    required = undefined;
     onValueChange = undefined;
   });
 
@@ -27,7 +29,7 @@ describe('ZNumber', () => {
     label = 'Test Label';
     const target = await createTestTarget();
     // Act.
-    const actual = await target.label();
+    const actual = await (await target.label())?.text();
     // Assert.
     expect(actual).toEqual(label);
   }
@@ -38,7 +40,7 @@ describe('ZNumber', () => {
     // Act.
     const actual = await target.label();
     // Assert.
-    expect(actual).toEqual('');
+    expect(actual).toBeFalsy();
   }
 
   async function shouldSetTheMinValue(createTestTarget: () => Promise<ZNumberComponentModel>) {
@@ -135,10 +137,29 @@ describe('ZNumber', () => {
     expect(onValueChange).toHaveBeenCalledWith(expected);
   }
 
+  async function shouldMarkAsRequired(createTestTarget: () => Promise<ZNumberComponentModel>) {
+    // Arrange.
+    label = 'Test Number';
+    required = true;
+    const target = await createTestTarget();
+    // Act.
+    const actual = await (await target.label())?.required();
+    // Assert.
+    expect(actual).toBeTruthy();
+  }
+
   describe('Input', () => {
     async function createTestTarget() {
       const element = (
-        <ZNumberInput min={min} max={max} step={step} value={value} label={label} onValueChange={onValueChange} />
+        <ZNumberInput
+          min={min}
+          max={max}
+          step={step}
+          value={value}
+          label={label}
+          required={required}
+          onValueChange={onValueChange}
+        />
       );
 
       const driver = await new ZCircusSetupRenderer(element).setup();
@@ -212,6 +233,10 @@ describe('ZNumber', () => {
 
       it('should not render the label if falsy.', async () => {
         await shouldNotRenderLabelIfFalsy(createTestTarget);
+      });
+
+      it('should be marked as required when required is true.', async () => {
+        await shouldMarkAsRequired(createTestTarget);
       });
     });
 

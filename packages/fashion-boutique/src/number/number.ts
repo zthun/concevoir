@@ -2,6 +2,7 @@ import { IZComponentDisabled } from '../component/component-disabled';
 import { IZComponentLabel } from '../component/component-label';
 import { IZComponentName } from '../component/component-name';
 import { IZComponentRange } from '../component/component-range';
+import { IZComponentRequired } from '../component/component-required';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentValue } from '../component/component-value';
 
@@ -14,6 +15,7 @@ export interface IZNumber<T = number>
     IZComponentRange<number>,
     IZComponentName,
     IZComponentLabel,
+    IZComponentRequired,
     IZComponentStyle {
   step?: number;
 }
