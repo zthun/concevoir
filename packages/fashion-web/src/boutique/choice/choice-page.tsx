@@ -39,6 +39,7 @@ export function ZChoicePage() {
   const [disabled, setDisabled] = useState(false);
   const [multiple, setMultiple] = useState(false);
   const [indelible, setIndelible] = useState(false);
+  const [required, setRequired] = useState(false);
 
   function renderSelected() {
     return values.map((s) => (
@@ -89,6 +90,7 @@ export function ZChoicePage() {
             label='Drop Down'
             indelible={indelible}
             multiple={multiple}
+            required={required}
             value={values}
             identifier={getHeroIdentity}
             display={getHeroDisplay}
@@ -103,6 +105,7 @@ export function ZChoicePage() {
             label='Autocomplete'
             indelible={indelible}
             multiple={multiple}
+            required={required}
             value={values}
             identifier={getHeroIdentity}
             display={getHeroDisplay}
@@ -117,6 +120,7 @@ export function ZChoicePage() {
             label='Toggle'
             indelible={indelible}
             multiple={multiple}
+            required={required}
             value={values}
             identifier={getHeroIdentity}
             display={getHeroDisplay}
@@ -140,6 +144,7 @@ export function ZChoicePage() {
           <ZBooleanSwitch value={disabled} onValueChange={setDisabled} label='Disabled' name='disabled' />
           <ZBooleanSwitch value={multiple} onValueChange={setMultiple} label='Multiple' name='multiple' />
           <ZBooleanSwitch value={indelible} onValueChange={setIndelible} label='Indelible' name='indelible' />
+          <ZBooleanSwitch value={required} onValueChange={setRequired} label='Required' name='required' />
         </ZGrid>
       </ZBox>
     </ZCard>

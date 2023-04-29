@@ -82,8 +82,21 @@ describe('ZChoicePage', () => {
     await indelible.toggle(true);
     await choice.clear();
     const options = await choice.open();
-    // assert.
+    // Assert.
     expect(options.length).toBeGreaterThan(0);
+  }
+
+  async function shouldRenderARequiredLabel(factory: ChoicePageFactory) {
+    // Arrange
+    const target = await createTestTarget();
+    const required = await target.required();
+    await required.toggle(true);
+    const choice = await factory(target);
+    // Act
+    const label = await choice.label();
+    const actual = await label?.required();
+    // Assert
+    expect(actual).toBeTruthy();
   }
 
   describe('Drop Down', () => {
@@ -103,6 +116,10 @@ describe('ZChoicePage', () => {
 
     it('should be indelible', async () => {
       await shouldBeIndelible(factory);
+    });
+
+    it('should be required', async () => {
+      await shouldRenderARequiredLabel(factory);
     });
   });
 
@@ -124,6 +141,10 @@ describe('ZChoicePage', () => {
     it('should be indelible', async () => {
       await shouldBeIndelible(factory);
     });
+
+    it('should be required', async () => {
+      await shouldRenderARequiredLabel(factory);
+    });
   });
 
   describe('Toggle', () => {
@@ -143,6 +164,10 @@ describe('ZChoicePage', () => {
 
     it('should be indelible', async () => {
       await shouldBeIndelible(factory);
+    });
+
+    it('should be required', async () => {
+      await shouldRenderARequiredLabel(factory);
     });
   });
 });

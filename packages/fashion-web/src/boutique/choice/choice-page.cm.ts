@@ -78,4 +78,14 @@ export class ZChoicePageComponentModel extends ZCircusComponentModel {
   public indelible(): Promise<ZBooleanComponentModel> {
     return ZCircusBy.first(this.driver, ZBooleanComponentModel, 'indelible');
   }
+
+  /**
+   * Gets the option to make the labels required on the drop downs.
+   *
+   * @returns
+   *        The boolean option to make the labels required.
+   */
+  public required(): Promise<ZBooleanComponentModel> {
+    return ZCircusBy.first(this.driver, ZBooleanComponentModel, 'required');
+  }
 }
