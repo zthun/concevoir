@@ -5,7 +5,7 @@ import { ZCircusKeyboardQwerty } from '@zthun/cirque';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
 import React, { KeyboardEvent } from 'react';
-import { IZText, useText, withEnterCommit } from '../text/text';
+import { IZText, useTextField, withEnterCommit } from '../text/text';
 import { createStyleHook } from '../theme/styled';
 import { IZNumber } from './number';
 
@@ -99,7 +99,7 @@ export function ZNumberInput(props: IZNumber<number | null>) {
   );
 
   const _propsForText: IZText = { ...props, value: __value, onValueChange: handleCommit, suffix: adornment };
-  const _text = useText<string>(_propsForText, '');
+  const _text = useTextField<string>(_propsForText, '');
 
   const handleKeyDown = withEnterCommit(_propsForText, (e: KeyboardEvent) => {
     if (e.code === ZCircusKeyboardQwerty.upArrow.code) {
