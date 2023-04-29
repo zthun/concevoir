@@ -16,6 +16,8 @@ describe('ZChoice', () => {
   let multiple: boolean | undefined;
   let indelible: boolean | undefined;
   let disabled: boolean | undefined;
+  let required: boolean | undefined;
+  let label: ReactNode | undefined;
   let onValueChange: Mock | undefined;
   let display: undefined | ((op: any) => string);
   let renderOption: undefined | ((op: any) => ReactNode);
@@ -28,6 +30,8 @@ describe('ZChoice', () => {
     indelible = undefined;
     disabled = undefined;
     multiple = undefined;
+    required = undefined;
+    label = undefined;
     onValueChange = undefined;
     renderOption = undefined;
 
@@ -169,15 +173,37 @@ describe('ZChoice', () => {
     expect(actual).toEqual([]);
   }
 
+  async function shouldRenderARequiredLabel(createTestTarget: () => Promise<ZChoiceComponentModel>) {
+    // Arrange.
+    label = 'Choice Test';
+    required = true;
+    const target = await createTestTarget();
+    // Act.
+    const actual = await (await target.label())?.required();
+    // Assert.
+    expect(actual).toBeTruthy();
+  }
+
+  async function shouldNotRenderALabelIfNoneProvided(createTestTarget: () => Promise<ZChoiceComponentModel>) {
+    // Arrange.
+    label = undefined;
+    const target = await createTestTarget();
+    // Act.
+    const actual = await target.label();
+    // Assert.
+    expect(actual).toBeNull();
+  }
+
   describe('DropDown', () => {
     async function createTestTarget() {
       const element = (
         <ZChoiceDropDown
           options={options}
-          label='Choice Test'
+          label={label}
           indelible={indelible}
           multiple={multiple}
           disabled={disabled}
+          required={required}
           value={selected}
           onValueChange={onValueChange}
           identifier={identifier}
@@ -221,6 +247,14 @@ describe('ZChoice', () => {
 
     it('should append selections if multiple is turned on', async () => {
       await shouldAppendSelectionIfMultipleOn(createTestTarget);
+    });
+
+    it('should not render a label if none is provided', async () => {
+      await shouldNotRenderALabelIfNoneProvided(createTestTarget);
+    });
+
+    it('should render a required label', async () => {
+      await shouldRenderARequiredLabel(createTestTarget);
     });
 
     it('should disable if disabled is true', async () => {
@@ -252,10 +286,11 @@ describe('ZChoice', () => {
       const element = (
         <ZChoiceAutocomplete
           options={options}
-          label='Choice Test'
+          label={label}
           indelible={indelible}
           multiple={multiple}
           disabled={disabled}
+          required={required}
           value={selected}
           onValueChange={onValueChange}
           identifier={identifier}
@@ -301,6 +336,14 @@ describe('ZChoice', () => {
       await shouldAppendSelectionIfMultipleOn(createTestTarget);
     });
 
+    it('should not render a label if none is provided', async () => {
+      await shouldNotRenderALabelIfNoneProvided(createTestTarget);
+    });
+
+    it('should render a required label', async () => {
+      await shouldRenderARequiredLabel(createTestTarget);
+    });
+
     it('should not select anything if the selected option is not available', async () => {
       await shouldSelectNothingIfOptionIsUnavailable(createTestTarget);
     });
@@ -311,10 +354,11 @@ describe('ZChoice', () => {
       const element = (
         <ZChoiceToggle
           options={options}
-          label='Choice Test'
+          label={label}
           indelible={indelible}
           multiple={multiple}
           disabled={disabled}
+          required={required}
           value={selected}
           onValueChange={onValueChange}
           identifier={identifier}
@@ -354,6 +398,14 @@ describe('ZChoice', () => {
 
     it('should disable if disabled is true', async () => {
       await shouldRenderDisabled(createTestTarget);
+    });
+
+    it('should not render a label if none is provided', async () => {
+      await shouldNotRenderALabelIfNoneProvided(createTestTarget);
+    });
+
+    it('should render a required label', async () => {
+      await shouldRenderARequiredLabel(createTestTarget);
     });
 
     it('should not select anything if the selected option is not available', async () => {

@@ -58,7 +58,7 @@ const useChoiceDropDownStyles = createStyleHook(({ theme, tailor }) => {
  *        The JSX to render the choice component.
  */
 export function ZChoiceDropDown<O, V>(props: IZChoice<O, V>) {
-  const { className, label, disabled, multiple, name, indelible } = props;
+  const { className, label, disabled, multiple, name, indelible, required } = props;
   const { choices, value, lookup, cast, render, setValue } = useChoice(props);
   const { classes } = useChoiceDropDownStyles();
 
@@ -123,7 +123,7 @@ export function ZChoiceDropDown<O, V>(props: IZChoice<O, V>) {
   return (
     <ZLabeled
       className={cssJoinDefined('ZChoice-root', 'ZChoice-drop-down', className, classes.root)}
-      label={label}
+      LabelProps={{ label, required, className: 'ZChoice-label' }}
       name={name}
     >
       {(id) => (

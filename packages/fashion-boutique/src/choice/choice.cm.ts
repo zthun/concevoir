@@ -1,10 +1,12 @@
 import {
   ZCircusActBuilder,
+  ZCircusBy,
   ZCircusComponentModel,
   ZCircusKeyboardQwerty,
   ZCircusWaitOptionsBuilder
 } from '@zthun/cirque';
 import { findIndex } from 'lodash';
+import { ZLabelComponentModel } from '../label/label.cm';
 import { ZChoiceOptionComponentModel } from './choice-option.cm';
 
 /**
@@ -12,6 +14,14 @@ import { ZChoiceOptionComponentModel } from './choice-option.cm';
  */
 export class ZChoiceComponentModel extends ZCircusComponentModel {
   public static readonly Selector = '.ZChoice-root';
+
+  /**
+   * Gets the label for the choice.
+   */
+  public async label(): Promise<ZLabelComponentModel | null> {
+    const [label] = await ZCircusBy.all(this.driver, ZLabelComponentModel, '.ZChoice-label');
+    return label || null;
+  }
 
   /**
    * Gets the list of selected items.
