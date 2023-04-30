@@ -4,6 +4,8 @@ import { ZBooleanPageComponentModel } from '../../src/boutique/boolean/boolean-p
 import { ZFashionRouteBoolean, ZFashionRouteBoutique } from '../../src/routes';
 import { ZFashionWorld } from '../fashion-world';
 
+type BooleanPageOption = 'disabled' | 'required';
+
 Given('I have navigated to the boolean demo page', async function (this: ZFashionWorld<ZBooleanPageComponentModel>) {
   await this.open(ZFashionRouteBoutique, ZFashionRouteBoolean);
   this.parameters.page = await this.create(ZBooleanPageComponentModel);
@@ -34,12 +36,12 @@ When(
 );
 
 When(
-  'I toggle the switch for the disabled option to {string} on the boolean page',
-  async function (this: ZFashionWorld<ZBooleanPageComponentModel>, value: 'on' | 'off') {
+  'I toggle the switch for the {string} option to {string} on the boolean page',
+  async function (this: ZFashionWorld<ZBooleanPageComponentModel>, option: BooleanPageOption, value: 'on' | 'off') {
     const { page } = this.parameters;
-    const disabled = await page.disabled();
+    const pageOption = await page[option]();
     const to = value === 'on';
-    await disabled.toggle(to);
+    await pageOption.toggle(to);
   }
 );
 
@@ -66,16 +68,16 @@ Then(
 );
 
 Then(
-  'all demo components are disabled {string} on the boolean page',
-  async function (this: ZFashionWorld<ZBooleanPageComponentModel>, value: 'on' | 'off') {
+  'all demo components are {string} {string} on the boolean page',
+  async function (this: ZFashionWorld<ZBooleanPageComponentModel>, option: BooleanPageOption, value: 'on' | 'off') {
     const { page } = this.parameters;
     const checkbox = await page.checkbox();
     const switcher = await page.switch();
     const expected = value === 'on';
-    const checkboxDisabled = await checkbox.disabled();
-    const switchDisabled = await switcher.disabled();
-    assert.equal(checkboxDisabled, expected);
-    assert.equal(switchDisabled, expected);
+    const checkboxState = await checkbox[option]();
+    const switchState = await switcher[option]();
+    assert.equal(checkboxState, expected);
+    assert.equal(switchState, expected);
   }
 );
 
