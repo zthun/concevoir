@@ -11,6 +11,13 @@ const useBooleanCheckboxStyles = createStyleHook(({ theme }, props: IZBoolean<bo
   const svg = { color: fashion.main };
 
   return {
+    root: {
+      'whiteSpace': 'nowrap',
+
+      '.MuiFormControlLabel-asterisk': {
+        color: theme.error.main
+      }
+    },
     checkbox: {
       '&.Mui-checked': { svg },
       '&.MuiCheckbox-indeterminate': { svg }
@@ -29,7 +36,7 @@ const useBooleanCheckboxStyles = createStyleHook(({ theme }, props: IZBoolean<bo
  */
 export function ZBooleanCheckbox(props: IZBoolean<boolean | null>) {
   const { primary } = useFashionTheme();
-  const { className, disabled, label, value, onValueChange, name, fashion = primary } = props;
+  const { className, disabled, label, value, onValueChange, name, fashion = primary, required } = props;
   const [_value, _setValue] = useAmbassadorState(value, onValueChange);
   const checked = _value == null ? false : _value;
   const indeterminate = _value === null;
@@ -48,9 +55,10 @@ export function ZBooleanCheckbox(props: IZBoolean<boolean | null>) {
 
   return (
     <FormControlLabel
-      className={cssJoinDefined('ZBoolean-root', 'ZBoolean-checkbox', className)}
+      className={cssJoinDefined('ZBoolean-root', 'ZBoolean-checkbox', className, classes.root)}
       control={control}
       name={name}
+      required={required}
       data-name={name}
       data-fashion={fashion.name}
       label={label}

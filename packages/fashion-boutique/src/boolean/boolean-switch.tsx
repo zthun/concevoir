@@ -11,6 +11,14 @@ const useBooleanSwitchStyles = createStyleHook(({ theme }, props: IZBoolean<bool
   const track = value ? fashion.main : undefined;
 
   return {
+    root: {
+      'whiteSpace': 'nowrap',
+
+      '.MuiFormControlLabel-asterisk': {
+        color: theme.error.main
+      }
+    },
+
     switch: {
       '.Mui-checked': {
         '.MuiSwitch-thumb ': {
@@ -35,7 +43,7 @@ const useBooleanSwitchStyles = createStyleHook(({ theme }, props: IZBoolean<bool
  */
 export function ZBooleanSwitch(props: IZBoolean<boolean>) {
   const theme = useFashionTheme();
-  const { className, disabled, label, value, onValueChange, name, fashion = theme.primary } = props;
+  const { className, disabled, label, value, onValueChange, name, fashion = theme.primary, required } = props;
   const [_value, _setValue] = useAmbassadorState(value, onValueChange);
   const checked = !!_value;
   const { classes } = useBooleanSwitchStyles(props);
@@ -50,10 +58,11 @@ export function ZBooleanSwitch(props: IZBoolean<boolean>) {
 
   return (
     <FormControlLabel
-      className={cssJoinDefined('ZBoolean-root', 'ZBoolean-switch', className)}
+      className={cssJoinDefined('ZBoolean-root', 'ZBoolean-switch', className, classes.root)}
       control={control}
       label={label}
       name={name}
+      required={required}
       data-name={name}
       data-fashion={fashion.name}
     />

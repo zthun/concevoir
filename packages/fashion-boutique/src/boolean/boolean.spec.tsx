@@ -2,13 +2,14 @@ import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { IZFashion, ZFashionBuilder } from '@zthun/fashion-theme';
 import React, { ReactElement } from 'react';
-import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
+import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ZBooleanCheckbox } from './boolean-checkbox';
 import { ZBooleanSwitch } from './boolean-switch';
 import { ZBooleanComponentModel } from './boolean.cm';
 
 describe('ZBoolean', () => {
   let disabled: boolean | undefined;
+  let required: boolean | undefined;
   let fashion: IZFashion | undefined;
   let onCheckChanged: Mock | undefined;
 
@@ -19,6 +20,7 @@ describe('ZBoolean', () => {
 
   beforeEach(() => {
     disabled = undefined;
+    required = undefined;
     fashion = undefined;
     onCheckChanged = undefined;
   });
@@ -38,6 +40,16 @@ describe('ZBoolean', () => {
     const target = await createTestTarget();
     // Act.
     const actual = await target.disabled();
+    // Assert.
+    expect(actual).toEqual(expected);
+  }
+
+  async function assertRequired(createTestTarget: () => Promise<ZBooleanComponentModel>, expected: boolean) {
+    // Arrange.
+    required = expected;
+    const target = await createTestTarget();
+    // Act.
+    const actual = await target.required();
     // Assert.
     expect(actual).toEqual(expected);
   }
@@ -84,6 +96,7 @@ describe('ZBoolean', () => {
           value={value}
           onValueChange={onCheckChanged}
           disabled={disabled}
+          required={required}
           label='Checkbox'
           fashion={fashion}
         />
@@ -92,8 +105,20 @@ describe('ZBoolean', () => {
       return createComponentModel(element);
     }
 
+    it('can be enabled.', async () => {
+      assertDisabled(createTestTarget, false);
+    });
+
     it('can be disabled.', async () => {
       await assertDisabled(createTestTarget, true);
+    });
+
+    it('can be optional.', async () => {
+      assertRequired(createTestTarget, false);
+    });
+
+    it('can be required.', async () => {
+      await assertRequired(createTestTarget, true);
     });
 
     it('should render a checked checkbox for true.', async () => {
@@ -140,6 +165,7 @@ describe('ZBoolean', () => {
           value={value}
           onValueChange={onCheckChanged}
           disabled={disabled}
+          required={required}
           label='Switch'
           fashion={fashion}
         />
@@ -148,8 +174,20 @@ describe('ZBoolean', () => {
       return createComponentModel(element);
     }
 
+    it('can be enabled.', async () => {
+      assertDisabled(createTestTarget, false);
+    });
+
     it('can be disabled.', async () => {
       await assertDisabled(createTestTarget, true);
+    });
+
+    it('can be optional.', async () => {
+      assertRequired(createTestTarget, false);
+    });
+
+    it('can be required.', async () => {
+      await assertRequired(createTestTarget, true);
     });
 
     it('should toggle the switch on for true.', async () => {

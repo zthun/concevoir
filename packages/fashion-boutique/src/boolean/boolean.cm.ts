@@ -10,7 +10,7 @@ export class ZBooleanComponentModel extends ZCircusComponentModel {
    * Gets the underlying input element.
    *
    * @returns
-   *      The underlying input element.
+   *        The underlying input element.
    */
   private async _input(): Promise<IZCircusDriver> {
     return this.driver.select('input[type="checkbox"]');
@@ -20,11 +20,21 @@ export class ZBooleanComponentModel extends ZCircusComponentModel {
    * Gets whether this boolean is disabled.
    *
    * @returns
-   *      True if the component is disabled,
-   *      false otherwise.
+   *        True if the component is disabled,
+   *        false otherwise.
    */
   public async disabled(): Promise<boolean> {
     return (await this._input()).disabled();
+  }
+
+  /**
+   * Gets whether this boolean is required.
+   *
+   * @returns
+   *        True if the component is required.
+   */
+  public async required(): Promise<boolean> {
+    return this.driver.peek('.MuiFormControlLabel-asterisk');
   }
 
   /**
