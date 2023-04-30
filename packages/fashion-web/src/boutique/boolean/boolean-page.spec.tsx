@@ -52,6 +52,22 @@ describe('ZBooleanPage', () => {
     expect(actual).toEqual(expected);
   }
 
+  async function shouldRequire(
+    expected: boolean,
+    factoryDemo: (t: ZBooleanPageComponentModel) => Promise<ZBooleanComponentModel>
+  ) {
+    // Arrange.
+    const target = await createTestTarget();
+    const required = await target.required();
+    await required.toggle(!expected);
+    // Act.
+    await required.toggle(expected);
+    const bool = await factoryDemo(target);
+    const actual = await bool.required();
+    // Assert.
+    expect(actual).toEqual(expected);
+  }
+
   async function assertSetsFashion(
     expected: IZFashion,
     factoryDemo: (t: ZBooleanPageComponentModel) => Promise<ZBooleanComponentModel>
@@ -91,6 +107,14 @@ describe('ZBooleanPage', () => {
         (t) => t.indeterminate(),
         (t) => t.checkbox()
       );
+    });
+
+    it('should mark the boolean required when the required switch is on', async () => {
+      await shouldRequire(true, (t) => t.checkbox());
+    });
+
+    it('should mark the boolean optional when the required switch is off', async () => {
+      await shouldRequire(false, (t) => t.checkbox());
     });
 
     it('should disable the boolean when the disabled switch is on', async () => {
@@ -143,6 +167,14 @@ describe('ZBooleanPage', () => {
         (t) => t.on(),
         (t) => t.switch()
       );
+    });
+
+    it('should mark the boolean required when the required switch is on', async () => {
+      await shouldRequire(true, (t) => t.checkbox());
+    });
+
+    it('should mark the boolean optional when the required switch is off', async () => {
+      await shouldRequire(false, (t) => t.checkbox());
     });
 
     it('should disable the boolean when the disabled switch is on', async () => {

@@ -38,6 +38,16 @@ export class ZBooleanPageComponentModel extends ZCircusComponentModel {
   }
 
   /**
+   * Gets the option for marking the booleans on the page as required.
+   *
+   * @returns
+   *        The option switch to make the booleans required.
+   */
+  public required(): Promise<ZBooleanComponentModel> {
+    return ZCircusBy.first(this.driver, ZBooleanComponentModel, 'required');
+  }
+
+  /**
    * Gets the fashion drop down.
    *
    * @returns

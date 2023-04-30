@@ -11,7 +11,7 @@ import {
   ZImageSource,
   ZParagraph
 } from '@zthun/fashion-boutique';
-import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
+import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React, { useState } from 'react';
 import { ZFashionRouteBoolean } from '../../routes';
 import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
@@ -24,6 +24,7 @@ import { useFashionState } from '../common/useFashionState';
  */
 export function ZBooleanPage() {
   const [disabled, setDisabled] = useState(false);
+  const [required, setRequired] = useState(false);
   const [value, setValue] = useState<boolean | null>(false);
   const { success, warning, error } = useFashionTheme();
   const [fashion, fashionName, setFashion] = useFashionState();
@@ -47,6 +48,7 @@ export function ZBooleanPage() {
           <ZGrid alignItems='center' columns='auto auto 1fr' gap={ZSizeFixed.ExtraSmall}>
             <ZBooleanCheckbox
               disabled={disabled}
+              required={required}
               fashion={fashion}
               value={value}
               onValueChange={setValue.bind(null)}
@@ -55,6 +57,7 @@ export function ZBooleanPage() {
             />
             <ZBooleanSwitch
               disabled={disabled}
+              required={required}
               fashion={fashion}
               value={!!value}
               onValueChange={setValue.bind(null)}
@@ -70,33 +73,29 @@ export function ZBooleanPage() {
         </ZCaption>
       </ZBox>
 
-      <ZBox margin={{ bottom: ZSizeFixed.Large }}>
+      <ZBox margin={{ bottom: ZSizeFixed.Medium }}>
         <ZH3>Options</ZH3>
 
-        <ZGrid gap={ZSizeFixed.Medium}>
+        <ZGrid>
           <ZBooleanSwitch value={disabled} onValueChange={setDisabled} label='Disabled' name='disabled' />
-          <ZChoiceDropDownFashion value={fashionName} onValueChange={setFashion} name='fashion' />
+          <ZBooleanSwitch value={required} onValueChange={setRequired} label='Required' name='required' />
         </ZGrid>
+      </ZBox>
+
+      <ZBox margin={{ bottom: ZSizeFixed.Medium }}>
+        <ZChoiceDropDownFashion value={fashionName} onValueChange={setFashion} name='fashion' />
       </ZBox>
 
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Operations</ZH3>
 
-        <ZGrid columns='auto auto' gap={ZSizeFixed.Small}>
-          <ZButton outline fashion={success} onClick={setValue.bind(null, true)} label='True' name='on' />
-          <ZButton outline fashion={error} onClick={setValue.bind(null, false)} label='False' name='off' />
+        <ZGrid columns='auto auto auto' columnsXs='auto' gap={ZSizeFixed.Small}>
+          <ZButton fashion={success} onClick={setValue.bind(null, true)} label='True' name='on' />
+          <ZButton fashion={error} onClick={setValue.bind(null, false)} label='False' name='off' />
+          <ZButton fashion={warning} onClick={setValue.bind(null, null)} label='Indeterminate' name='indeterminate' />
         </ZGrid>
 
-        <ZBox margin={{ top: ZSizeFixed.Small }}>
-          <ZButton
-            outline
-            fashion={warning}
-            width={ZSizeVaried.Full}
-            onClick={setValue.bind(null, null)}
-            label='Indeterminate'
-            name='indeterminate'
-          />
-        </ZBox>
+        <ZBox margin={{ top: ZSizeFixed.Small }}></ZBox>
       </ZBox>
     </ZCard>
   );
