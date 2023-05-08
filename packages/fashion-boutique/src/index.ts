@@ -5,6 +5,8 @@ export * from './boolean/boolean-switch';
 export * from './boolean/boolean.cm';
 export * from './box/box';
 export * from './box/box.cm';
+export * from './breadcrumbs/breadcrumb-outlet';
+export * from './breadcrumbs/breadcrumb-outlet.cm';
 export * from './breadcrumbs/breadcrumbs';
 export * from './breadcrumbs/breadcrumbs-location';
 export * from './breadcrumbs/breadcrumbs.cm';

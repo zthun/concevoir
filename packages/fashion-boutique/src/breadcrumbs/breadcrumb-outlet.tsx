@@ -1,14 +1,11 @@
-import {
-  IZBreadcrumbsLocation,
-  IZComponentName,
-  IZComponentStyle,
-  ZBox,
-  ZBreadcrumbsLocation,
-  ZOutlet
-} from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
+import { ZBox } from '../box/box';
+import { IZComponentName } from '../component/component-name';
+import { IZComponentStyle } from '../component/component-style';
+import { ZOutlet } from '../router/router-dom';
+import { IZBreadcrumbsLocation, ZBreadcrumbsLocation } from './breadcrumbs-location';
 
 /**
  * The properties for the breadcrumb outlet.

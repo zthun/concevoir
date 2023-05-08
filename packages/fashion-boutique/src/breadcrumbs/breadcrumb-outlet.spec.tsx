@@ -1,9 +1,9 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZTestRouter } from '@zthun/fashion-boutique';
 import { createMemoryHistory } from 'history';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
+import { ZTestRouter } from '../router/router-dom';
 import { ZBreadcrumbOutlet } from './breadcrumb-outlet';
 import { ZBreadcrumbOutletComponentModel } from './breadcrumb-outlet.cm';
 
