@@ -4,8 +4,8 @@ import { createMemoryHistory } from 'history';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZTestRouter } from '../router/router-dom';
-import { ZBreadcrumbsOutlet } from './breadcrumb-outlet';
-import { ZBreadcrumbsOutletComponentModel } from './breadcrumb-outlet.cm';
+import { ZBreadcrumbsOutlet } from './breadcrumbs-outlet';
+import { ZBreadcrumbsOutletComponentModel } from './breadcrumbs-outlet.cm';
 
 describe('ZBreadcrumbsOutlet', () => {
   async function createTestTarget() {
