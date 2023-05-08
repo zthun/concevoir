@@ -7,8 +7,7 @@
       "@zthun/fashion-theme": ["fashion-theme/src/index"],
       "@zthun/fashion-theme-dark": ["fashion-theme-dark/src/index"],
       "@zthun/fashion-tailor": ["fashion-tailor/src/index"],
-      "@zthun/fashion-boutique": ["fashion-boutique/src/index"],
-      "@zthun/fashion-boutique-page": ["fashion-boutique-page/src/index"]
+      "@zthun/fashion-boutique": ["fashion-boutique/src/index"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],

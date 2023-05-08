@@ -1,5 +1,6 @@
 import {
   IZBreadcrumbsLocation,
+  ZBannerMain,
   ZBox,
   ZBreadcrumbOutlet,
   ZCaption,
@@ -14,7 +15,6 @@ import {
   ZRouteMap,
   ZRouter
 } from '@zthun/fashion-boutique';
-import { ZBannerMain } from '@zthun/fashion-boutique-page';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { createTheme as createLightTheme } from '@zthun/fashion-theme';
 import { createTheme as createDarkTheme } from '@zthun/fashion-theme-dark';

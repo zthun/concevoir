@@ -1,3 +1,5 @@
+export * from './banner-main/banner-main';
+export * from './banner-main/banner-main.cm';
 export * from './banner/banner';
 export * from './boolean/boolean';
 export * from './boolean/boolean-checkbox';
