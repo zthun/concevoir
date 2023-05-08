@@ -1,5 +1,5 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZButtonComponentModel } from '@zthun/fashion-boutique';
+import { ZButtonComponentModel } from '../button/button.cm';
 
 /**
  * The component model for the ZNotFound component.

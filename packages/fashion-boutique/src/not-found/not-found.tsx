@@ -1,7 +1,13 @@
-import { useFashionTheme, useNavigate, ZButton, ZCard, ZFullScreen, ZGrid, ZParagraph } from '@zthun/fashion-boutique';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
-import { getHttpCodeDescription, getHttpCodeName, ZHttpCodeClient } from '@zthun/webigail-http';
+import { ZHttpCodeClient, getHttpCodeDescription, getHttpCodeName } from '@zthun/webigail-http';
 import React from 'react';
+import { ZButton } from '../button/button';
+import { ZCard } from '../card/card';
+import { ZFullScreen } from '../full-screen/full-screen';
+import { ZGrid } from '../grid/grid';
+import { useNavigate } from '../router/router-dom';
+import { useFashionTheme } from '../theme/fashion';
+import { ZParagraph } from '../typography/typography';
 import { ZSadFace } from './sad-face';
 
 export interface IZNotFound {

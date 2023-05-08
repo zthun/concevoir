@@ -1,9 +1,9 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZTestRouter } from '@zthun/fashion-boutique';
 import { createMemoryHistory, MemoryHistory } from 'history';
 import React from 'react';
 import { beforeEach, describe, expect, it } from 'vitest';
+import { ZTestRouter } from '../router/router-dom';
 import { ZNotFound } from './not-found';
 import { ZNotFoundComponentModel } from './not-found.cm';
 

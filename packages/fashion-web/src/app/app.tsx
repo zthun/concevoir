@@ -8,11 +8,12 @@ import {
   ZH1,
   ZH6,
   ZImageSource,
+  ZNotFound,
   ZRoute,
   ZRouteMap,
   ZRouter
 } from '@zthun/fashion-boutique';
-import { ZBannerMain, ZBreadcrumbOutlet, ZNotFound } from '@zthun/fashion-boutique-page';
+import { ZBannerMain, ZBreadcrumbOutlet } from '@zthun/fashion-boutique-page';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { createTheme as createLightTheme } from '@zthun/fashion-theme';
 import { createTheme as createDarkTheme } from '@zthun/fashion-theme-dark';
