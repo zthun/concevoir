@@ -4300,6 +4300,7 @@ __metadata:
     react: ^18.2.0
     react-dom: ^18.2.0
     react-router-dom: ^6.8.2
+    rollup-plugin-visualizer: ^5.9.0
     vite: ^4.1.4
     vite-tsconfig-paths: ^4.0.5
     vitest: ^0.29.2
@@ -12738,7 +12739,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup-plugin-visualizer@npm:^5.6.0":
+"rollup-plugin-visualizer@npm:^5.6.0, rollup-plugin-visualizer@npm:^5.9.0":
   version: 5.9.0
   resolution: "rollup-plugin-visualizer@npm:5.9.0"
   dependencies:
