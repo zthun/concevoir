@@ -10,7 +10,7 @@ import { IZBreadcrumbsLocation, ZBreadcrumbsLocation } from './breadcrumbs-locat
 /**
  * The properties for the breadcrumb outlet.
  */
-export interface IZBreadcrumbOutlet extends IZComponentStyle, IZComponentName {
+export interface IZBreadcrumbsOutlet extends IZComponentStyle, IZComponentName {
   /**
    * The properties for the underlying breadcrumb location component.
    */
@@ -20,7 +20,7 @@ export interface IZBreadcrumbOutlet extends IZComponentStyle, IZComponentName {
 /**
  * Represents a layout where breadcrumbs are displayed on top of the current router outlet.
  */
-export function ZBreadcrumbOutlet(props: IZBreadcrumbOutlet) {
+export function ZBreadcrumbsOutlet(props: IZBreadcrumbsOutlet) {
   const { className, name, breadcrumbsProps } = props;
 
   return (

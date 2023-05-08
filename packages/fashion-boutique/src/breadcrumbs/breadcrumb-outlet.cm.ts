@@ -4,7 +4,7 @@ import { ZBreadcrumbsComponentModel } from './breadcrumbs.cm';
 /**
  * The component model for the breadcrumb outlet.
  */
-export class ZBreadcrumbOutletComponentModel extends ZCircusComponentModel {
+export class ZBreadcrumbsOutletComponentModel extends ZCircusComponentModel {
   public static readonly Selector = '.ZBreadcrumbOutlet-root';
 
   /**

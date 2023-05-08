@@ -2,7 +2,7 @@ import {
   IZBreadcrumbsLocation,
   ZBannerMain,
   ZBox,
-  ZBreadcrumbOutlet,
+  ZBreadcrumbsOutlet,
   ZCaption,
   ZChoiceToggle,
   ZDrawerButton,
@@ -97,10 +97,10 @@ export function ZFashionApp() {
         <ZBannerMain avatar={avatar} prefix={prefix} suffix={suffix}>
           <ZRouteMap>
             <ZRoute path={ZFashionRouteHome.path} element={<ZHomePage />} />
-            <ZRoute path={ZFashionRouteTheme.path} element={<ZBreadcrumbOutlet breadcrumbsProps={breadcrumbs} />}>
+            <ZRoute path={ZFashionRouteTheme.path} element={<ZBreadcrumbsOutlet breadcrumbsProps={breadcrumbs} />}>
               <ZRoute path='' element={<ZThemePage />} />
             </ZRoute>
-            <ZRoute path={ZFashionRouteBoutique.path} element={<ZBreadcrumbOutlet breadcrumbsProps={breadcrumbs} />}>
+            <ZRoute path={ZFashionRouteBoutique.path} element={<ZBreadcrumbsOutlet breadcrumbsProps={breadcrumbs} />}>
               <ZRoute path={ZFashionRouteBoolean.path} element={<ZBooleanPage />} />
               <ZRoute path={ZFashionRouteButton.path} element={<ZButtonPage />} />
               <ZRoute path={ZFashionRouteCard.path} element={<ZCardPage />} />

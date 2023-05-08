@@ -4,20 +4,20 @@ import { createMemoryHistory } from 'history';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZTestRouter } from '../router/router-dom';
-import { ZBreadcrumbOutlet } from './breadcrumb-outlet';
-import { ZBreadcrumbOutletComponentModel } from './breadcrumb-outlet.cm';
+import { ZBreadcrumbsOutlet } from './breadcrumb-outlet';
+import { ZBreadcrumbsOutletComponentModel } from './breadcrumb-outlet.cm';
 
-describe('ZBreadcrumbOutlet', () => {
+describe('ZBreadcrumbsOutlet', () => {
   async function createTestTarget() {
     const history = createMemoryHistory();
     const element = (
       <ZTestRouter navigator={history} location={history.location}>
-        <ZBreadcrumbOutlet />
+        <ZBreadcrumbsOutlet />
       </ZTestRouter>
     );
 
     const driver = await new ZCircusSetupRenderer(element).setup();
-    return ZCircusBy.first(driver, ZBreadcrumbOutletComponentModel);
+    return ZCircusBy.first(driver, ZBreadcrumbsOutletComponentModel);
   }
 
   it('should render the breadcrumbs', async () => {
