@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { white } from '../color/rgb';
 import { ZFashionBuilder } from '../fashion/fashion';
-import { ZFashionThemeBuilder, createTheme } from './fashion-theme';
+import { createDarkTheme } from './dark';
+import { ZFashionThemeBuilder } from './fashion-theme';
+import { createLightTheme } from './light';
 
 describe('ZFashionDesignBuilder', () => {
   function createTestTarget() {
@@ -10,7 +12,11 @@ describe('ZFashionDesignBuilder', () => {
 
   describe('Construction', () => {
     it('should create the light theme', () => {
-      expect(createTheme()).toBeTruthy();
+      expect(createLightTheme()).toBeTruthy();
+    });
+
+    it('should create the dark theme', () => {
+      expect(createDarkTheme()).toBeTruthy();
     });
   });
 

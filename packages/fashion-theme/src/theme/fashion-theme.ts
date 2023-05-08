@@ -365,12 +365,3 @@ export class ZFashionThemeBuilder {
     return Object.freeze(JSON.parse(JSON.stringify(this._design)));
   }
 }
-
-/**
- * Constructs the default (light) theme.
- *
- * @returns The default (light) theme.
- */
-export function createTheme() {
-  return new ZFashionThemeBuilder().build();
-}
