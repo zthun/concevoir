@@ -1,4 +1,7 @@
-import { ZFashionBuilder, ZFashionThemeBuilder, black, hex, white } from '@zthun/fashion-theme';
+import { hex } from '../color/hex';
+import { black, white } from '../color/rgb';
+import { ZFashionBuilder } from '../fashion/fashion';
+import { ZFashionThemeBuilder } from './fashion-theme';
 
 function createPrimary() {
   return new ZFashionBuilder()
@@ -100,7 +103,7 @@ function createSurface() {
     .build();
 }
 
-export function createTheme() {
+export function createDarkTheme() {
   return new ZFashionThemeBuilder()
     .name('Dark')
     .primary(createPrimary())

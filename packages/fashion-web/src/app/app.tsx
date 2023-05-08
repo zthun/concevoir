@@ -16,8 +16,7 @@ import {
   ZRouter
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
-import { createTheme as createLightTheme } from '@zthun/fashion-theme';
-import { createTheme as createDarkTheme } from '@zthun/fashion-theme-dark';
+import { createDarkTheme, createLightTheme } from '@zthun/fashion-theme';
 import { ZHorizontalAnchor, setFirst } from '@zthun/helpful-fn';
 import { identity } from 'lodash';
 import React, { useMemo, useState } from 'react';
