@@ -2,7 +2,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import { OutlinedInput } from '@mui/material';
 import { ZCircusKeyboardQwerty } from '@zthun/cirque';
-import { cssJoinDefined } from '@zthun/helpful-fn';
+import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
 import React, { KeyboardEvent } from 'react';
 import { ZLabeled } from '../label/labeled';
@@ -13,7 +13,8 @@ import { IZNumber } from './number';
 export const useNumberInputStyles = createStyleHook(({ theme }) => {
   return {
     input: {
-      backgroundColor: theme.light.main
+      color: theme.surface.contrast,
+      backgroundColor: firstDefined(theme.surface.main, theme.surface.light)
     },
     spinner: {
       display: 'flex',

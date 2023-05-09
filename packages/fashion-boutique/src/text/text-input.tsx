@@ -1,5 +1,5 @@
 import { OutlinedInput } from '@mui/material';
-import { cssJoinDefined } from '@zthun/helpful-fn';
+import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { ZLabeled } from '../label/labeled';
 import { createStyleHook } from '../theme/styled';
@@ -34,7 +34,8 @@ export interface IZTextInput extends IZText<string> {
 
 const useTextInputStyles = createStyleHook(({ theme }) => ({
   input: {
-    backgroundColor: theme.light.main
+    color: theme.surface.contrast,
+    backgroundColor: firstDefined(theme.surface.main, theme.surface.light)
   }
 }));
 

@@ -1,6 +1,6 @@
 import { OutlinedInput } from '@mui/material';
 import { ZSizeFixed, createSizeChartFixedArithmetic } from '@zthun/fashion-tailor';
-import { cssJoinDefined } from '@zthun/helpful-fn';
+import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { IZComponentHeight } from '../component/component-height';
 import { ZLabeled } from '../label/labeled';
@@ -13,7 +13,8 @@ const TextAreaRows = createSizeChartFixedArithmetic(2, 2);
 
 const useTextAreaStyles = createStyleHook(({ theme }) => ({
   input: {
-    backgroundColor: theme.light.main
+    color: theme.surface.contrast,
+    backgroundColor: firstDefined(theme.surface.main, theme.surface.light)
   }
 }));
 
