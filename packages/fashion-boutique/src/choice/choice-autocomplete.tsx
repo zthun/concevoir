@@ -1,5 +1,6 @@
 import { Autocomplete, AutocompleteRenderInputParams, TextField } from '@mui/material';
-import { cssJoinDefined } from '@zthun/helpful-fn';
+import { ZSizeFixed } from '@zthun/fashion-tailor';
+import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import { castArray, first } from 'lodash';
 import React, { HTMLAttributes, SyntheticEvent } from 'react';
 import { ZLabeled } from '../label/labeled';
@@ -10,16 +11,52 @@ const useChoiceAutocompleteStyles = createStyleHook(({ theme, tailor }) => {
   return {
     root: {
       '.MuiInputBase-root': {
-        backgroundColor: theme.light.main
+        color: theme.surface.contrast,
+        backgroundColor: firstDefined(theme.surface.main, theme.surface.light)
       },
 
       '.MuiSelect-select': {
         padding: tailor.gap()
+      },
+
+      '.MuiChip-root': {
+        'color': theme.surface.contrast,
+        'backgroundColor': firstDefined(theme.surface.main, theme.surface.dark),
+
+        '.MuiChip-deleteIcon': {
+          'color': theme.surface.contrast,
+
+          '&:hover': {
+            color: theme.primary.main
+          }
+        }
+      }
+    },
+
+    clear: {
+      'color': theme.surface.contrast,
+      'backgroundColor': firstDefined(theme.surface.main, theme.surface.light),
+      'padding': tailor.gap(ZSizeFixed.ExtraSmall),
+
+      '&:hover': {
+        color: theme.primary.contrast,
+        backgroundColor: theme.primary.main
       }
     },
 
     invisible: {
       display: 'none'
+    },
+
+    popup: {
+      ul: {
+        color: theme.surface.contrast,
+        backgroundColor: firstDefined(theme.surface.main, theme.surface.light)
+      }
+    },
+
+    toggler: {
+      color: theme.surface.contrast
     }
   };
 });
@@ -106,9 +143,11 @@ export function ZChoiceAutocomplete<O, V>(props: IZChoice<O, V>) {
         <Autocomplete
           data-name={name}
           componentsProps={{
-            clearIndicator: { className: cssJoinDefined('ZChoice-clear', [classes.invisible, !chosen.length]) },
-            popper: { className: 'ZChoice-options ZChoice-options-popup' },
-            popupIndicator: { className: 'ZChoice-toggler' }
+            clearIndicator: {
+              className: cssJoinDefined('ZChoice-clear', [classes.invisible, !chosen.length], classes.clear)
+            },
+            popper: { className: cssJoinDefined('ZChoice-options', 'ZChoice-options-popup', classes.popup) },
+            popupIndicator: { className: cssJoinDefined('ZChoice-toggler', classes.toggler) }
           }}
           autoHighlight
           disabled={disabled}

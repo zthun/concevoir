@@ -1,5 +1,5 @@
 import { ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material';
-import { ZOrientation, cssJoinDefined } from '@zthun/helpful-fn';
+import { ZOrientation, cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { ZLabeled } from '../label/labeled';
 import { ZStack } from '../stack/stack';
@@ -8,7 +8,8 @@ import { IZChoice, IZChoiceOption, useChoice } from './choice';
 
 const useToggleStyles = createStyleHook(({ theme }) => ({
   toggle: {
-    'backgroundColor': theme.light.main,
+    'color': theme.surface.contrast,
+    'backgroundColor': firstDefined(theme.surface.main, theme.surface.light),
 
     '&:hover': {
       backgroundColor: theme.primary.light,

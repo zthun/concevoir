@@ -1,8 +1,7 @@
 import ClearIcon from '@mui/icons-material/Clear';
 import { IconButton, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { hex } from '@zthun/fashion-theme';
-import { cssJoinDefined } from '@zthun/helpful-fn';
+import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import { castArray, isArray } from 'lodash';
 import React, { ReactNode } from 'react';
 import { ZLabeled } from '../label/labeled';
@@ -13,17 +12,30 @@ const useChoiceDropDownStyles = createStyleHook(({ theme, tailor }) => {
   return {
     root: {
       '.MuiInputBase-root': {
-        backgroundColor: theme.light.main
+        color: theme.surface.contrast,
+        backgroundColor: firstDefined(theme.surface.main, theme.surface.light)
       },
+
+      '.MuiSelect-icon': {
+        color: theme.surface.contrast
+      },
+
       '.MuiSelect-select': {
         padding: tailor.gap(ZSizeFixed.Small)
       }
     },
 
     clear: {
-      fontSize: '1.2rem',
-      padding: tailor.gap(ZSizeFixed.Small),
-      marginRight: `${tailor.gap()} !important`
+      'color': theme.surface.contrast,
+      'backgroundColor': firstDefined(theme.surface.main, theme.surface.light),
+      'fontSize': '1.2rem',
+      'padding': tailor.gap(ZSizeFixed.ExtraSmall),
+      'marginRight': `${tailor.gap(ZSizeFixed.Small)} !important`,
+
+      '&:hover': {
+        color: theme.primary.contrast,
+        backgroundColor: theme.primary.main
+      }
     },
 
     chip: {
@@ -32,7 +44,7 @@ const useChoiceDropDownStyles = createStyleHook(({ theme, tailor }) => {
 
       '.ZChoice-value': {
         fontSize: '0.8125rem',
-        backgroundColor: hex(0xeeeeee),
+        backgroundColor: firstDefined(theme.surface.main, theme.surface.dark),
         color: 'inherit',
         borderRadius: '1rem',
         padding: `calc(${tailor.gap(ZSizeFixed.ExtraSmall)} * 0.5)`,
@@ -43,6 +55,13 @@ const useChoiceDropDownStyles = createStyleHook(({ theme, tailor }) => {
     toggler: {
       '.ZChoice-toggler': {
         padding: tailor.gap(ZSizeFixed.ExtraSmall)
+      }
+    },
+
+    popup: {
+      ul: {
+        color: theme.surface.contrast,
+        backgroundColor: firstDefined(theme.surface.main, theme.surface.light)
       }
     }
   };
@@ -134,7 +153,7 @@ export function ZChoiceDropDown<O, V>(props: IZChoice<O, V>) {
           disabled={disabled}
           value={cast(value, '')}
           multiple={multiple}
-          MenuProps={{ className: 'ZChoice-options ZChoice-options-popup' }}
+          MenuProps={{ className: cssJoinDefined('ZChoice-options', 'ZChoice-options-popup', classes.popup) }}
           onChange={handleSelect}
           renderValue={renderSelectedItem}
           endAdornment={renderClear()}
