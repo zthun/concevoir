@@ -96,8 +96,8 @@ function createBody() {
 function createSurface() {
   return new ZFashionBuilder()
     .name('Surface')
-    .light(hex(0x757575))
-    .main(hex(0x515151))
+    .light(hex(0x515151))
+    .main(hex(0x333333))
     .dark(hex(0x212121))
     .contrast(white())
     .build();
