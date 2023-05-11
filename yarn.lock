@@ -4241,6 +4241,7 @@ __metadata:
     "@zthun/fashion-theme": ^0.0.1
     "@zthun/helpful-fn": ^0.5.0
     "@zthun/helpful-obligation": ^0.5.0
+    "@zthun/helpful-query": ^0.5.0
     "@zthun/helpful-react": ^0.5.0
     "@zthun/webigail-http": ^0.1.0
     "@zthun/webigail-url": ^0.1.0
@@ -4293,6 +4294,7 @@ __metadata:
     "@zthun/fashion-tailor": ^0.0.1
     "@zthun/fashion-theme": ^0.0.1
     "@zthun/helpful-fn": ^0.5.0
+    "@zthun/helpful-query": ^0.5.0
     "@zthun/helpful-react": ^0.5.0
     "@zthun/webigail-url": ^0.1.0
     history: ^5.3.0
@@ -4300,7 +4302,6 @@ __metadata:
     react: ^18.2.0
     react-dom: ^18.2.0
     react-router-dom: ^6.8.2
-    rollup-plugin-visualizer: ^5.9.0
     vite: ^4.1.4
     vite-tsconfig-paths: ^4.0.5
     vitest: ^0.29.2
@@ -4348,6 +4349,15 @@ __metadata:
   version: 0.5.0
   resolution: "@zthun/helpful-obligation@npm:0.5.0"
   checksum: 4640e41693de390e55a14464b19dca157d339a7cf3efb7b1155f1d6660534a6b02561dbfb103522449d785721700dddfb3bf210dedd876e9bb8b252e59c55e1a
+  languageName: node
+  linkType: hard
+
+"@zthun/helpful-query@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "@zthun/helpful-query@npm:0.5.0"
+  dependencies:
+    lodash: ^4.17.21
+  checksum: 7acbe1721ec794fb8b598f8b1545a9a0fa7ea59f1ec1a6cf80f232f97d1bbeb2dfc7738cd5e02c0818a2fbe5def5b9fb2a823e5bada90dd8772bcefc47e92c18
   languageName: node
   linkType: hard
 
@@ -12739,7 +12749,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup-plugin-visualizer@npm:^5.6.0, rollup-plugin-visualizer@npm:^5.9.0":
+"rollup-plugin-visualizer@npm:^5.6.0":
   version: 5.9.0
   resolution: "rollup-plugin-visualizer@npm:5.9.0"
   dependencies:
