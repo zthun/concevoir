@@ -56,6 +56,13 @@ export const ZFashionRouteDrawer = new ZRouteBuilder()
   .avatar('/images/svg/drawer.svg')
   .build();
 
+export const ZFashionRouteGridView = new ZRouteBuilder()
+  .name('Grid View')
+  .path('grid-view')
+  .description('Paginated Grid With Built In Navigation')
+  .avatar('/images/svg/card.svg')
+  .build();
+
 export const ZFashionRouteList = new ZRouteBuilder()
   .name('List')
   .path('list')
@@ -97,6 +104,7 @@ export const ZFashionRouteAllComponents = [
   ZFashionRouteCard,
   ZFashionRouteChoice,
   ZFashionRouteDrawer,
+  ZFashionRouteGridView,
   ZFashionRouteList,
   ZFashionRouteNumber,
   ZFashionRouteSuspense,

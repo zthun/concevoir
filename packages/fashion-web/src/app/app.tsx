@@ -26,6 +26,7 @@ import { ZButtonPage } from '../boutique/button/button-page';
 import { ZCardPage } from '../boutique/card/card-page';
 import { ZChoicePage } from '../boutique/choice/choice-page';
 import { ZDrawerPage } from '../boutique/drawer/drawer-page';
+import { ZGridViewPage } from '../boutique/grid-view/grid-view-page';
 import { ZListPage } from '../boutique/list/list-page';
 import { ZNumberPage } from '../boutique/number/number-page';
 import { ZSuspensePage } from '../boutique/suspense/suspense-page';
@@ -39,6 +40,7 @@ import {
   ZFashionRouteCard,
   ZFashionRouteChoice,
   ZFashionRouteDrawer,
+  ZFashionRouteGridView,
   ZFashionRouteHome,
   ZFashionRouteList,
   ZFashionRouteNumber,
@@ -105,6 +107,7 @@ export function ZFashionApp() {
               <ZRoute path={ZFashionRouteCard.path} element={<ZCardPage />} />
               <ZRoute path={ZFashionRouteChoice.path} element={<ZChoicePage />} />
               <ZRoute path={ZFashionRouteDrawer.path} element={<ZDrawerPage />} />
+              <ZRoute path={ZFashionRouteGridView.path} element={<ZGridViewPage />} />
               <ZRoute path={ZFashionRouteList.path} element={<ZListPage />} />
               <ZRoute path={ZFashionRouteNumber.path} element={<ZNumberPage />} />
               <ZRoute path={ZFashionRouteSuspense.path} element={<ZSuspensePage />} />
