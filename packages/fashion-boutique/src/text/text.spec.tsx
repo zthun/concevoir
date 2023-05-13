@@ -49,6 +49,8 @@ describe('ZText', () => {
     const target = await createTestTarget();
     // Act
     await target.keyboard(LOREM);
+    await target.clear();
+    await target.keyboard(LOREM);
     const actual = await target.value();
     // Assert
     expect(actual).toEqual(LOREM);
@@ -77,6 +79,19 @@ describe('ZText', () => {
     // Act
     await target.keyboard('No commit', commit);
     // Assert
+    expect(onValueChange).not.toHaveBeenCalled();
+  };
+
+  const shouldNotRaiseOnValueChangeIfActualValueIsTheSame = async (
+    createTestTarget: () => Promise<ZTextComponentModel>
+  ) => {
+    // Arrange
+    onValueChange = vi.fn();
+    const target = await createTestTarget();
+    // Act
+    await target.clear();
+    await target.clear();
+    // Assert.
     expect(onValueChange).not.toHaveBeenCalled();
   };
 
@@ -193,6 +208,10 @@ describe('ZText', () => {
       await shouldNotRaiseOnValueChange(createTestTarget);
     });
 
+    it('should not raise the onValueChange if the user commits when the value is the same', async () => {
+      await shouldNotRaiseOnValueChangeIfActualValueIsTheSame(createTestTarget);
+    });
+
     it('should be disabled', async () => {
       await shouldBeDisabled(createTestTarget);
     });
@@ -282,6 +301,10 @@ describe('ZText', () => {
 
     it('should not raise the onValueChange until the user commits the value', async () => {
       await shouldNotRaiseOnValueChange(createTestTarget);
+    });
+
+    it('should not raise the onValueChange if the user commits when the value is the same', async () => {
+      await shouldNotRaiseOnValueChangeIfActualValueIsTheSame(createTestTarget);
     });
 
     it('should be disabled', async () => {
@@ -377,6 +400,10 @@ describe('ZText', () => {
 
     it('should raise the onValueChange event when the user types a value', async () => {
       await shouldRaiseOnValueChange(createTestTarget);
+    });
+
+    it('should not raise the onValueChange if the user commits when the value is the same', async () => {
+      await shouldNotRaiseOnValueChangeIfActualValueIsTheSame(createTestTarget);
     });
 
     it('should be disabled', async () => {

@@ -7,6 +7,7 @@ import { IZComponentAdornment } from '../component/component-adornment';
 import { IZComponentDisabled } from '../component/component-disabled';
 import { IZComponentLabel } from '../component/component-label';
 import { IZComponentName } from '../component/component-name';
+import { IZComponentOrientation } from '../component/component-orientation';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentValue } from '../component/component-value';
 
@@ -19,10 +20,17 @@ export interface IZText<T = string>
     IZComponentValue<T>,
     IZComponentLabel,
     IZComponentAdornment,
+    IZComponentOrientation,
     IZComponentStyle {
   required?: boolean;
   readOnly?: boolean;
   placeholder?: string;
+}
+
+function onChange<T>(current: T, value: T, onValueChange: (val: T) => void) {
+  if (current !== value) {
+    onValueChange(current);
+  }
 }
 
 /**
@@ -65,7 +73,7 @@ export function useText<T extends string>(props: IZText<T>, initial: T): InputBa
     readOnly,
     startAdornment: renderAdornment(prefix, 'start'),
     endAdornment: renderAdornment(suffix, 'end'),
-    onBlur: () => onValueChange(current),
+    onBlur: () => onChange(current || '', value || '', onValueChange),
     onInput: (e) => setCurrent(getValue(e.target))
   };
 }
@@ -84,12 +92,12 @@ export function useText<T extends string>(props: IZText<T>, initial: T): InputBa
  *
  */
 export function withEnterCommit<T>(props: IZText<T>, onKeyDown: (e: KeyboardEvent<HTMLElement>) => any = noop) {
-  const { onValueChange = noop } = props;
+  const { value, onValueChange = noop } = props;
 
   return (e: KeyboardEvent<HTMLElement>) => {
     if (e.code === ZCircusKeyboardQwerty.enter.code) {
       const current = get(e.target, 'value', '');
-      onValueChange(current);
+      onChange(current || '', value || '', onValueChange);
     }
 
     onKeyDown(e);

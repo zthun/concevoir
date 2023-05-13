@@ -104,13 +104,38 @@ export class ZTextComponentModel extends ZCircusComponentModel {
    *        The text to type.
    * @param commit -
    *        The key to use push last to commit the changes.  Should
-   *        be tab or enter.
+   *        be tab or enter, but you can set this to alt if you don't want
+   *        to commit the text.
    *
    * @returns
    *        The updated value.
    */
   public async keyboard(text: string, commit = ZCircusKeyboardQwerty.tab): Promise<string | null> {
     const act = new ZCircusActBuilder().click().type(text).press(commit).build();
+    const input = await this._input();
+    await input.perform(act);
+    return this.value();
+  }
+
+  /**
+   * Clears the text of all keys.
+   *
+   * @param commit -
+   *        The key to use push last to commit the changes.  Should
+   *        be tab or enter, but you can set this to alt if you don't want
+   *        to commit the text.
+   *
+   * @returns
+   *        The updated value.
+   */
+  public async clear(commit = ZCircusKeyboardQwerty.tab): Promise<string | null> {
+    const value = await this.value();
+    const act = new ZCircusActBuilder()
+      .click()
+      .press(ZCircusKeyboardQwerty.delete, value?.length)
+      .press(ZCircusKeyboardQwerty.backspace, value?.length)
+      .press(commit)
+      .build();
     const input = await this._input();
     await input.perform(act);
     return this.value();
