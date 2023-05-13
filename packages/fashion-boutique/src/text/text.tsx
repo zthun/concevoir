@@ -8,6 +8,7 @@ import { IZComponentDisabled } from '../component/component-disabled';
 import { IZComponentLabel } from '../component/component-label';
 import { IZComponentName } from '../component/component-name';
 import { IZComponentOrientation } from '../component/component-orientation';
+import { IZComponentRequired } from '../component/component-required';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentValue } from '../component/component-value';
 
@@ -21,8 +22,8 @@ export interface IZText<T = string>
     IZComponentLabel,
     IZComponentAdornment,
     IZComponentOrientation,
+    IZComponentRequired,
     IZComponentStyle {
-  required?: boolean;
   readOnly?: boolean;
   placeholder?: string;
 }
