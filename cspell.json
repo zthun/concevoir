@@ -6,6 +6,7 @@
     "Bonta",
     "borderless",
     "BUILDKIT",
+    "codepen",
     "colorify",
     "commitlint",
     "conventionalcommits",
@@ -19,10 +20,5 @@
     "zthun",
     "zthunworks"
   ],
-  "dictionaries": [
-    "typescript",
-    "node",
-    "npm",
-    "en_US"
-  ]
+  "dictionaries": ["typescript", "node", "npm", "en_US"]
 }
