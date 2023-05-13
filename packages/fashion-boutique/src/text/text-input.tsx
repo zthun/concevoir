@@ -49,7 +49,7 @@ const useTextInputStyles = createStyleHook(({ theme }) => ({
  *        The JSX to render the component.
  */
 export function ZTextInput(props: IZTextInput) {
-  const { className, type = ZTextType.Text, name, label, required } = props;
+  const { className, type = ZTextType.Text, name, label, required, orientation } = props;
   const InputProps = useText(props, '');
   const handleKeyDown = withEnterCommit(props);
   const { classes } = useTextInputStyles();
@@ -58,6 +58,7 @@ export function ZTextInput(props: IZTextInput) {
     <ZLabeled
       className={cssJoinDefined('ZText-root', className)}
       LabelProps={{ label, required, className: 'ZText-label' }}
+      orientation={orientation}
       name={name}
     >
       {(id) => (

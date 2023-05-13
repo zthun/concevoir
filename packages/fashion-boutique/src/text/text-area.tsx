@@ -28,7 +28,7 @@ const useTextAreaStyles = createStyleHook(({ theme }) => ({
  *        The JSX to render this component.
  */
 export function ZTextArea(props: IZTextArea) {
-  const { className, name, required, height = ZSizeFixed.Medium, label } = props;
+  const { className, name, required, height = ZSizeFixed.Medium, label, orientation } = props;
   const InputProps = useText(props, '');
   const rows = TextAreaRows[height];
   const { classes } = useTextAreaStyles();
@@ -38,6 +38,7 @@ export function ZTextArea(props: IZTextArea) {
       className={cssJoinDefined('ZText-root', 'ZText-area', className)}
       LabelProps={{ label, required, className: 'ZText-label' }}
       name={name}
+      orientation={orientation}
     >
       {(id) => (
         <OutlinedInput
