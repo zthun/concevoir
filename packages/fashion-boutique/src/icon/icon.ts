@@ -1,22 +1,32 @@
 import { ZSizeFixed, createSizeChartFixedCss, createSizeChartFixedGeometric } from '@zthun/fashion-tailor';
-import { useEffect } from 'react';
+import { firstDefined } from '@zthun/helpful-fn';
+import { KeyboardEvent, MouseEvent, useEffect } from 'react';
 import { IZComponentFashion } from 'src/component/component-fashion';
 import { IZComponentName } from '../component/component-name';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentWidth } from '../component/component-width';
 import { createStyleHook } from '../theme/styled';
 
-export interface IZIcon extends IZComponentName, IZComponentStyle, IZComponentWidth<ZSizeFixed>, IZComponentFashion {}
+export interface IZIcon extends IZComponentName, IZComponentStyle, IZComponentWidth<ZSizeFixed>, IZComponentFashion {
+  onClick?: (event: MouseEvent | KeyboardEvent) => void;
+}
 
 const IconSizeChart = createSizeChartFixedCss(createSizeChartFixedGeometric(2, 1), 'rem');
 
-export const useIconStyles = createStyleHook((_, props: IZIcon) => {
-  const { width = ZSizeFixed.Small } = props;
-
+export const useIconStyles = createStyleHook(({ theme }, props: IZIcon) => {
+  const { primary } = theme;
+  const { width = ZSizeFixed.Small, fashion, onClick } = props;
   const fontSize = IconSizeChart[width];
+
   return {
     root: {
-      fontSize
+      fontSize,
+      'color': fashion?.main,
+      'cursor': onClick ? 'pointer' : 'default',
+
+      '&:hover': {
+        color: onClick ? firstDefined(primary.main, fashion?.dark) : undefined
+      }
     }
   };
 });
