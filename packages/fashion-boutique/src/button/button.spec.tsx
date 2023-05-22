@@ -13,6 +13,7 @@ describe('ZButton', () => {
   let disabled: boolean | undefined;
   let outline: boolean | undefined;
   let borderless: boolean | undefined;
+  let compact: boolean | undefined;
   let fashion: IZFashion | undefined;
   let name: string | undefined;
   let onClick: Mock | undefined;
@@ -25,6 +26,7 @@ describe('ZButton', () => {
         loading={loading}
         outline={outline}
         borderless={borderless}
+        compact={compact}
         onClick={onClick}
         label={label}
         name={name}
@@ -40,6 +42,7 @@ describe('ZButton', () => {
     avatar = undefined;
     loading = undefined;
     outline = undefined;
+    compact = undefined;
     label = undefined;
     name = undefined;
     fashion = undefined;
@@ -166,6 +169,26 @@ describe('ZButton', () => {
 
     it('should keep the border if the borderless flag is true.', async () => {
       await assertBorderless(true, true);
+    });
+  });
+
+  describe('Compact', () => {
+    async function assertCompact(expected: boolean, _compact: boolean) {
+      // Arrange
+      compact = _compact;
+      const target = await createTestTarget();
+      // Act.
+      const actual = await target.compact();
+      // Assert
+      expect(!!actual).toEqual(expected);
+    }
+
+    it('should keep the border if the borderless flag is false.', async () => {
+      await assertCompact(false, false);
+    });
+
+    it('should keep the border if the borderless flag is true.', async () => {
+      await assertCompact(true, true);
     });
   });
 

@@ -49,6 +49,17 @@ export class ZButtonComponentModel extends ZCircusComponentModel {
   }
 
   /**
+   * Gets whether the button is compact.
+   *
+   * @returns
+   *        True if the button is compact. False otherwise.
+   */
+  public async compact(): Promise<boolean> {
+    const c = await this.driver.attribute('data-compact');
+    return c === 'true';
+  }
+
+  /**
    * Gets whether the button is borderless.
    *
    * @returns

@@ -27,6 +27,7 @@ export interface IZButton
     IZComponentFashion<IZFashion>,
     IZComponentWidth<ZSizeVaried> {
   borderless?: boolean;
+  compact?: boolean;
   outline?: boolean;
   tooltip?: ReactNode;
 
@@ -36,12 +37,13 @@ export interface IZButton
 const ButtonSizeChart = createSizeChartVariedCss();
 
 const useButtonStyles = createStyleHook(({ theme, tailor }, props: IZButton) => {
-  const { width = ZSizeVaried.Fit, fashion = theme.body } = props;
+  const { width = ZSizeVaried.Fit, fashion = theme.body, compact } = props;
 
   const text = fashion.contrast;
   const main = fashion.main;
   const dark = firstDefined(fashion.main, fashion.dark);
   const light = firstDefined(fashion.main, fashion.light);
+  const minWidth = compact ? 0 : undefined;
 
   const borderless = {
     border: 0,
@@ -62,6 +64,7 @@ const useButtonStyles = createStyleHook(({ theme, tailor }, props: IZButton) => 
       'color': text,
       'backgroundColor': main,
       'borderColor': dark,
+      'minWidth': minWidth,
 
       '&:hover': {
         outline: `${tailor.thickness()} solid ${light}`,
@@ -117,6 +120,7 @@ export function ZButton(props: IZButton) {
     avatar,
     className,
     borderless,
+    compact,
     disabled,
     fashion,
     loading,
@@ -147,6 +151,7 @@ export function ZButton(props: IZButton) {
           disabled={disabled}
           onClick={onClick}
           name={name}
+          data-compact={compact}
           data-fashion={fashion?.name}
         >
           {avatar}
