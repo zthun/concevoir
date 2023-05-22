@@ -69,6 +69,7 @@ export function useText<T extends string>(props: IZText<T>, initial: T): InputBa
     disabled,
     value: current,
     name,
+    fullWidth: true,
     required,
     placeholder: placeholder,
     readOnly,
