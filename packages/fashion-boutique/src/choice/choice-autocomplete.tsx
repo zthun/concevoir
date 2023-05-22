@@ -71,7 +71,7 @@ const useChoiceAutocompleteStyles = createStyleHook(({ theme, tailor }) => {
  *        The JSX to render the choice component.
  */
 export function ZChoiceAutocomplete<O, V>(props: IZChoice<O, V>) {
-  const { className, disabled, multiple, name, label, indelible, required, identifier } = props;
+  const { className, disabled, multiple, name, label, indelible, orientation, required, identifier } = props;
   const { choices, value, lookup, render, display, setValue } = useChoice(props);
   const { classes } = useChoiceAutocompleteStyles();
 
@@ -138,6 +138,7 @@ export function ZChoiceAutocomplete<O, V>(props: IZChoice<O, V>) {
       className={cssJoinDefined('ZChoice-root', 'ZChoice-autocomplete', classes.root, className)}
       LabelProps={{ label, required, className: 'ZChoice-label' }}
       name={name}
+      orientation={orientation}
     >
       {() => (
         <Autocomplete

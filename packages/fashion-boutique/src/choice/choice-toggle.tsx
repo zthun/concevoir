@@ -39,7 +39,7 @@ const useToggleStyles = createStyleHook(({ theme }) => ({
  * Represents a type of choice component that switches between a toggled button group.
  */
 export function ZChoiceToggle<O, V>(props: IZChoice<O, V>) {
-  const { className, label, disabled, multiple, name, indelible, required } = props;
+  const { className, label, disabled, multiple, name, indelible, orientation, required } = props;
   const { choices, value, display, render, setValue } = useChoice(props);
   const { classes } = useToggleStyles();
 
@@ -110,6 +110,7 @@ export function ZChoiceToggle<O, V>(props: IZChoice<O, V>) {
       className={cssJoinDefined('ZChoice-root', 'ZChoice-toggle', 'ZChoice-always-open', className)}
       LabelProps={{ label, required, className: 'ZChoice-label' }}
       name={name}
+      orientation={orientation}
     >
       {() => (
         <ZStack orientation={ZOrientation.Horizontal}>
