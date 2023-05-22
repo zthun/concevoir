@@ -1,24 +1,15 @@
 import { ZCard, ZGridView, ZIconFontAwesome, ZStack } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
+import { IZBrand, ZBrands } from '@zthun/helpful-brands';
 import { ZOrientation } from '@zthun/helpful-fn';
-import { ZDataSourceStatic } from '@zthun/helpful-query';
-import { startCase } from 'lodash';
+import { ZDataSearchFields, ZDataSourceStatic, ZDataSourceStaticOptionsBuilder } from '@zthun/helpful-query';
 import React from 'react';
 
-const SocialMediaQuery = new ZDataSourceStatic([
-  'facebook',
-  'twitter',
-  'instagram',
-  'linkedin',
-  'github',
-  'youtube',
-  'wordpress',
-  'slack',
-  'apple',
-  'docker',
-  'windows',
-  'linux'
-]);
+const ZBrandDataSourceOptions = new ZDataSourceStaticOptionsBuilder()
+  .search(new ZDataSearchFields(['id', 'name']))
+  .delay(1000)
+  .build();
+const ZBrandDataSource = new ZDataSourceStatic(ZBrands.slice(), ZBrandDataSourceOptions);
 
 /**
  * Represents a demo for grid views.
@@ -26,10 +17,10 @@ const SocialMediaQuery = new ZDataSourceStatic([
  * @returns The JSX to render the page.
  */
 export function ZGridViewPage() {
-  const renderItem = (item: string) => (
-    <ZCard heading={startCase(item)} avatar={<ZIconFontAwesome width={ZSizeFixed.Small} name='hashtag' />}>
+  const renderItem = (item: IZBrand) => (
+    <ZCard key={item.id} heading={item.name} avatar={<ZIconFontAwesome width={ZSizeFixed.Small} name='hashtag' />}>
       <ZStack justifyContent='center' orientation={ZOrientation.Horizontal}>
-        <ZIconFontAwesome key={item} family='brands' name={item} width={ZSizeFixed.Large} />
+        <ZIconFontAwesome family='brands' name={item.id} width={ZSizeFixed.Large} />
       </ZStack>
     </ZCard>
   );
@@ -37,9 +28,15 @@ export function ZGridViewPage() {
   return (
     <ZGridView
       className='ZGridViewPage-root'
-      GridProps={{ gap: ZSizeFixed.Small, columns: '1fr 1fr 1fr' }}
+      GridProps={{
+        gap: ZSizeFixed.Small,
+        columns: '1fr 1fr 1fr 1fr',
+        columnsLg: '1fr 1fr 1fr',
+        columnsMd: '1fr 1fr',
+        columnsSm: '1fr'
+      }}
       renderItem={renderItem}
-      dataSource={SocialMediaQuery}
+      dataSource={ZBrandDataSource}
     />
   );
 }
