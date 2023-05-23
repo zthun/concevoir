@@ -1,7 +1,7 @@
 import { ZSizeFixed, createSizeChartFixedCss, createSizeChartFixedGeometric } from '@zthun/fashion-tailor';
 import { firstDefined } from '@zthun/helpful-fn';
 import { KeyboardEvent, MouseEvent, useEffect } from 'react';
-import { IZComponentFashion } from 'src/component/component-fashion';
+import { IZComponentFashion } from '../component/component-fashion';
 import { IZComponentName } from '../component/component-name';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentWidth } from '../component/component-width';
