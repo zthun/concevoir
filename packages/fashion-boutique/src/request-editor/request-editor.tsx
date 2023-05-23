@@ -47,19 +47,31 @@ export function ZRequestEditor(props: IZRequestEditor) {
   };
 
   return (
-    <ZBox padding={ZSizeFixed.Medium}>
+    <ZBox className='ZRequestEditor-root' padding={ZSizeFixed.Medium}>
       <ZStack gap={ZSizeFixed.Medium}>
-        <ZH2>View</ZH2>
+        <ZH2>Edit Request</ZH2>
         <ZChoiceDropDown
+          className='ZRequestEditor-page-size'
           options={pageSizes}
           value={_size}
           onValueChange={handlePageSizeChange}
           indelible
           label='Items Per Page'
+          name='request-editor-page-size'
           identifier={identity}
         />
-        <ZSortEditor value={_value.sort} onValueChange={handleSortChange} />
-        <ZFilterEditor value={_value.filter} onValueChange={handleFilterChange} />
+        <ZSortEditor
+          className='ZRequestEditor-sort'
+          value={_value.sort}
+          onValueChange={handleSortChange}
+          name='request-editor-sort'
+        />
+        <ZFilterEditor
+          className='ZRequestEditor-filter'
+          value={_value.filter}
+          onValueChange={handleFilterChange}
+          name='request-editor-filter'
+        />
       </ZStack>
     </ZBox>
   );
