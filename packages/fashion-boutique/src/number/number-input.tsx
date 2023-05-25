@@ -1,10 +1,10 @@
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import { OutlinedInput } from '@mui/material';
 import { ZCircusKeyboardQwerty } from '@zthun/cirque';
+import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
 import React, { KeyboardEvent } from 'react';
+import { ZIconFontAwesome } from 'src/icon/icon-font-awesome';
 import { ZLabeled } from '../label/labeled';
 import { IZText, useText, withEnterCommit } from '../text/text';
 import { createStyleHook } from '../theme/styled';
@@ -91,14 +91,14 @@ export function ZNumberInput(props: IZNumber<number | null>) {
         onClick={handleSpin.bind(null, 1)}
         onKeyDown={handleSpinOnEnter.bind(null, 1)}
       >
-        <ArrowDropUpIcon fontSize='inherit' />
+        <ZIconFontAwesome name='chevron-up' width={ZSizeFixed.ExtraSmall} />
       </button>
       <button
         className={cssJoinDefined('ZNumber-spinner-decrement', classes.spin, classes.down)}
         onClick={handleSpin.bind(null, -1)}
         onKeyDown={handleSpinOnEnter.bind(null, -1)}
       >
-        <ArrowDropDownIcon fontSize='inherit' />
+        <ZIconFontAwesome name='chevron-down' width={ZSizeFixed.ExtraSmall} />
       </button>
     </div>
   );

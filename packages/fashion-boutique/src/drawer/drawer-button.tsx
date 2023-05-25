@@ -1,9 +1,10 @@
-import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ReactNode, useEffect, useState } from 'react';
 import { IZButton, ZButton } from '../button/button';
 import { IZComponentHierarchy } from '../component/component-hierarchy';
 import { IZComponentStyle } from '../component/component-style';
+import { ZIconFontAwesome } from '../icon/icon-font-awesome';
 import { IZDrawer, ZDrawer } from './drawer';
 
 /**
@@ -35,7 +36,7 @@ export function ZDrawerButton(props: IZDrawerButton) {
     ButtonProps,
     DrawerProps,
     children,
-    icon = <MenuOpenIcon fontSize='small' />
+    icon = <ZIconFontAwesome name='bars' width={ZSizeFixed.ExtraSmall} />
   } = props;
   const [open, setOpen] = useState(false);
   const _className = cssJoinDefined('ZDrawerButton-root', className);

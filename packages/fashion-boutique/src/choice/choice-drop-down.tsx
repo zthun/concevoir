@@ -1,9 +1,9 @@
-import ClearIcon from '@mui/icons-material/Clear';
 import { IconButton, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import { castArray, isArray } from 'lodash';
 import React, { ReactNode } from 'react';
+import { ZIconFontAwesome } from '../icon/icon-font-awesome';
 import { ZLabeled } from '../label/labeled';
 import { createStyleHook } from '../theme/styled';
 import { IZChoice, IZChoiceOption, useChoice } from './choice';
@@ -109,7 +109,7 @@ export function ZChoiceDropDown<O, V>(props: IZChoice<O, V>) {
 
     return (
       <IconButton className={cssJoinDefined('ZChoice-clear', classes.clear)} onClick={setValue.bind(null, [])}>
-        <ClearIcon fontSize='inherit' />
+        <ZIconFontAwesome name='xmark' width={ZSizeFixed.ExtraSmall} />
       </IconButton>
     );
   }

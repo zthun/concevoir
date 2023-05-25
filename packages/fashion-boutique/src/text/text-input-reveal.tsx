@@ -1,8 +1,7 @@
-import VisibilityOn from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { useState } from 'react';
+import { ZIconFontAwesome } from 'src/icon/icon-font-awesome';
 import { ZButton } from '../button/button';
 import { ZGrid } from '../grid/grid';
 import { useFashionTheme } from '../theme/fashion';
@@ -22,7 +21,12 @@ export function ZTextInputReveal(props: IZText) {
   const { className, suffix } = props;
   const [revealed, setRevealed] = useState(false);
   const type = revealed ? ZTextType.Text : ZTextType.Password;
-  const visible = revealed ? <VisibilityOff /> : <VisibilityOn />;
+  const visible = revealed ? (
+    <ZIconFontAwesome name='eye' width={ZSizeFixed.ExtraSmall} />
+  ) : (
+    <ZIconFontAwesome name='eye-slash' width={ZSizeFixed.ExtraSmall} />
+  );
+
   const { error, success } = useFashionTheme();
   const fashion = revealed ? error : success;
 
