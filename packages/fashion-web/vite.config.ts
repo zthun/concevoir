@@ -11,5 +11,10 @@ export default defineConfig({
   ],
   server: {
     strictPort: true
+  },
+  resolve: {
+    alias: {
+      lodash: 'lodash-es'
+    }
   }
 });
