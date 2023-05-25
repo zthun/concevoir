@@ -2194,9 +2194,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cucumber/cucumber@npm:^9.0.0":
-  version: 9.1.0
-  resolution: "@cucumber/cucumber@npm:9.1.0"
+"@cucumber/cucumber@npm:^9.1.2":
+  version: 9.1.2
+  resolution: "@cucumber/cucumber@npm:9.1.2"
   dependencies:
     "@cucumber/ci-environment": 9.1.0
     "@cucumber/cucumber-expressions": 16.1.1
@@ -2236,11 +2236,11 @@ __metadata:
     util-arity: ^1.1.0
     verror: ^1.10.0
     xmlbuilder: ^15.1.1
-    yaml: 2.2.1
+    yaml: ^2.2.2
     yup: ^0.32.11
   bin:
     cucumber-js: bin/cucumber.js
-  checksum: b4f86f4ed69a7b0d12e5feedb9f5b23bf1fa2556e683d6035be6b43a0b18e74bbdfc94a85edc3cefe6e5002c8473f0dca889d75bc92bd581e42d9c8a99ffc5dc
+  checksum: 99c3402e509b728a5cae08824c629b89402dc853231e9e887c3cccbb7542542b7a1fdaf9a3fa2fbacfd16d7f97eb9b82e0d72a9244a0425f05ad66e90c3bd77c
   languageName: node
   linkType: hard
 
@@ -4486,7 +4486,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@zthun/fashion-web@workspace:packages/fashion-web"
   dependencies:
-    "@cucumber/cucumber": ^9.0.0
+    "@cucumber/cucumber": ^9.1.2
     "@zthun/cirque": ^4.3.0
     "@zthun/cirque-du-react": ^4.3.0
     "@zthun/cirque-du-selenium": ^4.3.0
@@ -4517,7 +4517,7 @@ __metadata:
     "@babel/core": ^7.21.8
     "@commitlint/cli": ^17.6.3
     "@commitlint/config-conventional": ^17.6.3
-    "@cucumber/cucumber": ^9.0.0
+    "@cucumber/cucumber": ^9.1.2
     "@types/jsdom": ^21.1.1
     "@types/lodash": ^4.14.194
     "@types/node": ^20.2.3
@@ -15304,17 +15304,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yaml@npm:2.2.1":
-  version: 2.2.1
-  resolution: "yaml@npm:2.2.1"
-  checksum: 84f68cbe462d5da4e7ded4a8bded949ffa912bc264472e5a684c3d45b22d8f73a3019963a32164023bdf3d83cfb6f5b58ff7b2b10ef5b717c630f40bd6369a23
-  languageName: node
-  linkType: hard
-
 "yaml@npm:^1.10.0, yaml@npm:^1.10.2":
   version: 1.10.2
   resolution: "yaml@npm:1.10.2"
   checksum: ce4ada136e8a78a0b08dc10b4b900936912d15de59905b2bf415b4d33c63df1d555d23acb2a41b23cf9fb5da41c256441afca3d6509de7247daa062fd2c5ea5f
+  languageName: node
+  linkType: hard
+
+"yaml@npm:^2.2.2":
+  version: 2.3.0
+  resolution: "yaml@npm:2.3.0"
+  checksum: 9c3d16c226472041fbdc9fb55e1645786d3a3e8d4fde67a502ed7bfbd9067b811e466679db590a0731b4405d4a3bef1f35d098fb650d2cf4bc24732fc829b961
   languageName: node
   linkType: hard
 

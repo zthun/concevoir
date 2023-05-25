@@ -1,9 +1,9 @@
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { useState } from 'react';
-import { ZIconFontAwesome } from 'src/icon/icon-font-awesome';
 import { ZButton } from '../button/button';
 import { ZGrid } from '../grid/grid';
+import { ZIconFontAwesome } from '../icon/icon-font-awesome';
 import { useFashionTheme } from '../theme/fashion';
 import { IZText } from './text';
 import { ZTextInput, ZTextType } from './text-input';

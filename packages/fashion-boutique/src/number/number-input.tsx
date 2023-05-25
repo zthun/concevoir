@@ -4,7 +4,7 @@ import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
 import React, { KeyboardEvent } from 'react';
-import { ZIconFontAwesome } from 'src/icon/icon-font-awesome';
+import { ZIconFontAwesome } from '../icon/icon-font-awesome';
 import { ZLabeled } from '../label/labeled';
 import { IZText, useText, withEnterCommit } from '../text/text';
 import { createStyleHook } from '../theme/styled';
