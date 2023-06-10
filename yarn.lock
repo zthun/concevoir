@@ -2860,6 +2860,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@faker-js/faker@npm:^8.0.2":
+  version: 8.0.2
+  resolution: "@faker-js/faker@npm:8.0.2"
+  checksum: cf73daf9a50397eb0b3f04a7ef3fbb6f54acc026b167707136a7e58a517fd805a46c9e8c5f017f3022f104a4ff984765daaeee2cb98b3c34646db05c2acad441
+  languageName: node
+  linkType: hard
+
 "@gar/promisify@npm:^1.1.3":
   version: 1.1.3
   resolution: "@gar/promisify@npm:1.1.3"
@@ -3967,10 +3974,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20.2.5":
-  version: 20.2.5
-  resolution: "@types/node@npm:20.2.5"
-  checksum: 38ce7c7e9d76880dc632f71d71e0d5914fcda9d5e9a7095d6c339abda55ca4affb0f2a882aeb29398f8e09d2c5151f0b6586c81c8ccdfe529c34b1ea3337425e
+"@types/node@npm:^20.3.0":
+  version: 20.3.0
+  resolution: "@types/node@npm:20.3.0"
+  checksum: 613e878174febc0104dae210088645cbb5096a19ae5fdf57fbc06fa6ef71755b839858c2b313fb8c1df8b7c6660e1b5f7a64db2126af9d47d1d9238e2bc0a86d
   languageName: node
   linkType: hard
 
@@ -4019,6 +4026,15 @@ __metadata:
   dependencies:
     "@types/react": "*"
   checksum: 0872143821d7ee20a1d81e965f8b1e837837f11cd2206973f1f98655751992d9390304d58bac192c9cd923eca95bff107d8c9e3364a180240d5c2a6fd70fd7c3
+  languageName: node
+  linkType: hard
+
+"@types/react-window@npm:^1.8.5":
+  version: 1.8.5
+  resolution: "@types/react-window@npm:1.8.5"
+  dependencies:
+    "@types/react": "*"
+  checksum: 5f519e1402300d11b6e6595223feb6499f3227e38da166cbc565773cd7f71862abcf855b7835d391b5119fcfacdfba79d73a965b45f60a293fc1ff25986319ed
   languageName: node
   linkType: hard
 
@@ -4368,10 +4384,10 @@ __metadata:
     "@zthun/cirque-du-react": ^4.3.0
     "@zthun/fashion-tailor": ^0.0.1
     "@zthun/fashion-theme": ^0.0.1
-    "@zthun/helpful-fn": ^0.9.0
-    "@zthun/helpful-obligation": ^0.9.0
-    "@zthun/helpful-query": ^0.9.0
-    "@zthun/helpful-react": ^0.9.0
+    "@zthun/helpful-fn": ^0.11.1
+    "@zthun/helpful-obligation": ^0.11.1
+    "@zthun/helpful-query": ^0.11.1
+    "@zthun/helpful-react": ^0.11.1
     "@zthun/webigail-http": ^0.1.0
     "@zthun/webigail-url": ^0.1.0
     csstype: ^3.1.2
@@ -4422,17 +4438,18 @@ __metadata:
     "@zthun/fashion-boutique": ^0.0.1
     "@zthun/fashion-tailor": ^0.0.1
     "@zthun/fashion-theme": ^0.0.1
-    "@zthun/helpful-brands": ^0.9.0
-    "@zthun/helpful-fn": ^0.9.0
-    "@zthun/helpful-query": ^0.9.0
-    "@zthun/helpful-react": ^0.9.0
+    "@zthun/helpful-brands": ^0.11.1
+    "@zthun/helpful-fn": ^0.11.1
+    "@zthun/helpful-people": ^0.11.1
+    "@zthun/helpful-query": ^0.11.1
+    "@zthun/helpful-react": ^0.11.1
     "@zthun/webigail-url": ^0.1.0
     history: ^5.3.0
     lodash: ^4.17.21
     react: ^18.2.0
     react-dom: ^18.2.0
     react-router-dom: ^6.12.1
-    rollup-plugin-visualizer: ^5.9.0
+    rollup-plugin-visualizer: ^5.9.2
     vite: ^4.3.9
     vite-tsconfig-paths: ^4.2.0
     vitest: ^0.32.0
@@ -4449,7 +4466,8 @@ __metadata:
     "@cucumber/cucumber": ^9.1.2
     "@types/jsdom": ^21.1.1
     "@types/lodash": ^4.14.195
-    "@types/node": ^20.2.5
+    "@types/node": ^20.3.0
+    "@types/react-window": ^1.8.5
     "@types/uuid": ^9.0.2
     "@vitest/coverage-istanbul": ^0.32.0
     "@zthun/lint-janitor": ^14.2.0
@@ -4470,48 +4488,61 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@zthun/helpful-brands@npm:^0.9.0":
-  version: 0.9.0
-  resolution: "@zthun/helpful-brands@npm:0.9.0"
+"@zthun/helpful-brands@npm:^0.11.1":
+  version: 0.11.1
+  resolution: "@zthun/helpful-brands@npm:0.11.1"
   dependencies:
     lodash: ^4.17.21
-  checksum: d626f85cbd625d31d23afcb606d70d7577c6eded4ddbc745325dd627cc7879035272b1efc574d2204a125649f354fdc3363ac20be54a539cb77b9bc5b272e263
+  checksum: 3426aee8d0b1452acf6dd1e1d0bd9e915226d2822a762919162798d579d3ce2902db3d9238d4803a5de595704744e68dd972dd014a0312b1e53807774323da2a
   languageName: node
   linkType: hard
 
-"@zthun/helpful-fn@npm:^0.9.0":
-  version: 0.9.0
-  resolution: "@zthun/helpful-fn@npm:0.9.0"
-  checksum: 14c3cca5975b549955a3c7e2712ad8d8d5a198fc4d8bae067e211814634770c30e9db1fce23416eb81156958cf029c7b398f2f9081c6be475528938f1816bd9e
+"@zthun/helpful-fn@npm:^0.11.1":
+  version: 0.11.1
+  resolution: "@zthun/helpful-fn@npm:0.11.1"
+  checksum: e8f94bf4175bba7152bdde85587eb138d867ee74a8003e9efbfeae367152794d201c3c01b48afeb46f76b6649bbd3b647cbfd2f4526bfb542273e6cfe295ea65
   languageName: node
   linkType: hard
 
-"@zthun/helpful-obligation@npm:^0.9.0":
-  version: 0.9.0
-  resolution: "@zthun/helpful-obligation@npm:0.9.0"
-  checksum: 26e059b42cd5762eebbda4cfa89297749830a78a0dc4ca52954f3ca37cef634142742f046732dbb10e6b9bfea32b124e990d2021aceb1cf0942813e014752038
+"@zthun/helpful-obligation@npm:^0.11.1":
+  version: 0.11.1
+  resolution: "@zthun/helpful-obligation@npm:0.11.1"
+  checksum: 9e2ec0da2f1b1de0b80f81213ad6e4b0bd021fbc2b35c7e8a83f5e4d5538f5f904c04f8a97b7a5c73136b74153ea77a1e2284a5d3256f93b598a57078229398d
   languageName: node
   linkType: hard
 
-"@zthun/helpful-query@npm:^0.9.0":
-  version: 0.9.0
-  resolution: "@zthun/helpful-query@npm:0.9.0"
+"@zthun/helpful-people@npm:^0.11.1":
+  version: 0.11.1
+  resolution: "@zthun/helpful-people@npm:0.11.1"
   dependencies:
+    "@faker-js/faker": ^8.0.2
+    "@zthun/helpful-fn": ^0.11.1
+    "@zthun/helpful-query": ^0.11.1
     lodash: ^4.17.21
-  checksum: 7cdd67bdde5a4a6e78705b54fdd2f5b609b6ff12ac4502fd56dc722e52468f692fe7fcb1144dd256430ad710ae871f357891550fd288c679ef60c9860b885d7b
+  checksum: e4515e2afbcd8cafed9d35bfd4b90d50bca669c2444b64508981e6d2810107cbeddd09f8d293dd7e674aabcd6c2e4c603cea0591e35db34c3305014dbe8baa29
   languageName: node
   linkType: hard
 
-"@zthun/helpful-react@npm:^0.9.0":
-  version: 0.9.0
-  resolution: "@zthun/helpful-react@npm:0.9.0"
+"@zthun/helpful-query@npm:^0.11.1":
+  version: 0.11.1
+  resolution: "@zthun/helpful-query@npm:0.11.1"
   dependencies:
-    "@zthun/helpful-fn": ^0.9.0
+    "@zthun/helpful-fn": ^0.11.1
+    lodash: ^4.17.21
+  checksum: ca44127936c0016b85c3db8b8497e82e6d541fdd2e7b1a960f0cdf72062f739c524ea744588d7322cf51e66b273c35fb9cffe03b1ade15f8d19e108e2bef65a4
+  languageName: node
+  linkType: hard
+
+"@zthun/helpful-react@npm:^0.11.1":
+  version: 0.11.1
+  resolution: "@zthun/helpful-react@npm:0.11.1"
+  dependencies:
+    "@zthun/helpful-fn": ^0.11.1
     lodash: ^4.17.21
   peerDependencies:
     react: ^18.1.0
     react-dom: ^18.1.0
-  checksum: 9ab724ea4a2be26152eda3845d4ecf15b81735542e8e263fa02483adb0f97d2e363e5d81f4474fcaf43bc0d1f57fd7128cfcbbe8e67c397031171ae808906a64
+  checksum: 7203927eaf692cf4b6d170f6cbcb3774d9821bd04c44968d06ae8220c2904fdcf767c64d458771c1870fcd499672ccde111bd15f916a6a5038b3b218a16882d1
   languageName: node
   linkType: hard
 
@@ -12589,7 +12620,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup-plugin-visualizer@npm:^5.6.0, rollup-plugin-visualizer@npm:^5.9.0":
+"rollup-plugin-visualizer@npm:^5.6.0":
   version: 5.9.0
   resolution: "rollup-plugin-visualizer@npm:5.9.0"
   dependencies:
@@ -12605,6 +12636,25 @@ __metadata:
   bin:
     rollup-plugin-visualizer: dist/bin/cli.js
   checksum: 362d4fac0295c14bd205dbc85c20c31f4b6c47604868da21d9565ed47e0333759f08b9fe0acb82f78221f5173ea01e4eb70d47351eb6012216afe71b5492ed5f
+  languageName: node
+  linkType: hard
+
+"rollup-plugin-visualizer@npm:^5.9.2":
+  version: 5.9.2
+  resolution: "rollup-plugin-visualizer@npm:5.9.2"
+  dependencies:
+    open: ^8.4.0
+    picomatch: ^2.3.1
+    source-map: ^0.7.4
+    yargs: ^17.5.1
+  peerDependencies:
+    rollup: 2.x || 3.x
+  peerDependenciesMeta:
+    rollup:
+      optional: true
+  bin:
+    rollup-plugin-visualizer: dist/bin/cli.js
+  checksum: ab2adf322e3b20bffc94a8dc804f46be8840a9fcbab4f872dcc2dec205cdd7752e4d2d90cfcf00783bfb5209c5a8bb4e591984e8b61bca41fd048fb7deb0ed4e
   languageName: node
   linkType: hard
 
