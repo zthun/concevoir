@@ -103,6 +103,10 @@ function createSurface() {
     .build();
 }
 
+function createOpposite() {
+  return new ZFashionBuilder().copy(createLight()).name('Opposite').build();
+}
+
 export function createDarkTheme() {
   return new ZFashionThemeBuilder()
     .name('Dark')
@@ -114,6 +118,7 @@ export function createDarkTheme() {
     .info(createInfo())
     .dark(createDark())
     .light(createLight())
+    .opposite(createOpposite())
     .body(createBody())
     .surface(createSurface())
     .build();

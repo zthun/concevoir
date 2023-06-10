@@ -69,7 +69,14 @@ export enum ZFashionContrast {
    *
    * Usually white.
    */
-  Light = 'light'
+  Light = 'light',
+  /**
+   * A theme that contrasts the core them.
+   *
+   * If the core them is dark, this should be light.
+   * Likewise, if the core theme is light, this should be dark.
+   */
+  Opposite = 'opposite'
 }
 
 export type ZFashionName = ZFashionPriority | ZFashionSeverity | ZFashionArea | ZFashionContrast;
@@ -177,6 +184,13 @@ export class ZFashionThemeBuilder {
         .build(),
       dark: new ZFashionBuilder()
         .name('Dark')
+        .main(hex(0x212121))
+        .light(hex(0x424242))
+        .dark(black())
+        .contrast(white())
+        .build(),
+      opposite: new ZFashionBuilder()
+        .name('Opposite')
         .main(hex(0x212121))
         .light(hex(0x424242))
         .dark(black())
@@ -338,6 +352,20 @@ export class ZFashionThemeBuilder {
    */
   public dark(fashion: IZFashion): this {
     this._design.dark = fashion;
+    return this;
+  }
+
+  /**
+   * Sets the opposite contrast theme.
+   *
+   * @param fashion -
+   *        The value to set.
+   *
+   * @returns
+   *        This object.
+   */
+  public opposite(fashion: IZFashion): this {
+    this._design.opposite = fashion;
     return this;
   }
 

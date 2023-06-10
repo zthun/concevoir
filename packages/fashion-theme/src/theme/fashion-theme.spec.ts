@@ -83,6 +83,11 @@ describe('ZFashionDesignBuilder', () => {
       const expected = new ZFashionBuilder().build();
       expect(createTestTarget().dark(expected).build().dark).toEqual(expected);
     });
+
+    it('should set opposite', () => {
+      const expected = new ZFashionBuilder().build();
+      expect(createTestTarget().opposite(expected).build().opposite).toEqual(expected);
+    });
   });
 
   describe('Copy', () => {
