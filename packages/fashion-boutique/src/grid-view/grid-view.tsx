@@ -1,8 +1,9 @@
 import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { ZHorizontalAnchor, ZOrientation, countBuckets, cssJoinDefined } from '@zthun/helpful-fn';
+import { ZHorizontalAnchor, ZOrientation, cssJoinDefined } from '@zthun/helpful-fn';
 import { IZDataRequest, ZDataRequestBuilder, ZDataSourceStatic } from '@zthun/helpful-query';
-import { asStateData, isStateErrored, isStateLoading, useAmbassadorState, useAsyncState } from '@zthun/helpful-react';
-import React, { ReactNode, useMemo } from 'react';
+import { isStateErrored, isStateLoading, useAmbassadorState } from '@zthun/helpful-react';
+import React, { ReactNode } from 'react';
+import { usePageView } from 'src/pagination/use-page-view';
 import { ZBox } from '../box/box';
 import { ZButton } from '../button/button';
 import { IZComponentDataSource } from '../component/component-data-source';
@@ -61,15 +62,9 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
   } = props;
 
   const [request, setRequest] = useAmbassadorState(value, onValueChange, DefaultRequest);
-  const [view] = useAsyncState(() => query.retrieve(request), [request, query]);
-  const [count] = useAsyncState(() => query.count(request), [request.filter, request.search, query]);
+  const { view, pages } = usePageView(query, request);
   const { surface, primary, secondary } = useFashionTheme();
   const { classes } = useGridViewStyles();
-
-  const pages = useMemo(
-    () => countBuckets(request.size || Infinity, asStateData(count) || 0, 1),
-    [request.size, count]
-  );
 
   const renderState = () => {
     if (isStateLoading(view)) {
