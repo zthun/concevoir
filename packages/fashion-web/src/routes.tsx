@@ -84,6 +84,13 @@ export const ZFashionRouteSuspense = new ZRouteBuilder()
   .avatar('/images/svg/suspense.svg')
   .build();
 
+export const ZFashionRouteTable = new ZRouteBuilder()
+  .name('Table')
+  .path('table')
+  .description('Tabular Data')
+  .avatar('/images/svg/card.svg')
+  .build();
+
 export const ZFashionRouteText = new ZRouteBuilder()
   .name('Text')
   .path('text')
@@ -108,6 +115,7 @@ export const ZFashionRouteAllComponents = [
   ZFashionRouteList,
   ZFashionRouteNumber,
   ZFashionRouteSuspense,
+  ZFashionRouteTable,
   ZFashionRouteText,
   ZFashionRouteTypography
 ];

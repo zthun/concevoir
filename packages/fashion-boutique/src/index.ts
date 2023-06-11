@@ -78,6 +78,7 @@ export * from './suspense/suspense';
 export * from './suspense/suspense-progress';
 export * from './suspense/suspense-rotate';
 export * from './suspense/suspense.cm';
+export * from './table/table';
 export * from './text/text';
 export * from './text/text-area';
 export * from './text/text-input';
