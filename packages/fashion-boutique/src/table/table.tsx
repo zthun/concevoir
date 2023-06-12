@@ -1,4 +1,4 @@
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { TableCell, TableRow } from '@mui/material';
 import { ZSizeFixed, createSizeChartFixedArithmetic } from '@zthun/fashion-tailor';
 import { ZOrientation, cssJoinDefined } from '@zthun/helpful-fn';
 import {
@@ -12,8 +12,8 @@ import {
 } from '@zthun/helpful-query';
 import { isStateLoaded, isStateLoading, useAmbassadorState } from '@zthun/helpful-react';
 import { get } from 'lodash';
-import React, { ComponentPropsWithRef, ForwardedRef, forwardRef, useMemo } from 'react';
-import { ItemProps, ScrollerProps, TableBodyProps, TableProps, TableVirtuoso } from 'react-virtuoso';
+import React, { useMemo } from 'react';
+import { TableVirtuoso } from 'react-virtuoso';
 import { IZComponentDataSource } from '../component/component-data-source';
 import { IZComponentHeight } from '../component/component-height';
 import { IZComponentStyle } from '../component/component-style';
@@ -22,7 +22,8 @@ import { ZIconFontAwesome } from '../icon/icon-font-awesome';
 import { usePageView } from '../pagination/use-page-view';
 import { ZStack } from '../stack/stack';
 import { ZSuspenseRotate } from '../suspense/suspense-rotate';
-import { createStyleHook } from '../theme/styled';
+import { useTableComponents } from './use-table-components';
+import { useTableStyles } from './use-table-styles';
 
 const EmptyDataSource = new ZDataSourceStatic([]);
 const DefaultDataRequest = new ZDataRequestBuilder().build();
@@ -40,53 +41,6 @@ export interface IZTable<T = any>
 }
 
 const TableSizeChart = createSizeChartFixedArithmetic(150, 150);
-
-const useTableStyles = createStyleHook(({ theme, tailor }) => {
-  return {
-    root: {
-      color: theme.opposite.main,
-      width: '100%'
-    },
-
-    table: {
-      borderCollapse: 'separate',
-      tableLayout: 'fixed'
-    },
-
-    cell: {
-      color: 'inherit'
-    },
-
-    header: {
-      backgroundColor: theme.primary.main,
-      color: theme.primary.contrast
-    },
-
-    headerSort: {
-      'cursor': 'pointer',
-
-      '&:hover': {
-        backgroundColor: theme.primary.light
-      }
-    },
-
-    text: {
-      overflow: 'hidden',
-      whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis'
-    },
-
-    sort: {
-      marginLeft: tailor.gap(ZSizeFixed.ExtraSmall)
-    },
-
-    tableNotLoaded: {
-      textAlign: 'center',
-      verticalAlign: 'middle',
-      padding: '4rem'
-    }
-  };
-});
 
 export function ZTable<T = any>(props: IZTable<T>) {
   const {
@@ -106,44 +60,7 @@ export function ZTable<T = any>(props: IZTable<T>) {
 
   const { view } = usePageView(dataSource, request);
 
-  const TableComponents = useMemo(
-    () => ({
-      Scroller: forwardRef(function $Scroller(props: ScrollerProps, ref: ForwardedRef<HTMLDivElement>) {
-        return <TableContainer {...props} ref={ref} />;
-      }),
-      TableHead: forwardRef(function $TableHead(
-        p: ComponentPropsWithRef<'thead'>,
-        r: ForwardedRef<HTMLTableSectionElement>
-      ) {
-        return <TableHead {...p} className={cssJoinDefined('ZTable-head')} ref={r} />;
-      }),
-      TableBody: forwardRef(function $TableBody(p: TableBodyProps, r: ForwardedRef<HTMLTableSectionElement>) {
-        return <TableBody {...p} ref={r} />;
-      }),
-      Table: (p: TableProps) => <Table {...p} className={cssJoinDefined('ZTable-table', classes.table)} stickyHeader />,
-      TableRow: function $TableRow(props: ItemProps<T>) {
-        const { style, children } = props;
-        const index = props['data-index'];
-        const itemGroupIndex = props['data-item-group-index'];
-        const itemIndex = props['data-item-index'];
-        const knownSize = props['data-known-size'];
-
-        return (
-          <TableRow
-            className={cssJoinDefined('ZTable-row')}
-            style={style}
-            data-index={index}
-            data-item-group-index={itemGroupIndex}
-            data-item-index={itemIndex}
-            data-known-size={knownSize}
-          >
-            {children}
-          </TableRow>
-        );
-      }
-    }),
-    []
-  );
+  const TableComponents = useTableComponents<T>();
 
   const handleSort = (c: IZMetadata) => {
     if (!c.sortable) {
