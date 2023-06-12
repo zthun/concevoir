@@ -1,12 +1,6 @@
-import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
-import {
-  ZSizeFixed,
-  ZSizeVaried,
-  createSizeChartFixedArithmetic,
-  createSizeChartFixedCss,
-  createSizeChartVariedCss
-} from '@zthun/fashion-tailor';
-import { cssJoinDefined } from '@zthun/helpful-fn';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { ZSizeFixed, createSizeChartFixedArithmetic } from '@zthun/fashion-tailor';
+import { ZOrientation, cssJoinDefined } from '@zthun/helpful-fn';
 import {
   IZDataRequest,
   IZMetadata,
@@ -16,26 +10,28 @@ import {
   ZSortDirection,
   ZSorterSingle
 } from '@zthun/helpful-query';
-import { isStateErrored, isStateLoading, useAmbassadorState } from '@zthun/helpful-react';
+import { isStateLoaded, isStateLoading, useAmbassadorState } from '@zthun/helpful-react';
 import { get } from 'lodash';
-import React, { useMemo } from 'react';
+import React, { ComponentPropsWithRef, ForwardedRef, forwardRef, useMemo } from 'react';
+import { ItemProps, ScrollerProps, TableBodyProps, TableProps, TableVirtuoso } from 'react-virtuoso';
 import { IZComponentDataSource } from '../component/component-data-source';
 import { IZComponentHeight } from '../component/component-height';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentValue } from '../component/component-value';
 import { ZIconFontAwesome } from '../icon/icon-font-awesome';
 import { usePageView } from '../pagination/use-page-view';
+import { ZStack } from '../stack/stack';
 import { ZSuspenseRotate } from '../suspense/suspense-rotate';
 import { createStyleHook } from '../theme/styled';
 
 const EmptyDataSource = new ZDataSourceStatic([]);
-const DefaultDataRequest = new ZDataRequestBuilder().size(10).build();
+const DefaultDataRequest = new ZDataRequestBuilder().build();
 
 export interface IZTable<T = any>
   extends IZComponentStyle,
     IZComponentDataSource<T>,
     IZComponentValue<IZDataRequest>,
-    IZComponentHeight<ZSizeFixed | ZSizeVaried> {
+    IZComponentHeight<ZSizeFixed> {
   columns: IZMetadata[];
 
   sorter?: IZSorter;
@@ -43,32 +39,22 @@ export interface IZTable<T = any>
   identifier: (r: T) => string | number;
 }
 
-const TableSizeChart = {
-  ...createSizeChartFixedCss(createSizeChartFixedArithmetic(20, 20), 'rem'),
-  ...createSizeChartVariedCss()
-};
+const TableSizeChart = createSizeChartFixedArithmetic(150, 150);
 
-const useTableStyles = createStyleHook(({ theme, tailor }, props: IZTable) => {
-  const { height = ZSizeVaried.Full } = props;
-
-  const _height = TableSizeChart[height];
-
+const useTableStyles = createStyleHook(({ theme, tailor }) => {
   return {
     root: {
-      height: _height,
       color: theme.opposite.main,
       width: '100%'
     },
 
     table: {
+      borderCollapse: 'separate',
       tableLayout: 'fixed'
     },
 
     cell: {
-      color: 'inherit',
-      overflow: 'hidden',
-      whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis'
+      color: 'inherit'
     },
 
     header: {
@@ -84,28 +70,80 @@ const useTableStyles = createStyleHook(({ theme, tailor }, props: IZTable) => {
       }
     },
 
-    body: {
-      overflow: 'auto'
+    text: {
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis'
     },
 
     sort: {
       marginLeft: tailor.gap(ZSizeFixed.ExtraSmall)
     },
 
-    operations: {
-      marginTop: tailor.gap()
+    tableNotLoaded: {
+      textAlign: 'center',
+      verticalAlign: 'middle',
+      padding: '4rem'
     }
   };
 });
 
 export function ZTable<T = any>(props: IZTable<T>) {
-  const { className, dataSource = EmptyDataSource, columns, value, onValueChange, identifier, sorter } = props;
-  const { classes } = useTableStyles(props);
+  const {
+    className,
+    dataSource = EmptyDataSource,
+    columns,
+    height = ZSizeFixed.Medium,
+    value,
+    onValueChange,
+    identifier,
+    sorter
+  } = props;
+  const { classes } = useTableStyles();
 
   const [request, setRequest] = useAmbassadorState(value, onValueChange, DefaultDataRequest);
   const _sorter = useMemo(() => sorter || new ZSorterSingle(request.sort), [request.sort]);
 
   const { view } = usePageView(dataSource, request);
+
+  const TableComponents = useMemo(
+    () => ({
+      Scroller: forwardRef(function $Scroller(props: ScrollerProps, ref: ForwardedRef<HTMLDivElement>) {
+        return <TableContainer {...props} ref={ref} />;
+      }),
+      TableHead: forwardRef(function $TableHead(
+        p: ComponentPropsWithRef<'thead'>,
+        r: ForwardedRef<HTMLTableSectionElement>
+      ) {
+        return <TableHead {...p} className={cssJoinDefined('ZTable-head')} ref={r} />;
+      }),
+      TableBody: forwardRef(function $TableBody(p: TableBodyProps, r: ForwardedRef<HTMLTableSectionElement>) {
+        return <TableBody {...p} ref={r} />;
+      }),
+      Table: (p: TableProps) => <Table {...p} className={cssJoinDefined('ZTable-table', classes.table)} stickyHeader />,
+      TableRow: function $TableRow(props: ItemProps<T>) {
+        const { style, children } = props;
+        const index = props['data-index'];
+        const itemGroupIndex = props['data-item-group-index'];
+        const itemIndex = props['data-item-index'];
+        const knownSize = props['data-known-size'];
+
+        return (
+          <TableRow
+            className={cssJoinDefined('ZTable-row')}
+            style={style}
+            data-index={index}
+            data-item-group-index={itemGroupIndex}
+            data-item-index={itemIndex}
+            data-known-size={knownSize}
+          >
+            {children}
+          </TableRow>
+        );
+      }
+    }),
+    []
+  );
 
   const handleSort = (c: IZMetadata) => {
     if (!c.sortable) {
@@ -149,8 +187,10 @@ export function ZTable<T = any>(props: IZTable<T>) {
           data-column={c.id}
           data-row='header'
         >
-          {c.name}
-          {renderSort(c)}
+          <ZStack orientation={ZOrientation.Horizontal} alignItems='center'>
+            <span className={cssJoinDefined('ZTable-cell-header-name', classes.text)}>{c.name}</span>
+            {renderSort(c)}
+          </ZStack>
         </TableCell>
       ))}
     </TableRow>
@@ -160,56 +200,55 @@ export function ZTable<T = any>(props: IZTable<T>) {
     return get(r, c.path!);
   };
 
-  const renderBody = () => {
-    if (isStateLoading(view)) {
+  const renderItem = (ri: number, r: T | Error | symbol) => {
+    if (r instanceof Error) {
       return (
-        <TableRow className='ZTable-row-loading'>
-          <TableCell className='ZTable-cell-loading' colSpan={columns.length}>
-            <ZSuspenseRotate width={ZSizeFixed.Large} />
-          </TableCell>
-        </TableRow>
+        <TableCell className={cssJoinDefined('ZTable-cell-error', classes.tableNotLoaded)} colSpan={columns.length}>
+          {r.message}
+        </TableCell>
       );
     }
 
-    if (isStateErrored(view)) {
+    if (isStateLoading(r)) {
       return (
-        <TableRow className='ZTable-row-error'>
-          <TableCell className='ZTable-cell-error' colSpan={columns.length}>
-            {view.message}
-          </TableCell>
-        </TableRow>
+        <TableCell className={cssJoinDefined('ZTable-cell-loading', classes.tableNotLoaded)} colSpan={columns.length}>
+          <ZSuspenseRotate width={ZSizeFixed.Large} />
+        </TableCell>
       );
     }
 
-    return view.map((r: T, ri: number) => {
-      const _identifier = identifier(r);
-      const key = (c: IZMetadata) => `${_identifier}-${c.id}`;
+    const _identifier = identifier(r);
+    const key = (c: IZMetadata) => `${_identifier}-${c.id}`;
 
-      return (
-        <TableRow key={_identifier} className='ZTable-row' data-row={_identifier} data-row-index={ri}>
-          {columns.map((c, ci) => (
-            <TableCell
-              key={key(c)}
-              className={cssJoinDefined('ZTable-cell', classes.cell)}
-              data-row={_identifier}
-              data-column={c.id}
-              data-row-index={ri}
-              data-column-index={ci}
-            >
-              {renderValue(r, c)}
-            </TableCell>
-          ))}
-        </TableRow>
-      );
-    });
+    return (
+      <>
+        {columns.map((c, ci) => (
+          <TableCell
+            key={key(c)}
+            className={cssJoinDefined('ZTable-cell', classes.cell, classes.text)}
+            data-row={_identifier}
+            data-column={c.id}
+            data-row-index={ri}
+            data-column-index={ci}
+          >
+            {renderValue(r, c)}
+          </TableCell>
+        ))}
+      </>
+    );
   };
 
+  const data: (T | Symbol | Error)[] = isStateLoaded(view) ? view : [view];
+  const _height = TableSizeChart[height];
+
   return (
-    <div className={cssJoinDefined('ZTable-root', className, classes.root)}>
-      <Table className={cssJoinDefined('ZTable-table', classes.table)} stickyHeader>
-        <TableHead className={cssJoinDefined('ZTable-head')}>{renderHead()}</TableHead>
-        <TableBody className={cssJoinDefined('ZTable-body', classes.body)}>{renderBody()}</TableBody>
-      </Table>
-    </div>
+    <TableVirtuoso
+      className={cssJoinDefined('ZTable-root', className, classes.root)}
+      style={{ height: _height }}
+      data={data}
+      itemContent={renderItem}
+      components={TableComponents}
+      fixedHeaderContent={renderHead}
+    />
   );
 }
