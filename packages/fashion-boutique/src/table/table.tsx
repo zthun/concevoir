@@ -19,8 +19,8 @@ import { IZComponentHeight } from '../component/component-height';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentValue } from '../component/component-value';
 import { ZIconFontAwesome } from '../icon/icon-font-awesome';
+import { useConcatView } from '../pagination/use-concat-view';
 import { ZStack } from '../stack/stack';
-import { useConcatView } from './stream/use-concat-view';
 import { useTableComponents } from './use-table-components';
 import { useTableStyles } from './use-table-styles';
 
