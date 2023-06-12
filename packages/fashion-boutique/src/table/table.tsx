@@ -10,7 +10,7 @@ import {
   ZSortDirection,
   ZSorterSingle
 } from '@zthun/helpful-query';
-import { isStateLoaded, isStateLoading, useAmbassadorState } from '@zthun/helpful-react';
+import { useAmbassadorState } from '@zthun/helpful-react';
 import { get } from 'lodash';
 import React, { useMemo } from 'react';
 import { TableVirtuoso } from 'react-virtuoso';
@@ -19,14 +19,13 @@ import { IZComponentHeight } from '../component/component-height';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentValue } from '../component/component-value';
 import { ZIconFontAwesome } from '../icon/icon-font-awesome';
-import { usePageView } from '../pagination/use-page-view';
 import { ZStack } from '../stack/stack';
-import { ZSuspenseRotate } from '../suspense/suspense-rotate';
+import { useConcatView } from './stream/use-concat-view';
 import { useTableComponents } from './use-table-components';
 import { useTableStyles } from './use-table-styles';
 
 const EmptyDataSource = new ZDataSourceStatic([]);
-const DefaultDataRequest = new ZDataRequestBuilder().build();
+const DefaultDataRequest = new ZDataRequestBuilder().size(1000).build();
 
 export interface IZTable<T = any>
   extends IZComponentStyle,
@@ -58,7 +57,7 @@ export function ZTable<T = any>(props: IZTable<T>) {
   const [request, setRequest] = useAmbassadorState(value, onValueChange, DefaultDataRequest);
   const _sorter = useMemo(() => sorter || new ZSorterSingle(request.sort), [request.sort]);
 
-  const { view } = usePageView(dataSource, request);
+  const { view, next } = useConcatView(dataSource, request);
 
   const TableComponents = useTableComponents<T>();
 
@@ -117,23 +116,7 @@ export function ZTable<T = any>(props: IZTable<T>) {
     return get(r, c.path!);
   };
 
-  const renderItem = (ri: number, r: T | Error | symbol) => {
-    if (r instanceof Error) {
-      return (
-        <TableCell className={cssJoinDefined('ZTable-cell-error', classes.tableNotLoaded)} colSpan={columns.length}>
-          {r.message}
-        </TableCell>
-      );
-    }
-
-    if (isStateLoading(r)) {
-      return (
-        <TableCell className={cssJoinDefined('ZTable-cell-loading', classes.tableNotLoaded)} colSpan={columns.length}>
-          <ZSuspenseRotate width={ZSizeFixed.Large} />
-        </TableCell>
-      );
-    }
-
+  const renderItem = (ri: number, r: T) => {
     const _identifier = identifier(r);
     const key = (c: IZMetadata) => `${_identifier}-${c.id}`;
 
@@ -155,14 +138,14 @@ export function ZTable<T = any>(props: IZTable<T>) {
     );
   };
 
-  const data: (T | Symbol | Error)[] = isStateLoaded(view) ? view : [view];
   const _height = TableSizeChart[height];
 
   return (
     <TableVirtuoso
       className={cssJoinDefined('ZTable-root', className, classes.root)}
       style={{ height: _height }}
-      data={data}
+      data={view}
+      endReached={() => next()}
       itemContent={renderItem}
       components={TableComponents}
       fixedHeaderContent={renderHead}
