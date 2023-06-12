@@ -68,7 +68,7 @@ export function ZTable<T = any>(props: IZTable<T>) {
     }
 
     const next = _sorter.sort(c.path);
-    setRequest(new ZDataRequestBuilder().copy(request).sort(next).build());
+    setRequest((r) => new ZDataRequestBuilder().copy(r).sort(next).build());
   };
 
   const renderSort = (c: IZMetadata) => {
