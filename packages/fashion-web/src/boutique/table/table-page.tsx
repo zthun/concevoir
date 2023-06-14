@@ -10,7 +10,7 @@ import { ZFashionRouteTable } from '../../routes';
  * @returns The JSX to render the page.
  */
 export function ZTablePage() {
-  const dataSource = useMemo(() => new ZDataSourcePeople(50000), []);
+  const dataSource = useMemo(() => new ZDataSourcePeople(), []);
   const columns = useMemo(() => ZPersonBuilder.metadata(), []);
 
   return (
