@@ -21,6 +21,8 @@ import { IZComponentValue } from '../component/component-value';
 import { ZIconFontAwesome } from '../icon/icon-font-awesome';
 import { useConcatView } from '../pagination/use-concat-view';
 import { ZStack } from '../stack/stack';
+import { ZSuspenseProgress } from '../suspense/suspense-progress';
+import { useFashionTheme } from '../theme/fashion';
 import { useTableComponents } from './use-table-components';
 import { useTableStyles } from './use-table-styles';
 
@@ -53,11 +55,12 @@ export function ZTable<T = any>(props: IZTable<T>) {
     sorter
   } = props;
   const { classes } = useTableStyles();
+  const { primary } = useFashionTheme();
 
   const [request, setRequest] = useAmbassadorState(value, onValueChange, DefaultDataRequest);
   const _sorter = useMemo(() => sorter || new ZSorterSingle(request.sort), [request.sort]);
 
-  const { view, next } = useConcatView(dataSource, request);
+  const { view, loading, next } = useConcatView(dataSource, request);
 
   const TableComponents = useTableComponents<T>();
 
@@ -94,7 +97,7 @@ export function ZTable<T = any>(props: IZTable<T>) {
   };
 
   const renderHead = () => (
-    <TableRow data-row={'header'}>
+    <TableRow data-row='header'>
       {columns.map((c) => (
         <TableCell
           key={c.id}
@@ -111,6 +114,20 @@ export function ZTable<T = any>(props: IZTable<T>) {
       ))}
     </TableRow>
   );
+
+  const renderFoot = () => {
+    if (!loading) {
+      return null;
+    }
+
+    return (
+      <TableRow>
+        <TableCell colSpan={columns.length}>
+          <ZSuspenseProgress height={ZSizeFixed.Medium} fashion={primary} />
+        </TableCell>
+      </TableRow>
+    );
+  };
 
   const renderValue = (r: T, c: IZMetadata) => {
     return get(r, c.path!);
@@ -149,6 +166,7 @@ export function ZTable<T = any>(props: IZTable<T>) {
       itemContent={renderItem}
       components={TableComponents}
       fixedHeaderContent={renderHead}
+      fixedFooterContent={renderFoot}
     />
   );
 }

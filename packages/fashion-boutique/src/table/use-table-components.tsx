@@ -1,23 +1,33 @@
-import { Table, TableBody, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Table, TableBody, TableContainer, TableFooter, TableHead, TableRow } from '@mui/material';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ComponentPropsWithRef, ForwardedRef, forwardRef, useMemo } from 'react';
-import { ItemProps, ScrollerProps, TableBodyProps, TableProps } from 'react-virtuoso';
+import { ItemProps, ScrollerProps, TableBodyProps, TableComponents, TableProps } from 'react-virtuoso';
 
-export function useTableComponents<T>() {
+export function useTableComponents<T>(): TableComponents {
   return useMemo(
     () => ({
       Scroller: forwardRef(function $Scroller(props: ScrollerProps, ref: ForwardedRef<HTMLDivElement>) {
         return <TableContainer {...props} ref={ref} />;
       }),
+
       TableHead: forwardRef(function $TableHead(
         p: ComponentPropsWithRef<'thead'>,
         r: ForwardedRef<HTMLTableSectionElement>
       ) {
         return <TableHead {...p} className={cssJoinDefined('ZTable-head')} ref={r} />;
       }),
+
       TableBody: forwardRef(function $TableBody(p: TableBodyProps, r: ForwardedRef<HTMLTableSectionElement>) {
         return <TableBody {...p} ref={r} />;
       }),
+
+      TableFoot: forwardRef(function $TableFoot(
+        p: ComponentPropsWithRef<'tfoot'>,
+        r: ForwardedRef<HTMLTableSectionElement>
+      ) {
+        return <TableFooter {...p} className={cssJoinDefined('ZTable-foot')} ref={r} />;
+      }),
+
       Table: (p: TableProps) => (
         <Table
           {...p}
@@ -26,6 +36,7 @@ export function useTableComponents<T>() {
           style={{ borderCollapse: 'separate', tableLayout: 'fixed' }}
         />
       ),
+
       TableRow: function $TableRow(props: ItemProps<T>) {
         const { style, children } = props;
         const index = props['data-index'];
