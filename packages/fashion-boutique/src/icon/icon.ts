@@ -20,7 +20,7 @@ export const useIconStyles = createStyleHook(({ theme }, props: IZIcon) => {
 
   return {
     root: {
-      fontSize,
+      'fontSize': `${fontSize} !important`,
       'color': fashion?.main,
       'cursor': onClick ? 'pointer' : 'inherit',
 
