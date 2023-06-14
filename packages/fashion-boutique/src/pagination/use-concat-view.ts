@@ -2,6 +2,20 @@ import { sleep } from '@zthun/helpful-fn';
 import { IZDataRequest, IZDataSource, ZDataRequestBuilder } from '@zthun/helpful-query';
 import { useEffect, useRef, useState } from 'react';
 
+/**
+ * A type of view that loads the next set of data in batches.
+ *
+ * @param source -
+ *        The data source to load from.
+ * @param template -
+ *        The template request.  The page size will be used as
+ *        the batch size.  The page to load will be ignored and
+ *        will instead be controlled by this hook.
+ *
+ * @returns
+ *        The current view and whether or not the data is being loaded.
+ *        Also returns the method to load the next batch.
+ */
 export function useConcatView<T>(source: IZDataSource<T>, template: IZDataRequest) {
   const [view, setView] = useState<T[]>([]);
   const [loading, setLoading] = useState(false);
