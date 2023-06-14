@@ -14,6 +14,8 @@ export class ZTableIconStrategy implements IZTableIconStrategy {
 
   public constructor() {
     this.put(ZWellKnownIconClasses.FontAwesome, new ZTableIconRenderFontAwesome());
+    this.put(ZWellKnownIconClasses.FontAwesomeBrands, new ZTableIconRenderFontAwesome('brands'));
+    this.put(ZWellKnownIconClasses.FontAwesomeSharp, new ZTableIconRenderFontAwesome('sharp'));
     this.put(ZWellKnownIconClasses.Material, new ZTableIconRenderMaterial());
   }
 
