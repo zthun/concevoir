@@ -23,6 +23,7 @@ import { useConcatView } from '../pagination/use-concat-view';
 import { ZStack } from '../stack/stack';
 import { ZSuspenseProgress } from '../suspense/suspense-progress';
 import { useFashionTheme } from '../theme/fashion';
+import { useTableValueStrategy } from './render/table-value-strategy';
 import { useTableComponents } from './use-table-components';
 import { useTableStyles } from './use-table-styles';
 
@@ -59,6 +60,7 @@ export function ZTable<T = any>(props: IZTable<T>) {
 
   const [request, setRequest] = useAmbassadorState(value, onValueChange, DefaultDataRequest);
   const _sorter = useMemo(() => sorter || new ZSorterSingle(request.sort), [request.sort]);
+  const cells = useTableValueStrategy();
 
   const { view, loading, next } = useConcatView(dataSource, request);
 
@@ -130,7 +132,8 @@ export function ZTable<T = any>(props: IZTable<T>) {
   };
 
   const renderValue = (r: T, c: IZMetadata) => {
-    return get(r, c.path!);
+    const value = get(r, c.path!);
+    return cells.get(c).render(value, c);
   };
 
   const renderItem = (ri: number, r: T) => {
