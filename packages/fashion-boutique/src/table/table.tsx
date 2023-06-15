@@ -62,7 +62,7 @@ export function ZTable<T = any>(props: IZTable<T>) {
   const _sorter = useMemo(() => sorter || new ZSorterSingle(request.sort), [request.sort]);
   const cells = useTableValueStrategy();
 
-  const { view, loading, next } = useConcatView(dataSource, request);
+  const { view, loading, more } = useConcatView(dataSource, request);
 
   const TableComponents = useTableComponents<T>();
 
@@ -165,7 +165,7 @@ export function ZTable<T = any>(props: IZTable<T>) {
       className={cssJoinDefined('ZTable-root', className, classes.root)}
       style={{ height: _height }}
       data={view}
-      endReached={() => next()}
+      endReached={() => more()}
       itemContent={renderItem}
       components={TableComponents}
       fixedHeaderContent={renderHead}

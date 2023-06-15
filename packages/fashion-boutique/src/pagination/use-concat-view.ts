@@ -1,4 +1,3 @@
-import { sleep } from '@zthun/helpful-fn';
 import { IZDataRequest, IZDataSource, ZDataRequestBuilder } from '@zthun/helpful-query';
 import { useEffect, useRef, useState } from 'react';
 
@@ -23,16 +22,16 @@ export function useConcatView<T>(source: IZDataSource<T>, template: IZDataReques
   const nextRequest = useRef(new ZDataRequestBuilder().copy(template).page(1).build());
   const count = useRef(Promise.resolve(0));
 
-  const next = async () => {
+  const _loadMore = async (loaded: number) => {
     const _count = await count.current;
 
-    if (_count === view.length) {
+    if (_count === loaded) {
       // All done loading.
       return;
     }
 
     setLoading(true);
-    await sleep();
+    setError(null);
 
     try {
       const request = nextRequest.current;
@@ -50,12 +49,15 @@ export function useConcatView<T>(source: IZDataSource<T>, template: IZDataReques
     }
   };
 
+  const more = async () => {
+    return _loadMore(view.length);
+  };
+
   const reset = async () => {
     nextRequest.current = new ZDataRequestBuilder().copy(template).page(1).build();
     count.current = source.count(nextRequest.current);
     setView([]);
-    next();
-    return undefined;
+    await _loadMore(0);
   };
 
   useEffect(() => {
@@ -66,6 +68,6 @@ export function useConcatView<T>(source: IZDataSource<T>, template: IZDataReques
     view,
     loading,
     error,
-    next
+    more
   };
 }
