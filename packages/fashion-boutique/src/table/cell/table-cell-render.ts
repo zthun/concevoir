@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 /**
  * Represents an object responsible for rendering a value.
  */
-export interface IZTableValueRender {
+export interface IZTableCellRender<V = unknown, T = unknown> {
   /**
    * Constructs the node that renders the given value.
    *
@@ -14,5 +14,5 @@ export interface IZTableValueRender {
    * @returns
    *        The node for rendering the value.
    */
-  render(value: unknown, metadata: IZMetadata): ReactNode;
+  render(value: V, metadata: IZMetadata, row: T): ReactNode;
 }

@@ -1,9 +1,9 @@
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React, { ReactNode } from 'react';
 import { ZIconFontAwesome } from '../../icon/icon-font-awesome';
-import { IZTableIconRender } from './table-icon-render';
+import { IZTableCellIconRender } from './table-cell-icon-render';
 
-export class ZTableIconRenderFontAwesome implements IZTableIconRender {
+export class ZTableCellIconRenderFontAwesome implements IZTableCellIconRender {
   public constructor(private _family: 'classic' | 'brands' | 'sharp' = 'classic') {}
 
   public render(name: string): ReactNode {

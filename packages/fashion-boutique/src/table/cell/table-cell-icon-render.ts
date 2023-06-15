@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 /**
  * Renders an icon given a name.
  */
-export interface IZTableIconRender {
+export interface IZTableCellIconRender {
   /**
    * Renders the icon.
    *

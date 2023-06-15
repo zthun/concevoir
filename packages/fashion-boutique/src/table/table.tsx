@@ -138,7 +138,7 @@ export function ZTable<T = any>(props: IZTable<T>) {
 
   const renderValue = (r: T, c: IZMetadata) => {
     const value = get(r, c.path!);
-    return cells.get(c).render(value, c);
+    return cells.get(c).render(value, c, r);
   };
 
   const renderItem = (ri: number, r: T) => {
