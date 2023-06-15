@@ -2,8 +2,11 @@ import { Table, TableBody, TableContainer, TableFooter, TableHead, TableRow } fr
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ComponentPropsWithRef, ForwardedRef, forwardRef, useMemo } from 'react';
 import { ItemProps, ScrollerProps, TableBodyProps, TableComponents, TableProps } from 'react-virtuoso';
+import { useTableStyles } from './use-table-styles';
 
 export function useTableComponents<T>(): TableComponents {
+  const { classes } = useTableStyles();
+
   return useMemo(
     () => ({
       Scroller: forwardRef(function $Scroller(props: ScrollerProps, ref: ForwardedRef<HTMLDivElement>) {
@@ -28,14 +31,7 @@ export function useTableComponents<T>(): TableComponents {
         return <TableFooter {...p} className={cssJoinDefined('ZTable-foot')} ref={r} />;
       }),
 
-      Table: (p: TableProps) => (
-        <Table
-          {...p}
-          className={cssJoinDefined('ZTable-table')}
-          stickyHeader
-          style={{ borderCollapse: 'separate', tableLayout: 'fixed' }}
-        />
-      ),
+      Table: (p: TableProps) => <Table {...p} className={cssJoinDefined('ZTable-table', classes.table)} stickyHeader />,
 
       TableRow: function $TableRow(props: ItemProps<T>) {
         const { style, children } = props;

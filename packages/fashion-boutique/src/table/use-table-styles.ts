@@ -25,6 +25,12 @@ export const useTableStyles = createStyleHook(({ theme, tailor }) => {
       }
     },
 
+    table: {
+      borderCollapse: 'separate',
+      tableLayout: 'fixed',
+      width: 'auto'
+    },
+
     text: {
       overflow: 'hidden',
       whiteSpace: 'nowrap',
@@ -33,6 +39,10 @@ export const useTableStyles = createStyleHook(({ theme, tailor }) => {
 
     sort: {
       marginLeft: tailor.gap(ZSizeFixed.ExtraSmall)
+    },
+
+    star: {
+      width: '100%'
     },
 
     tableNotLoaded: {

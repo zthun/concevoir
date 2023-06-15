@@ -114,6 +114,11 @@ export function ZTable<T = any>(props: IZTable<T>) {
           </ZStack>
         </TableCell>
       ))}
+      <TableCell
+        className={cssJoinDefined('ZTable-cell-header', 'ZTable-cell-header-star', classes.header, classes.star)}
+        data-column='star'
+        data-row='header'
+      />
     </TableRow>
   );
 
@@ -154,6 +159,13 @@ export function ZTable<T = any>(props: IZTable<T>) {
             {renderValue(r, c)}
           </TableCell>
         ))}
+        <TableCell
+          className={cssJoinDefined('ZTable-cell-star')}
+          data-row={_identifier}
+          data-column='star'
+          data-row-index={ri}
+          data-column-index={columns.length + 1}
+        />
       </>
     );
   };
