@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { IZTableValueRender } from './table-value-render';
+import { IZTableValueRender } from './table-cell-render';
 
 /**
  * Renders the value as raw text.

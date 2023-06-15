@@ -1,10 +1,10 @@
 import { IZMetadata, ZMetadataType } from '@zthun/helpful-query';
 import { createContext, useContext } from 'react';
 import { ZTableIconStrategy } from '../icon/table-icon-strategy';
-import { IZTableValueRender } from './table-value-render';
-import { ZTableValueRenderDate } from './table-value-render-date';
-import { ZTableValueRenderIcon } from './table-value-render-icon';
-import { ZTableValueRenderText } from './table-value-render-text';
+import { IZTableValueRender } from './table-cell-render';
+import { ZTableValueRenderDate } from './table-cell-render-date';
+import { ZTableValueRenderIcon } from './table-cell-render-icon';
+import { ZTableValueRenderText } from './table-cell-render-text';
 
 export interface IZTableValueStrategy {
   get(metadata: IZMetadata): IZTableValueRender;

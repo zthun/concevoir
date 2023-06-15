@@ -1,7 +1,7 @@
 import { IZMetadata } from '@zthun/helpful-query';
 import { ReactNode } from 'react';
 import { IZTableIconStrategy } from '../icon/table-icon-strategy';
-import { IZTableValueRender } from './table-value-render';
+import { IZTableValueRender } from './table-cell-render';
 
 export class ZTableValueRenderIcon implements IZTableValueRender {
   public constructor(private _render: IZTableIconStrategy) {}
