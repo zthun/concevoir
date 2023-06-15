@@ -3,7 +3,6 @@ import { ZHorizontalAnchor, ZOrientation, cssJoinDefined } from '@zthun/helpful-
 import { IZDataRequest, ZDataRequestBuilder, ZDataSourceStatic } from '@zthun/helpful-query';
 import { isStateErrored, isStateLoading, useAmbassadorState } from '@zthun/helpful-react';
 import React, { ReactNode } from 'react';
-import { usePageView } from 'src/pagination/use-page-view';
 import { ZBox } from '../box/box';
 import { ZButton } from '../button/button';
 import { IZComponentDataSource } from '../component/component-data-source';
@@ -13,6 +12,7 @@ import { ZDrawerButton } from '../drawer/drawer-button';
 import { IZGrid, ZGrid } from '../grid/grid';
 import { ZIconFontAwesome } from '../icon/icon-font-awesome';
 import { ZPagination } from '../pagination/pagination';
+import { usePageView } from '../pagination/use-page-view';
 import { ZPageSizesOfTwelve, ZRequestEditor } from '../request-editor/request-editor';
 import { ZStack } from '../stack/stack';
 import { IZSuspense } from '../suspense/suspense';
