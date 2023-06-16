@@ -16,6 +16,7 @@ import React, { useMemo } from 'react';
 import { TableVirtuoso } from 'react-virtuoso';
 import { ZGrid } from 'src/grid/grid';
 import { ZTextInput } from 'src/text/text-input';
+import { ZCaption } from 'src/typography/typography';
 import { IZComponentDataSource } from '../component/component-data-source';
 import { IZComponentHeight } from '../component/component-height';
 import { IZComponentStyle } from '../component/component-style';
@@ -64,7 +65,7 @@ export function ZTable<T = any>(props: IZTable<T>) {
   const _sorter = useMemo(() => sorter || new ZSorterSingle(request.sort), [request.sort]);
   const cells = useTableValueStrategy();
 
-  const { view, loading, more } = useConcatView(dataSource, request);
+  const { view, loading, count, more } = useConcatView(dataSource, request);
 
   const TableComponents = useTableComponents<T>();
 
@@ -200,6 +201,13 @@ export function ZTable<T = any>(props: IZTable<T>) {
         fixedHeaderContent={renderHead}
         fixedFooterContent={renderFoot}
       />
+      <div className={cssJoinDefined('ZTable-info-bar', classes.info)}>
+        <ZStack justifyContent='end' orientation={ZOrientation.Horizontal}>
+          <ZCaption compact>
+            {view.length} / {count}{' '}
+          </ZCaption>
+        </ZStack>
+      </div>
     </div>
   );
 }

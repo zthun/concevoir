@@ -18,14 +18,17 @@ import { useEffect, useRef, useState } from 'react';
 export function useConcatView<T>(source: IZDataSource<T>, template: IZDataRequest) {
   const [view, setView] = useState<T[]>([]);
   const [loading, setLoading] = useState(false);
+  const [count, setCount] = useState(0);
   const [error, setError] = useState<Error | null>(null);
   const nextRequest = useRef(new ZDataRequestBuilder().copy(template).page(1).build());
-  const count = useRef(Promise.resolve(0));
+  const _count = useRef(Promise.resolve(0));
 
   const _loadMore = async (loaded: number) => {
-    const _count = await count.current;
+    const __count = await _count.current;
 
-    if (_count === loaded) {
+    setCount(__count);
+
+    if (__count === loaded) {
       // All done loading.
       return;
     }
@@ -53,21 +56,22 @@ export function useConcatView<T>(source: IZDataSource<T>, template: IZDataReques
     return _loadMore(view.length);
   };
 
-  const reset = async () => {
+  const _reset = async () => {
     nextRequest.current = new ZDataRequestBuilder().copy(template).page(1).build();
-    count.current = source.count(nextRequest.current);
+    _count.current = source.count(nextRequest.current);
     setView([]);
     await _loadMore(0);
   };
 
   useEffect(() => {
-    reset();
+    _reset();
   }, [source, template]);
 
   return {
     view,
     loading,
     error,
+    count,
     more
   };
 }

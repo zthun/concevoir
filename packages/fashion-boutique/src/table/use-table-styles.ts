@@ -63,6 +63,16 @@ export const useTableStyles = createStyleHook(({ theme, tailor }) => {
       marginRight: -2
     },
 
+    info: {
+      backgroundColor: theme.primary.main,
+      color: theme.primary.contrast,
+      borderBottomLeftRadius: tailor.thickness(ZSizeFixed.ExtraLarge),
+      borderBottomRightRadius: tailor.thickness(ZSizeFixed.ExtraLarge),
+      border: `1px solid ${theme.primary.dark}`,
+      borderTop: 0,
+      padding: tailor.gap(ZSizeFixed.ExtraSmall)
+    },
+
     text: {
       overflow: 'hidden',
       whiteSpace: 'nowrap',
