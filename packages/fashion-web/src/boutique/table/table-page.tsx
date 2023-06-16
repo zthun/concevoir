@@ -13,7 +13,7 @@ import { ZChoiceDropDownSize, ZFixedSizes } from '../common/choice-drop-down-siz
 export function ZTablePage() {
   const dataSource = useMemo(() => new ZDataSourcePeople(), []);
   const columns = useMemo(() => ZPersonBuilder.metadata(), []);
-  const [height, setHeight] = useState<ZSizeFixed | undefined>(ZSizeFixed.Medium);
+  const [height, setHeight] = useState<ZSizeFixed | undefined>();
 
   return (
     <ZCard

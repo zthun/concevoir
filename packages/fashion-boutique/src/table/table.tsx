@@ -42,14 +42,14 @@ export interface IZTable<T = any>
   identifier: (r: T) => string | number;
 }
 
-const TableSizeChart = createSizeChartFixedArithmetic(150, 150);
+const TableSizeChart = createSizeChartFixedArithmetic(150, 300);
 
 export function ZTable<T = any>(props: IZTable<T>) {
   const {
     className,
     dataSource = EmptyDataSource,
     columns,
-    height = ZSizeFixed.Medium,
+    height = ZSizeFixed.Small,
     value,
     onValueChange,
     identifier,
