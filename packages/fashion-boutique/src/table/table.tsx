@@ -14,6 +14,8 @@ import { useAmbassadorState } from '@zthun/helpful-react';
 import { get } from 'lodash';
 import React, { useMemo } from 'react';
 import { TableVirtuoso } from 'react-virtuoso';
+import { ZGrid } from 'src/grid/grid';
+import { ZTextInput } from 'src/text/text-input';
 import { IZComponentDataSource } from '../component/component-data-source';
 import { IZComponentHeight } from '../component/component-height';
 import { IZComponentStyle } from '../component/component-style';
@@ -173,15 +175,21 @@ export function ZTable<T = any>(props: IZTable<T>) {
   const _height = TableSizeChart[height];
 
   return (
-    <TableVirtuoso
-      className={cssJoinDefined('ZTable-root', className, classes.root)}
-      style={{ height: _height }}
-      data={view}
-      endReached={() => more()}
-      itemContent={renderItem}
-      components={TableComponents}
-      fixedHeaderContent={renderHead}
-      fixedFooterContent={renderFoot}
-    />
+    <div className={cssJoinDefined('ZTable-root', className, classes.root)}>
+      <div className={cssJoinDefined('ZTable-toolbar', classes.toolbar)}>
+        <ZGrid columns='auto 1fr'>
+          <ZTextInput className='ZTable-search' label='Search' orientation={ZOrientation.Horizontal} />
+        </ZGrid>
+      </div>
+      <TableVirtuoso
+        style={{ height: _height }}
+        data={view}
+        endReached={() => more()}
+        itemContent={renderItem}
+        components={TableComponents}
+        fixedHeaderContent={renderHead}
+        fixedFooterContent={renderFoot}
+      />
+    </div>
   );
 }

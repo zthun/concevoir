@@ -10,7 +10,7 @@ export function useTableComponents<T>(): TableComponents {
   return useMemo(
     () => ({
       Scroller: forwardRef(function $Scroller(props: ScrollerProps, ref: ForwardedRef<HTMLDivElement>) {
-        return <TableContainer {...props} ref={ref} />;
+        return <TableContainer className={cssJoinDefined('ZTable-scroller', classes.container)} {...props} ref={ref} />;
       }),
 
       TableHead: forwardRef(function $TableHead(

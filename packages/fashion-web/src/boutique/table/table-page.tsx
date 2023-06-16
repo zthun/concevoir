@@ -11,8 +11,9 @@ import { ZChoiceDropDownSize, ZFixedSizes } from '../common/choice-drop-down-siz
  * @returns The JSX to render the page.
  */
 export function ZTablePage() {
+  const excluded = useMemo(() => ['id'], []);
   const dataSource = useMemo(() => new ZDataSourcePeople(), []);
-  const columns = useMemo(() => ZPersonBuilder.metadata(), []);
+  const columns = useMemo(() => ZPersonBuilder.metadata().filter((c) => excluded.indexOf(c.id) < 0), []);
   const [height, setHeight] = useState<ZSizeFixed | undefined>();
 
   return (
