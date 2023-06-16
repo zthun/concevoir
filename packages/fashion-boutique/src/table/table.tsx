@@ -77,6 +77,10 @@ export function ZTable<T = any>(props: IZTable<T>) {
     setRequest((r) => new ZDataRequestBuilder().copy(r).sort(next).build());
   };
 
+  const handleSearch = (s: string) => {
+    setRequest((r) => new ZDataRequestBuilder().copy(r).search(s).build());
+  };
+
   const renderSort = (c: IZMetadata) => {
     if (!c.path) {
       return null;
@@ -178,7 +182,13 @@ export function ZTable<T = any>(props: IZTable<T>) {
     <div className={cssJoinDefined('ZTable-root', className, classes.root)}>
       <div className={cssJoinDefined('ZTable-toolbar', classes.toolbar)}>
         <ZGrid columns='auto 1fr'>
-          <ZTextInput className='ZTable-search' label='Search' orientation={ZOrientation.Horizontal} />
+          <ZTextInput
+            className='ZTable-search'
+            label='Search'
+            orientation={ZOrientation.Horizontal}
+            value={request.search}
+            onValueChange={handleSearch}
+          />
         </ZGrid>
       </div>
       <TableVirtuoso
