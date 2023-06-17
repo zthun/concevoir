@@ -1,17 +1,24 @@
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
-import { cssJoinDefined } from '@zthun/helpful-fn';
+import { ZOrientation, cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import { IZDataRequest, ZDataRequestBuilder, ZDataSourceStatic } from '@zthun/helpful-query';
 import { isStateErrored, isStateLoading, useAmbassadorState } from '@zthun/helpful-react';
-import React, { ReactNode } from 'react';
-import { ZSuspenseProgress } from 'src/suspense/suspense-progress';
+import { first, identity } from 'lodash';
+import React, { ReactNode, useMemo } from 'react';
+import { ZButton } from '../button/button';
+import { ZChoiceDropDown } from '../choice/choice-drop-down';
 import { IZComponentDataSource } from '../component/component-data-source';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentValue } from '../component/component-value';
 import { IZGrid, ZGrid } from '../grid/grid';
+import { ZIconFontAwesome } from '../icon/icon-font-awesome';
+import { ZPagination } from '../pagination/pagination';
 import { usePageView } from '../pagination/use-page-view';
-import { ZPageSizesOfTwelve, ZRequestEditor } from '../request-editor/request-editor';
+import { ZStack } from '../stack/stack';
 import { IZSuspense } from '../suspense/suspense';
+import { ZSuspenseProgress } from '../suspense/suspense-progress';
 import { IZText } from '../text/text';
+import { ZTextInput } from '../text/text-input';
+import { useFashionTheme } from '../theme/fashion';
 
 const EmptyDataSource = new ZDataSourceStatic([]);
 
@@ -27,6 +34,7 @@ export interface IZGridView<T = any>
   renderError?: (error: Error) => ReactNode;
 }
 
+export const ZPageSizesOfTwelve = [12, 24, 48, 96];
 const [DefaultPageSize] = ZPageSizesOfTwelve;
 const DefaultRequest = new ZDataRequestBuilder().size(DefaultPageSize).page(1).build();
 
@@ -43,6 +51,26 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
 
   const [request, setRequest] = useAmbassadorState(value, onValueChange, DefaultRequest);
   const { view, pages } = usePageView(query, request);
+  const { secondary } = useFashionTheme();
+
+  const _size = useMemo(() => (request.size == null ? [] : [request.size]), [request.size]);
+
+  const handleSizeChange = (sizes: number[]) => {
+    const size = firstDefined(DefaultPageSize, first(sizes));
+    setRequest((r) => new ZDataRequestBuilder().copy(r).size(size).build());
+  };
+
+  const handlePageChange = (page: number) => {
+    setRequest((r) => new ZDataRequestBuilder().copy(r).page(page).build());
+  };
+
+  const handleSearch = (search: string) => {
+    setRequest((r) => new ZDataRequestBuilder().copy(r).search(search).build());
+  };
+
+  const handleRefresh = () => {
+    setRequest((r) => new ZDataRequestBuilder().copy(r).build());
+  };
 
   const renderState = () => {
     if (isStateLoading(view)) {
@@ -65,14 +93,69 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
   };
 
   return (
-    <ZRequestEditor
-      className={cssJoinDefined('ZGridView-root', className)}
-      value={request}
-      onValueChange={setRequest}
-      pageSizes={ZPageSizesOfTwelve}
-      pages={pages}
-    >
-      {renderState()}
-    </ZRequestEditor>
+    <ZStack className={cssJoinDefined('ZGridView-root', className)} gap={ZSizeFixed.Medium}>
+      <ZGrid columns='1fr auto' alignItems='center' gap={ZSizeFixed.Medium}>
+        <ZTextInput
+          className='ZGridView-search'
+          label='Search'
+          value={request.search}
+          onValueChange={handleSearch}
+          orientation={ZOrientation.Horizontal}
+          name='search'
+        />
+
+        <ZChoiceDropDown
+          className='ZGridView-page-size'
+          options={ZPageSizesOfTwelve}
+          value={_size}
+          orientation={ZOrientation.Horizontal}
+          onValueChange={handleSizeChange}
+          indelible
+          label='Page Size'
+          name='page-size'
+          identifier={identity}
+        />
+      </ZGrid>
+      <ZGrid columns='auto 1fr auto' alignItems='start' gap={ZSizeFixed.Small}>
+        <ZPagination
+          className='ZGridView-pagination'
+          pages={pages}
+          value={request.page}
+          orientation={ZOrientation.Vertical}
+          onValueChange={handlePageChange}
+        />
+        {renderState()}
+        <ZStack gap={ZSizeFixed.ExtraSmall} alignItems='center'>
+          <ZButton
+            className='ZGridView-refresh'
+            outline
+            borderless
+            compact
+            label={<ZIconFontAwesome name='refresh' width={ZSizeFixed.ExtraSmall} />}
+            onClick={handleRefresh}
+            fashion={secondary}
+            name='refresh'
+          />
+          <ZButton
+            className='ZGridView-sort'
+            outline
+            borderless
+            compact
+            fashion={secondary}
+            label={<ZIconFontAwesome name='sort' width={ZSizeFixed.ExtraSmall} />}
+            name='sort'
+          />
+          <ZButton
+            className='ZGridView-filter'
+            outline
+            borderless
+            compact
+            fashion={secondary}
+            label={<ZIconFontAwesome name='filter' width={ZSizeFixed.ExtraSmall} />}
+            name='filter'
+          />
+        </ZStack>
+      </ZGrid>
+    </ZStack>
   );
 }
