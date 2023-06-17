@@ -37,9 +37,8 @@ export function ZPagination(props: IZPagination) {
       count={pages}
       page={page}
       onChange={handleChange}
-      showFirstButton
-      showLastButton
+      siblingCount={1}
       data-page={page}
-    ></Pagination>
+    />
   );
 }

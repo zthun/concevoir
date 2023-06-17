@@ -77,24 +77,4 @@ export class ZPaginationComponentModel extends ZCircusComponentModel {
   public prev() {
     return this._goToPage('Go to previous page');
   }
-
-  /**
-   * Jumps to the first page.
-   *
-   * @returns
-   *        The current page value after the jump is made.
-   */
-  public first(): Promise<number | null> {
-    return this._goToPage('Go to first page');
-  }
-
-  /**
-   * Jumps to the last page.
-   *
-   * @returns
-   *        The current page value after the jump is made.
-   */
-  public last(): Promise<number | null> {
-    return this._goToPage('Go to last page');
-  }
 }

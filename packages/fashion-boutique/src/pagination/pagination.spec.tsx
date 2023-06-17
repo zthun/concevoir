@@ -68,7 +68,6 @@ describe('ZPagination', () => {
         pages = 100;
         const target = await createTestTarget();
         // Act.
-        await target.first();
         await target.jump(72);
         const actual = await target.value();
         // Assert.
@@ -85,7 +84,7 @@ describe('ZPagination', () => {
         // Arrange.
         const target = await createTestTarget();
         // Act.
-        await target.last();
+        await target.jump(pages!);
         await target.next();
         const actual = await target.value();
         // Assert.
@@ -102,44 +101,8 @@ describe('ZPagination', () => {
         // Arrange.
         const target = await createTestTarget();
         // Act.
-        await target.first();
+        await target.jump(1);
         await target.prev();
-        const actual = await target.value();
-        // Assert.
-        expect(actual).toEqual(1);
-      });
-    });
-
-    describe('Last', () => {
-      it('should navigate.', async () => {
-        await shouldJumpToPage(pages!, 1, (t) => t.last());
-      });
-
-      it('should remain on the last page if already on the last page.', async () => {
-        // Arrange.
-        const target = await createTestTarget();
-        // Act.
-        await target.last();
-        await target.last();
-        const actual = await target.value();
-        // Assert.
-        expect(actual).toEqual(pages);
-      });
-    });
-
-    describe('First', () => {
-      it('should navigate.', async () => {
-        await shouldJumpToPage(1, pages!, (t) => t.first());
-      });
-
-      it('should remain on the first page if already on the first page.', async () => {
-        // Arrange.
-        onValueChange = undefined;
-        value = undefined;
-        const target = await createTestTarget();
-        // Act.
-        await target.first();
-        await target.first();
         const actual = await target.value();
         // Assert.
         expect(actual).toEqual(1);
