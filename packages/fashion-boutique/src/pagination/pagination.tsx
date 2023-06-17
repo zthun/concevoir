@@ -2,10 +2,10 @@ import { Pagination } from '@mui/material';
 import { ZOrientation, cssJoinDefined } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
 import React from 'react';
-import { createStyleHook } from 'src/theme/styled';
 import { IZComponentOrientation } from '../component/component-orientation';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentValue } from '../component/component-value';
+import { createStyleHook } from '../theme/styled';
 
 /**
  * Represents props for the pagination component.

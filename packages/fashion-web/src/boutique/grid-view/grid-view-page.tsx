@@ -13,7 +13,7 @@ import { IZBrand, ZBrands } from '@zthun/helpful-brands';
 import { ZOrientation } from '@zthun/helpful-fn';
 import { ZDataSearchFields, ZDataSourceStatic, ZDataSourceStaticOptionsBuilder } from '@zthun/helpful-query';
 import React from 'react';
-import { ZFashionRouteGridView } from 'src/routes';
+import { ZFashionRouteGridView } from '../../routes';
 
 const ZBrandDataSourceOptions = new ZDataSourceStaticOptionsBuilder()
   .search(new ZDataSearchFields(['id', 'name']))
