@@ -100,6 +100,7 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
           label='Search'
           value={request.search}
           onValueChange={handleSearch}
+          readOnly={isStateLoading(view)}
           orientation={ZOrientation.Horizontal}
           name='search'
         />
@@ -111,6 +112,7 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
           orientation={ZOrientation.Horizontal}
           onValueChange={handleSizeChange}
           indelible
+          disabled={isStateLoading(view)}
           label='Page Size'
           name='page-size'
           identifier={identity}
@@ -121,6 +123,7 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
           className='ZGridView-pagination'
           pages={pages}
           value={request.page}
+          disabled={isStateLoading(view)}
           orientation={ZOrientation.Vertical}
           onValueChange={handlePageChange}
         />
@@ -131,6 +134,7 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
             outline
             borderless
             compact
+            disabled={isStateLoading(view)}
             label={<ZIconFontAwesome name='refresh' width={ZSizeFixed.ExtraSmall} />}
             onClick={handleRefresh}
             fashion={secondary}
