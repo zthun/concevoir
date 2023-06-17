@@ -1,5 +1,6 @@
 import { IZCircusDriver, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
+import { ZOrientation } from '@zthun/helpful-fn';
 import React from 'react';
 import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ZPagination } from './pagination';
@@ -9,10 +10,11 @@ describe('ZPagination', () => {
   let pages: number | undefined;
   let value: number | undefined;
   let onValueChange: Mock | undefined;
+  let orientation: ZOrientation | undefined;
   let _driver: IZCircusDriver;
 
   async function createTestTarget() {
-    const element = <ZPagination pages={pages} value={value} onValueChange={onValueChange} />;
+    const element = <ZPagination pages={pages} value={value} onValueChange={onValueChange} orientation={orientation} />;
     _driver = await new ZCircusSetupRenderer(element).setup();
     return ZCircusBy.first(_driver, ZPaginationComponentModel);
   }
@@ -20,6 +22,7 @@ describe('ZPagination', () => {
   beforeEach(() => {
     pages = undefined;
     value = undefined;
+    orientation = undefined;
     onValueChange = undefined;
   });
 
@@ -76,6 +79,10 @@ describe('ZPagination', () => {
     });
 
     describe('Next', () => {
+      beforeEach(() => {
+        orientation = ZOrientation.Vertical;
+      });
+
       it('should navigate.', async () => {
         await shouldJumpToPage(2, 1, (t) => t.next());
       });
@@ -93,6 +100,10 @@ describe('ZPagination', () => {
     });
 
     describe('Previous', () => {
+      beforeEach(() => {
+        orientation = ZOrientation.Horizontal;
+      });
+
       it('should navigate.', async () => {
         await shouldJumpToPage(1, 2, (t) => t.prev());
       });
