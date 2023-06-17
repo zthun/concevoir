@@ -2,6 +2,7 @@ import { Pagination } from '@mui/material';
 import { ZOrientation, cssJoinDefined } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
 import React from 'react';
+import { IZComponentDisabled } from '../component/component-disabled';
 import { IZComponentOrientation } from '../component/component-orientation';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentValue } from '../component/component-value';
@@ -10,7 +11,11 @@ import { createStyleHook } from '../theme/styled';
 /**
  * Represents props for the pagination component.
  */
-export interface IZPagination extends IZComponentStyle, IZComponentValue<number>, IZComponentOrientation {
+export interface IZPagination
+  extends IZComponentStyle,
+    IZComponentValue<number>,
+    IZComponentOrientation,
+    IZComponentDisabled {
   /**
    * The total number of pages.
    */
@@ -40,7 +45,7 @@ const usePaginationStyles = createStyleHook((_, props: IZPagination) => {
  *        The JSX to render the component.
  */
 export function ZPagination(props: IZPagination) {
-  const { value, onValueChange, pages, className } = props;
+  const { value, onValueChange, pages, className, disabled } = props;
   const [page, setPage] = useAmbassadorState(value, onValueChange);
   const { classes } = usePaginationStyles(props);
 
@@ -51,6 +56,7 @@ export function ZPagination(props: IZPagination) {
       className={cssJoinDefined('ZPagination-root', className, classes.root)}
       count={pages}
       page={page}
+      disabled={disabled}
       onChange={handleChange}
       siblingCount={1}
       data-page={page}
