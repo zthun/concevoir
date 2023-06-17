@@ -57,7 +57,7 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
 
   const handleSizeChange = (sizes: number[]) => {
     const size = firstDefined(DefaultPageSize, first(sizes));
-    setRequest((r) => new ZDataRequestBuilder().copy(r).size(size).build());
+    setRequest((r) => new ZDataRequestBuilder().copy(r).size(size).page(1).build());
   };
 
   const handlePageChange = (page: number) => {
@@ -65,7 +65,7 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
   };
 
   const handleSearch = (search: string) => {
-    setRequest((r) => new ZDataRequestBuilder().copy(r).search(search).build());
+    setRequest((r) => new ZDataRequestBuilder().copy(r).search(search).page(1).build());
   };
 
   const handleRefresh = () => {
@@ -135,24 +135,6 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
             onClick={handleRefresh}
             fashion={secondary}
             name='refresh'
-          />
-          <ZButton
-            className='ZGridView-sort'
-            outline
-            borderless
-            compact
-            fashion={secondary}
-            label={<ZIconFontAwesome name='sort' width={ZSizeFixed.ExtraSmall} />}
-            name='sort'
-          />
-          <ZButton
-            className='ZGridView-filter'
-            outline
-            borderless
-            compact
-            fashion={secondary}
-            label={<ZIconFontAwesome name='filter' width={ZSizeFixed.ExtraSmall} />}
-            name='filter'
           />
         </ZStack>
       </ZGrid>
