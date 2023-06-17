@@ -1,23 +1,158 @@
-import { ZCircusBy } from '@zthun/cirque';
+import { IZCircusDriver, ZCircusBy, ZCircusKeyboardQwerty } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import React, { ReactNode } from 'react';
-import { describe, expect, it } from 'vitest';
+import {
+  IZDataRequest,
+  IZDataSource,
+  ZDataRequestBuilder,
+  ZDataSourceStatic,
+  ZDataSourceStaticOptionsBuilder
+} from '@zthun/helpful-query';
+import { range } from 'lodash';
+import React from 'react';
+import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ZGridView } from './grid-view';
 import { ZGridViewComponentModel } from './grid-view.cm';
 
 describe('ZGridView', () => {
+  let request: IZDataRequest | undefined;
+  let onValueChange: Mock | undefined;
+  let dataSource: IZDataSource<number> | undefined;
+  let renderItem: Mock;
+  let _driver: IZCircusDriver;
+  let _target: ZGridViewComponentModel;
+
   async function createTestTarget() {
-    const renderItem = (item: number): ReactNode => item;
-    const element = <ZGridView renderItem={renderItem} />;
-    const driver = await new ZCircusSetupRenderer(element).setup();
-    return ZCircusBy.first(driver, ZGridViewComponentModel);
+    const element = (
+      <ZGridView renderItem={renderItem} dataSource={dataSource} value={request} onValueChange={onValueChange} />
+    );
+    _driver = await new ZCircusSetupRenderer(element).setup();
+    _target = await ZCircusBy.first(_driver, ZGridViewComponentModel);
+    return _target;
   }
 
-  it('should render the component', async () => {
-    // Arrange.
-    // Act.
-    const target = await createTestTarget();
-    // Assert.
-    expect(target).toBeTruthy();
+  beforeEach(() => {
+    request = undefined;
+    dataSource = undefined;
+    onValueChange = undefined;
+
+    renderItem = vi.fn();
+    renderItem.mockImplementation((i) => (
+      <div className='item' data-item={i}>
+        {i}
+      </div>
+    ));
+  });
+
+  afterEach(async () => {
+    await _target?.load();
+    await _driver.destroy();
+  });
+
+  describe('Page Size', () => {
+    const data = range(0, 100);
+
+    beforeEach(() => {
+      dataSource = new ZDataSourceStatic(data);
+    });
+
+    it('should render available items', async () => {
+      // Arrange.
+      request = new ZDataRequestBuilder().build();
+      const target = await createTestTarget();
+      // Act.
+      await target.load();
+      // Assert.
+      expect(renderItem).toHaveBeenCalledTimes(data.length);
+    });
+
+    it('should render items up to the page size of the value', async () => {
+      // Arrange.
+      request = new ZDataRequestBuilder().page(1).size(5).build();
+      const target = await createTestTarget();
+      // Act.
+      await target.load();
+      // Assert.
+      expect(renderItem).toHaveBeenCalledTimes(request.size!);
+    });
+
+    it('should render items after the page size changes', async () => {
+      // Arrange.
+      const target = await createTestTarget();
+      const size = await target.pageSize();
+      await target.load();
+      const expected = 48;
+      // Act.
+      await size.select(expected);
+      await target.load();
+      const actual = await target.driver.query('.item');
+      // Assert.
+      expect(actual.length).toEqual(expected);
+    });
+  });
+
+  describe('Search', () => {
+    it('should search for a specific item', async () => {
+      // Arrange.
+      onValueChange = vi.fn();
+      const expected = '100';
+      const target = await createTestTarget();
+      await target.load();
+      const search = await target.search();
+      // Act.
+      await search.keyboard(expected, ZCircusKeyboardQwerty.enter);
+      // Assert.
+      expect(onValueChange).toHaveBeenCalledWith(expect.objectContaining({ search: expected }));
+    });
+
+    it('should be readOnly while loading', async () => {
+      // Arrange.
+      const options = new ZDataSourceStaticOptionsBuilder<number>().delay(500).build();
+      dataSource = new ZDataSourceStatic(range(0, 10), options);
+      const target = await createTestTarget();
+      const search = await target.search();
+      // Act.
+      const actual = await search.readOnly();
+      // Assert.
+      expect(actual).toBeTruthy();
+    });
+  });
+
+  describe('Refresh', () => {
+    beforeEach(() => {
+      const options = new ZDataSourceStaticOptionsBuilder<number>().delay(500).build();
+      dataSource = new ZDataSourceStatic(range(0, 10), options);
+    });
+
+    it('should render a loader while data is being loaded', async () => {
+      // Arrange.
+      const target = await createTestTarget();
+      // Act.
+      const actual = await target.loading();
+      await target.load();
+      // Assert.
+      expect(actual).toBeTruthy();
+    });
+
+    it('should disable the refresh button while loading', async () => {
+      // Arrange.
+      const target = await createTestTarget();
+      // Act.
+      const actual = await (await target.refresh()).disabled();
+      await target.load();
+      // Assert.
+      expect(actual).toBeTruthy();
+    });
+
+    it('should refresh the data when the refresh button is clicked', async () => {
+      // Arrange.
+      const target = await createTestTarget();
+      await target.load();
+      // Act.
+      await (await target.refresh()).click();
+      const actual = await target.loading();
+      await target.load();
+      // Assert.
+      expect(actual).toBeTruthy();
+    });
   });
 });

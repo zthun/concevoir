@@ -20,8 +20,6 @@ import { IZText } from '../text/text';
 import { ZTextInput } from '../text/text-input';
 import { useFashionTheme } from '../theme/fashion';
 
-const EmptyDataSource = new ZDataSourceStatic([]);
-
 export interface IZGridView<T = any>
   extends IZComponentStyle,
     IZComponentDataSource<T>,
@@ -34,23 +32,16 @@ export interface IZGridView<T = any>
   renderError?: (error: Error) => ReactNode;
 }
 
-export const ZPageSizesOfTwelve = [12, 24, 48, 96];
+const ZPageSizesOfTwelve = [12, 24, 48, 96];
+const EmptyDataSource = new ZDataSourceStatic([]);
 const [DefaultPageSize] = ZPageSizesOfTwelve;
 const DefaultRequest = new ZDataRequestBuilder().size(DefaultPageSize).page(1).build();
 
 export function ZGridView<T = any>(props: IZGridView<T>) {
-  const {
-    GridProps,
-    SuspenseProps,
-    renderItem,
-    dataSource: query = EmptyDataSource,
-    className,
-    value,
-    onValueChange
-  } = props;
+  const { GridProps, SuspenseProps, renderItem, dataSource = EmptyDataSource, className, value, onValueChange } = props;
 
   const [request, setRequest] = useAmbassadorState(value, onValueChange, DefaultRequest);
-  const { view, pages } = usePageView(query, request);
+  const { view, pages } = usePageView(dataSource, request);
   const { secondary } = useFashionTheme();
 
   const _size = useMemo(() => (request.size == null ? [] : [request.size]), [request.size]);
@@ -81,6 +72,7 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
           loading
           width={ZSizeVaried.Full}
           height={ZSizeFixed.Medium}
+          name='grid-loading'
         />
       );
     }
