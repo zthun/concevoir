@@ -89,7 +89,7 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
       return <div className='ZGridView-error'>{view.message}</div>;
     }
 
-    return <ZGrid {...GridProps}>{view.map((item, index) => renderItem(item, index))};</ZGrid>;
+    return <ZGrid {...GridProps}>{view.map((item, index) => renderItem(item, index))}</ZGrid>;
   };
 
   return (
