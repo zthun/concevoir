@@ -1,4 +1,5 @@
 import {
+  ZBooleanSwitch,
   ZBox,
   ZCard,
   ZGridView,
@@ -12,7 +13,7 @@ import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { IZBrand, ZBrands } from '@zthun/helpful-brands';
 import { ZOrientation } from '@zthun/helpful-fn';
 import { ZDataSearchFields, ZDataSourceStatic, ZDataSourceStaticOptionsBuilder } from '@zthun/helpful-query';
-import React from 'react';
+import React, { useState } from 'react';
 import { ZFashionRouteGridView } from '../../routes';
 
 const ZBrandDataSourceOptions = new ZDataSourceStaticOptionsBuilder()
@@ -20,6 +21,10 @@ const ZBrandDataSourceOptions = new ZDataSourceStaticOptionsBuilder()
   .delay(1000)
   .build();
 const ZBrandDataSource = new ZDataSourceStatic(ZBrands.slice(), ZBrandDataSourceOptions);
+const ZErrorDataSource = new ZDataSourceStatic(
+  new Error('Unable to load brands.  An unexpected error occurred.'),
+  ZBrandDataSourceOptions
+);
 
 /**
  * Represents a demo for grid views.
@@ -27,6 +32,8 @@ const ZBrandDataSource = new ZDataSourceStatic(ZBrands.slice(), ZBrandDataSource
  * @returns The JSX to render the page.
  */
 export function ZGridViewPage() {
+  const [dataSource, setDataSource] = useState(ZBrandDataSource);
+
   const renderItem = (item: IZBrand) => (
     <ZCard key={item.id} heading={item.name} avatar={<ZIconFontAwesome width={ZSizeFixed.Small} name='hashtag' />}>
       <ZStack justifyContent='center' orientation={ZOrientation.Horizontal}>
@@ -34,6 +41,10 @@ export function ZGridViewPage() {
       </ZStack>
     </ZCard>
   );
+
+  const toggleDataSource = () => {
+    setDataSource((d) => (d === ZBrandDataSource ? ZErrorDataSource : ZBrandDataSource));
+  };
 
   return (
     <ZCard
@@ -60,8 +71,12 @@ export function ZGridViewPage() {
           columnsSm: '1fr'
         }}
         renderItem={renderItem}
-        dataSource={ZBrandDataSource}
+        dataSource={dataSource}
       />
+
+      <ZH3>Options</ZH3>
+
+      <ZBooleanSwitch label='Error' value={dataSource === ZErrorDataSource} onValueChange={toggleDataSource} />
     </ZCard>
   );
 }
