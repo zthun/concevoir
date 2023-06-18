@@ -90,6 +90,20 @@ describe('ZGridView', () => {
     });
   });
 
+  describe('Pagination', () => {
+    it('should move to the next page', async () => {
+      // Arrange.
+      dataSource = new ZDataSourceStatic(range(0, 100));
+      vi.spyOn(dataSource, 'retrieve');
+      const target = await createTestTarget();
+      const pagination = await target.pagination();
+      // Act.
+      await pagination.next();
+      // Assert.
+      expect(dataSource.retrieve).toHaveBeenCalledWith(expect.objectContaining({ page: 2 }));
+    });
+  });
+
   describe('Search', () => {
     it('should search for a specific item', async () => {
       // Arrange.
