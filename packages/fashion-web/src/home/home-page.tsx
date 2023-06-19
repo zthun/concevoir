@@ -49,7 +49,7 @@ export function ZHomePage() {
     <div className='ZHomePage-root'>
       <ZCard
         className={classes.section}
-        width={ZSizeFixed.Large}
+        width={ZSizeFixed.ExtraLarge}
         heading={ZFashionRouteTheme.name}
         subHeading={ZFashionRouteTheme.description}
         footer={renderGetStarted('theme')}
@@ -58,7 +58,7 @@ export function ZHomePage() {
           className={classes.avatar}
           src={ZFashionRouteTheme.avatar}
           height={ZSizeFixed.ExtraLarge}
-          width={ZSizeVaried.Full}
+          heightXs={ZSizeFixed.Large}
         />
 
         <ZParagraph>
@@ -84,7 +84,7 @@ export function ZHomePage() {
 
       <ZCard
         className={classes.section}
-        width={ZSizeFixed.Large}
+        width={ZSizeFixed.ExtraLarge}
         heading={ZFashionRouteBoutique.name}
         subHeading={ZFashionRouteBoutique.description}
         footer={renderGetStarted('boutique')}
@@ -93,7 +93,7 @@ export function ZHomePage() {
           className={classes.avatar}
           src={ZFashionRouteBoutique.avatar}
           height={ZSizeFixed.ExtraLarge}
-          width={ZSizeVaried.Full}
+          heightXs={ZSizeFixed.Large}
         />
 
         <ZParagraph>
