@@ -4,7 +4,6 @@ import { IZDataRequest, ZDataRequestBuilder, ZDataSourceStatic } from '@zthun/he
 import { isStateErrored, isStateLoading, useAmbassadorState } from '@zthun/helpful-react';
 import { first, identity } from 'lodash';
 import React, { ReactNode, useMemo } from 'react';
-import { ZH5 } from 'src/typography/typography';
 import { ZAlert } from '../alert/alert';
 import { ZButton } from '../button/button';
 import { ZChoiceDropDown } from '../choice/choice-drop-down';
@@ -21,6 +20,7 @@ import { ZSuspenseProgress } from '../suspense/suspense-progress';
 import { IZText } from '../text/text';
 import { ZTextInput } from '../text/text-input';
 import { useFashionTheme } from '../theme/fashion';
+import { ZH5 } from '../typography/typography';
 
 export interface IZGridView<T = any>
   extends IZComponentStyle,

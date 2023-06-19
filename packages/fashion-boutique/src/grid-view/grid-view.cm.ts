@@ -1,9 +1,9 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZAlertComponentModel } from 'src/alert/alert.cm';
-import { ZButtonComponentModel } from 'src/button/button.cm';
-import { ZChoiceComponentModel } from 'src/choice/choice.cm';
-import { ZPaginationComponentModel } from 'src/pagination/pagination.cm';
-import { ZSuspenseComponentModel } from 'src/suspense/suspense.cm';
+import { ZAlertComponentModel } from '../alert/alert.cm';
+import { ZButtonComponentModel } from '../button/button.cm';
+import { ZChoiceComponentModel } from '../choice/choice.cm';
+import { ZPaginationComponentModel } from '../pagination/pagination.cm';
+import { ZSuspenseComponentModel } from '../suspense/suspense.cm';
 import { ZTextComponentModel } from '../text/text.cm';
 
 /**
