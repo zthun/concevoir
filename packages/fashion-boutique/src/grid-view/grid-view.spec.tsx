@@ -77,12 +77,13 @@ describe('ZGridView', () => {
 
     it('should render items up to the page size of the value', async () => {
       // Arrange.
-      request = new ZDataRequestBuilder().page(1).size(24).build();
+      request = new ZDataRequestBuilder().page(1).size(12).build();
       const target = await createTestTarget();
       // Act.
       await target.load();
+      const actual = await target.driver.query('.item');
       // Assert.
-      expect(renderItem).toHaveBeenCalledTimes(request.size!);
+      expect(actual.length).toEqual(request.size);
     });
 
     it('should render items after the page size changes', async () => {
