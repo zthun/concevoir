@@ -1,11 +1,11 @@
 import { Card, CardActions, CardContent, CardHeader } from '@mui/material';
 import {
+  ZSizeFixed,
+  ZSizeVaried,
   createSizeChartFixedCss,
   createSizeChartFixedGeometric,
   createSizeChartVariedCss,
-  createSizeChartVoidCss,
-  ZSizeFixed,
-  ZSizeVaried
+  createSizeChartVoidCss
 } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ReactNode } from 'react';
@@ -34,7 +34,7 @@ export interface IZCard
   footer?: ReactNode;
 }
 
-const ChartWidth = createSizeChartFixedGeometric(1.4, 18);
+const ChartWidth = createSizeChartFixedGeometric(1.5, 10);
 const ChartFixed = createSizeChartFixedCss(ChartWidth, 'rem');
 const ChartVaried = createSizeChartVariedCss();
 const ChartVoid = createSizeChartVoidCss();
@@ -51,10 +51,21 @@ const useCardStyles = createStyleHook(({ theme }, props: IZCard) => {
       'backgroundColor': fashion.main,
       'color': fashion.contrast,
 
+      '.MuiCardHeader-content': {
+        flex: '1 1 0px',
+        overflow: 'hidden'
+      },
+
       '.MuiCardHeader-subheader': {
         color: fashion.contrast,
         opacity: 0.9
       }
+    },
+
+    title: {
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis'
     }
   };
 });
@@ -78,7 +89,7 @@ export function ZCard(props: IZCard) {
       className='ZCard-header'
       avatar={avatar}
       title={
-        <ZH2 className='ZCard-header-heading' compact>
+        <ZH2 className={cssJoinDefined('ZCard-header-heading', classes.title)} compact>
           {heading}
         </ZH2>
       }
