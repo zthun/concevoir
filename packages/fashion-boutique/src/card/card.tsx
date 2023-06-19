@@ -47,7 +47,6 @@ const useCardStyles = createStyleHook(({ theme }, props: IZCard) => {
     root: {
       'position': 'relative',
       'maxWidth': CardSizeChart[width],
-      'minWidth': ChartFixed[ZSizeFixed.ExtraSmall],
       'backgroundColor': fashion.main,
       'color': fashion.contrast,
 
