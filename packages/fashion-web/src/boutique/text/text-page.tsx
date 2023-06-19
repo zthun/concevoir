@@ -6,7 +6,6 @@ import {
   ZGrid,
   ZH3,
   ZIconFontAwesome,
-  ZImageSource,
   ZParagraph,
   ZTextArea,
   ZTextInput,
@@ -30,8 +29,8 @@ export function ZTextPage() {
   const [adornments, setAdornments] = useState(false);
   const [value, setValue] = useState('');
 
-  const flag = <ZImageSource src={'images/svg/flag.svg'} height={ZSizeFixed.Small} />;
-  const search = <ZImageSource src={'images/svg/search.svg'} height={ZSizeFixed.Small} />;
+  const flag = <ZIconFontAwesome name='flag' width={ZSizeFixed.ExtraSmall} />;
+  const search = <ZIconFontAwesome name='magnifying-glass' width={ZSizeFixed.ExtraSmall} />;
 
   return (
     <ZCard
