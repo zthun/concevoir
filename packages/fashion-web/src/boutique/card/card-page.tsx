@@ -6,7 +6,6 @@ import {
   ZGrid,
   ZH3,
   ZIconFontAwesome,
-  ZImageSource,
   ZParagraph
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
@@ -57,7 +56,7 @@ export function ZCardPage() {
           subHeading={'Sub Header'}
           fashion={fashion}
           loading={loading}
-          avatar={<ZImageSource src='/images/svg/hero.svg' height={ZSizeFixed.Medium} />}
+          avatar={<ZIconFontAwesome name='mask' width={ZSizeFixed.Medium} />}
           footer={<ZButton label='Footer' width={ZSizeVaried.Full} />}
         >
           {LOREM}
