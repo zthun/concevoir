@@ -13,14 +13,41 @@ export interface IZIcon extends IZComponentName, IZComponentStyle, IZComponentWi
 
 const IconSizeChart = createSizeChartFixedCss(createSizeChartFixedGeometric(2, 1), 'rem');
 
-export const useIconStyles = createStyleHook(({ theme }, props: IZIcon) => {
+export const useIconStyles = createStyleHook(({ theme, device }, props: IZIcon) => {
   const { primary } = theme;
-  const { width = ZSizeFixed.Small, fashion, onClick } = props;
-  const fontSize = IconSizeChart[width];
+  const {
+    width = ZSizeFixed.Small,
+    widthLg = width,
+    widthMd = widthLg,
+    widthSm = widthMd,
+    widthXs = widthSm,
+    fashion,
+    onClick
+  } = props;
+
+  const fontSize = {
+    fontSize: `${IconSizeChart[width]} !important`,
+
+    [device.break(ZSizeFixed.Large)]: {
+      fontSize: `${IconSizeChart[widthLg]} !important`
+    },
+
+    [device.break(ZSizeFixed.Medium)]: {
+      fontSize: `${IconSizeChart[widthMd]} !important`
+    },
+
+    [device.break(ZSizeFixed.Small)]: {
+      fontSize: `${IconSizeChart[widthSm]} !important`
+    },
+
+    [device.break(ZSizeFixed.ExtraSmall)]: {
+      fontSize: `${IconSizeChart[widthXs]} !important`
+    }
+  };
 
   return {
     root: {
-      'fontSize': `${fontSize} !important`,
+      ...fontSize,
       'color': fashion?.main,
       'cursor': onClick ? 'pointer' : 'inherit',
 

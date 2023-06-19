@@ -36,7 +36,7 @@ export function ZGridViewPage() {
   const renderItem = (item: IZBrand) => (
     <ZCard key={item.id} heading={item.name} avatar={<ZIconFontAwesome name='hashtag' />}>
       <ZStack justifyContent='center' orientation={ZOrientation.Horizontal}>
-        <ZIconFontAwesome family='brands' name={item.id} width={ZSizeFixed.Medium} />
+        <ZIconFontAwesome family='brands' name={item.id} width={ZSizeFixed.Large} widthXs={ZSizeFixed.Medium} />
       </ZStack>
     </ZCard>
   );

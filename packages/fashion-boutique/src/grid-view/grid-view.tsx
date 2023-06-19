@@ -8,8 +8,10 @@ import { ZAlert } from '../alert/alert';
 import { ZButton } from '../button/button';
 import { ZChoiceDropDown } from '../choice/choice-drop-down';
 import { IZComponentDataSource } from '../component/component-data-source';
+import { IZComponentHeight } from '../component/component-height';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentValue } from '../component/component-value';
+import { IZComponentWidth } from '../component/component-width';
 import { IZGrid, ZGrid } from '../grid/grid';
 import { ZIconFontAwesome } from '../icon/icon-font-awesome';
 import { ZPagination } from '../pagination/pagination';
@@ -27,7 +29,7 @@ export interface IZGridView<T = any>
     IZComponentDataSource<T>,
     IZComponentValue<IZDataRequest> {
   GridProps?: Omit<IZGrid, 'children'>;
-  SuspenseProps?: Omit<IZSuspense, 'loading' | 'width' | 'height'>;
+  SuspenseProps?: Omit<IZSuspense, 'loading' | keyof IZComponentWidth | keyof IZComponentHeight>;
   SearchProps?: Omit<IZText, 'value' | 'onValueChange'>;
 
   renderItem: (item: T, index: number) => ReactNode;
@@ -97,7 +99,7 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
 
   return (
     <ZStack className={cssJoinDefined('ZGridView-root', className)} gap={ZSizeFixed.Medium}>
-      <ZGrid columns='1fr auto' alignItems='center' gap={ZSizeFixed.Medium}>
+      <ZGrid columns='1fr auto' alignItems='center' gap={ZSizeFixed.ExtraSmall}>
         <ZTextInput
           className='ZGridView-search'
           label='Search'
@@ -117,16 +119,8 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
           identifier={identity}
         />
       </ZGrid>
-      <ZGrid columns='auto 1fr auto' alignItems='start' gap={ZSizeFixed.Small}>
-        <ZPagination
-          className='ZGridView-pagination'
-          pages={pages}
-          value={request.page}
-          orientation={ZOrientation.Vertical}
-          onValueChange={handlePageChange}
-        />
-        {renderState()}
-        <ZStack gap={ZSizeFixed.ExtraSmall} alignItems='center'>
+      <ZGrid columns='auto 1fr' alignItems='start' gap={ZSizeFixed.ExtraSmall}>
+        <ZStack gap={ZSizeFixed.Medium}>
           <ZButton
             className='ZGridView-refresh'
             outline
@@ -137,7 +131,17 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
             fashion={secondary}
             name='refresh'
           />
+
+          <ZPagination
+            className='ZGridView-pagination'
+            pages={pages}
+            value={request.page}
+            orientation={ZOrientation.Vertical}
+            onValueChange={handlePageChange}
+          />
         </ZStack>
+
+        {renderState()}
       </ZGrid>
     </ZStack>
   );
