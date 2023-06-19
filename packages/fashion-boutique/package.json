@@ -29,10 +29,10 @@
     "@zthun/cirque": "^4.3.0",
     "@zthun/fashion-tailor": "^0.0.1",
     "@zthun/fashion-theme": "^0.0.1",
-    "@zthun/helpful-fn": "^0.16.0",
-    "@zthun/helpful-obligation": "^0.16.0",
-    "@zthun/helpful-query": "^0.16.0",
-    "@zthun/helpful-react": "^0.16.0",
+    "@zthun/helpful-fn": "^0.17.0",
+    "@zthun/helpful-obligation": "^0.17.0",
+    "@zthun/helpful-query": "^0.17.0",
+    "@zthun/helpful-react": "^0.17.0",
     "@zthun/webigail-http": "^0.1.0",
     "@zthun/webigail-url": "^0.1.0",
     "csstype": "^3.1.2",
@@ -46,7 +46,7 @@
     "@zthun/cirque-du-react": "^4.3.0",
     "microbundle": "^0.15.1",
     "vite": "^4.3.9",
-    "vitest": "^0.32.0"
+    "vitest": "^0.32.2"
   },
   "peerDependencies": {
     "react": "^18.1.0",
