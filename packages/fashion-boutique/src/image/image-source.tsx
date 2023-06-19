@@ -3,6 +3,7 @@ import {
   createSizeChartFixedGeometric,
   createSizeChartVariedCss,
   createSizeChartVoidCss,
+  ZSizeFixed,
   ZSizeVaried
 } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
@@ -28,25 +29,55 @@ const ImageSizeChart = {
   ...createSizeChartVoidCss()
 };
 
-const useImageSourceStyles = createStyleHook((_, props: IZImageSource) => {
-  const { height = ZSizeVaried.Fit, width = ZSizeVaried.Fit } = props;
+const useImageSourceStyles = createStyleHook(({ device }, props: IZImageSource) => {
+  const {
+    height = ZSizeVaried.Fit,
+    heightLg = height,
+    heightMd = heightLg,
+    heightSm = heightMd,
+    heightXs = heightSm,
+    width = ZSizeVaried.Fit,
+    widthLg = width,
+    widthMd = widthLg,
+    widthSm = widthMd,
+    widthXs = widthSm
+  } = props;
 
-  const _height = ImageSizeChart[height];
-  const _width = ImageSizeChart[width];
+  const dimensions = {
+    width: ImageSizeChart[width],
+    height: ImageSizeChart[height],
+
+    [device.break(ZSizeFixed.Large)]: {
+      width: ImageSizeChart[widthLg],
+      height: ImageSizeChart[heightLg]
+    },
+
+    [device.break(ZSizeFixed.Medium)]: {
+      width: ImageSizeChart[widthMd],
+      height: ImageSizeChart[heightMd]
+    },
+
+    [device.break(ZSizeFixed.Small)]: {
+      width: ImageSizeChart[widthSm],
+      height: ImageSizeChart[heightSm]
+    },
+
+    [device.break(ZSizeFixed.ExtraSmall)]: {
+      width: ImageSizeChart[widthXs],
+      height: ImageSizeChart[heightXs]
+    }
+  };
 
   return {
     root: {
-      height: _height,
-      width: _width,
+      ...dimensions,
 
       svg: {
-        height: _height,
-        width: _width
+        ...dimensions
       },
 
       img: {
-        height: _height,
-        width: _width
+        ...dimensions
       }
     }
   };
