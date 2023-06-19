@@ -8,6 +8,7 @@ export interface IZComponentHeight<TSize = ZSize> {
    * The height of the component.
    */
   height?: TSize;
+
   /**
    * Height on lg screens.
    */
