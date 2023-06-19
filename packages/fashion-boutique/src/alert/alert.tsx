@@ -55,10 +55,12 @@ export function ZAlert(props: IZAlert) {
   const renderHeading = () =>
     heading ? <AlertTitle className={cssJoinDefined('ZAlert-heading', classes.heading)}>{heading}</AlertTitle> : null;
 
+  const renderIcon = () => (avatar ? <div className={cssJoinDefined('ZAlert-avatar')}>{avatar}</div> : null);
+
   return (
     <Alert
       className={cssJoinDefined('ZAlert-root', className, classes.root)}
-      icon={avatar}
+      icon={renderIcon()}
       data-name={name}
       data-fashion={fashion.name}
     >

@@ -1,4 +1,4 @@
-import { ZCircusComponentModel } from '@zthun/cirque';
+import { IZCircusDriver, ZCircusComponentModel } from '@zthun/cirque';
 import { firstDefined } from '@zthun/helpful-fn';
 
 /**
@@ -12,22 +12,32 @@ export class ZAlertComponentModel extends ZCircusComponentModel {
    *
    *
    * @returns
-   *        The message text, if any.
+   *        The message container.
    */
-  public async message(): Promise<string> {
-    const msg = await this.driver.select('.ZAlert-message');
-    return msg.text();
+  public async message(): Promise<IZCircusDriver> {
+    return await this.driver.select('.ZAlert-message');
   }
 
   /**
    * Gets the heading message.
    *
    * @returns
-   *        The heading text, if any.
+   *        The heading container if one exists.
    */
-  public async heading(): Promise<string> {
+  public async heading(): Promise<IZCircusDriver | null> {
     const [heading] = await this.driver.query('.ZAlert-heading');
-    return firstDefined('', await heading?.text());
+    return firstDefined(null, heading);
+  }
+
+  /**
+   * Gets the avatar.
+   *
+   * @returns
+   *        The avatar container, if one exists.
+   */
+  public async avatar(): Promise<IZCircusDriver | null> {
+    const [avatar] = await this.driver.query('.ZAlert-avatar');
+    return firstDefined(null, avatar);
   }
 
   /**
