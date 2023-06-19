@@ -1,3 +1,5 @@
+export * from './alert/alert';
+export * from './alert/alert.cm';
 export * from './banner-main/banner-main';
 export * from './banner-main/banner-main.cm';
 export * from './banner/banner';
