@@ -46,7 +46,7 @@ const usePaginationStyles = createStyleHook((_, props: IZPagination) => {
  */
 export function ZPagination(props: IZPagination) {
   const { value, onValueChange, pages, className, disabled } = props;
-  const [page, setPage] = useAmbassadorState(value, onValueChange);
+  const [page, setPage] = useAmbassadorState(value, onValueChange, 1);
   const { classes } = usePaginationStyles(props);
 
   const handleChange = (_: any, page: number) => setPage(page);
