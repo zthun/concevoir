@@ -103,7 +103,6 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
           label='Search'
           value={request.search}
           onValueChange={handleSearch}
-          orientation={ZOrientation.Horizontal}
           name='search'
         />
 
@@ -111,10 +110,9 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
           className='ZGridView-page-size'
           options={ZPageSizesOfTwelve}
           value={_size}
-          orientation={ZOrientation.Horizontal}
           onValueChange={handleSizeChange}
           indelible
-          label='Page Size'
+          label='Size'
           name='page-size'
           identifier={identity}
         />
