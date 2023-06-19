@@ -79,12 +79,12 @@ export function ZButtonPage() {
             name='icon-button'
             tooltip='Iconography Button'
           />
-
-          <div>
-            <span>Click Count: </span>
-            <span className='ZButtonPage-click-count'>{count}</span>
-          </div>
         </ZStack>
+
+        <ZBox margin={{ top: ZSizeFixed.Small }}>
+          <span>Click Count: </span>
+          <span className='ZButtonPage-click-count'>{count}</span>
+        </ZBox>
       </ZBox>
 
       <ZBox padding={{ bottom: ZSizeFixed.Large }}>
