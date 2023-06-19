@@ -35,9 +35,9 @@ export function ZGridViewPage() {
   const [dataSource, setDataSource] = useState(ZBrandDataSource);
 
   const renderItem = (item: IZBrand) => (
-    <ZCard key={item.id} heading={item.name} avatar={<ZIconFontAwesome width={ZSizeFixed.Small} name='hashtag' />}>
+    <ZCard key={item.id} heading={item.name} avatar={<ZIconFontAwesome name='hashtag' />}>
       <ZStack justifyContent='center' orientation={ZOrientation.Horizontal}>
-        <ZIconFontAwesome family='brands' name={item.id} width={ZSizeFixed.Large} />
+        <ZIconFontAwesome family='brands' name={item.id} width={ZSizeFixed.Medium} />
       </ZStack>
     </ZCard>
   );
@@ -62,6 +62,7 @@ export function ZGridViewPage() {
           that is more mobile friendly in general and grid views tend to be very responsive to this effort.
         </ZParagraph>
       </ZBox>
+
       <ZGridView
         GridProps={{
           gap: ZSizeFixed.Small,
@@ -74,9 +75,11 @@ export function ZGridViewPage() {
         dataSource={dataSource}
       />
 
-      <ZH3>Options</ZH3>
+      <ZBox margin={{ top: ZSizeFixed.Large }}>
+        <ZH3>Options</ZH3>
 
-      <ZBooleanSwitch label='Error' value={dataSource === ZErrorDataSource} onValueChange={toggleDataSource} />
+        <ZBooleanSwitch label='Error' value={dataSource === ZErrorDataSource} onValueChange={toggleDataSource} />
+      </ZBox>
     </ZCard>
   );
 }

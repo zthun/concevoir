@@ -1,4 +1,5 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
+import { ZAlertComponentModel } from 'src/alert/alert.cm';
 import { ZButtonComponentModel } from 'src/button/button.cm';
 import { ZChoiceComponentModel } from 'src/choice/choice.cm';
 import { ZPaginationComponentModel } from 'src/pagination/pagination.cm';
@@ -25,6 +26,10 @@ export class ZGridViewComponentModel extends ZCircusComponentModel {
 
   public refresh(): Promise<ZButtonComponentModel> {
     return ZCircusBy.first(this.driver, ZButtonComponentModel, 'refresh');
+  }
+
+  public async error(): Promise<ZAlertComponentModel | null> {
+    return ZCircusBy.optional(this.driver, ZAlertComponentModel, 'grid-error');
   }
 
   public async loading(): Promise<boolean> {

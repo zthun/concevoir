@@ -4,6 +4,8 @@ import { IZDataRequest, ZDataRequestBuilder, ZDataSourceStatic } from '@zthun/he
 import { isStateErrored, isStateLoading, useAmbassadorState } from '@zthun/helpful-react';
 import { first, identity } from 'lodash';
 import React, { ReactNode, useMemo } from 'react';
+import { ZH5 } from 'src/typography/typography';
+import { ZAlert } from '../alert/alert';
 import { ZButton } from '../button/button';
 import { ZChoiceDropDown } from '../choice/choice-drop-down';
 import { IZComponentDataSource } from '../component/component-data-source';
@@ -42,7 +44,7 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
 
   const [request, setRequest] = useAmbassadorState(value, onValueChange, DefaultRequest);
   const { view, pages } = usePageView(dataSource, request);
-  const { secondary } = useFashionTheme();
+  const { secondary, error } = useFashionTheme();
 
   const _size = useMemo(() => (request.size == null ? [] : [request.size]), [request.size]);
 
@@ -78,7 +80,16 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
     }
 
     if (isStateErrored(view)) {
-      return <div className='ZGridView-error'>{view.message}</div>;
+      return (
+        <ZAlert
+          className={cssJoinDefined('ZGridView-error')}
+          name='grid-error'
+          message={view.message}
+          fashion={error}
+          heading={<ZH5 compact>Error</ZH5>}
+          avatar={<ZIconFontAwesome name='circle-exclamation' width={ZSizeFixed.Small} />}
+        />
+      );
     }
 
     return <ZGrid {...GridProps}>{view.map((item, index) => renderItem(item, index))}</ZGrid>;
@@ -92,7 +103,6 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
           label='Search'
           value={request.search}
           onValueChange={handleSearch}
-          readOnly={isStateLoading(view)}
           orientation={ZOrientation.Horizontal}
           name='search'
         />
@@ -104,7 +114,6 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
           orientation={ZOrientation.Horizontal}
           onValueChange={handleSizeChange}
           indelible
-          disabled={isStateLoading(view)}
           label='Page Size'
           name='page-size'
           identifier={identity}
@@ -115,7 +124,6 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
           className='ZGridView-pagination'
           pages={pages}
           value={request.page}
-          disabled={isStateLoading(view)}
           orientation={ZOrientation.Vertical}
           onValueChange={handlePageChange}
         />
@@ -126,7 +134,6 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
             outline
             borderless
             compact
-            disabled={isStateLoading(view)}
             label={<ZIconFontAwesome name='refresh' width={ZSizeFixed.ExtraSmall} />}
             onClick={handleRefresh}
             fashion={secondary}

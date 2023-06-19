@@ -37,7 +37,7 @@ describe('ZGridView', () => {
 
     renderItem = vi.fn();
     renderItem.mockImplementation((i) => (
-      <div className='item' data-item={i}>
+      <div key={i} className='item' data-item={i}>
         {i}
       </div>
     ));
@@ -65,9 +65,19 @@ describe('ZGridView', () => {
       expect(renderItem).toHaveBeenCalledTimes(data.length);
     });
 
+    it('should not render any errors', async () => {
+      // Arrange.
+      const target = await createTestTarget();
+      // Act.
+      await target.load();
+      const actual = await target.error();
+      // Assert.
+      expect(actual).toBeFalsy();
+    });
+
     it('should render items up to the page size of the value', async () => {
       // Arrange.
-      request = new ZDataRequestBuilder().page(1).size(5).build();
+      request = new ZDataRequestBuilder().page(1).size(24).build();
       const target = await createTestTarget();
       // Act.
       await target.load();
@@ -117,18 +127,6 @@ describe('ZGridView', () => {
       // Assert.
       expect(onValueChange).toHaveBeenCalledWith(expect.objectContaining({ search: expected }));
     });
-
-    it('should be readOnly while loading', async () => {
-      // Arrange.
-      const options = new ZDataSourceStaticOptionsBuilder<number>().delay(500).build();
-      dataSource = new ZDataSourceStatic(range(0, 10), options);
-      const target = await createTestTarget();
-      const search = await target.search();
-      // Act.
-      const actual = await search.readOnly();
-      // Assert.
-      expect(actual).toBeTruthy();
-    });
   });
 
   describe('Refresh', () => {
@@ -147,16 +145,6 @@ describe('ZGridView', () => {
       expect(actual).toBeTruthy();
     });
 
-    it('should disable the refresh button while loading', async () => {
-      // Arrange.
-      const target = await createTestTarget();
-      // Act.
-      const actual = await (await target.refresh()).disabled();
-      await target.load();
-      // Assert.
-      expect(actual).toBeTruthy();
-    });
-
     it('should refresh the data when the refresh button is clicked', async () => {
       // Arrange.
       const target = await createTestTarget();
@@ -165,6 +153,24 @@ describe('ZGridView', () => {
       await (await target.refresh()).click();
       const actual = await target.loading();
       await target.load();
+      // Assert.
+      expect(actual).toBeTruthy();
+    });
+  });
+
+  describe('Error', () => {
+    let error: Error;
+
+    beforeEach(() => {
+      error = new Error('Something went wrong');
+      dataSource = new ZDataSourceStatic(error);
+    });
+
+    it('should render the error message', async () => {
+      // Arrange.
+      const target = await createTestTarget();
+      // Act.
+      const actual = await target.error();
       // Assert.
       expect(actual).toBeTruthy();
     });
