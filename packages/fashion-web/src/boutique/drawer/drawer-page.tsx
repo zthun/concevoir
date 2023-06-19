@@ -7,7 +7,7 @@ import {
   ZDrawerButton,
   ZGrid,
   ZH3,
-  ZImageSource,
+  ZIconFontAwesome,
   ZParagraph
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
@@ -39,7 +39,7 @@ export function ZDrawerPage() {
       className='ZDrawerPage-root'
       heading={ZFashionRouteDrawer.name}
       subHeading={ZFashionRouteDrawer.description}
-      avatar={<ZImageSource src={ZFashionRouteDrawer.avatar} height={ZSizeFixed.Medium} />}
+      avatar={<ZIconFontAwesome name={ZFashionRouteDrawer.avatar} width={ZSizeFixed.Medium} />}
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

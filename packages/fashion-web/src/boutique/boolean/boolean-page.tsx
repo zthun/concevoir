@@ -8,7 +8,7 @@ import {
   ZCard,
   ZGrid,
   ZH3,
-  ZImageSource,
+  ZIconFontAwesome,
   ZParagraph
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
@@ -34,7 +34,7 @@ export function ZBooleanPage() {
       className='ZBooleanPage-root'
       heading={ZFashionRouteBoolean.name}
       subHeading={ZFashionRouteBoolean.description}
-      avatar={<ZImageSource src={ZFashionRouteBoolean.avatar} height={ZSizeFixed.Medium} />}
+      avatar={<ZIconFontAwesome name={ZFashionRouteBoolean.avatar} width={ZSizeFixed.Medium} />}
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

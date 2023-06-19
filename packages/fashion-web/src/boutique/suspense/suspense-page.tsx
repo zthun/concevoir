@@ -5,7 +5,7 @@ import {
   ZChoiceDropDown,
   ZGrid,
   ZH3,
-  ZImageSource,
+  ZIconFontAwesome,
   ZParagraph,
   ZSuspenseProgress,
   ZSuspenseRotate
@@ -36,7 +36,7 @@ export function ZSuspensePage() {
       className='ZSuspensePage-root'
       heading={ZFashionRouteSuspense.name}
       subHeading={ZFashionRouteSuspense.description}
-      avatar={<ZImageSource src={ZFashionRouteSuspense.avatar} height={ZSizeFixed.Medium} />}
+      avatar={<ZIconFontAwesome name={ZFashionRouteSuspense.avatar} width={ZSizeFixed.Medium} />}
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

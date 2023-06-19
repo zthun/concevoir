@@ -4,6 +4,7 @@ import {
   ZCaption,
   ZCard,
   ZH3,
+  ZIconFontAwesome,
   ZImageSource,
   ZList,
   ZListDivider,
@@ -35,7 +36,7 @@ export function ZListPage() {
       className='ZListPage-root'
       heading={ZFashionRouteList.name}
       subHeading={ZFashionRouteList.description}
-      avatar={<ZImageSource src={ZFashionRouteList.avatar} height={ZSizeFixed.Medium} />}
+      avatar={<ZIconFontAwesome name={ZFashionRouteList.avatar} width={ZSizeFixed.Medium} />}
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

@@ -1,6 +1,6 @@
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 
-import { ZBox, ZCaption, ZCard, ZGrid, ZH3, ZImageSource, ZNumberInput, ZParagraph } from '@zthun/fashion-boutique';
+import { ZBox, ZCaption, ZCard, ZGrid, ZH3, ZIconFontAwesome, ZNumberInput, ZParagraph } from '@zthun/fashion-boutique';
 import React, { useState } from 'react';
 import { ZFashionRouteNumber } from '../../routes';
 
@@ -18,7 +18,7 @@ export function ZNumberPage() {
       className='ZNumberPage-root'
       heading={ZFashionRouteNumber.name}
       subHeading={ZFashionRouteNumber.description}
-      avatar={<ZImageSource src={ZFashionRouteNumber.avatar} height={ZSizeFixed.Medium} />}
+      avatar={<ZIconFontAwesome name={ZFashionRouteNumber.avatar} width={ZSizeFixed.Medium} />}
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

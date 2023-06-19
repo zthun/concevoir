@@ -1,4 +1,14 @@
-import { ZBooleanSwitch, ZBox, ZButton, ZCard, ZGrid, ZH3, ZImageSource, ZParagraph } from '@zthun/fashion-boutique';
+import {
+  ZBooleanSwitch,
+  ZBox,
+  ZButton,
+  ZCard,
+  ZGrid,
+  ZH3,
+  ZIconFontAwesome,
+  ZImageSource,
+  ZParagraph
+} from '@zthun/fashion-boutique';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import React, { useState } from 'react';
 import { ZFashionRouteCard } from '../../routes';
@@ -30,7 +40,7 @@ export function ZCardPage() {
       className='ZCardPage-root'
       heading={ZFashionRouteCard.name}
       subHeading={ZFashionRouteCard.description}
-      avatar={<ZImageSource src={ZFashionRouteCard.avatar} height={ZSizeFixed.Medium} />}
+      avatar={<ZIconFontAwesome name={ZFashionRouteCard.avatar} width={ZSizeFixed.Medium} />}
     >
       <ZBox padding={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

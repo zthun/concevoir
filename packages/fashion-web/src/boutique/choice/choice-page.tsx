@@ -9,7 +9,6 @@ import {
   ZGrid,
   ZH3,
   ZIconFontAwesome,
-  ZImageSource,
   ZLineItem,
   ZParagraph
 } from '@zthun/fashion-boutique';
@@ -53,7 +52,7 @@ export function ZChoicePage() {
       className='ZChoicePage-root'
       heading={ZFashionRouteChoice.name}
       subHeading={ZFashionRouteChoice.description}
-      avatar={<ZImageSource src={ZFashionRouteChoice.avatar} height={ZSizeFixed.Medium} />}
+      avatar={<ZIconFontAwesome name={ZFashionRouteChoice.avatar} width={ZSizeFixed.Medium} />}
     >
       <ZBox padding={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

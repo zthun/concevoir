@@ -25,84 +25,84 @@ export const ZFashionRouteBoolean = new ZRouteBuilder()
   .name('Boolean')
   .path('boolean')
   .description('Basic Togglers')
-  .avatar('/images/svg/boolean.svg')
+  .avatar('toggle-off')
   .build();
 
 export const ZFashionRouteButton = new ZRouteBuilder()
   .name('Button')
   .path('button')
   .description('Click To Activate')
-  .avatar('/images/svg/button.svg')
+  .avatar('circle-dot')
   .build();
 
 export const ZFashionRouteCard = new ZRouteBuilder()
   .name('Card')
   .path('card')
   .description('Sectioned Content')
-  .avatar('/images/svg/card.svg')
+  .avatar('credit-card')
   .build();
 
 export const ZFashionRouteChoice = new ZRouteBuilder()
   .name('Choice')
   .path('choice')
   .description('Choose From an Option List')
-  .avatar('/images/svg/choice.svg')
+  .avatar('hand-pointer')
   .build();
 
 export const ZFashionRouteDrawer = new ZRouteBuilder()
   .name('Drawer')
   .path('drawer')
   .description('Pop Out Navigation')
-  .avatar('/images/svg/drawer.svg')
+  .avatar('inbox')
   .build();
 
 export const ZFashionRouteGridView = new ZRouteBuilder()
   .name('Grid View')
   .path('grid-view')
   .description('Paginated Grid With Built In Navigation')
-  .avatar('/images/svg/card.svg')
+  .avatar('grip')
   .build();
 
 export const ZFashionRouteList = new ZRouteBuilder()
   .name('List')
   .path('list')
   .description('Line Items')
-  .avatar('/images/svg/list.svg')
+  .avatar('list')
   .build();
 
 export const ZFashionRouteNumber = new ZRouteBuilder()
   .name('Number')
   .path('number')
   .description('Numeric Spinners')
-  .avatar('/images/svg/number.svg')
+  .avatar('5')
   .build();
 
 export const ZFashionRouteSuspense = new ZRouteBuilder()
   .name('Suspense')
   .path('suspense')
   .description('Loading and Waiting')
-  .avatar('/images/svg/suspense.svg')
+  .avatar('spinner')
   .build();
 
 export const ZFashionRouteTable = new ZRouteBuilder()
   .name('Table')
   .path('table')
   .description('Tabular Data')
-  .avatar('/images/svg/card.svg')
+  .avatar('table')
   .build();
 
 export const ZFashionRouteText = new ZRouteBuilder()
   .name('Text')
   .path('text')
   .description('Characters, Sentences, and Paragraphs')
-  .avatar('/images/svg/text.svg')
+  .avatar('font')
   .build();
 
 export const ZFashionRouteTypography = new ZRouteBuilder()
   .name('Typography')
   .path('typography')
   .description('Standard Page Structures')
-  .avatar('/images/svg/typography.svg')
+  .avatar('mountain-sun')
   .build();
 
 export const ZFashionRouteAllComponents = [

@@ -5,6 +5,7 @@ import {
   ZCard,
   ZGrid,
   ZH3,
+  ZIconFontAwesome,
   ZImageSource,
   ZParagraph,
   ZTextArea,
@@ -37,7 +38,7 @@ export function ZTextPage() {
       className='ZTextPage-root'
       heading={ZFashionRouteText.name}
       subHeading={ZFashionRouteText.description}
-      avatar={<ZImageSource src={ZFashionRouteText.avatar} height={ZSizeFixed.Medium} />}
+      avatar={<ZIconFontAwesome name={ZFashionRouteText.avatar} width={ZSizeFixed.Medium} />}
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

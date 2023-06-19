@@ -6,6 +6,7 @@ import {
   ZCard,
   ZGrid,
   ZH3,
+  ZIconFontAwesome,
   ZImageSource,
   ZLineItem
 } from '@zthun/fashion-boutique';
@@ -36,7 +37,7 @@ export function ZBoutiquePage() {
       onClick={() => navigate(route.path)}
     >
       <ZLineItem
-        prefix={<ZImageSource src={route.avatar} width={ZSizeFixed.Small} height={ZSizeFixed.Small} />}
+        prefix={<ZIconFontAwesome name={route.avatar} width={ZSizeFixed.Small} />}
         body={
           <>
             <ZH3 compact>{route.name}</ZH3>

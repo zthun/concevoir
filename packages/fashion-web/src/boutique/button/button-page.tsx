@@ -6,7 +6,6 @@ import {
   ZGrid,
   ZH3,
   ZIconFontAwesome,
-  ZImageSource,
   ZParagraph,
   ZStack
 } from '@zthun/fashion-boutique';
@@ -41,7 +40,7 @@ export function ZButtonPage() {
       className='ZButtonPage-root'
       heading={ZFashionRouteButton.name}
       subHeading={ZFashionRouteButton.description}
-      avatar={<ZImageSource src={ZFashionRouteButton.avatar} height={ZSizeFixed.Medium} />}
+      avatar={<ZIconFontAwesome name={ZFashionRouteButton.avatar} width={ZSizeFixed.Medium} />}
     >
       <ZBox padding={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

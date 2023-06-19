@@ -9,7 +9,7 @@ import {
   ZH4,
   ZH5,
   ZH6,
-  ZImageSource,
+  ZIconFontAwesome,
   ZOverline,
   ZParagraph,
   ZSubtitle,
@@ -34,7 +34,7 @@ export function ZTypographyPage() {
       className='ZTypographyPage-root'
       heading={ZFashionRouteTypography.name}
       subHeading={ZFashionRouteTypography.description}
-      avatar={<ZImageSource src={ZFashionRouteTypography.avatar} height={ZSizeFixed.Medium} />}
+      avatar={<ZIconFontAwesome name={ZFashionRouteTypography.avatar} width={ZSizeFixed.Medium} />}
     >
       <ZH3>Description</ZH3>
 

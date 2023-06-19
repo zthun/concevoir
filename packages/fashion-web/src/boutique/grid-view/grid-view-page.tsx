@@ -5,7 +5,6 @@ import {
   ZGridView,
   ZH3,
   ZIconFontAwesome,
-  ZImageSource,
   ZParagraph,
   ZStack
 } from '@zthun/fashion-boutique';
@@ -51,7 +50,7 @@ export function ZGridViewPage() {
       className='ZGridViewPage-root'
       heading={ZFashionRouteGridView.name}
       subHeading={ZFashionRouteGridView.description}
-      avatar={<ZImageSource src={ZFashionRouteGridView.avatar} height={ZSizeFixed.Medium} />}
+      avatar={<ZIconFontAwesome name={ZFashionRouteGridView.avatar} width={ZSizeFixed.Medium} />}
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>
