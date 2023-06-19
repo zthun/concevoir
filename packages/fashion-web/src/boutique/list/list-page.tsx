@@ -5,7 +5,6 @@ import {
   ZCard,
   ZH3,
   ZIconFontAwesome,
-  ZImageSource,
   ZList,
   ZListDivider,
   ZListGroup,
@@ -26,8 +25,8 @@ export function ZListPage() {
   const { body } = useFashionTheme();
   const [count, setCount] = useState(0);
 
-  const prefix = <ZImageSource src='/images/svg/hero.svg' height={ZSizeFixed.Small} />;
-  const suffix = <ZImageSource src='/images/svg/search.svg' height={ZSizeFixed.Small} />;
+  const prefix = <ZIconFontAwesome name='mask' width={ZSizeFixed.Small} />;
+  const suffix = <ZIconFontAwesome name='magnifying-glass' width={ZSizeFixed.Small} />;
 
   const incrementCount = () => setCount((c) => c + 1);
 
@@ -52,7 +51,7 @@ export function ZListPage() {
           event to a truthy or falsy value respectively.
         </ZParagraph>
 
-        <ZBox fashion={body} border={{ width: ZSizeFixed.ExtraSmall }} width={ZSizeFixed.Medium}>
+        <ZBox fashion={body} border={{ width: ZSizeFixed.ExtraSmall }}>
           <ZList>
             <ZListGroup heading='Without Click Support' />
             <ZListLineItem prefix={prefix} name='avatar-and-text' heading='Prefix and Text (No Click)' />
