@@ -142,6 +142,13 @@ export function ZButton(props: IZButton) {
   const contentClass = cssJoinDefined('ZButton-content', classes.content);
   const variant = outline ? 'outlined' : 'contained';
 
+  const suspense = (
+    <ZSuspenseRotate
+      className={cssJoinDefined('ZButton-loading', classes.loading)}
+      width={ZSizeFixed.ExtraSmall}
+      loading={!!loading}
+    />
+  );
   return (
     <Tooltip title={tooltip}>
       <span className={classes.wrapper}>
@@ -151,16 +158,12 @@ export function ZButton(props: IZButton) {
           disabled={disabled}
           onClick={onClick}
           name={name}
+          startIcon={avatar}
+          endIcon={suspense}
           data-compact={compact}
           data-fashion={fashion?.name}
         >
-          {avatar}
           <div className={contentClass}>{label}</div>
-          <ZSuspenseRotate
-            className={cssJoinDefined('ZButton-loading', classes.loading)}
-            width={ZSizeFixed.ExtraSmall}
-            loading={!!loading}
-          />
         </Button>
       </span>
     </Tooltip>
