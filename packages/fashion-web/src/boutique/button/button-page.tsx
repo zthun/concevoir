@@ -5,6 +5,7 @@ import {
   ZCard,
   ZGrid,
   ZH3,
+  ZIconFontAwesome,
   ZImageSource,
   ZParagraph,
   ZStack
@@ -33,7 +34,7 @@ export function ZButtonPage() {
     setCount((c) => c + 1);
   };
 
-  const avatar = <ZImageSource src='/images/png/batman.png' height={ZSizeFixed.Small} width={ZSizeFixed.Small} />;
+  const avatar = <ZIconFontAwesome name='floppy-disk' width={ZSizeFixed.Small} />;
 
   return (
     <ZCard
@@ -75,7 +76,7 @@ export function ZButtonPage() {
             outline={outline}
             onClick={handleClick}
             fashion={fashion}
-            label={<ZImageSource src='/images/png/batman.png' width={ZSizeFixed.Small} height={ZSizeFixed.Small} />}
+            label={avatar}
             name='icon-button'
             tooltip='Iconography Button'
           />
