@@ -8,26 +8,15 @@ import {
   ZChoiceToggle,
   ZGrid,
   ZH3,
+  ZIconFontAwesome,
   ZImageSource,
   ZLineItem,
   ZParagraph
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
-import React, { useState } from 'react';
+import { IZBrand, ZBrands } from '@zthun/helpful-brands';
+import React, { useMemo, useState } from 'react';
 import { ZFashionRouteChoice } from '../../routes';
-
-interface Superhero {
-  id: string;
-  alias: string;
-  name: string;
-}
-
-const Superheroes: Superhero[] = [
-  { id: 'batman', alias: 'Batman', name: 'Bruce Wayne' },
-  { id: 'superman', alias: 'Superman', name: 'Clark Kent' },
-  { id: 'wonder-woman', alias: 'Wonder Woman', name: 'Diana Prince' },
-  { id: 'green-lantern', alias: 'Green Lantern', name: 'Hal Jordan' }
-];
 
 /**
  * Represents the tutorial for how to get started.
@@ -35,7 +24,9 @@ const Superheroes: Superhero[] = [
  * @returns The JSX to render the alerts demo page.
  */
 export function ZChoicePage() {
-  const [values, setValues] = useState([Superheroes[2].id]);
+  const allBrands = useMemo(() => ZBrands.slice(), []);
+  const someBrands = useMemo(() => ZBrands.slice(0, 4), []);
+  const [values, setValues] = useState([allBrands[2].id]);
   const [disabled, setDisabled] = useState(false);
   const [multiple, setMultiple] = useState(false);
   const [indelible, setIndelible] = useState(false);
@@ -49,21 +40,13 @@ export function ZChoicePage() {
     ));
   }
 
-  function renderSuperhero(h: Superhero) {
-    return <ZLineItem className='ZChoicePage-hero' prefix={getHeroAvatar(h)} body={getHeroDisplay(h)} />;
-  }
+  const renderBrandAvatar = (h: IZBrand) => <ZIconFontAwesome family='brands' name={h.id} width={ZSizeFixed.Small} />;
+  const getBrandId = (h: IZBrand) => h.id;
+  const renderBrandDisplay = (h: IZBrand) => h.name;
 
-  function getHeroAvatar(h: Superhero) {
-    return <ZImageSource src={`images/png/${h.id}.png`} height={ZSizeFixed.Small} width={ZSizeFixed.Small} />;
-  }
-
-  function getHeroIdentity(h: Superhero) {
-    return h.id;
-  }
-
-  function getHeroDisplay(h: Superhero) {
-    return `${h.alias} (${h.name})`;
-  }
+  const renderBrand = (h: IZBrand) => (
+    <ZLineItem className='ZChoicePage-hero' prefix={renderBrandAvatar(h)} body={renderBrandDisplay(h)} />
+  );
 
   return (
     <ZCard
@@ -92,11 +75,11 @@ export function ZChoicePage() {
             multiple={multiple}
             required={required}
             value={values}
-            identifier={getHeroIdentity}
-            display={getHeroDisplay}
+            identifier={getBrandId}
+            display={renderBrandDisplay}
             onValueChange={setValues}
-            options={Superheroes}
-            renderOption={renderSuperhero}
+            options={allBrands}
+            renderOption={renderBrand}
             name='dropdown'
           />
 
@@ -107,11 +90,11 @@ export function ZChoicePage() {
             multiple={multiple}
             required={required}
             value={values}
-            identifier={getHeroIdentity}
-            display={getHeroDisplay}
+            identifier={getBrandId}
+            display={renderBrandDisplay}
             onValueChange={setValues}
-            options={Superheroes}
-            renderOption={renderSuperhero}
+            options={allBrands}
+            renderOption={renderBrand}
             name='autocomplete'
           />
 
@@ -122,11 +105,11 @@ export function ZChoicePage() {
             multiple={multiple}
             required={required}
             value={values}
-            identifier={getHeroIdentity}
-            display={getHeroDisplay}
+            identifier={getBrandId}
+            display={renderBrandDisplay}
             onValueChange={setValues}
-            options={Superheroes}
-            renderOption={getHeroAvatar}
+            options={someBrands}
+            renderOption={renderBrandAvatar}
             name='toggle'
           />
         </ZGrid>

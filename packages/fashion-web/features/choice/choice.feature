@@ -12,9 +12,9 @@ Scenario: Selecting an item updates the value
   Then the values should be updated to "<values>" on the choice demo page
   Examples:
   |choice|text|values|
-  |dropdown|green-lantern|green-lantern|
-  |autocomplete|superman|superman|
-  |toggle|batman|batman|
+  |dropdown|tiktok|tiktok|
+  |autocomplete|facebook|facebook|
+  |toggle|twitter|twitter|
 
 @ChoicePage-Select
 @ChoicePage-Select-Multiple
@@ -26,9 +26,9 @@ Scenario: Selection multiple items updates the values
   Then the values should be updated to "<values>" on the choice demo page
   Examples:
   |choice|first|second|values|
-  |dropdown|superman|green-lantern|superman,green-lantern|
-  |autocomplete|wonder-woman|batman|wonder-woman,batman|
-  |toggle|superman|batman|superman,batman|
+  |dropdown|facebook|tiktok|facebook,tiktok|
+  |autocomplete|instagram|twitter|instagram,twitter|
+  |toggle|facebook|twitter|facebook,twitter|
 
 @ChoicePage-Option
 @ChoicePage-Option-Disabled
