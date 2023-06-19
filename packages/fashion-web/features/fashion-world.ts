@@ -1,6 +1,7 @@
 import { setDefaultTimeout, setWorldConstructor, World } from '@cucumber/cucumber';
 import { IZCircusDriver, ZCircusBy, ZCircusComponentConstructor, ZCircusComponentModel } from '@zthun/cirque';
 import { ZCircusSetupChrome } from '@zthun/cirque-du-selenium';
+import { sleep } from '@zthun/helpful-fn';
 import { ZUrlBuilder } from '@zthun/webigail-url';
 import { IZRoute } from '../src/route/route';
 
@@ -59,6 +60,7 @@ export class ZFashionWorld<T extends ZCircusComponentModel | never = never> exte
     hash = hash.startsWith('/') ? hash : `/${hash}`;
     const url = new ZUrlBuilder().parse('http://localhost:5173').hash(hash).build();
     this._driver = await new ZCircusSetupChrome(url).setup();
+    await sleep(500);
     return this._driver;
   }
 }
