@@ -31,7 +31,7 @@ export function ZNumberPage() {
         </ZParagraph>
 
         <ZBox margin={{ top: ZSizeFixed.ExtraLarge, bottom: ZSizeFixed.ExtraLarge }}>
-          <ZGrid columns='1fr 3fr'>
+          <ZGrid columns='1fr 3fr' columnsMd='1fr 2fr' columnsSm='1fr 1fr' columnsXs='1fr'>
             <ZNumberInput
               step={1}
               min={-Infinity}
