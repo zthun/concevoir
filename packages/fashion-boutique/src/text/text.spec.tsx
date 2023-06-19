@@ -51,6 +51,8 @@ describe('ZText', () => {
     await target.keyboard(LOREM);
     await target.clear();
     await target.keyboard(LOREM);
+    await target.clear(ZCircusKeyboardQwerty.enter);
+    await target.keyboard(LOREM);
     const actual = await target.value();
     // Assert
     expect(actual).toEqual(LOREM);
