@@ -1,10 +1,10 @@
 import { PaletteColor, useTheme } from '@mui/material';
-import { createSpacing, ThemeProvider } from '@mui/system';
+import { ThemeProvider, createSpacing } from '@mui/system';
 import { IZFashionDevice, IZFashionTailor, ZSizeFixed } from '@zthun/fashion-tailor';
 import { IZFashion, IZFashionTheme } from '@zthun/fashion-theme';
 import { firstDefined } from '@zthun/helpful-fn';
 import React, { useMemo } from 'react';
-import { createMakeStyles, CSSObject, GlobalStyles } from 'tss-react';
+import { CSSObject, GlobalStyles, createMakeStyles } from 'tss-react';
 import { IZComponentHierarchy } from '../component/component-hierarchy';
 import { IZComponentStyle } from '../component/component-style';
 import { useFashionDevice, useFashionTailor, useFashionTheme } from './fashion';
@@ -44,15 +44,15 @@ function useBoutiqueTheme() {
 
   const createHeaderTypography = (fontSize: string) => ({
     ...createTypography(),
-    fontSize: `calc(${fontSize} * 0.80)`,
+    fontSize: `calc(${fontSize} * 0.60)`,
     [mui.breakpoints.up('sm')]: {
-      fontSize: `calc(${fontSize} * 0.85)`
+      fontSize: `calc(${fontSize} * 0.70)`
     },
     [mui.breakpoints.up('md')]: {
-      fontSize: `calc(${fontSize} * 0.90)`
+      fontSize: `calc(${fontSize} * 0.80)`
     },
     [mui.breakpoints.up('lg')]: {
-      fontSize: `calc(${fontSize} * 0.95)`
+      fontSize: `calc(${fontSize} * 0.90)`
     },
     [mui.breakpoints.up('xl')]: {
       fontSize
