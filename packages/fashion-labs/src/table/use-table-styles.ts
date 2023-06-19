@@ -1,5 +1,5 @@
+import { createStyleHook } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { createStyleHook } from '../theme/styled';
 
 export const useTableStyles = createStyleHook(({ theme, tailor }) => {
   const border = `${tailor.thickness(ZSizeFixed.ExtraSmall)} solid rgb(220, 220, 220)`;

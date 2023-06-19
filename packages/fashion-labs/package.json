@@ -1,14 +1,14 @@
 {
-  "name": "@zthun/fashion-boutique",
+  "name": "@zthun/fashion-labs",
   "version": "0.0.1",
-  "description": "A UI library for react components that are very fashionable.",
+  "description": "A UI library to play with ideas for the fashion system.",
   "main": "dist/lib/index.js",
   "module": "dist/lib/index.js",
   "types": "dist/types/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/zthun/fashion",
-    "directory": "packages/fashion-boutique"
+    "directory": "packages/fashion-labs"
   },
   "scripts": {
     "build": "microbundle --format esm,cjs --tsconfig tsconfig.prod.json --no-sourcemap"
@@ -22,24 +22,15 @@
     "dist/**"
   ],
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.13.4",
-    "@mui/system": "^5.13.2",
-    "@zthun/cirque": "^4.3.0",
+    "@zthun/fashion-boutique": "^0.0.1",
     "@zthun/fashion-tailor": "^0.0.1",
     "@zthun/fashion-theme": "^0.0.1",
     "@zthun/helpful-fn": "^0.17.0",
-    "@zthun/helpful-obligation": "^0.17.0",
     "@zthun/helpful-query": "^0.17.0",
     "@zthun/helpful-react": "^0.17.0",
-    "@zthun/webigail-http": "^0.1.0",
-    "@zthun/webigail-url": "^0.1.0",
-    "csstype": "^3.1.2",
-    "history": "^5.3.0",
     "lodash": "^4.17.21",
-    "react-router-dom": "^6.12.1",
-    "tss-react": "^4.8.6"
+    "react-virtuoso": "^4.3.10"
   },
   "devDependencies": {
     "@zthun/cirque-du-react": "^4.3.0",

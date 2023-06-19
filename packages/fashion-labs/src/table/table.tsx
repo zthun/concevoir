@@ -1,4 +1,17 @@
 import { TableCell, TableRow } from '@mui/material';
+import {
+  IZComponentDataSource,
+  IZComponentHeight,
+  IZComponentStyle,
+  IZComponentValue,
+  ZCaption,
+  ZGrid,
+  ZIconFontAwesome,
+  ZStack,
+  ZSuspenseProgress,
+  ZTextInput,
+  useFashionTheme
+} from '@zthun/fashion-boutique';
 import { ZSizeFixed, createSizeChartFixedArithmetic } from '@zthun/fashion-tailor';
 import { ZOrientation, cssJoinDefined } from '@zthun/helpful-fn';
 import {
@@ -14,18 +27,7 @@ import { useAmbassadorState } from '@zthun/helpful-react';
 import { get } from 'lodash';
 import React, { useMemo } from 'react';
 import { TableVirtuoso } from 'react-virtuoso';
-import { IZComponentDataSource } from '../component/component-data-source';
-import { IZComponentHeight } from '../component/component-height';
-import { IZComponentStyle } from '../component/component-style';
-import { IZComponentValue } from '../component/component-value';
-import { ZGrid } from '../grid/grid';
-import { ZIconFontAwesome } from '../icon/icon-font-awesome';
 import { useConcatView } from '../pagination/use-concat-view';
-import { ZStack } from '../stack/stack';
-import { ZSuspenseProgress } from '../suspense/suspense-progress';
-import { ZTextInput } from '../text/text-input';
-import { useFashionTheme } from '../theme/fashion';
-import { ZCaption } from '../typography/typography';
 import { useTableValueStrategy } from './cell/table-cell-strategy';
 import { useTableComponents } from './use-table-components';
 import { useTableStyles } from './use-table-styles';

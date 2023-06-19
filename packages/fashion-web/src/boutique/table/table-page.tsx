@@ -1,4 +1,5 @@
-import { ZBox, ZCard, ZH3, ZImageSource, ZParagraph, ZTable } from '@zthun/fashion-boutique';
+import { ZBox, ZCard, ZH3, ZImageSource, ZParagraph } from '@zthun/fashion-boutique';
+import { ZTable } from '@zthun/fashion-labs';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { IZPerson, ZDataSourcePeople, ZPersonBuilder } from '@zthun/helpful-people';
 import React, { useMemo, useState } from 'react';

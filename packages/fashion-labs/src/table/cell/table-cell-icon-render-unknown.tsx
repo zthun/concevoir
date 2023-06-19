@@ -1,6 +1,6 @@
+import { ZIconFontAwesome } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React, { ReactNode } from 'react';
-import { ZIconFontAwesome } from '../../icon/icon-font-awesome';
 import { IZTableCellIconRender } from './table-cell-icon-render';
 
 export class ZTableCellIconRenderUnknown implements IZTableCellIconRender {
