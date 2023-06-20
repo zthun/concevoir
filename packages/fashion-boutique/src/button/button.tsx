@@ -37,7 +37,7 @@ export interface IZButton
 const ButtonSizeChart = createSizeChartVariedCss();
 
 export const useButtonStyles = createStyleHook(({ theme, tailor }, props: IZButton) => {
-  const { width = ZSizeVaried.Fit, fashion = theme.body, compact } = props;
+  const { width = ZSizeVaried.Fit, fashion = theme.component, compact } = props;
 
   const text = fashion.contrast;
   const main = fashion.main;

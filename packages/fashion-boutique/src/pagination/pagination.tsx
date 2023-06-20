@@ -3,6 +3,7 @@ import { ZOrientation, cssJoinDefined } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
 import React from 'react';
 import { IZComponentDisabled } from '../component/component-disabled';
+import { IZComponentFashion } from '../component/component-fashion';
 import { IZComponentOrientation } from '../component/component-orientation';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentValue } from '../component/component-value';
@@ -15,21 +16,33 @@ export interface IZPagination
   extends IZComponentStyle,
     IZComponentValue<number>,
     IZComponentOrientation,
-    IZComponentDisabled {
+    IZComponentDisabled,
+    IZComponentFashion {
   /**
    * The total number of pages.
    */
   pages?: number;
 }
 
-const usePaginationStyles = createStyleHook((_, props: IZPagination) => {
-  const { orientation } = props;
+const usePaginationStyles = createStyleHook(({ theme }, props: IZPagination) => {
+  const { orientation, fashion = theme.component } = props;
   const flexDirection = orientation === ZOrientation.Vertical ? 'column' : 'row';
 
   return {
     root: {
       ul: {
         flexDirection
+      },
+      button: {
+        'color': fashion.contrast,
+
+        '&.Mui-selected': {
+          backgroundColor: fashion.main
+        },
+
+        '&:hover': {
+          backgroundColor: fashion.light
+        }
       }
     }
   };
