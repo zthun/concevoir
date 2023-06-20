@@ -28,8 +28,8 @@ RUN --mount=type=secret,id=GIT_CREDENTIALS,dst=/root/.git-credentials npx lerna 
     git push --tags
 RUN --mount=type=secret,id=NPM_CREDENTIALS,dst=/root/.npmrc npx lerna publish from-package --yes
 
-FROM node:17.3.0-alpine as fashion-web-install
+FROM node:lts-alpine as fashion-web-install
 RUN npm install -g @zthun/fashion-web
 
-FROM nginx:1.23.3-alpine as fashion-web
+FROM nginx:bookworm as fashion-web
 COPY --from=fashion-web-install /usr/local/lib/node_modules/@zthun/fashion-web/dist/. /usr/share/nginx/html/
