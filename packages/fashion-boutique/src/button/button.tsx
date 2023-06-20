@@ -25,7 +25,7 @@ export interface IZButton
     IZComponentStyle,
     IZComponentName,
     IZComponentFashion<IZFashion>,
-    IZComponentWidth<ZSizeVaried> {
+    Pick<IZComponentWidth<ZSizeVaried>, 'width'> {
   borderless?: boolean;
   compact?: boolean;
   outline?: boolean;
@@ -36,7 +36,7 @@ export interface IZButton
 
 const ButtonSizeChart = createSizeChartVariedCss();
 
-const useButtonStyles = createStyleHook(({ theme, tailor }, props: IZButton) => {
+export const useButtonStyles = createStyleHook(({ theme, tailor }, props: IZButton) => {
   const { width = ZSizeVaried.Fit, fashion = theme.body, compact } = props;
 
   const text = fashion.contrast;

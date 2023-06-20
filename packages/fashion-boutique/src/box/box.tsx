@@ -18,7 +18,7 @@ import { IZComponentStyle } from '../component/component-style';
 import { IZComponentWidth } from '../component/component-width';
 import { createStyleHook } from '../theme/styled';
 
-interface IZBorderProps extends IZComponentWidth<ZSizeFixed | ZSizeVoid> {
+interface IZBorderProps extends Pick<IZComponentWidth<ZSizeFixed | ZSizeVoid>, 'width'> {
   style?: Property.BorderStyle;
 }
 
@@ -45,8 +45,21 @@ export interface IZBox extends IZComponentHierarchy, IZComponentStyle, IZCompone
   onClick?: MouseEventHandler;
 }
 
-const useBoxStyles = createStyleHook(({ theme, tailor }, props: IZBox) => {
-  const { padding, margin, border, width, fashion, focus, hover, onClick } = props;
+const useBoxStyles = createStyleHook(({ theme, tailor, device }, props: IZBox) => {
+  const {
+    padding,
+    margin,
+    border,
+    width = ZSizeVaried.Fit,
+    widthLg = width,
+    widthMd = widthLg,
+    widthSm = widthMd,
+    widthXs = widthSm,
+    fashion,
+    focus,
+    hover,
+    onClick
+  } = props;
 
   const _border = {
     width: firstDefined(ZSizeVoid.None, border?.width),
@@ -81,6 +94,26 @@ const useBoxStyles = createStyleHook(({ theme, tailor }, props: IZBox) => {
     return tailor.gap(margin);
   };
 
+  const dimensions = {
+    maxWidth: BoxSizeChart[width],
+
+    [device.break(ZSizeFixed.Large)]: {
+      maxWidth: BoxSizeChart[widthLg]
+    },
+
+    [device.break(ZSizeFixed.Medium)]: {
+      maxWidth: BoxSizeChart[widthMd]
+    },
+
+    [device.break(ZSizeFixed.Small)]: {
+      maxWidth: BoxSizeChart[widthSm]
+    },
+
+    [device.break(ZSizeFixed.ExtraSmall)]: {
+      maxWidth: BoxSizeChart[widthXs]
+    }
+  };
+
   const pLeft = firstDefined(ZSizeVoid.None, get(padding, 'left'), get(padding, 'x'), padding);
   const pRight = firstDefined(ZSizeVoid.None, get(padding, 'right'), get(padding, 'x'), padding);
   const pTop = firstDefined(ZSizeVoid.None, get(padding, 'top'), get(padding, 'y'), padding);
@@ -93,9 +126,9 @@ const useBoxStyles = createStyleHook(({ theme, tailor }, props: IZBox) => {
 
   return {
     root: {
+      ...dimensions,
       'cursor': onClick ? 'pointer' : 'default',
       'border': __border(_border.fashion),
-      'width': BoxSizeChart[firstDefined(ZSizeVaried.Fit, width)],
       'backgroundColor': _background.fashion.main,
       'color': _background.fashion.contrast,
 

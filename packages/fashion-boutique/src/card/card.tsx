@@ -34,19 +34,46 @@ export interface IZCard
   footer?: ReactNode;
 }
 
-const ChartWidth = createSizeChartFixedGeometric(1.5, 10);
-const ChartFixed = createSizeChartFixedCss(ChartWidth, 'rem');
-const ChartVaried = createSizeChartVariedCss();
-const ChartVoid = createSizeChartVoidCss();
-const CardSizeChart = { ...ChartFixed, ...ChartVaried, ...ChartVoid };
+const CardSizeChart = {
+  ...createSizeChartFixedCss(createSizeChartFixedGeometric(1.5, 10), 'rem'),
+  ...createSizeChartVariedCss(),
+  ...createSizeChartVoidCss()
+};
 
-const useCardStyles = createStyleHook(({ theme }, props: IZCard) => {
-  const { width = ZSizeVaried.Fit, fashion = theme.surface } = props;
+const useCardStyles = createStyleHook(({ theme, device }, props: IZCard) => {
+  const {
+    width = ZSizeVaried.Fit,
+    widthLg = width,
+    widthMd = widthLg,
+    widthSm = widthMd,
+    widthXs = widthSm,
+    fashion = theme.surface
+  } = props;
+
+  const maxWidth = {
+    maxWidth: CardSizeChart[width],
+
+    [device.break(ZSizeFixed.Large)]: {
+      maxWidth: CardSizeChart[widthLg]
+    },
+
+    [device.break(ZSizeFixed.Medium)]: {
+      maxWidth: CardSizeChart[widthMd]
+    },
+
+    [device.break(ZSizeFixed.Small)]: {
+      maxWidth: CardSizeChart[widthSm]
+    },
+
+    [device.break(ZSizeFixed.ExtraSmall)]: {
+      maxWidth: CardSizeChart[widthXs]
+    }
+  };
 
   return {
     root: {
+      ...maxWidth,
       'position': 'relative',
-      'maxWidth': CardSizeChart[width],
       'backgroundColor': fashion.main,
       'color': fashion.contrast,
 

@@ -11,8 +11,8 @@ import { IZComponentWidth } from '../component/component-width';
  */
 export interface IZSuspense<TWidth extends ZSize = ZSizeFixed, THeight extends ZSize = ZSizeVaried.Fit>
   extends IZComponentStyle,
-    IZComponentWidth<TWidth>,
-    IZComponentHeight<THeight>,
+    Pick<IZComponentWidth<TWidth>, 'width'>,
+    Pick<IZComponentHeight<THeight>, 'height'>,
     IZComponentLoading,
     IZComponentFashion,
     IZComponentName {}
