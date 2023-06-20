@@ -3,6 +3,7 @@ import { ZSideAnchor, cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy';
 import { IZComponentStyle } from '../component/component-style';
+import { createStyleHook } from '../theme/styled';
 
 /**
  * Represents props for the drawer.
@@ -13,6 +14,19 @@ export interface IZDrawer extends IZComponentHierarchy, IZComponentStyle {
 
   onClose?(): void;
 }
+
+const useDrawerStyles = createStyleHook(({ theme }) => {
+  const { surface } = theme;
+
+  return {
+    root: {
+      '.MuiDrawer-paper': {
+        backgroundColor: surface.main,
+        color: surface.contrast
+      }
+    }
+  };
+});
 
 /**
  * Represents a collapsible drawer.
@@ -25,10 +39,16 @@ export interface IZDrawer extends IZComponentHierarchy, IZComponentStyle {
  */
 export function ZDrawer(props: IZDrawer) {
   const { className, children, anchor, open, onClose } = props;
-  const _className = cssJoinDefined('ZDrawer-root', className);
+  const { classes } = useDrawerStyles();
 
   return (
-    <Drawer className={_className} anchor={anchor} open={open} onClose={onClose} data-anchor={anchor}>
+    <Drawer
+      className={cssJoinDefined('ZDrawer-root', className, classes.root)}
+      anchor={anchor}
+      open={open}
+      onClose={onClose}
+      data-anchor={anchor}
+    >
       {children}
     </Drawer>
   );
