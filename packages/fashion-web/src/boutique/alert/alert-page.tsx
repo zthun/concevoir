@@ -50,7 +50,7 @@ export function ZAlertPage() {
           fashion={fashion}
           message='Alerts are great ways to notify users that something has happened.'
           heading={heading && <ZH4 compact>{fashion?.name || 'Alert'}</ZH4>}
-          name='checkbox'
+          name='alert'
           avatar={avatar && <ZIconFontAwesome name='hat-cowboy-side' width={ZSizeFixed.Small} />}
         />
       </ZBox>
