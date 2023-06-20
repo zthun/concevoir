@@ -7,7 +7,6 @@ import {
   ZGrid,
   ZH3,
   ZIconFontAwesome,
-  ZImageSource,
   ZLineItem
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
@@ -53,7 +52,7 @@ export function ZBoutiquePage() {
       className='ZBoutiquePage-root'
       heading={ZFashionRouteBoutique.name}
       subHeading={ZFashionRouteBoutique.description}
-      avatar={<ZImageSource src={ZFashionRouteBoutique.avatar} height={ZSizeFixed.Medium} />}
+      avatar={<ZIconFontAwesome name={ZFashionRouteBoutique.avatar} width={ZSizeFixed.Medium} />}
     >
       <ZGrid
         columns='auto auto auto auto'

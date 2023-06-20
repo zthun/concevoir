@@ -11,14 +11,14 @@ export const ZFashionRouteTheme = new ZRouteBuilder()
   .name('Theme')
   .path('theme')
   .description('Make it look good')
-  .avatar('/images/svg/theme.svg')
+  .avatar('palette')
   .build();
 
 export const ZFashionRouteBoutique = new ZRouteBuilder()
   .name('Boutique')
   .path('boutique')
   .description('Components for React')
-  .avatar('/images/svg/boutique.svg')
+  .avatar('store')
   .build();
 
 export const ZFashionRouteBoolean = new ZRouteBuilder()

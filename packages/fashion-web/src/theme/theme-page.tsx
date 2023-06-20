@@ -1,4 +1,4 @@
-import { ZBox, ZCard, ZGrid, ZH3, ZImageSource, ZParagraph, useFashionTheme } from '@zthun/fashion-boutique';
+import { ZBox, ZCard, ZGrid, ZH3, ZIconFontAwesome, ZParagraph, useFashionTheme } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React from 'react';
 import { ZFashionRouteTheme } from '../routes';
@@ -17,7 +17,7 @@ export function ZThemePage() {
       className='ZThemePage-root'
       heading={ZFashionRouteTheme.name}
       subHeading={ZFashionRouteTheme.description}
-      avatar={<ZImageSource src={ZFashionRouteTheme.avatar} height={ZSizeFixed.Medium} />}
+      avatar={<ZIconFontAwesome name={ZFashionRouteTheme.avatar} width={ZSizeFixed.Medium} />}
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>
