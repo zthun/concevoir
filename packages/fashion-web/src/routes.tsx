@@ -21,6 +21,13 @@ export const ZFashionRouteBoutique = new ZRouteBuilder()
   .avatar('store')
   .build();
 
+export const ZFashionRouteAlert = new ZRouteBuilder()
+  .name('Alert')
+  .path('alert')
+  .description('Colorful User Feedback')
+  .avatar('warning')
+  .build();
+
 export const ZFashionRouteBoolean = new ZRouteBuilder()
   .name('Boolean')
   .path('boolean')
@@ -106,6 +113,7 @@ export const ZFashionRouteTypography = new ZRouteBuilder()
   .build();
 
 export const ZFashionRouteAllComponents = [
+  ZFashionRouteAlert,
   ZFashionRouteBoolean,
   ZFashionRouteButton,
   ZFashionRouteCard,
