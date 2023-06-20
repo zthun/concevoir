@@ -7,7 +7,7 @@ import { ZLabeled } from '../label/labeled';
 import { createStyleHook } from '../theme/styled';
 import { IZText, useText } from './text';
 
-export interface IZTextArea extends IZText, IZComponentHeight<ZSizeFixed> {}
+export interface IZTextArea extends IZText, Pick<IZComponentHeight<ZSizeFixed>, 'height'> {}
 
 const TextAreaRows = createSizeChartFixedArithmetic(2, 2);
 

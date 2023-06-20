@@ -34,35 +34,47 @@ const useGridStyles = createStyleHook(({ tailor, device }, props: IZGrid) => {
     columnsSm = columnsMd,
     columnsXs = columnsSm,
     rows,
-    height = ZSizeVaried.Fit
+    height = ZSizeVaried.Fit,
+    heightLg = height,
+    heightMd = heightLg,
+    heightSm = heightMd,
+    heightXs = heightSm
   } = props;
+
+  const dimensions = {
+    gridTemplateColumns: columns,
+    height: GridHeightChart[height],
+
+    [device.break(ZSizeFixed.Large)]: {
+      gridTemplateColumns: columnsLg,
+      height: GridHeightChart[heightLg]
+    },
+
+    [device.break(ZSizeFixed.Medium)]: {
+      gridTemplateColumns: columnsMd,
+      height: GridHeightChart[heightMd]
+    },
+
+    [device.break(ZSizeFixed.Small)]: {
+      gridTemplateColumns: columnsSm,
+      height: GridHeightChart[heightSm]
+    },
+
+    [device.break(ZSizeFixed.ExtraSmall)]: {
+      gridTemplateColumns: columnsXs,
+      height: GridHeightChart[heightXs]
+    }
+  };
 
   return {
     grid: {
+      ...dimensions,
       display: 'grid',
-      gridTemplateColumns: columns,
       gridTemplateRows: rows,
       gap: tailor.gap(gap),
       alignItems,
       alignContent,
-      justifyContent,
-      height: GridHeightChart[height],
-
-      [device.break(ZSizeFixed.Large)]: {
-        gridTemplateColumns: columnsLg
-      },
-
-      [device.break(ZSizeFixed.Medium)]: {
-        gridTemplateColumns: columnsMd
-      },
-
-      [device.break(ZSizeFixed.Small)]: {
-        gridTemplateColumns: columnsSm
-      },
-
-      [device.break(ZSizeFixed.ExtraSmall)]: {
-        gridTemplateColumns: columnsXs
-      }
+      justifyContent
     }
   };
 });

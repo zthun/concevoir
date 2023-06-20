@@ -20,7 +20,7 @@ import { createStyleHook } from '../theme/styled';
 export interface IZBanner
   extends IZComponentHierarchy,
     IZComponentFashion,
-    IZComponentHeight<ZSizeFixed | ZSizeVaried.Fit>,
+    Pick<IZComponentHeight<ZSizeFixed | ZSizeVaried.Fit>, 'height'>,
     IZComponentStyle {
   position?: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative';
 }

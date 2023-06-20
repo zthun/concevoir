@@ -39,7 +39,7 @@ export interface IZTable<T = any>
   extends IZComponentStyle,
     IZComponentDataSource<T>,
     IZComponentValue<IZDataRequest>,
-    IZComponentHeight<ZSizeFixed> {
+    Pick<IZComponentHeight<ZSizeFixed>, 'height'> {
   columns: IZMetadata[];
 
   sorter?: IZSorter;
