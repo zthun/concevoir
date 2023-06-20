@@ -71,6 +71,11 @@ describe('ZFashionDesignBuilder', () => {
       const expected = new ZFashionBuilder().build();
       expect(createTestTarget().surface(expected).build().surface).toEqual(expected);
     });
+
+    it('should set component', () => {
+      const expected = new ZFashionBuilder().build();
+      expect(createTestTarget().component(expected).build().component).toEqual(expected);
+    });
   });
 
   describe('Contrast', () => {

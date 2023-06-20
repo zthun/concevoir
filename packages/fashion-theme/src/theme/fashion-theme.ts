@@ -51,7 +51,11 @@ export enum ZFashionArea {
   /**
    * Card or modal surface on top of the body.
    */
-  Surface = 'surface'
+  Surface = 'surface',
+  /**
+   * Default button component style.
+   */
+  Component = 'component'
 }
 
 /**
@@ -173,6 +177,13 @@ export class ZFashionThemeBuilder {
         .main(hex(0xfafafa))
         .light(white())
         .dark(hex(0xf5f5f5))
+        .contrast(black())
+        .build(),
+      component: new ZFashionBuilder()
+        .name('Component')
+        .main(hex(0xdedede))
+        .light(hex(0xeeeeee))
+        .dark(hex(0xcccccc))
         .contrast(black())
         .build(),
       light: new ZFashionBuilder()
@@ -324,6 +335,20 @@ export class ZFashionThemeBuilder {
    */
   public surface(fashion: IZFashion): this {
     this._design.surface = fashion;
+    return this;
+  }
+
+  /**
+   * Sets the component fashion.
+   *
+   * @param fashion -
+   *        The value to set.
+   *
+   * @returns
+   *        This object.
+   */
+  public component(fashion: IZFashion): this {
+    this._design.component = fashion;
     return this;
   }
 

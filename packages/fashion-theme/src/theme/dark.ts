@@ -1,5 +1,5 @@
 import { hex } from '../color/hex';
-import { black, white } from '../color/rgb';
+import { black, rgb, white } from '../color/rgb';
 import { ZFashionBuilder } from '../fashion/fashion';
 import { ZFashionThemeBuilder } from './fashion-theme';
 
@@ -103,6 +103,16 @@ function createSurface() {
     .build();
 }
 
+function createComponent() {
+  return new ZFashionBuilder()
+    .name('Component')
+    .light(rgb(120, 120, 120))
+    .main(rgb(90, 90, 90))
+    .dark(black())
+    .contrast(white())
+    .build();
+}
+
 function createOpposite() {
   return new ZFashionBuilder().copy(createLight()).name('Opposite').build();
 }
@@ -121,5 +131,6 @@ export function createDarkTheme() {
     .opposite(createOpposite())
     .body(createBody())
     .surface(createSurface())
+    .component(createComponent())
     .build();
 }
