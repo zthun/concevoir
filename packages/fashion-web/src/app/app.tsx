@@ -1,14 +1,12 @@
 import {
   IZBreadcrumbsLocation,
   ZBannerMain,
-  ZBox,
   ZBreadcrumbsOutlet,
+  ZButton,
   ZCaption,
-  ZChoiceToggle,
-  ZDrawerButton,
   ZFashionThemeContext,
   ZH1,
-  ZH6,
+  ZIconFontAwesome,
   ZImageSource,
   ZNotFound,
   ZRoute,
@@ -17,8 +15,6 @@ import {
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { createDarkTheme, createLightTheme } from '@zthun/fashion-theme';
-import { ZHorizontalAnchor, setFirst } from '@zthun/helpful-fn';
-import { identity } from 'lodash';
 import React, { useMemo, useState } from 'react';
 import { ZBooleanPage } from '../boutique/boolean/boolean-page';
 import { ZBoutiquePage } from '../boutique/boutique-page';
@@ -53,9 +49,8 @@ import {
 } from '../routes';
 import { ZThemePage } from '../theme/theme-page';
 
-const lightTheme = { theme: createLightTheme(), avatar: 'images/svg/light.svg' };
-const darkTheme = { theme: createDarkTheme(), avatar: 'images/svg/dark.svg' };
-const themes = [lightTheme, darkTheme];
+const lightTheme = createLightTheme();
+const darkTheme = createDarkTheme();
 
 /**
  * Represents the root entry point into the application.
@@ -66,7 +61,7 @@ const themes = [lightTheme, darkTheme];
 export function ZFashionApp() {
   const avatar = <ZImageSource src={ZFashionRouteHome.avatar} height={ZSizeVaried.Full} />;
   const [theme, setTheme] = useState(lightTheme);
-  const _setTheme = setFirst.bind(null, setTheme, lightTheme);
+  const { dark, light } = theme;
   const prefix = (
     <div className='ZFashionApp-description'>
       <ZH1 compact>{ZFashionRouteHome.name}</ZH1>
@@ -76,27 +71,22 @@ export function ZFashionApp() {
 
   const breadcrumbs: IZBreadcrumbsLocation = useMemo(() => ({ home: { name: 'home' } }), []);
 
+  const toggleTheme = () => {
+    setTheme((t) => (t === lightTheme ? darkTheme : lightTheme));
+  };
+
   const suffix = (
-    <ZDrawerButton DrawerProps={{ anchor: ZHorizontalAnchor.Right }}>
-      <ZBox padding={ZSizeFixed.Medium}>
-        <ZH6>Options</ZH6>
-        <ZChoiceToggle
-          label='Theme'
-          indelible
-          value={[theme]}
-          onValueChange={_setTheme}
-          options={themes}
-          renderOption={(o) => o.theme.name}
-          display={(t) => t.theme.name}
-          identifier={identity}
-        />
-      </ZBox>
-    </ZDrawerButton>
+    <ZButton
+      label={<ZIconFontAwesome name='lightbulb' width={ZSizeFixed.ExtraSmall} />}
+      onClick={toggleTheme}
+      fashion={theme === lightTheme ? dark : light}
+      tooltip={theme === lightTheme ? 'Switch to dark theme' : 'Switch to light theme'}
+    />
   );
 
   return (
     <ZRouter>
-      <ZFashionThemeContext.Provider value={theme.theme}>
+      <ZFashionThemeContext.Provider value={theme}>
         <ZBannerMain avatar={avatar} prefix={prefix} suffix={suffix}>
           <ZRouteMap>
             <ZRoute path={ZFashionRouteHome.path} element={<ZHomePage />} />
