@@ -55,7 +55,7 @@ export function ZAlert(props: IZAlert) {
   const renderHeading = () =>
     heading ? <AlertTitle className={cssJoinDefined('ZAlert-heading', classes.heading)}>{heading}</AlertTitle> : null;
 
-  const renderIcon = () => (avatar ? <div className={cssJoinDefined('ZAlert-avatar')}>{avatar}</div> : null);
+  const renderIcon = () => (avatar ? <div className={cssJoinDefined('ZAlert-avatar')}>{avatar}</div> : ' ');
 
   return (
     <Alert
