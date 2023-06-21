@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/zthun/fashion/compare/v0.1.0...v0.1.1) (2023-06-21)
+
+
+### Bug Fixes
+
+* export grid view ([752f90c](https://github.com/zthun/fashion/commit/752f90c5f4559c5669e63ec507451b9304bf3df0))
+
+
+
 ## 0.1.0 (2023-06-20)
 
 
