@@ -11,7 +11,7 @@
     "directory": "packages/fashion-boutique"
   },
   "scripts": {
-    "build": "microbundle --format esm,cjs --tsconfig tsconfig.prod.json"
+    "build": "microbundle --format esm,cjs --tsconfig tsconfig.prod.json --jsx React.createElement --jsxFragment React.Fragment"
   },
   "author": "Anthony Bonta",
   "license": "MIT",
