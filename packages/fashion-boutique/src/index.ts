@@ -47,6 +47,7 @@ export * from './drawer/drawer-button.cm';
 export * from './drawer/drawer.cm';
 export * from './full-screen/full-screen';
 export * from './grid-view/grid-view';
+export * from './grid-view/grid-view.cm';
 export * from './grid/grid';
 export * from './icon/icon';
 export * from './icon/icon-font-awesome';
