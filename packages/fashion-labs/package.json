@@ -11,7 +11,7 @@
     "directory": "packages/fashion-labs"
   },
   "scripts": {
-    "build": "microbundle --format esm,cjs --tsconfig tsconfig.prod.json --no-sourcemap"
+    "build": "microbundle --format esm,cjs --tsconfig tsconfig.prod.json"
   },
   "author": "Anthony Bonta",
   "license": "MIT",
