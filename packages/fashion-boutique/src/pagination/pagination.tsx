@@ -30,10 +30,10 @@ const usePaginationStyles = createStyleHook(({ theme }, props: IZPagination) => 
 
   return {
     root: {
-      ul: {
+      'ul': {
         flexDirection
       },
-      button: {
+      '.MuiPaginationItem-root': {
         'color': fashion.contrast,
 
         '&.Mui-selected': {
