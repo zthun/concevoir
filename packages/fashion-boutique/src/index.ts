@@ -69,6 +69,8 @@ export * from './list/list-item.cm';
 export * from './list/list-line-item';
 export * from './list/list-line-item.cm';
 export * from './list/list.cm';
+export * from './modal/modal';
+export * from './modal/modal.cm';
 export * from './not-found/not-found';
 export * from './not-found/not-found.cm';
 export * from './not-found/sad-face';

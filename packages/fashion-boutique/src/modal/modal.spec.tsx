@@ -1,0 +1,106 @@
+import { IZCircusDriver, ZCircusBy } from '@zthun/cirque';
+import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
+import { ZSizeVaried } from '@zthun/fashion-tailor';
+import React from 'react';
+import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { ZModal } from './modal';
+import { ZModalComponentModel } from './modal.cm';
+
+describe('ZModal', () => {
+  let renderHeader: Mock | undefined;
+  let renderFooter: Mock | undefined;
+  let width: ZSizeVaried | undefined;
+  let _driver: IZCircusDriver;
+  let _target: ZModalComponentModel;
+
+  const createTestTarget = async () => {
+    const element = <ZModal open renderHeader={renderHeader} renderFooter={renderFooter} width={width} />;
+    _driver = await new ZCircusSetupRenderer(element).setup();
+    _target = await ZCircusBy.first(await _driver.body(), ZModalComponentModel);
+    return _target;
+  };
+
+  beforeEach(() => {
+    width = undefined;
+    renderHeader = undefined;
+    renderFooter = undefined;
+  });
+
+  afterEach(async () => {
+    await _target?.driver?.destroy();
+    await _driver?.destroy();
+  });
+
+  describe('Header', () => {
+    it('should render if set', async () => {
+      // Arrange.
+      renderHeader = vi.fn();
+      const target = await createTestTarget();
+      // Act.
+      const actual = await target.header();
+      // Assert.
+      expect(actual).toBeTruthy();
+    });
+
+    it('should not render if no render method is set', async () => {
+      // Arrange.
+      const target = await createTestTarget();
+      // Act.
+      const actual = await target.header();
+      // Assert.
+      expect(actual).toBeFalsy();
+    });
+  });
+
+  describe('Footer', () => {
+    it('should render if set', async () => {
+      // Arrange.
+      renderFooter = vi.fn();
+      const target = await createTestTarget();
+      // Act.
+      const actual = await target.footer();
+      // Assert.
+      expect(actual).toBeTruthy();
+    });
+
+    it('should not render if no render method is set', async () => {
+      // Arrange.
+      const target = await createTestTarget();
+      // Act.
+      const actual = await target.footer();
+      // Assert.
+      expect(actual).toBeFalsy();
+    });
+  });
+
+  describe('Width', () => {
+    it('should render full screen', async () => {
+      // Arrange.
+      width = ZSizeVaried.Full;
+      const target = await createTestTarget();
+      // Act.
+      const actual = await target.width();
+      // Assert.
+      expect(actual).toEqual(width);
+    });
+
+    it('should render auto sized', async () => {
+      // Arrange.
+      width = ZSizeVaried.Fit;
+      const target = await createTestTarget();
+      // Act.
+      const actual = await target.width();
+      // Assert.
+      expect(actual).toEqual(width);
+    });
+
+    it('should render auto sized by default', async () => {
+      // Arrange.
+      const target = await createTestTarget();
+      // Act.
+      const actual = await target.width();
+      // Assert.
+      expect(actual).toEqual(ZSizeVaried.Fit);
+    });
+  });
+});
