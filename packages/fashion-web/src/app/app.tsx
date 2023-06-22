@@ -25,6 +25,7 @@ import { ZChoicePage } from '../boutique/choice/choice-page';
 import { ZDrawerPage } from '../boutique/drawer/drawer-page';
 import { ZGridViewPage } from '../boutique/grid-view/grid-view-page';
 import { ZListPage } from '../boutique/list/list-page';
+import { ZModalPage } from '../boutique/modal/modal-page';
 import { ZNumberPage } from '../boutique/number/number-page';
 import { ZSuspensePage } from '../boutique/suspense/suspense-page';
 import { ZTablePage } from '../boutique/table/table-page';
@@ -42,6 +43,7 @@ import {
   ZFashionRouteGridView,
   ZFashionRouteHome,
   ZFashionRouteList,
+  ZFashionRouteModal,
   ZFashionRouteNumber,
   ZFashionRouteSuspense,
   ZFashionRouteTable,
@@ -104,6 +106,7 @@ export function ZFashionApp() {
               <ZRoute path={ZFashionRouteDrawer.path} element={<ZDrawerPage />} />
               <ZRoute path={ZFashionRouteGridView.path} element={<ZGridViewPage />} />
               <ZRoute path={ZFashionRouteList.path} element={<ZListPage />} />
+              <ZRoute path={ZFashionRouteModal.path} element={<ZModalPage />} />
               <ZRoute path={ZFashionRouteNumber.path} element={<ZNumberPage />} />
               <ZRoute path={ZFashionRouteSuspense.path} element={<ZSuspensePage />} />
               <ZRoute path={ZFashionRouteTable.path} element={<ZTablePage />} />

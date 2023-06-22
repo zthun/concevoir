@@ -77,6 +77,13 @@ export const ZFashionRouteList = new ZRouteBuilder()
   .avatar('list')
   .build();
 
+export const ZFashionRouteModal = new ZRouteBuilder()
+  .name('Modal')
+  .path('modal')
+  .description('Window Container')
+  .avatar('window-maximize')
+  .build();
+
 export const ZFashionRouteNumber = new ZRouteBuilder()
   .name('Number')
   .path('number')
@@ -121,6 +128,7 @@ export const ZFashionRouteAllComponents = [
   ZFashionRouteDrawer,
   ZFashionRouteGridView,
   ZFashionRouteList,
+  ZFashionRouteModal,
   ZFashionRouteNumber,
   ZFashionRouteSuspense,
   ZFashionRouteTable,
