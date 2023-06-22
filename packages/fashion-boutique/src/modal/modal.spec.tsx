@@ -9,12 +9,15 @@ import { ZModalComponentModel } from './modal.cm';
 describe('ZModal', () => {
   let renderHeader: Mock | undefined;
   let renderFooter: Mock | undefined;
+  let onClose: Mock | undefined;
   let width: ZSizeVaried | undefined;
   let _driver: IZCircusDriver;
   let _target: ZModalComponentModel;
 
   const createTestTarget = async () => {
-    const element = <ZModal open renderHeader={renderHeader} renderFooter={renderFooter} width={width} />;
+    const element = (
+      <ZModal open renderHeader={renderHeader} renderFooter={renderFooter} width={width} onClose={onClose} />
+    );
     _driver = await new ZCircusSetupRenderer(element).setup();
     _target = await ZCircusBy.first(await _driver.body(), ZModalComponentModel);
     return _target;
@@ -24,6 +27,7 @@ describe('ZModal', () => {
     width = undefined;
     renderHeader = undefined;
     renderFooter = undefined;
+    onClose = undefined;
   });
 
   afterEach(async () => {
@@ -101,6 +105,30 @@ describe('ZModal', () => {
       const actual = await target.width();
       // Assert.
       expect(actual).toEqual(ZSizeVaried.Fit);
+    });
+  });
+
+  describe('Close', () => {
+    beforeEach(() => {
+      onClose = vi.fn();
+    });
+
+    it('should close the modal when the backdrop is clicked', async () => {
+      // Arrange.
+      const target = await createTestTarget();
+      // Act.
+      await target.close();
+      // Assert.
+      expect(onClose).toHaveBeenCalled();
+    });
+
+    it('should close the modal when the escape button is pressed', async () => {
+      // Arrange.
+      const target = await createTestTarget();
+      // Act.
+      await target.escape();
+      // Assert.
+      expect(onClose).toHaveBeenCalled();
     });
   });
 });

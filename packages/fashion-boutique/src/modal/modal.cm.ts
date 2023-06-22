@@ -1,4 +1,4 @@
-import { IZCircusDriver, ZCircusComponentModel } from '@zthun/cirque';
+import { IZCircusDriver, ZCircusActBuilder, ZCircusComponentModel, ZCircusKeyboardQwerty } from '@zthun/cirque';
 import { ZSizeVaried } from '@zthun/fashion-tailor';
 import { firstDefined } from '@zthun/helpful-fn';
 
@@ -22,5 +22,16 @@ export class ZModalComponentModel extends ZCircusComponentModel {
 
   public async width(): Promise<ZSizeVaried> {
     return this.driver.attribute('data-width', ZSizeVaried.Fit);
+  }
+
+  public async close(): Promise<void> {
+    const backdrop = await (await this.driver.body()).select('.MuiModal-backdrop');
+    const act = new ZCircusActBuilder().click().build();
+    await backdrop.perform(act);
+  }
+
+  public async escape(): Promise<void> {
+    const act = new ZCircusActBuilder().press(ZCircusKeyboardQwerty.escape).build();
+    await this.driver.perform(act);
   }
 }
