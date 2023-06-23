@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.0](https://github.com/zthun/fashion/compare/v0.1.2...v0.2.0) (2023-06-23)
+
+
+### Features
+
+* modal allows for isolated work ([a07b25d](https://github.com/zthun/fashion/commit/a07b25ddef6fa33299d7e81f179a66c615a3c645))
+* modal can support fashion ([1742904](https://github.com/zthun/fashion/commit/1742904ed784df624ce79ad1fc3b0680b7fd7037))
+
+
+### Bug Fixes
+
+* ellipsis in pagination should now have the correct color ([136b4ee](https://github.com/zthun/fashion/commit/136b4eea4ab3c7e7b14f4cec73dcb530f4c99271))
+
+
+
 ## [0.1.2](https://github.com/zthun/fashion/compare/v0.1.1...v0.1.2) (2023-06-21)
 
 
