@@ -5,14 +5,13 @@ import {
   ZCard,
   ZGrid,
   ZH3,
-  ZH4,
   ZIconFontAwesome,
   ZModal,
   ZParagraph,
   ZStack,
   useFashionTheme
 } from '@zthun/fashion-boutique';
-import { ZSizeFixed } from '@zthun/fashion-tailor';
+import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { ZOrientation } from '@zthun/helpful-fn';
 import React, { useState } from 'react';
 import { ZFashionRouteModal } from '../../routes';
@@ -27,10 +26,11 @@ export function ZModalPage() {
   const [open, setOpen] = useState(false);
   const [header, setHeader] = useState(true);
   const [footer, setFooter] = useState(true);
+  const [fullScreen, setFullScreen] = useState(false);
 
   const { success, warning } = useFashionTheme();
 
-  const renderHeader = () => <ZH4 compact>Modal Header</ZH4>;
+  const renderHeader = () => 'Modal Header';
 
   const renderFooter = () => (
     <ZStack orientation={ZOrientation.Horizontal} gap={ZSizeFixed.ExtraSmall}>
@@ -39,12 +39,14 @@ export function ZModalPage() {
         avatar={<ZIconFontAwesome name='close' width={ZSizeFixed.ExtraSmall} />}
         label='Cancel'
         onClick={setOpen.bind(null, false)}
+        name='cancel'
       />
       <ZButton
         fashion={success}
         avatar={<ZIconFontAwesome name='floppy-disk' width={ZSizeFixed.ExtraSmall} />}
         label='Save'
         onClick={setOpen.bind(null, false)}
+        name='save'
       />
     </ZStack>
   );
@@ -69,6 +71,7 @@ export function ZModalPage() {
           label='Open Modal'
           avatar={<ZIconFontAwesome name='comment-dots' width={ZSizeFixed.ExtraSmall} />}
           onClick={setOpen.bind(null, true)}
+          name='open-modal'
         />
 
         <ZModal
@@ -76,6 +79,8 @@ export function ZModalPage() {
           renderHeader={header ? renderHeader : undefined}
           renderFooter={footer ? renderFooter : undefined}
           onClose={setOpen.bind(null, false)}
+          width={fullScreen ? ZSizeVaried.Full : ZSizeVaried.Fit}
+          name='modal'
         >
           Modal content is always in the main body. You can put whatever you want in a modal, similar to how you can put
           anything you want in any kind of popup body.
@@ -87,6 +92,7 @@ export function ZModalPage() {
       <ZGrid columns='1fr'>
         <ZBooleanSwitch value={header} onValueChange={setHeader} label='Header' name='header' />
         <ZBooleanSwitch value={footer} onValueChange={setFooter} label='Footer' name='footer' />
+        <ZBooleanSwitch value={fullScreen} onValueChange={setFullScreen} label='Full Screen' name='full-screen' />
       </ZGrid>
     </ZCard>
   );
