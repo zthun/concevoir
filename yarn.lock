@@ -4464,6 +4464,7 @@ __metadata:
     "@zthun/fashion-theme": ^0.1.1
     "@zthun/helpful-brands": ^0.17.0
     "@zthun/helpful-fn": ^0.17.0
+    "@zthun/helpful-obligation": ^0.17.0
     "@zthun/helpful-people": ^0.17.0
     "@zthun/helpful-query": ^0.17.0
     "@zthun/helpful-react": ^0.17.0
