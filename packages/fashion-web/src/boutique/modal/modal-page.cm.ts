@@ -1,5 +1,10 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZBooleanComponentModel, ZButtonComponentModel, ZModalComponentModel } from '@zthun/fashion-boutique';
+import {
+  ZBooleanComponentModel,
+  ZButtonComponentModel,
+  ZChoiceComponentModel,
+  ZModalComponentModel
+} from '@zthun/fashion-boutique';
 
 export class ZModalPageComponentModel extends ZCircusComponentModel {
   public static readonly Selector = '.ZModalPage-root';
@@ -18,6 +23,10 @@ export class ZModalPageComponentModel extends ZCircusComponentModel {
     const button = await this.openButton();
     await button.click();
     return ZCircusBy.first(await this.driver.body(), ZModalComponentModel, 'modal');
+  }
+
+  public fashion(): Promise<ZChoiceComponentModel> {
+    return ZCircusBy.first(this.driver, ZChoiceComponentModel, 'fashion');
   }
 
   public header(): Promise<ZBooleanComponentModel> {

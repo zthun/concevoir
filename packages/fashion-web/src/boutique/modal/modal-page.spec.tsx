@@ -2,7 +2,9 @@ import { IZCircusDriver, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { ZButtonComponentModel } from '@zthun/fashion-boutique';
 import { ZSizeVaried } from '@zthun/fashion-tailor';
+import { ZFashionName, ZFashionPriority } from '@zthun/fashion-theme';
 import { required } from '@zthun/helpful-obligation';
+import { lowerCase } from 'lodash';
 import React from 'react';
 import { afterEach, describe, expect, it } from 'vitest';
 import { ZModalPage } from './modal-page';
@@ -111,6 +113,29 @@ describe('ZModalPage', () => {
 
     it('should be invoked with the save button', async () => {
       await shouldCloseModal('save');
+    });
+  });
+
+  describe('Fashion', () => {
+    const shouldSetFashion = async (expected: ZFashionName) => {
+      // Arrange.
+      const target = await createTestTarget();
+      const fashion = await target.fashion();
+      // Act.
+      await fashion.select(expected);
+      const modal = await target.openModal();
+      const actual = await modal.fashion();
+      await modal.escape();
+      // Assert.
+      expect(lowerCase(actual!)).toEqual(expected);
+    };
+
+    it('should set the fashion to primary', async () => {
+      await shouldSetFashion(ZFashionPriority.Primary);
+    });
+
+    it('should set the fashion to secondary', async () => {
+      await shouldSetFashion(ZFashionPriority.Secondary);
     });
   });
 });

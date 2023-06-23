@@ -101,7 +101,7 @@ export function ZModalPage() {
         </ZGrid>
       </ZBox>
 
-      <ZChoiceDropDownFashion value={fashionName} onValueChange={setFashion} />
+      <ZChoiceDropDownFashion value={fashionName} onValueChange={setFashion} name='fashion' />
     </ZCard>
   );
 }
