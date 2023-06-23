@@ -21,7 +21,7 @@ export interface IZModal
 }
 
 export function ZModal(props: IZModal) {
-  const { open, children, className, width = ZSizeVaried.Fit, renderHeader, renderFooter, onClose } = props;
+  const { open, children, className, name, width = ZSizeVaried.Fit, renderHeader, renderFooter, onClose } = props;
   const fullScreen = width === ZSizeVaried.Full;
 
   const _renderHeader = () => {
@@ -46,6 +46,7 @@ export function ZModal(props: IZModal) {
       fullScreen={fullScreen}
       open={open}
       onClose={onClose}
+      data-name={name}
       data-width={width}
     >
       {_renderHeader()}
