@@ -15,6 +15,8 @@ import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { ZOrientation } from '@zthun/helpful-fn';
 import React, { useState } from 'react';
 import { ZFashionRouteModal } from '../../routes';
+import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
+import { useFashionState } from '../common/useFashionState';
 
 /**
  * Represents a demo for lists.
@@ -27,6 +29,7 @@ export function ZModalPage() {
   const [header, setHeader] = useState(true);
   const [footer, setFooter] = useState(true);
   const [fullScreen, setFullScreen] = useState(false);
+  const [fashion, fashionName, setFashion] = useFashionState();
 
   const { success, warning } = useFashionTheme();
 
@@ -80,6 +83,7 @@ export function ZModalPage() {
           renderFooter={footer ? renderFooter : undefined}
           onClose={setOpen.bind(null, false)}
           width={fullScreen ? ZSizeVaried.Full : ZSizeVaried.Fit}
+          fashion={fashion}
           name='modal'
         >
           Modal content is always in the main body. You can put whatever you want in a modal, similar to how you can put
@@ -89,11 +93,15 @@ export function ZModalPage() {
 
       <ZH3>Options</ZH3>
 
-      <ZGrid columns='1fr'>
-        <ZBooleanSwitch value={header} onValueChange={setHeader} label='Header' name='header' />
-        <ZBooleanSwitch value={footer} onValueChange={setFooter} label='Footer' name='footer' />
-        <ZBooleanSwitch value={fullScreen} onValueChange={setFullScreen} label='Full Screen' name='full-screen' />
-      </ZGrid>
+      <ZBox margin={{ bottom: ZSizeFixed.Small }}>
+        <ZGrid columns='1fr'>
+          <ZBooleanSwitch value={header} onValueChange={setHeader} label='Header' name='header' />
+          <ZBooleanSwitch value={footer} onValueChange={setFooter} label='Footer' name='footer' />
+          <ZBooleanSwitch value={fullScreen} onValueChange={setFullScreen} label='Full Screen' name='full-screen' />
+        </ZGrid>
+      </ZBox>
+
+      <ZChoiceDropDownFashion value={fashionName} onValueChange={setFashion} />
     </ZCard>
   );
 }
