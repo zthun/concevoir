@@ -1,6 +1,7 @@
 import { IZCircusDriver, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { ZSizeVaried } from '@zthun/fashion-tailor';
+import { IZFashion, ZFashionBuilder } from '@zthun/fashion-theme';
 import React from 'react';
 import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ZModal } from './modal';
@@ -10,13 +11,21 @@ describe('ZModal', () => {
   let renderHeader: Mock | undefined;
   let renderFooter: Mock | undefined;
   let onClose: Mock | undefined;
+  let fashion: IZFashion | undefined;
   let width: ZSizeVaried | undefined;
   let _driver: IZCircusDriver;
   let _target: ZModalComponentModel;
 
   const createTestTarget = async () => {
     const element = (
-      <ZModal open renderHeader={renderHeader} renderFooter={renderFooter} width={width} onClose={onClose} />
+      <ZModal
+        open
+        renderHeader={renderHeader}
+        renderFooter={renderFooter}
+        width={width}
+        onClose={onClose}
+        fashion={fashion}
+      />
     );
     _driver = await new ZCircusSetupRenderer(element).setup();
     _target = await ZCircusBy.first(await _driver.body(), ZModalComponentModel);
@@ -24,6 +33,7 @@ describe('ZModal', () => {
   };
 
   beforeEach(() => {
+    fashion = undefined;
     width = undefined;
     renderHeader = undefined;
     renderFooter = undefined;
@@ -129,6 +139,19 @@ describe('ZModal', () => {
       await target.escape();
       // Assert.
       expect(onClose).toHaveBeenCalled();
+    });
+  });
+
+  describe('Fashion', () => {
+    it('should set the fashion value', async () => {
+      // Arrange.
+      const expected = 'My Fashion';
+      fashion = new ZFashionBuilder().name(expected).build();
+      const target = await createTestTarget();
+      // Act.
+      const actual = await target.fashion();
+      // Assert.
+      expect(actual).toEqual(expected);
     });
   });
 });

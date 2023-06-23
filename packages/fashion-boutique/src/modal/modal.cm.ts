@@ -24,6 +24,10 @@ export class ZModalComponentModel extends ZCircusComponentModel {
     return this.driver.attribute('data-width', ZSizeVaried.Fit);
   }
 
+  public async fashion(): Promise<string | null> {
+    return this.driver.attribute('data-fashion');
+  }
+
   public async close(): Promise<void> {
     const backdrop = await (await this.driver.body()).select('.MuiModal-backdrop');
     const act = new ZCircusActBuilder().click().build();
