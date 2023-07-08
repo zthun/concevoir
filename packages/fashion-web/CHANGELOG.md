@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.0](https://github.com/zthun/fashion/compare/v0.1.2...v0.2.0) (2023-06-23)
+
+
+### Features
+
+* modal page demos the modal component ([703039f](https://github.com/zthun/fashion/commit/703039f72e675b8b698b7756c74f3bb4cd1f12e9))
+* you can change the fashion of modals ([75afc6f](https://github.com/zthun/fashion/commit/75afc6f96f9b2f80e928dcbeef2ab1d7226bcb27))
+
+
+
 ## [0.1.2](https://github.com/zthun/fashion/compare/v0.1.1...v0.1.2) (2023-06-21)
 
 **Note:** Version bump only for package @zthun/fashion-web
