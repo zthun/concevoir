@@ -16,6 +16,7 @@ import {
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { createDarkTheme, createLightTheme } from '@zthun/fashion-theme';
 import React, { useMemo, useState } from 'react';
+import { ZChartPage } from 'src/boutique/chart/chart-page';
 import { ZAlertPage } from '../boutique/alert/alert-page';
 import { ZBooleanPage } from '../boutique/boolean/boolean-page';
 import { ZBoutiquePage } from '../boutique/boutique-page';
@@ -38,6 +39,7 @@ import {
   ZFashionRouteBoutique,
   ZFashionRouteButton,
   ZFashionRouteCard,
+  ZFashionRouteChart,
   ZFashionRouteChoice,
   ZFashionRouteDrawer,
   ZFashionRouteGridView,
@@ -102,6 +104,7 @@ export function ZFashionApp() {
               <ZRoute path={ZFashionRouteBoolean.path} element={<ZBooleanPage />} />
               <ZRoute path={ZFashionRouteButton.path} element={<ZButtonPage />} />
               <ZRoute path={ZFashionRouteCard.path} element={<ZCardPage />} />
+              <ZRoute path={ZFashionRouteChart.path} element={<ZChartPage />} />
               <ZRoute path={ZFashionRouteChoice.path} element={<ZChoicePage />} />
               <ZRoute path={ZFashionRouteDrawer.path} element={<ZDrawerPage />} />
               <ZRoute path={ZFashionRouteGridView.path} element={<ZGridViewPage />} />
