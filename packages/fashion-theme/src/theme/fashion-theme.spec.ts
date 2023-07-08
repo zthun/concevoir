@@ -1,6 +1,6 @@
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { white } from '../color/rgb';
-import { ZFashionBuilder } from '../fashion/fashion';
+import { IZFashion, ZFashionBuilder } from '../fashion/fashion';
 import { createDarkTheme } from './dark';
 import { ZFashionThemeBuilder } from './fashion-theme';
 import { createLightTheme } from './light';
@@ -92,6 +92,27 @@ describe('ZFashionDesignBuilder', () => {
     it('should set opposite', () => {
       const expected = new ZFashionBuilder().build();
       expect(createTestTarget().opposite(expected).build().opposite).toEqual(expected);
+    });
+  });
+
+  describe('Custom', () => {
+    let custom: { c1: IZFashion; c2: IZFashion };
+
+    beforeEach(() => {
+      custom = {
+        c1: new ZFashionBuilder().build(),
+        c2: new ZFashionBuilder().build()
+      };
+    });
+
+    it('should set custom', () => {
+      // Arrange.
+      const target = createTestTarget();
+      // Act.
+      const actual = target.custom(custom).build();
+      // Assert.
+      expect(actual.custom.c1).toEqual(custom.c1);
+      expect(actual.custom.c2).toEqual(custom.c2);
     });
   });
 

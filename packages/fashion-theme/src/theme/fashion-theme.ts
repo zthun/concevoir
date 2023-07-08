@@ -84,11 +84,13 @@ export enum ZFashionContrast {
 }
 
 export type ZFashionName = ZFashionPriority | ZFashionSeverity | ZFashionArea | ZFashionContrast;
+export type ZFashionRecord = Record<ZFashionName, IZFashion>;
+export type ZFashionCustom = Record<string, IZFashion>;
 
 /**
  * Represents a general fashion design that includes the common types.
  */
-export interface IZFashionTheme<TCustom = {}> extends Record<ZFashionName, IZFashion> {
+export interface IZFashionTheme<TCustom extends ZFashionCustom = {}> extends ZFashionRecord {
   /**
    * The optional name of the design.
    */
@@ -114,8 +116,8 @@ export interface IZFashionTheme<TCustom = {}> extends Record<ZFashionName, IZFas
  * If all you do with this is override the palette, then you
  * should have a generally good scheme for your fashion needs.
  */
-export class ZFashionThemeBuilder {
-  private _design: { -readonly [P in keyof IZFashionTheme]: IZFashionTheme[P] };
+export class ZFashionThemeBuilder<TCustom extends ZFashionCustom = {}> {
+  private _design: { -readonly [P in keyof IZFashionTheme<TCustom>]: IZFashionTheme<TCustom>[P] };
 
   /**
    * Initializes a new instance of this object.
@@ -208,7 +210,7 @@ export class ZFashionThemeBuilder {
         .contrast(white())
         .build(),
       transparent: new ZFashionBuilder().name('Transparent').main(transparent()).contrast('inherit').build(),
-      custom: {}
+      custom: {} as TCustom
     };
   }
 
@@ -395,6 +397,22 @@ export class ZFashionThemeBuilder {
   }
 
   /**
+   * Sets the custom theme.
+   *
+   * @param custom -
+   *        The custom theme to set.
+   *
+   * @returns
+   *        A new builder with a newly typed custom
+   *        theme.
+   */
+  public custom<T extends ZFashionCustom>(custom: T): ZFashionThemeBuilder<T> {
+    const next = new ZFashionThemeBuilder<T>().copy(this._design);
+    next._design.custom = custom;
+    return next;
+  }
+
+  /**
    * Copies another design into this design.
    *
    * @param other -
@@ -414,7 +432,7 @@ export class ZFashionThemeBuilder {
    * @returns
    *        A deep copy of the built design.
    */
-  public build(): IZFashionTheme {
+  public build(): IZFashionTheme<TCustom> {
     return Object.freeze(JSON.parse(JSON.stringify(this._design)));
   }
 }
