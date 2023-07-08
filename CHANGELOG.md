@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.0](https://github.com/zthun/fashion/compare/v0.3.1...v0.4.0) (2023-07-08)
+
+
+### Features
+
+* chart page demos the chart components ([84bb9ab](https://github.com/zthun/fashion/commit/84bb9abf3ee8891136d97d25837630bf8750d4cc))
+* charts allow for easy data visualizations ([7772c4c](https://github.com/zthun/fashion/commit/7772c4c1e96d414e816b9dfc32993ef48b778bb8))
+
+
+
 ## [0.3.1](https://github.com/zthun/fashion/compare/v0.3.0...v0.3.1) (2023-07-08)
 
 
