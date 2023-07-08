@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/zthun/fashion/compare/v0.4.0...v0.4.1) (2023-07-08)
+
+
+### Bug Fixes
+
+* chart border should now be darker ([f442372](https://github.com/zthun/fashion/commit/f442372e138a6f3f62264c00fffac7d4851412ae))
+
+
+
 ## [0.4.0](https://github.com/zthun/fashion/compare/v0.3.1...v0.4.0) (2023-07-08)
 
 
