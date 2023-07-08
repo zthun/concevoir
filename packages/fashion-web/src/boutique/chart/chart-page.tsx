@@ -1,7 +1,8 @@
-import { ZBox, ZCard, ZH3, ZIconFontAwesome, ZParagraph } from '@zthun/fashion-boutique';
+import { ZBox, ZCard, ZGrid, ZH3, ZIconFontAwesome, ZParagraph } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React from 'react';
 import { ZFashionRouteChart } from '../../routes';
+import { ZChartPageProgress } from './chart-page-progress';
 
 /**
  * Represents a demo for drawers.
@@ -23,6 +24,10 @@ export function ZChartPage() {
           Charts and graphs add nice visualizations and allow you to plot data points along a graphical element. These
           are highly useful for dashboard apps.
         </ZParagraph>
+
+        <ZGrid columns='1fr' gap={ZSizeFixed.Medium}>
+          <ZChartPageProgress />
+        </ZGrid>
       </ZBox>
     </ZCard>
   );

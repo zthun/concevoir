@@ -12,11 +12,35 @@ describe('ZChartPage', () => {
     return ZCircusBy.first(driver, ZChartPageComponentModel);
   }
 
-  it('should render the component', async () => {
-    // Arrange.
-    // Act.
-    const target = await createTestTarget();
-    // Assert.
-    expect(target).toBeTruthy();
+  describe('Progress', () => {
+    const shouldRenderChart = async (name: 'hp' | 'attack' | 'defense' | 'intelligence' | 'speed') => {
+      // Arrange
+      const target = await createTestTarget();
+      const progress = await target.progress();
+      // Act.
+      const chart = await progress[name]();
+      // Assert.
+      expect(chart).toBeTruthy();
+    };
+
+    it('should render the hp progress chart', async () => {
+      await shouldRenderChart('hp');
+    });
+
+    it('should render the attack progress chart', async () => {
+      await shouldRenderChart('attack');
+    });
+
+    it('should render the defense progress chart', async () => {
+      await shouldRenderChart('defense');
+    });
+
+    it('should render the intelligence progress chart', async () => {
+      await shouldRenderChart('intelligence');
+    });
+
+    it('should render the speed progress chart', async () => {
+      await shouldRenderChart('speed');
+    });
   });
 });
