@@ -26,7 +26,6 @@
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.13.7",
     "@mui/system": "^5.13.7",
-    "@mui/x-charts": "^6.0.0-alpha.2",
     "@zthun/cirque": "^4.3.0",
     "@zthun/fashion-tailor": "^0.3.0",
     "@zthun/fashion-theme": "^0.3.0",
