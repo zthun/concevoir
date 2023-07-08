@@ -1,7 +1,7 @@
 import { PaletteColor, useTheme } from '@mui/material';
 import { ThemeProvider, createSpacing } from '@mui/system';
 import { IZFashionDevice, IZFashionTailor, ZSizeFixed } from '@zthun/fashion-tailor';
-import { IZFashion, IZFashionTheme, ZFashionCustom } from '@zthun/fashion-theme';
+import { IZFashion, IZFashionTheme } from '@zthun/fashion-theme';
 import { firstDefined } from '@zthun/helpful-fn';
 import React, { useMemo } from 'react';
 import { CSSObject, GlobalStyles, createMakeStyles } from 'tss-react';
@@ -164,7 +164,7 @@ function useGlobalStyles() {
 
 const { makeStyles } = createMakeStyles({ useTheme: useBoutiqueTheme });
 
-export interface IZThemeUtility<TCustom extends ZFashionCustom = {}> {
+export interface IZThemeUtility<TCustom extends object = {}> {
   theme: IZFashionTheme<TCustom>;
   tailor: IZFashionTailor;
   device: IZFashionDevice;
@@ -172,7 +172,7 @@ export interface IZThemeUtility<TCustom extends ZFashionCustom = {}> {
 
 export type ZStyleHook<T, R extends string> = (params?: T) => { classes: Record<R, string> };
 
-export function createStyleHook<T, U extends ZFashionCustom, R extends string>(
+export function createStyleHook<T, U extends object, R extends string>(
   cb: (u: IZThemeUtility<U>, p?: T) => Record<R, CSSObject>
 ): ZStyleHook<T, R> {
   return makeStyles<T | undefined>()((_theme, _props) => cb(_theme as unknown as IZThemeUtility<U>, _props));

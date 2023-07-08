@@ -85,12 +85,11 @@ export enum ZFashionContrast {
 
 export type ZFashionName = ZFashionPriority | ZFashionSeverity | ZFashionArea | ZFashionContrast;
 export type ZFashionRecord = Record<ZFashionName, IZFashion>;
-export type ZFashionCustom = Record<string, IZFashion>;
 
 /**
  * Represents a general fashion design that includes the common types.
  */
-export interface IZFashionTheme<TCustom extends ZFashionCustom = {}> extends ZFashionRecord {
+export interface IZFashionTheme<TCustom extends object = {}> extends ZFashionRecord {
   /**
    * The optional name of the design.
    */
@@ -116,7 +115,7 @@ export interface IZFashionTheme<TCustom extends ZFashionCustom = {}> extends ZFa
  * If all you do with this is override the palette, then you
  * should have a generally good scheme for your fashion needs.
  */
-export class ZFashionThemeBuilder<TCustom extends ZFashionCustom = {}> {
+export class ZFashionThemeBuilder<TCustom extends object = {}> {
   private _design: { -readonly [P in keyof IZFashionTheme<TCustom>]: IZFashionTheme<TCustom>[P] };
 
   /**
@@ -406,7 +405,7 @@ export class ZFashionThemeBuilder<TCustom extends ZFashionCustom = {}> {
    *        A new builder with a newly typed custom
    *        theme.
    */
-  public custom<T extends ZFashionCustom>(custom: T): ZFashionThemeBuilder<T> {
+  public custom<T extends object>(custom: T): ZFashionThemeBuilder<T> {
     const next = new ZFashionThemeBuilder<T>().copy(this._design);
     next._design.custom = custom;
     return next;
