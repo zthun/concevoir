@@ -26,12 +26,12 @@ const useSuspenseProgressStyles = createStyleHook((_, props: IZSuspense<ZSizeVar
 });
 
 /**
- * Renders a circular progress that can render nothing or the material ui circular progress.
+ * Renders a line bar suspense.
  *
  * @param props -
- *        The properties for the card.
+ *        The properties for the component.
  *
- * @returns The jsx for a circular loading progress.
+ * @returns The jsx for the component.
  */
 export function ZSuspenseProgress(props: IZSuspense<ZSizeVaried.Full, ZSizeFixed>) {
   const { className, loading = true, height = ZSizeFixed.ExtraSmall, name, fashion } = props;

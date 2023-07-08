@@ -22,12 +22,12 @@ const useSuspenseRotateStyles = createStyleHook((_, props: IZSuspense) => {
 });
 
 /**
- * Renders a circular progress that can render nothing or the material ui circular progress.
+ * Renders a rotating circle suspense.
  *
  * @param props -
- *        The properties for the card.
+ *        The properties for the component.
  *
- * @returns The jsx for a circular loading progress.
+ * @returns The jsx for the suspense.
  */
 export function ZSuspenseRotate(props: IZSuspense) {
   const { className, loading = true, name, width = ZSizeFixed.ExtraSmall, fashion } = props;
