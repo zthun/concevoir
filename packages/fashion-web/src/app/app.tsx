@@ -16,12 +16,12 @@ import {
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { createDarkTheme, createLightTheme } from '@zthun/fashion-theme';
 import React, { useMemo, useState } from 'react';
-import { ZChartPage } from 'src/boutique/chart/chart-page';
 import { ZAlertPage } from '../boutique/alert/alert-page';
 import { ZBooleanPage } from '../boutique/boolean/boolean-page';
 import { ZBoutiquePage } from '../boutique/boutique-page';
 import { ZButtonPage } from '../boutique/button/button-page';
 import { ZCardPage } from '../boutique/card/card-page';
+import { ZChartPage } from '../boutique/chart/chart-page';
 import { ZChoicePage } from '../boutique/choice/choice-page';
 import { ZDrawerPage } from '../boutique/drawer/drawer-page';
 import { ZGridViewPage } from '../boutique/grid-view/grid-view-page';
