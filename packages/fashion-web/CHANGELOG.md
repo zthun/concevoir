@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.0](https://github.com/zthun/fashion/compare/v0.2.0...v0.3.0) (2023-07-08)
+
+
+### Bug Fixes
+
+* dark mode no longer blends cards into parent on grid view page ([b10c03d](https://github.com/zthun/fashion/commit/b10c03d98502989a573ec098d11d6cd5f62e11f9))
+
+
+
 ## [0.2.0](https://github.com/zthun/fashion/compare/v0.1.2...v0.2.0) (2023-06-23)
 
 
