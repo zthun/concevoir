@@ -6,7 +6,8 @@ import {
   ZH3,
   ZIconFontAwesome,
   ZParagraph,
-  ZStack
+  ZStack,
+  useFashionTheme
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { IZBrand, ZBrands } from '@zthun/helpful-brands';
@@ -32,9 +33,10 @@ const ZErrorDataSource = new ZDataSourceStatic(
  */
 export function ZGridViewPage() {
   const [dataSource, setDataSource] = useState(ZBrandDataSource);
+  const { component } = useFashionTheme();
 
   const renderItem = (item: IZBrand) => (
-    <ZCard key={item.id} heading={item.name} avatar={<ZIconFontAwesome name='hashtag' />}>
+    <ZCard key={item.id} heading={item.name} avatar={<ZIconFontAwesome name='hashtag' />} fashion={component}>
       <ZStack justifyContent='center' orientation={ZOrientation.Horizontal}>
         <ZIconFontAwesome family='brands' name={item.id} width={ZSizeFixed.Large} widthXs={ZSizeFixed.Medium} />
       </ZStack>
