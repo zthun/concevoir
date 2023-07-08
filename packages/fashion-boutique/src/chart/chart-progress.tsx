@@ -20,7 +20,7 @@ const useChartProgressStyles = createStyleHook(({ theme, tailor }, props: IZChar
   const { primary, transparent } = theme;
   const { fashion = primary } = points;
 
-  const border = firstDefined(fashion.main, fashion.light, fashion.dark);
+  const border = firstDefined(fashion.main, fashion.dark);
 
   return {
     bar: {
