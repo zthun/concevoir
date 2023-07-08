@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.0](https://github.com/zthun/fashion/compare/v0.2.0...v0.3.0) (2023-07-08)
+
+
+### Features
+
+* custom can now be set ([9981142](https://github.com/zthun/fashion/commit/998114220955c556df378279769cf4d3464434d1))
+* you can now specify a custom fashion extension on the createStyleHook ([5de273f](https://github.com/zthun/fashion/commit/5de273f08bb0409eef1cdc2c2ca40bb9d90cf5fc))
+* you can now specify the custom style when retrieving the fashion theme ([4559905](https://github.com/zthun/fashion/commit/45599050c66b1c48635f3da3f989e86e385a9b90))
+
+
+### Bug Fixes
+
+* dark mode no longer blends cards into parent on grid view page ([b10c03d](https://github.com/zthun/fashion/commit/b10c03d98502989a573ec098d11d6cd5f62e11f9))
+
+
+
 ## [0.2.0](https://github.com/zthun/fashion/compare/v0.1.2...v0.2.0) (2023-06-23)
 
 

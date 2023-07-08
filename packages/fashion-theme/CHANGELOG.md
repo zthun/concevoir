@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.0](https://github.com/zthun/fashion/compare/v0.2.0...v0.3.0) (2023-07-08)
+
+
+### Features
+
+* custom can now be set ([9981142](https://github.com/zthun/fashion/commit/998114220955c556df378279769cf4d3464434d1))
+
+
+
 ## [0.2.0](https://github.com/zthun/fashion/compare/v0.1.2...v0.2.0) (2023-06-23)
 
 **Note:** Version bump only for package @zthun/fashion-theme
