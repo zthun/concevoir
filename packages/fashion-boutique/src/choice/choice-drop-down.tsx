@@ -109,7 +109,7 @@ export function ZChoiceDropDown<O, V>(props: IZChoice<O, V>) {
 
     return (
       <IconButton className={cssJoinDefined('ZChoice-clear', classes.clear)} onClick={setValue.bind(null, [])}>
-        <ZIconFontAwesome name='xmark' width={ZSizeFixed.ExtraSmall} />
+        <ZIconFontAwesome name='xmark' width={ZSizeFixed.ExtraSmall} tooltip='Clear' />
       </IconButton>
     );
   }
