@@ -14,11 +14,7 @@ describe('ZLabeled', () => {
     let orientation: ZOrientation | undefined;
 
     const createTestTarget = async () => {
-      const element = (
-        <ZLabeled LabelProps={{ label, required }} orientation={orientation}>
-          {(id) => id}
-        </ZLabeled>
-      );
+      const element = <ZLabeled label={label} LabelProps={{ required }} orientation={orientation} />;
       _driver = await new ZCircusSetupRenderer(element).setup();
       return ZCircusBy.first(_driver, ZLabelComponentModel);
     };
@@ -64,7 +60,7 @@ describe('ZLabeled', () => {
   describe('Without', () => {
     it('should not render a label', async () => {
       // Arrange.
-      const element = <ZLabeled>{(id) => id}</ZLabeled>;
+      const element = <ZLabeled />;
       const driver = await new ZCircusSetupRenderer(element).setup();
       // Act.
       const actual = await ZCircusBy.optional(driver, ZLabelComponentModel);

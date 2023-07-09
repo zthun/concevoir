@@ -121,18 +121,16 @@ export function ZNumberInput(props: IZNumber<number | null>) {
   return (
     <ZLabeled
       className={cssJoinDefined('ZNumber-root', className)}
-      LabelProps={{ label, required, className: 'ZNumber-label' }}
+      label={label}
+      LabelProps={{ required, className: 'ZNumber-label' }}
       name={name}
     >
-      {(id) => (
-        <OutlinedInput
-          {..._text}
-          className={cssJoinDefined('ZNumber-input', classes.input)}
-          onKeyDown={handleKeyDown}
-          inputProps={{ min, max, step }}
-          aria-labelledby={id}
-        />
-      )}
+      <OutlinedInput
+        {..._text}
+        className={cssJoinDefined('ZNumber-input', classes.input)}
+        onKeyDown={handleKeyDown}
+        inputProps={{ min, max, step }}
+      />
     </ZLabeled>
   );
 }

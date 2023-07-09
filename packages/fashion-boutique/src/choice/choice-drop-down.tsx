@@ -142,27 +142,26 @@ export function ZChoiceDropDown<O, V>(props: IZChoice<O, V>) {
   return (
     <ZLabeled
       className={cssJoinDefined('ZChoice-root', 'ZChoice-drop-down', className, classes.root)}
-      LabelProps={{ label, required, className: 'ZChoice-label' }}
+      label={label}
+      LabelProps={{ required, className: 'ZChoice-label' }}
       name={name}
       orientation={orientation}
     >
-      {(id) => (
-        <Select
-          className={cssJoinDefined(classes.toggler)}
-          classes={{ select: 'ZChoice-toggler' }}
-          labelId={id}
-          disabled={disabled}
-          value={cast(value, '')}
-          multiple={multiple}
-          MenuProps={{ className: cssJoinDefined('ZChoice-options', 'ZChoice-options-popup', classes.popup) }}
-          onChange={handleSelect}
-          renderValue={renderSelectedItem}
-          endAdornment={renderClear()}
-          name={name}
-        >
-          {renderDropDownItems()}
-        </Select>
-      )}
+      <Select
+        className={cssJoinDefined(classes.toggler)}
+        classes={{ select: 'ZChoice-toggler' }}
+        disabled={disabled}
+        value={cast(value, '')}
+        multiple={multiple}
+        MenuProps={{ className: cssJoinDefined('ZChoice-options', 'ZChoice-options-popup', classes.popup) }}
+        onChange={handleSelect}
+        renderValue={renderSelectedItem}
+        endAdornment={renderClear()}
+        name={name}
+        fullWidth
+      >
+        {renderDropDownItems()}
+      </Select>
     </ZLabeled>
   );
 }

@@ -108,18 +108,17 @@ export function ZChoiceToggle<O, V>(props: IZChoice<O, V>) {
   return (
     <ZLabeled
       className={cssJoinDefined('ZChoice-root', 'ZChoice-toggle', 'ZChoice-always-open', className)}
-      LabelProps={{ label, required, className: 'ZChoice-label' }}
+      label={label}
+      LabelProps={{ required, className: 'ZChoice-label' }}
       name={name}
       orientation={orientation}
     >
-      {() => (
-        <ZStack orientation={ZOrientation.Horizontal}>
-          <ToggleButtonGroup disabled={disabled} exclusive={!multiple} className='ZChoice-options'>
-            {choices.map(renderChoice)}
-            {renderClear()}
-          </ToggleButtonGroup>
-        </ZStack>
-      )}
+      <ZStack orientation={ZOrientation.Horizontal}>
+        <ToggleButtonGroup disabled={disabled} exclusive={!multiple} className='ZChoice-options'>
+          {choices.map(renderChoice)}
+          {renderClear()}
+        </ToggleButtonGroup>
+      </ZStack>
     </ZLabeled>
   );
 }

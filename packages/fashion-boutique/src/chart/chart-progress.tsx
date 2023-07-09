@@ -48,21 +48,18 @@ export function ZChartProgress(props: IZChartProgress) {
 
   return (
     <div className={cssJoinDefined('ZChart-root', 'ZChart-progress')} data-name={name}>
-      <ZLabeled LabelProps={{ label: _label }}>
-        {(id) => (
-          <ZGrid columns='1fr auto' gap={ZSizeFixed.Small} alignItems='center'>
-            <LinearProgress
-              id={id}
-              className={cssJoinDefined('ZChart-point', classes.bar)}
-              variant='determinate'
-              value={_per}
-              data-x={_x}
-              data-y={_y}
-              data-name={label}
-              data-fashion={fashion?.name}
-            />
-          </ZGrid>
-        )}
+      <ZLabeled label={_label}>
+        <ZGrid columns='1fr auto' gap={ZSizeFixed.Small} alignItems='center'>
+          <LinearProgress
+            className={cssJoinDefined('ZChart-point', classes.bar)}
+            variant='determinate'
+            value={_per}
+            data-x={_x}
+            data-y={_y}
+            data-name={label}
+            data-fashion={fashion?.name}
+          />
+        </ZGrid>
       </ZLabeled>
     </div>
   );

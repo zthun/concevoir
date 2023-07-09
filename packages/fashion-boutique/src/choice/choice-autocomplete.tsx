@@ -136,33 +136,32 @@ export function ZChoiceAutocomplete<O, V>(props: IZChoice<O, V>) {
   return (
     <ZLabeled
       className={cssJoinDefined('ZChoice-root', 'ZChoice-autocomplete', classes.root, className)}
-      LabelProps={{ label, required, className: 'ZChoice-label' }}
+      label={label}
+      LabelProps={{ required, className: 'ZChoice-label' }}
       name={name}
       orientation={orientation}
     >
-      {() => (
-        <Autocomplete
-          data-name={name}
-          componentsProps={{
-            clearIndicator: {
-              className: cssJoinDefined('ZChoice-clear', [classes.invisible, !chosen.length], classes.clear)
-            },
-            popper: { className: cssJoinDefined('ZChoice-options', 'ZChoice-options-popup', classes.popup) },
-            popupIndicator: { className: cssJoinDefined('ZChoice-toggler', classes.toggler) }
-          }}
-          autoHighlight
-          disabled={disabled}
-          disableClearable={indelible}
-          options={choices}
-          value={choice}
-          onChange={handleSelect}
-          multiple={multiple}
-          getOptionLabel={getOptionLabel}
-          isOptionEqualToValue={isOptionEqualToValue}
-          renderOption={renderOption}
-          renderInput={renderInput}
-        />
-      )}
+      <Autocomplete
+        data-name={name}
+        componentsProps={{
+          clearIndicator: {
+            className: cssJoinDefined('ZChoice-clear', [classes.invisible, !chosen.length], classes.clear)
+          },
+          popper: { className: cssJoinDefined('ZChoice-options', 'ZChoice-options-popup', classes.popup) },
+          popupIndicator: { className: cssJoinDefined('ZChoice-toggler', classes.toggler) }
+        }}
+        autoHighlight
+        disabled={disabled}
+        disableClearable={indelible}
+        options={choices}
+        value={choice}
+        onChange={handleSelect}
+        multiple={multiple}
+        getOptionLabel={getOptionLabel}
+        isOptionEqualToValue={isOptionEqualToValue}
+        renderOption={renderOption}
+        renderInput={renderInput}
+      />
     </ZLabeled>
   );
 }

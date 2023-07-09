@@ -57,19 +57,17 @@ export function ZTextInput(props: IZTextInput) {
   return (
     <ZLabeled
       className={cssJoinDefined('ZText-root', className)}
-      LabelProps={{ label, required, className: 'ZText-label' }}
+      label={label}
+      LabelProps={{ required, className: 'ZText-label' }}
       orientation={orientation}
       name={name}
     >
-      {(id) => (
-        <OutlinedInput
-          {...InputProps}
-          type={type}
-          className={cssJoinDefined('ZText-input', classes.input)}
-          onKeyDown={handleKeyDown}
-          aria-labelledby={id}
-        />
-      )}
+      <OutlinedInput
+        {...InputProps}
+        type={type}
+        className={cssJoinDefined('ZText-input', classes.input)}
+        onKeyDown={handleKeyDown}
+      />
     </ZLabeled>
   );
 }

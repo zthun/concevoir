@@ -36,20 +36,18 @@ export function ZTextArea(props: IZTextArea) {
   return (
     <ZLabeled
       className={cssJoinDefined('ZText-root', 'ZText-area', className)}
-      LabelProps={{ label, required, className: 'ZText-label' }}
+      label={label}
+      LabelProps={{ required, className: 'ZText-label' }}
       name={name}
       orientation={orientation}
     >
-      {(id) => (
-        <OutlinedInput
-          {...InputProps}
-          aria-labelledby={id}
-          className={cssJoinDefined('ZText-area', classes.input)}
-          multiline
-          rows={rows}
-          data-required={required}
-        />
-      )}
+      <OutlinedInput
+        {...InputProps}
+        className={cssJoinDefined('ZText-area', classes.input)}
+        multiline
+        rows={rows}
+        data-required={required}
+      />
     </ZLabeled>
   );
 }
