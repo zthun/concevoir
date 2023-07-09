@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.3](https://github.com/zthun/fashion/compare/v0.4.2...v0.4.3) (2023-07-09)
+
+
+### Bug Fixes
+
+* icons now display tooltips properly ([16e252d](https://github.com/zthun/fashion/commit/16e252db1752ea0c3d1bf2eb3a9cdd25ed926572))
+
+
+
 ## [0.4.2](https://github.com/zthun/fashion/compare/v0.4.1...v0.4.2) (2023-07-09)
 
 
