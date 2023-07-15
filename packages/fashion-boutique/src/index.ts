@@ -18,6 +18,8 @@ export * from './button/button';
 export * from './button/button.cm';
 export * from './card/card';
 export * from './card/card.cm';
+export * from './carousel/carousel';
+export * from './carousel/carousel.cm';
 export * from './chart/chart';
 export * from './chart/chart-progress';
 export * from './chart/chart.cm';
