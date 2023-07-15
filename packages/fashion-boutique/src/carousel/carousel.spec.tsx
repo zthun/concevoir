@@ -79,7 +79,18 @@ describe('ZCarousel', () => {
   });
 
   describe('Orientation', () => {
+    it('should set the specified orientation', async () => {
+      // Arrange.
+      orientation = ZOrientation.Vertical;
+      const target = await createTestTarget();
+      // Act.
+      const actual = await target.orientation();
+      // Assert.
+      expect(actual).toEqual(orientation);
+    });
+
     it('should render left for reverse when oriented horizontally', async () => {
+      // Arrange.
       orientation = ZOrientation.Horizontal;
       const target = await createTestTarget();
       const reverse = await target.reverse();
@@ -91,6 +102,7 @@ describe('ZCarousel', () => {
     });
 
     it('should render right for forward when oriented horizontally', async () => {
+      // Arrange.
       orientation = ZOrientation.Horizontal;
       const target = await createTestTarget();
       const forward = await target.forward();
@@ -102,6 +114,7 @@ describe('ZCarousel', () => {
     });
 
     it('should render up for reverse when oriented vertically', async () => {
+      // Arrange.
       orientation = ZOrientation.Vertical;
       const target = await createTestTarget();
       const reverse = await target.reverse();
@@ -113,6 +126,7 @@ describe('ZCarousel', () => {
     });
 
     it('should render down for forward when oriented vertically', async () => {
+      // Arrange.
       orientation = ZOrientation.Vertical;
       const target = await createTestTarget();
       const forward = await target.forward();

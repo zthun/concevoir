@@ -1,8 +1,14 @@
 import { IZCircusDriver, ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
+import { ZOrientation } from '@zthun/helpful-fn';
+import { ZStackComponentModel } from 'src/stack/stack.cm';
 import { ZButtonComponentModel } from '../button/button.cm';
 
 export class ZCarouselComponentModel extends ZCircusComponentModel {
   public static readonly Selector = '.ZCarousel-root';
+
+  public async orientation(): Promise<ZOrientation> {
+    return (await ZCircusBy.first(this.driver, ZStackComponentModel)).orientation();
+  }
 
   public async index(): Promise<number> {
     const index = await this.driver.attribute('data-index', '0');
