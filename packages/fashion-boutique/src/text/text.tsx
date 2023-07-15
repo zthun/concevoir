@@ -21,7 +21,7 @@ export interface IZText<T = string>
     IZComponentValue<T>,
     IZComponentLabel,
     IZComponentAdornment,
-    IZComponentOrientation,
+    Pick<IZComponentOrientation, 'orientation'>,
     IZComponentRequired,
     IZComponentStyle {
   readOnly?: boolean;

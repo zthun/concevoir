@@ -13,7 +13,7 @@ export interface ZLabeled
   extends IZComponentName,
     IZComponentLabel,
     IZComponentStyle,
-    IZComponentOrientation,
+    Pick<IZComponentOrientation, 'orientation'>,
     IZComponentHierarchy {
   LabelProps?: Omit<IZLabel, 'id'>;
   gap?: ZSizeVoid | ZSizeFixed;

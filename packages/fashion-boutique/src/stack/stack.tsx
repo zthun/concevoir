@@ -5,16 +5,20 @@ import { Property } from 'csstype';
 import React from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy';
 import { IZComponentName } from '../component/component-name';
+import { IZComponentOrientation } from '../component/component-orientation';
 import { IZComponentStyle } from '../component/component-style';
 
 /**
  * Represents a stack component.
  */
-interface IZStack extends IZComponentHierarchy, IZComponentStyle, IZComponentName {
+interface IZStack
+  extends IZComponentHierarchy,
+    IZComponentStyle,
+    IZComponentName,
+    Pick<IZComponentOrientation, 'orientation'> {
   alignItems?: Property.AlignItems;
   justifyContent?: Property.JustifyContent;
   gap?: ZSizeFixed | ZSizeVoid;
-  orientation?: ZOrientation;
 }
 
 const GapChart = {
