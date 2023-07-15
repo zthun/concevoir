@@ -26,6 +26,7 @@ export function ZButtonPage() {
   const [disabled, setDisabled] = useState(false);
   const [outline, setOutline] = useState(false);
   const [borderless, setBorderless] = useState(false);
+  const [compact, setCompact] = useState(false);
   const [fashion, fashionName, setFashion] = useFashionState();
   const [count, setCount] = useState<number>(0);
 
@@ -61,6 +62,7 @@ export function ZButtonPage() {
             loading={loading}
             disabled={disabled}
             borderless={borderless}
+            compact={compact}
             outline={outline}
             onClick={handleClick}
             label='Button'
@@ -73,6 +75,7 @@ export function ZButtonPage() {
             disabled={disabled}
             borderless={borderless}
             outline={outline}
+            compact={compact}
             onClick={handleClick}
             fashion={fashion}
             label={avatar}
@@ -94,6 +97,7 @@ export function ZButtonPage() {
           <ZBooleanSwitch value={disabled} onValueChange={setDisabled} name='disabled' label='Disabled' />
           <ZBooleanSwitch value={outline} onValueChange={setOutline} name='outline' label='Outline' />
           <ZBooleanSwitch value={borderless} onValueChange={setBorderless} name='borderless' label='Borderless' />
+          <ZBooleanSwitch value={compact} onValueChange={setCompact} name='compact' label='Compact' />
           <ZChoiceDropDownFashion value={fashionName} onValueChange={setFashion} name='fashion' />
         </ZGrid>
       </ZBox>
