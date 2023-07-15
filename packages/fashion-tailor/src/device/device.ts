@@ -5,7 +5,7 @@ export interface IZFashionDevice {
 }
 
 export class ZFashionDevice implements IZFashionDevice {
-  public _breakpoints: ZSizeChartFixed<string> = {
+  public breakpoints: ZSizeChartFixed<string> = {
     [ZSizeFixed.ExtraSmall]: '600px',
     [ZSizeFixed.Small]: '900px',
     [ZSizeFixed.Medium]: '1200px',
@@ -14,7 +14,7 @@ export class ZFashionDevice implements IZFashionDevice {
   };
 
   public break(size: ZSizeFixed): string {
-    const width = this._breakpoints[size];
+    const width = this.breakpoints[size];
     return `@media only screen and (max-width: ${width})`;
   }
 }
