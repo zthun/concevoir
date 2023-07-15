@@ -97,7 +97,14 @@ export const useButtonStyles = createStyleHook(({ theme, tailor }, props: IZButt
       },
 
       '&.ZButton-compact': {
-        padding: 0
+        'padding': tailor.thickness(ZSizeFixed.ExtraSmall),
+
+        '.MuiButton-startIcon': {
+          marginLeft: 0
+        },
+        '.MuiButton-endIcon': {
+          marginRight: 0
+        }
       }
     },
 
@@ -147,13 +154,10 @@ export function ZButton(props: IZButton) {
   const contentClass = cssJoinDefined('ZButton-content', classes.content);
   const variant = outline ? 'outlined' : 'contained';
 
-  const suspense = (
-    <ZSuspenseRotate
-      className={cssJoinDefined('ZButton-loading', classes.loading)}
-      width={ZSizeFixed.ExtraSmall}
-      loading={!!loading}
-    />
-  );
+  const suspense = loading ? (
+    <ZSuspenseRotate className={cssJoinDefined('ZButton-loading', classes.loading)} width={ZSizeFixed.ExtraSmall} />
+  ) : null;
+
   return (
     <Tooltip title={tooltip}>
       <span className={classes.wrapper}>
