@@ -12,7 +12,7 @@ import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import React, { useState } from 'react';
 import { ZFashionRouteCard } from '../../routes';
 import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
-import { useFashionState } from '../common/useFashionState';
+import { useFashionState } from '../common/use-fashion-state';
 
 // cspell: disable
 const LOREM =

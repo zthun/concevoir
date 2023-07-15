@@ -16,7 +16,7 @@ import { identity, startCase, values } from 'lodash';
 import React, { useState } from 'react';
 import { ZFashionRouteSuspense } from '../../routes';
 import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
-import { useFashionState } from '../common/useFashionState';
+import { useFashionState } from '../common/use-fashion-state';
 
 /**
  * Represents a demo for suspense indicators.
