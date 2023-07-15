@@ -49,6 +49,13 @@ export const ZFashionRouteCard = new ZRouteBuilder()
   .avatar('credit-card')
   .build();
 
+export const ZFashionRouteCarousel = new ZRouteBuilder()
+  .name('Carousel')
+  .path('carousel')
+  .description('Merry-Go-Round Content')
+  .avatar('horse')
+  .build();
+
 export const ZFashionRouteChart = new ZRouteBuilder()
   .name('Chart')
   .path('chart')
@@ -131,6 +138,7 @@ export const ZFashionRouteAllComponents = [
   ZFashionRouteBoolean,
   ZFashionRouteButton,
   ZFashionRouteCard,
+  ZFashionRouteCarousel,
   ZFashionRouteChart,
   ZFashionRouteChoice,
   ZFashionRouteDrawer,
