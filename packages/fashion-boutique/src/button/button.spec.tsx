@@ -183,11 +183,11 @@ describe('ZButton', () => {
       expect(!!actual).toEqual(expected);
     }
 
-    it('should keep the border if the borderless flag is false.', async () => {
+    it('should keep the button fat if the compact flag is false.', async () => {
       await assertCompact(false, false);
     });
 
-    it('should keep the border if the borderless flag is true.', async () => {
+    it('should make the button skinny if the compact flag is true.', async () => {
       await assertCompact(true, true);
     });
   });

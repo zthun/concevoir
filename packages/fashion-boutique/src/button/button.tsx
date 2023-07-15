@@ -94,6 +94,10 @@ export const useButtonStyles = createStyleHook(({ theme, tailor }, props: IZButt
         ...borderless,
         '&:hover': borderless,
         '&:active': borderless
+      },
+
+      '&.ZButton-compact': {
+        padding: 0
       }
     },
 
@@ -136,6 +140,7 @@ export function ZButton(props: IZButton) {
     'ZButton-root',
     ['ZButton-borderless', !!borderless],
     ['ZButton-outline', !!outline],
+    ['ZButton-compact', !!compact],
     className,
     classes.button
   );
