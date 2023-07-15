@@ -1,13 +1,4 @@
-import {
-  ZBox,
-  ZCard,
-  ZCarousel,
-  ZChoiceDropDown,
-  ZH3,
-  ZIconFontAwesome,
-  ZParagraph,
-  useFashionTheme
-} from '@zthun/fashion-boutique';
+import { ZBox, ZCard, ZCarousel, ZChoiceDropDown, ZH3, ZIconFontAwesome, ZParagraph } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZBrands } from '@zthun/helpful-brands';
 import { ZOrientation } from '@zthun/helpful-fn';
@@ -26,7 +17,6 @@ export function ZCarouselPage() {
   const [orientation, setOrientation] = useStateAsArray(ZOrientation.Horizontal);
   const [_orientation] = orientation;
   const orientations = useMemo(() => Object.values(ZOrientation), []);
-  const { component } = useFashionTheme();
 
   const renderBrand = (index: number) => (
     <ZIconFontAwesome name={ZBrands[index].id} family='brands' width={ZSizeFixed.Large} />
@@ -44,7 +34,7 @@ export function ZCarouselPage() {
 
         <ZParagraph>A carousel component is great for compacting items in a rotating display of content.</ZParagraph>
 
-        <ZBox width={ZSizeFixed.ExtraSmall} fashion={component}>
+        <ZBox width={ZSizeFixed.ExtraSmall}>
           <ZCarousel
             count={ZBrands.length}
             value={index}
@@ -69,7 +59,8 @@ export function ZCarouselPage() {
           indelible
           renderOption={startCase}
           identifier={identity}
-        />{' '}
+          name='orientation'
+        />
       </ZBox>
     </ZCard>
   );
