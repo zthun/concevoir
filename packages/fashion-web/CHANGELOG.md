@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.0](https://github.com/zthun/fashion/compare/v0.5.0...v0.6.0) (2023-07-16)
+
+
+### Bug Fixes
+
+* carousel count of 1 or less now renders properly ([068fb28](https://github.com/zthun/fashion/commit/068fb28bd806d31a948268caf0279938e75e635a))
+
+
+
 ## [0.5.0](https://github.com/zthun/fashion/compare/v0.4.3...v0.5.0) (2023-07-16)
 
 
