@@ -4,6 +4,7 @@ import { Property } from 'csstype';
 import React from 'react';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { ZGrid } from './grid';
+import { ZGridSpan } from './grid-span';
 
 describe('ZGridLayout', () => {
   let gap: ZSizeFixed | ZSizeVoid | undefined;
@@ -36,7 +37,9 @@ describe('ZGridLayout', () => {
         columnsMd={md}
         columnsSm={sm}
         columnsXs={xs}
-      />
+      >
+        <ZGridSpan />
+      </ZGrid>
     );
     const driver = await new ZCircusSetupRenderer(element).setup();
     return driver;
