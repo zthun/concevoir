@@ -14,6 +14,8 @@ export * from './breadcrumbs-outlet/breadcrumbs-outlet.cm';
 export * from './breadcrumbs/breadcrumbs';
 export * from './breadcrumbs/breadcrumbs-location';
 export * from './breadcrumbs/breadcrumbs.cm';
+export * from './bubble/bubble';
+export * from './bubble/bubble.cm';
 export * from './button/button';
 export * from './button/button.cm';
 export * from './card/card';
