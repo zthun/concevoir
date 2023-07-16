@@ -11,11 +11,7 @@ import { IZComponentStyle } from '../component/component-style';
 /**
  * Represents a stack component.
  */
-interface IZStack
-  extends IZComponentHierarchy,
-    IZComponentStyle,
-    IZComponentName,
-    Pick<IZComponentOrientation, 'orientation'> {
+interface IZStack extends IZComponentHierarchy, IZComponentStyle, IZComponentName, IZComponentOrientation {
   alignItems?: Property.AlignItems;
   justifyContent?: Property.JustifyContent;
   gap?: ZSizeFixed | ZSizeVoid;

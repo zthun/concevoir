@@ -15,7 +15,7 @@ import { createStyleHook } from '../theme/styled';
 export interface IZPagination
   extends IZComponentStyle,
     IZComponentValue<number>,
-    Pick<IZComponentOrientation, 'orientation'>,
+    IZComponentOrientation,
     IZComponentDisabled,
     IZComponentFashion {
   /**

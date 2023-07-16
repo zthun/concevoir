@@ -22,7 +22,7 @@ export interface IZChoice<O, V>
     IZComponentValue<V[]>,
     IZComponentLabel,
     IZComponentRequired,
-    Pick<IZComponentOrientation, 'orientation'>,
+    IZComponentOrientation,
     IZComponentName {
   multiple?: boolean;
   indelible?: boolean;
