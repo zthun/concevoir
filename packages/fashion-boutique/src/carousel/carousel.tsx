@@ -20,37 +20,39 @@ export interface IZCarousel
   count: number;
 
   renderAtIndex: (index: number) => ReactNode;
+  renderEmpty?: () => ReactNode;
 
-  ForwardProps?: Omit<IZButton, 'name' | 'onClick'>;
-  ReverseProps?: Omit<IZButton, 'name' | 'onClick'>;
+  ForwardProps?: Omit<IZButton, 'name' | 'disabled' | 'onClick'>;
+  ReverseProps?: Omit<IZButton, 'name' | 'disabled' | 'onClick'>;
 }
 
-const useCarouselStyles = createStyleHook(() => ({
-  root: {
-    '.ZCarousel-navigation-forward': {},
-
-    '.ZCarousel-navigation-reverse': {},
-
-    '.ZCarousel-navigation-forward,.ZCarousel-navigation-reverse': {
-      opacity: 0,
-      transition: 'opacity .5s'
-    },
-
-    '&:hover': {
+const useCarouselStyles = createStyleHook((_, props: IZCarousel) => {
+  const { count } = props;
+  return {
+    root: {
       '.ZCarousel-navigation-forward,.ZCarousel-navigation-reverse': {
-        opacity: 1
+        opacity: 0,
+        transition: 'opacity .5s'
+      },
+
+      '&:hover': {
+        '.ZCarousel-navigation-forward,.ZCarousel-navigation-reverse': {
+          opacity: count <= 1 ? 0 : 1
+        }
       }
+    },
+    content: {
+      flexGrow: 1,
+      justifySelf: 'center',
+      alignSelf: 'center',
+      textAlign: 'center'
     }
-  },
-  content: {
-    flexGrow: 1,
-    justifySelf: 'center',
-    alignSelf: 'center',
-    textAlign: 'center'
-  }
-}));
+  };
+});
 
 export function ZCarousel(props: IZCarousel) {
+  const _renderEmpty = () => null;
+
   const {
     className,
     count,
@@ -60,11 +62,12 @@ export function ZCarousel(props: IZCarousel) {
     ForwardProps,
     ReverseProps,
     onValueChange,
-    renderAtIndex
+    renderAtIndex,
+    renderEmpty = _renderEmpty
   } = props;
   const [index, setIndex] = useAmbassadorState(value, onValueChange, 0);
   const { opposite } = useFashionTheme();
-  const { classes } = useCarouselStyles();
+  const { classes } = useCarouselStyles(props);
   const forward = orientation === ZOrientation.Horizontal ? 'chevron-right' : 'chevron-down';
   const reverse = orientation === ZOrientation.Horizontal ? 'chevron-left' : 'chevron-up';
   const columns = orientation === ZOrientation.Horizontal ? 'auto auto auto 1fr' : 'auto';
@@ -101,9 +104,12 @@ export function ZCarousel(props: IZCarousel) {
           {...ReverseProps}
           className={cssJoinDefined('ZCarousel-navigation ZCarousel-navigation-reverse', ReverseProps?.className)}
           name='carousel-reverse'
+          disabled={count <= 1}
           onClick={handleReverse}
         />
-        <div className={cssJoinDefined('ZCarousel-content', classes.content)}>{renderAtIndex(index)}</div>
+        <div className={cssJoinDefined('ZCarousel-content', classes.content)}>
+          {count <= 0 ? renderEmpty() : renderAtIndex(index)}
+        </div>
         <ZButton
           borderless
           outline
@@ -113,6 +119,7 @@ export function ZCarousel(props: IZCarousel) {
           {...ForwardProps}
           className={cssJoinDefined('ZCarousel-navigation ZCarousel-navigation-forward', ForwardProps?.className)}
           name='carousel-forward'
+          disabled={count <= 1}
           onClick={handleForward}
         />
       </ZGrid>

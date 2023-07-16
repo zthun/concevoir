@@ -1,6 +1,6 @@
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { IZBrand, ZBrandBuilder } from '@zthun/helpful-brands';
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { ZIconFontAwesome } from '../icon/icon-font-awesome';
 import { ZCarousel } from './carousel';
 
@@ -16,8 +16,7 @@ describe('ZCarousel', () => {
   let orientation: ZOrientation | undefined;
   let value: number | undefined;
   let onValueChange: Mock | undefined;
-
-  const renderBrand = (index: number) => <ZIconFontAwesome name={brands[index].name} width={ZSizeFixed.Medium} />;
+  let renderEmpty: (() => ReactNode) | undefined;
 
   const createTestTarget = async () => {
     const element = (
@@ -27,7 +26,8 @@ describe('ZCarousel', () => {
         orientation={orientation}
         value={value}
         onValueChange={onValueChange}
-        renderAtIndex={renderBrand}
+        renderAtIndex={(i) => <ZIconFontAwesome name={brands[i].name} width={ZSizeFixed.Medium} />}
+        renderEmpty={renderEmpty}
       />
     );
 
@@ -45,6 +45,7 @@ describe('ZCarousel', () => {
     orientation = undefined;
     value = undefined;
     onValueChange = undefined;
+    renderEmpty = undefined;
   });
 
   describe('State', () => {
@@ -75,6 +76,30 @@ describe('ZCarousel', () => {
       const icon = ZCircusBy.optional(await target.content(), ZIconComponentModel, expected);
       // Assert.
       expect(icon).toBeTruthy();
+    });
+
+    it('should render nothing if the count is 0 and renderEmpty is not set', async () => {
+      // Arrange.
+      brands = [];
+      const target = await createTestTarget();
+      // Act.
+      const content = await target.content();
+      const actual = await content.text();
+      // Assert.
+      expect(actual).toBeFalsy();
+    });
+
+    it('should render empty if the count is 0', async () => {
+      // Arrange.
+      brands = [];
+      const expected = '?';
+      renderEmpty = () => expected;
+      const target = await createTestTarget();
+      // Act.
+      const content = await target.content();
+      const actual = await content.text();
+      // Assert.
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -140,6 +165,17 @@ describe('ZCarousel', () => {
 
   describe('Navigation', () => {
     describe('Reverse', () => {
+      it('should be disabled if the count is 1', async () => {
+        // Arrange.
+        brands = [new ZBrandBuilder().airbnb().build()];
+        const target = await createTestTarget();
+        // Act.
+        const reverse = await target.reverse();
+        const actual = await reverse.disabled();
+        // Assert.
+        expect(actual).toBeTruthy();
+      });
+
       it('should navigate to the previous item', async () => {
         // Arrange.
         const target = await createTestTarget();
@@ -168,6 +204,16 @@ describe('ZCarousel', () => {
     });
 
     describe('Forward', () => {
+      it('should be disabled if the count is 1', async () => {
+        // Arrange.
+        brands = [new ZBrandBuilder().airbnb().build()];
+        const target = await createTestTarget();
+        // Act.
+        const forward = await target.forward();
+        const actual = await forward.disabled();
+        // Assert.
+        expect(actual).toBeTruthy();
+      });
       it('should navigate to the next item', async () => {
         // Arrange.
         const target = await createTestTarget();

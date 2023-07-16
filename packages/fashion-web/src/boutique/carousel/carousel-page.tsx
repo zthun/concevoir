@@ -4,6 +4,7 @@ import {
   ZCard,
   ZCarousel,
   ZChoiceDropDown,
+  ZChoiceToggle,
   ZH3,
   ZIconFontAwesome,
   ZParagraph,
@@ -14,7 +15,7 @@ import { ZBrands } from '@zthun/helpful-brands';
 import { ZOrientation } from '@zthun/helpful-fn';
 import { useStateAsArray } from '@zthun/helpful-react';
 import { identity, startCase } from 'lodash';
-import React, { useMemo, useState } from 'react';
+import React, { ReactNode, useMemo, useState } from 'react';
 import { ZFashionRouteCarousel } from '../../routes';
 
 /**
@@ -27,12 +28,25 @@ export function ZCarouselPage() {
   const [orientation, setOrientation] = useStateAsArray(ZOrientation.Horizontal);
   const [_orientation] = orientation;
   const orientations = useMemo(() => Object.values(ZOrientation), []);
+  const [count, setCount] = useStateAsArray(ZBrands.length);
+  const [_count] = count;
+  const counts = [0, 1, ZBrands.length];
+  const brands = useMemo(() => ZBrands.slice(0, _count), [_count]);
 
-  const renderBrand = (index: number) => (
+  const renderBubble = (children: ReactNode) => (
     <ZBubble width={ZSizeFixed.Large} padding={ZSizeFixed.Medium}>
-      <ZIconFontAwesome name={ZBrands[index].id} family='brands' width={ZSizeFixed.Large} />
+      {children}
     </ZBubble>
   );
+
+  const renderBrand = (index: number) =>
+    renderBubble(<ZIconFontAwesome name={brands[index].id} family='brands' width={ZSizeFixed.Large} />);
+  const renderQuestion = () => renderBubble(<ZIconFontAwesome name='question' width={ZSizeFixed.Large} />);
+
+  const _setCount = (counts: number[]) => {
+    setIndex(0);
+    setCount(counts);
+  };
 
   return (
     <ZCard
@@ -47,10 +61,11 @@ export function ZCarouselPage() {
         <ZParagraph>A carousel component is great for compacting items in a rotating display of content.</ZParagraph>
 
         <ZCarousel
-          count={ZBrands.length}
+          count={brands.length}
           value={index}
           onValueChange={setIndex}
           renderAtIndex={renderBrand}
+          renderEmpty={renderQuestion}
           orientation={_orientation}
         />
 
@@ -63,6 +78,16 @@ export function ZCarouselPage() {
       <ZBox margin={{ top: ZSizeFixed.Medium }}>
         <ZH3>Options</ZH3>
         <ZStack gap={ZSizeFixed.Small}>
+          <ZChoiceToggle
+            options={counts}
+            value={count}
+            onValueChange={_setCount}
+            indelible
+            label='Count'
+            renderOption={identity}
+            identifier={identity}
+            name='counts'
+          />
           <ZChoiceDropDown
             options={orientations}
             value={orientation}
