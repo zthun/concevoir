@@ -1,13 +1,12 @@
 import { IZCircusDriver, ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
 import { ZOrientation } from '@zthun/helpful-fn';
 import { ZButtonComponentModel } from '../button/button.cm';
-import { ZStackComponentModel } from '../stack/stack.cm';
 
 export class ZCarouselComponentModel extends ZCircusComponentModel {
   public static readonly Selector = '.ZCarousel-root';
 
   public async orientation(): Promise<ZOrientation> {
-    return (await ZCircusBy.first(this.driver, ZStackComponentModel)).orientation();
+    return this.driver.attribute('data-orientation', ZOrientation.Horizontal);
   }
 
   public async index(): Promise<number> {

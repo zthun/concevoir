@@ -89,6 +89,7 @@ export function ZCarousel(props: IZCarousel) {
       data-name={name}
       data-index={index}
       data-count={count}
+      data-orientation={orientation}
     >
       <ZGrid columns={columns} gap={ZSizeFixed.ExtraSmall} alignItems='center'>
         <ZButton
@@ -101,7 +102,6 @@ export function ZCarousel(props: IZCarousel) {
           className={cssJoinDefined('ZCarousel-navigation ZCarousel-navigation-reverse', ReverseProps?.className)}
           name='carousel-reverse'
           onClick={handleReverse}
-          data-orientation={orientation}
         />
         <div className={cssJoinDefined('ZCarousel-content', classes.content)}>{renderAtIndex(index)}</div>
         <ZButton
@@ -114,7 +114,6 @@ export function ZCarousel(props: IZCarousel) {
           className={cssJoinDefined('ZCarousel-navigation ZCarousel-navigation-forward', ForwardProps?.className)}
           name='carousel-forward'
           onClick={handleForward}
-          data-orientation={orientation}
         />
       </ZGrid>
     </div>
