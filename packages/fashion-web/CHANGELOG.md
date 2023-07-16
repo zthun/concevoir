@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.0](https://github.com/zthun/fashion/compare/v0.4.3...v0.5.0) (2023-07-16)
+
+
+### Features
+
+* carousel buttons fade in and out ([6233254](https://github.com/zthun/fashion/commit/6233254c9c65d00775d723ea996f717d4f2c3520))
+* carousel page demos the carousel component ([5e66ab5](https://github.com/zthun/fashion/commit/5e66ab5374c0d29cce7a1773b817827ecfea1069))
+* compact demo ([6cf9840](https://github.com/zthun/fashion/commit/6cf984009789d6a615ef13d2d3feb18271f7c043))
+
+
+
 ## [0.4.3](https://github.com/zthun/fashion/compare/v0.4.2...v0.4.3) (2023-07-09)
 
 **Note:** Version bump only for package @zthun/fashion-web

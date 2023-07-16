@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.0](https://github.com/zthun/fashion/compare/v0.4.3...v0.5.0) (2023-07-16)
+
+
+### Features
+
+* bubble component for avatar like layouts with clipping ([6c7d739](https://github.com/zthun/fashion/commit/6c7d739640091dc559fda15494755c1b658c6b62))
+* carousel buttons fade in and out ([6233254](https://github.com/zthun/fashion/commit/6233254c9c65d00775d723ea996f717d4f2c3520))
+* carousel component provides rotating selectable content ([e754b03](https://github.com/zthun/fashion/commit/e754b03c8f33ca8b916c64da9e335c67ea73ab14))
+* orientation components can now change based on screen size ([d3ce0ad](https://github.com/zthun/fashion/commit/d3ce0ad024767e9e3f569cbf0b4acfd5916905fa))
+
+
+### Bug Fixes
+
+* button no longer force renders the end adornment ([f319d96](https://github.com/zthun/fashion/commit/f319d968aa6121c021633b27c9ae3a62194b6638))
+* buttons should now respect the compact flag ([8bd33ae](https://github.com/zthun/fashion/commit/8bd33ae1fde6512ff7fd31bc91ff1408dfa2a8fc))
+
+
+### Reverts
+
+* responsive orientation ([0fce8e0](https://github.com/zthun/fashion/commit/0fce8e09af6b802c95e3fdd79a422c2f7cfc2592))
+
+
+
 ## [0.4.3](https://github.com/zthun/fashion/compare/v0.4.2...v0.4.3) (2023-07-09)
 
 
