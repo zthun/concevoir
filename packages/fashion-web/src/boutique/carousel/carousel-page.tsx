@@ -1,4 +1,14 @@
-import { ZBox, ZCard, ZCarousel, ZChoiceDropDown, ZH3, ZIconFontAwesome, ZParagraph } from '@zthun/fashion-boutique';
+import {
+  ZBox,
+  ZBubble,
+  ZCard,
+  ZCarousel,
+  ZChoiceDropDown,
+  ZH3,
+  ZIconFontAwesome,
+  ZParagraph,
+  ZStack
+} from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZBrands } from '@zthun/helpful-brands';
 import { ZOrientation } from '@zthun/helpful-fn';
@@ -19,7 +29,9 @@ export function ZCarouselPage() {
   const orientations = useMemo(() => Object.values(ZOrientation), []);
 
   const renderBrand = (index: number) => (
-    <ZIconFontAwesome name={ZBrands[index].id} family='brands' width={ZSizeFixed.Large} />
+    <ZBubble width={ZSizeFixed.Large} padding={ZSizeFixed.Medium}>
+      <ZIconFontAwesome name={ZBrands[index].id} family='brands' width={ZSizeFixed.Large} />
+    </ZBubble>
   );
 
   return (
@@ -34,15 +46,13 @@ export function ZCarouselPage() {
 
         <ZParagraph>A carousel component is great for compacting items in a rotating display of content.</ZParagraph>
 
-        <ZBox width={ZSizeFixed.ExtraSmall}>
-          <ZCarousel
-            count={ZBrands.length}
-            value={index}
-            onValueChange={setIndex}
-            renderAtIndex={renderBrand}
-            orientation={_orientation}
-          />
-        </ZBox>
+        <ZCarousel
+          count={ZBrands.length}
+          value={index}
+          onValueChange={setIndex}
+          renderAtIndex={renderBrand}
+          orientation={_orientation}
+        />
 
         <ZBox margin={{ top: ZSizeFixed.Small }}>
           <span>Current Index: </span>
@@ -52,15 +62,18 @@ export function ZCarouselPage() {
 
       <ZBox margin={{ top: ZSizeFixed.Medium }}>
         <ZH3>Options</ZH3>
-        <ZChoiceDropDown
-          options={orientations}
-          value={orientation}
-          onValueChange={setOrientation}
-          indelible
-          renderOption={startCase}
-          identifier={identity}
-          name='orientation'
-        />
+        <ZStack gap={ZSizeFixed.Small}>
+          <ZChoiceDropDown
+            options={orientations}
+            value={orientation}
+            onValueChange={setOrientation}
+            indelible
+            label='Orientation'
+            renderOption={startCase}
+            identifier={identity}
+            name='orientation'
+          />
+        </ZStack>
       </ZBox>
     </ZCard>
   );

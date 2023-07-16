@@ -2,15 +2,15 @@ import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZOrientation, cssJoinDefined } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
 import React, { ReactNode } from 'react';
-import { createStyleHook } from 'src/theme/styled';
 import { IZButton, ZButton } from '../button/button';
 import { IZComponentName } from '../component/component-name';
 import { IZComponentOrientation } from '../component/component-orientation';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentValue } from '../component/component-value';
+import { ZGrid } from '../grid/grid';
 import { ZIconFontAwesome } from '../icon/icon-font-awesome';
-import { ZStack } from '../stack/stack';
 import { useFashionTheme } from '../theme/fashion';
+import { createStyleHook } from '../theme/styled';
 
 export interface IZCarousel
   extends IZComponentStyle,
@@ -26,6 +26,22 @@ export interface IZCarousel
 }
 
 const useCarouselStyles = createStyleHook(() => ({
+  root: {
+    '.ZCarousel-navigation-forward': {},
+
+    '.ZCarousel-navigation-reverse': {},
+
+    '.ZCarousel-navigation-forward,.ZCarousel-navigation-reverse': {
+      opacity: 0,
+      transition: 'opacity .5s'
+    },
+
+    '&:hover': {
+      '.ZCarousel-navigation-forward,.ZCarousel-navigation-reverse': {
+        opacity: 1
+      }
+    }
+  },
   content: {
     flexGrow: 1,
     justifySelf: 'center',
@@ -51,6 +67,7 @@ export function ZCarousel(props: IZCarousel) {
   const { classes } = useCarouselStyles();
   const forward = orientation === ZOrientation.Horizontal ? 'chevron-right' : 'chevron-down';
   const reverse = orientation === ZOrientation.Horizontal ? 'chevron-left' : 'chevron-up';
+  const columns = orientation === ZOrientation.Horizontal ? 'auto auto auto 1fr' : 'auto';
 
   const handleReverse = () => {
     setIndex((i) => {
@@ -67,8 +84,13 @@ export function ZCarousel(props: IZCarousel) {
   };
 
   return (
-    <div className={cssJoinDefined('ZCarousel-root', className)} data-name={name} data-index={index} data-count={count}>
-      <ZStack orientation={orientation} gap={ZSizeFixed.Small} justifyContent='center' alignItems='center'>
+    <div
+      className={cssJoinDefined('ZCarousel-root', className, classes.root)}
+      data-name={name}
+      data-index={index}
+      data-count={count}
+    >
+      <ZGrid columns={columns} gap={ZSizeFixed.ExtraSmall} alignItems='center'>
         <ZButton
           borderless
           outline
@@ -76,9 +98,10 @@ export function ZCarousel(props: IZCarousel) {
           fashion={opposite}
           label={<ZIconFontAwesome name={reverse} width={ZSizeFixed.Small} />}
           {...ReverseProps}
-          className={cssJoinDefined('ZCarousel-reverse', ReverseProps?.className)}
+          className={cssJoinDefined('ZCarousel-navigation ZCarousel-navigation-reverse', ReverseProps?.className)}
           name='carousel-reverse'
           onClick={handleReverse}
+          data-orientation={orientation}
         />
         <div className={cssJoinDefined('ZCarousel-content', classes.content)}>{renderAtIndex(index)}</div>
         <ZButton
@@ -88,11 +111,12 @@ export function ZCarousel(props: IZCarousel) {
           fashion={opposite}
           label={<ZIconFontAwesome name={forward} width={ZSizeFixed.Small} />}
           {...ForwardProps}
-          className={cssJoinDefined('ZCarousel-forward', ForwardProps?.className)}
+          className={cssJoinDefined('ZCarousel-navigation ZCarousel-navigation-forward', ForwardProps?.className)}
           name='carousel-forward'
           onClick={handleForward}
+          data-orientation={orientation}
         />
-      </ZStack>
+      </ZGrid>
     </div>
   );
 }
