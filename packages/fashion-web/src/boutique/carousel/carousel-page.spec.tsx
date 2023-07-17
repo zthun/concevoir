@@ -36,4 +36,28 @@ describe('ZCarouselPage', () => {
     // Assert.
     expect(actual).toEqual(expected);
   });
+
+  it('should update the count of carousel items to 1', async () => {
+    // Arrange
+    const target = await createTestTarget();
+    const count = await target.count();
+    // Act.
+    await count.select(1);
+    const carousel = await target.carousel();
+    const actual = await carousel.count();
+    // Assert.
+    expect(actual).toEqual(1);
+  });
+
+  it('should update the count of carousel items to 0', async () => {
+    // Arrange
+    const target = await createTestTarget();
+    const count = await target.count();
+    // Act.
+    await count.select(0);
+    const carousel = await target.carousel();
+    const actual = await carousel.count();
+    // Assert.
+    expect(actual).toEqual(0);
+  });
 });

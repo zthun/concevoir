@@ -12,6 +12,10 @@ export class ZCarouselPageComponentModel extends ZCircusComponentModel {
     return ZCircusBy.first(this.driver, ZChoiceComponentModel, 'orientation');
   }
 
+  public count(): Promise<ZChoiceComponentModel> {
+    return ZCircusBy.first(this.driver, ZChoiceComponentModel, 'count');
+  }
+
   public async index(): Promise<number> {
     const index = await this.driver.select('.ZCarouselPage-index');
     const text = await index.text();

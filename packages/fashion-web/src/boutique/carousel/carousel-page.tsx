@@ -86,7 +86,7 @@ export function ZCarouselPage() {
             label='Count'
             renderOption={identity}
             identifier={identity}
-            name='counts'
+            name='count'
           />
           <ZChoiceDropDown
             options={orientations}
