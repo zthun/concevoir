@@ -57,6 +57,7 @@ export * from './full-screen/full-screen';
 export * from './grid-view/grid-view';
 export * from './grid-view/grid-view.cm';
 export * from './grid/grid';
+export * from './grid/grid-span';
 export * from './icon/icon';
 export * from './icon/icon-font-awesome';
 export * from './icon/icon-material';
