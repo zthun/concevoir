@@ -1,5 +1,4 @@
-import { hex } from '../color/hex';
-import { black, transparent, white } from '../color/rgb';
+import { transparent } from '../color/rgb';
 import { IZFashion, ZFashionBuilder } from '../fashion/fashion';
 
 /**
@@ -124,90 +123,18 @@ export class ZFashionThemeBuilder<TCustom extends object = {}> {
   public constructor() {
     this._design = {
       name: 'Light',
-      primary: new ZFashionBuilder()
-        .name('Primary')
-        .main(hex(0x1976d2))
-        .light(hex(0x42a5f5))
-        .dark(hex(0x1565c0))
-        .contrast(white())
-        .build(),
-      secondary: new ZFashionBuilder()
-        .name('Secondary')
-        .main(hex(0x9c27b0))
-        .light(hex(0xba68c8))
-        .dark(hex(0x7b1fa2))
-        .contrast(white())
-        .build(),
-      success: new ZFashionBuilder()
-        .name('Success')
-        .main(hex(0x2e7d32))
-        .light(hex(0x4caf50))
-        .dark(hex(0x1b5e20))
-        .contrast(white())
-        .build(),
-      warning: new ZFashionBuilder()
-        .name('Warning')
-        .main(hex(0xed6c02))
-        .light(hex(0xff9800))
-        .dark(hex(0xe65100))
-        .contrast(white())
-        .build(),
-      error: new ZFashionBuilder()
-        .name('Error')
-        .main(hex(0xd32f2f))
-        .light(hex(0xef5350))
-        .dark(hex(0xc62828))
-        .contrast(white())
-        .build(),
-      info: new ZFashionBuilder()
-        .name('Info')
-        .main(hex(0x0288d1))
-        .light(hex(0x039f4))
-        .dark(hex(0x1579b))
-        .contrast(white())
-        .build(),
-      body: new ZFashionBuilder()
-        .name('Body')
-        .main(hex(0xeeeeee))
-        .light(hex(0xf5f5f5))
-        .dark(hex(0xbdbdbd))
-        .contrast(black())
-        .build(),
-      surface: new ZFashionBuilder()
-        .name('Surface')
-        .main(hex(0xfafafa))
-        .light(white())
-        .dark(hex(0xf5f5f5))
-        .contrast(black())
-        .build(),
-      component: new ZFashionBuilder()
-        .name('Component')
-        .main(hex(0xdedede))
-        .light(hex(0xeeeeee))
-        .dark(hex(0xcccccc))
-        .contrast(black())
-        .build(),
-      light: new ZFashionBuilder()
-        .name('Light')
-        .main(hex(0xfafafa))
-        .light(white())
-        .dark(hex(0xf5f5f5))
-        .contrast(black())
-        .build(),
-      dark: new ZFashionBuilder()
-        .name('Dark')
-        .main(hex(0x212121))
-        .light(hex(0x424242))
-        .dark(black())
-        .contrast(white())
-        .build(),
-      opposite: new ZFashionBuilder()
-        .name('Opposite')
-        .main(hex(0x212121))
-        .light(hex(0x424242))
-        .dark(black())
-        .contrast(white())
-        .build(),
+      primary: new ZFashionBuilder().name('Primary').spectrum(0x1976d2).build(),
+      secondary: new ZFashionBuilder().name('Secondary').spectrum(0x9c27b0).build(),
+      success: new ZFashionBuilder().name('Success').spectrum(0x2e7d32).build(),
+      warning: new ZFashionBuilder().name('Warning').spectrum(0xff9e42).build(),
+      error: new ZFashionBuilder().name('Error').spectrum(0xd32f2f).build(),
+      info: new ZFashionBuilder().name('Info').spectrum(0x0288d1).build(),
+      body: new ZFashionBuilder().name('Body').spectrum(0xeeeeee).build(),
+      surface: new ZFashionBuilder().name('Surface').spectrum(0xfafafa).build(),
+      component: new ZFashionBuilder().name('Component').spectrum(0xdedede).build(),
+      light: new ZFashionBuilder().name('Light').spectrum(0xfafafa).build(),
+      dark: new ZFashionBuilder().name('Dark').spectrum(0x212121).build(),
+      opposite: new ZFashionBuilder().name('Opposite').spectrum(0x212121).build(),
       transparent: new ZFashionBuilder().name('Transparent').main(transparent()).contrast('inherit').build(),
       custom: {} as TCustom
     };
