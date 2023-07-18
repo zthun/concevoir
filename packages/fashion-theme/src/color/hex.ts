@@ -1,13 +1,19 @@
-import { ZColor } from './color';
+import { ZColor, toRgb } from './color';
 import { rgb } from './rgb';
 
 /**
- * Constructs a css color from a hex number.
+ * Constructs a css color from a number.
+ *
+ * You can use regular numbers or hex values using 0x
+ *
+ * @param v -
+ *        The numeric color value.
+ *
+ * @returns
+ *        The css color from the number.  This will
+ *        use the rgb format.
  */
 export function hex(v: number): ZColor {
-  const r = (v & 0xff0000) >> 16;
-  const g = (v & 0x00ff00) >> 8;
-  const b = v & 0x0000ff;
-
+  const [r, g, b] = toRgb(v);
   return rgb(r, g, b);
 }
