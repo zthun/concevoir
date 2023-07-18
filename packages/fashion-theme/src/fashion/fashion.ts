@@ -1,4 +1,5 @@
-import { ZColor } from '../color/color';
+import { ZColor, brighten, contrast } from '../color/color';
+import { hex } from '../color/hex';
 import { black, white } from '../color/rgb';
 
 /**
@@ -16,18 +17,19 @@ export interface IZFashion {
   readonly main: ZColor;
 
   /**
-   * The lighter color.
-   *
-   * Should just use main if this is falsy.
+   * A lighter version of main.
    */
   readonly light?: ZColor;
 
   /**
-   * The dark color.
-   *
-   * Should just use main if this is falsy.
+   * A darker version of main.
    */
   readonly dark?: ZColor;
+
+  /**
+   * Appropriate border color.
+   */
+  readonly border?: ZColor;
 
   /**
    * The color that contrasts the main.
@@ -70,6 +72,32 @@ export class ZFashionBuilder {
   public name(name: string): this {
     this._fashion.name = name;
     return this;
+  }
+
+  /**
+   * Sets the light, main, and dark.
+   *
+   * If you only have the main color, this will auto
+   * lighten and darken your main color by a given amount.
+   *
+   * This will also calculate a contrast value of white or black,
+   * whichever one gives the higher contrast value off of the main
+   * color.
+   *
+   * @param color -
+   *        The main color.
+   * @param amount -
+   *        The amount to lighten and darken.
+   */
+  public spectrum(color: number, amount = 77) {
+    const whiteContrast = contrast(color, 0xffffff);
+    const blackContrast = contrast(color, 0x000000);
+    const higherContrast = whiteContrast >= blackContrast ? white() : black();
+
+    return this.main(hex(color))
+      .dark(hex(brighten(color, -amount)))
+      .light(hex(brighten(color, amount)))
+      .contrast(higherContrast);
   }
 
   /**
@@ -125,6 +153,20 @@ export class ZFashionBuilder {
    */
   public light(color: ZColor): this {
     this._fashion.light = color;
+    return this;
+  }
+
+  /**
+   * Sets an appropriate border for the main color.
+   *
+   * @param color -
+   *        The border color.
+   *
+   * @returns -
+   *        This object.
+   */
+  public border(color: ZColor): this {
+    this._fashion.border = color;
     return this;
   }
 

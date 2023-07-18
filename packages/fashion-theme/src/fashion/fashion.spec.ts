@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
+import { brighten, fromRgb } from '../color/color';
+import { hex } from '../color/hex';
 import { hsl } from '../color/hsl';
-import { rgb, white } from '../color/rgb';
+import { black, rgb, white } from '../color/rgb';
 import { ZFashionBuilder } from './fashion';
 
 describe('ZFashion', () => {
@@ -12,6 +14,45 @@ describe('ZFashion', () => {
     it('should set the main fashion', () => {
       const expected = rgb(255, 0, 0);
       expect(createTestTarget().main(rgb(255, 0, 0)).build().main).toEqual(expected);
+    });
+
+    it('should set the contrast fashion', () => {
+      const expected = rgb(255, 255, 0, 0.5);
+      expect(createTestTarget().contrast(expected).build().contrast).toEqual(expected);
+    });
+
+    it('should set the border fashion', () => {
+      const expected = rgb(255, 255, 0, 0.5);
+      expect(createTestTarget().border(expected).build().border).toEqual(expected);
+    });
+  });
+
+  describe('Spectrum', () => {
+    it('should set the main fashion', () => {
+      const expected = rgb(255, 0, 0);
+      expect(createTestTarget().spectrum(fromRgb(255, 0, 0)).build().main).toEqual(expected);
+    });
+
+    it('should set the dark fashion', () => {
+      const color = fromRgb(255, 0, 0);
+      const amount = 100;
+      const expected = hex(brighten(color, -amount));
+      expect(createTestTarget().spectrum(color, amount).build().dark).toEqual(expected);
+    });
+
+    it('should set the light fashion', () => {
+      const color = fromRgb(255, 0, 0);
+      const amount = 100;
+      const expected = hex(brighten(color, amount));
+      expect(createTestTarget().spectrum(color, amount).build().light).toEqual(expected);
+    });
+
+    it('should set the contrast fashion to white when it has a higher contrast ratio', () => {
+      expect(createTestTarget().spectrum(0).build().contrast).toEqual(white());
+    });
+
+    it('should set the contrast fashion to black when it has a higher contrast ratio', () => {
+      expect(createTestTarget().spectrum(0xffffff).build().contrast).toEqual(black());
     });
 
     it('should set the contrast fashion', () => {
