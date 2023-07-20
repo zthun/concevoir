@@ -94,10 +94,11 @@ export class ZFashionBuilder {
     const blackContrast = contrast(color, 0x000000);
     const higherContrast = whiteContrast >= blackContrast ? white() : black();
 
-    return this.main(hex(color))
-      .dark(hex(brighten(color, -amount)))
-      .light(hex(brighten(color, amount)))
-      .contrast(higherContrast);
+    const main = hex(color);
+    const light = hex(brighten(color, amount));
+    const dark = hex(brighten(color, -amount));
+
+    return this.main(main).dark(dark).light(light).contrast(higherContrast).border(dark);
   }
 
   /**

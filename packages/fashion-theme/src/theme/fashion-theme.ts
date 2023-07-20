@@ -128,7 +128,7 @@ export class ZFashionThemeBuilder<TCustom extends object = {}> {
       success: new ZFashionBuilder().name('Success').spectrum(0x2e7d32).build(),
       warning: new ZFashionBuilder().name('Warning').spectrum(0xff9e42).build(),
       error: new ZFashionBuilder().name('Error').spectrum(0xd32f2f).build(),
-      info: new ZFashionBuilder().name('Info').spectrum(0x0288d1).build(),
+      info: new ZFashionBuilder().name('Info').spectrum(0xb5e5ff).build(),
       body: new ZFashionBuilder().name('Body').spectrum(0xeeeeee).build(),
       surface: new ZFashionBuilder().name('Surface').spectrum(0xfafafa).build(),
       component: new ZFashionBuilder().name('Component').spectrum(0xdedede).build(),

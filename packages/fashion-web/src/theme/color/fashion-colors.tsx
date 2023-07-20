@@ -1,4 +1,13 @@
-import { IZComponentFashion, ZBox, ZCaption, ZH4, ZStack, ZTextColor, createStyleHook } from '@zthun/fashion-boutique';
+import {
+  IZComponentFashion,
+  ZBox,
+  ZCaption,
+  ZGrid,
+  ZH4,
+  ZStack,
+  ZTextColor,
+  createStyleHook
+} from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionBuilder } from '@zthun/fashion-theme';
 import { ZOrientation, cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
@@ -16,30 +25,31 @@ const useFashionColorsStyles = createStyleHook(({ tailor }, props: IZFashionColo
 
   return {
     block: {
-      height: '4rem',
-      width: '4rem',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '5rem',
       borderStyle: 'solid',
       borderWidth: tailor.thickness()
     },
 
     light: {
+      color: contrast,
       backgroundColor: light,
       borderColor: light
     },
 
     main: {
+      color: contrast,
       backgroundColor: main,
       borderColor: main
     },
 
     dark: {
+      color: contrast,
       backgroundColor: dark,
       borderColor: dark
-    },
-
-    contrast: {
-      backgroundColor: contrast,
-      borderColor: main
     }
   };
 });
@@ -50,10 +60,9 @@ export function ZFashionColors(props: IZFashionColors) {
   const boxFashion = useMemo(() => new ZFashionBuilder().copy(fashion).swap().build(), [fashion]);
 
   const renderColor = (name: string, c: string) => (
-    <ZStack orientation={ZOrientation.Vertical} alignItems='center'>
+    <div className={cssJoinDefined('ZFashionColors-block', classes.block, c)}>
       <ZCaption compact>{name}</ZCaption>
-      <div className={cssJoinDefined('ZFashionColors-block', classes.block, c)} />
-    </ZStack>
+    </div>
   );
 
   return (
@@ -67,14 +76,13 @@ export function ZFashionColors(props: IZFashionColors) {
     >
       <ZStack orientation={ZOrientation.Vertical} gap={ZSizeFixed.Small}>
         <ZTextColor fashion={fashion}>
-          <ZH4>{fashion.name}</ZH4>
+          <ZH4 compact>{fashion.name}</ZH4>
         </ZTextColor>
-        <ZStack orientation={ZOrientation.Horizontal} gap={ZSizeFixed.Medium}>
+        <ZGrid columns='1fr 1fr 1fr'>
           {renderColor('Light', classes.light)}
           {renderColor('Main', classes.main)}
           {renderColor('Dark', classes.dark)}
-          {renderColor('Contrast', classes.contrast)}
-        </ZStack>
+        </ZGrid>
       </ZStack>
     </ZBox>
   );

@@ -41,6 +41,7 @@ export const useButtonStyles = createStyleHook(({ theme, tailor }, props: IZButt
 
   const text = fashion.contrast;
   const main = fashion.main;
+  const border = firstDefined(fashion.main, fashion.border);
   const dark = firstDefined(fashion.main, fashion.dark);
   const light = firstDefined(fashion.main, fashion.light);
   const minWidth = compact ? 0 : undefined;
@@ -63,7 +64,7 @@ export const useButtonStyles = createStyleHook(({ theme, tailor }, props: IZButt
       'width': '100%',
       'color': text,
       'backgroundColor': main,
-      'borderColor': dark,
+      'borderColor': border,
       'minWidth': minWidth,
 
       '&:hover': {

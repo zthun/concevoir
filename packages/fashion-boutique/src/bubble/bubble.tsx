@@ -36,7 +36,7 @@ const useBubbleStyles = createStyleHook(({ theme, tailor }, props: IZBubble) => 
       alignContent: 'center',
       alignItems: 'center',
       background: fashion.main,
-      border: `${tailor.thickness(border)} solid ${theme.opposite.main}`,
+      border: `${tailor.thickness(border)} solid ${fashion.border}`,
       borderRadius: '50%',
       clipPath: `circle()`,
       display: 'flex',

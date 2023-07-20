@@ -64,9 +64,9 @@ const useBoxStyles = createStyleHook(({ theme, tailor, device }, props: IZBox) =
   const _border = {
     width: firstDefined(ZSizeVoid.None, border?.width),
     style: firstDefined('solid', border?.style),
-    fashion: firstDefined(transparent(), fashion?.dark),
-    focus: firstDefined(transparent(), focus?.dark, fashion?.dark),
-    hover: firstDefined(transparent(), hover?.dark, fashion?.dark)
+    fashion: firstDefined(transparent(), fashion?.border),
+    focus: firstDefined(transparent(), focus?.border, fashion?.border),
+    hover: firstDefined(transparent(), hover?.border, fashion?.border)
   };
 
   const _background = {

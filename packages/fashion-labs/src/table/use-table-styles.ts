@@ -54,7 +54,7 @@ export const useTableStyles = createStyleHook(({ theme, tailor }) => {
       borderTopLeftRadius: tailor.thickness(ZSizeFixed.ExtraLarge),
       borderTopRightRadius: tailor.thickness(ZSizeFixed.ExtraLarge),
       padding: tailor.gap(ZSizeFixed.ExtraSmall),
-      border: `1px solid ${theme.primary.dark}`,
+      border: `1px solid ${theme.primary.border}`,
       borderBottom: 0,
       // There is this bizarre bug that I can't figure out where the
       // toolbar is offset by 2 pixels.  Just fix the stupid thing here.
@@ -68,7 +68,7 @@ export const useTableStyles = createStyleHook(({ theme, tailor }) => {
       color: theme.primary.contrast,
       borderBottomLeftRadius: tailor.thickness(ZSizeFixed.ExtraLarge),
       borderBottomRightRadius: tailor.thickness(ZSizeFixed.ExtraLarge),
-      border: `1px solid ${theme.primary.dark}`,
+      border: `1px solid ${theme.primary.border}`,
       borderTop: 0,
       padding: tailor.gap(ZSizeFixed.ExtraSmall)
     },

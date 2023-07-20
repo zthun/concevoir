@@ -24,7 +24,7 @@ const useAlertStyles = createStyleHook(({ theme, tailor }, props: IZAlert) => {
   const { fashion = primary } = props;
 
   const light = firstDefined(fashion.main, fashion.light);
-  const dark = firstDefined(fashion.main, fashion.dark);
+  const border = firstDefined(fashion.main, fashion.border);
 
   return {
     root: {
@@ -32,7 +32,7 @@ const useAlertStyles = createStyleHook(({ theme, tailor }, props: IZAlert) => {
       'alignItems': 'center',
       'backgroundColor': fashion.main,
       'color': fashion.contrast,
-      'boxShadow': `0 0 0 ${tailor.thickness()} ${dark}`,
+      'boxShadow': `0 0 0 ${tailor.thickness()} ${border}`,
       'border': `${tailor.thickness()} double ${light}`,
 
       '.MuiAlert-icon': {
