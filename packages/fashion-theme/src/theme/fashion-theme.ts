@@ -100,6 +100,11 @@ export interface IZFashionTheme<TCustom extends object = {}> extends ZFashionRec
   readonly transparent: IZFashion;
 
   /**
+   * Inherit fashion.
+   */
+  readonly inherit: IZFashion;
+
+  /**
    * Custom fashions.
    */
   readonly custom: TCustom;
@@ -136,6 +141,7 @@ export class ZFashionThemeBuilder<TCustom extends object = {}> {
       dark: new ZFashionBuilder().name('Dark').spectrum(0x212121).build(),
       opposite: new ZFashionBuilder().name('Opposite').spectrum(0x212121).build(),
       transparent: new ZFashionBuilder().name('Transparent').main(transparent()).contrast('inherit').build(),
+      inherit: new ZFashionBuilder().name('Inherit').main('inherit').contrast('inherit').build(),
       custom: {} as TCustom
     };
   }
