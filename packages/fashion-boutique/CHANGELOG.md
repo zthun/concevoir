@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.2](https://github.com/zthun/fashion/compare/v0.6.1...v0.6.2) (2023-07-17)
+
+
+### Bug Fixes
+
+* grid span now properly reacts to sizing ([1a658e4](https://github.com/zthun/fashion/commit/1a658e43c0e0b60a7768b34ac7a26df784da4d1d))
+
+
+
 ## [0.6.1](https://github.com/zthun/fashion/compare/v0.6.0...v0.6.1) (2023-07-17)
 
 
