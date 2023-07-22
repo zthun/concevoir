@@ -13,8 +13,9 @@ import { IZComponentStyle } from '../component/component-style';
  */
 interface IZStack extends IZComponentHierarchy, IZComponentStyle, IZComponentName, IZComponentOrientation {
   alignItems?: Property.AlignItems;
-  justifyContent?: Property.JustifyContent;
   gap?: ZSizeFixed | ZSizeVoid;
+  justifyContent?: Property.JustifyContent;
+  inline?: boolean;
 }
 
 const GapChart = {
@@ -23,7 +24,7 @@ const GapChart = {
 };
 
 export function ZStack(props: IZStack) {
-  const { className, alignItems, justifyContent, gap, name, orientation, children } = props;
+  const { className, alignItems, justifyContent, gap, name, orientation, children, inline } = props;
   const _gap = firstDefined(ZSizeVoid.None, gap);
   const direction = orientation === ZOrientation.Horizontal ? 'row' : 'column';
   const spacing = GapChart[_gap];
@@ -34,9 +35,11 @@ export function ZStack(props: IZStack) {
       alignItems={alignItems}
       justifyContent={justifyContent}
       spacing={spacing}
+      sx={{ display: inline ? 'inline-flex' : 'flex' }}
       direction={direction}
       data-orientation={orientation}
       data-name={name}
+      data-inline={inline}
     >
       {children}
     </Stack>

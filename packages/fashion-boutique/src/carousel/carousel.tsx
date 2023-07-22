@@ -2,12 +2,12 @@ import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZOrientation, cssJoinDefined } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
 import React, { ReactNode } from 'react';
+import { ZStack } from 'src/stack/stack';
 import { IZButton, ZButton } from '../button/button';
 import { IZComponentName } from '../component/component-name';
 import { IZComponentOrientation } from '../component/component-orientation';
 import { IZComponentStyle } from '../component/component-style';
 import { IZComponentValue } from '../component/component-value';
-import { ZGrid } from '../grid/grid';
 import { ZIconFontAwesome } from '../icon/icon-font-awesome';
 import { useFashionTheme } from '../theme/fashion';
 import { createStyleHook } from '../theme/styled';
@@ -28,24 +28,21 @@ export interface IZCarousel
 
 const useCarouselStyles = createStyleHook((_, props: IZCarousel) => {
   const { count } = props;
+  const opacity = 0.5;
+  const visibility = count <= 1 ? 'hidden' : undefined;
   return {
     root: {
       '.ZCarousel-navigation-forward,.ZCarousel-navigation-reverse': {
-        opacity: 0,
+        visibility,
+        opacity,
         transition: 'opacity .5s'
       },
 
       '&:hover': {
         '.ZCarousel-navigation-forward,.ZCarousel-navigation-reverse': {
-          opacity: count <= 1 ? 0 : 1
+          opacity: 1
         }
       }
-    },
-    content: {
-      flexGrow: 1,
-      justifySelf: 'center',
-      alignSelf: 'center',
-      textAlign: 'center'
     }
   };
 });
@@ -70,7 +67,6 @@ export function ZCarousel(props: IZCarousel) {
   const { classes } = useCarouselStyles(props);
   const forward = orientation === ZOrientation.Horizontal ? 'chevron-right' : 'chevron-down';
   const reverse = orientation === ZOrientation.Horizontal ? 'chevron-left' : 'chevron-up';
-  const columns = orientation === ZOrientation.Horizontal ? 'auto auto auto 1fr' : 'auto';
 
   const handleReverse = () => {
     setIndex((i) => {
@@ -94,7 +90,7 @@ export function ZCarousel(props: IZCarousel) {
       data-count={count}
       data-orientation={orientation}
     >
-      <ZGrid columns={columns} gap={ZSizeFixed.ExtraSmall} alignItems='center'>
+      <ZStack orientation={orientation} gap={ZSizeFixed.ExtraSmall} alignItems='center' inline>
         <ZButton
           borderless
           outline
@@ -107,9 +103,7 @@ export function ZCarousel(props: IZCarousel) {
           disabled={count <= 1}
           onClick={handleReverse}
         />
-        <div className={cssJoinDefined('ZCarousel-content', classes.content)}>
-          {count <= 0 ? renderEmpty() : renderAtIndex(index)}
-        </div>
+        <div className={cssJoinDefined('ZCarousel-content')}>{count <= 0 ? renderEmpty() : renderAtIndex(index)}</div>
         <ZButton
           borderless
           outline
@@ -122,7 +116,7 @@ export function ZCarousel(props: IZCarousel) {
           disabled={count <= 1}
           onClick={handleForward}
         />
-      </ZGrid>
+      </ZStack>
     </div>
   );
 }
