@@ -9,6 +9,7 @@ import { createStyleHook } from '../theme/styled';
 
 export interface IZGrid extends IZComponentStyle, IZComponentHierarchy, IZComponentHeight<ZSizeVaried> {
   alignItems?: Property.AlignItems;
+  justifyItems?: Property.JustifyItems;
   alignContent?: Property.AlignContent;
   justifyContent?: Property.JustifyContent;
   gap?: ZSizeFixed | ZSizeVoid;
@@ -25,6 +26,7 @@ const GridHeightChart = createSizeChartVariedCss();
 const useGridStyles = createStyleHook(({ tailor, device }, props: IZGrid) => {
   const {
     alignItems,
+    justifyItems,
     alignContent,
     justifyContent,
     gap = ZSizeVoid.None,
@@ -73,6 +75,7 @@ const useGridStyles = createStyleHook(({ tailor, device }, props: IZGrid) => {
       gridTemplateRows: rows,
       gap: tailor.gap(gap),
       alignItems,
+      justifyItems,
       alignContent,
       justifyContent
     }
