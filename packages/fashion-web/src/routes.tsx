@@ -35,6 +35,13 @@ export const ZFashionRouteBoolean = new ZRouteBuilder()
   .avatar('toggle-off')
   .build();
 
+export const ZFashionRouteBubble = new ZRouteBuilder()
+  .name('Bubble')
+  .path('bubble')
+  .description('Content in a Circle')
+  .avatar('circle')
+  .build();
+
 export const ZFashionRouteButton = new ZRouteBuilder()
   .name('Button')
   .path('button')
@@ -136,6 +143,7 @@ export const ZFashionRouteTypography = new ZRouteBuilder()
 export const ZFashionRouteAllComponents = [
   ZFashionRouteAlert,
   ZFashionRouteBoolean,
+  ZFashionRouteBubble,
   ZFashionRouteButton,
   ZFashionRouteCard,
   ZFashionRouteCarousel,

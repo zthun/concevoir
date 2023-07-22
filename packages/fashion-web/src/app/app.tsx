@@ -19,6 +19,7 @@ import React, { useMemo, useState } from 'react';
 import { ZAlertPage } from '../boutique/alert/alert-page';
 import { ZBooleanPage } from '../boutique/boolean/boolean-page';
 import { ZBoutiquePage } from '../boutique/boutique-page';
+import { ZBubblePage } from '../boutique/bubble/bubble-page';
 import { ZButtonPage } from '../boutique/button/button-page';
 import { ZCardPage } from '../boutique/card/card-page';
 import { ZCarouselPage } from '../boutique/carousel/carousel-page';
@@ -38,6 +39,7 @@ import {
   ZFashionRouteAlert,
   ZFashionRouteBoolean,
   ZFashionRouteBoutique,
+  ZFashionRouteBubble,
   ZFashionRouteButton,
   ZFashionRouteCard,
   ZFashionRouteCarousel,
@@ -104,6 +106,7 @@ export function ZFashionApp() {
             <ZRoute path={ZFashionRouteBoutique.path} element={<ZBreadcrumbsOutlet breadcrumbsProps={breadcrumbs} />}>
               <ZRoute path={ZFashionRouteAlert.path} element={<ZAlertPage />} />
               <ZRoute path={ZFashionRouteBoolean.path} element={<ZBooleanPage />} />
+              <ZRoute path={ZFashionRouteBubble.path} element={<ZBubblePage />} />
               <ZRoute path={ZFashionRouteButton.path} element={<ZButtonPage />} />
               <ZRoute path={ZFashionRouteCard.path} element={<ZCardPage />} />
               <ZRoute path={ZFashionRouteCarousel.path} element={<ZCarouselPage />} />
