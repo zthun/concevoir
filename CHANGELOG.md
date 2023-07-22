@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.0](https://github.com/zthun/fashion/compare/v0.6.2...v0.7.0) (2023-07-22)
+
+
+### Features
+
+* add support for border colors and auto colors based on main color ([5884457](https://github.com/zthun/fashion/commit/58844571297fa57efd971b3e41c31fc7d6caf31e))
+* fromRgb, toRgb, brighten, luminance, and contrast ([723002a](https://github.com/zthun/fashion/commit/723002af33225db53886d4016ace4ba9d80cfc0f))
+* grids can now justify items ([570c5de](https://github.com/zthun/fashion/commit/570c5defe43f623e88b7d8f1fc02bb9cb77ccb9d))
+* stacks can now be inline flex as well as flex ([21cc6b5](https://github.com/zthun/fashion/commit/21cc6b5eec6d193c7ca3fcbffbda4690c5f92d0a))
+
+
+### Bug Fixes
+
+* boutique page now renders all components equally ([fdcbbd1](https://github.com/zthun/fashion/commit/fdcbbd11de6cd5d07d00813f309658d5c283cd48))
+
+
+
 ## [0.6.2](https://github.com/zthun/fashion/compare/v0.6.1...v0.6.2) (2023-07-17)
 
 

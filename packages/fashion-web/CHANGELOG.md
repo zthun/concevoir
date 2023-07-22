@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.0](https://github.com/zthun/fashion/compare/v0.6.2...v0.7.0) (2023-07-22)
+
+
+### Bug Fixes
+
+* boutique page now renders all components equally ([fdcbbd1](https://github.com/zthun/fashion/commit/fdcbbd11de6cd5d07d00813f309658d5c283cd48))
+
+
+
 ## [0.6.2](https://github.com/zthun/fashion/compare/v0.6.1...v0.6.2) (2023-07-17)
 
 **Note:** Version bump only for package @zthun/fashion-web

@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.0](https://github.com/zthun/fashion/compare/v0.6.2...v0.7.0) (2023-07-22)
+
+
+### Features
+
+* grids can now justify items ([570c5de](https://github.com/zthun/fashion/commit/570c5defe43f623e88b7d8f1fc02bb9cb77ccb9d))
+* stacks can now be inline flex as well as flex ([21cc6b5](https://github.com/zthun/fashion/commit/21cc6b5eec6d193c7ca3fcbffbda4690c5f92d0a))
+
+
+
 ## [0.6.2](https://github.com/zthun/fashion/compare/v0.6.1...v0.6.2) (2023-07-17)
 
 
