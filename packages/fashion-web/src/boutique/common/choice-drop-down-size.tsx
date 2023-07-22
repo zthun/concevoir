@@ -3,14 +3,14 @@ import { ZSize, ZSizeFixed, ZSizeVaried, ZSizeVoid } from '@zthun/fashion-tailor
 import { setFirst } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
 import { identity, startCase } from 'lodash';
-import React, { useMemo } from 'react';
+import React, { ReactNode, useMemo } from 'react';
 
 export const ZFixedSizes = Object.values(ZSizeFixed);
 export const ZVariedSizes = Object.values(ZSizeVaried);
 export const ZVoidSizes = Object.values(ZSizeVoid);
 
 export interface IZChoiceDropDownSize<TSize> extends IZComponentValue<TSize>, IZComponentName {
-  label: 'Width' | 'Height';
+  label: ReactNode;
   sizes: TSize[];
 }
 
