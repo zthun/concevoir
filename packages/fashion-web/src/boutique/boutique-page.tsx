@@ -55,10 +55,10 @@ export function ZBoutiquePage() {
       avatar={<ZIconFontAwesome name={ZFashionRouteBoutique.avatar} width={ZSizeFixed.Medium} />}
     >
       <ZGrid
-        columns='auto auto auto auto'
-        columnsLg='auto auto auto'
-        columnsMd='auto auto'
-        columnsSm='auto'
+        columns='1fr 1fr 1fr 1fr'
+        columnsLg='1fr 1fr 1fr'
+        columnsMd='1fr 1fr'
+        columnsSm='1fr'
         gap={ZSizeFixed.Medium}
       >
         {ZFashionRouteAllComponents.map(renderComponent)}
