@@ -3,6 +3,15 @@ import { hex } from '../color/hex';
 import { black, white } from '../color/rgb';
 
 /**
+ * Overrides for a fashion.
+ */
+export interface IZFashionOverrides {
+  main?: ZColor;
+  contrast?: ZColor;
+  border?: ZColor;
+}
+
+/**
  * Represents a set of colors that create a coordinated fashion grouping.
  */
 export interface IZFashion {
@@ -39,6 +48,16 @@ export interface IZFashion {
    * only applies to the main fashion.
    */
   readonly contrast: ZColor;
+
+  /**
+   * The color overrides for when a component is hovered.
+   */
+  readonly hover: IZFashionOverrides;
+
+  /**
+   * The color overrides for when a component is focused.
+   */
+  readonly focus: IZFashionOverrides;
 }
 
 /**
@@ -56,7 +75,9 @@ export class ZFashionBuilder {
   public constructor() {
     this._fashion = {
       main: white(),
-      contrast: black()
+      contrast: black(),
+      hover: {},
+      focus: {}
     };
   }
 
@@ -98,7 +119,19 @@ export class ZFashionBuilder {
     const light = hex(brighten(color, amount));
     const dark = hex(brighten(color, -amount));
 
-    return this.main(main).dark(dark).light(light).contrast(higherContrast).border(dark);
+    return this.main(main)
+      .dark(dark)
+      .light(light)
+      .contrast(higherContrast)
+      .focus({
+        main: light,
+        border: dark
+      })
+      .hover({
+        main: dark,
+        border: light
+      })
+      .border(dark);
   }
 
   /**
@@ -168,6 +201,34 @@ export class ZFashionBuilder {
    */
   public border(color: ZColor): this {
     this._fashion.border = color;
+    return this;
+  }
+
+  /**
+   * Sets the focus fashion.
+   *
+   * @param focus -
+   *        The fashion overrides.
+   *
+   * @returns
+   *        This object.
+   */
+  public focus(focus: IZFashionOverrides): this {
+    this._fashion.focus = { ...this._fashion.focus, ...focus };
+    return this;
+  }
+
+  /**
+   * Sets the hover fashion.
+   *
+   * @param hover -
+   *        The fashion overrides.
+   *
+   * @returns
+   *        This object.
+   */
+  public hover(hover: IZFashionOverrides): this {
+    this._fashion.hover = { ...this._fashion.hover, ...hover };
     return this;
   }
 

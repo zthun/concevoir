@@ -55,9 +55,12 @@ describe('ZFashion', () => {
       expect(createTestTarget().spectrum(0xffffff).build().contrast).toEqual(black());
     });
 
-    it('should set the contrast fashion', () => {
-      const expected = rgb(255, 255, 0, 0.5);
-      expect(createTestTarget().contrast(expected).build().contrast).toEqual(expected);
+    it('should set the focus fashion', () => {
+      expect(createTestTarget().spectrum(0xffffff).build().focus.main).toBeTruthy();
+    });
+
+    it('should set the hover fashion', () => {
+      expect(createTestTarget().spectrum(0xffffff).build().hover.main).toBeTruthy();
     });
   });
 
