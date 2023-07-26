@@ -85,20 +85,6 @@ describe('ZGridView', () => {
       // Assert.
       expect(actual.length).toEqual(request.size);
     });
-
-    it('should render items after the page size changes', async () => {
-      // Arrange.
-      const target = await createTestTarget();
-      const size = await target.pageSize();
-      await target.load();
-      const expected = 48;
-      // Act.
-      await size.select(expected);
-      await target.load();
-      const actual = await target.driver.query('.item');
-      // Assert.
-      expect(actual.length).toEqual(expected);
-    });
   });
 
   describe('Pagination', () => {
@@ -107,11 +93,21 @@ describe('ZGridView', () => {
       dataSource = new ZDataSourceStatic(range(0, 100));
       vi.spyOn(dataSource, 'retrieve');
       const target = await createTestTarget();
-      const pagination = await target.pagination();
+      const more = await target.more();
       // Act.
-      await pagination.next();
+      await more?.click();
       // Assert.
       expect(dataSource.retrieve).toHaveBeenCalledWith(expect.objectContaining({ page: 2 }));
+    });
+
+    it('should hide the more button if there are no more items to load', async () => {
+      request = new ZDataRequestBuilder().build();
+      const target = await createTestTarget();
+      await target.load();
+      // Act.
+      const actual = await target.more();
+      // Assert.
+      expect(actual).toBeFalsy();
     });
   });
 
@@ -140,18 +136,6 @@ describe('ZGridView', () => {
       // Arrange.
       const target = await createTestTarget();
       // Act.
-      const actual = await target.loading();
-      await target.load();
-      // Assert.
-      expect(actual).toBeTruthy();
-    });
-
-    it('should refresh the data when the refresh button is clicked', async () => {
-      // Arrange.
-      const target = await createTestTarget();
-      await target.load();
-      // Act.
-      await (await target.refresh()).click();
       const actual = await target.loading();
       await target.load();
       // Assert.
