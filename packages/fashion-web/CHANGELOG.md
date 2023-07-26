@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.0](https://github.com/zthun/fashion/compare/v0.7.0...v0.8.0) (2023-07-22)
+
+
+### Features
+
+* bubble page demos the bubble component ([3381002](https://github.com/zthun/fashion/commit/33810021c529b5416bf79f634824b80ce46ba720))
+
+
+
 ## [0.7.0](https://github.com/zthun/fashion/compare/v0.6.2...v0.7.0) (2023-07-22)
 
 

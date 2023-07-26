@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.0](https://github.com/zthun/fashion/compare/v0.7.0...v0.8.0) (2023-07-22)
+
+
+### Features
+
+* bubble can now be focused and clicked ([f86baf0](https://github.com/zthun/fashion/commit/f86baf0465cf958b46f85036a100ea908b036579))
+* bubble page demos the bubble component ([3381002](https://github.com/zthun/fashion/commit/33810021c529b5416bf79f634824b80ce46ba720))
+* fashion can now have hover and focus overrides ([f0bd9a0](https://github.com/zthun/fashion/commit/f0bd9a02680f1eb2843d1df0997d2a432c9f2ae5))
+* fashion theme now has an inherit utility ([e239642](https://github.com/zthun/fashion/commit/e23964216fc84a0abbee43934c119d7d2fc50df6))
+
+
+
 ## [0.7.0](https://github.com/zthun/fashion/compare/v0.6.2...v0.7.0) (2023-07-22)
 
 
