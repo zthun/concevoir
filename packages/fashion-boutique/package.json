@@ -26,7 +26,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.0",
     "@mui/system": "^5.14.0",
-    "@zthun/cirque": "^4.3.0",
+    "@zthun/cirque": "^4.3.1",
     "@zthun/fashion-tailor": "^0.7.0",
     "@zthun/fashion-theme": "^0.7.0",
     "@zthun/helpful-fn": "^0.20.1",
@@ -41,7 +41,7 @@
     "tss-react": "^4.8.8"
   },
   "devDependencies": {
-    "@zthun/cirque-du-react": "^4.3.0",
+    "@zthun/cirque-du-react": "^4.3.1",
     "@zthun/helpful-brands": "^0.20.1",
     "@zthun/helpful-obligation": "^0.20.1",
     "microbundle": "^0.15.1",

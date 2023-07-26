@@ -24,9 +24,9 @@
   ],
   "devDependencies": {
     "@cucumber/cucumber": "^9.3.0",
-    "@zthun/cirque": "^4.3.0",
-    "@zthun/cirque-du-react": "^4.3.0",
-    "@zthun/cirque-du-selenium": "^4.3.0",
+    "@zthun/cirque": "^4.3.1",
+    "@zthun/cirque-du-react": "^4.3.1",
+    "@zthun/cirque-du-selenium": "^4.3.1",
     "@zthun/fashion-boutique": "^0.7.0",
     "@zthun/fashion-labs": "^0.7.0",
     "@zthun/fashion-tailor": "^0.7.0",
