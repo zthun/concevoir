@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.0](https://github.com/zthun/fashion/compare/v0.8.0...v0.9.0) (2023-07-26)
+
+
+### Features
+
+* grid view now uses a more button for pagination ([dd58c33](https://github.com/zthun/fashion/commit/dd58c330b982490683def92377aad14bc70376e7))
+* usePageView has been moved to helpful-react ([70e21b1](https://github.com/zthun/fashion/commit/70e21b1d92b14037f7b5f28efb491ac6cc212bb8))
+
+
+
 ## [0.8.0](https://github.com/zthun/fashion/compare/v0.7.0...v0.8.0) (2023-07-22)
 
 
