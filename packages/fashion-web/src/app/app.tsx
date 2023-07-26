@@ -31,7 +31,6 @@ import { ZListPage } from '../boutique/list/list-page';
 import { ZModalPage } from '../boutique/modal/modal-page';
 import { ZNumberPage } from '../boutique/number/number-page';
 import { ZSuspensePage } from '../boutique/suspense/suspense-page';
-import { ZTablePage } from '../boutique/table/table-page';
 import { ZTextPage } from '../boutique/text/text-page';
 import { ZTypographyPage } from '../boutique/typography/typography-page';
 import { ZHomePage } from '../home/home-page';
@@ -52,7 +51,6 @@ import {
   ZFashionRouteModal,
   ZFashionRouteNumber,
   ZFashionRouteSuspense,
-  ZFashionRouteTable,
   ZFashionRouteText,
   ZFashionRouteTheme,
   ZFashionRouteTypography
@@ -118,7 +116,6 @@ export function ZFashionApp() {
               <ZRoute path={ZFashionRouteModal.path} element={<ZModalPage />} />
               <ZRoute path={ZFashionRouteNumber.path} element={<ZNumberPage />} />
               <ZRoute path={ZFashionRouteSuspense.path} element={<ZSuspensePage />} />
-              <ZRoute path={ZFashionRouteTable.path} element={<ZTablePage />} />
               <ZRoute path={ZFashionRouteText.path} element={<ZTextPage />} />
               <ZRoute path={ZFashionRouteTypography.path} element={<ZTypographyPage />} />
               <ZRoute path='' element={<ZBoutiquePage />} />

@@ -119,13 +119,6 @@ export const ZFashionRouteSuspense = new ZRouteBuilder()
   .avatar('spinner')
   .build();
 
-export const ZFashionRouteTable = new ZRouteBuilder()
-  .name('Table')
-  .path('table')
-  .description('Tabular Data')
-  .avatar('table')
-  .build();
-
 export const ZFashionRouteText = new ZRouteBuilder()
   .name('Text')
   .path('text')
@@ -155,7 +148,6 @@ export const ZFashionRouteAllComponents = [
   ZFashionRouteModal,
   ZFashionRouteNumber,
   ZFashionRouteSuspense,
-  ZFashionRouteTable,
   ZFashionRouteText,
   ZFashionRouteTypography
 ];
