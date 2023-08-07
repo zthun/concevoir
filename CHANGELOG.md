@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/zthun/fashion/compare/v0.9.0...v0.9.1) (2023-08-07)
+
+
+### Bug Fixes
+
+* grid view rogue div element ([9df5d54](https://github.com/zthun/fashion/commit/9df5d5439d4bcdf23a28f8d5f80a16b72fd05f9a))
+* list item dividers live in an li tag ([0fdd6f7](https://github.com/zthun/fashion/commit/0fdd6f79ed023efce2d1bf7d3da00203e83cb712))
+* list item elements in dark mode show up with correct colors ([c18d90c](https://github.com/zthun/fashion/commit/c18d90c33bdf6f884562040b5e607d27eb90735c))
+
+
+
 ## [0.9.0](https://github.com/zthun/fashion/compare/v0.8.0...v0.9.0) (2023-07-26)
 
 
