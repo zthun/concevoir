@@ -24,8 +24,8 @@
   },
   "devDependencies": {
     "microbundle": "^0.15.1",
-    "vite": "^4.4.7",
-    "vitest": "^0.33.0"
+    "vite": "^4.4.8",
+    "vitest": "^0.34.1"
   },
   "files": [
     "dist"

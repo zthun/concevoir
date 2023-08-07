@@ -22,7 +22,7 @@
     "dist/**"
   ],
   "dependencies": {
-    "@mui/material": "^5.14.2",
+    "@mui/material": "^5.14.3",
     "@zthun/fashion-boutique": "^0.9.0",
     "@zthun/fashion-tailor": "^0.9.0",
     "@zthun/fashion-theme": "^0.9.0",
@@ -34,8 +34,8 @@
   "devDependencies": {
     "@zthun/cirque-du-react": "^4.3.1",
     "microbundle": "^0.15.1",
-    "vite": "^4.4.7",
-    "vitest": "^0.33.0"
+    "vite": "^4.4.8",
+    "vitest": "^0.34.1"
   },
   "peerDependencies": {
     "react": "^18.1.0",
