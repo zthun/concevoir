@@ -25,6 +25,14 @@ const useListLineItemStyles = createStyleHook(({ tailor }, props: IZListLineItem
       marginLeft: gap,
       marginRight: tailor.gap(),
       minWidth: 0
+    },
+
+    text: {
+      '.MuiListItemText-secondary': {
+        color: 'inherit',
+        opacity: 0.75,
+        fontSize: '0.85em'
+      }
     }
   };
 });
@@ -45,7 +53,11 @@ export function ZListLineItem(props: IZListLineItem) {
   const renderContents = () => (
     <>
       <ListItemAvatar className={cssJoinDefined('ZListLineItem-avatar', classes.avatar)}>{prefix}</ListItemAvatar>
-      <ListItemText className='ZListLineItem-text' primary={heading} secondary={subHeading} />
+      <ListItemText
+        className={cssJoinDefined('ZListLineItem-text', classes.text)}
+        primary={heading}
+        secondary={subHeading}
+      />
     </>
   );
 
