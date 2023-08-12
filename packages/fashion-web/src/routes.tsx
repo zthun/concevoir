@@ -112,6 +112,13 @@ export const ZFashionRouteNumber = new ZRouteBuilder()
   .avatar('5')
   .build();
 
+export const ZFashionRoutePopup = new ZRouteBuilder()
+  .name('Popup')
+  .path('popup')
+  .description('Pop content')
+  .avatar('comment')
+  .build();
+
 export const ZFashionRouteSuspense = new ZRouteBuilder()
   .name('Suspense')
   .path('suspense')
@@ -147,6 +154,7 @@ export const ZFashionRouteAllComponents = [
   ZFashionRouteList,
   ZFashionRouteModal,
   ZFashionRouteNumber,
+  ZFashionRoutePopup,
   ZFashionRouteSuspense,
   ZFashionRouteText,
   ZFashionRouteTypography
