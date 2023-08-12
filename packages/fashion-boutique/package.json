@@ -29,9 +29,9 @@
     "@zthun/cirque": "^4.3.1",
     "@zthun/fashion-tailor": "^0.9.1",
     "@zthun/fashion-theme": "^0.9.1",
-    "@zthun/helpful-fn": "^0.21.1",
-    "@zthun/helpful-query": "^0.21.1",
-    "@zthun/helpful-react": "^0.21.1",
+    "@zthun/helpful-fn": "^0.21.2",
+    "@zthun/helpful-query": "^0.21.2",
+    "@zthun/helpful-react": "^0.21.2",
     "@zthun/webigail-http": "^0.1.0",
     "@zthun/webigail-url": "^0.1.0",
     "csstype": "^3.1.2",
@@ -42,8 +42,8 @@
   },
   "devDependencies": {
     "@zthun/cirque-du-react": "^4.3.1",
-    "@zthun/helpful-brands": "^0.21.1",
-    "@zthun/helpful-obligation": "^0.21.1",
+    "@zthun/helpful-brands": "^0.21.2",
+    "@zthun/helpful-obligation": "^0.21.2",
     "microbundle": "^0.15.1",
     "vite": "^4.4.9",
     "vitest": "^0.34.1"
