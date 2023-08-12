@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.0](https://github.com/zthun/fashion/compare/v0.9.1...v0.10.0) (2023-08-12)
+
+
+### Features
+
+* popup page demos the popup button and popup component ([f70b8fd](https://github.com/zthun/fashion/commit/f70b8fda6ba1285b68b79eadbc81851956f55f01))
+
+
+
 ## [0.9.1](https://github.com/zthun/fashion/compare/v0.9.0...v0.9.1) (2023-08-07)
 
 **Note:** Version bump only for package @zthun/fashion-web

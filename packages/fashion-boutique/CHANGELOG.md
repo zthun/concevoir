@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.0](https://github.com/zthun/fashion/compare/v0.9.1...v0.10.0) (2023-08-12)
+
+
+### Features
+
+* popup component displays content in a pop bubble ([e1a9a3b](https://github.com/zthun/fashion/commit/e1a9a3bc95802f17b5f112201646240e0532668f))
+
+
+
 ## [0.9.1](https://github.com/zthun/fashion/compare/v0.9.0...v0.9.1) (2023-08-07)
 
 
