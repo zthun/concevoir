@@ -108,21 +108,19 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
   };
 
   return (
-    <div className='ZGridView-root'>
-      <ZStack className={cssJoinDefined('ZGridView-root', className)} gap={ZSizeFixed.Medium}>
-        <ZGrid columns='1fr auto' alignItems='end' gap={ZSizeFixed.ExtraSmall}>
-          <ZTextInput
-            className='ZGridView-search'
-            label='Search'
-            value={request.search}
-            onValueChange={handleSearch}
-            name='search'
-          />
-        </ZGrid>
-        {renderView()}
-        {renderError()}
-        {renderMore()}
-      </ZStack>
-    </div>
+    <ZStack className={cssJoinDefined('ZGridView-root', className)} gap={ZSizeFixed.Medium}>
+      <ZGrid columns='1fr auto' alignItems='end' gap={ZSizeFixed.ExtraSmall}>
+        <ZTextInput
+          className='ZGridView-search'
+          label='Search'
+          value={request.search}
+          onValueChange={handleSearch}
+          name='search'
+        />
+      </ZGrid>
+      {renderView()}
+      {renderError()}
+      {renderMore()}
+    </ZStack>
   );
 }

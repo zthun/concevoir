@@ -1,6 +1,6 @@
 {
   "name": "@zthun/fashion-boutique",
-  "version": "0.8.0",
+  "version": "0.9.1",
   "description": "A UI library for react components that are very fashionable.",
   "main": "dist/lib/index.js",
   "module": "dist/lib/index.js",
@@ -24,11 +24,11 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.14.2",
-    "@mui/system": "^5.14.1",
+    "@mui/material": "^5.14.3",
+    "@mui/system": "^5.14.3",
     "@zthun/cirque": "^4.3.1",
-    "@zthun/fashion-tailor": "^0.8.0",
-    "@zthun/fashion-theme": "^0.8.0",
+    "@zthun/fashion-tailor": "^0.9.1",
+    "@zthun/fashion-theme": "^0.9.1",
     "@zthun/helpful-fn": "^0.20.1",
     "@zthun/helpful-query": "^0.20.1",
     "@zthun/helpful-react": "^0.20.1",
@@ -45,8 +45,8 @@
     "@zthun/helpful-brands": "^0.20.1",
     "@zthun/helpful-obligation": "^0.20.1",
     "microbundle": "^0.15.1",
-    "vite": "^4.4.7",
-    "vitest": "^0.33.0"
+    "vite": "^4.4.8",
+    "vitest": "^0.34.1"
   },
   "peerDependencies": {
     "react": "^18.1.0",

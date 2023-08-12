@@ -1,4 +1,4 @@
-import { Divider } from '@mui/material';
+import { Divider, ListItem } from '@mui/material';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { IZListItem } from './list-item';
@@ -15,5 +15,9 @@ import { IZListItem } from './list-item';
 export function ZListDivider(props: IZListItem) {
   const { className, name } = props;
 
-  return <Divider className={cssJoinDefined('ZListItem-root', 'ZListItem-divider', className)} data-name={name} />;
+  return (
+    <ListItem className={cssJoinDefined('ZListItem-root', 'ZListItem-divider', className)} data-name={name}>
+      <Divider sx={{ width: '100%', color: 'inherit' }} />
+    </ListItem>
+  );
 }

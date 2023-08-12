@@ -23,7 +23,7 @@ export function ZListGroup(props: IZListGroup) {
 
   return (
     <ListSubheader
-      sx={{ background: 'transparent' }}
+      sx={{ background: 'transparent', color: 'inherit', opacity: 0.6 }}
       className={cssJoinDefined('ZListItem-root', 'ZListItem-group', className)}
       data-name={name}
     >
