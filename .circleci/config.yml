@@ -55,10 +55,7 @@ jobs:
           command: |
             export DOCKER_BUILDKIT=1
             docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
-            docker build . --target fashion-web -t zthun/fashion-web:latest -t zthun/fashion-web:$(npm show @zthun/fashion-web version) --progress=plain
-            docker push zthun/fashion-web:latest
-            docker push zthun/fashion-web:$(npm show @zthun/fashion-web version)
-
+            docker buildx build --target fashion-web -t zthun/fashion-web:latest -t zthun/fashion-web:$(npm show @zthun/fashion-web version) --progress=plain --platform linux/arm64,linux/amd64 --push .
 workflows:
   make:
     jobs:
