@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.2](https://github.com/zthun/fashion/compare/v0.10.1...v0.10.2) (2023-08-16)
+
+
+### Bug Fixes
+
+* helpful no longer bundles uuid ([a498685](https://github.com/zthun/fashion/commit/a498685f08e0d5d723b38b4127aea219abd81c4d))
+
+
+
 ## [0.10.1](https://github.com/zthun/fashion/compare/v0.10.0...v0.10.1) (2023-08-12)
 
 **Note:** Version bump only for package @zthun/fashion
