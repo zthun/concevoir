@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.0](https://github.com/zthun/fashion/compare/v0.10.2...v0.11.0) (2023-08-16)
+
+
+### Features
+
+* update webigail ([18a37e9](https://github.com/zthun/fashion/commit/18a37e988cfacafe0453c6d73979fda1cfd23dc2))
+
+
+
 ## [0.10.2](https://github.com/zthun/fashion/compare/v0.10.1...v0.10.2) (2023-08-16)
 
 
