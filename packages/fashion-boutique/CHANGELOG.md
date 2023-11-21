@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.0](https://github.com/zthun/fashion/compare/v2.0.0...v2.1.0) (2023-11-21)
+
+
+### Features
+
+* grid components can now specify width in addition to height ([060461c](https://github.com/zthun/fashion/commit/060461c63f7d59b972e1ae3af492afc9db07db9e))
+
+
+### Bug Fixes
+
+* not found should now scale to its content ([1347e4e](https://github.com/zthun/fashion/commit/1347e4e15c0f664af41a9f4e46d09e077ae76719))
+
+
+
 ## [2.0.0](https://github.com/zthun/fashion/compare/v0.12.0...v2.0.0) (2023-11-21)
 
 
