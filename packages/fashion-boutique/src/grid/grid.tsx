@@ -5,9 +5,14 @@ import React from 'react';
 import { IZComponentHeight } from '../component/component-height';
 import { IZComponentHierarchy } from '../component/component-hierarchy';
 import { IZComponentStyle } from '../component/component-style';
+import { IZComponentWidth } from '../component/component-width';
 import { createStyleHook } from '../theme/styled';
 
-export interface IZGrid extends IZComponentStyle, IZComponentHierarchy, IZComponentHeight<ZSizeVaried> {
+export interface IZGrid
+  extends IZComponentStyle,
+    IZComponentHierarchy,
+    IZComponentHeight<ZSizeVaried>,
+    IZComponentWidth<ZSizeVaried> {
   alignItems?: Property.AlignItems;
   justifyItems?: Property.JustifyItems;
   alignContent?: Property.AlignContent;
@@ -21,7 +26,7 @@ export interface IZGrid extends IZComponentStyle, IZComponentHierarchy, IZCompon
   rows?: Property.GridTemplateRows;
 }
 
-const GridHeightChart = createSizeChartVariedCss();
+const GridDimensionChart = createSizeChartVariedCss();
 
 const useGridStyles = createStyleHook(({ tailor, device }, props: IZGrid) => {
   const {
@@ -36,6 +41,11 @@ const useGridStyles = createStyleHook(({ tailor, device }, props: IZGrid) => {
     columnsSm = columnsMd,
     columnsXs = columnsSm,
     rows,
+    width = ZSizeVaried.Fit,
+    widthLg = width,
+    widthMd = widthLg,
+    widthSm = widthMd,
+    widthXs = widthSm,
     height = ZSizeVaried.Fit,
     heightLg = height,
     heightMd = heightLg,
@@ -45,26 +55,30 @@ const useGridStyles = createStyleHook(({ tailor, device }, props: IZGrid) => {
 
   const dimensions = {
     gridTemplateColumns: columns,
-    height: GridHeightChart[height],
+    height: GridDimensionChart[height],
 
     [device.break(ZSizeFixed.Large)]: {
       gridTemplateColumns: columnsLg,
-      height: GridHeightChart[heightLg]
+      height: GridDimensionChart[heightLg],
+      width: GridDimensionChart[widthLg]
     },
 
     [device.break(ZSizeFixed.Medium)]: {
       gridTemplateColumns: columnsMd,
-      height: GridHeightChart[heightMd]
+      height: GridDimensionChart[heightMd],
+      width: GridDimensionChart[widthMd]
     },
 
     [device.break(ZSizeFixed.Small)]: {
       gridTemplateColumns: columnsSm,
-      height: GridHeightChart[heightSm]
+      height: GridDimensionChart[heightSm],
+      width: GridDimensionChart[widthSm]
     },
 
     [device.break(ZSizeFixed.ExtraSmall)]: {
       gridTemplateColumns: columnsXs,
-      height: GridHeightChart[heightXs]
+      height: GridDimensionChart[heightXs],
+      width: GridDimensionChart[widthXs]
     }
   };
 
