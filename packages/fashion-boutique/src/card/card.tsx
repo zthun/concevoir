@@ -76,6 +76,8 @@ const useCardStyles = createStyleHook(({ theme, device }, props: IZCard) => {
       'position': 'relative',
       'backgroundColor': fashion.main,
       'color': fashion.contrast,
+      'display': 'flex',
+      'flexDirection': 'column',
 
       '.MuiCardHeader-content': {
         flex: '1 1 0px',
@@ -86,6 +88,10 @@ const useCardStyles = createStyleHook(({ theme, device }, props: IZCard) => {
         color: fashion.contrast,
         opacity: 0.9
       }
+    },
+
+    content: {
+      flexGrow: 1
     },
 
     title: {
@@ -131,7 +137,12 @@ export function ZCard(props: IZCard) {
     const renderLoading = () => (
       <ZSuspenseProgress className='ZCard-loading' name='card-loading' height={ZSizeFixed.Medium} />
     );
-    return <CardContent className='ZCard-content'>{loading ? renderLoading() : children}</CardContent>;
+
+    return (
+      <CardContent className={cssJoinDefined('ZCard-content', classes.content)}>
+        {loading ? renderLoading() : children}
+      </CardContent>
+    );
   };
 
   const renderFooter = () => (footer ? <CardActions className='ZCard-footer'>{footer}</CardActions> : null);
