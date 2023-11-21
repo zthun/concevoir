@@ -1,6 +1,6 @@
 {
   "name": "@zthun/fashion-labs",
-  "version": "0.11.1",
+  "version": "0.12.0",
   "description": "A UI library to play with ideas for the fashion system.",
   "main": "dist/lib/index.js",
   "module": "dist/lib/index.js",
@@ -23,9 +23,9 @@
   ],
   "dependencies": {
     "@mui/material": "^5.14.18",
-    "@zthun/fashion-boutique": "^0.11.1",
-    "@zthun/fashion-tailor": "^0.11.0",
-    "@zthun/fashion-theme": "^0.11.0",
+    "@zthun/fashion-boutique": "^0.12.0",
+    "@zthun/fashion-tailor": "^0.12.0",
+    "@zthun/fashion-theme": "^0.12.0",
     "@zthun/helpful-fn": "^2.4.0",
     "@zthun/helpful-query": "^2.4.0",
     "@zthun/helpful-react": "^2.4.0",

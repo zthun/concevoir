@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.0](https://github.com/zthun/fashion/compare/v0.11.1...v0.12.0) (2023-11-21)
+
+
+### Features
+
+* box can now have justification ([309112b](https://github.com/zthun/fashion/commit/309112b2a7fe827b91b320a15329414fca573ced))
+* image page displays a demo of image functionality ([6e893a0](https://github.com/zthun/fashion/commit/6e893a0ff909bfc32d501e4e7b26d505ce8a7bb6))
+
+
+
 ## [0.11.1](https://github.com/zthun/fashion/compare/v0.11.0...v0.11.1) (2023-08-17)
 
 **Note:** Version bump only for package @zthun/fashion
