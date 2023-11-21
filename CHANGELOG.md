@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/zthun/fashion/compare/v2.1.0...v2.1.1) (2023-11-21)
+
+
+### Bug Fixes
+
+* xl width on grid is now respected ([0eb61a6](https://github.com/zthun/fashion/commit/0eb61a6ae1f3394f8191dde44019ed39670d8d2f))
+
+
+
 ## [2.1.0](https://github.com/zthun/fashion/compare/v2.0.0...v2.1.0) (2023-11-21)
 
 
