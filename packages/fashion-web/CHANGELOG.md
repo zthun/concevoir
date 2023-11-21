@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/zthun/fashion/compare/v2.1.0...v2.1.1) (2023-11-21)
+
+**Note:** Version bump only for package @zthun/fashion-web
+
+
+
+
+
 ## [2.1.0](https://github.com/zthun/fashion/compare/v2.0.0...v2.1.0) (2023-11-21)
 
 
