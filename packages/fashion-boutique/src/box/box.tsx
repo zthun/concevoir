@@ -8,7 +8,7 @@ import {
   ZSizeVoid
 } from '@zthun/fashion-tailor';
 import { IZFashion, transparent, ZColor } from '@zthun/fashion-theme';
-import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
+import { cssJoinDefined, firstDefined, ZHorizontalAnchor } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import { get } from 'lodash';
 import React, { MouseEventHandler } from 'react';
@@ -42,6 +42,8 @@ export interface IZBox extends IZComponentHierarchy, IZComponentStyle, IZCompone
   padding?: ZDimensionProps<ZSizeFixed | ZSizeVoid>;
   margin?: ZDimensionProps<ZSizeFixed | ZSizeVaried.Fit | ZSizeVoid>;
 
+  justification?: ZHorizontalAnchor;
+
   onClick?: MouseEventHandler;
 }
 
@@ -58,6 +60,7 @@ const useBoxStyles = createStyleHook(({ theme, tailor, device }, props: IZBox) =
     fashion,
     focus,
     hover,
+    justification,
     onClick
   } = props;
 
@@ -150,7 +153,8 @@ const useBoxStyles = createStyleHook(({ theme, tailor, device }, props: IZBox) =
       'marginLeft': asMargin(mLeft),
       'marginRight': asMargin(mRight),
       'marginTop': asMargin(mTop),
-      'marginBottom': asMargin(mBottom)
+      'marginBottom': asMargin(mBottom),
+      'textAlign': justification
     }
   };
 });
