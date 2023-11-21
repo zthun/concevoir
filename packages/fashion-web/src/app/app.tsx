@@ -27,6 +27,7 @@ import { ZChartPage } from '../boutique/chart/chart-page';
 import { ZChoicePage } from '../boutique/choice/choice-page';
 import { ZDrawerPage } from '../boutique/drawer/drawer-page';
 import { ZGridViewPage } from '../boutique/grid-view/grid-view-page';
+import { ZImagePage } from '../boutique/image/image-page';
 import { ZListPage } from '../boutique/list/list-page';
 import { ZModalPage } from '../boutique/modal/modal-page';
 import { ZNumberPage } from '../boutique/number/number-page';
@@ -48,6 +49,7 @@ import {
   ZFashionRouteDrawer,
   ZFashionRouteGridView,
   ZFashionRouteHome,
+  ZFashionRouteImage,
   ZFashionRouteList,
   ZFashionRouteModal,
   ZFashionRouteNumber,
@@ -114,6 +116,7 @@ export function ZFashionApp() {
               <ZRoute path={ZFashionRouteChoice.path} element={<ZChoicePage />} />
               <ZRoute path={ZFashionRouteDrawer.path} element={<ZDrawerPage />} />
               <ZRoute path={ZFashionRouteGridView.path} element={<ZGridViewPage />} />
+              <ZRoute path={ZFashionRouteImage.path} element={<ZImagePage />} />
               <ZRoute path={ZFashionRouteList.path} element={<ZListPage />} />
               <ZRoute path={ZFashionRouteModal.path} element={<ZModalPage />} />
               <ZRoute path={ZFashionRouteNumber.path} element={<ZNumberPage />} />

@@ -91,6 +91,13 @@ export const ZFashionRouteGridView = new ZRouteBuilder()
   .avatar('grip')
   .build();
 
+export const ZFashionRouteImage = new ZRouteBuilder()
+  .name('Image')
+  .path('image')
+  .description('Show raster or vector graphics')
+  .avatar('image')
+  .build();
+
 export const ZFashionRouteList = new ZRouteBuilder()
   .name('List')
   .path('list')
@@ -151,6 +158,7 @@ export const ZFashionRouteAllComponents = [
   ZFashionRouteChoice,
   ZFashionRouteDrawer,
   ZFashionRouteGridView,
+  ZFashionRouteImage,
   ZFashionRouteList,
   ZFashionRouteModal,
   ZFashionRouteNumber,
