@@ -56,6 +56,7 @@ const useGridStyles = createStyleHook(({ tailor, device }, props: IZGrid) => {
   const dimensions = {
     gridTemplateColumns: columns,
     height: GridDimensionChart[height],
+    width: GridDimensionChart[width],
 
     [device.break(ZSizeFixed.Large)]: {
       gridTemplateColumns: columnsLg,
