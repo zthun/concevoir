@@ -1,4 +1,4 @@
-import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
+import { ZSizeVaried } from '@zthun/fashion-tailor';
 import { ZHttpCodeClient, getHttpCodeDescription, getHttpCodeName } from '@zthun/webigail-http';
 import React from 'react';
 import { ZButton } from '../button/button';
@@ -28,7 +28,6 @@ export function ZNotFound(props: IZNotFound) {
         <ZCard
           avatar={<ZSadFace />}
           heading={title}
-          width={ZSizeFixed.Small}
           footer={
             <ZButton
               className='ZNotFound-back'
