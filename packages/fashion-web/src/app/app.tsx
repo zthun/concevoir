@@ -72,7 +72,7 @@ const darkTheme = createDarkTheme();
  */
 export function ZFashionApp() {
   const avatar = <ZImageSource src={ZFashionRouteHome.avatar} height={ZSizeVaried.Full} />;
-  const [theme, setTheme] = useState(lightTheme);
+  const [theme, setTheme] = useState(darkTheme);
   const { dark, light } = theme;
   const prefix = (
     <div className='ZFashionApp-description'>
