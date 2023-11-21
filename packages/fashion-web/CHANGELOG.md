@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.0](https://github.com/zthun/fashion/compare/v2.1.1...v2.2.0) (2023-11-21)
+
+
+### Features
+
+* card page now shows more cards in a grid ([e301c9f](https://github.com/zthun/fashion/commit/e301c9f1e35fb349f146b3c93fd217326f7a363d))
+
+
+
 ## [2.1.1](https://github.com/zthun/fashion/compare/v2.1.0...v2.1.1) (2023-11-21)
 
 **Note:** Version bump only for package @zthun/fashion-web
