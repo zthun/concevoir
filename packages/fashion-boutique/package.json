@@ -45,8 +45,8 @@
     "@zthun/helpful-brands": "^2.1.0",
     "@zthun/helpful-obligation": "^2.1.0",
     "microbundle": "^0.15.1",
-    "vite": "^4.4.9",
-    "vitest": "^0.34.1"
+    "vite": "^4.5.0",
+    "vitest": "^0.34.6"
   },
   "peerDependencies": {
     "react": "^18.1.0",
