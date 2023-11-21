@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.0](https://github.com/zthun/fashion/compare/v0.12.0...v2.0.0) (2023-11-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* update to release
+* commit to release
+
+### Features
+
+* commit to release ([9b644f5](https://github.com/zthun/fashion/commit/9b644f5a26d17525f335984adf1e685208f48992))
+* update to release ([248cf83](https://github.com/zthun/fashion/commit/248cf834b17fe6b3c727bb9eac320fd89bf269a2))
+
+
+
 ## [0.12.0](https://github.com/zthun/fashion/compare/v0.11.1...v0.12.0) (2023-11-21)
 
 
