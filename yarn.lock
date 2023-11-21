@@ -4491,7 +4491,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/fashion-boutique@^0.11.1, @zthun/fashion-boutique@workspace:packages/fashion-boutique":
+"@zthun/fashion-boutique@^0.12.0, @zthun/fashion-boutique@workspace:packages/fashion-boutique":
   version: 0.0.0-use.local
   resolution: "@zthun/fashion-boutique@workspace:packages/fashion-boutique"
   dependencies:
@@ -4501,8 +4501,8 @@ __metadata:
     "@mui/system": ^5.14.18
     "@zthun/cirque": ^4.3.1
     "@zthun/cirque-du-react": ^4.3.1
-    "@zthun/fashion-tailor": ^0.11.0
-    "@zthun/fashion-theme": ^0.11.0
+    "@zthun/fashion-tailor": ^0.12.0
+    "@zthun/fashion-theme": ^0.12.0
     "@zthun/helpful-brands": ^2.4.0
     "@zthun/helpful-fn": ^2.4.0
     "@zthun/helpful-obligation": ^2.4.0
@@ -4523,15 +4523,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@zthun/fashion-labs@^0.11.1, @zthun/fashion-labs@workspace:packages/fashion-labs":
+"@zthun/fashion-labs@^0.12.0, @zthun/fashion-labs@workspace:packages/fashion-labs":
   version: 0.0.0-use.local
   resolution: "@zthun/fashion-labs@workspace:packages/fashion-labs"
   dependencies:
     "@mui/material": ^5.14.18
     "@zthun/cirque-du-react": ^4.3.1
-    "@zthun/fashion-boutique": ^0.11.1
-    "@zthun/fashion-tailor": ^0.11.0
-    "@zthun/fashion-theme": ^0.11.0
+    "@zthun/fashion-boutique": ^0.12.0
+    "@zthun/fashion-tailor": ^0.12.0
+    "@zthun/fashion-theme": ^0.12.0
     "@zthun/helpful-fn": ^2.4.0
     "@zthun/helpful-query": ^2.4.0
     "@zthun/helpful-react": ^2.4.0
@@ -4544,7 +4544,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@zthun/fashion-tailor@^0.11.0, @zthun/fashion-tailor@workspace:packages/fashion-tailor":
+"@zthun/fashion-tailor@^0.12.0, @zthun/fashion-tailor@workspace:packages/fashion-tailor":
   version: 0.0.0-use.local
   resolution: "@zthun/fashion-tailor@workspace:packages/fashion-tailor"
   dependencies:
@@ -4554,7 +4554,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@zthun/fashion-theme@^0.11.0, @zthun/fashion-theme@workspace:packages/fashion-theme":
+"@zthun/fashion-theme@^0.12.0, @zthun/fashion-theme@workspace:packages/fashion-theme":
   version: 0.0.0-use.local
   resolution: "@zthun/fashion-theme@workspace:packages/fashion-theme"
   dependencies:
@@ -4573,10 +4573,10 @@ __metadata:
     "@zthun/cirque": ^4.3.1
     "@zthun/cirque-du-react": ^4.3.1
     "@zthun/cirque-du-selenium": ^4.3.1
-    "@zthun/fashion-boutique": ^0.11.1
-    "@zthun/fashion-labs": ^0.11.1
-    "@zthun/fashion-tailor": ^0.11.0
-    "@zthun/fashion-theme": ^0.11.0
+    "@zthun/fashion-boutique": ^0.12.0
+    "@zthun/fashion-labs": ^0.12.0
+    "@zthun/fashion-tailor": ^0.12.0
+    "@zthun/fashion-theme": ^0.12.0
     "@zthun/helpful-brands": ^2.4.0
     "@zthun/helpful-fn": ^2.4.0
     "@zthun/helpful-obligation": ^2.4.0
