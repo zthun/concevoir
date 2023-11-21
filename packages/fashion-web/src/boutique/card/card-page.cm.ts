@@ -1,5 +1,5 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZBooleanComponentModel, ZCardComponentModel, ZChoiceComponentModel } from '@zthun/fashion-boutique';
+import { ZCardComponentModel, ZChoiceComponentModel } from '@zthun/fashion-boutique';
 
 export class ZCardPageComponentModel extends ZCircusComponentModel {
   public static readonly Selector = '.ZCardPage-root';
@@ -8,8 +8,12 @@ export class ZCardPageComponentModel extends ZCircusComponentModel {
     return ZCircusBy.first(this.driver, ZCardComponentModel, 'card');
   }
 
-  public loading(): Promise<ZBooleanComponentModel> {
-    return ZCircusBy.first(this.driver, ZBooleanComponentModel, 'loading');
+  public loading(): Promise<ZCardComponentModel> {
+    return ZCircusBy.first(this.driver, ZCardComponentModel, 'loading');
+  }
+
+  public image(): Promise<ZCardComponentModel> {
+    return ZCircusBy.first(this.driver, ZCardComponentModel, 'image');
   }
 
   public fashion(): Promise<ZChoiceComponentModel> {

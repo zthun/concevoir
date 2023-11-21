@@ -1,15 +1,18 @@
 import {
-  ZBooleanSwitch,
   ZBox,
   ZButton,
   ZCard,
   ZGrid,
   ZH3,
   ZIconFontAwesome,
-  ZParagraph
+  ZImageSource,
+  ZParagraph,
+  useFashionTheme
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
-import React, { useState } from 'react';
+import { ZFashionArea } from '@zthun/fashion-theme';
+import { ZHorizontalAnchor } from '@zthun/helpful-fn';
+import React from 'react';
 import { ZFashionRouteCard } from '../../routes';
 import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
 import { useFashionState } from '../common/use-fashion-state';
@@ -31,8 +34,8 @@ const LOREM =
  * @returns The JSX to render the alerts demo page.
  */
 export function ZCardPage() {
-  const [fashion, fashionName, setFashion] = useFashionState();
-  const [loading, setLoading] = useState(false);
+  const { success } = useFashionTheme();
+  const [fashion, fashionName, setFashion] = useFashionState(ZFashionArea.Component);
 
   return (
     <ZCard
@@ -49,25 +52,48 @@ export function ZCardPage() {
           to create desireable experiences for your users.
         </ZParagraph>
 
-        <ZCard
-          width={ZSizeFixed.Small}
-          name='card'
-          heading='Header'
-          subHeading={'Sub Header'}
-          fashion={fashion}
-          loading={loading}
-          avatar={<ZIconFontAwesome name='mask' width={ZSizeFixed.Medium} />}
-          footer={<ZButton label='Footer' width={ZSizeVaried.Full} />}
-        >
-          {LOREM}
-        </ZCard>
+        <ZGrid columns='1fr 1fr 1fr' columnsMd='1fr' gap={ZSizeFixed.Small}>
+          <ZCard
+            name='card'
+            heading='Header'
+            subHeading='Sub Header'
+            fashion={fashion}
+            avatar={<ZIconFontAwesome name='mask' width={ZSizeFixed.Medium} />}
+            footer={<ZButton label='Footer' width={ZSizeVaried.Full} fashion={success} />}
+          >
+            <ZParagraph compact>{LOREM}</ZParagraph>
+          </ZCard>
+
+          <ZCard
+            name='loading'
+            heading='Loading'
+            subHeading='Content not ready yet'
+            fashion={fashion}
+            loading
+            avatar={<ZIconFontAwesome name='house' width={ZSizeFixed.Medium} />}
+            footer={<ZButton label='Footer' width={ZSizeVaried.Full} fashion={success} disabled />}
+          />
+
+          <ZCard
+            name='image'
+            heading='Graphics'
+            subHeading='Card with an image'
+            fashion={fashion}
+            avatar={<ZIconFontAwesome name='house' width={ZSizeFixed.Medium} />}
+          >
+            <ZBox margin={{ bottom: ZSizeFixed.Small }} justification={ZHorizontalAnchor.Center}>
+              <ZImageSource src='/images/svg/plant.svg' height={ZSizeFixed.ExtraLarge} />
+            </ZBox>
+
+            <ZParagraph>Image with descriptions can make for great links and launchers.</ZParagraph>
+          </ZCard>
+        </ZGrid>
       </ZBox>
 
       <ZBox padding={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Options</ZH3>
 
         <ZGrid gap={ZSizeFixed.Medium}>
-          <ZBooleanSwitch label='Loading' name='loading' value={loading} onValueChange={setLoading} />
           <ZChoiceDropDownFashion value={fashionName} onValueChange={setFashion} name='fashion' />
         </ZGrid>
       </ZBox>

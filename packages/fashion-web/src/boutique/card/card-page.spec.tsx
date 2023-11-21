@@ -15,25 +15,37 @@ describe('CardPage', () => {
     return ZCircusBy.first(driver, ZCardPageComponentModel);
   }
 
-  describe('Loading', () => {
-    async function shouldBeLoading(expected: boolean) {
+  describe('Card', () => {
+    it('should render the basic card', async () => {
       // Arrange.
       const target = await createTestTarget();
-      const loading = await target.loading();
-      await loading.toggle(!expected);
       // Act.
-      await loading.toggle(expected);
-      const actual = await (await target.card()).loading();
+      const actual = await target.card();
       // Assert.
-      expect(actual).toEqual(expected);
-    }
-
-    it('should set the card to a loading state when the switch is on.', async () => {
-      await shouldBeLoading(true);
+      expect(actual).toBeTruthy();
     });
+  });
 
-    it('should set the card to a loading state when the switch is off.', async () => {
-      await shouldBeLoading(false);
+  describe('Image', () => {
+    it('should render the card', async () => {
+      // Arrange.
+      const target = await createTestTarget();
+      // Act.
+      const actual = await target.image();
+      // Assert.
+      expect(actual).toBeTruthy();
+    });
+  });
+
+  describe('Loading', () => {
+    it('should be loading', async () => {
+      // Arrange.
+      const target = await createTestTarget();
+      // Act.
+      const loading = await target.loading();
+      const actual = await loading?.loading();
+      // Assert.
+      expect(actual).toBeTruthy();
     });
   });
 
@@ -45,9 +57,15 @@ describe('CardPage', () => {
       // Act.
       await fashion.select(expected);
       const card = await target.card();
-      const actual = await card.fashion();
+      const image = await target.image();
+      const loading = await target.loading();
+      const cardFashion = await card.fashion();
+      const imageFashion = await image.fashion();
+      const loadingFashion = await loading.fashion();
       // Assert.
-      expect(actual).toEqual(expected);
+      expect(cardFashion).toEqual(expected);
+      expect(imageFashion).toEqual(expected);
+      expect(loadingFashion).toEqual(expected);
     }
 
     it('should set the color to Primary', async () => {
