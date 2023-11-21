@@ -3888,7 +3888,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/dom@npm:^9.0.0, @testing-library/dom@npm:^9.3.1":
+"@testing-library/dom@npm:^9.0.0":
   version: 9.3.1
   resolution: "@testing-library/dom@npm:9.3.1"
   dependencies:
@@ -3904,9 +3904,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/react@npm:^14.0.0":
-  version: 14.0.0
-  resolution: "@testing-library/react@npm:14.0.0"
+"@testing-library/dom@npm:^9.3.3":
+  version: 9.3.3
+  resolution: "@testing-library/dom@npm:9.3.3"
+  dependencies:
+    "@babel/code-frame": ^7.10.4
+    "@babel/runtime": ^7.12.5
+    "@types/aria-query": ^5.0.1
+    aria-query: 5.1.3
+    chalk: ^4.1.0
+    dom-accessibility-api: ^0.5.9
+    lz-string: ^1.5.0
+    pretty-format: ^27.0.2
+  checksum: 34e0a564da7beb92aa9cc44a9080221e2412b1a132eb37be3d513fe6c58027674868deb9f86195756d98d15ba969a30fe00632a4e26e25df2a5a4f6ac0686e37
+  languageName: node
+  linkType: hard
+
+"@testing-library/react@npm:^14.1.2":
+  version: 14.1.2
+  resolution: "@testing-library/react@npm:14.1.2"
   dependencies:
     "@babel/runtime": ^7.12.5
     "@testing-library/dom": ^9.0.0
@@ -3914,16 +3930,16 @@ __metadata:
   peerDependencies:
     react: ^18.0.0
     react-dom: ^18.0.0
-  checksum: 4a54c8f56cc4a39b50803205f84f06280bb76521d6d5d4b3b36651d760c7c7752ef142d857d52aaf4fad4848ed7a8be49afc793a5dda105955d2f8bef24901ac
+  checksum: 0269903e53412cf96fddb55c8a97a9987a89c3308d71fa1418fe61c47d275445e7044c5387f57cf39b8cda319a41623dbad2cce7a17016aed3a9e85185aac75a
   languageName: node
   linkType: hard
 
-"@testing-library/user-event@npm:^14.4.3":
-  version: 14.4.3
-  resolution: "@testing-library/user-event@npm:14.4.3"
+"@testing-library/user-event@npm:^14.5.1":
+  version: 14.5.1
+  resolution: "@testing-library/user-event@npm:14.5.1"
   peerDependencies:
     "@testing-library/dom": ">=7.21.4"
-  checksum: 852c48ea6db1c9471b18276617c84fec4320771e466cd58339a732ca3fd73ad35e5a43ae14f51af51a8d0a150dcf60fcaab049ef367871207bea8f92c4b8195e
+  checksum: 3e6bc9fd53dfe2f3648190193ed2fd4bca2a1bfb47f68810df3b33f05412526e5fd5c4ef9dc5375635e0f4cdf1859916867b597eed22bda1321e04242ea6c519
   languageName: node
   linkType: hard
 
@@ -4431,37 +4447,37 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/cirque-du-react@npm:^4.3.1":
-  version: 4.3.1
-  resolution: "@zthun/cirque-du-react@npm:4.3.1"
+"@zthun/cirque-du-react@npm:^4.3.2":
+  version: 4.3.2
+  resolution: "@zthun/cirque-du-react@npm:4.3.2"
   dependencies:
-    "@testing-library/dom": ^9.3.1
-    "@testing-library/react": ^14.0.0
-    "@testing-library/user-event": ^14.4.3
-    "@zthun/cirque": ^4.3.1
+    "@testing-library/dom": ^9.3.3
+    "@testing-library/react": ^14.1.2
+    "@testing-library/user-event": ^14.5.1
+    "@zthun/cirque": ^4.3.2
     lodash: ^4.17.21
   peerDependencies:
     react: ^18.2.0
     react-dom: ^18.2.0
-  checksum: 6dcf5593adca754f37a119db155cce4b30f54917f2f3b57e22020e6ed0757539d12e2ffe2b69d747b25bb68de4c69d3536dc63c930115bc577d620de8d662535
+  checksum: f17981beff61c94a5c4eb8e66bce96ca9dc48f391a87cc0d9085d29dd69dd5402223c0acf6ac2b8d8afdd59beeff1b520db6d782926faebc4d1e80c2073d13db
   languageName: node
   linkType: hard
 
-"@zthun/cirque-du-selenium@npm:^4.3.1":
-  version: 4.3.1
-  resolution: "@zthun/cirque-du-selenium@npm:4.3.1"
+"@zthun/cirque-du-selenium@npm:^4.3.2":
+  version: 4.3.2
+  resolution: "@zthun/cirque-du-selenium@npm:4.3.2"
   dependencies:
-    "@zthun/cirque": ^4.3.1
+    "@zthun/cirque": ^4.3.2
     lodash: ^4.17.21
-    selenium-webdriver: ^4.10.0
-  checksum: 7b9b275415a8a3ce72c4727fef2a8f1979f4898a5c8feb91f86e333464ca63844724e21a4d52b80cd2aff63fd2e54f1d80d808070609d595cf32b4dd0bf87768
+    selenium-webdriver: ^4.15.0
+  checksum: b8183073271b274d09bae0a8f86465a6719c8f60414216cc5b6dc1bf14be1a6ed1e45cf40fd6227638580a1a652c4cf98157727d5c042eed4e120481a30b7923
   languageName: node
   linkType: hard
 
-"@zthun/cirque@npm:^4.3.1":
-  version: 4.3.1
-  resolution: "@zthun/cirque@npm:4.3.1"
-  checksum: ed54c9b5fcddafbaeb266a7a62b27c3f84042bd17791bb15aa91257bafa363fdc313fbf49cb87346e9f22ed85f9a0e9193dba3d355d5e6daeeda775488ccbc59
+"@zthun/cirque@npm:^4.3.2":
+  version: 4.3.2
+  resolution: "@zthun/cirque@npm:4.3.2"
+  checksum: 1487e6f0b9296c9a696a124e0eaafe39f99f57116a4765df6f227db409ffc6ae8819194630bf06fd5830aed63749fff61b1cbfc9f05a711c2b890f34033243af
   languageName: node
   linkType: hard
 
@@ -4499,8 +4515,8 @@ __metadata:
     "@emotion/styled": ^11.11.0
     "@mui/material": ^5.14.18
     "@mui/system": ^5.14.18
-    "@zthun/cirque": ^4.3.1
-    "@zthun/cirque-du-react": ^4.3.1
+    "@zthun/cirque": ^4.3.2
+    "@zthun/cirque-du-react": ^4.3.2
     "@zthun/fashion-tailor": ^2.0.0
     "@zthun/fashion-theme": ^2.0.0
     "@zthun/helpful-brands": ^2.4.0
@@ -4528,7 +4544,7 @@ __metadata:
   resolution: "@zthun/fashion-labs@workspace:packages/fashion-labs"
   dependencies:
     "@mui/material": ^5.14.18
-    "@zthun/cirque-du-react": ^4.3.1
+    "@zthun/cirque-du-react": ^4.3.2
     "@zthun/fashion-boutique": ^2.0.0
     "@zthun/fashion-tailor": ^2.0.0
     "@zthun/fashion-theme": ^2.0.0
@@ -4570,9 +4586,9 @@ __metadata:
   resolution: "@zthun/fashion-web@workspace:packages/fashion-web"
   dependencies:
     "@cucumber/cucumber": ^10.0.1
-    "@zthun/cirque": ^4.3.1
-    "@zthun/cirque-du-react": ^4.3.1
-    "@zthun/cirque-du-selenium": ^4.3.1
+    "@zthun/cirque": ^4.3.2
+    "@zthun/cirque-du-react": ^4.3.2
+    "@zthun/cirque-du-selenium": ^4.3.2
     "@zthun/fashion-boutique": ^2.0.0
     "@zthun/fashion-labs": ^2.0.0
     "@zthun/fashion-tailor": ^2.0.0
@@ -4589,7 +4605,7 @@ __metadata:
     react-dom: ^18.2.0
     react-router-dom: ^6.19.0
     rollup-plugin-visualizer: ^5.9.2
-    vite: ^5.0.0
+    vite: ^5.0.2
     vite-tsconfig-paths: ^4.2.1
     vitest: ^0.34.6
   languageName: unknown
@@ -13358,14 +13374,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"selenium-webdriver@npm:^4.10.0":
-  version: 4.10.0
-  resolution: "selenium-webdriver@npm:4.10.0"
+"selenium-webdriver@npm:^4.15.0":
+  version: 4.15.0
+  resolution: "selenium-webdriver@npm:4.15.0"
   dependencies:
     jszip: ^3.10.1
     tmp: ^0.2.1
-    ws: ">=8.13.0"
-  checksum: fae9bbfa69d28ed1d143234a5ce0350bee7d41178b88f9812c69b2099ac99df8037f3fafee14efb65af3d91356f163e8a43a36151bf48eff1515415ccd17cb75
+    ws: ">=8.14.2"
+  checksum: 81ccce6f0035197063d017c8543975fa2d4e6e948b4bd54264ab98e446b49bfe5851de1e02e3ddecefa151cfa20bcdfbc3e8c936cbb877bc69b92e22ac28710a
   languageName: node
   linkType: hard
 
@@ -15047,7 +15063,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^3.0.0 || ^4.0.0 || ^5.0.0-0, vite@npm:^3.1.0 || ^4.0.0 || ^5.0.0-0, vite@npm:^5.0.0":
+"vite@npm:^3.0.0 || ^4.0.0 || ^5.0.0-0, vite@npm:^3.1.0 || ^4.0.0 || ^5.0.0-0":
   version: 5.0.0
   resolution: "vite@npm:5.0.0"
   dependencies:
@@ -15084,6 +15100,46 @@ __metadata:
   bin:
     vite: bin/vite.js
   checksum: 1f953b062593b072f0e718384e1ff3307b548235ff8c4016fcaa85c09568eb0ba8cd8cfd80e99d940d3bea296b4661b1d0384fe5cb9a996d3e935feb69259755
+  languageName: node
+  linkType: hard
+
+"vite@npm:^5.0.2":
+  version: 5.0.2
+  resolution: "vite@npm:5.0.2"
+  dependencies:
+    esbuild: ^0.19.3
+    fsevents: ~2.3.3
+    postcss: ^8.4.31
+    rollup: ^4.2.0
+  peerDependencies:
+    "@types/node": ^18.0.0 || >=20.0.0
+    less: "*"
+    lightningcss: ^1.21.0
+    sass: "*"
+    stylus: "*"
+    sugarss: "*"
+    terser: ^5.4.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  peerDependenciesMeta:
+    "@types/node":
+      optional: true
+    less:
+      optional: true
+    lightningcss:
+      optional: true
+    sass:
+      optional: true
+    stylus:
+      optional: true
+    sugarss:
+      optional: true
+    terser:
+      optional: true
+  bin:
+    vite: bin/vite.js
+  checksum: 28784e10ae40f20afdafb81f09439800b2ba48b4e9f14720cb97a8bc47537369b91dc0d1ea955543dd5a443277d4af4718df9e95a9062276167c428fbc931566
   languageName: node
   linkType: hard
 
@@ -15448,7 +15504,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ws@npm:>=8.13.0, ws@npm:^8.13.0":
+"ws@npm:>=8.14.2":
+  version: 8.14.2
+  resolution: "ws@npm:8.14.2"
+  peerDependencies:
+    bufferutil: ^4.0.1
+    utf-8-validate: ">=5.0.2"
+  peerDependenciesMeta:
+    bufferutil:
+      optional: true
+    utf-8-validate:
+      optional: true
+  checksum: 3ca0dad26e8cc6515ff392b622a1467430814c463b3368b0258e33696b1d4bed7510bc7030f7b72838b9fdeb8dbd8839cbf808367d6aae2e1d668ce741d4308b
+  languageName: node
+  linkType: hard
+
+"ws@npm:^8.13.0":
   version: 8.13.0
   resolution: "ws@npm:8.13.0"
   peerDependencies:
