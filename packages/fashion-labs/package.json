@@ -23,9 +23,9 @@
   ],
   "dependencies": {
     "@mui/material": "^5.14.18",
-    "@zthun/fashion-boutique": "^0.12.0",
-    "@zthun/fashion-tailor": "^0.12.0",
-    "@zthun/fashion-theme": "^0.12.0",
+    "@zthun/fashion-boutique": "^2.0.0",
+    "@zthun/fashion-tailor": "^2.0.0",
+    "@zthun/fashion-theme": "^2.0.0",
     "@zthun/helpful-fn": "^2.4.0",
     "@zthun/helpful-query": "^2.4.0",
     "@zthun/helpful-react": "^2.4.0",
