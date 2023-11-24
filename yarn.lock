@@ -4519,11 +4519,10 @@ __metadata:
     "@zthun/cirque-du-react": ^4.3.2
     "@zthun/fashion-tailor": ^2.0.0
     "@zthun/fashion-theme": ^2.0.0
-    "@zthun/helpful-brands": ^2.4.0
-    "@zthun/helpful-fn": ^2.4.0
-    "@zthun/helpful-obligation": ^2.4.0
-    "@zthun/helpful-query": ^2.4.0
-    "@zthun/helpful-react": ^2.4.0
+    "@zthun/helpful-brands": ^3.0.0
+    "@zthun/helpful-fn": ^3.0.0
+    "@zthun/helpful-query": ^3.0.0
+    "@zthun/helpful-react": ^3.0.0
     "@zthun/webigail-http": ^1.1.0
     "@zthun/webigail-url": ^1.1.0
     csstype: ^3.1.2
@@ -4548,9 +4547,9 @@ __metadata:
     "@zthun/fashion-boutique": ^2.2.0
     "@zthun/fashion-tailor": ^2.0.0
     "@zthun/fashion-theme": ^2.0.0
-    "@zthun/helpful-fn": ^2.4.0
-    "@zthun/helpful-query": ^2.4.0
-    "@zthun/helpful-react": ^2.4.0
+    "@zthun/helpful-fn": ^3.0.0
+    "@zthun/helpful-query": ^3.0.0
+    "@zthun/helpful-react": ^3.0.0
     lodash: ^4.17.21
     microbundle: ^0.15.1
     vitest: ^0.34.6
@@ -4593,11 +4592,10 @@ __metadata:
     "@zthun/fashion-labs": ^2.2.0
     "@zthun/fashion-tailor": ^2.0.0
     "@zthun/fashion-theme": ^2.0.0
-    "@zthun/helpful-brands": ^2.4.0
-    "@zthun/helpful-fn": ^2.4.0
-    "@zthun/helpful-obligation": ^2.4.0
-    "@zthun/helpful-query": ^2.4.0
-    "@zthun/helpful-react": ^2.4.0
+    "@zthun/helpful-brands": ^3.0.0
+    "@zthun/helpful-fn": ^3.0.0
+    "@zthun/helpful-query": ^3.0.0
+    "@zthun/helpful-react": ^3.0.0
     "@zthun/webigail-url": ^1.1.0
     history: ^5.3.0
     lodash: ^4.17.21
@@ -4642,47 +4640,40 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@zthun/helpful-brands@npm:^2.4.0":
-  version: 2.4.0
-  resolution: "@zthun/helpful-brands@npm:2.4.0"
+"@zthun/helpful-brands@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@zthun/helpful-brands@npm:3.0.0"
   dependencies:
     lodash: ^4.17.21
-  checksum: 379e5c3eeac038aa1b5f490a9375d949da9327120b1fa9dc075a9748e8b578e2b5c2b0529df32c0f1138c11ddf816c1a894888f5f51019824df1a60c0995b19e
+  checksum: 466e65b3faf7d9b994b225e7535b057d02e0d9b5f2e2d463bc1358f14b2b5c6b0b9b564e42eb8c69ee2c145c9afaaae834dc1b9e7bbee87dd4a7d638d6314c2e
   languageName: node
   linkType: hard
 
-"@zthun/helpful-fn@npm:^2.4.0":
-  version: 2.4.0
-  resolution: "@zthun/helpful-fn@npm:2.4.0"
+"@zthun/helpful-fn@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@zthun/helpful-fn@npm:3.0.0"
   dependencies:
     uuid: ^9.0.1
-  checksum: 88c3a0a347839ea9e926dd19d6ace1dff79a0a60bf1bef03ed18c11fc78a7a4bd63b43ecd26adae85570726bfc79720471e066e044d7983a86fe190e662bec20
+  checksum: 569dfa5578d361030e26c55e7ad3c674aa82676122aade452857aebbe86db05f19a3a6c5bca772b6a9591cd6de22e760a1256ca70a86896218accad29d523b1d
   languageName: node
   linkType: hard
 
-"@zthun/helpful-obligation@npm:^2.4.0":
-  version: 2.4.0
-  resolution: "@zthun/helpful-obligation@npm:2.4.0"
-  checksum: 251114389e55acfd150d28335a17f6aece06561ca6121c91e6685357ad4a3c5a7f6a267ece02c6702ca5c5d2846e6e77e92181ab38d04e90c24663feffb898f7
-  languageName: node
-  linkType: hard
-
-"@zthun/helpful-query@npm:^2.4.0":
-  version: 2.4.0
-  resolution: "@zthun/helpful-query@npm:2.4.0"
+"@zthun/helpful-query@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@zthun/helpful-query@npm:3.0.0"
   dependencies:
-    "@zthun/helpful-fn": ^2.4.0
+    "@zthun/helpful-fn": ^3.0.0
     lodash: ^4.17.21
-  checksum: de1172e6c5a1af3dc2f86c5f0c911240dd3c07c4cae72bb6943b9476c1aa7c48c3abcf45181329e33b8c98dee740440475e8a8503e9d45b7e2de90213c1228ba
+  checksum: d55bf74f9cfe4e87bfec16796347bb7c35ffc4e7cb7e56a37d093fb4b7e4bf5bccb51dbbd460a851fa4c43ad5022ef1726ead415fb3739b62bd4b90310629c5d
   languageName: node
   linkType: hard
 
-"@zthun/helpful-react@npm:^2.4.0":
-  version: 2.4.0
-  resolution: "@zthun/helpful-react@npm:2.4.0"
+"@zthun/helpful-react@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@zthun/helpful-react@npm:3.0.0"
   dependencies:
-    "@zthun/helpful-fn": ^2.4.0
-    "@zthun/helpful-query": ^2.4.0
+    "@zthun/helpful-fn": ^3.0.0
+    "@zthun/helpful-query": ^3.0.0
     lodash: ^4.17.21
     rxjs: ^7.8.1
   peerDependencies:
@@ -4692,7 +4683,7 @@ __metadata:
   peerDependenciesMeta:
     rxjs:
       optional: true
-  checksum: 5e1a63c7ba4a148a3991a5952cc315fc88f9adfe3127ca95657c7b7c54089cf1d5f5f4a425f0a944f81f22e14b663197ec6194b147a67e166ba3105c421f0c41
+  checksum: ddef4e9a82f4e39f9eb96c10da48c9e85c44073c65ca495b60af1a705c32896f7adc73135637491fe290152595643fddec29dcb1480e3f3e0b8b2fd9ead72ee2
   languageName: node
   linkType: hard
 

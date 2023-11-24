@@ -3,7 +3,7 @@ import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { ZButtonComponentModel } from '@zthun/fashion-boutique';
 import { ZSizeVaried } from '@zthun/fashion-tailor';
 import { ZFashionName, ZFashionPriority } from '@zthun/fashion-theme';
-import { required } from '@zthun/helpful-obligation';
+import { required } from '@zthun/helpful-fn';
 import { lowerCase } from 'lodash';
 import React from 'react';
 import { afterEach, describe, expect, it } from 'vitest';
