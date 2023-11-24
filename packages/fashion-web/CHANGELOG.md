@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.0](https://github.com/zthun/fashion/compare/v2.2.0...v2.3.0) (2023-11-24)
+
+
+### Features
+
+* upgrade to react-router-dom 6.20.x ([c192041](https://github.com/zthun/fashion/commit/c192041558f1465921d96b5652281fe74fa2163e))
+
+
+
 ## [2.2.0](https://github.com/zthun/fashion/compare/v2.1.1...v2.2.0) (2023-11-21)
 
 
