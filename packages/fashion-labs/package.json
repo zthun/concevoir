@@ -34,7 +34,7 @@
   "devDependencies": {
     "@zthun/cirque-du-react": "^4.3.2",
     "microbundle": "^0.15.1",
-    "vitest": "^0.34.6"
+    "vitest": "^1.0.4"
   },
   "peerDependencies": {
     "react": "^18.1.0",

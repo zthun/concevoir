@@ -13,7 +13,11 @@ describe('ZFashion', () => {
   describe('Properties', () => {
     it('should set the main fashion', () => {
       const expected = rgb(255, 0, 0);
-      expect(createTestTarget().main(rgb(255, 0, 0)).build().main).toEqual(expected);
+      expect(
+        createTestTarget()
+          .main(rgb(255, 0, 0))
+          .build().main
+      ).toEqual(expected);
     });
 
     it('should set the contrast fashion', () => {
@@ -30,7 +34,11 @@ describe('ZFashion', () => {
   describe('Spectrum', () => {
     it('should set the main fashion', () => {
       const expected = rgb(255, 0, 0);
-      expect(createTestTarget().spectrum(fromRgb(255, 0, 0)).build().main).toEqual(expected);
+      expect(
+        createTestTarget()
+          .spectrum(fromRgb(255, 0, 0))
+          .build().main
+      ).toEqual(expected);
     });
 
     it('should set the dark fashion', () => {
