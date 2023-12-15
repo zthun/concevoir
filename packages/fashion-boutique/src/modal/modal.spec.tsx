@@ -41,8 +41,8 @@ describe('ZModal', () => {
   });
 
   afterEach(async () => {
-    await _target?.driver?.destroy();
-    await _driver?.destroy();
+    await _target?.driver?.destroy?.call(_target.driver);
+    await _driver?.destroy?.call(_driver);
   });
 
   describe('Header', () => {

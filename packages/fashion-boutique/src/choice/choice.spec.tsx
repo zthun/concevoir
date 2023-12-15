@@ -1,4 +1,4 @@
-import { ZCircusBy } from '@zthun/cirque';
+import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { identity, noop, range } from 'lodash';
 import React, { ReactNode } from 'react';
@@ -22,7 +22,8 @@ describe('ZChoice', () => {
   let display: undefined | ((op: any) => string);
   let renderOption: undefined | ((op: any) => ReactNode);
 
-  let _target: ZChoiceComponentModel;
+  let _renderer: IZCircusSetup<IZCircusDriver>;
+  let _driver: IZCircusDriver;
 
   beforeEach(() => {
     selected = undefined;
@@ -40,7 +41,8 @@ describe('ZChoice', () => {
   });
 
   afterEach(async () => {
-    await _target?.driver.destroy();
+    await _renderer?.destroy?.call(_renderer);
+    await _driver?.destroy?.call(_driver);
   });
 
   async function shouldRenderAllOptionsWhenOpened(createTestTarget: () => Promise<ZChoiceComponentModel>) {
@@ -212,9 +214,9 @@ describe('ZChoice', () => {
         />
       );
 
-      const driver = await new ZCircusSetupRenderer(element).setup();
-      _target = await ZCircusBy.first(driver, ZChoiceComponentModel);
-      return _target;
+      _renderer = new ZCircusSetupRenderer(element);
+      _driver = await _renderer.setup();
+      return await ZCircusBy.first(_driver, ZChoiceComponentModel);
     }
 
     it('should render all options when opened', async () => {
@@ -299,9 +301,9 @@ describe('ZChoice', () => {
         />
       );
 
-      const driver = await new ZCircusSetupRenderer(element).setup();
-      _target = await ZCircusBy.first(driver, ZChoiceComponentModel);
-      return _target;
+      _renderer = new ZCircusSetupRenderer(element);
+      _driver = await _renderer.setup();
+      return await ZCircusBy.first(_driver, ZChoiceComponentModel);
     }
 
     it('should render all options when opened', async () => {
@@ -367,9 +369,9 @@ describe('ZChoice', () => {
         />
       );
 
-      const driver = await new ZCircusSetupRenderer(element).setup();
-      _target = await ZCircusBy.first(driver, ZChoiceComponentModel);
-      return _target;
+      _renderer = new ZCircusSetupRenderer(element);
+      _driver = await _renderer.setup();
+      return await ZCircusBy.first(_driver, ZChoiceComponentModel);
     }
 
     it('should render all options when opened', async () => {

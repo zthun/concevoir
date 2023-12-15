@@ -26,7 +26,7 @@ describe('ZLabeled', () => {
     });
 
     afterEach(async () => {
-      await _driver.destroy();
+      await _driver.destroy?.call(_driver);
     });
 
     it('should set the text of the label.', async () => {

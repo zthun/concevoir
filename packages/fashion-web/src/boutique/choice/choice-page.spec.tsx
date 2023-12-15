@@ -17,7 +17,7 @@ describe('ZChoicePage', () => {
   }
 
   afterEach(async () => {
-    await _target.driver.destroy();
+    await _target.driver.destroy?.call(_target.driver);
   });
 
   type ChoicePageFactory = (t: ZChoicePageComponentModel) => Promise<ZChoiceComponentModel>;

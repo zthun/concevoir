@@ -23,7 +23,7 @@ describe('ZPopup', () => {
   });
 
   afterEach(async () => {
-    await _driver?.destroy();
+    await _driver?.destroy?.call(_driver);
   });
 
   describe('Open', () => {

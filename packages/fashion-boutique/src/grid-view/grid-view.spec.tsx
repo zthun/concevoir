@@ -45,7 +45,7 @@ describe('ZGridView', () => {
 
   afterEach(async () => {
     await _target?.load();
-    await _driver.destroy();
+    await _driver?.destroy?.call(_driver);
   });
 
   describe('Page Size', () => {

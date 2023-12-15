@@ -1,5 +1,11 @@
 import { setDefaultTimeout, setWorldConstructor, World } from '@cucumber/cucumber';
-import { IZCircusDriver, ZCircusBy, ZCircusComponentConstructor, ZCircusComponentModel } from '@zthun/cirque';
+import {
+  IZCircusDriver,
+  IZCircusSetup,
+  ZCircusBy,
+  ZCircusComponentConstructor,
+  ZCircusComponentModel
+} from '@zthun/cirque';
 import { ZCircusSetupChrome } from '@zthun/cirque-du-selenium';
 import { sleep } from '@zthun/helpful-fn';
 import { ZUrlBuilder } from '@zthun/webigail-url';
@@ -19,13 +25,16 @@ export interface IZFashionPage<T extends ZCircusComponentModel | never> {
  * The current world
  */
 export class ZFashionWorld<T extends ZCircusComponentModel | never = never> extends World<IZFashionPage<T>> {
+  private _browser: IZCircusSetup<IZCircusDriver> | null;
   private _driver: IZCircusDriver | null = null;
 
   /**
    * Closes the browser if it is open.
    */
   public async close() {
-    await this._driver?.destroy();
+    await this._browser?.destroy?.call(this._browser);
+    await this._driver?.destroy?.call(this._driver);
+    this._browser = null;
     this._driver = null;
   }
 
@@ -59,7 +68,8 @@ export class ZFashionWorld<T extends ZCircusComponentModel | never = never> exte
     let hash = route.map((r) => (typeof r === 'string' ? r : r.path)).join('/');
     hash = hash.startsWith('/') ? hash : `/${hash}`;
     const url = new ZUrlBuilder().parse('http://localhost:5173').hash(hash).build();
-    this._driver = await new ZCircusSetupChrome(url).setup();
+    this._browser = new ZCircusSetupChrome(url);
+    this._driver = await this._browser.setup();
     await sleep(500);
     return this._driver;
   }

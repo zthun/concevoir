@@ -1,4 +1,4 @@
-import { IZCircusDriver, ZCircusBy } from '@zthun/cirque';
+import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { IZFashion, ZFashionBuilder } from '@zthun/fashion-theme';
 import React, { ReactNode } from 'react';
@@ -7,6 +7,7 @@ import { ZAlert } from './alert';
 import { ZAlertComponentModel } from './alert.cm';
 
 describe('ZAlert', () => {
+  let _renderer: IZCircusSetup<IZCircusDriver>;
   let _driver: IZCircusDriver;
   let message: ReactNode;
   let avatar: ReactNode | undefined;
@@ -15,7 +16,8 @@ describe('ZAlert', () => {
 
   const createTestTarget = async () => {
     const element = <ZAlert message={message} heading={heading} fashion={fashion} avatar={avatar} />;
-    _driver = await new ZCircusSetupRenderer(element).setup();
+    _renderer = new ZCircusSetupRenderer(element);
+    _driver = await _renderer.setup();
     return ZCircusBy.first(_driver, ZAlertComponentModel);
   };
 
@@ -27,7 +29,8 @@ describe('ZAlert', () => {
   });
 
   afterEach(async () => {
-    _driver?.destroy();
+    await _renderer?.destroy?.call(_renderer);
+    await _driver?.destroy?.call(_driver);
   });
 
   describe('Message', () => {

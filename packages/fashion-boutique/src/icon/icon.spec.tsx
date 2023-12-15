@@ -16,7 +16,7 @@ describe('ZIcon', () => {
   });
 
   afterEach(async () => {
-    await Promise.all(_drivers.map((d) => d.destroy()));
+    await Promise.all(_drivers.map((d) => d.destroy?.call(d)));
   });
 
   async function shouldRegisterTheProvider(
