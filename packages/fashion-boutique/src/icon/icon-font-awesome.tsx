@@ -4,7 +4,7 @@ import { useKeyboardActivate } from '@zthun/helpful-react';
 import React from 'react';
 import { IZIcon, useIconProvider, useIconStyles } from './icon';
 
-export const ZIconFontAwesomeProvider = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+export const ZIconFontAwesomeProvider = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css';
 export const ZIconFontAwesomeVendor = 'font-awesome';
 
 export interface IZIconFontAwesome extends IZIcon {
