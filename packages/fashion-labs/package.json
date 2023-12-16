@@ -2,16 +2,21 @@
   "name": "@zthun/fashion-labs",
   "version": "2.4.0",
   "description": "A UI library to play with ideas for the fashion system.",
-  "main": "dist/lib/index.js",
-  "module": "dist/lib/index.js",
-  "types": "dist/types/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    "require": "./dist/index.js",
+    "import": "./dist/index.mjs",
+    "types": "./dist/index.d.ts"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/zthun/fashion",
     "directory": "packages/fashion-labs"
   },
   "scripts": {
-    "build": "microbundle --format esm,cjs --tsconfig tsconfig.prod.json"
+    "build": "vite build"
   },
   "author": "Anthony Bonta",
   "license": "MIT",
@@ -33,7 +38,6 @@
   },
   "devDependencies": {
     "@zthun/cirque-du-react": "^5.0.3",
-    "microbundle": "^0.15.1",
     "vitest": "^1.0.4"
   },
   "peerDependencies": {
