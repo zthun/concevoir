@@ -9,11 +9,16 @@
     "url": "https://github.com/zthun/fashion",
     "directory": "packages/fashion-theme"
   },
-  "main": "./dist/lib/index.js",
-  "module": "./dist/lib/index.esm.js",
-  "types": "./dist/types/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    "require": "./dist/index.js",
+    "import": "./dist/index.mjs",
+    "types": "./dist/index.d.ts"
+  },
   "scripts": {
-    "build": "microbundle --format esm,cjs --tsconfig tsconfig.prod.json"
+    "build": "vite build"
   },
   "publishConfig": {
     "access": "public"
@@ -23,7 +28,6 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "microbundle": "^0.15.1",
     "vitest": "^1.0.4"
   },
   "files": [
