@@ -48,10 +48,6 @@
   "devDependencies": {
     "@zthun/cirque-du-react": "^5.0.3",
     "@zthun/helpful-brands": "^3.0.0",
-    "typescript": "^5.3.3",
-    "vite": "^5.0.8",
-    "vite-plugin-dts": "^3.6.4",
-    "vite-plugin-externalize-deps": "^0.8.0",
     "vitest": "^1.0.4"
   },
   "peerDependencies": {
