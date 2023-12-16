@@ -4566,7 +4566,10 @@ __metadata:
   resolution: "@zthun/fashion-tailor@workspace:packages/fashion-tailor"
   dependencies:
     lodash: ^4.17.21
-    microbundle: ^0.15.1
+    typescript: ^5.3.3
+    vite: ^5.0.8
+    vite-plugin-dts: ^3.6.4
+    vite-plugin-externalize-deps: ^0.8.0
     vitest: ^1.0.4
   languageName: unknown
   linkType: soft
