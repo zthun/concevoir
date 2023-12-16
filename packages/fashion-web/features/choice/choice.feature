@@ -14,7 +14,7 @@ Scenario: Selecting an item updates the value
   |choice|text|values|
   |dropdown|tiktok|tiktok|
   |autocomplete|facebook|facebook|
-  |toggle|twitter|twitter|
+  |toggle|x-twitter|x-twitter|
 
 @ChoicePage-Select
 @ChoicePage-Select-Multiple
@@ -27,8 +27,8 @@ Scenario: Selection multiple items updates the values
   Examples:
   |choice|first|second|values|
   |dropdown|facebook|tiktok|facebook,tiktok|
-  |autocomplete|instagram|twitter|instagram,twitter|
-  |toggle|facebook|twitter|facebook,twitter|
+  |autocomplete|instagram|x-twitter|instagram,x-twitter|
+  |toggle|facebook|x-twitter|facebook,x-twitter|
 
 @ChoicePage-Option
 @ChoicePage-Option-Disabled
