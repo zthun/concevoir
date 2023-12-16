@@ -3214,7 +3214,6 @@ __metadata:
     "@zthun/helpful-query": ^3.0.0
     "@zthun/helpful-react": ^3.0.0
     lodash: ^4.17.21
-    typescript: ^5.3.3
     vitest: ^1.0.4
   peerDependencies:
     react: ^18.1.0
@@ -3227,7 +3226,6 @@ __metadata:
   resolution: "@zthun/fashion-tailor@workspace:packages/fashion-tailor"
   dependencies:
     lodash: ^4.17.21
-    typescript: ^5.3.3
     vitest: ^1.0.4
   languageName: unknown
   linkType: soft
@@ -12127,7 +12125,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:>=3 < 6, typescript@npm:^5.3.3, typescript@npm:~5.3.3":
+"typescript@npm:>=3 < 6, typescript@npm:~5.3.3":
   version: 5.3.3
   resolution: "typescript@npm:5.3.3"
   bin:
@@ -12147,7 +12145,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@>=3 < 6#~builtin<compat/typescript>, typescript@patch:typescript@^5.3.3#~builtin<compat/typescript>, typescript@patch:typescript@~5.3.3#~builtin<compat/typescript>":
+"typescript@patch:typescript@>=3 < 6#~builtin<compat/typescript>, typescript@patch:typescript@~5.3.3#~builtin<compat/typescript>":
   version: 5.3.3
   resolution: "typescript@patch:typescript@npm%3A5.3.3#~builtin<compat/typescript>::version=5.3.3&hash=ad5954"
   bin:
