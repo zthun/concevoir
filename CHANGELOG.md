@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.0](https://github.com/zthun/fashion/compare/v2.3.0...v2.4.0) (2023-12-16)
+
+
+### Features
+
+* upgrade font awesome to 6.5.1 ([c84771b](https://github.com/zthun/fashion/commit/c84771ba4fd397ba12fcbd7bbadbd3948707b924))
+* upgrade material to 5.15 ([1502128](https://github.com/zthun/fashion/commit/1502128fe52b0a1cdad7d7f1e160b8f89d11c5f0))
+* upgrade webigail to 1.2.0 ([b91a926](https://github.com/zthun/fashion/commit/b91a926451095088ec7dfada97e2f2dfa42cdf8b))
+
+
+
 ## [2.3.0](https://github.com/zthun/fashion/compare/v2.2.0...v2.3.0) (2023-11-24)
 
 
