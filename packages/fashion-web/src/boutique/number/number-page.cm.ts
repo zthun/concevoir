@@ -1,6 +1,6 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
 import { ZNumberComponentModel } from '@zthun/fashion-boutique';
-import { trim } from 'lodash';
+import { trim } from 'lodash-es';
 
 /**
  * Represents the component model for the number page.

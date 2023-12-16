@@ -6,7 +6,7 @@ import {
   ZCircusWaitOptionsBuilder
 } from '@zthun/cirque';
 import { firstDefined } from '@zthun/helpful-fn';
-import { findIndex } from 'lodash';
+import { findIndex } from 'lodash-es';
 import { ZLabelComponentModel } from '../label/label.cm';
 import { ZChoiceOptionComponentModel } from './choice-option.cm';
 

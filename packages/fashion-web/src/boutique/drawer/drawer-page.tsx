@@ -12,7 +12,7 @@ import {
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { setFirst, ZHorizontalAnchor, ZSideAnchor, ZVerticalAnchor } from '@zthun/helpful-fn';
-import { identity, startCase } from 'lodash';
+import { identity, startCase } from 'lodash-es';
 import React, { useState } from 'react';
 import { ZFashionRouteDrawer } from '../../routes';
 

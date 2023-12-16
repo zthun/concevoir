@@ -12,7 +12,7 @@ import {
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { setFirst } from '@zthun/helpful-fn';
-import { identity, startCase, values } from 'lodash';
+import { identity, startCase, values } from 'lodash-es';
 import React, { useState } from 'react';
 import { ZFashionRouteSuspense } from '../../routes';
 import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';

@@ -5,7 +5,7 @@ import { IZFashion, transparent } from '@zthun/fashion-theme';
 
 import { createSizeChartVariedCss, ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
-import { noop } from 'lodash';
+import { noop } from 'lodash-es';
 import { IZComponentAvatar } from '../component/component-avatar';
 import { IZComponentDisabled } from '../component/component-disabled';
 import { IZComponentFashion } from '../component/component-fashion';

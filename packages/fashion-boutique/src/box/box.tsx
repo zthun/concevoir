@@ -10,7 +10,7 @@ import {
 import { IZFashion, transparent, ZColor } from '@zthun/fashion-theme';
 import { cssJoinDefined, firstDefined, ZHorizontalAnchor } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
-import { get } from 'lodash';
+import { get } from 'lodash-es';
 import React, { MouseEventHandler } from 'react';
 import { IZComponentFashion } from '../component/component-fashion';
 import { IZComponentHierarchy } from '../component/component-hierarchy';

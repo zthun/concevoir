@@ -2,7 +2,7 @@ import { IZComponentName, IZComponentValue, ZChoiceDropDown } from '@zthun/fashi
 import { ZFashionArea, ZFashionContrast, ZFashionName, ZFashionPriority, ZFashionSeverity } from '@zthun/fashion-theme';
 import { setFirst } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
-import { identity, startCase } from 'lodash';
+import { identity, startCase } from 'lodash-es';
 import React, { useMemo } from 'react';
 
 export interface IZChoiceDropDownFashion extends IZComponentValue<ZFashionName>, IZComponentName {}

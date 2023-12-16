@@ -1,4 +1,4 @@
-import { set } from 'lodash';
+import { set } from 'lodash-es';
 import { createSizeChartFixedArithmetic } from '../fixed/size-chart-fixed-arithmetic';
 import { createSizeChartFixedCss } from '../fixed/size-chart-fixed-css';
 import { createSizeChartFixedFibonacci } from '../fixed/size-chart-fixed-fibonacci';

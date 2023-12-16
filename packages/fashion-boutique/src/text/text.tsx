@@ -1,7 +1,7 @@
 import { InputAdornment, InputBaseProps } from '@mui/material';
 import { ZCircusKeyboardQwerty } from '@zthun/cirque';
 import { cssJoinDefined } from '@zthun/helpful-fn';
-import { get, noop } from 'lodash';
+import { get, noop } from 'lodash-es';
 import React, { KeyboardEvent, ReactNode, useEffect, useState } from 'react';
 import { IZComponentAdornment } from '../component/component-adornment';
 import { IZComponentDisabled } from '../component/component-disabled';

@@ -1,6 +1,6 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
 import { ZBooleanComponentModel, ZTextComponentModel } from '@zthun/fashion-boutique';
-import { trimEnd, trimStart } from 'lodash';
+import { trimEnd, trimStart } from 'lodash-es';
 
 /**
  * The component model for the text demo page.

@@ -1,7 +1,7 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { ZFashionName, ZFashionPriority, ZFashionSeverity } from '@zthun/fashion-theme';
-import { lowerCase } from 'lodash';
+import { lowerCase } from 'lodash-es';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZAlertPage } from './alert-page';

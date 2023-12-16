@@ -1,6 +1,6 @@
 import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { identity, noop, range } from 'lodash';
+import { identity, noop, range } from 'lodash-es';
 import React, { ReactNode } from 'react';
 import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ZChoiceAutocomplete } from './choice-autocomplete';

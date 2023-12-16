@@ -2,7 +2,7 @@ import { IZComponentName, IZComponentValue, ZChoiceDropDown } from '@zthun/fashi
 import { ZSize, ZSizeFixed, ZSizeVaried, ZSizeVoid } from '@zthun/fashion-tailor';
 import { setFirst } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
-import { identity, startCase } from 'lodash';
+import { identity, startCase } from 'lodash-es';
 import React, { ReactNode, useMemo } from 'react';
 
 export const ZFixedSizes = Object.values(ZSizeFixed);

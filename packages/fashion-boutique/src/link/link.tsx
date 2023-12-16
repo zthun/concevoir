@@ -1,6 +1,6 @@
 import { Link } from '@mui/material';
 import { cssJoinDefined } from '@zthun/helpful-fn';
-import { noop } from 'lodash';
+import { noop } from 'lodash-es';
 import React from 'react';
 import { IZComponentLabel } from '../component/component-label';
 import { IZComponentName } from '../component/component-name';

@@ -4,7 +4,7 @@ import { ZButtonComponentModel } from '@zthun/fashion-boutique';
 import { ZSizeVaried } from '@zthun/fashion-tailor';
 import { ZFashionName, ZFashionPriority } from '@zthun/fashion-theme';
 import { required } from '@zthun/helpful-fn';
-import { lowerCase } from 'lodash';
+import { lowerCase } from 'lodash-es';
 import React from 'react';
 import { afterEach, describe, expect, it } from 'vitest';
 import { ZModalPage } from './modal-page';

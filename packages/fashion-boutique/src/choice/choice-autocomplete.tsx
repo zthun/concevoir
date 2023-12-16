@@ -1,7 +1,7 @@
 import { Autocomplete, AutocompleteRenderInputParams, TextField } from '@mui/material';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
-import { castArray, first } from 'lodash';
+import { castArray, first } from 'lodash-es';
 import React, { HTMLAttributes, SyntheticEvent } from 'react';
 import { ZLabeled } from '../label/labeled';
 import { createStyleHook } from '../theme/styled';

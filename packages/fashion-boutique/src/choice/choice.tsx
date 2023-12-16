@@ -1,6 +1,6 @@
 import { createGuid } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
-import { first } from 'lodash';
+import { first } from 'lodash-es';
 import { ReactNode, useMemo } from 'react';
 import { IZComponentDisabled } from '../component/component-disabled';
 import { IZComponentLabel } from '../component/component-label';

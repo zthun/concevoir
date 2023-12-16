@@ -2,7 +2,7 @@ import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionName, ZFashionPriority } from '@zthun/fashion-theme';
-import { startCase } from 'lodash';
+import { startCase } from 'lodash-es';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZBubblePage } from './bubble-page';

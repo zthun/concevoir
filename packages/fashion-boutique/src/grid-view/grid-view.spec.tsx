@@ -7,7 +7,7 @@ import {
   ZDataSourceStatic,
   ZDataSourceStaticOptionsBuilder
 } from '@zthun/helpful-query';
-import { range } from 'lodash';
+import { range } from 'lodash-es';
 import React from 'react';
 import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ZGridView } from './grid-view';
