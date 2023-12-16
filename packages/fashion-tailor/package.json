@@ -24,7 +24,7 @@
     "access": "public"
   },
   "dependencies": {
-    "lodash": "^4.17.21"
+    "lodash-es": "^4.17.21"
   },
   "devDependencies": {
     "vitest": "^1.0.4"
