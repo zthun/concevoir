@@ -35,6 +35,7 @@ import { ZPopupPage } from '../boutique/popup/popup-page';
 import { ZSuspensePage } from '../boutique/suspense/suspense-page';
 import { ZTextPage } from '../boutique/text/text-page';
 import { ZTypographyPage } from '../boutique/typography/typography-page';
+import { ZYouTubePage } from '../boutique/you-tube/you-tube-page';
 import { ZHomePage } from '../home/home-page';
 import {
   ZFashionRouteAlert,
@@ -57,7 +58,8 @@ import {
   ZFashionRouteSuspense,
   ZFashionRouteText,
   ZFashionRouteTheme,
-  ZFashionRouteTypography
+  ZFashionRouteTypography,
+  ZFashionRouteYouTube
 } from '../routes';
 import { ZThemePage } from '../theme/theme-page';
 
@@ -124,6 +126,7 @@ export function ZFashionApp() {
               <ZRoute path={ZFashionRouteSuspense.path} element={<ZSuspensePage />} />
               <ZRoute path={ZFashionRouteText.path} element={<ZTextPage />} />
               <ZRoute path={ZFashionRouteTypography.path} element={<ZTypographyPage />} />
+              <ZRoute path={ZFashionRouteYouTube.path} element={<ZYouTubePage />} />
               <ZRoute path='' element={<ZBoutiquePage />} />
             </ZRoute>
             <ZRoute path='*' element={<ZNotFound />} />

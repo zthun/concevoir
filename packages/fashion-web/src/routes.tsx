@@ -147,6 +147,14 @@ export const ZFashionRouteTypography = new ZRouteBuilder()
   .avatar('mountain-sun')
   .build();
 
+export const ZFashionRouteYouTube = new ZRouteBuilder()
+  .name('YouTube')
+  .path('you-tube')
+  .description('Embed YouTube videos')
+  .avatar('youtube')
+  .family('brands')
+  .build();
+
 export const ZFashionRouteAllComponents = [
   ZFashionRouteAlert,
   ZFashionRouteBoolean,
@@ -165,5 +173,6 @@ export const ZFashionRouteAllComponents = [
   ZFashionRoutePopup,
   ZFashionRouteSuspense,
   ZFashionRouteText,
-  ZFashionRouteTypography
+  ZFashionRouteTypography,
+  ZFashionRouteYouTube
 ];

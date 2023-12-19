@@ -25,6 +25,11 @@ export interface IZRoute {
    * is consumed.
    */
   avatar?: any;
+
+  /**
+   * Font family if the avatar represents a known font.
+   */
+  family?: 'brands' | 'classic' | 'sharp';
 }
 
 /**
@@ -95,6 +100,20 @@ export class ZRouteBuilder {
    */
   public avatar(avatar: any): this {
     this._route.avatar = avatar;
+    return this;
+  }
+
+  /**
+   * Sets the font family.
+   *
+   * @param family -
+   *        The font family
+   *
+   * @returns
+   *        This object.
+   */
+  public family(family: 'brands' | 'classic' | 'sharp'): this {
+    this._route.family = family;
     return this;
   }
 

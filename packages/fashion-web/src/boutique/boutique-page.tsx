@@ -36,7 +36,7 @@ export function ZBoutiquePage() {
       onClick={() => navigate(route.path)}
     >
       <ZLineItem
-        prefix={<ZIconFontAwesome name={route.avatar} width={ZSizeFixed.Small} />}
+        prefix={<ZIconFontAwesome name={route.avatar} family={route.family} width={ZSizeFixed.Small} />}
         body={
           <>
             <ZH3 compact>{route.name}</ZH3>
