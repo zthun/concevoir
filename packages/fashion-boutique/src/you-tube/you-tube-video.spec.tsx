@@ -11,7 +11,7 @@ describe('YouTubeVideo', () => {
   let _driver: IZCircusDriver;
 
   const createTestTarget = async () => {
-    const element = <ZYouTubeVideo videoId={Video} />;
+    const element = <ZYouTubeVideo identity={Video} />;
     _renderer = new ZCircusSetupRenderer(element);
     _driver = await _renderer.setup();
     return ZCircusBy.first(_driver, ZYouTubeVideoComponentModel);
@@ -26,7 +26,7 @@ describe('YouTubeVideo', () => {
     // Arrange.
     const target = await createTestTarget();
     // Act.
-    const actual = await target.videoId();
+    const actual = await target.identity();
     // Assert.
     expect(actual).toEqual(Video);
   });

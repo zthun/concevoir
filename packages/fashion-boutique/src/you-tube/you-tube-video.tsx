@@ -6,14 +6,17 @@ import { IZComponentStyle } from '../component/component-style';
 import { createStyleHook } from '../theme/styled';
 
 export interface IZYouTubeVideo extends IZComponentName, IZComponentStyle {
-  videoId: string;
+  identity: string;
 }
 
 const useYouTubeVideoStyles = createStyleHook(() => {
   return {
     root: {
       overflow: 'hidden',
-      paddingBottom: '50%',
+      // This isn't obvious why, but if you're seeing this, it's to force
+      // a 16x9 aspect ratio.  See https://css-tricks.com/fluid-width-video/
+      // for more information.
+      paddingBottom: '56.25%',
       position: 'relative',
       height: 0,
 
@@ -22,31 +25,33 @@ const useYouTubeVideoStyles = createStyleHook(() => {
         top: 0,
         height: '100%',
         width: '100%',
-        position: 'absolute'
+        position: 'absolute',
+        border: 0
       }
     }
   };
 });
 
 export function ZYouTubeVideo(props: IZYouTubeVideo) {
-  const { videoId, className, name } = props;
+  const { identity, className, name } = props;
   const { classes } = useYouTubeVideoStyles();
-  const src = new ZUrlBuilder().youTube(ZYouTubeApi.Embed, videoId).build();
+  const src = new ZUrlBuilder().youTube(ZYouTubeApi.Embed, identity).build();
+  const allow = [
+    'accelerometer',
+    'autoplay',
+    'clipboard-write',
+    'encrypted-media',
+    'gyroscope',
+    'picture-in-picture'
+  ].join(';');
 
   return (
     <div
       className={cssJoinDefined('ZYouTubeVideo-root', className, classes.root)}
-      data-video-id={videoId}
+      data-identity={identity}
       data-name={name}
     >
-      <iframe
-        width='1280'
-        height='720'
-        src={src}
-        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-        allowFullScreen
-        title={name}
-      />
+      <iframe src={src} allow={allow} allowFullScreen title={name} />
     </div>
   );
 }
