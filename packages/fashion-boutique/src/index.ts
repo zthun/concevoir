@@ -108,3 +108,5 @@ export * from './theme/styled';
 export * from './typography/text-color';
 export * from './typography/text-color.cm';
 export * from './typography/typography';
+export * from './you-tube/you-tube-video';
+export * from './you-tube/you-tube-video.cm';
