@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.0](https://github.com/zthun/fashion/compare/v2.4.2...v2.5.0) (2023-12-19)
+
+
+### Features
+
+* the YouTube page shows a demo of an embedded YT video ([9927457](https://github.com/zthun/fashion/commit/99274579bd88a58940afee714f667e7f40531c9b))
+
+
+
 ## [2.4.2](https://github.com/zthun/fashion/compare/v2.4.1...v2.4.2) (2023-12-16)
 
 **Note:** Version bump only for package @zthun/fashion-web

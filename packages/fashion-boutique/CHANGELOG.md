@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.0](https://github.com/zthun/fashion/compare/v2.4.2...v2.5.0) (2023-12-19)
+
+
+### Features
+
+* added the YouTube video component ([ba8ef90](https://github.com/zthun/fashion/commit/ba8ef90400f71db3e14354d0f0bb40553d486892))
+
+
+
 ## [2.4.2](https://github.com/zthun/fashion/compare/v2.4.1...v2.4.2) (2023-12-16)
 
 **Note:** Version bump only for package @zthun/fashion-boutique
