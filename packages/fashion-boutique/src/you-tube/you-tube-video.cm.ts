@@ -12,7 +12,7 @@ export class ZYouTubeVideoComponentModel extends ZCircusComponentModel {
    * @returns
    *        The video id that is embedded.
    */
-  public videoId(): Promise<string> {
-    return this.driver.attribute<string>('data-video-id', '?');
+  public identity(): Promise<string> {
+    return this.driver.attribute<string>('data-identity', '?');
   }
 }
