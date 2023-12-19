@@ -3196,8 +3196,8 @@ __metadata:
     "@zthun/helpful-fn": "npm:^3.0.0"
     "@zthun/helpful-query": "npm:^3.0.0"
     "@zthun/helpful-react": "npm:^3.0.0"
-    "@zthun/webigail-http": "npm:^1.2.0"
-    "@zthun/webigail-url": "npm:^1.2.0"
+    "@zthun/webigail-http": "npm:^2.0.1"
+    "@zthun/webigail-url": "npm:^2.0.2"
     csstype: "npm:^3.1.3"
     history: "npm:^5.3.0"
     lodash-es: "npm:^4.17.21"
@@ -3265,7 +3265,7 @@ __metadata:
     "@zthun/helpful-fn": "npm:^3.0.0"
     "@zthun/helpful-query": "npm:^3.0.0"
     "@zthun/helpful-react": "npm:^3.0.0"
-    "@zthun/webigail-url": "npm:^1.2.0"
+    "@zthun/webigail-url": "npm:^2.0.2"
     history: "npm:^5.3.0"
     lodash-es: "npm:^4.17.21"
     react: "npm:^18.2.0"
@@ -3467,22 +3467,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/webigail-http@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "@zthun/webigail-http@npm:1.2.0"
+"@zthun/webigail-http@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@zthun/webigail-http@npm:2.0.1"
   dependencies:
     axios: "npm:^1.6.2"
-  checksum: 79437f9131722ea5e05ecaa4e856dbb4c3a54274aae43a2e45f3f487905124b3bffb65c717a07b744509aa6df359d020e4871981cc3bb73cc2cc33c907075395
+  checksum: e054a4b0a048ca70cc8eaceaddb32dd418f6ff49581e107cd85149eea71a740b28690ba71ade06efec869020523c245df30bf9fa272075f8f3dde38093c10453
   languageName: node
   linkType: hard
 
-"@zthun/webigail-url@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "@zthun/webigail-url@npm:1.2.0"
+"@zthun/webigail-url@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "@zthun/webigail-url@npm:2.0.2"
   dependencies:
-    lodash: "npm:^4.17.21"
+    lodash-es: "npm:^4.17.21"
     url-parse: "npm:^1.5.10"
-  checksum: e107581b9ebefc085420c16ba7ff1ded47cacaefcee0aecc4ab5f7b18f9bbf6396db56ced65e98b136364c823e285c62e59becbff0ed7539fb156adf3cf4aeb1
+  checksum: 98db6a4ea62127434728da41b3543778ba4dde7eeb8bd69cc321fe1e69fc5ec4a19c79f6d06f4e0bc8b27532490c653913378916e895603c36fe437808c5410e
   languageName: node
   linkType: hard
 
