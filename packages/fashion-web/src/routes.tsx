@@ -147,6 +147,13 @@ export const ZFashionRouteTypography = new ZRouteBuilder()
   .avatar('mountain-sun')
   .build();
 
+export const ZFashionRouteWizard = new ZRouteBuilder()
+  .name('Wizard')
+  .path('wizard')
+  .description('Step by Step Navigation')
+  .avatar('hat-wizard')
+  .build();
+
 export const ZFashionRouteYouTube = new ZRouteBuilder()
   .name('YouTube')
   .path('you-tube')
@@ -174,5 +181,6 @@ export const ZFashionRouteAllComponents = [
   ZFashionRouteSuspense,
   ZFashionRouteText,
   ZFashionRouteTypography,
+  ZFashionRouteWizard,
   ZFashionRouteYouTube
 ];
