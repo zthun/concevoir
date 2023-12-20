@@ -155,7 +155,9 @@ function useGlobalStyles() {
       body: {
         backgroundColor: body.main,
         color: body.contrast,
-        margin: 0
+        margin: 0,
+        position: 'relative',
+        height: '100vh'
       }
     }),
     [body]
