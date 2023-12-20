@@ -1,3 +1,4 @@
+import { cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { IZButton } from '../button/button';
 import { IZComponentName } from '../component/component-name';
@@ -10,10 +11,10 @@ export interface IZWizard extends IZComponentStyle, IZComponentName {
 }
 
 export function ZWizard(props: IZWizard) {
-  const { name } = props;
+  const { className, name } = props;
 
   return (
-    <div className='ZWizard-root' data-name={name}>
+    <div className={cssJoinDefined('ZWizard-root', className)} data-name={name}>
       Wizard!
     </div>
   );
