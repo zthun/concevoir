@@ -4,7 +4,7 @@ import { IZFashionDevice, IZFashionTailor, ZSizeFixed } from '@zthun/fashion-tai
 import { IZFashion, IZFashionTheme } from '@zthun/fashion-theme';
 import { firstDefined } from '@zthun/helpful-fn';
 import React, { useMemo } from 'react';
-import { CSSObject, GlobalStyles, createMakeStyles } from 'tss-react';
+import { CSSInterpolation, CSSObject, GlobalStyles, createMakeStyles } from 'tss-react';
 import { IZComponentHierarchy } from '../component/component-hierarchy';
 import { IZComponentStyle } from '../component/component-style';
 import { useFashionDevice, useFashionTailor, useFashionTheme } from './fashion';
@@ -150,7 +150,7 @@ function useBoutiqueTheme() {
 
 function useGlobalStyles() {
   const { body } = useFashionTheme();
-  return useMemo(
+  return useMemo<CSSInterpolation>(
     () => ({
       body: {
         backgroundColor: body.main,
