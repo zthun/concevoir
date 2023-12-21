@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.0](https://github.com/zthun/fashion/compare/v2.5.0...v2.6.0) (2023-12-21)
+
+
+### Features
+
+* the wizard demo page shows how the wizard navigates through content ([335ea9e](https://github.com/zthun/fashion/commit/335ea9ef5c018fd0dfda5a4ed72078b8cf1fac67))
+* the wizard page demos the wizard component ([bd95d33](https://github.com/zthun/fashion/commit/bd95d332f7bf18408401dff4d7e0b08ae45ec422))
+
+
+### Bug Fixes
+
+* the YouTube demo now centers the video and is responsive to width ([38d6020](https://github.com/zthun/fashion/commit/38d6020046d5f8c489901ac0aa9e980f3d96af62))
+
+
+
 ## [2.5.0](https://github.com/zthun/fashion/compare/v2.4.2...v2.5.0) (2023-12-19)
 
 

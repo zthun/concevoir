@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.0](https://github.com/zthun/fashion/compare/v2.5.0...v2.6.0) (2023-12-21)
+
+
+### Features
+
+* a newspaper component is a special 12 column grid that spans a single content child ([59befe8](https://github.com/zthun/fashion/commit/59befe82ac9bb0b2f0865618a4b12acace49108b))
+* card can includes the data attributes from the props ([b77ddaf](https://github.com/zthun/fashion/commit/b77ddafb5d9b711b96c01188bceb71fd9132e0ea))
+* cards can now have minimum heights ([0d8a95b](https://github.com/zthun/fashion/commit/0d8a95bba3848edb94bb800c9ca667c157a0f4b2))
+* the global body element is now relative at 100vh for height bound layouts ([996d25b](https://github.com/zthun/fashion/commit/996d25b36aba7824b2e10a5dff602982c4077c9a))
+* the wizard component uses steps to move you through content ([94a98ef](https://github.com/zthun/fashion/commit/94a98efc4bad940bcbbb9bd4a295ac34c293c8cd))
+* wizard supports conditional navigation to force correct input before moving forward ([4b9f102](https://github.com/zthun/fashion/commit/4b9f102ba57d8e0aa040f778db531ad633dd767e))
+
+
+### Bug Fixes
+
+* disabled button now shows text in dark theme ([2811958](https://github.com/zthun/fashion/commit/28119581e6cec958c712b35b3b49e36b26f62005))
+
+
+
 ## [2.5.0](https://github.com/zthun/fashion/compare/v2.4.2...v2.5.0) (2023-12-19)
 
 

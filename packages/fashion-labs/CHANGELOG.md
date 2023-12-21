@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.0](https://github.com/zthun/fashion/compare/v2.5.0...v2.6.0) (2023-12-21)
+
+**Note:** Version bump only for package @zthun/fashion-labs
+
+
+
+
+
 ## [2.5.0](https://github.com/zthun/fashion/compare/v2.4.2...v2.5.0) (2023-12-19)
 
 **Note:** Version bump only for package @zthun/fashion-labs
