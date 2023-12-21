@@ -6,7 +6,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { ZGrid } from './grid';
 import { ZGridSpan } from './grid-span';
 
-describe('ZGridLayout', () => {
+describe('ZGrid', () => {
   let gap: ZSizeFixed | ZSizeVoid | undefined;
   let height: ZSizeVaried | undefined;
   let xs: Property.GridTemplateColumns | undefined;
