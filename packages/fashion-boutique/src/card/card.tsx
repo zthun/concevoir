@@ -8,6 +8,7 @@ import {
   createSizeChartVoidCss
 } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
+import { pickBy, startsWith } from 'lodash-es';
 import React, { ReactNode } from 'react';
 import { IZComponentAvatar } from '../component/component-avatar';
 import { IZComponentFashion } from '../component/component-fashion';
@@ -151,6 +152,7 @@ export function ZCard(props: IZCard) {
     <Card
       className={cssJoinDefined('ZCard-root', className, classes.root)}
       elevation={5}
+      {...pickBy(props, (_, k) => startsWith(k, 'data-'))}
       data-name={name}
       data-fashion={fashion.name}
     >
