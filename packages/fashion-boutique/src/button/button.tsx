@@ -71,7 +71,9 @@ export const useButtonStyles = createStyleHook(({ theme, tailor }, props: IZButt
       },
 
       '&:disabled': {
-        color: 'rgb(0, 0, 0, 0.25)'
+        color: text,
+        backgroundColor: main,
+        opacity: '0.25'
       },
 
       '&.ZButton-outline': {
