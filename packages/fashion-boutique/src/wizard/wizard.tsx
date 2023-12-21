@@ -36,25 +36,29 @@ export function ZWizard(props: IZWizard) {
     FinishButtonProps
   } = props;
 
+  const { primary, secondary, success } = useFashionTheme();
   const _children = castArray(children);
   const [page, setPage] = useAmbassadorState(value, onValueChange, 0);
   const _page = Math.min(_children.length - 1, Math.max(0, page));
   const _current = _children[_page];
-  const { primary, secondary, success } = useFashionTheme();
+  const _name = firstDefined(undefined, CardProps?.heading, _current?.props['name'], _current?.props['data-name']);
+  const _description = firstDefined(
+    undefined,
+    CardProps?.subHeading,
+    _current?.props['description'],
+    _current?.props['data-description']
+  );
+  const _disabled = !!_current?.props['data-next-disabled'];
 
   const renderFooter = () => {
     const renderPrevious = () => {
       const _previous = _children[_page - 1];
-      const defaultName = _previous ? `Page ${_page}` : <span>&nbsp;</span>;
-      const name = firstDefined(defaultName, _previous?.props['name'], _previous?.props['data-name']);
-      const caption = <ZH4>{name}</ZH4>;
-      const disabledPrevious = _page === 0 || PrevButtonProps?.disabled;
 
-      const defaultPreviousLabel = (
+      const defaultLabel = (
         <ZStack gap={ZSizeFixed.ExtraSmall}>
           <ZStack orientation={ZOrientation.Horizontal} gap={ZSizeFixed.Small} alignItems='center'>
             <ZIconFontAwesome name='left-long' />
-            {caption}
+            <ZH4>{firstDefined(undefined, _previous?.props['name'], _previous?.props['data-name'])}</ZH4>
           </ZStack>
         </ZStack>
       );
@@ -66,8 +70,8 @@ export function ZWizard(props: IZWizard) {
       return (
         <ZButton
           {...PrevButtonProps}
-          label={firstDefined<ReactNode>(defaultPreviousLabel, PrevButtonProps?.label)}
-          disabled={disabledPrevious}
+          label={firstDefined<ReactNode>(defaultLabel, PrevButtonProps?.label)}
+          disabled={_page === 0 || PrevButtonProps?.disabled}
           onClick={PrevButtonProps?.onClick || handlePrevious}
           name='previous'
           fashion={secondary}
@@ -76,10 +80,11 @@ export function ZWizard(props: IZWizard) {
     };
 
     const renderNext = () => {
-      const _next = _current[_page + 1];
+      const _next = _children[_page + 1];
+
       const defaultLabel = (
         <ZStack orientation={ZOrientation.Horizontal} gap={ZSizeFixed.Small} alignItems='center'>
-          <ZH4 compact>{firstDefined(`Page ${_page + 2}`, _next?.props['name'], _next?.props['data-name'])}</ZH4>
+          <ZH4 compact>{firstDefined(undefined, _next?.props['name'], _next?.props['data-name'])}</ZH4>
           <ZIconFontAwesome name='right-long' />
         </ZStack>
       );
@@ -96,6 +101,7 @@ export function ZWizard(props: IZWizard) {
           name='next'
           width={ZSizeVaried.Full}
           fashion={primary}
+          disabled={_disabled}
         />
       );
     };
@@ -108,6 +114,7 @@ export function ZWizard(props: IZWizard) {
           name='finish'
           width={ZSizeVaried.Full}
           fashion={success}
+          disabled={_disabled}
         />
       );
     };
@@ -129,6 +136,8 @@ export function ZWizard(props: IZWizard) {
     <ZCard
       {...CardProps}
       className={cssJoinDefined('ZWizard-root', CardProps?.className, className)}
+      heading={_name}
+      subHeading={_description}
       name={name}
       footer={renderFooter()}
       data-page={_page}
