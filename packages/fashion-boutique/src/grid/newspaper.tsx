@@ -7,6 +7,7 @@ import { IZGrid, ZGrid } from './grid';
 import { ZGridSpan } from './grid-span';
 
 export type ZNewspaperColumn = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+export type ZNewspaperRange = [ZNewspaperColumn, ZNewspaperColumn];
 
 export interface IZNewspaper extends IZComponentStyle, IZComponentHierarchy {
   GridProps?: Omit<
@@ -25,11 +26,11 @@ export interface IZNewspaper extends IZComponentStyle, IZComponentHierarchy {
     | 'widthSm'
     | 'widthXs'
   >;
-  range?: [ZNewspaperColumn, ZNewspaperColumn];
-  rangeLg?: [ZNewspaperColumn, ZNewspaperColumn];
-  rangeMd?: [ZNewspaperColumn, ZNewspaperColumn];
-  rangeSm?: [ZNewspaperColumn, ZNewspaperColumn];
-  rangeXs?: [ZNewspaperColumn, ZNewspaperColumn];
+  range?: ZNewspaperRange;
+  rangeLg?: ZNewspaperRange;
+  rangeMd?: ZNewspaperRange;
+  rangeSm?: ZNewspaperRange;
+  rangeXs?: ZNewspaperRange;
 }
 
 export function ZNewspaper(props: IZNewspaper) {
