@@ -2,6 +2,7 @@ import { Card, CardActions, CardContent, CardHeader } from '@mui/material';
 import {
   ZSizeFixed,
   ZSizeVaried,
+  createSizeChartFixedArithmetic,
   createSizeChartFixedCss,
   createSizeChartFixedGeometric,
   createSizeChartVariedCss,
@@ -13,6 +14,7 @@ import React, { ReactNode } from 'react';
 import { IZComponentAvatar } from '../component/component-avatar';
 import { IZComponentFashion } from '../component/component-fashion';
 import { IZComponentHeading } from '../component/component-heading';
+import { IZComponentHeight } from '../component/component-height';
 import { IZComponentHierarchy } from '../component/component-hierarchy';
 import { IZComponentLoading } from '../component/component-loading';
 import { IZComponentName } from '../component/component-name';
@@ -31,12 +33,19 @@ export interface IZCard
     IZComponentFashion,
     IZComponentStyle,
     IZComponentName,
-    IZComponentWidth {
+    IZComponentWidth,
+    IZComponentHeight {
   footer?: ReactNode;
 }
 
-const CardSizeChart = {
+const CardWidthChart = {
   ...createSizeChartFixedCss(createSizeChartFixedGeometric(1.5, 10), 'rem'),
+  ...createSizeChartVariedCss(),
+  ...createSizeChartVoidCss()
+};
+
+const CardHeightChart = {
+  ...createSizeChartFixedCss(createSizeChartFixedArithmetic(5, 20), 'rem'),
   ...createSizeChartVariedCss(),
   ...createSizeChartVoidCss()
 };
@@ -48,26 +57,36 @@ const useCardStyles = createStyleHook(({ theme, device }, props: IZCard) => {
     widthMd = widthLg,
     widthSm = widthMd,
     widthXs = widthSm,
+    height = ZSizeVaried.Fit,
+    heightLg = height,
+    heightMd = heightLg,
+    heightSm = heightMd,
+    heightXs = heightSm,
     fashion = theme.surface
   } = props;
 
   const maxWidth = {
-    maxWidth: CardSizeChart[width],
+    maxWidth: CardWidthChart[width],
+    minHeight: CardHeightChart[height],
 
     [device.break(ZSizeFixed.Large)]: {
-      maxWidth: CardSizeChart[widthLg]
+      maxWidth: CardWidthChart[widthLg],
+      minHeight: CardHeightChart[heightLg]
     },
 
     [device.break(ZSizeFixed.Medium)]: {
-      maxWidth: CardSizeChart[widthMd]
+      maxWidth: CardWidthChart[widthMd],
+      minHeight: CardHeightChart[heightMd]
     },
 
     [device.break(ZSizeFixed.Small)]: {
-      maxWidth: CardSizeChart[widthSm]
+      maxWidth: CardWidthChart[widthSm],
+      minHeight: CardHeightChart[heightSm]
     },
 
     [device.break(ZSizeFixed.ExtraSmall)]: {
-      maxWidth: CardSizeChart[widthXs]
+      maxWidth: CardWidthChart[widthXs],
+      minHeight: CardHeightChart[heightXs]
     }
   };
 
