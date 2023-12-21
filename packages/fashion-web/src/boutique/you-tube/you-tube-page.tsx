@@ -1,5 +1,5 @@
 // cspell:disable
-import { ZCard, ZH3, ZIconFontAwesome, ZParagraph, ZYouTubeVideo } from '@zthun/fashion-boutique';
+import { ZCard, ZH3, ZIconFontAwesome, ZNewspaper, ZParagraph, ZYouTubeVideo } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React from 'react';
 import { ZFashionRouteYouTube } from '../../routes';
@@ -27,7 +27,9 @@ export function ZYouTubePage() {
 
       <ZParagraph>Embed YouTube videos into your site.</ZParagraph>
 
-      <ZYouTubeVideo identity='ahCwqrYpIuM' />
+      <ZNewspaper range={[5, 8]} rangeLg={[4, 9]} rangeMd={[3, 10]} rangeSm={[2, 11]} rangeXs={[1, 12]}>
+        <ZYouTubeVideo identity='ahCwqrYpIuM' />
+      </ZNewspaper>
     </ZCard>
   );
 }
