@@ -1,8 +1,8 @@
 import { Given, Then, When } from '@cucumber/cucumber';
 import assert from 'assert';
 import { ZCardPageComponentModel } from '../../src/boutique/card/card-page.cm.mjs';
-import { ZFashionRouteBoutique, ZFashionRouteCard } from '../../src/routes';
-import { ZFashionWorld } from '../fashion-world';
+import { ZFashionRouteBoutique, ZFashionRouteCard } from '../../src/routes.mjs';
+import { ZFashionWorld } from '../fashion-world.mjs';
 
 Given('I have navigated to the card demo page', async function (this: ZFashionWorld<ZCardPageComponentModel>) {
   await this.open(ZFashionRouteBoutique, ZFashionRouteCard);

@@ -1,8 +1,8 @@
 import { Given, Then, When } from '@cucumber/cucumber';
 import assert from 'assert';
 import { ZTextPageComponentModel } from '../../src/boutique/text/text-page.cm.mjs';
-import { ZFashionRouteBoutique, ZFashionRouteText } from '../../src/routes';
-import { ZFashionWorld } from '../fashion-world';
+import { ZFashionRouteBoutique, ZFashionRouteText } from '../../src/routes.mjs';
+import { ZFashionWorld } from '../fashion-world.mjs';
 
 type FieldName = 'text' | 'password' | 'reveal' | 'area';
 type OptionName = 'disabled' | 'readOnly' | 'required' | 'adornments';

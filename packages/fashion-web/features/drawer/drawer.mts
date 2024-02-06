@@ -2,8 +2,8 @@ import { Then, When } from '@cucumber/cucumber';
 import { ZSideAnchor } from '@zthun/helpful-fn';
 import assert from 'assert';
 import { ZDrawerPageComponentModel } from '../../src/boutique/drawer/drawer-page.cm.mjs';
-import { ZFashionRouteBoutique, ZFashionRouteDrawer } from '../../src/routes';
-import { ZFashionWorld } from '../fashion-world';
+import { ZFashionRouteBoutique, ZFashionRouteDrawer } from '../../src/routes.mjs';
+import { ZFashionWorld } from '../fashion-world.mjs';
 
 When('I navigate to the drawer demo page', async function (this: ZFashionWorld<ZDrawerPageComponentModel>) {
   await this.open(ZFashionRouteBoutique, ZFashionRouteDrawer);

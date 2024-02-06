@@ -1,8 +1,8 @@
 import { Then, When } from '@cucumber/cucumber';
 import assert from 'assert';
 import { ZChoicePageComponentModel } from '../../src/boutique/choice/choice-page.cm.mjs';
-import { ZFashionRouteBoutique, ZFashionRouteChoice } from '../../src/routes';
-import { ZFashionWorld } from '../fashion-world';
+import { ZFashionRouteBoutique, ZFashionRouteChoice } from '../../src/routes.mjs';
+import { ZFashionWorld } from '../fashion-world.mjs';
 
 type ChoiceDemo = 'dropdown' | 'autocomplete' | 'toggle';
 type OptionCheckbox = 'multiple' | 'disabled' | 'indelible' | 'required';

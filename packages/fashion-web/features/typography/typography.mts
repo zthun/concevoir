@@ -1,8 +1,8 @@
 import { Then, When } from '@cucumber/cucumber';
 import assert from 'assert';
 import { ZTypographyPageComponentModel } from '../../src/boutique/typography/typography-page.cm.mjs';
-import { ZFashionRouteBoutique, ZFashionRouteTypography } from '../../src/routes';
-import { ZFashionWorld } from '../fashion-world';
+import { ZFashionRouteBoutique, ZFashionRouteTypography } from '../../src/routes.mjs';
+import { ZFashionWorld } from '../fashion-world.mjs';
 
 When('I navigate to the typography demo page', async function (this: ZFashionWorld<ZTypographyPageComponentModel>) {
   await this.open(ZFashionRouteBoutique, ZFashionRouteTypography);

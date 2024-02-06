@@ -2,8 +2,8 @@ import { Given, Then, When } from '@cucumber/cucumber';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import assert from 'assert';
 import { ZSuspensePageComponentModel } from '../../src/boutique/suspense/suspense-page.cm.mjs';
-import { ZFashionRouteBoutique, ZFashionRouteSuspense } from '../../src/routes';
-import { ZFashionWorld } from '../fashion-world';
+import { ZFashionRouteBoutique, ZFashionRouteSuspense } from '../../src/routes.mjs';
+import { ZFashionWorld } from '../fashion-world.mjs';
 
 Given('I navigate to the suspense demo page', async function (this: ZFashionWorld<ZSuspensePageComponentModel>) {
   await this.open(ZFashionRouteBoutique, ZFashionRouteSuspense);

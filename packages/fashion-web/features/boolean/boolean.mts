@@ -1,8 +1,8 @@
 import { Given, Then, When } from '@cucumber/cucumber';
 import assert from 'assert';
 import { ZBooleanPageComponentModel } from '../../src/boutique/boolean/boolean-page.cm.mjs';
-import { ZFashionRouteBoolean, ZFashionRouteBoutique } from '../../src/routes';
-import { ZFashionWorld } from '../fashion-world';
+import { ZFashionRouteBoolean, ZFashionRouteBoutique } from '../../src/routes.mjs';
+import { ZFashionWorld } from '../fashion-world.mjs';
 
 type BooleanPageOption = 'disabled' | 'required';
 
