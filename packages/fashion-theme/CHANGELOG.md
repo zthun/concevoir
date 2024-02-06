@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.0](https://github.com/zthun/fashion/compare/v2.6.0...v2.7.0) (2024-02-06)
+
+
+### Features
+
+* fashion theme now defaults to a esm module ([4425e5e](https://github.com/zthun/fashion/commit/4425e5e5f66cfa30f4b55cbbbfc4620f2bd4e596))
+
+
+
 ## [2.4.2](https://github.com/zthun/fashion/compare/v2.4.1...v2.4.2) (2023-12-16)
 
 **Note:** Version bump only for package @zthun/fashion-theme

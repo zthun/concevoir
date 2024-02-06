@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.0](https://github.com/zthun/fashion/compare/v2.6.0...v2.7.0) (2024-02-06)
+
+
+### Features
+
+* fashion-tailor now defaults to an esm module ([8971068](https://github.com/zthun/fashion/commit/897106879f151053f300ace21ac76e2093f6a8c0))
+
+
+
 ## [2.4.2](https://github.com/zthun/fashion/compare/v2.4.1...v2.4.2) (2023-12-16)
 
 **Note:** Version bump only for package @zthun/fashion-tailor

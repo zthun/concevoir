@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.0](https://github.com/zthun/fashion/compare/v2.6.0...v2.7.0) (2024-02-06)
+
+
+### Features
+
+* fashion theme now defaults to a esm module ([4425e5e](https://github.com/zthun/fashion/commit/4425e5e5f66cfa30f4b55cbbbfc4620f2bd4e596))
+* fashion-boutique now defaults to an esm module ([c5f724a](https://github.com/zthun/fashion/commit/c5f724a8684ca58f76ef690e1835286b8d13b258))
+* fashion-labs now defaults to an esm module ([e24bb43](https://github.com/zthun/fashion/commit/e24bb43067f202c55b5b8e021afa037dbdb8dafc))
+* fashion-tailor now defaults to an esm module ([8971068](https://github.com/zthun/fashion/commit/897106879f151053f300ace21ac76e2093f6a8c0))
+* upgrade emotion ([80efa22](https://github.com/zthun/fashion/commit/80efa22d57b5a936cf564321743ccf1d0694e298))
+* upgrade react-router-dom ([6f6d2de](https://github.com/zthun/fashion/commit/6f6d2de2101c6a2e08c297996c50076a28e45564))
+* upgrade webigail ([16dc235](https://github.com/zthun/fashion/commit/16dc235d766ff86a39768492ab06c4c1cece6872))
+
+
+
 ## [2.6.0](https://github.com/zthun/fashion/compare/v2.5.0...v2.6.0) (2023-12-21)
 
 

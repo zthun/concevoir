@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.0](https://github.com/zthun/fashion/compare/v2.6.0...v2.7.0) (2024-02-06)
+
+
+### Features
+
+* upgrade react-router-dom ([6f6d2de](https://github.com/zthun/fashion/commit/6f6d2de2101c6a2e08c297996c50076a28e45564))
+* upgrade webigail ([16dc235](https://github.com/zthun/fashion/commit/16dc235d766ff86a39768492ab06c4c1cece6872))
+
+
+
 ## [2.6.0](https://github.com/zthun/fashion/compare/v2.5.0...v2.6.0) (2023-12-21)
 
 
