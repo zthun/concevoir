@@ -34,7 +34,7 @@
     "@zthun/fashion-theme": "^2.4.2",
     "@zthun/helpful-fn": "^3.2.0",
     "@zthun/helpful-query": "^3.2.0",
-    "@zthun/helpful-react": "^3.2.0",
+    "@zthun/helpful-react": "^3.2.1",
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
