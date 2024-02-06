@@ -1,6 +1,6 @@
 import { Given, Then, When } from '@cucumber/cucumber';
 import assert from 'assert';
-import { ZNumberPageComponentModel } from '../../src/boutique/number/number-page.cm';
+import { ZNumberPageComponentModel } from '../../src/boutique/number/number-page.cm.mjs';
 import { ZFashionRouteBoutique, ZFashionRouteNumber } from '../../src/routes';
 import { ZFashionWorld } from '../fashion-world';
 

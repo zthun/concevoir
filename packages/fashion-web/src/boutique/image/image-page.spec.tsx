@@ -4,7 +4,7 @@ import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZImagePage } from './image-page';
-import { ZImagePageComponentModel } from './image-page.cm';
+import { ZImagePageComponentModel } from './image-page.cm.mjs';
 
 describe('ZListPage', () => {
   async function createTestTarget() {

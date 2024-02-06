@@ -1,4 +1,4 @@
-import { ZRouteBuilder } from './route/route';
+import { ZRouteBuilder } from './route/route.mjs';
 
 export const ZFashionRouteHome = new ZRouteBuilder()
   .name('Fashion')

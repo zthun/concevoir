@@ -13,7 +13,7 @@ import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React, { useState } from 'react';
 import { ZFashionRouteAlert } from '../../routes';
 import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
-import { useFashionState } from '../common/use-fashion-state';
+import { useFashionState } from '../common/use-fashion-state.mjs';
 
 /**
  * Represents a demo for booleans.

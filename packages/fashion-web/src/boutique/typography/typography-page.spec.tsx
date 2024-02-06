@@ -4,7 +4,7 @@ import { ZFashionThemeBuilder } from '@zthun/fashion-theme';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZTypographyPage } from './typography-page';
-import { ZTypographyPageComponentModel } from './typography-page.cm';
+import { ZTypographyPageComponentModel } from './typography-page.cm.mjs';
 
 describe('ZTypographyPage', () => {
   const theme = new ZFashionThemeBuilder().build();

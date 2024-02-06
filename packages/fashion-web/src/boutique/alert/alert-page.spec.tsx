@@ -5,7 +5,7 @@ import { lowerCase } from 'lodash-es';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZAlertPage } from './alert-page';
-import { ZAlertPageComponentModel } from './alert-page.cm';
+import { ZAlertPageComponentModel } from './alert-page.cm.mjs';
 
 describe('ZBooleanPage', () => {
   async function createTestTarget() {

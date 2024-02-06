@@ -1,6 +1,6 @@
 import { Then, When } from '@cucumber/cucumber';
 import assert from 'assert';
-import { ZTypographyPageComponentModel } from '../../src/boutique/typography/typography-page.cm';
+import { ZTypographyPageComponentModel } from '../../src/boutique/typography/typography-page.cm.mjs';
 import { ZFashionRouteBoutique, ZFashionRouteTypography } from '../../src/routes';
 import { ZFashionWorld } from '../fashion-world';
 

@@ -14,7 +14,7 @@ import { ZOrientation } from '@zthun/helpful-fn';
 import React, { useState } from 'react';
 import { ZFashionRouteButton } from '../../routes';
 import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
-import { useFashionState } from '../common/use-fashion-state';
+import { useFashionState } from '../common/use-fashion-state.mjs';
 
 /**
  * Represents a demo for buttons.

@@ -1,7 +1,7 @@
 import { Then, When } from '@cucumber/cucumber';
 import { ZSideAnchor } from '@zthun/helpful-fn';
 import assert from 'assert';
-import { ZDrawerPageComponentModel } from '../../src/boutique/drawer/drawer-page.cm';
+import { ZDrawerPageComponentModel } from '../../src/boutique/drawer/drawer-page.cm.mjs';
 import { ZFashionRouteBoutique, ZFashionRouteDrawer } from '../../src/routes';
 import { ZFashionWorld } from '../fashion-world';
 

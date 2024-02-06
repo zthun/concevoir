@@ -4,7 +4,7 @@ import { ZFashionThemeBuilder } from '@zthun/fashion-theme';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZCardPage } from './card-page';
-import { ZCardPageComponentModel } from './card-page.cm';
+import { ZCardPageComponentModel } from './card-page.cm.mjs';
 
 describe('CardPage', () => {
   const theme = new ZFashionThemeBuilder().build();

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { ZRouteBuilder } from './route';
+import { ZRouteBuilder } from './route.mjs';
 
 describe('ZRouteOptionBuilder', () => {
   function createTestTarget() {

@@ -4,7 +4,7 @@ import { ZNumberComponentModel } from '@zthun/fashion-boutique';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZNumberPage } from './number-page';
-import { ZNumberPageComponentModel } from './number-page.cm';
+import { ZNumberPageComponentModel } from './number-page.cm.mjs';
 
 type NumberInputFactory = (t: ZNumberPageComponentModel) => Promise<ZNumberComponentModel>;
 

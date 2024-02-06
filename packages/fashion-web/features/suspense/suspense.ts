@@ -1,7 +1,7 @@
 import { Given, Then, When } from '@cucumber/cucumber';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import assert from 'assert';
-import { ZSuspensePageComponentModel } from '../../src/boutique/suspense/suspense-page.cm';
+import { ZSuspensePageComponentModel } from '../../src/boutique/suspense/suspense-page.cm.mjs';
 import { ZFashionRouteBoutique, ZFashionRouteSuspense } from '../../src/routes';
 import { ZFashionWorld } from '../fashion-world';
 

@@ -3,7 +3,7 @@ import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZDrawerPage } from './drawer-page';
-import { ZDrawerPageComponentModel } from './drawer-page.cm';
+import { ZDrawerPageComponentModel } from './drawer-page.cm.mjs';
 
 describe('ZDrawerPage', () => {
   async function createTestTarget() {

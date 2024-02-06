@@ -5,7 +5,7 @@ import { ZListLineItemComponentModel } from '@zthun/fashion-boutique';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZListPage } from './list-page';
-import { ZListPageComponentModel } from './list-page.cm';
+import { ZListPageComponentModel } from './list-page.cm.mjs';
 
 describe('ZListPage', () => {
   async function createTestTarget() {

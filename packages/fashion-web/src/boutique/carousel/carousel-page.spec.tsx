@@ -4,7 +4,7 @@ import { ZOrientation } from '@zthun/helpful-fn';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZCarouselPage } from './carousel-page';
-import { ZCarouselPageComponentModel } from './carousel-page.cm';
+import { ZCarouselPageComponentModel } from './carousel-page.cm.mjs';
 
 describe('ZCarouselPage', () => {
   const createTestTarget = async () => {

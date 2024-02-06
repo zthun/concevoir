@@ -11,5 +11,5 @@
       "@zthun/fashion-boutique": ["../fashion-boutique/src/index"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "features/**/*.ts"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "features/**/*.ts", "src/**/*.mts", "features/**/*.mts"]
 }

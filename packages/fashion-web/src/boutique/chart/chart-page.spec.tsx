@@ -3,7 +3,7 @@ import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZChartPage } from './chart-page';
-import { ZChartPageComponentModel } from './chart-page.cm';
+import { ZChartPageComponentModel } from './chart-page.cm.mjs';
 
 describe('ZChartPage', () => {
   async function createTestTarget() {

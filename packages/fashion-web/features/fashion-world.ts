@@ -9,7 +9,7 @@ import {
 import { ZCircusSetupChrome } from '@zthun/cirque-du-selenium';
 import { sleep } from '@zthun/helpful-fn';
 import { ZUrlBuilder } from '@zthun/webigail-url';
-import { IZRoute } from '../src/route/route';
+import { IZRoute } from '../src/route/route.mjs';
 
 /**
  * Represents a modifiable set of parameters.

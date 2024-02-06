@@ -5,7 +5,7 @@ import { IZFashion, ZFashionThemeBuilder } from '@zthun/fashion-theme';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZBooleanPage } from './boolean-page';
-import { ZBooleanPageComponentModel } from './boolean-page.cm';
+import { ZBooleanPageComponentModel } from './boolean-page.cm.mjs';
 
 describe('ZBooleanPage', () => {
   const theme = new ZFashionThemeBuilder().build();

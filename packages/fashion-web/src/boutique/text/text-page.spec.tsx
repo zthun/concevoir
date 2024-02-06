@@ -4,7 +4,7 @@ import { ZBooleanComponentModel, ZTextComponentModel } from '@zthun/fashion-bout
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZTextPage } from './text-page';
-import { ZTextPageComponentModel } from './text-page.cm';
+import { ZTextPageComponentModel } from './text-page.cm.mjs';
 
 // cspell: disable-next-line
 const LOREM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';

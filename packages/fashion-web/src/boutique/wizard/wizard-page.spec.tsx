@@ -6,7 +6,7 @@ import React from 'react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { ZFashionRouteBoutique } from '../../routes';
 import { ZWizardPage } from './wizard-page';
-import { ZWizardPageComponentModel } from './wizard-page.cm';
+import { ZWizardPageComponentModel } from './wizard-page.cm.mjs';
 
 describe('ZWizardPage', () => {
   let history: MemoryHistory;

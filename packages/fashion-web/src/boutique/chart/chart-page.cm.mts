@@ -1,5 +1,5 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZChartPageProgressComponentModel } from './chart-page-progress.cm';
+import { ZChartPageProgressComponentModel } from './chart-page-progress.cm.mjs';
 
 /**
  * Represents the component model for the drawer page.

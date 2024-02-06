@@ -16,7 +16,7 @@ import React, { useState } from 'react';
 import { ZFashionRouteButton } from '../../routes';
 import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
 import { ZChoiceDropDownSize } from '../common/choice-drop-down-size';
-import { useFashionState } from '../common/use-fashion-state';
+import { useFashionState } from '../common/use-fashion-state.mjs';
 
 export function ZBubblePage() {
   const [borderSize, setBorderSize] = useState<ZSizeFixed | undefined>(undefined);

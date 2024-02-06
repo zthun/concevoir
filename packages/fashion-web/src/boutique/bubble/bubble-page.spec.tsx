@@ -6,7 +6,7 @@ import { startCase } from 'lodash-es';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZBubblePage } from './bubble-page';
-import { ZBubblePageComponentModel } from './bubble-page.cm';
+import { ZBubblePageComponentModel } from './bubble-page.cm.mjs';
 
 describe('ZBubblePage', () => {
   const createTestTarget = async () => {

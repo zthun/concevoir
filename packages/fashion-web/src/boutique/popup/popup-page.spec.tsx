@@ -3,7 +3,7 @@ import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZPopupPage } from './popup-page';
-import { ZPopupPageComponentModel } from './popup-page.cm';
+import { ZPopupPageComponentModel } from './popup-page.cm.mjs';
 
 describe('ZPopupPage', () => {
   async function createTestTarget() {

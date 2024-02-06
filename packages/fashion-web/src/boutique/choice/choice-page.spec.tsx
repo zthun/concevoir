@@ -4,7 +4,7 @@ import { ZChoiceComponentModel } from '@zthun/fashion-boutique';
 import React from 'react';
 import { afterEach, describe, expect, it } from 'vitest';
 import { ZChoicePage } from './choice-page';
-import { ZChoicePageComponentModel } from './choice-page.cm';
+import { ZChoicePageComponentModel } from './choice-page.cm.mjs';
 
 describe('ZChoicePage', () => {
   let _target: ZChoicePageComponentModel;

@@ -8,7 +8,7 @@ import { lowerCase } from 'lodash-es';
 import React from 'react';
 import { afterEach, describe, expect, it } from 'vitest';
 import { ZModalPage } from './modal-page';
-import { ZModalPageComponentModel } from './modal-page.cm';
+import { ZModalPageComponentModel } from './modal-page.cm.mjs';
 
 describe('ZModalPage', () => {
   let _driver: IZCircusDriver;
