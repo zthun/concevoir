@@ -1,4 +1,5 @@
 import { ZSizeFixed } from '@zthun/fashion-tailor';
+import React from 'react';
 import { ZBanner } from '../banner/banner';
 import { ZBox } from '../box/box';
 import { IZComponentAdornment } from '../component/component-adornment.mjs';

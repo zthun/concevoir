@@ -1,7 +1,7 @@
 import { Alert, AlertTitle } from '@mui/material';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { IZComponentAvatar } from '../component/component-avatar.mjs';
 import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentHeading } from '../component/component-heading.mjs';
