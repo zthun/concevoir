@@ -4,15 +4,5 @@
     "baseUrl": ".",
     "declarationDir": "dist/types"
   },
-  "include": [
-    "src/**/*.ts",
-    "src/color/color.mts",
-    "src/color/hex.mts",
-    "src/color/hsl.mts",
-    "src/color/rgb.mts",
-    "src/fashion/fashion.mts",
-    "src/theme/dark.mts",
-    "src/theme/fashion-theme.mts",
-    "src/theme/light.mts"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.mts"]
 }
