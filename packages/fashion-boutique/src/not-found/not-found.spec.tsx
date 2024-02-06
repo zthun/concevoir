@@ -3,9 +3,9 @@ import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { createMemoryHistory, MemoryHistory } from 'history';
 import React from 'react';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { ZTestRouter } from '../router/router-dom';
+import { ZTestRouter } from '../router/router-dom.mjs';
 import { ZNotFound } from './not-found';
-import { ZNotFoundComponentModel } from './not-found.cm';
+import { ZNotFoundComponentModel } from './not-found.cm.mjs';
 
 describe('ZNotFound', () => {
   let home: string | undefined;

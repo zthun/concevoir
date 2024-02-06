@@ -11,7 +11,7 @@ import { range } from 'lodash-es';
 import React from 'react';
 import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ZGridView } from './grid-view';
-import { ZGridViewComponentModel } from './grid-view.cm';
+import { ZGridViewComponentModel } from './grid-view.cm.mjs';
 
 describe('ZGridView', () => {
   let request: IZDataRequest | undefined;

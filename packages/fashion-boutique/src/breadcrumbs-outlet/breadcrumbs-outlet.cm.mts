@@ -1,5 +1,5 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZBreadcrumbsComponentModel } from '../breadcrumbs/breadcrumbs.cm';
+import { ZBreadcrumbsComponentModel } from '../breadcrumbs/breadcrumbs.cm.mjs';
 
 /**
  * The component model for the breadcrumb outlet.

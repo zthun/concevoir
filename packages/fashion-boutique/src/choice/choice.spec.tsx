@@ -6,7 +6,7 @@ import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ZChoiceAutocomplete } from './choice-autocomplete';
 import { ZChoiceDropDown } from './choice-drop-down';
 import { ZChoiceToggle } from './choice-toggle';
-import { ZChoiceComponentModel } from './choice.cm';
+import { ZChoiceComponentModel } from './choice.cm.mjs';
 
 describe('ZChoice', () => {
   let options: any[];

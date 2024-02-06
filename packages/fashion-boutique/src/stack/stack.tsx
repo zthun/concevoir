@@ -3,10 +3,10 @@ import { createSizeChartFixedArithmetic, createSizeChartVoidZero, ZSizeFixed, ZS
 import { cssJoinDefined, firstDefined, ZOrientation } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import React from 'react';
-import { IZComponentHierarchy } from '../component/component-hierarchy';
-import { IZComponentName } from '../component/component-name';
-import { IZComponentOrientation } from '../component/component-orientation';
-import { IZComponentStyle } from '../component/component-style';
+import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
+import { IZComponentName } from '../component/component-name.mjs';
+import { IZComponentOrientation } from '../component/component-orientation.mjs';
+import { IZComponentStyle } from '../component/component-style.mjs';
 
 /**
  * Represents a stack component.

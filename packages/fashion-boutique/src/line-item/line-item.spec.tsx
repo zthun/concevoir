@@ -3,7 +3,7 @@ import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import React, { ReactNode } from 'react';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { ZLineItem } from './line-item';
-import { ZLineItemComponentModel } from './line-item.cm';
+import { ZLineItemComponentModel } from './line-item.cm.mjs';
 
 describe('ZLineItem', () => {
   let prefix: ReactNode | undefined;

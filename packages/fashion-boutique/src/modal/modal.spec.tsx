@@ -5,7 +5,7 @@ import { IZFashion, ZFashionBuilder } from '@zthun/fashion-theme';
 import React from 'react';
 import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ZModal } from './modal';
-import { ZModalComponentModel } from './modal.cm';
+import { ZModalComponentModel } from './modal.cm.mjs';
 
 describe('ZModal', () => {
   let renderHeader: Mock | undefined;

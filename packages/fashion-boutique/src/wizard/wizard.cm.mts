@@ -1,7 +1,7 @@
 import { IZCircusDriver, ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
 import { required } from '@zthun/helpful-fn';
-import { ZButtonComponentModel } from '../button/button.cm';
-import { ZCardComponentModel } from '../card/card.cm';
+import { ZButtonComponentModel } from '../button/button.cm.mjs';
+import { ZCardComponentModel } from '../card/card.cm.mjs';
 
 export class ZWizardComponentModel extends ZCircusComponentModel {
   public static readonly Selector = '.ZWizard-root';

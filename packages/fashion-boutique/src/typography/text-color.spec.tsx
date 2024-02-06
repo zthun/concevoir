@@ -4,7 +4,7 @@ import { IZFashion, ZFashionBuilder } from '@zthun/fashion-theme';
 import React from 'react';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { ZTextColor } from './text-color';
-import { ZTextColorComponentModel } from './text-color.cm';
+import { ZTextColorComponentModel } from './text-color.cm.mjs';
 
 describe('ZTextColor', () => {
   let fashion: IZFashion | undefined;

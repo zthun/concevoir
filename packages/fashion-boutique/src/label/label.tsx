@@ -1,9 +1,9 @@
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
-import { IZComponentHierarchy } from '../component/component-hierarchy';
-import { IZComponentRequired } from '../component/component-required';
-import { IZComponentStyle } from '../component/component-style';
+import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
+import { IZComponentRequired } from '../component/component-required.mjs';
+import { IZComponentStyle } from '../component/component-style.mjs';
 import { createStyleHook } from '../theme/styled';
 
 const useLabelStyles = createStyleHook(({ theme, tailor }) => ({

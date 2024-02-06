@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 import React, { ElementType } from 'react';
-import { IZComponentHierarchy } from '../component/component-hierarchy';
-import { IZComponentStyle } from '../component/component-style';
+import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
+import { IZComponentStyle } from '../component/component-style.mjs';
 
 export interface IZTypographyProps extends IZComponentHierarchy, IZComponentStyle {
   compact?: boolean;

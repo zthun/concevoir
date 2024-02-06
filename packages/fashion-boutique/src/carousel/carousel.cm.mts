@@ -1,6 +1,6 @@
 import { IZCircusDriver, ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
 import { ZOrientation } from '@zthun/helpful-fn';
-import { ZButtonComponentModel } from '../button/button.cm';
+import { ZButtonComponentModel } from '../button/button.cm.mjs';
 
 export class ZCarouselComponentModel extends ZCircusComponentModel {
   public static readonly Selector = '.ZCarousel-root';

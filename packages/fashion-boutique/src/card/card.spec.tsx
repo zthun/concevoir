@@ -3,7 +3,7 @@ import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import React, { ReactNode } from 'react';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { ZCard } from './card';
-import { ZCardComponentModel } from './card.cm';
+import { ZCardComponentModel } from './card.cm.mjs';
 
 describe('ZCard', () => {
   let footer: ReactNode | undefined;

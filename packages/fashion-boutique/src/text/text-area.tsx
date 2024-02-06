@@ -2,7 +2,7 @@ import { OutlinedInput } from '@mui/material';
 import { ZSizeFixed, createSizeChartFixedArithmetic } from '@zthun/fashion-tailor';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import React from 'react';
-import { IZComponentHeight } from '../component/component-height';
+import { IZComponentHeight } from '../component/component-height.mjs';
 import { ZLabeled } from '../label/labeled';
 import { createStyleHook } from '../theme/styled';
 import { IZText, useText } from './text';

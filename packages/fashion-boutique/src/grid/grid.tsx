@@ -2,10 +2,10 @@ import { createSizeChartVariedCss, ZSizeFixed, ZSizeVaried, ZSizeVoid } from '@z
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import React from 'react';
-import { IZComponentHeight } from '../component/component-height';
-import { IZComponentHierarchy } from '../component/component-hierarchy';
-import { IZComponentStyle } from '../component/component-style';
-import { IZComponentWidth } from '../component/component-width';
+import { IZComponentHeight } from '../component/component-height.mjs';
+import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
+import { IZComponentStyle } from '../component/component-style.mjs';
+import { IZComponentWidth } from '../component/component-width.mjs';
 import { createStyleHook } from '../theme/styled';
 
 export interface IZGrid

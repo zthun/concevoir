@@ -11,17 +11,17 @@ import {
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { pickBy, startsWith } from 'lodash-es';
 import React, { ReactNode } from 'react';
-import { IZComponentAvatar } from '../component/component-avatar';
-import { IZComponentFashion } from '../component/component-fashion';
-import { IZComponentHeading } from '../component/component-heading';
-import { IZComponentHeight } from '../component/component-height';
-import { IZComponentHierarchy } from '../component/component-hierarchy';
-import { IZComponentLoading } from '../component/component-loading';
-import { IZComponentName } from '../component/component-name';
-import { IZComponentStyle } from '../component/component-style';
-import { IZComponentWidth } from '../component/component-width';
+import { IZComponentAvatar } from '../component/component-avatar.mjs';
+import { IZComponentFashion } from '../component/component-fashion.mjs';
+import { IZComponentHeading } from '../component/component-heading.mjs';
+import { IZComponentHeight } from '../component/component-height.mjs';
+import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
+import { IZComponentLoading } from '../component/component-loading.mjs';
+import { IZComponentName } from '../component/component-name.mjs';
+import { IZComponentStyle } from '../component/component-style.mjs';
+import { IZComponentWidth } from '../component/component-width.mjs';
 import { ZSuspenseProgress } from '../suspense/suspense-progress';
-import { useFashionTheme } from '../theme/fashion';
+import { useFashionTheme } from '../theme/fashion.mjs';
 import { createStyleHook } from '../theme/styled';
 import { ZCaption, ZH2 } from '../typography/typography';
 

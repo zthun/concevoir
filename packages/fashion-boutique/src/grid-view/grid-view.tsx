@@ -5,19 +5,19 @@ import { isStateErrored, isStateLoading, useAmbassadorState, useMoreViewState } 
 import React, { ReactNode } from 'react';
 import { ZAlert } from '../alert/alert';
 import { IZButton, ZButton } from '../button/button';
-import { IZComponentDataSource } from '../component/component-data-source';
-import { IZComponentHeight } from '../component/component-height';
-import { IZComponentStyle } from '../component/component-style';
-import { IZComponentValue } from '../component/component-value';
-import { IZComponentWidth } from '../component/component-width';
+import { IZComponentDataSource } from '../component/component-data-source.mjs';
+import { IZComponentHeight } from '../component/component-height.mjs';
+import { IZComponentStyle } from '../component/component-style.mjs';
+import { IZComponentValue } from '../component/component-value.mjs';
+import { IZComponentWidth } from '../component/component-width.mjs';
 import { IZGrid, ZGrid } from '../grid/grid';
 import { ZIconFontAwesome } from '../icon/icon-font-awesome';
 import { ZStack } from '../stack/stack';
-import { IZSuspense } from '../suspense/suspense';
 import { ZSuspenseProgress } from '../suspense/suspense-progress';
+import { IZSuspense } from '../suspense/suspense.mjs';
 import { IZText } from '../text/text';
 import { ZTextInput } from '../text/text-input';
-import { useFashionTheme } from '../theme/fashion';
+import { useFashionTheme } from '../theme/fashion.mjs';
 import { ZH5 } from '../typography/typography';
 
 export interface IZGridView<T = any>

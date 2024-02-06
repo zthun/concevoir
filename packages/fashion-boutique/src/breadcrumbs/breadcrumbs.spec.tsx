@@ -3,9 +3,9 @@ import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { createMemoryHistory, MemoryHistory } from 'history';
 import React from 'react';
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
-import { ZTestRouter } from '../router/router-dom';
+import { ZTestRouter } from '../router/router-dom.mjs';
 import { ZBreadcrumbsLocation } from './breadcrumbs-location';
-import { ZBreadcrumbsComponentModel } from './breadcrumbs.cm';
+import { ZBreadcrumbsComponentModel } from './breadcrumbs.cm.mjs';
 
 describe('ZBreadcrumbs', () => {
   describe('Location', () => {

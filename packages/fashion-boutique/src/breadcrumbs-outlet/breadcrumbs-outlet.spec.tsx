@@ -3,9 +3,9 @@ import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { createMemoryHistory } from 'history';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
-import { ZTestRouter } from '../router/router-dom';
+import { ZTestRouter } from '../router/router-dom.mjs';
 import { ZBreadcrumbsOutlet } from './breadcrumbs-outlet';
-import { ZBreadcrumbsOutletComponentModel } from './breadcrumbs-outlet.cm';
+import { ZBreadcrumbsOutletComponentModel } from './breadcrumbs-outlet.cm.mjs';
 
 describe('ZBreadcrumbsOutlet', () => {
   async function createTestTarget() {

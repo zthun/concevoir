@@ -8,10 +8,10 @@ import {
 } from '@zthun/fashion-tailor';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import React from 'react';
-import { IZComponentFashion } from '../component/component-fashion';
-import { IZComponentHeight } from '../component/component-height';
-import { IZComponentHierarchy } from '../component/component-hierarchy';
-import { IZComponentStyle } from '../component/component-style';
+import { IZComponentFashion } from '../component/component-fashion.mjs';
+import { IZComponentHeight } from '../component/component-height.mjs';
+import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
+import { IZComponentStyle } from '../component/component-style.mjs';
 import { createStyleHook } from '../theme/styled';
 
 /**

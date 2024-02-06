@@ -1,5 +1,5 @@
 import { ZCircusActBuilder, ZCircusComponentModel } from '@zthun/cirque';
-import { ZSuspenseComponentModel } from '../suspense/suspense.cm';
+import { ZSuspenseComponentModel } from '../suspense/suspense.cm.mjs';
 
 /**
  * Represents the component model for a button element.

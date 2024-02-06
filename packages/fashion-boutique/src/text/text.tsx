@@ -3,14 +3,14 @@ import { ZCircusKeyboardQwerty } from '@zthun/cirque';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { get, noop } from 'lodash-es';
 import React, { KeyboardEvent, ReactNode, useEffect, useState } from 'react';
-import { IZComponentAdornment } from '../component/component-adornment';
-import { IZComponentDisabled } from '../component/component-disabled';
-import { IZComponentLabel } from '../component/component-label';
-import { IZComponentName } from '../component/component-name';
-import { IZComponentOrientation } from '../component/component-orientation';
-import { IZComponentRequired } from '../component/component-required';
-import { IZComponentStyle } from '../component/component-style';
-import { IZComponentValue } from '../component/component-value';
+import { IZComponentAdornment } from '../component/component-adornment.mjs';
+import { IZComponentDisabled } from '../component/component-disabled.mjs';
+import { IZComponentLabel } from '../component/component-label.mjs';
+import { IZComponentName } from '../component/component-name.mjs';
+import { IZComponentOrientation } from '../component/component-orientation.mjs';
+import { IZComponentRequired } from '../component/component-required.mjs';
+import { IZComponentStyle } from '../component/component-style.mjs';
+import { IZComponentValue } from '../component/component-value.mjs';
 
 /**
  * Represents an input for free form text

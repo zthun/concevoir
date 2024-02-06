@@ -3,7 +3,7 @@ import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import React from 'react';
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 import { ZLink } from './link';
-import { ZLinkComponentModel } from './link.cm';
+import { ZLinkComponentModel } from './link.cm.mjs';
 
 describe('ZLink', () => {
   let label: string | undefined;

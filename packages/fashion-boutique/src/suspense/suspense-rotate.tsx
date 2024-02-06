@@ -8,7 +8,7 @@ import {
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { createStyleHook } from '../theme/styled';
-import { IZSuspense } from './suspense';
+import { IZSuspense } from './suspense.mjs';
 
 const SuspenseRotateSizeChart = createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), 'rem');
 

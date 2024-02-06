@@ -4,7 +4,7 @@ import React from 'react';
 import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ZIconFontAwesome, ZIconFontAwesomeProvider, ZIconFontAwesomeVendor } from './icon-font-awesome';
 import { ZIconMaterial, ZIconMaterialProvider, ZIconMaterialVendor } from './icon-material';
-import { ZIconComponentModel } from './icon.cm';
+import { ZIconComponentModel } from './icon.cm.mjs';
 
 describe('ZIcon', () => {
   let _drivers: IZCircusDriver[];

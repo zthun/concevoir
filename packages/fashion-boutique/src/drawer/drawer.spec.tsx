@@ -4,7 +4,7 @@ import { ZHorizontalAnchor, ZSideAnchor, ZVerticalAnchor } from '@zthun/helpful-
 import React, { ReactNode } from 'react';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { ZDrawerButton } from './drawer-button';
-import { ZDrawerButtonComponentModel } from './drawer-button.cm';
+import { ZDrawerButtonComponentModel } from './drawer-button.cm.mjs';
 
 describe('ZDrawer', () => {
   let children: ReactNode;

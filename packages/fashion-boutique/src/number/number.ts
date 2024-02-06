@@ -1,10 +1,10 @@
-import { IZComponentDisabled } from '../component/component-disabled';
-import { IZComponentLabel } from '../component/component-label';
-import { IZComponentName } from '../component/component-name';
-import { IZComponentRange } from '../component/component-range';
-import { IZComponentRequired } from '../component/component-required';
-import { IZComponentStyle } from '../component/component-style';
-import { IZComponentValue } from '../component/component-value';
+import { IZComponentDisabled } from '../component/component-disabled.mjs';
+import { IZComponentLabel } from '../component/component-label.mjs';
+import { IZComponentName } from '../component/component-name.mjs';
+import { IZComponentRange } from '../component/component-range.mjs';
+import { IZComponentRequired } from '../component/component-required.mjs';
+import { IZComponentStyle } from '../component/component-style.mjs';
+import { IZComponentValue } from '../component/component-value.mjs';
 
 /**
  * Represents a component that lets the user enter or select a number.

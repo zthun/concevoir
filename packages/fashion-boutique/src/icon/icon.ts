@@ -1,10 +1,10 @@
 import { ZSizeFixed, createSizeChartFixedCss, createSizeChartFixedGeometric } from '@zthun/fashion-tailor';
 import { firstDefined } from '@zthun/helpful-fn';
 import { KeyboardEvent, MouseEvent, ReactNode, useEffect } from 'react';
-import { IZComponentFashion } from '../component/component-fashion';
-import { IZComponentName } from '../component/component-name';
-import { IZComponentStyle } from '../component/component-style';
-import { IZComponentWidth } from '../component/component-width';
+import { IZComponentFashion } from '../component/component-fashion.mjs';
+import { IZComponentName } from '../component/component-name.mjs';
+import { IZComponentStyle } from '../component/component-style.mjs';
+import { IZComponentWidth } from '../component/component-width.mjs';
 import { createStyleHook } from '../theme/styled';
 
 export interface IZIcon extends IZComponentName, IZComponentStyle, IZComponentWidth<ZSizeFixed>, IZComponentFashion {

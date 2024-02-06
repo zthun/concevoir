@@ -2,13 +2,13 @@ import { createGuid } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
 import { first } from 'lodash-es';
 import { ReactNode, useMemo } from 'react';
-import { IZComponentDisabled } from '../component/component-disabled';
-import { IZComponentLabel } from '../component/component-label';
-import { IZComponentName } from '../component/component-name';
-import { IZComponentOrientation } from '../component/component-orientation';
-import { IZComponentRequired } from '../component/component-required';
-import { IZComponentStyle } from '../component/component-style';
-import { IZComponentValue } from '../component/component-value';
+import { IZComponentDisabled } from '../component/component-disabled.mjs';
+import { IZComponentLabel } from '../component/component-label.mjs';
+import { IZComponentName } from '../component/component-name.mjs';
+import { IZComponentOrientation } from '../component/component-orientation.mjs';
+import { IZComponentRequired } from '../component/component-required.mjs';
+import { IZComponentStyle } from '../component/component-style.mjs';
+import { IZComponentValue } from '../component/component-value.mjs';
 
 export interface IZChoiceOption<O, V> {
   key: string;

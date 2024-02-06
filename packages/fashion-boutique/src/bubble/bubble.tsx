@@ -2,12 +2,12 @@ import { ZSizeFixed, ZSizeVoid, createSizeChartFixedCss, createSizeChartFixedGeo
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import { useKeyboardActivate } from '@zthun/helpful-react';
 import React, { KeyboardEvent, MouseEvent } from 'react';
-import { IZComponentFashion } from '../component/component-fashion';
-import { IZComponentHierarchy } from '../component/component-hierarchy';
-import { IZComponentName } from '../component/component-name';
-import { IZComponentStyle } from '../component/component-style';
-import { IZComponentWidth } from '../component/component-width';
-import { useFashionTheme } from '../theme/fashion';
+import { IZComponentFashion } from '../component/component-fashion.mjs';
+import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
+import { IZComponentName } from '../component/component-name.mjs';
+import { IZComponentStyle } from '../component/component-style.mjs';
+import { IZComponentWidth } from '../component/component-width.mjs';
+import { useFashionTheme } from '../theme/fashion.mjs';
 import { createStyleHook } from '../theme/styled';
 
 export interface IZBubble

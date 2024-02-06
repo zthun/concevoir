@@ -1,8 +1,8 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZAlertComponentModel } from '../alert/alert.cm';
-import { ZButtonComponentModel } from '../button/button.cm';
-import { ZSuspenseComponentModel } from '../suspense/suspense.cm';
-import { ZTextComponentModel } from '../text/text.cm';
+import { ZAlertComponentModel } from '../alert/alert.cm.mjs';
+import { ZButtonComponentModel } from '../button/button.cm.mjs';
+import { ZSuspenseComponentModel } from '../suspense/suspense.cm.mjs';
+import { ZTextComponentModel } from '../text/text.cm.mjs';
 
 /**
  * The component model for the GridView component.

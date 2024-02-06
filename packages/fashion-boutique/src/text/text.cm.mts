@@ -6,7 +6,7 @@ import {
   ZCircusKeyboardQwerty
 } from '@zthun/cirque';
 import { firstDefined } from '@zthun/helpful-fn';
-import { ZLabelComponentModel } from '../label/label.cm';
+import { ZLabelComponentModel } from '../label/label.cm.mjs';
 
 /**
  * Represents the component model for a ZText component.

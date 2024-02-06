@@ -3,9 +3,9 @@ import { cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { ZBox } from '../box/box';
 import { IZBreadcrumbsLocation, ZBreadcrumbsLocation } from '../breadcrumbs/breadcrumbs-location';
-import { IZComponentName } from '../component/component-name';
-import { IZComponentStyle } from '../component/component-style';
-import { ZOutlet } from '../router/router-dom';
+import { IZComponentName } from '../component/component-name.mjs';
+import { IZComponentStyle } from '../component/component-style.mjs';
+import { ZOutlet } from '../router/router-dom.mjs';
 
 /**
  * The properties for the breadcrumb outlet.

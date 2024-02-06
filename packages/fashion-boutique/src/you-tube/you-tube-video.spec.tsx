@@ -3,7 +3,7 @@ import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import React from 'react';
 import { afterEach, describe, expect, it } from 'vitest';
 import { ZYouTubeVideo } from './you-tube-video';
-import { ZYouTubeVideoComponentModel } from './you-tube-video.cm';
+import { ZYouTubeVideoComponentModel } from './you-tube-video.cm.mjs';
 
 describe('YouTubeVideo', () => {
   const Video = 'Vr2OkMB2Wr0';

@@ -1,11 +1,11 @@
 import { ListItem, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
-import { IZComponentAdornment } from '../component/component-adornment';
-import { IZComponentDisabled } from '../component/component-disabled';
-import { IZComponentHeading } from '../component/component-heading';
+import { IZComponentAdornment } from '../component/component-adornment.mjs';
+import { IZComponentDisabled } from '../component/component-disabled.mjs';
+import { IZComponentHeading } from '../component/component-heading.mjs';
 import { createStyleHook } from '../theme/styled';
-import { IZListItem } from './list-item';
+import { IZListItem } from './list-item.mjs';
 
 /**
  * The props for the line item list.

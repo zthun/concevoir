@@ -4,7 +4,7 @@ import { black, IZFashion, white, ZFashionBuilder } from '@zthun/fashion-theme';
 import React, { ReactNode } from 'react';
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 import { ZButton } from './button';
-import { ZButtonComponentModel } from './button.cm';
+import { ZButtonComponentModel } from './button.cm.mjs';
 
 describe('ZButton', () => {
   let avatar: ReactNode | undefined;

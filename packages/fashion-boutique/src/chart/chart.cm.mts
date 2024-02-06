@@ -1,6 +1,6 @@
 import { ZCircusComponentModel } from '@zthun/cirque';
 import { ZFashionBuilder } from '@zthun/fashion-theme';
-import { IZDataPoint, ZDataPointBuilder } from './data-point';
+import { IZDataPoint, ZDataPointBuilder } from './data-point.mjs';
 
 /**
  * Represents the component model for a chart.

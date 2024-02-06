@@ -4,7 +4,7 @@ import { IZFashion, ZFashionBuilder } from '@zthun/fashion-theme';
 import React, { ReactNode } from 'react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { ZAlert } from './alert';
-import { ZAlertComponentModel } from './alert.cm';
+import { ZAlertComponentModel } from './alert.cm.mjs';
 
 describe('ZAlert', () => {
   let _renderer: IZCircusSetup<IZCircusDriver>;

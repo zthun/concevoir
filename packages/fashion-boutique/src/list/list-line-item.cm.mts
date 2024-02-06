@@ -1,5 +1,5 @@
 import { IZCircusDriver, ZCircusActBuilder } from '@zthun/cirque';
-import { ZListItemComponentModel } from './list-item.cm';
+import { ZListItemComponentModel } from './list-item.cm.mjs';
 
 /**
  * Represents a component model for a line item.

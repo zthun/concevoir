@@ -7,8 +7,8 @@ import {
 } from '@zthun/cirque';
 import { firstDefined } from '@zthun/helpful-fn';
 import { findIndex } from 'lodash-es';
-import { ZLabelComponentModel } from '../label/label.cm';
-import { ZChoiceOptionComponentModel } from './choice-option.cm';
+import { ZLabelComponentModel } from '../label/label.cm.mjs';
+import { ZChoiceOptionComponentModel } from './choice-option.cm.mjs';
 
 /**
  * Represents a generic common implementation of a ZChoiceComponent model.

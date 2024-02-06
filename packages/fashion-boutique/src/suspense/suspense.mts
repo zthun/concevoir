@@ -1,10 +1,10 @@
 import { ZSize, ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
-import { IZComponentFashion } from '../component/component-fashion';
-import { IZComponentHeight } from '../component/component-height';
-import { IZComponentLoading } from '../component/component-loading';
-import { IZComponentName } from '../component/component-name';
-import { IZComponentStyle } from '../component/component-style';
-import { IZComponentWidth } from '../component/component-width';
+import { IZComponentFashion } from '../component/component-fashion.mjs';
+import { IZComponentHeight } from '../component/component-height.mjs';
+import { IZComponentLoading } from '../component/component-loading.mjs';
+import { IZComponentName } from '../component/component-name.mjs';
+import { IZComponentStyle } from '../component/component-style.mjs';
+import { IZComponentWidth } from '../component/component-width.mjs';
 
 /**
  * Represents properties for a suspense component.

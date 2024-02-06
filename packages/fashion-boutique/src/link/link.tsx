@@ -2,9 +2,9 @@ import { Link } from '@mui/material';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { noop } from 'lodash-es';
 import React from 'react';
-import { IZComponentLabel } from '../component/component-label';
-import { IZComponentName } from '../component/component-name';
-import { IZComponentStyle } from '../component/component-style';
+import { IZComponentLabel } from '../component/component-label.mjs';
+import { IZComponentName } from '../component/component-name.mjs';
+import { IZComponentStyle } from '../component/component-style.mjs';
 
 /**
  * Represents a link component (anchor tag).

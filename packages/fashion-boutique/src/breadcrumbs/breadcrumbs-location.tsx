@@ -2,9 +2,9 @@ import { Breadcrumbs } from '@mui/material';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { useMemo } from 'react';
 import { ZLink } from '../link/link';
-import { useLocation } from '../router/router-dom';
+import { useLocation } from '../router/router-dom.mjs';
 import { createStyleHook } from '../theme/styled';
-import { IZBreadcrumbs } from './breadcrumbs';
+import { IZBreadcrumbs } from './breadcrumbs.mjs';
 
 /**
  * Represents the properties for the BreadcrumbsLocation component.

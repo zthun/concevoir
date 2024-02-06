@@ -1,6 +1,6 @@
 import { ZCircusBy, ZCircusComponentModel, ZCircusWaitOptionsBuilder } from '@zthun/cirque';
-import { ZButtonComponentModel } from '../button/button.cm';
-import { ZDrawerComponentModel } from './drawer.cm';
+import { ZButtonComponentModel } from '../button/button.cm.mjs';
+import { ZDrawerComponentModel } from './drawer.cm.mjs';
 
 /**
  * Represents the component model for a drawer button component.

@@ -5,9 +5,9 @@ import { IZFashion, IZFashionTheme } from '@zthun/fashion-theme';
 import { firstDefined } from '@zthun/helpful-fn';
 import React, { useMemo } from 'react';
 import { CSSInterpolation, CSSObject, GlobalStyles, createMakeStyles } from 'tss-react';
-import { IZComponentHierarchy } from '../component/component-hierarchy';
-import { IZComponentStyle } from '../component/component-style';
-import { useFashionDevice, useFashionTailor, useFashionTheme } from './fashion';
+import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
+import { IZComponentStyle } from '../component/component-style.mjs';
+import { useFashionDevice, useFashionTailor, useFashionTheme } from './fashion.mjs';
 
 function useBoutiqueTheme() {
   const mui = useTheme();

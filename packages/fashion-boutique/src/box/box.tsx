@@ -12,10 +12,10 @@ import { cssJoinDefined, firstDefined, ZHorizontalAnchor } from '@zthun/helpful-
 import { Property } from 'csstype';
 import { get } from 'lodash-es';
 import React, { MouseEventHandler } from 'react';
-import { IZComponentFashion } from '../component/component-fashion';
-import { IZComponentHierarchy } from '../component/component-hierarchy';
-import { IZComponentStyle } from '../component/component-style';
-import { IZComponentWidth } from '../component/component-width';
+import { IZComponentFashion } from '../component/component-fashion.mjs';
+import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
+import { IZComponentStyle } from '../component/component-style.mjs';
+import { IZComponentWidth } from '../component/component-width.mjs';
 import { createStyleHook } from '../theme/styled';
 
 interface IZBorderProps extends Pick<IZComponentWidth<ZSizeFixed | ZSizeVoid>, 'width'> {

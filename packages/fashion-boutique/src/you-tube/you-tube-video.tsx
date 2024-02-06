@@ -1,8 +1,8 @@
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { ZUrlBuilder, ZYouTubeApi } from '@zthun/webigail-url';
 import React from 'react';
-import { IZComponentName } from '../component/component-name';
-import { IZComponentStyle } from '../component/component-style';
+import { IZComponentName } from '../component/component-name.mjs';
+import { IZComponentStyle } from '../component/component-style.mjs';
 import { createStyleHook } from '../theme/styled';
 
 export interface IZYouTubeVideo extends IZComponentName, IZComponentStyle {

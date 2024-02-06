@@ -1,8 +1,8 @@
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ReactNode } from 'react';
-import { IZComponentAdornment } from '../component/component-adornment';
-import { IZComponentStyle } from '../component/component-style';
+import { IZComponentAdornment } from '../component/component-adornment.mjs';
+import { IZComponentStyle } from '../component/component-style.mjs';
 import { createStyleHook } from '../theme/styled';
 
 export interface IZLineItem extends IZComponentStyle, IZComponentAdornment {

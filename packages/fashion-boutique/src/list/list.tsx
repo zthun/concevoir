@@ -1,8 +1,8 @@
 import { List } from '@mui/material';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
-import { IZComponentHierarchy } from '../component/component-hierarchy';
-import { IZComponentStyle } from '../component/component-style';
+import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
+import { IZComponentStyle } from '../component/component-style.mjs';
 
 /**
  * Represents properties for the ZList component.

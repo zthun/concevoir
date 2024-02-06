@@ -2,12 +2,12 @@ import { LinearProgress } from '@mui/material';
 import { ZSizeFixed, createSizeChartFixedArithmetic, createSizeChartFixedCss } from '@zthun/fashion-tailor';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import React, { useMemo } from 'react';
-import { IZComponentHeight } from '../component/component-height';
+import { IZComponentHeight } from '../component/component-height.mjs';
 import { ZGrid } from '../grid/grid';
 import { ZLabeled } from '../label/labeled';
 import { createStyleHook } from '../theme/styled';
-import { IZChart } from './chart';
-import { IZDataPoint } from './data-point';
+import { IZChart } from './chart.mjs';
+import { IZDataPoint } from './data-point.mjs';
 
 const progressHeightChart = {
   ...createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), 'rem')

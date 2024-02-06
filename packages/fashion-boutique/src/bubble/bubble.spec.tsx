@@ -3,9 +3,9 @@ import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import React from 'react';
 import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ZIconFontAwesome } from '../icon/icon-font-awesome';
-import { ZIconComponentModel } from '../icon/icon.cm';
+import { ZIconComponentModel } from '../icon/icon.cm.mjs';
 import { ZBubble } from './bubble';
-import { ZBubbleComponentModel } from './bubble.cm';
+import { ZBubbleComponentModel } from './bubble.cm.mjs';
 
 describe('ZBubble', () => {
   let onClick: Mock | undefined;

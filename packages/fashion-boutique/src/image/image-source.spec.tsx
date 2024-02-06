@@ -4,7 +4,7 @@ import { ZDataUrlBuilder, ZMimeTypeImage, ZUrlBuilder } from '@zthun/webigail-ur
 import React from 'react';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { ZImageSource } from './image-source';
-import { ZImageSourceComponentModel } from './image-source.cm';
+import { ZImageSourceComponentModel } from './image-source.cm.mjs';
 
 describe('ZImageSource', () => {
   let src: string | undefined;

@@ -1,6 +1,6 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZButtonComponentModel } from '../button/button.cm';
-import { ZPopupComponentModel } from './popup.cm';
+import { ZButtonComponentModel } from '../button/button.cm.mjs';
+import { ZPopupComponentModel } from './popup.cm.mjs';
 
 /**
  * Represents a component model for the popup button.

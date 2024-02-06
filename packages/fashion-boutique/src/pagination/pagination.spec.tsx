@@ -4,7 +4,7 @@ import { ZOrientation } from '@zthun/helpful-fn';
 import React from 'react';
 import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ZPagination } from './pagination';
-import { ZPaginationComponentModel } from './pagination.cm';
+import { ZPaginationComponentModel } from './pagination.cm.mjs';
 
 describe('ZPagination', () => {
   let pages: number | undefined;

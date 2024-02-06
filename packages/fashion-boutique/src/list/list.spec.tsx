@@ -7,8 +7,8 @@ import { ZList } from './list';
 import { ZListDivider } from './list-divider';
 import { ZListGroup } from './list-group';
 import { ZListLineItem } from './list-line-item';
-import { ZListLineItemComponentModel } from './list-line-item.cm';
-import { ZListComponentModel } from './list.cm';
+import { ZListLineItemComponentModel } from './list-line-item.cm.mjs';
+import { ZListComponentModel } from './list.cm.mjs';
 
 describe('ZList', () => {
   let heading: ReactNode | undefined;

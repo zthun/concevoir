@@ -5,8 +5,8 @@ import { ZButton } from '../button/button';
 import { ZCard } from '../card/card';
 import { ZFullScreen } from '../full-screen/full-screen';
 import { ZGrid } from '../grid/grid';
-import { useNavigate } from '../router/router-dom';
-import { useFashionTheme } from '../theme/fashion';
+import { useNavigate } from '../router/router-dom.mjs';
+import { useFashionTheme } from '../theme/fashion.mjs';
 import { ZParagraph } from '../typography/typography';
 import { ZSadFace } from './sad-face';
 

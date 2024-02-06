@@ -1,5 +1,5 @@
 import { IZCircusDriver, ZCircusComponentModel } from '@zthun/cirque';
-import { ZSuspenseComponentModel } from '../suspense/suspense.cm';
+import { ZSuspenseComponentModel } from '../suspense/suspense.cm.mjs';
 
 /**
  * Represents a component model for a ZCard component.

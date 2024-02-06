@@ -1,13 +1,13 @@
 import { Alert, AlertTitle } from '@mui/material';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
-import React, { ReactNode } from 'react';
-import { IZComponentAvatar } from '../component/component-avatar';
-import { IZComponentFashion } from '../component/component-fashion';
-import { IZComponentHeading } from '../component/component-heading';
-import { IZComponentName } from '../component/component-name';
-import { IZComponentStyle } from '../component/component-style';
-import { useFashionTheme } from '../theme/fashion';
+import { ReactNode } from 'react';
+import { IZComponentAvatar } from '../component/component-avatar.mjs';
+import { IZComponentFashion } from '../component/component-fashion.mjs';
+import { IZComponentHeading } from '../component/component-heading.mjs';
+import { IZComponentName } from '../component/component-name.mjs';
+import { IZComponentStyle } from '../component/component-style.mjs';
+import { useFashionTheme } from '../theme/fashion.mjs';
 import { createStyleHook } from '../theme/styled';
 
 export interface IZAlert

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { ZButton } from '../button/button';
 import { ZGrid } from '../grid/grid';
 import { ZIconFontAwesome } from '../icon/icon-font-awesome';
-import { useFashionTheme } from '../theme/fashion';
+import { useFashionTheme } from '../theme/fashion.mjs';
 import { IZText } from './text';
 import { ZTextInput, ZTextType } from './text-input';
 

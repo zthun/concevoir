@@ -1,10 +1,10 @@
 import { IZFashion } from '@zthun/fashion-theme';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import React from 'react';
-import { IZComponentFashion } from '../component/component-fashion';
-import { IZComponentHierarchy } from '../component/component-hierarchy';
-import { IZComponentName } from '../component/component-name';
-import { IZComponentStyle } from '../component/component-style';
+import { IZComponentFashion } from '../component/component-fashion.mjs';
+import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
+import { IZComponentName } from '../component/component-name.mjs';
+import { IZComponentStyle } from '../component/component-style.mjs';
 import { createStyleHook } from '../theme/styled';
 
 export interface IZTextColor

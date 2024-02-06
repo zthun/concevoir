@@ -8,8 +8,8 @@ import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { ZOrientation } from '@zthun/helpful-fn';
 import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
-import { ZIconComponentModel } from '../icon/icon.cm';
-import { ZCarouselComponentModel } from './carousel.cm';
+import { ZIconComponentModel } from '../icon/icon.cm.mjs';
+import { ZCarouselComponentModel } from './carousel.cm.mjs';
 
 describe('ZCarousel', () => {
   let brands: IZBrand[];
