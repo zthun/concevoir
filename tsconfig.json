@@ -9,6 +9,6 @@
       "@zthun/fashion-boutique": ["fashion-boutique/src/index"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.mts"],
   "exclude": ["**/node_modules/**"]
 }
