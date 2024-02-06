@@ -3196,8 +3196,8 @@ __metadata:
     "@zthun/helpful-fn": "npm:^3.2.0"
     "@zthun/helpful-query": "npm:^3.2.0"
     "@zthun/helpful-react": "npm:^3.2.0"
-    "@zthun/webigail-http": "npm:^2.0.1"
-    "@zthun/webigail-url": "npm:^2.0.2"
+    "@zthun/webigail-http": "npm:^2.1.1"
+    "@zthun/webigail-url": "npm:^2.1.1"
     csstype: "npm:^3.1.3"
     history: "npm:^5.3.0"
     lodash-es: "npm:^4.17.21"
@@ -3265,7 +3265,7 @@ __metadata:
     "@zthun/helpful-fn": "npm:^3.2.0"
     "@zthun/helpful-query": "npm:^3.2.0"
     "@zthun/helpful-react": "npm:^3.2.0"
-    "@zthun/webigail-url": "npm:^2.0.2"
+    "@zthun/webigail-url": "npm:^2.1.1"
     history: "npm:^5.3.0"
     lodash-es: "npm:^4.17.21"
     react: "npm:^18.2.0"
@@ -3465,22 +3465,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/webigail-http@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "@zthun/webigail-http@npm:2.0.1"
+"@zthun/webigail-http@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "@zthun/webigail-http@npm:2.1.1"
   dependencies:
-    axios: "npm:^1.6.2"
-  checksum: e054a4b0a048ca70cc8eaceaddb32dd418f6ff49581e107cd85149eea71a740b28690ba71ade06efec869020523c245df30bf9fa272075f8f3dde38093c10453
+    axios: "npm:^1.6.7"
+  checksum: 271fa7aaa21e62f3227737650f02e7d90bfffec53c3a06fa5a85805f26bf6b7e1f5c9d507524aa05c3244e2b0ba12fe3c53d0abd10d7e6367b90e9014230f60c
   languageName: node
   linkType: hard
 
-"@zthun/webigail-url@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "@zthun/webigail-url@npm:2.0.2"
+"@zthun/webigail-url@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "@zthun/webigail-url@npm:2.1.1"
   dependencies:
     lodash-es: "npm:^4.17.21"
     url-parse: "npm:^1.5.10"
-  checksum: 98db6a4ea62127434728da41b3543778ba4dde7eeb8bd69cc321fe1e69fc5ec4a19c79f6d06f4e0bc8b27532490c653913378916e895603c36fe437808c5410e
+  checksum: de39968acbe5525a942de20838c29bbcd45bf5a2c2e3740578a8be472515035427e89df9de1ba01a1c1db8b2d8aec577dce9bc191d336247f165158b95320977
   languageName: node
   linkType: hard
 
@@ -3920,7 +3920,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.6.0":
+"axios@npm:^1.6.0, axios@npm:^1.6.7":
   version: 1.6.7
   resolution: "axios@npm:1.6.7"
   dependencies:
@@ -3928,17 +3928,6 @@ __metadata:
     form-data: "npm:^4.0.0"
     proxy-from-env: "npm:^1.1.0"
   checksum: 131bf8e62eee48ca4bd84e6101f211961bf6a21a33b95e5dfb3983d5a2fe50d9fffde0b57668d7ce6f65063d3dc10f2212cbcb554f75cfca99da1c73b210358d
-  languageName: node
-  linkType: hard
-
-"axios@npm:^1.6.2":
-  version: 1.6.2
-  resolution: "axios@npm:1.6.2"
-  dependencies:
-    follow-redirects: "npm:^1.15.0"
-    form-data: "npm:^4.0.0"
-    proxy-from-env: "npm:^1.1.0"
-  checksum: 9b77e030e85e4f9cbcba7bb52fbff67d6ce906c92d213e0bd932346a50140faf83733bf786f55bd58301bd92f9973885c7b87d6348023e10f7eaf286d0791a1d
   languageName: node
   linkType: hard
 
@@ -6075,16 +6064,6 @@ __metadata:
   version: 3.2.9
   resolution: "flatted@npm:3.2.9"
   checksum: 5c91c5a0a21bbc0b07b272231e5b4efe6b822bcb4ad317caf6bb06984be4042a9e9045026307da0fdb4583f1f545e317a67ef1231a59e71f7fced3cc429cfc53
-  languageName: node
-  linkType: hard
-
-"follow-redirects@npm:^1.15.0":
-  version: 1.15.3
-  resolution: "follow-redirects@npm:1.15.3"
-  peerDependenciesMeta:
-    debug:
-      optional: true
-  checksum: 915a2cf22e667bdf47b1a43cc6b7dce14d95039e9bbf9a24d0e739abfbdfa00077dd43c86d4a7a19efefcc7a99af144920a175eedc3888d268af5df67c272ee5
   languageName: node
   linkType: hard
 
