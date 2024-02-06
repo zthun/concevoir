@@ -3237,6 +3237,7 @@ __metadata:
     "@zthun/helpful-query": "npm:^3.2.0"
     "@zthun/helpful-react": "npm:^3.2.0"
     lodash-es: "npm:^4.17.21"
+    vite: "npm:^5.0.12"
     vitest: "npm:^1.2.2"
   peerDependencies:
     react: ^18.1.0
