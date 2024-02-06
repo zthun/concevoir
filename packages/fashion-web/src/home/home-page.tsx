@@ -10,7 +10,7 @@ import {
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import React from 'react';
-import { ZFashionRouteBoutique, ZFashionRouteTheme } from '../routes';
+import { ZFashionRouteBoutique, ZFashionRouteTheme } from '../routes.mjs';
 
 const useHomePageStyles = createStyleHook(({ tailor }) => ({
   section: {

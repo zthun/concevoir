@@ -13,7 +13,7 @@ import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { IZRoute } from '../route/route.mjs';
-import { ZFashionRouteAllComponents, ZFashionRouteBoutique } from '../routes';
+import { ZFashionRouteAllComponents, ZFashionRouteBoutique } from '../routes.mjs';
 
 /**
  * Represents the components page.

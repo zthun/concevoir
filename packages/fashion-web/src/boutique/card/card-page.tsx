@@ -13,7 +13,7 @@ import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { ZFashionArea } from '@zthun/fashion-theme';
 import { ZHorizontalAnchor } from '@zthun/helpful-fn';
 import React from 'react';
-import { ZFashionRouteCard } from '../../routes';
+import { ZFashionRouteCard } from '../../routes.mjs';
 import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
 import { useFashionState } from '../common/use-fashion-state.mjs';
 

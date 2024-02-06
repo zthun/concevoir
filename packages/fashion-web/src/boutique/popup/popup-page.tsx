@@ -1,7 +1,7 @@
 import { ZBox, ZCard, ZH3, ZIconFontAwesome, ZParagraph, ZPopupButton, useFashionTheme } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React, { useMemo } from 'react';
-import { ZFashionRoutePopup } from '../../routes';
+import { ZFashionRoutePopup } from '../../routes.mjs';
 
 export function ZPopupPage() {
   const { success } = useFashionTheme();

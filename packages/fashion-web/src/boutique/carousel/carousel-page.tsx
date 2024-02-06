@@ -16,7 +16,7 @@ import { ZOrientation } from '@zthun/helpful-fn';
 import { useStateAsArray } from '@zthun/helpful-react';
 import { identity, startCase } from 'lodash-es';
 import React, { ReactNode, useMemo, useState } from 'react';
-import { ZFashionRouteCarousel } from '../../routes';
+import { ZFashionRouteCarousel } from '../../routes.mjs';
 
 /**
  * Represents a demo for carousels.

@@ -13,7 +13,7 @@ import {
 } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React, { useState } from 'react';
-import { ZFashionRouteList } from '../../routes';
+import { ZFashionRouteList } from '../../routes.mjs';
 
 /**
  * Represents a demo for lists.

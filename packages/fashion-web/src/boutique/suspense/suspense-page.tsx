@@ -14,7 +14,7 @@ import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { setFirst } from '@zthun/helpful-fn';
 import { identity, startCase, values } from 'lodash-es';
 import React, { useState } from 'react';
-import { ZFashionRouteSuspense } from '../../routes';
+import { ZFashionRouteSuspense } from '../../routes.mjs';
 import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
 import { useFashionState } from '../common/use-fashion-state.mjs';
 

@@ -62,7 +62,7 @@ import {
   ZFashionRouteTypography,
   ZFashionRouteWizard,
   ZFashionRouteYouTube
-} from '../routes';
+} from '../routes.mjs';
 import { ZThemePage } from '../theme/theme-page';
 
 const lightTheme = createLightTheme();

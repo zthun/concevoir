@@ -4,7 +4,7 @@ import { ZTestRouter } from '@zthun/fashion-boutique';
 import { MemoryHistory, createMemoryHistory } from 'history';
 import React from 'react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { ZFashionRouteBoutique } from '../../routes';
+import { ZFashionRouteBoutique } from '../../routes.mjs';
 import { ZWizardPage } from './wizard-page';
 import { ZWizardPageComponentModel } from './wizard-page.cm.mjs';
 

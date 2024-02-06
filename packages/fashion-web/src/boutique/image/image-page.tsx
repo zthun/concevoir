@@ -2,7 +2,7 @@ import { ZBox, ZCard, ZH3, ZIconFontAwesome, ZImageSource, ZParagraph, ZStack } 
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { ZUrlBuilder } from '@zthun/webigail-url';
 import React, { useState } from 'react';
-import { ZFashionRouteImage } from '../../routes';
+import { ZFashionRouteImage } from '../../routes.mjs';
 import { ZChoiceDropDownSize } from '../common/choice-drop-down-size';
 
 const Png = new ZUrlBuilder().gravatar().build();

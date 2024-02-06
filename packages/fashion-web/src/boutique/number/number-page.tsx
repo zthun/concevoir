@@ -2,7 +2,7 @@ import { ZSizeFixed } from '@zthun/fashion-tailor';
 
 import { ZBox, ZCaption, ZCard, ZGrid, ZH3, ZIconFontAwesome, ZNumberInput, ZParagraph } from '@zthun/fashion-boutique';
 import React, { useState } from 'react';
-import { ZFashionRouteNumber } from '../../routes';
+import { ZFashionRouteNumber } from '../../routes.mjs';
 
 /**
  * Represents a demo for number inputs.

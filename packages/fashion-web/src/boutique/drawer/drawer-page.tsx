@@ -14,7 +14,7 @@ import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { setFirst, ZHorizontalAnchor, ZSideAnchor, ZVerticalAnchor } from '@zthun/helpful-fn';
 import { identity, startCase } from 'lodash-es';
 import React, { useState } from 'react';
-import { ZFashionRouteDrawer } from '../../routes';
+import { ZFashionRouteDrawer } from '../../routes.mjs';
 
 /**
  * Represents a demo for drawers.

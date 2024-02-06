@@ -15,7 +15,7 @@ import {
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { IZBrand, ZBrands } from '@zthun/helpful-brands';
 import React, { useMemo, useState } from 'react';
-import { ZFashionRouteChoice } from '../../routes';
+import { ZFashionRouteChoice } from '../../routes.mjs';
 
 /**
  * Represents the tutorial for how to get started.

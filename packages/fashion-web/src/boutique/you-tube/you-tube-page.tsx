@@ -2,7 +2,7 @@
 import { ZCard, ZH3, ZIconFontAwesome, ZNewspaper, ZParagraph, ZYouTubeVideo } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React from 'react';
-import { ZFashionRouteYouTube } from '../../routes';
+import { ZFashionRouteYouTube } from '../../routes.mjs';
 
 /**
  * Represents a demo for typography.
