@@ -1,5 +1,5 @@
-import { ZColor, toRgb } from './color';
-import { rgb } from './rgb';
+import { ZColor, toRgb } from './color.mjs';
+import { rgb } from './rgb.mjs';
 
 /**
  * Constructs a css color from a number.

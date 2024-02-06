@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { brighten, contrast, fromRgb } from './color';
+import { brighten, contrast, fromRgb } from './color.mjs';
 
 describe('Color', () => {
   describe('Lighten', () => {

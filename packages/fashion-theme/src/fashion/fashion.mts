@@ -1,6 +1,6 @@
-import { ZColor, brighten, contrast } from '../color/color';
-import { hex } from '../color/hex';
-import { black, white } from '../color/rgb';
+import { ZColor, brighten, contrast } from '../color/color.mjs';
+import { hex } from '../color/hex.mjs';
+import { black, white } from '../color/rgb.mjs';
 
 /**
  * Overrides for a fashion.

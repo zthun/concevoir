@@ -1,5 +1,5 @@
-import { transparent } from '../color/rgb';
-import { IZFashion, ZFashionBuilder } from '../fashion/fashion';
+import { transparent } from '../color/rgb.mjs';
+import { IZFashion, ZFashionBuilder } from '../fashion/fashion.mjs';
 
 /**
  * Priority fashions.

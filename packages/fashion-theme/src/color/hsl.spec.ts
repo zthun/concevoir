@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { hsl } from './hsl';
+import { hsl } from './hsl.mjs';
 
 describe('HSL', () => {
   function shouldReturnHsl(expected: string, h: number, s: number, l: number, a?: number) {

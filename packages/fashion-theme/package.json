@@ -9,12 +9,13 @@
     "url": "https://github.com/zthun/fashion",
     "directory": "packages/fashion-theme"
   },
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
-    "require": "./dist/index.js",
-    "import": "./dist/index.mjs",
+    "require": "./dist/index.cjs",
+    "import": "./dist/index.js",
     "types": "./dist/index.d.ts"
   },
   "scripts": {
@@ -28,6 +29,7 @@
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
+    "vite": "^5.0.12",
     "vitest": "^1.2.2"
   },
   "files": [

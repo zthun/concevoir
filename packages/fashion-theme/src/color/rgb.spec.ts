@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { rgb } from './rgb';
+import { rgb } from './rgb.mjs';
 
 describe('RGB', () => {
   function shouldReturnRgb(expected: string, r: number, g: number, b: number, a?: number) {

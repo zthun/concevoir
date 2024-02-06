@@ -1,9 +1,9 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { white } from '../color/rgb';
-import { IZFashion, ZFashionBuilder } from '../fashion/fashion';
-import { createDarkTheme } from './dark';
-import { ZFashionThemeBuilder } from './fashion-theme';
-import { createLightTheme } from './light';
+import { white } from '../color/rgb.mjs';
+import { IZFashion, ZFashionBuilder } from '../fashion/fashion.mjs';
+import { createDarkTheme } from './dark.mjs';
+import { ZFashionThemeBuilder } from './fashion-theme.mjs';
+import { createLightTheme } from './light.mjs';
 
 describe('ZFashionDesignBuilder', () => {
   function createTestTarget() {

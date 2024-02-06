@@ -1,5 +1,5 @@
-import { ZFashionBuilder } from '../fashion/fashion';
-import { ZFashionThemeBuilder } from './fashion-theme';
+import { ZFashionBuilder } from '../fashion/fashion.mjs';
+import { ZFashionThemeBuilder } from './fashion-theme.mjs';
 
 function createPrimary() {
   return new ZFashionBuilder().name('Primary').spectrum(0x90caf9).build();
