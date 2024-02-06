@@ -1,4 +1,4 @@
-import { ZSizeChartVaried, ZSizeVaried } from './size-varied';
+import { ZSizeChartVaried, ZSizeVaried } from './size-varied.mjs';
 
 /**
  * Constructs a scale size chart for css usage.

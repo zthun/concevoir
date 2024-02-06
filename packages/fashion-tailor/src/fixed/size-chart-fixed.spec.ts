@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { createSizeChartFixedArithmetic } from './size-chart-fixed-arithmetic';
-import { createSizeChartFixedCss } from './size-chart-fixed-css';
-import { createSizeChartFixedFibonacci } from './size-chart-fixed-fibonacci';
-import { createSizeChartFixedGeometric } from './size-chart-fixed-geometric';
-import { ZSizeChartFixed, ZSizeFixed } from './size-fixed';
+import { createSizeChartFixedArithmetic } from './size-chart-fixed-arithmetic.mjs';
+import { createSizeChartFixedCss } from './size-chart-fixed-css.mjs';
+import { createSizeChartFixedFibonacci } from './size-chart-fixed-fibonacci.mjs';
+import { createSizeChartFixedGeometric } from './size-chart-fixed-geometric.mjs';
+import { ZSizeChartFixed, ZSizeFixed } from './size-fixed.mjs';
 
 describe('Size Chart Fixed', () => {
   describe('Arithmetic', () => {

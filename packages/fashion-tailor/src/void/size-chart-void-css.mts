@@ -1,4 +1,4 @@
-import { ZSizeChartVoid, ZSizeVoid } from './size-void';
+import { ZSizeChartVoid, ZSizeVoid } from './size-void.mjs';
 
 /**
  * Creates a void chart for css.

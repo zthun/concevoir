@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { createSizeChartFixedArithmetic } from '../fixed/size-chart-fixed-arithmetic';
-import { createSizeChartFixedCss } from '../fixed/size-chart-fixed-css';
-import { ZSizeFixed } from '../fixed/size-fixed';
-import { ZSizeVoid } from '../void/size-void';
-import { ZFashionTailor } from './tailor';
+import { createSizeChartFixedArithmetic } from '../fixed/size-chart-fixed-arithmetic.mjs';
+import { createSizeChartFixedCss } from '../fixed/size-chart-fixed-css.mjs';
+import { ZSizeFixed } from '../fixed/size-fixed.mjs';
+import { ZSizeVoid } from '../void/size-void.mjs';
+import { ZFashionTailor } from './tailor.mjs';
 
 describe('ZFashionTailor', () => {
   function createTestTarget() {

@@ -1,4 +1,4 @@
-import { ZSizeChartFixed, ZSizeFixed } from './size-fixed';
+import { ZSizeChartFixed, ZSizeFixed } from './size-fixed.mjs';
 
 /**
  * Creates a static chart that creates an arithmetic sequence

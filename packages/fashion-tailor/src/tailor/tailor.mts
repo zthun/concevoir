@@ -1,10 +1,10 @@
 import { set } from 'lodash-es';
-import { createSizeChartFixedArithmetic } from '../fixed/size-chart-fixed-arithmetic';
-import { createSizeChartFixedCss } from '../fixed/size-chart-fixed-css';
-import { createSizeChartFixedFibonacci } from '../fixed/size-chart-fixed-fibonacci';
-import { ZSizeChartFixed, ZSizeFixed } from '../fixed/size-fixed';
-import { createSizeChartVoidCss } from '../void/size-chart-void-css';
-import { ZSizeChartVoid, ZSizeVoid } from '../void/size-void';
+import { createSizeChartFixedArithmetic } from '../fixed/size-chart-fixed-arithmetic.mjs';
+import { createSizeChartFixedCss } from '../fixed/size-chart-fixed-css.mjs';
+import { createSizeChartFixedFibonacci } from '../fixed/size-chart-fixed-fibonacci.mjs';
+import { ZSizeChartFixed, ZSizeFixed } from '../fixed/size-fixed.mjs';
+import { createSizeChartVoidCss } from '../void/size-chart-void-css.mjs';
+import { ZSizeChartVoid, ZSizeVoid } from '../void/size-void.mjs';
 
 /**
  * Represents a tailor that calculates dimensions based on t-shirt sizes.

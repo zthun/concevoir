@@ -1,4 +1,4 @@
-import { ZSizeChartFixed, ZSizeFixed } from '../fixed/size-fixed';
+import { ZSizeChartFixed, ZSizeFixed } from '../fixed/size-fixed.mjs';
 
 export interface IZFashionDevice {
   break(size: ZSizeFixed): string;

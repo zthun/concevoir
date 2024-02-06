@@ -1,4 +1,4 @@
-import { ZSizeChartVoid, ZSizeVoid } from './size-void';
+import { ZSizeChartVoid, ZSizeVoid } from './size-void.mjs';
 
 /**
  * Creates a void size that evaluates the none to numeric 0.

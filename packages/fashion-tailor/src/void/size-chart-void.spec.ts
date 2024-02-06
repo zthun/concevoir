@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { createSizeChartVoidCss } from './size-chart-void-css';
-import { createSizeChartVoidZero } from './size-chart-void-zero';
-import { ZSizeChartVoid, ZSizeVoid } from './size-void';
+import { createSizeChartVoidCss } from './size-chart-void-css.mjs';
+import { createSizeChartVoidZero } from './size-chart-void-zero.mjs';
+import { ZSizeChartVoid, ZSizeVoid } from './size-void.mjs';
 
 describe('Void', () => {
   it('should set the sizes', () => {

@@ -1,4 +1,4 @@
-import { ZSizeChartFixed, ZSizeFixed } from './size-fixed';
+import { ZSizeChartFixed, ZSizeFixed } from './size-fixed.mjs';
 
 /**
  * Creates a size chart that is meant to convert from a ZStaticSize object to a css size given units.

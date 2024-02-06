@@ -1,6 +1,6 @@
-import { ZSizeFixed } from './fixed/size-fixed';
-import { ZSizeVaried } from './varied/size-varied';
-import { ZSizeVoid } from './void/size-void';
+import { ZSizeFixed } from './fixed/size-fixed.mjs';
+import { ZSizeVaried } from './varied/size-varied.mjs';
+import { ZSizeVoid } from './void/size-void.mjs';
 
 /**
  * A sizing object that can be one any of the valid enum sizes.

@@ -3248,6 +3248,7 @@ __metadata:
   resolution: "@zthun/fashion-tailor@workspace:packages/fashion-tailor"
   dependencies:
     lodash-es: "npm:^4.17.21"
+    vite: "npm:^5.0.12"
     vitest: "npm:^1.2.2"
   languageName: unknown
   linkType: soft
