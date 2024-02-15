@@ -4,7 +4,7 @@ import {
   ZBreadcrumbsOutlet,
   ZButton,
   ZCaption,
-  ZFashionThemeContext,
+  ZFashionThemeProvider,
   ZH1,
   ZIconFontAwesome,
   ZImageSource,
@@ -102,7 +102,7 @@ export function ZFashionApp() {
 
   return (
     <ZRouter>
-      <ZFashionThemeContext.Provider value={theme}>
+      <ZFashionThemeProvider theme={theme}>
         <ZBannerMain avatar={avatar} prefix={prefix} suffix={suffix}>
           <ZRouteMap>
             <ZRoute path={ZFashionRouteHome.path} element={<ZHomePage />} />
@@ -135,7 +135,7 @@ export function ZFashionApp() {
             <ZRoute path='*' element={<ZNotFound />} />
           </ZRouteMap>
         </ZBannerMain>
-      </ZFashionThemeContext.Provider>
+      </ZFashionThemeProvider>
     </ZRouter>
   );
 }
