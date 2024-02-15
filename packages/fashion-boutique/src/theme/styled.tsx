@@ -1,3 +1,4 @@
+import { css } from '@emotion/css';
 import { PaletteColor, useTheme } from '@mui/material';
 import { ThemeProvider, createSpacing } from '@mui/system';
 import { IZFashionDevice, IZFashionTailor, ZSizeFixed } from '@zthun/fashion-tailor';
@@ -7,7 +8,7 @@ import React, { useMemo } from 'react';
 import { CSSInterpolation, CSSObject, GlobalStyles, createMakeStyles } from 'tss-react';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
-import { useFashionDevice, useFashionTailor, useFashionTheme } from './fashion.mjs';
+import { useFashionDevice, useFashionTailor, useFashionTheme } from './fashion';
 
 function useBoutiqueTheme() {
   const mui = useTheme();
@@ -202,3 +203,5 @@ export function ZStyled(props: IZStyled) {
     </div>
   );
 }
+
+export const mkCss = css;
