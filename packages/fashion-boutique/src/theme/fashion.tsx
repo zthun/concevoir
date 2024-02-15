@@ -4,7 +4,7 @@ import React, { createContext, useContext, useEffect, useRef } from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { ZFashionThemeElement } from './fashion-theme-element.mjs';
 
-export const ZFashionThemeContext = createContext(new ZFashionThemeBuilder().build());
+const ZFashionThemeContext = createContext(new ZFashionThemeBuilder().build());
 
 declare global {
   namespace React.JSX {
