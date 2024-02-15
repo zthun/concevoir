@@ -90,7 +90,7 @@ export type ZFashionRecord = Record<ZFashionName, IZFashion>;
  */
 export interface IZFashionTheme<TCustom extends object = {}> extends ZFashionRecord {
   /**
-   * The optional name of the design.
+   * The name of the theme.
    */
   readonly name: string;
 
