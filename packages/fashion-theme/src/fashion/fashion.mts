@@ -18,7 +18,7 @@ export interface IZFashion {
   /**
    * Optional name of the fashion.
    */
-  readonly name?: string;
+  readonly name: string;
 
   /**
    * The main fashion color.
@@ -61,6 +61,22 @@ export interface IZFashion {
 }
 
 /**
+ * A path to a scoped color value in a fashion block.
+ */
+export type ZFashionScope =
+  | 'main'
+  | 'light'
+  | 'dark'
+  | 'border'
+  | 'contrast'
+  | 'hover.main'
+  | 'hover.contrast'
+  | 'hover.border'
+  | 'focus.main'
+  | 'focus.contrast'
+  | 'focus.border';
+
+/**
  * Represents a builder for a complementary fashion objects.
  */
 export class ZFashionBuilder {
@@ -76,6 +92,7 @@ export class ZFashionBuilder {
     this._fashion = {
       main: white(),
       contrast: black(),
+      name: 'default',
       hover: {},
       focus: {}
     };
