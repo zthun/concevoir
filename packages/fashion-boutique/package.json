@@ -28,6 +28,7 @@
     "dist/**"
   ],
   "dependencies": {
+    "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.15.10",
@@ -35,9 +36,9 @@
     "@zthun/cirque": "^5.0.1",
     "@zthun/fashion-tailor": "^2.7.0",
     "@zthun/fashion-theme": "^2.7.0",
-    "@zthun/helpful-fn": "^3.3.0",
-    "@zthun/helpful-query": "^3.3.1",
-    "@zthun/helpful-react": "^3.3.1",
+    "@zthun/helpful-fn": "^3.4.0",
+    "@zthun/helpful-query": "^3.4.0",
+    "@zthun/helpful-react": "^3.4.0",
     "@zthun/webigail-http": "^2.4.0",
     "@zthun/webigail-url": "^2.4.0",
     "csstype": "^3.1.3",
