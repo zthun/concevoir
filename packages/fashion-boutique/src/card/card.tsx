@@ -21,7 +21,7 @@ import { IZComponentName } from '../component/component-name.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { IZComponentWidth } from '../component/component-width.mjs';
 import { ZSuspenseProgress } from '../suspense/suspense-progress';
-import { useFashionTheme } from '../theme/fashion.mjs';
+import { useFashionTheme } from '../theme/fashion';
 import { createStyleHook } from '../theme/styled';
 import { ZCaption, ZH2 } from '../typography/typography';
 

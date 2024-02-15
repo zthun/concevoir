@@ -9,7 +9,7 @@ import { IZComponentStyle } from '../component/component-style.mjs';
 import { IZComponentValue } from '../component/component-value.mjs';
 import { ZIconFontAwesome } from '../icon/icon-font-awesome';
 import { ZStack } from '../stack/stack';
-import { useFashionTheme } from '../theme/fashion.mjs';
+import { useFashionTheme } from '../theme/fashion';
 import { createStyleHook } from '../theme/styled';
 
 export interface IZCarousel

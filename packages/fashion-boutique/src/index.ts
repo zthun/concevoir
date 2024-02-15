@@ -1,4 +1,5 @@
 export * from './alert/alert';
+export * from './alert/alert-element.mjs';
 export * from './alert/alert.cm.mjs';
 export * from './banner-main/banner-main';
 export * from './banner-main/banner-main.cm.mjs';
@@ -104,7 +105,8 @@ export * from './text/text-area';
 export * from './text/text-input';
 export * from './text/text-input-reveal';
 export * from './text/text.cm.mjs';
-export * from './theme/fashion.mjs';
+export * from './theme/fashion';
+export * from './theme/fashion-theme-element.mjs';
 export * from './theme/styled';
 export * from './typography/text-color';
 export * from './typography/text-color.cm.mjs';

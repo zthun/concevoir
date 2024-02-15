@@ -6,7 +6,7 @@ import { ZCard } from '../card/card';
 import { ZFullScreen } from '../full-screen/full-screen';
 import { ZGrid } from '../grid/grid';
 import { useNavigate } from '../router/router-dom.mjs';
-import { useFashionTheme } from '../theme/fashion.mjs';
+import { useFashionTheme } from '../theme/fashion';
 import { ZParagraph } from '../typography/typography';
 import { ZSadFace } from './sad-face';
 

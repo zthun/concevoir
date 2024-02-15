@@ -17,7 +17,7 @@ import { ZSuspenseProgress } from '../suspense/suspense-progress';
 import { IZSuspense } from '../suspense/suspense.mjs';
 import { IZText } from '../text/text';
 import { ZTextInput } from '../text/text-input';
-import { useFashionTheme } from '../theme/fashion.mjs';
+import { useFashionTheme } from '../theme/fashion';
 import { ZH5 } from '../typography/typography';
 
 export interface IZGridView<T = any>

@@ -7,7 +7,7 @@ import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentName } from '../component/component-name.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { IZComponentWidth } from '../component/component-width.mjs';
-import { useFashionTheme } from '../theme/fashion.mjs';
+import { useFashionTheme } from '../theme/fashion';
 import { createStyleHook } from '../theme/styled';
 
 export interface IZBubble

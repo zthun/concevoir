@@ -11,7 +11,7 @@ import { IZComponentValue } from '../component/component-value.mjs';
 import { ZGrid } from '../grid/grid';
 import { ZIconFontAwesome } from '../icon/icon-font-awesome';
 import { ZStack } from '../stack/stack';
-import { useFashionTheme } from '../theme/fashion.mjs';
+import { useFashionTheme } from '../theme/fashion';
 import { ZH4 } from '../typography/typography';
 
 export interface IZWizard extends IZComponentStyle, IZComponentName, IZComponentValue<number> {
