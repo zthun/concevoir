@@ -1,7 +1,7 @@
 import { registerCustomElement } from '@zthun/helpful-dom';
-import { ZFashionCustomElement } from '../element/fashion-element.mjs';
+import { ZFashionElement } from '../element/fashion-element.mjs';
 
-export class ZAlertHeadingElement extends ZFashionCustomElement {
+export class ZAlertHeadingElement extends ZFashionElement {
   public static readonly register = registerCustomElement.bind(null, 'z-alert-heading', ZAlertHeadingElement);
   public readonly name = 'ZAlert-heading';
 

@@ -3,11 +3,11 @@ import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionPriority } from '@zthun/fashion-theme';
 import { registerCustomElement } from '@zthun/helpful-dom';
 import { firstDefined } from '@zthun/helpful-fn';
-import { ZFashionCustomElement } from '../element/fashion-element.mjs';
+import { ZFashionElement } from '../element/fashion-element.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
 
-export class ZAlertElement extends ZFashionCustomElement {
+export class ZAlertElement extends ZFashionElement {
   public static readonly register = registerCustomElement.bind(null, 'z-alert', ZAlertElement);
   public static readonly observedAttributes = Object.freeze(['fashion']);
   public readonly name = 'ZAlert-root';

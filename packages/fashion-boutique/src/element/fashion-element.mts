@@ -1,6 +1,6 @@
 import { css, CSSInterpolation } from '../theme/css.mjs';
 
-export abstract class ZFashionCustomElement extends HTMLElement {
+export abstract class ZFashionElement extends HTMLElement {
   public abstract readonly name: string;
 
   protected abstract generateStaticCss?(): CSSInterpolation;
