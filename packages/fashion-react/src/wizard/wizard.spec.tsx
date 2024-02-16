@@ -1,9 +1,9 @@
 import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
+import { ZWizardComponentModel } from '@zthun/fashion-circus';
 import React from 'react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { ZWizard } from './wizard';
-import { ZWizardComponentModel } from './wizard.cm.mjs';
 
 describe('ZWizard', () => {
   let page1Disabled: boolean | undefined;

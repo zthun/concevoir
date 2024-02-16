@@ -1,11 +1,11 @@
 import { IZCircusKey, ZCircusBy, ZCircusKeyboardQwerty } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
+import { ZTextComponentModel } from '@zthun/fashion-circus';
 import React, { ReactNode } from 'react';
 import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ZTextArea } from './text-area';
 import { ZTextInput, ZTextType } from './text-input';
 import { ZTextInputReveal } from './text-input-reveal';
-import { ZTextComponentModel } from './text.cm.mjs';
 
 // cspell: disable-next-line
 const LOREM = 'Purus gravida quis blandit turpis cursus in hac habitasse.';

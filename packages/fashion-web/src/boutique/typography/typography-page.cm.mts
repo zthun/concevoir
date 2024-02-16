@@ -1,5 +1,5 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZChoiceComponentModel, ZTextColorComponentModel } from '@zthun/fashion-react';
+import { ZChoiceComponentModel, ZTextColorComponentModel } from '@zthun/fashion-circus';
 
 /**
  * Represents the component model for the typography page.

@@ -2,7 +2,7 @@ import { Tooltip } from '@mui/material';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { useKeyboardActivate } from '@zthun/helpful-react';
 import React from 'react';
-import { IZIcon, useIconProvider, useIconStyles } from './icon';
+import { IZIcon, useIconProvider, useIconStyles } from './icon.mjs';
 
 export const ZIconFontAwesomeProvider = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css';
 export const ZIconFontAwesomeVendor = 'font-awesome';

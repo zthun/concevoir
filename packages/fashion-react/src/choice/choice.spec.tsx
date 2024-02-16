@@ -1,12 +1,12 @@
 import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
+import { ZChoiceComponentModel } from '@zthun/fashion-circus';
 import { identity, noop, range } from 'lodash-es';
 import React, { ReactNode } from 'react';
 import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ZChoiceAutocomplete } from './choice-autocomplete';
 import { ZChoiceDropDown } from './choice-drop-down';
 import { ZChoiceToggle } from './choice-toggle';
-import { ZChoiceComponentModel } from './choice.cm.mjs';
 
 describe('ZChoice', () => {
   let options: any[];

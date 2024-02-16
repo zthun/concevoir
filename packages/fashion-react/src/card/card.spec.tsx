@@ -1,9 +1,9 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
+import { ZCardComponentModel } from '@zthun/fashion-circus';
 import React, { ReactNode } from 'react';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { ZCard } from './card';
-import { ZCardComponentModel } from './card.cm.mjs';
 
 describe('ZCard', () => {
   let footer: ReactNode | undefined;

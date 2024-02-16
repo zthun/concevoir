@@ -1,5 +1,5 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZPopupButtonComponentModel } from '@zthun/fashion-react';
+import { ZPopupButtonComponentModel } from '@zthun/fashion-circus';
 
 /**
  * Represents a component model for the popup page.

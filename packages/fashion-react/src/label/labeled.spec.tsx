@@ -1,9 +1,9 @@
 import { IZCircusDriver, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
+import { ZLabelComponentModel } from '@zthun/fashion-circus';
 import { ZOrientation } from '@zthun/helpful-fn';
 import React from 'react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { ZLabelComponentModel } from './label.cm.mjs';
 import { ZLabeled } from './labeled';
 
 describe('ZLabeled', () => {

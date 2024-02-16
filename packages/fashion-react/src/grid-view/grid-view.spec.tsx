@@ -1,5 +1,6 @@
 import { IZCircusDriver, ZCircusBy, ZCircusKeyboardQwerty } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
+import { ZGridViewComponentModel } from '@zthun/fashion-circus';
 import {
   IZDataRequest,
   IZDataSource,
@@ -11,7 +12,6 @@ import { range } from 'lodash-es';
 import React from 'react';
 import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ZGridView } from './grid-view';
-import { ZGridViewComponentModel } from './grid-view.cm.mjs';
 
 describe('ZGridView', () => {
   let request: IZDataRequest | undefined;

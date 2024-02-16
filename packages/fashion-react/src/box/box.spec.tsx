@@ -1,10 +1,10 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
+import { ZBoxComponentModel } from '@zthun/fashion-circus';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import React from 'react';
 import { Mock, describe, expect, it, vi } from 'vitest';
 import { ZBox } from './box';
-import { ZBoxComponentModel } from './box.cm.mjs';
 
 describe('ZBox', () => {
   let onClick: Mock | undefined;

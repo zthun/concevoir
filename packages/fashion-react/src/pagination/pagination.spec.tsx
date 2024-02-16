@@ -1,10 +1,10 @@
 import { IZCircusDriver, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
+import { ZPaginationComponentModel } from '@zthun/fashion-circus';
 import { ZOrientation } from '@zthun/helpful-fn';
 import React from 'react';
 import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ZPagination } from './pagination';
-import { ZPaginationComponentModel } from './pagination.cm.mjs';
 
 describe('ZPagination', () => {
   let pages: number | undefined;

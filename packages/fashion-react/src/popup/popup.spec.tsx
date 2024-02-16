@@ -1,10 +1,10 @@
 import { IZCircusDriver, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
+import { ZPopupButtonComponentModel } from '@zthun/fashion-circus';
 import { ZHorizontalAnchor, ZVerticalAnchor } from '@zthun/helpful-fn';
 import React from 'react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { ZPopupButton } from './popup-button';
-import { ZPopupButtonComponentModel } from './popup-button.cm.mjs';
 
 describe('ZPopup', () => {
   let attachOrigin: [ZVerticalAnchor, ZHorizontalAnchor] | undefined;

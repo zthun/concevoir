@@ -1,11 +1,11 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
+import { ZBooleanComponentModel } from '@zthun/fashion-circus';
 import { IZFashion, ZFashionBuilder } from '@zthun/fashion-theme';
 import React, { ReactElement } from 'react';
 import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ZBooleanCheckbox } from './boolean-checkbox';
 import { ZBooleanSwitch } from './boolean-switch';
-import { ZBooleanComponentModel } from './boolean.cm.mjs';
 
 describe('ZBoolean', () => {
   let disabled: boolean | undefined;

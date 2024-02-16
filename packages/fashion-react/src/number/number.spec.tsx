@@ -1,9 +1,9 @@
 import { ZCircusBy, ZCircusKeyboardQwerty } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
+import { ZNumberComponentModel } from '@zthun/fashion-circus';
 import React, { ReactNode } from 'react';
 import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ZNumberInput } from './number-input';
-import { ZNumberComponentModel } from './number.cm.mjs';
 
 describe('ZNumber', () => {
   let min: number | undefined;

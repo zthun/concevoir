@@ -1,5 +1,5 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZChartComponentModel } from '@zthun/fashion-react';
+import { ZChartComponentModel } from '@zthun/fashion-circus';
 
 export class ZChartPageProgressComponentModel extends ZCircusComponentModel {
   public static readonly Selector = '.ZChartPage-progress';

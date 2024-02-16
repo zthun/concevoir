@@ -1,5 +1,5 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZBooleanComponentModel, ZTextComponentModel } from '@zthun/fashion-react';
+import { ZBooleanComponentModel, ZTextComponentModel } from '@zthun/fashion-circus';
 import { trimEnd, trimStart } from 'lodash-es';
 
 /**

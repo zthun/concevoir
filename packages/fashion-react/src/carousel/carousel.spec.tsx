@@ -6,10 +6,9 @@ import { ZCarousel } from './carousel';
 
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
+import { ZCarouselComponentModel, ZIconComponentModel } from '@zthun/fashion-circus';
 import { ZOrientation } from '@zthun/helpful-fn';
 import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
-import { ZIconComponentModel } from '../icon/icon.cm.mjs';
-import { ZCarouselComponentModel } from './carousel.cm.mjs';
 
 describe('ZCarousel', () => {
   let brands: IZBrand[];

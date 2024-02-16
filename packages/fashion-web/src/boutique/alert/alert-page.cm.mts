@@ -1,6 +1,5 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZAlertComponentModel } from '@zthun/fashion-circus';
-import { ZBooleanComponentModel, ZChoiceComponentModel } from '@zthun/fashion-react';
+import { ZAlertComponentModel, ZBooleanComponentModel, ZChoiceComponentModel } from '@zthun/fashion-circus';
 
 export class ZAlertPageComponentModel extends ZCircusComponentModel {
   public static readonly Selector = '.ZAlertPage-root';

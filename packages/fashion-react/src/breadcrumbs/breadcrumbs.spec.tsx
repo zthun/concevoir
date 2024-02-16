@@ -1,11 +1,11 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
+import { ZBreadcrumbsComponentModel } from '@zthun/fashion-circus';
 import { createMemoryHistory, MemoryHistory } from 'history';
 import React from 'react';
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 import { ZTestRouter } from '../router/router-dom.mjs';
 import { ZBreadcrumbsLocation } from './breadcrumbs-location';
-import { ZBreadcrumbsComponentModel } from './breadcrumbs.cm.mjs';
 
 describe('ZBreadcrumbs', () => {
   describe('Location', () => {

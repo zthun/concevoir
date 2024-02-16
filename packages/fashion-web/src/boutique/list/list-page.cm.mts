@@ -1,5 +1,5 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZListComponentModel } from '@zthun/fashion-react';
+import { ZListComponentModel } from '@zthun/fashion-circus';
 
 /**
  * The component model for the list page.

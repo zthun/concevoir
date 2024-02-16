@@ -4,7 +4,7 @@ import {
   ZButtonComponentModel,
   ZChoiceComponentModel,
   ZModalComponentModel
-} from '@zthun/fashion-react';
+} from '@zthun/fashion-circus';
 
 export class ZModalPageComponentModel extends ZCircusComponentModel {
   public static readonly Selector = '.ZModalPage-root';

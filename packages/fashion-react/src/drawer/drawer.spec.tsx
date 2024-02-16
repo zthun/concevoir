@@ -1,10 +1,10 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
+import { ZDrawerButtonComponentModel } from '@zthun/fashion-circus';
 import { ZHorizontalAnchor, ZSideAnchor, ZVerticalAnchor } from '@zthun/helpful-fn';
 import React, { ReactNode } from 'react';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { ZDrawerButton } from './drawer-button';
-import { ZDrawerButtonComponentModel } from './drawer-button.cm.mjs';
 
 describe('ZDrawer', () => {
   let children: ReactNode;

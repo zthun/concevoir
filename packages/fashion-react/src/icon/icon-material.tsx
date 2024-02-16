@@ -2,7 +2,7 @@ import { Tooltip } from '@mui/material';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { useKeyboardActivate } from '@zthun/helpful-react';
 import React from 'react';
-import { IZIcon, useIconProvider, useIconStyles } from './icon';
+import { IZIcon, useIconProvider, useIconStyles } from './icon.mjs';
 
 export const ZIconMaterialProvider = 'https://fonts.googleapis.com/icon?family=Material+Icons';
 export const ZIconMaterialVendor = 'material';

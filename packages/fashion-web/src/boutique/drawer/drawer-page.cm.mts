@@ -4,7 +4,7 @@ import {
   ZChoiceComponentModel,
   ZDrawerButtonComponentModel,
   ZDrawerComponentModel
-} from '@zthun/fashion-react';
+} from '@zthun/fashion-circus';
 import { ZSideAnchor } from '@zthun/helpful-fn';
 
 /**

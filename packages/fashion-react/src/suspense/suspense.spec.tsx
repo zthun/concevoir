@@ -1,6 +1,6 @@
 import { IZCircusDriver, ZCircusBy } from '@zthun/cirque';
+import { ZSuspenseComponentModel } from '@zthun/fashion-circus';
 import { ZSuspenseRotate } from './suspense-rotate';
-import { ZSuspenseComponentModel } from './suspense.cm.mjs';
 
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';

@@ -1,5 +1,5 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZCarouselComponentModel, ZChoiceComponentModel } from '@zthun/fashion-react';
+import { ZCarouselComponentModel, ZChoiceComponentModel } from '@zthun/fashion-circus';
 
 export class ZCarouselPageComponentModel extends ZCircusComponentModel {
   public static readonly Selector = '.ZCarouselPage-root';

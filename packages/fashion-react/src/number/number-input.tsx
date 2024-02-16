@@ -8,7 +8,7 @@ import { ZIconFontAwesome } from '../icon/icon-font-awesome';
 import { ZLabeled } from '../label/labeled';
 import { IZText, useText, withEnterCommit } from '../text/text';
 import { createStyleHook } from '../theme/styled';
-import { IZNumber } from './number';
+import { IZNumber } from './number.mjs';
 
 export const useNumberInputStyles = createStyleHook(({ theme }) => {
   return {

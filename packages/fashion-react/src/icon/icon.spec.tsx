@@ -1,10 +1,10 @@
 import { IZCircusDriver, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
+import { ZIconComponentModel } from '@zthun/fashion-circus';
 import React from 'react';
 import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ZIconFontAwesome, ZIconFontAwesomeProvider, ZIconFontAwesomeVendor } from './icon-font-awesome';
 import { ZIconMaterial, ZIconMaterialProvider, ZIconMaterialVendor } from './icon-material';
-import { ZIconComponentModel } from './icon.cm.mjs';
 
 describe('ZIcon', () => {
   let _drivers: IZCircusDriver[];
