@@ -6,7 +6,9 @@
     "paths": {
       "@zthun/fashion-theme": ["fashion-theme/src/index"],
       "@zthun/fashion-tailor": ["fashion-tailor/src/index"],
-      "@zthun/fashion-boutique": ["fashion-boutique/src/index"]
+      "@zthun/fashion-boutique": ["fashion-boutique/src/index"],
+      "@zthun/fashion-react": ["fashion-react/src/index"],
+      "@zthun/fashion-circus": ["fashion-circus/src/index"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx", "**/*.mts"],
