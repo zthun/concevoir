@@ -1,15 +1,15 @@
 import { registerCustomElement } from '@zthun/helpful-dom';
-import { css } from '../theme/css.mjs';
+import { ZFashionCustomElement } from 'src/element/fashion-custom-element.mjs';
 
-export class ZAlertMessageElement extends HTMLElement {
+export class ZAlertMessageElement extends ZFashionCustomElement {
   public static readonly register = registerCustomElement.bind(null, 'z-alert-message', ZAlertMessageElement);
+  public readonly name = 'ZAlert-message';
 
-  public connectedCallback() {
-    this.classList.add('ZAlert-message');
-    this.classList.add(
-      css({
-        gridArea: 'message'
-      })
-    );
+  protected refreshCssVariables = undefined;
+
+  protected generateStaticCss() {
+    return {
+      gridArea: 'message'
+    };
   }
 }

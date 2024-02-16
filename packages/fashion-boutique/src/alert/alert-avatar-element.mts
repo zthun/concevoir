@@ -1,16 +1,17 @@
+import { CSSInterpolation } from '@emotion/css';
 import { registerCustomElement } from '@zthun/helpful-dom';
-import { css } from '../theme/css.mjs';
+import { ZFashionCustomElement } from 'src/element/fashion-custom-element.mjs';
 
-export class ZAlertAvatarElement extends HTMLElement {
+export class ZAlertAvatarElement extends ZFashionCustomElement {
   public static readonly register = registerCustomElement.bind(null, 'z-alert-avatar', ZAlertAvatarElement);
+  public readonly name = 'ZAlert-avatar';
 
-  public connectedCallback() {
-    this.classList.add('ZAlert-avatar');
-    this.classList.add(
-      css({
-        gridArea: 'avatar',
-        marginRight: 'var(--alert-padding-x)'
-      })
-    );
+  protected refreshCssVariables = undefined;
+
+  protected generateStaticCss?(): CSSInterpolation {
+    return {
+      gridArea: 'avatar',
+      marginRight: 'var(--alert-padding-x)'
+    };
   }
 }

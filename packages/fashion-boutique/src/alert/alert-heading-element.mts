@@ -1,16 +1,16 @@
 import { registerCustomElement } from '@zthun/helpful-dom';
-import { css } from '../theme/css.mjs';
+import { ZFashionCustomElement } from 'src/element/fashion-custom-element.mjs';
 
-export class ZAlertHeadingElement extends HTMLElement {
+export class ZAlertHeadingElement extends ZFashionCustomElement {
   public static readonly register = registerCustomElement.bind(null, 'z-alert-heading', ZAlertHeadingElement);
+  public readonly name = 'ZAlert-heading';
 
-  public connectedCallback() {
-    this.classList.add('ZAlert-heading');
-    this.classList.add(
-      css({
-        gridArea: 'heading',
-        marginBottom: 'calc(var(--alert-padding-y) / 2)'
-      })
-    );
+  protected refreshCssVariables = undefined;
+
+  protected generateStaticCss() {
+    return {
+      gridArea: 'heading',
+      marginBottom: 'calc(var(--alert-padding-y) / 2)'
+    };
   }
 }
