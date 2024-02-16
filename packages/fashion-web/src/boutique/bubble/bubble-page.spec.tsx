@@ -2,7 +2,6 @@ import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionName, ZFashionPriority } from '@zthun/fashion-theme';
-import { startCase } from 'lodash-es';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZBubblePage } from './bubble-page';
@@ -70,7 +69,6 @@ describe('ZBubblePage', () => {
   describe('Fashion', () => {
     const shouldSetFashion = async (expected: ZFashionName) => {
       // Arrange.
-      const _expected = startCase(expected);
       const target = await createTestTarget();
       const fashion = await target.fashion();
       await fashion.select(expected);
@@ -78,7 +76,7 @@ describe('ZBubblePage', () => {
       // Act.
       const actual = await bubble.fashion();
       // Assert.
-      expect(actual).toEqual(_expected);
+      expect(actual).toEqual(expected);
     };
     it('should set the fashion to primary', async () => {
       await shouldSetFashion(ZFashionPriority.Primary);
