@@ -9,6 +9,7 @@ import {
   ZParagraph
 } from '@zthun/fashion-react';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
+import { ZHorizontalAnchor } from '@zthun/helpful-fn';
 import React from 'react';
 import { ZFashionRouteBoutique, ZFashionRouteTheme } from '../routes.mjs';
 
@@ -53,7 +54,11 @@ export function ZHomePage() {
         subHeading={ZFashionRouteTheme.description}
         footer={renderGetStarted('theme')}
       >
-        <ZBox className={classes.avatar} margin={{ bottom: ZSizeFixed.Medium }}>
+        <ZBox
+          className={classes.avatar}
+          margin={{ bottom: ZSizeFixed.Medium }}
+          justification={ZHorizontalAnchor.Center}
+        >
           <ZIconFontAwesome
             name={ZFashionRouteTheme.avatar}
             width={ZSizeFixed.ExtraLarge}
@@ -90,7 +95,11 @@ export function ZHomePage() {
         subHeading={ZFashionRouteBoutique.description}
         footer={renderGetStarted('boutique')}
       >
-        <ZBox className={classes.avatar} margin={{ bottom: ZSizeFixed.Medium }}>
+        <ZBox
+          className={classes.avatar}
+          margin={{ bottom: ZSizeFixed.Medium }}
+          justification={ZHorizontalAnchor.Center}
+        >
           <ZIconFontAwesome
             name={ZFashionRouteBoutique.avatar}
             width={ZSizeFixed.ExtraLarge}
