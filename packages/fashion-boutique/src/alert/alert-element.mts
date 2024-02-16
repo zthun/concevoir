@@ -9,18 +9,15 @@ import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
 export class ZAlertElement extends HTMLElement {
   public static readonly register = registerCustomElement.bind(null, 'z-alert', ZAlertElement);
   public static readonly observedAttributes = Object.freeze(['fashion']);
+  public attributeChangedCallback = this._applyVariables;
 
   public get fashion(): string {
-    return this.getAttribute('fashion') || ZFashionPriority.Primary;
+    return firstDefined(ZFashionPriority.Primary, this.getAttribute('fashion'));
   }
 
-  public set fashion(val: string | null | undefined) {
-    const $fashion = firstDefined(ZFashionPriority.Primary, val);
-    this._applyFashion($fashion);
-    this.setAttribute('fashion', $fashion);
-  }
+  private _applyVariables() {
+    const fashion = this.fashion;
 
-  private _applyFashion(fashion: string) {
     const contrast = ZFashionThemeElement.property(fashion, 'contrast');
     const main = ZFashionThemeElement.property(fashion, 'main');
     const border = ZFashionThemeElement.property(fashion, 'border');
@@ -41,7 +38,7 @@ export class ZAlertElement extends HTMLElement {
   }
 
   public connectedCallback() {
-    this._applyFashion(this.fashion);
+    this._applyVariables();
     this.classList.add('ZAlert-root');
     this.classList.add(
       css({
@@ -60,9 +57,5 @@ export class ZAlertElement extends HTMLElement {
         padding: 'var(--alert-padding-x) var(--alert-padding-y)'
       })
     );
-  }
-
-  public attributeChangedCallback() {
-    this._applyFashion(this.fashion);
   }
 }
