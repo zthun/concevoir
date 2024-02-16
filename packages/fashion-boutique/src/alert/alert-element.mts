@@ -3,7 +3,7 @@ import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionPriority } from '@zthun/fashion-theme';
 import { registerCustomElement } from '@zthun/helpful-dom';
 import { firstDefined } from '@zthun/helpful-fn';
-import { ZFashionCustomElement } from '../element/fashion-custom-element.mjs';
+import { ZFashionCustomElement } from '../element/fashion-element.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
 
