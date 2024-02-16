@@ -11,16 +11,13 @@ import { ZStyled } from '../theme/styled';
 
 export interface IZBannerMain extends IZComponentHierarchy, IZComponentAvatar, IZComponentAdornment {}
 
-/**
- * Represents a layout that uses a banner with main content.
- */
 export function ZBannerMain(props: IZBannerMain) {
   const { children, avatar, prefix = <span />, suffix = <span /> } = props;
   const { primary } = useFashionTheme();
 
   return (
     <ZStyled className='ZBannerMain-root'>
-      <ZBanner className='ZBannerMain-header' position='sticky' fashion={primary}>
+      <ZBanner className='ZBannerMain-header' fashion={primary}>
         <ZBox padding={{ x: ZSizeFixed.Medium, y: ZSizeFixed.ExtraSmall }}>
           <ZGrid columns='auto auto 1fr auto' alignItems='center' gap={ZSizeFixed.Small}>
             <div className='ZBannerMain-avatar'>{avatar}</div>

@@ -1,62 +1,34 @@
-import { AppBar } from '@mui/material';
-import {
-  createSizeChartFixedArithmetic,
-  createSizeChartFixedCss,
-  createSizeChartVariedCss,
-  ZSizeFixed,
-  ZSizeVaried
-} from '@zthun/fashion-tailor';
-import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
-import React from 'react';
+import { ZBannerElement } from '@zthun/fashion-boutique';
+import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
+import { cssJoinDefined } from '@zthun/helpful-fn';
+import React, { useEffect } from 'react';
 import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentHeight } from '../component/component-height.mjs';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
-import { createStyleHook } from '../theme/styled';
 
-/**
- * Properties for the banner bar.
- */
+declare global {
+  namespace React.JSX {
+    interface IntrinsicElements {
+      ['z-banner']: ZBannerElement & any;
+    }
+  }
+}
+
 export interface IZBanner
   extends IZComponentHierarchy,
     IZComponentFashion,
     Pick<IZComponentHeight<ZSizeFixed | ZSizeVaried.Fit>, 'height'>,
-    IZComponentStyle {
-  position?: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative';
-}
+    IZComponentStyle {}
 
-const heightChart = {
-  ...createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), 'rem'),
-  ...createSizeChartVariedCss()
-};
-
-const useBannerStyles = createStyleHook(({ theme }, props: IZBanner) => {
-  const { primary } = theme;
-  const { fashion, height } = props;
-
-  const _height = firstDefined(ZSizeVaried.Fit, height);
-  const __height = heightChart[_height];
-  const _fashion = firstDefined(primary, fashion);
-
-  return {
-    banner: {
-      backgroundColor: _fashion.main,
-      color: _fashion.contrast,
-      height: __height
-    }
-  };
-});
-
-/**
- * A colorful bar in a specific location.
- */
 export function ZBanner(props: IZBanner) {
-  const { children, className, position } = props;
-  const { classes } = useBannerStyles(props);
+  const { children, className, fashion, height } = props;
+
+  useEffect(() => ZBannerElement.register(), []);
 
   return (
-    <AppBar className={cssJoinDefined('ZBanner-root', className, classes.banner)} position={position}>
+    <z-banner class={cssJoinDefined(className)} fashion={fashion?.name} height={height}>
       {children}
-    </AppBar>
+    </z-banner>
   );
 }
