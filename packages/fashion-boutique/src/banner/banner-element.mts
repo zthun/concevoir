@@ -10,12 +10,12 @@ import { firstDefined } from '@zthun/helpful-fn';
 import { ZFashionThemeElement } from 'src/theme/fashion-theme-element.mjs';
 import { css } from '../theme/css.mjs';
 
-const heightChart = {
-  ...createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), 'rem'),
-  ...createSizeChartVariedCss()
-};
-
 export class ZBannerElement extends HTMLElement {
+  private static HeightChart = {
+    ...createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), 'rem'),
+    ...createSizeChartVariedCss()
+  };
+
   public static readonly register = registerCustomElement.bind(null, 'z-banner', ZBannerElement);
   public static readonly observeAttributes = Object.freeze(['height', 'fashion']);
   public attributeChangedCallback = this._applyVariables;
@@ -33,7 +33,7 @@ export class ZBannerElement extends HTMLElement {
 
     const main = ZFashionThemeElement.property(fashion, 'main');
     const contrast = ZFashionThemeElement.property(fashion, 'contrast');
-    const height = heightChart[this.height];
+    const height = ZBannerElement.HeightChart[this.height];
 
     this.style.setProperty('--banner-background', `var(${main})`);
     this.style.setProperty('--banner-color', `var(${contrast})`);
