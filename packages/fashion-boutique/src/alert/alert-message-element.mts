@@ -1,5 +1,5 @@
 import { registerCustomElement } from '@zthun/helpful-dom';
-import { ZFashionCustomElement } from 'src/element/fashion-custom-element.mjs';
+import { ZFashionCustomElement } from '../element/fashion-element.mjs';
 
 export class ZAlertMessageElement extends ZFashionCustomElement {
   public static readonly register = registerCustomElement.bind(null, 'z-alert-message', ZAlertMessageElement);
