@@ -52,7 +52,6 @@ export * from './drawer/drawer';
 export * from './drawer/drawer-button';
 export * from './drawer/drawer-button.cm.mjs';
 export * from './drawer/drawer.cm.mjs';
-export * from './experimental/experimental-warning';
 export * from './full-screen/full-screen';
 export * from './grid-view/grid-view';
 export * from './grid-view/grid-view.cm.mjs';

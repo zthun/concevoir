@@ -1,10 +1,9 @@
+import { ZFashionTailorElement, ZFashionThemeElement } from '@zthun/fashion-boutique';
 import { IZFashionDevice, IZFashionTailor, ZFashionDevice, ZFashionTailor } from '@zthun/fashion-tailor';
 import { IZFashionTheme, ZFashionName, ZFashionThemeBuilder } from '@zthun/fashion-theme';
 import { firstDefined } from '@zthun/helpful-fn';
 import React, { createContext, useContext, useEffect, useMemo, useRef } from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
-import { ZFashionTailorElement } from './fashion-tailor-element.mjs';
-import { ZFashionThemeElement } from './fashion-theme-element.mjs';
 
 const ZFashionThemeContext = createContext(new ZFashionThemeBuilder().build());
 const ZFashionTailorContext = createContext<IZFashionTailor>(new ZFashionTailor());

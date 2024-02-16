@@ -1,5 +1,5 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZAlertComponentModel } from '../alert/alert.cm.mjs';
+import { ZAlertComponentModel } from '@zthun/fashion-boutique';
 import { ZButtonComponentModel } from '../button/button.cm.mjs';
 import { ZSuspenseComponentModel } from '../suspense/suspense.cm.mjs';
 import { ZTextComponentModel } from '../text/text.cm.mjs';
