@@ -1,5 +1,5 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZCardComponentModel, ZChoiceComponentModel } from '@zthun/fashion-boutique';
+import { ZCardComponentModel, ZChoiceComponentModel } from '@zthun/fashion-react';
 
 export class ZCardPageComponentModel extends ZCircusComponentModel {
   public static readonly Selector = '.ZCardPage-root';

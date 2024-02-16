@@ -1,12 +1,4 @@
-import {
-  ZBox,
-  ZChartProgress,
-  ZDataPointBuilder,
-  ZGrid,
-  ZH4,
-  ZParagraph,
-  useFashionTheme
-} from '@zthun/fashion-boutique';
+import { ZBox, ZChartProgress, ZDataPointBuilder, ZGrid, ZH4, ZParagraph, useFashionTheme } from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React, { useMemo } from 'react';
 

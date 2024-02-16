@@ -1,6 +1,6 @@
 import { IZCircusDriver, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZButtonComponentModel } from '@zthun/fashion-boutique';
+import { ZButtonComponentModel } from '@zthun/fashion-react';
 import { ZSizeVaried } from '@zthun/fashion-tailor';
 import { ZFashionName, ZFashionPriority } from '@zthun/fashion-theme';
 import { required } from '@zthun/helpful-fn';

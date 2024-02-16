@@ -10,7 +10,7 @@ import {
   ZListGroup,
   ZListLineItem,
   ZParagraph
-} from '@zthun/fashion-boutique';
+} from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React, { useState } from 'react';
 import { ZFashionRouteList } from '../../routes.mjs';

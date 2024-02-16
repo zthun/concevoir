@@ -1,4 +1,4 @@
-import { useFashion } from '@zthun/fashion-boutique';
+import { useFashion } from '@zthun/fashion-react';
 import { IZFashion, ZFashionName } from '@zthun/fashion-theme';
 import { Dispatch, SetStateAction, useState } from 'react';
 

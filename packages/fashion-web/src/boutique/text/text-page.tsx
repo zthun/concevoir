@@ -11,7 +11,7 @@ import {
   ZTextInput,
   ZTextInputReveal,
   ZTextType
-} from '@zthun/fashion-boutique';
+} from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React, { useState } from 'react';
 import { ZFashionRouteText } from '../../routes.mjs';

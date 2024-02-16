@@ -1,4 +1,4 @@
-import { ZBox, ZCard, ZH3, ZIconFontAwesome, ZImageSource, ZParagraph, ZStack } from '@zthun/fashion-boutique';
+import { ZBox, ZCard, ZH3, ZIconFontAwesome, ZImageSource, ZParagraph, ZStack } from '@zthun/fashion-react';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { ZUrlBuilder } from '@zthun/webigail-url';
 import React, { useState } from 'react';

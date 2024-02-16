@@ -7,7 +7,7 @@ import {
   ZCard,
   ZIconFontAwesome,
   ZParagraph
-} from '@zthun/fashion-boutique';
+} from '@zthun/fashion-react';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import React from 'react';
 import { ZFashionRouteBoutique, ZFashionRouteTheme } from '../routes.mjs';

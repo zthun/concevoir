@@ -7,7 +7,7 @@ import {
   ZStack,
   ZTextColor,
   createStyleHook
-} from '@zthun/fashion-boutique';
+} from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionBuilder } from '@zthun/fashion-theme';
 import { ZOrientation, cssJoinDefined, firstDefined } from '@zthun/helpful-fn';

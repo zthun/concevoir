@@ -9,7 +9,7 @@ import {
   ZH3,
   ZIconFontAwesome,
   ZParagraph
-} from '@zthun/fashion-boutique';
+} from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { setFirst, ZHorizontalAnchor, ZSideAnchor, ZVerticalAnchor } from '@zthun/helpful-fn';
 import { identity, startCase } from 'lodash-es';

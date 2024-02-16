@@ -8,7 +8,7 @@ import {
   ZParagraph,
   ZStack,
   useFashionTheme
-} from '@zthun/fashion-boutique';
+} from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { IZBrand, ZBrands } from '@zthun/helpful-brands';
 import { ZOrientation } from '@zthun/helpful-fn';

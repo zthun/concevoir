@@ -1,5 +1,5 @@
 // cspell:disable
-import { ZCard, ZH3, ZIconFontAwesome, ZNewspaper, ZParagraph, ZYouTubeVideo } from '@zthun/fashion-boutique';
+import { ZCard, ZH3, ZIconFontAwesome, ZNewspaper, ZParagraph, ZYouTubeVideo } from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React from 'react';
 import { ZFashionRouteYouTube } from '../../routes.mjs';

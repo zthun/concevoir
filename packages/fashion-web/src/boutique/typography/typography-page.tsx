@@ -14,7 +14,7 @@ import {
   ZParagraph,
   ZSubtitle,
   ZTextColor
-} from '@zthun/fashion-boutique';
+} from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React from 'react';
 import { ZFashionRouteTypography } from '../../routes.mjs';

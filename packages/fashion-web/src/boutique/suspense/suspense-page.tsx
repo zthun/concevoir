@@ -9,7 +9,7 @@ import {
   ZParagraph,
   ZSuspenseProgress,
   ZSuspenseRotate
-} from '@zthun/fashion-boutique';
+} from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { setFirst } from '@zthun/helpful-fn';
 import { identity, startCase, values } from 'lodash-es';

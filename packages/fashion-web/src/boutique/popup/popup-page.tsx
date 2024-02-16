@@ -1,4 +1,4 @@
-import { ZBox, ZCard, ZH3, ZIconFontAwesome, ZParagraph, ZPopupButton, useFashionTheme } from '@zthun/fashion-boutique';
+import { ZBox, ZCard, ZH3, ZIconFontAwesome, ZParagraph, ZPopupButton, useFashionTheme } from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React, { useMemo } from 'react';
 import { ZFashionRoutePopup } from '../../routes.mjs';

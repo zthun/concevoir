@@ -1,6 +1,6 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZBooleanComponentModel, ZButtonComponentModel } from '@zthun/fashion-boutique';
+import { ZBooleanComponentModel, ZButtonComponentModel } from '@zthun/fashion-react';
 import { IZFashion, ZFashionThemeBuilder } from '@zthun/fashion-theme';
 import React from 'react';
 import { describe, expect, it } from 'vitest';

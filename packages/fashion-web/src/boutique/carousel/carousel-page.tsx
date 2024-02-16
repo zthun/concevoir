@@ -9,7 +9,7 @@ import {
   ZIconFontAwesome,
   ZParagraph,
   ZStack
-} from '@zthun/fashion-boutique';
+} from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZBrands } from '@zthun/helpful-brands';
 import { ZOrientation } from '@zthun/helpful-fn';

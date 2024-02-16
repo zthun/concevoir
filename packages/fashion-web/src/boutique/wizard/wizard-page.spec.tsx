@@ -1,6 +1,6 @@
 import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZTestRouter } from '@zthun/fashion-boutique';
+import { ZTestRouter } from '@zthun/fashion-react';
 import { MemoryHistory, createMemoryHistory } from 'history';
 import React from 'react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';

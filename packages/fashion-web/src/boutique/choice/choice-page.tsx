@@ -11,7 +11,7 @@ import {
   ZIconFontAwesome,
   ZLineItem,
   ZParagraph
-} from '@zthun/fashion-boutique';
+} from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { IZBrand, ZBrands } from '@zthun/helpful-brands';
 import React, { useMemo, useState } from 'react';

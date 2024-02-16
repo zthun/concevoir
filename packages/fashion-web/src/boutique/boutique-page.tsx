@@ -8,7 +8,7 @@ import {
   ZH3,
   ZIconFontAwesome,
   ZLineItem
-} from '@zthun/fashion-boutique';
+} from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';

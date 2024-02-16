@@ -1,5 +1,5 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZNumberComponentModel } from '@zthun/fashion-boutique';
+import { ZNumberComponentModel } from '@zthun/fashion-react';
 import { trim } from 'lodash-es';
 
 /**

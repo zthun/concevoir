@@ -8,7 +8,7 @@ import {
   ZImageSource,
   ZParagraph,
   useFashionTheme
-} from '@zthun/fashion-boutique';
+} from '@zthun/fashion-react';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { ZFashionArea } from '@zthun/fashion-theme';
 import { ZHorizontalAnchor } from '@zthun/helpful-fn';

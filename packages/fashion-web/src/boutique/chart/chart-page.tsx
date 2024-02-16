@@ -1,4 +1,4 @@
-import { ZBox, ZCard, ZGrid, ZH3, ZIconFontAwesome, ZParagraph } from '@zthun/fashion-boutique';
+import { ZBox, ZCard, ZGrid, ZH3, ZIconFontAwesome, ZParagraph } from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React from 'react';
 import { ZFashionRouteChart } from '../../routes.mjs';

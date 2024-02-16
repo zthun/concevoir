@@ -1,6 +1,6 @@
 import { IZCircusKey, ZCircusBy, ZCircusKeyboardQwerty } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZBooleanComponentModel, ZTextComponentModel } from '@zthun/fashion-boutique';
+import { ZBooleanComponentModel, ZTextComponentModel } from '@zthun/fashion-react';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZTextPage } from './text-page';

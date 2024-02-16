@@ -9,7 +9,7 @@ import {
   ZParagraph,
   ZStack,
   useFashionTheme
-} from '@zthun/fashion-boutique';
+} from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZOrientation } from '@zthun/helpful-fn';
 import React, { useState } from 'react';

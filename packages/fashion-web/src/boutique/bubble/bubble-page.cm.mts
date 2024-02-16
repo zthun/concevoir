@@ -1,5 +1,5 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZBooleanComponentModel, ZBubbleComponentModel, ZChoiceComponentModel } from '@zthun/fashion-boutique';
+import { ZBooleanComponentModel, ZBubbleComponentModel, ZChoiceComponentModel } from '@zthun/fashion-react';
 
 export class ZBubblePageComponentModel extends ZCircusComponentModel {
   public static readonly Selector = '.ZBubblePage-root';

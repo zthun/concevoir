@@ -8,7 +8,7 @@ import {
   ZH4,
   ZIconFontAwesome,
   ZParagraph
-} from '@zthun/fashion-boutique';
+} from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React, { useState } from 'react';
 import { ZFashionRouteAlert } from '../../routes.mjs';
