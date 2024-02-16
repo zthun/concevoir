@@ -1,5 +1,5 @@
 import { registerCustomElement } from '@zthun/helpful-dom';
-import { mkCss } from '../theme/styled';
+import { css } from '../theme/css.mjs';
 
 export class ZAlertHeadingElement extends HTMLElement {
   public static readonly register = registerCustomElement.bind(null, 'z-alert-heading', ZAlertHeadingElement);
@@ -7,7 +7,7 @@ export class ZAlertHeadingElement extends HTMLElement {
   public connectedCallback() {
     this.classList.add('ZAlert-heading');
     this.classList.add(
-      mkCss({
+      css({
         gridArea: 'heading',
         marginBottom: 'calc(var(--alert-padding-y) / 2)'
       })

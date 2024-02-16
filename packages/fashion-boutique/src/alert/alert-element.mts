@@ -2,9 +2,9 @@ import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionPriority } from '@zthun/fashion-theme';
 import { registerCustomElement } from '@zthun/helpful-dom';
 import { firstDefined } from '@zthun/helpful-fn';
+import { css } from '../theme/css.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
-import { mkCss } from '../theme/styled';
 
 export class ZAlertElement extends HTMLElement {
   public static readonly register = registerCustomElement.bind(null, 'z-alert', ZAlertElement);
@@ -44,7 +44,7 @@ export class ZAlertElement extends HTMLElement {
     this._applyFashion(this.fashion);
     this.classList.add('ZAlert-root');
     this.classList.add(
-      mkCss({
+      css({
         alignItems: 'center',
         backgroundColor: 'var(--alert-fashion)',
         border: 'var(--alert-border-thickness) double var(--alert-border)',
