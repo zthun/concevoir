@@ -10,7 +10,6 @@ export class ZAlertComponentModel extends ZCircusComponentModel {
   /**
    * Gets the alert message.
    *
-   *
    * @returns
    *        The message container.
    */
@@ -47,6 +46,6 @@ export class ZAlertComponentModel extends ZCircusComponentModel {
    *        The fashion for the alert.
    */
   public async fashion(): Promise<string> {
-    return this.driver.attribute('data-fashion', '');
+    return this.driver.attribute('fashion', '');
   }
 }

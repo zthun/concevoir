@@ -1,8 +1,9 @@
 import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { IZFashion, ZFashionBuilder } from '@zthun/fashion-theme';
+import { IZFashion, ZFashionBuilder, ZFashionThemeBuilder } from '@zthun/fashion-theme';
 import React, { ReactNode } from 'react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { ZFashionThemeProvider } from '../theme/fashion';
 import { ZAlert } from './alert';
 import { ZAlertComponentModel } from './alert.cm.mjs';
 
@@ -15,7 +16,11 @@ describe('ZAlert', () => {
   let fashion: IZFashion | undefined;
 
   const createTestTarget = async () => {
-    const element = <ZAlert message={message} heading={heading} fashion={fashion} avatar={avatar} />;
+    const element = (
+      <ZFashionThemeProvider theme={new ZFashionThemeBuilder().build()}>
+        <ZAlert message={message} heading={heading} fashion={fashion} avatar={avatar} />
+      </ZFashionThemeProvider>
+    );
     _renderer = new ZCircusSetupRenderer(element);
     _driver = await _renderer.setup();
     return ZCircusBy.first(_driver, ZAlertComponentModel);
