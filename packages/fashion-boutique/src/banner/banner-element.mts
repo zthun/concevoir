@@ -7,18 +7,19 @@ import {
 import { ZFashionPriority } from '@zthun/fashion-theme';
 import { registerCustomElement } from '@zthun/helpful-dom';
 import { firstDefined } from '@zthun/helpful-fn';
-import { css } from '../theme/css.mjs';
+import { ZFashionElement } from 'src/element/fashion-element.mjs';
+import { CSSInterpolation } from 'src/theme/css.mjs';
 import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
 
-export class ZBannerElement extends HTMLElement {
-  private static HeightChart = {
+export class ZBannerElement extends ZFashionElement {
+  public static HeightChart = {
     ...createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), 'rem'),
     ...createSizeChartVariedCss()
   };
 
   public static readonly register = registerCustomElement.bind(null, 'z-banner', ZBannerElement);
   public static readonly observeAttributes = Object.freeze(['height', 'fashion']);
-  public attributeChangedCallback = this._applyVariables;
+  public readonly name = 'ZBanner-root';
 
   public fashion() {
     return firstDefined(ZFashionPriority.Primary, this.getAttribute('fashion'));
@@ -28,7 +29,7 @@ export class ZBannerElement extends HTMLElement {
     return firstDefined(ZSizeVaried.Fit, this.getAttribute('height'));
   }
 
-  private _applyVariables(): void {
+  protected refreshCssVariables(): void {
     const fashion = this.fashion();
 
     const main = ZFashionThemeElement.property(fashion, 'main');
@@ -40,23 +41,19 @@ export class ZBannerElement extends HTMLElement {
     this.style.setProperty('--banner-height', `${height}`);
   }
 
-  public connectedCallback() {
-    this._applyVariables();
-    this.classList.add('ZBanner-root');
-    this.classList.add(
-      css({
-        background: 'var(--banner-background)',
-        color: 'var(--banner-color)',
-        height: 'var(--banner-height)',
-        position: 'sticky',
-        zIndex: 1100,
-        top: 0,
-        left: 'auto',
-        right: 0,
-        display: 'block',
-        boxSizing: 'border-box',
-        width: '100%'
-      })
-    );
+  public generateStaticCss(): CSSInterpolation {
+    return {
+      background: 'var(--banner-background)',
+      boxSizing: 'border-box',
+      color: 'var(--banner-color)',
+      display: 'block',
+      height: 'var(--banner-height)',
+      left: 'auto',
+      position: 'sticky',
+      right: 0,
+      top: 0,
+      width: '100%',
+      zIndex: 1100
+    };
   }
 }
