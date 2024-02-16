@@ -1,13 +1,4 @@
-import {
-  IZComponentFashion,
-  ZBox,
-  ZCaption,
-  ZGrid,
-  ZH4,
-  ZStack,
-  ZTextColor,
-  createStyleHook
-} from '@zthun/fashion-react';
+import { IZComponentFashion, ZBox, ZCaption, ZGrid, ZH4, ZStack, createStyleHook } from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionBuilder } from '@zthun/fashion-theme';
 import { ZOrientation, cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
@@ -21,6 +12,7 @@ const useFashionColorsStyles = createStyleHook(({ tailor }, props: IZFashionColo
   const light = firstDefined(fashion.main, fashion.light);
   const main = fashion.main;
   const dark = firstDefined(fashion.main, fashion.dark);
+  const border = firstDefined(fashion.main, fashion.border);
   const contrast = fashion.contrast;
 
   return {
@@ -37,19 +29,19 @@ const useFashionColorsStyles = createStyleHook(({ tailor }, props: IZFashionColo
     light: {
       color: contrast,
       backgroundColor: light,
-      borderColor: light
+      borderColor: border
     },
 
     main: {
       color: contrast,
       backgroundColor: main,
-      borderColor: main
+      borderColor: border
     },
 
     dark: {
       color: contrast,
       backgroundColor: dark,
-      borderColor: dark
+      borderColor: border
     }
   };
 });
@@ -66,19 +58,10 @@ export function ZFashionColors(props: IZFashionColors) {
   );
 
   return (
-    <ZBox
-      className={cssJoinDefined('ZFashionColors-root')}
-      fashion={boxFashion}
-      border={{ width: ZSizeFixed.Small }}
-      padding={ZSizeFixed.Small}
-      data-name={fashion.name}
-      data-fashion={fashion.name}
-    >
+    <ZBox className={cssJoinDefined('ZFashionColors-root')} fashion={boxFashion} padding={ZSizeFixed.Small}>
       <ZStack orientation={ZOrientation.Vertical} gap={ZSizeFixed.Small}>
-        <ZTextColor fashion={fashion}>
-          <ZH4 compact>{fashion.name}</ZH4>
-        </ZTextColor>
-        <ZGrid columns='1fr 1fr 1fr'>
+        <ZH4 compact>{fashion.name}</ZH4>
+        <ZGrid columns='1fr 1fr 1fr' gap={ZSizeFixed.Small}>
           {renderColor('Light', classes.light)}
           {renderColor('Main', classes.main)}
           {renderColor('Dark', classes.dark)}
