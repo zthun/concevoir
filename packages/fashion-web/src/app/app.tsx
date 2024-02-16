@@ -12,7 +12,7 @@ import {
   ZRoute,
   ZRouteMap,
   ZRouter
-} from '@zthun/fashion-boutique';
+} from '@zthun/fashion-react';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { createDarkTheme, createLightTheme } from '@zthun/fashion-theme';
 import React, { useMemo, useState } from 'react';
