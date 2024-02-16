@@ -1,6 +1,6 @@
 import { registerCustomElement } from '@zthun/helpful-dom';
-import { ZFashionTailorElement } from 'src/theme/fashion-tailor-element.mjs';
 import { css } from '../theme/css.mjs';
+import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 import { ZBoxRectangleElement } from './box-rectangle-element.mjs';
 
 export class ZBoxMarginElement extends ZBoxRectangleElement {

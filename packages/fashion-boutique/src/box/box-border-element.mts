@@ -1,8 +1,8 @@
 import { registerCustomElement } from '@zthun/helpful-dom';
 import { firstDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
-import { ZFashionTailorElement } from 'src/theme/fashion-tailor-element.mjs';
 import { css } from '../theme/css.mjs';
+import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 import { ZBoxRectangleElement } from './box-rectangle-element.mjs';
 
 export class ZBoxBorderElement extends ZBoxRectangleElement {

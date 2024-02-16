@@ -7,8 +7,8 @@ import {
 import { ZFashionPriority } from '@zthun/fashion-theme';
 import { registerCustomElement } from '@zthun/helpful-dom';
 import { firstDefined } from '@zthun/helpful-fn';
-import { ZFashionThemeElement } from 'src/theme/fashion-theme-element.mjs';
 import { css } from '../theme/css.mjs';
+import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
 
 export class ZBannerElement extends HTMLElement {
   private static HeightChart = {
