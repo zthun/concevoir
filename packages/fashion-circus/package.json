@@ -28,7 +28,8 @@
     "dist/**"
   ],
   "dependencies": {
-    "@zthun/cirque": "^5.0.1"
+    "@zthun/cirque": "^5.0.1",
+    "@zthun/fashion-boutique": "^2.7.0"
   },
   "devDependencies": {
     "@zthun/helpful-brands": "^3.5.0",
