@@ -1,5 +1,5 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZAlertComponentModel } from '@zthun/fashion-boutique';
+import { ZAlertComponentModel } from '@zthun/fashion-circus';
 import { ZBooleanComponentModel, ZChoiceComponentModel } from '@zthun/fashion-react';
 
 export class ZAlertPageComponentModel extends ZCircusComponentModel {
