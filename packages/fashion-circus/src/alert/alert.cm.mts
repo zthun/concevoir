@@ -1,4 +1,5 @@
 import { IZCircusDriver, ZCircusComponentModel } from '@zthun/cirque';
+import { ZFashionPriority } from '@zthun/fashion-theme';
 import { firstDefined } from '@zthun/helpful-fn';
 
 /**
@@ -46,6 +47,6 @@ export class ZAlertComponentModel extends ZCircusComponentModel {
    *        The fashion for the alert.
    */
   public async fashion(): Promise<string> {
-    return this.driver.attribute('fashion', '');
+    return this.driver.attribute('fashion', ZFashionPriority.Primary);
   }
 }
