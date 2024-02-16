@@ -15,14 +15,8 @@ import React from 'react';
 import { IZRoute } from '../route/route.mjs';
 import { ZFashionRouteAllComponents, ZFashionRouteBoutique } from '../routes.mjs';
 
-/**
- * Represents the components page.
- *
- * @returns
- *        The JSX to render the page.
- */
 export function ZBoutiquePage() {
-  const { secondary, body } = useFashionTheme();
+  const { body } = useFashionTheme();
   const navigate = useNavigate();
 
   const renderComponent = (route: IZRoute) => (
@@ -31,8 +25,7 @@ export function ZBoutiquePage() {
       key={route.path}
       padding={ZSizeFixed.Medium}
       fashion={body}
-      hover={secondary}
-      border={{ width: ZSizeFixed.ExtraSmall }}
+      border={{ width: ZSizeFixed.ExtraSmall, style: 'solid' }}
       onClick={() => navigate(route.path)}
     >
       <ZLineItem
