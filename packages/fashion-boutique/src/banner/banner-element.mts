@@ -20,20 +20,20 @@ export class ZBannerElement extends HTMLElement {
   public static readonly observeAttributes = Object.freeze(['height', 'fashion']);
   public attributeChangedCallback = this._applyVariables;
 
-  public get fashion() {
+  public fashion() {
     return firstDefined(ZFashionPriority.Primary, this.getAttribute('fashion'));
   }
 
-  public get height() {
+  public height() {
     return firstDefined(ZSizeVaried.Fit, this.getAttribute('height'));
   }
 
   private _applyVariables(): void {
-    const fashion = this.fashion;
+    const fashion = this.fashion();
 
     const main = ZFashionThemeElement.property(fashion, 'main');
     const contrast = ZFashionThemeElement.property(fashion, 'contrast');
-    const height = ZBannerElement.HeightChart[this.height];
+    const height = ZBannerElement.HeightChart[this.height()];
 
     this.style.setProperty('--banner-background', `var(${main})`);
     this.style.setProperty('--banner-color', `var(${contrast})`);
