@@ -82,7 +82,23 @@ export enum ZFashionContrast {
   Opposite = 'opposite'
 }
 
-export type ZFashionName = ZFashionPriority | ZFashionSeverity | ZFashionArea | ZFashionContrast;
+/**
+ * Intrinsic fashions that are built in and
+ * don't change across themes.
+ */
+export enum ZFashionIntrinsic {
+  /**
+   * Fashion for transparency.
+   */
+  Transparent = 'transparent',
+
+  /**
+   * Fashion for inherit.
+   */
+  Inherit = 'inherit'
+}
+
+export type ZFashionName = ZFashionPriority | ZFashionSeverity | ZFashionArea | ZFashionContrast | ZFashionIntrinsic;
 export type ZFashionRecord = Record<ZFashionName, IZFashion>;
 
 /**
@@ -93,16 +109,6 @@ export interface IZFashionTheme<TCustom extends object = {}> extends ZFashionRec
    * The name of the theme.
    */
   readonly name: string;
-
-  /**
-   * Transparent fashion.
-   */
-  readonly transparent: IZFashion;
-
-  /**
-   * Inherit fashion.
-   */
-  readonly inherit: IZFashion;
 
   /**
    * Custom fashions.
