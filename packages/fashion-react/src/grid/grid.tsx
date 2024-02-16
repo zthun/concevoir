@@ -1,12 +1,20 @@
-import { createSizeChartVariedCss, ZSizeFixed, ZSizeVaried, ZSizeVoid } from '@zthun/fashion-tailor';
+import { ZGridElement } from '@zthun/fashion-boutique';
+import { ZSizeFixed, ZSizeVaried, ZSizeVoid } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { IZComponentHeight } from '../component/component-height.mjs';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { IZComponentWidth } from '../component/component-width.mjs';
-import { createStyleHook } from '../theme/styled';
+
+declare global {
+  namespace React.JSX {
+    interface IntrinsicElements {
+      ['z-grid']: ZGridElement & any;
+    }
+  }
+}
 
 export interface IZGrid
   extends IZComponentStyle,
@@ -26,77 +34,6 @@ export interface IZGrid
   rows?: Property.GridTemplateRows;
 }
 
-const GridDimensionChart = createSizeChartVariedCss();
-
-const useGridStyles = createStyleHook(({ tailor, device }, props: IZGrid) => {
-  const {
-    alignItems,
-    justifyItems,
-    alignContent,
-    justifyContent,
-    gap = ZSizeVoid.None,
-    columns,
-    columnsLg = columns,
-    columnsMd = columnsLg,
-    columnsSm = columnsMd,
-    columnsXs = columnsSm,
-    rows,
-    width = ZSizeVaried.Fit,
-    widthLg = width,
-    widthMd = widthLg,
-    widthSm = widthMd,
-    widthXs = widthSm,
-    height = ZSizeVaried.Fit,
-    heightLg = height,
-    heightMd = heightLg,
-    heightSm = heightMd,
-    heightXs = heightSm
-  } = props;
-
-  const dimensions = {
-    gridTemplateColumns: columns,
-    height: GridDimensionChart[height],
-    width: GridDimensionChart[width],
-
-    [device.break(ZSizeFixed.Large)]: {
-      gridTemplateColumns: columnsLg,
-      height: GridDimensionChart[heightLg],
-      width: GridDimensionChart[widthLg]
-    },
-
-    [device.break(ZSizeFixed.Medium)]: {
-      gridTemplateColumns: columnsMd,
-      height: GridDimensionChart[heightMd],
-      width: GridDimensionChart[widthMd]
-    },
-
-    [device.break(ZSizeFixed.Small)]: {
-      gridTemplateColumns: columnsSm,
-      height: GridDimensionChart[heightSm],
-      width: GridDimensionChart[widthSm]
-    },
-
-    [device.break(ZSizeFixed.ExtraSmall)]: {
-      gridTemplateColumns: columnsXs,
-      height: GridDimensionChart[heightXs],
-      width: GridDimensionChart[widthXs]
-    }
-  };
-
-  return {
-    grid: {
-      ...dimensions,
-      display: 'grid',
-      gridTemplateRows: rows,
-      gap: tailor.gap(gap),
-      alignItems,
-      justifyItems,
-      alignContent,
-      justifyContent
-    }
-  };
-});
-
 /**
  * Represents a layout that lines up items using CSS Grid.
  *
@@ -108,6 +45,39 @@ const useGridStyles = createStyleHook(({ tailor, device }, props: IZGrid) => {
  */
 export function ZGrid(props: IZGrid) {
   const { className, children } = props;
-  const { classes } = useGridStyles(props);
-  return <div className={cssJoinDefined('ZGrid-root', className, classes.grid)}>{children}</div>;
+  const { alignItems, justifyItems, alignContent, justifyContent, rows, gap } = props;
+  const { columns, columnsLg, columnsMd, columnsSm, columnsXs } = props;
+  const { width, widthLg, widthMd, widthSm, widthXs } = props;
+  const { height, heightLg, heightMd, heightSm, heightXs } = props;
+
+  useEffect(() => ZGridElement.register(), []);
+
+  return (
+    <z-grid
+      class={cssJoinDefined(className)}
+      align-content={alignContent}
+      align-items={alignItems}
+      justify-items={justifyItems}
+      justify-content={justifyContent}
+      columns={columns}
+      columns-lg={columnsLg}
+      columns-md={columnsMd}
+      columns-sm={columnsSm}
+      columns-xs={columnsXs}
+      width={width}
+      widthLg={widthLg}
+      widthMd={widthMd}
+      widthSm={widthSm}
+      widthXs={widthXs}
+      height={height}
+      heightLg={heightLg}
+      heightMd={heightMd}
+      heightSm={heightSm}
+      heightXs={heightXs}
+      rows={rows}
+      gap={gap}
+    >
+      {children}
+    </z-grid>
+  );
 }
