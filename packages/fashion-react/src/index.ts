@@ -14,6 +14,7 @@ export * from './card/card';
 export * from './carousel/carousel';
 export * from './chart/chart-progress';
 export * from './chart/chart.mjs';
+export * from './chart/data-point.mjs';
 export * from './choice/choice';
 export * from './choice/choice-autocomplete';
 export * from './choice/choice-drop-down';

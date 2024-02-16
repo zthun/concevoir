@@ -1,5 +1,5 @@
 import { Then, When } from '@cucumber/cucumber';
-import { ZListLineItemComponentModel } from '@zthun/fashion-react';
+import { ZListLineItemComponentModel } from '@zthun/fashion-circus';
 import assert from 'assert';
 import { ZListPageComponentModel } from '../../src/boutique/list/list-page.cm.mjs';
 import { ZFashionRouteBoutique, ZFashionRouteList } from '../../src/routes.mjs';
