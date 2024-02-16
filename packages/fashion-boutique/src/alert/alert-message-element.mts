@@ -5,11 +5,7 @@ export class ZAlertMessageElement extends ZFashionElement {
   public static readonly register = registerCustomElement.bind(null, 'z-alert-message', ZAlertMessageElement);
   public readonly name = 'ZAlert-message';
 
-  protected refreshCssVariables = undefined;
-
-  protected generateStaticCss() {
-    return {
-      gridArea: 'message'
-    };
-  }
+  public generateStaticCss = () => ({
+    gridArea: 'message'
+  });
 }

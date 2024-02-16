@@ -1,4 +1,3 @@
-import { CSSInterpolation } from '@emotion/css';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionPriority } from '@zthun/fashion-theme';
 import { registerCustomElement } from '@zthun/helpful-dom';
@@ -16,25 +15,23 @@ export class ZAlertElement extends ZFashionElement {
     return firstDefined(ZFashionPriority.Primary, this.getAttribute('fashion'));
   }
 
-  protected generateStaticCss(): CSSInterpolation {
-    return {
-      alignItems: 'center',
-      backgroundColor: 'var(--alert-fashion)',
-      border: 'var(--alert-border-thickness) double var(--alert-border)',
-      borderRadius: 'var(--alert-border-radius)',
-      boxShadow: '0 0 0 var(--alert-box-shadow-thickness) var(--alert-box-shadow-color)',
-      color: 'var(--alert-contrast)',
-      display: 'grid',
-      gridTemplateAreas: `
+  public generateStaticCss = () => ({
+    alignItems: 'center',
+    backgroundColor: 'var(--alert-fashion)',
+    border: 'var(--alert-border-thickness) double var(--alert-border)',
+    borderRadius: 'var(--alert-border-radius)',
+    boxShadow: '0 0 0 var(--alert-box-shadow-thickness) var(--alert-box-shadow-color)',
+    color: 'var(--alert-contrast)',
+    display: 'grid',
+    gridTemplateAreas: `
         "avatar heading ."
         "avatar message ."
       `,
-      gridTemplateColumns: 'auto auto 1fr',
-      padding: 'var(--alert-padding-x) var(--alert-padding-y)'
-    };
-  }
+    gridTemplateColumns: 'auto auto 1fr',
+    padding: 'var(--alert-padding-x) var(--alert-padding-y)'
+  });
 
-  protected refreshCssVariables() {
+  public refreshCssVariables = () => {
     const fashion = this.fashion;
 
     const contrast = ZFashionThemeElement.property(fashion, 'contrast');
@@ -54,5 +51,5 @@ export class ZAlertElement extends ZFashionElement {
     this.style.setProperty('--alert-box-shadow-thickness', `var(${thickness})`);
     this.style.setProperty('--alert-padding-x', `var(${paddingX})`);
     this.style.setProperty('--alert-padding-y', `var(${paddingY})`);
-  }
+  };
 }
