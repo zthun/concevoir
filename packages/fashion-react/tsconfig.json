@@ -1,0 +1,12 @@
+{
+  "extends": "../../.config/.tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@zthun/fashion-boutique": ["../fashion-boutique/src/index"],
+      "@zthun/fashion-theme": ["../fashion-theme/src/index"],
+      "@zthun/fashion-tailor": ["../fashion-tailor/src/index"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.mts"]
+}

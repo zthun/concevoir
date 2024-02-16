@@ -1,0 +1,63 @@
+{
+  "name": "@zthun/fashion-react",
+  "version": "2.7.0",
+  "description": "A UI library for react components that are very fashionable.",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    "require": "./dist/index.cjs",
+    "import": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zthun/fashion",
+    "directory": "packages/fashion-boutique"
+  },
+  "scripts": {
+    "build": "vite build"
+  },
+  "author": "Anthony Bonta",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist/**"
+  ],
+  "dependencies": {
+    "@emotion/css": "^11.11.2",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.15.10",
+    "@mui/system": "^5.15.9",
+    "@zthun/cirque": "^5.0.1",
+    "@zthun/fashion-boutique": "^2.7.0",
+    "@zthun/fashion-tailor": "^2.7.0",
+    "@zthun/fashion-theme": "^2.7.0",
+    "@zthun/helpful-dom": "^3.5.0",
+    "@zthun/helpful-fn": "^3.5.0",
+    "@zthun/helpful-query": "^3.5.0",
+    "@zthun/helpful-react": "^3.5.0",
+    "@zthun/webigail-http": "^2.4.0",
+    "@zthun/webigail-url": "^2.4.0",
+    "csstype": "^3.1.3",
+    "history": "^5.3.0",
+    "lodash-es": "^4.17.21",
+    "react-router-dom": "^6.22.0",
+    "tss-react": "^4.9.4"
+  },
+  "devDependencies": {
+    "@zthun/cirque-du-react": "^5.0.3",
+    "@zthun/helpful-brands": "^3.5.0",
+    "vite": "^5.1.3",
+    "vitest": "^1.2.2"
+  },
+  "peerDependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  },
+  "sideEffects": false
+}
