@@ -6,8 +6,12 @@ export interface IZWithFashion {
   fashion: IZFashion | null | undefined;
 }
 
+export const WithFashionObservedAttributes = Object.freeze(['fashion']);
+
 export function WithFashion<TBase extends ZFashionElementCtor>(Base: TBase) {
   return class ZElementWithFashion extends Base implements IZWithFashion {
+    public static readonly observedAttributes = WithFashionObservedAttributes;
+
     _fashion: IZFashion | null | undefined = null;
 
     public get fashion() {
@@ -17,7 +21,6 @@ export function WithFashion<TBase extends ZFashionElementCtor>(Base: TBase) {
     public set fashion(val: IZFashion | null | undefined) {
       this._fashion = val;
       this.mutateAttribute('fashion', val?.name);
-      this.refreshCssVariables?.call(this);
     }
 
     public color<TFashionName extends string = ZFashionName>(
