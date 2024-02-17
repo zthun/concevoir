@@ -7,7 +7,7 @@ import {
 } from '@zthun/fashion-tailor';
 import { ZFashionPriority } from '@zthun/fashion-theme';
 import { registerCustomElement } from '@zthun/helpful-dom';
-import { ZFashionElement } from 'src/element/fashion-element.mjs';
+import { ZFashionElement } from '../element/fashion-element.mjs';
 import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
 
 export class ZBannerElement extends ZFashionElement {

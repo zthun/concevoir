@@ -1,5 +1,5 @@
 import { IZFashion, ZColor, ZFashionName, ZFashionScope } from '@zthun/fashion-theme';
-import { ZFashionThemeElement } from 'src/theme/fashion-theme-element.mjs';
+import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
 import { ZFashionElementCtor } from './fashion-element.mjs';
 
 export function WithFashion<TBase extends ZFashionElementCtor>(Base: TBase) {
