@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { ZFashionBuilder, ZFashionPriority, ZFashionSeverity } from '@zthun/fashion-theme';
+import { ZFashionBuilder, ZFashionPriority, ZFashionSeverity, hex } from '@zthun/fashion-theme';
 import { registerCustomElement } from '@zthun/helpful-dom';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
@@ -10,7 +10,7 @@ const WithFashionElement = class extends WithFashion(ZFashionElement) {};
 
 describe('WithFashion', () => {
   const name = ZFashionSeverity.Error;
-  const gray = new ZFashionBuilder().namedSuccess().spectrum(0xaaaaaa).build();
+  const gray = new ZFashionBuilder().namedSuccess().main(hex(0xaaaaaa)).build();
 
   beforeAll(() => {
     registerCustomElement('z-with-fashion-element', WithFashionElement);
@@ -25,7 +25,18 @@ describe('WithFashion', () => {
       target.fashion = gray;
       const { main: expected } = gray;
       // Act.
-      const actual = target.color((f) => f.main, { name, scope: 'main' });
+      const actual = target.color('main', name);
+      // Assert.
+      expect(actual).toEqual(expected);
+    });
+
+    it('should return the first color defined in the local fashion state for an array', () => {
+      // Arrange.
+      const target = createTestTarget();
+      target.fashion = gray;
+      const { main: expected } = gray;
+      // Act.
+      const actual = target.color(['border', 'main'], name);
       // Assert.
       expect(actual).toEqual(expected);
     });
@@ -38,9 +49,9 @@ describe('WithFashion', () => {
       target.fashion = null;
       target.mutateAttribute('fashion', ZFashionPriority.Secondary);
       const property = ZFashionThemeElement.property(ZFashionPriority.Secondary, 'contrast');
-      const expected = `var(${property})`;
+      const expected = target.cssVariable(property);
       // Act.
-      const actual = target.color((f) => f.contrast, { name: gray.name, scope: 'contrast' });
+      const actual = target.color('contrast', name);
       // Assert
       expect(actual).toEqual(expected);
     });
@@ -51,9 +62,9 @@ describe('WithFashion', () => {
       target.fashion = null;
       target.mutateAttribute('fashion', null);
       const property = ZFashionThemeElement.property(name, 'contrast');
-      const expected = `var(${property})`;
+      const expected = target.cssVariable(property);
       // Act.
-      const actual = target.color((f) => f.contrast, { name, scope: 'contrast' });
+      const actual = target.color('contrast', name);
       // Assert
       expect(actual).toEqual(expected);
     });

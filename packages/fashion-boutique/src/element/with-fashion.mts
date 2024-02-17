@@ -1,4 +1,6 @@
 import { IZFashion, ZColor, ZFashionName, ZFashionScope } from '@zthun/fashion-theme';
+import { firstDefined } from '@zthun/helpful-fn';
+import { castArray, get } from 'lodash-es';
 import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
 import { ZFashionElementCtor } from './fashion-element.mjs';
 
@@ -24,19 +26,20 @@ export function WithFashion<TBase extends ZFashionElementCtor>(Base: TBase) {
     }
 
     public color<TFashionName extends string = ZFashionName>(
-      fromLocalFashion: (f: IZFashion) => ZColor,
-      fallback: { scope: ZFashionScope; name: TFashionName }
+      scope: ZFashionScope | ZFashionScope[],
+      fallback: TFashionName
     ): string {
-      let color: ZColor | undefined | null = null;
+      const $scopes = castArray(scope);
+      const candidates = $scopes.map<ZColor>((s) => get<IZFashion | null | undefined, string>(this.fashion, s));
+      const [first, ...rest] = candidates;
 
-      if (this.fashion != null) {
-        color = fromLocalFashion(this.fashion);
-      }
+      let color: ZColor | undefined | null = firstDefined.apply<any, any, ZColor>(null, [null, first, ...rest]);
 
       if (color == null) {
-        const name = this.queryAttribute('fashion', fallback.name);
-        const globalColor = ZFashionThemeElement.property(name, fallback.scope);
-        color = `var(${globalColor})`;
+        const [$first] = $scopes;
+        const name = this.queryAttribute('fashion', fallback);
+        const globalColor = ZFashionThemeElement.property(name, $first);
+        color = this.cssVariable(globalColor);
       }
 
       return color;
