@@ -11,6 +11,7 @@ import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentHeading } from '../component/component-heading.mjs';
 import { IZComponentName } from '../component/component-name.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
+import { useFashionWebComponent } from '../fashion/use-web-component';
 
 declare global {
   namespace React.JSX {
@@ -34,16 +35,13 @@ export interface IZAlert
 
 export function ZAlert(props: IZAlert) {
   const { heading, name, className, message, avatar, fashion } = props;
-  const alert = useRef<ZAlertElement>();
-
   useEffect(() => ZAlertElement.register(), []);
   useEffect(() => ZAlertHeadingElement.register(), []);
   useEffect(() => ZAlertMessageElement.register(), []);
   useEffect(() => ZAlertAvatarElement.register(), []);
 
-  useEffect(() => {
-    alert.current!.fashion = fashion;
-  }, [alert.current, fashion]);
+  const alert = useRef<ZAlertElement>();
+  useFashionWebComponent<ZAlertElement>(alert, fashion);
 
   return (
     <z-alert class={cssJoinDefined(className)} data-name={name} ref={alert}>
