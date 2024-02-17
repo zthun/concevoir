@@ -1,5 +1,5 @@
 import { firstDefined } from '@zthun/helpful-fn';
-import { css, CSSInterpolation } from '../theme/css.mjs';
+import { CSSInterpolation, css } from '../theme/css.mjs';
 
 export class ZFashionElement extends HTMLElement {
   public readonly name?: string;
@@ -13,6 +13,10 @@ export class ZFashionElement extends HTMLElement {
 
   public queryAttribute<T extends string = string>(name: string, fallback: T): T {
     return firstDefined(fallback, this.getAttribute(name) as T);
+  }
+
+  public cssVariable(property: string): string {
+    return `var(${property})`;
   }
 
   public connectedCallback() {
