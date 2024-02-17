@@ -10,6 +10,7 @@ import {
   ZParagraph
 } from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
+import { startCase } from 'lodash-es';
 import React, { useState } from 'react';
 import { ZFashionRouteAlert } from '../../routes.mjs';
 import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
@@ -49,7 +50,7 @@ export function ZAlertPage() {
         <ZAlert
           fashion={fashion}
           message='Alerts are great ways to notify users that something has happened.'
-          heading={heading && <ZH4 compact>{fashion?.name || 'Alert'}</ZH4>}
+          heading={heading && <ZH4 compact>{startCase(fashion?.name || 'alert')}</ZH4>}
           name='alert'
           avatar={avatar && <ZIconFontAwesome name='hat-cowboy-side' width={ZSizeFixed.Small} />}
         />
