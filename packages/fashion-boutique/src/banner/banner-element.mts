@@ -1,5 +1,6 @@
 import { CSSInterpolation } from '@emotion/css';
 import {
+  ZSizeFixed,
   ZSizeVaried,
   createSizeChartFixedArithmetic,
   createSizeChartFixedCss,
@@ -8,11 +9,11 @@ import {
 import { ZFashionPriority } from '@zthun/fashion-theme';
 import { registerCustomElement } from '@zthun/helpful-dom';
 import { ZFashionElement } from '../element/fashion-element.mjs';
-import { WithFashion, WithFashionObservedAttributes } from '../element/with-fashion.mjs';
+import { WithFashion } from '../element/with-fashion.mjs';
+import { WithHeight } from '../element/with-height.mjs';
 
-export class ZBannerElement extends WithFashion(ZFashionElement) {
+export class ZBannerElement extends WithFashion(WithHeight<ZSizeFixed | ZSizeVaried.Fit>(ZFashionElement)) {
   public static readonly register = registerCustomElement.bind(null, 'z-banner', ZBannerElement);
-  public static readonly observedAttributes = Object.freeze(['height', ...WithFashionObservedAttributes]);
 
   public static readonly HeightChart = Object.freeze({
     ...createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), 'rem'),
@@ -23,11 +24,10 @@ export class ZBannerElement extends WithFashion(ZFashionElement) {
 
   public refreshCssVariables = () => {
     const fallback = ZFashionPriority.Primary;
-    const $height = this.queryAttribute('height', ZSizeVaried.Fit);
 
     this.style.setProperty('--banner-background', this.color('main', fallback));
     this.style.setProperty('--banner-color', this.color('contrast', fallback));
-    this.style.setProperty('--banner-height', ZBannerElement.HeightChart[$height]);
+    this.style.setProperty('--banner-height', ZBannerElement.HeightChart[this.heightXl(ZSizeVaried.Fit)]);
   };
 
   public generateStaticCss = (): CSSInterpolation => ({
