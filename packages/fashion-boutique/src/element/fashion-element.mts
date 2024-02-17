@@ -1,14 +1,23 @@
+import { firstDefined } from '@zthun/helpful-fn';
 import { css, CSSInterpolation } from '../theme/css.mjs';
 
-export abstract class ZFashionElement extends HTMLElement {
-  public abstract readonly name: string;
+export class ZFashionElement extends HTMLElement {
+  public static readonly AttributeFashion = 'fashion';
 
-  protected abstract generateStaticCss?(): CSSInterpolation;
-  protected abstract refreshCssVariables?(): void;
+  public readonly name?: string;
+
+  public refreshCssVariables?: () => void;
+  public generateStaticCss?: () => CSSInterpolation = undefined;
+
+  public queryAttribute<T extends string = string>(name: string, fallback: T): T;
+  public queryAttribute<T extends string = string>(name: string, fallback?: T): T | null {
+    const fb = fallback || null;
+    return firstDefined(fb, this.getAttribute(name) as T | null);
+  }
 
   public connectedCallback() {
     this.refreshCssVariables && this.refreshCssVariables();
-    this.classList.add(this.name);
+    this.name && this.classList.add(this.name);
     this.generateStaticCss && this.classList.add(css(this.generateStaticCss()));
   }
 
