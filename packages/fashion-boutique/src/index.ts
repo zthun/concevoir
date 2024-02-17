@@ -10,6 +10,7 @@ export * from './box/box-padding-element.mjs';
 export * from './box/box-rectangle-element.mjs';
 export * from './box/box-width-element.mjs';
 export * from './element/fashion-element.mjs';
+export * from './element/with-fashion.mjs';
 export * from './grid/grid-element.mjs';
 export * from './theme/css.mjs';
 export * from './theme/fashion-tailor-element.mjs';

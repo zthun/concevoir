@@ -2,8 +2,12 @@ import { IZFashion, ZColor, ZFashionName, ZFashionScope } from '@zthun/fashion-t
 import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
 import { ZFashionElementCtor } from './fashion-element.mjs';
 
+export interface IZWithFashion {
+  fashion: IZFashion | null | undefined;
+}
+
 export function WithFashion<TBase extends ZFashionElementCtor>(Base: TBase) {
-  return class ZElementWithFashion extends Base {
+  return class ZElementWithFashion extends Base implements IZWithFashion {
     _fashion: IZFashion | null | undefined = null;
 
     public get fashion() {
