@@ -2,7 +2,7 @@ import { IZDeviceSizeChart, ZSizeFixed, isDeviceSizeChart } from '@zthun/fashion
 import { ZFashionElementCtor } from './fashion-element.mjs';
 
 export interface IZWithHeight<THeight> {
-  componentHeight: THeight | IZDeviceSizeChart<THeight> | null;
+  componentHeight: THeight | IZDeviceSizeChart<THeight> | null | undefined;
 
   heightXl(fallback: THeight): THeight;
   heightLg(fallback: THeight): THeight;
@@ -13,13 +13,13 @@ export interface IZWithHeight<THeight> {
 
 export function WithHeight<THeight, TBase extends ZFashionElementCtor = ZFashionElementCtor>(Base: TBase) {
   return class extends Base implements IZWithHeight<THeight> {
-    _componentHeight: THeight | IZDeviceSizeChart<THeight> | null;
+    _componentHeight: THeight | IZDeviceSizeChart<THeight> | null | undefined;
 
     public get componentHeight() {
       return this._componentHeight;
     }
 
-    public set componentHeight(val: THeight | IZDeviceSizeChart<THeight> | null) {
+    public set componentHeight(val: THeight | IZDeviceSizeChart<THeight> | null | undefined) {
       this._componentHeight = val;
       this.refreshCssVariables?.call(this);
     }
