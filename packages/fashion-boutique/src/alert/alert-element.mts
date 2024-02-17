@@ -8,7 +8,6 @@ import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
 export class ZAlertElement extends WithFashion(ZFashionElement) {
   public static readonly register = registerCustomElement.bind(null, 'z-alert', ZAlertElement);
-  public static readonly observedAttributes = Object.freeze(['fashion']);
   public readonly name = 'ZAlert-root';
 
   public generateStaticCss = () => ({
