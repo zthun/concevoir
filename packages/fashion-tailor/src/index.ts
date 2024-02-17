@@ -1,5 +1,6 @@
 /* istanbul ignore file */
 
+export * from './device/device-size-chart.mjs';
 export * from './device/device.mjs';
 export * from './fixed/size-chart-fixed-arithmetic.mjs';
 export * from './fixed/size-chart-fixed-css.mjs';
