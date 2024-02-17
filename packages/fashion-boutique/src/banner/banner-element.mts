@@ -8,11 +8,11 @@ import {
 import { ZFashionPriority } from '@zthun/fashion-theme';
 import { registerCustomElement } from '@zthun/helpful-dom';
 import { ZFashionElement } from '../element/fashion-element.mjs';
-import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
+import { WithFashion, WithFashionObservedAttributes } from '../element/with-fashion.mjs';
 
-export class ZBannerElement extends ZFashionElement {
+export class ZBannerElement extends WithFashion(ZFashionElement) {
   public static readonly register = registerCustomElement.bind(null, 'z-banner', ZBannerElement);
-  public static readonly observeAttributes = Object.freeze(['height', 'fashion']);
+  public static readonly observedAttributes = Object.freeze(['height', ...WithFashionObservedAttributes]);
 
   public static readonly HeightChart = Object.freeze({
     ...createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), 'rem'),
@@ -22,16 +22,12 @@ export class ZBannerElement extends ZFashionElement {
   public readonly name = 'ZBanner-root';
 
   public refreshCssVariables = () => {
-    const $fashion = this.queryAttribute('fashion', ZFashionPriority.Primary);
+    const fallback = ZFashionPriority.Primary;
     const $height = this.queryAttribute('height', ZSizeVaried.Fit);
 
-    const main = ZFashionThemeElement.property($fashion, 'main');
-    const contrast = ZFashionThemeElement.property($fashion, 'contrast');
-    const height = ZBannerElement.HeightChart[$height];
-
-    this.style.setProperty('--banner-background', `var(${main})`);
-    this.style.setProperty('--banner-color', `var(${contrast})`);
-    this.style.setProperty('--banner-height', `${height}`);
+    this.style.setProperty('--banner-background', this.color('main', fallback));
+    this.style.setProperty('--banner-color', this.color('contrast', fallback));
+    this.style.setProperty('--banner-height', ZBannerElement.HeightChart[$height]);
   };
 
   public generateStaticCss = (): CSSInterpolation => ({
