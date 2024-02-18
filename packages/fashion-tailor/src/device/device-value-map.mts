@@ -9,7 +9,7 @@ import { ZSizeFixed } from '../fixed/size-fixed.mjs';
  * @param TData -
  *        The associated data to each device breakpoint.
  */
-export interface IZDeviceSizeChart<TData> extends Partial<Record<ZSizeFixed, TData>> {
+export interface IZDeviceValueMap<TData> extends Partial<Record<ZSizeFixed, TData>> {
   xl: TData;
 }
 
@@ -21,6 +21,6 @@ export interface IZDeviceSizeChart<TData> extends Partial<Record<ZSizeFixed, TDa
  * @returns
  *        True if x can be a device size chart.  False otherwise.
  */
-export function isDeviceSizeChart(x: any): x is IZDeviceSizeChart<any> {
+export function isDeviceValueMap(x: any): x is IZDeviceValueMap<any> {
   return x != null && Object.prototype.hasOwnProperty.call(x, 'xl');
 }

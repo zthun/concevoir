@@ -1,4 +1,4 @@
-import { IZDeviceSizeChart } from '@zthun/fashion-tailor';
+import { IZDeviceValueMap } from '@zthun/fashion-tailor';
 import { registerCustomElement } from '@zthun/helpful-dom';
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import { ZFashionElement } from './fashion-element.mjs';
@@ -81,7 +81,7 @@ describe('WithHeight', () => {
   });
 
   describe('Device Dependant', () => {
-    let height: IZDeviceSizeChart<number>;
+    let height: IZDeviceValueMap<number>;
 
     beforeEach(() => {
       height = {

@@ -1,8 +1,8 @@
-import { IZDeviceSizeChart, ZSizeFixed, isDeviceSizeChart } from '@zthun/fashion-tailor';
+import { IZDeviceValueMap, ZSizeFixed, isDeviceValueMap } from '@zthun/fashion-tailor';
 import { ZFashionElementCtor } from './fashion-element.mjs';
 
 export interface IZWithHeight<THeight> {
-  componentHeight: THeight | IZDeviceSizeChart<THeight> | null | undefined;
+  componentHeight: THeight | IZDeviceValueMap<THeight> | null | undefined;
 
   heightXl(fallback: THeight): THeight;
   heightLg(fallback: THeight): THeight;
@@ -13,19 +13,19 @@ export interface IZWithHeight<THeight> {
 
 export function WithHeight<THeight, TBase extends ZFashionElementCtor = ZFashionElementCtor>(Base: TBase) {
   return class extends Base implements IZWithHeight<THeight> {
-    _componentHeight: THeight | IZDeviceSizeChart<THeight> | null | undefined;
+    _componentHeight: THeight | IZDeviceValueMap<THeight> | null | undefined;
 
     public get componentHeight() {
       return this._componentHeight;
     }
 
-    public set componentHeight(val: THeight | IZDeviceSizeChart<THeight> | null | undefined) {
+    public set componentHeight(val: THeight | IZDeviceValueMap<THeight> | null | undefined) {
       this._componentHeight = val;
       this.refreshCssVariables?.call(this);
     }
 
     public calculateHeight(device: ZSizeFixed): THeight | null | undefined {
-      return isDeviceSizeChart(this.componentHeight) ? this.componentHeight[device] : this.componentHeight;
+      return isDeviceValueMap(this.componentHeight) ? this.componentHeight[device] : this.componentHeight;
     }
 
     public heightXl(fallback: THeight) {

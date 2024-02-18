@@ -1,12 +1,12 @@
 import { ZSizeFixed } from '../fixed/size-fixed.mjs';
-import { IZDeviceSizeChart } from './device-size-chart.mjs';
+import { IZDeviceValueMap } from './device-value-map.mjs';
 
 export interface IZFashionDevice {
   break(size: ZSizeFixed): string;
 }
 
 export class ZFashionDevice implements IZFashionDevice {
-  public breakpoints: Required<IZDeviceSizeChart<string>> = {
+  public breakpoints: Required<IZDeviceValueMap<string>> = {
     [ZSizeFixed.ExtraSmall]: '600px',
     [ZSizeFixed.Small]: '900px',
     [ZSizeFixed.Medium]: '1200px',
