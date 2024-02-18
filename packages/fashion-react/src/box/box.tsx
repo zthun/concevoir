@@ -9,7 +9,8 @@ import { ZSize, ZSizeFixed, ZSizeVaried, ZSizeVoid } from '@zthun/fashion-tailor
 import { ZHorizontalAnchor, cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import { get } from 'lodash-es';
-import React, { MouseEventHandler, useEffect } from 'react';
+import React, { MouseEventHandler, useEffect, useRef } from 'react';
+import { useFashionWebComponent } from 'src/web-components/use-web-component.mjs';
 import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
@@ -90,13 +91,16 @@ export function ZBox(props: IZBox) {
   useEffect(() => ZBoxPaddingElement.register(), []);
   useEffect(() => ZBoxMarginElement.register(), []);
 
+  const box = useRef<ZBoxElement>();
+  useFashionWebComponent(box, fashion);
+
   return (
     <z-box
       class={cssJoinDefined(className)}
-      fashion={fashion?.name}
       tabIndex={tabIndex}
       justification={justification}
       onClick={onClick}
+      ref={box}
     >
       <z-box-width width={width} width-lg={widthLg} width-md={widthMd} width-sm={widthSm} width-xs={widthXs}>
         <z-box-margin left={ml} right={mr} top={mt} bottom={mb}>
