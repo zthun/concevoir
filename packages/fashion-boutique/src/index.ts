@@ -13,6 +13,7 @@ export * from './element/fashion-element.mjs';
 export * from './element/with-fashion.mjs';
 export * from './element/with-height.mjs';
 export * from './element/with-tailor.mjs';
+export * from './element/with-width.mjs';
 export * from './grid/grid-element.mjs';
 export * from './theme/css.mjs';
 export * from './theme/fashion-tailor-element.mjs';
