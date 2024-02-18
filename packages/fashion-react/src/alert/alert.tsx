@@ -11,7 +11,7 @@ import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentHeading } from '../component/component-heading.mjs';
 import { IZComponentName } from '../component/component-name.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
-import { useFashionWebComponent } from '../fashion/use-web-component';
+import { useFashionWebComponent } from '../web-components/use-web-component.mjs';
 
 declare global {
   namespace React.JSX {
