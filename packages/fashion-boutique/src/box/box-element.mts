@@ -1,14 +1,32 @@
+import {
+  ZFashionDevice,
+  ZSize,
+  ZSizeFixed,
+  ZSizeVaried,
+  createSizeChartFixedCss,
+  createSizeChartFixedGeometric,
+  createSizeChartVariedCss,
+  createSizeChartVoidCss
+} from '@zthun/fashion-tailor';
 import { ZFashionIntrinsic } from '@zthun/fashion-theme';
 import { registerCustomElement } from '@zthun/helpful-dom';
 import { firstDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import { ZFashionElement } from '../element/fashion-element.mjs';
 import { WithFashion, WithFashionObservedAttributes } from '../element/with-fashion.mjs';
+import { WithWidth } from '../element/with-width.mjs';
 import { CSSInterpolation } from '../theme/css.mjs';
 
-export class ZBoxElement extends WithFashion(ZFashionElement) {
+export class ZBoxElement extends WithFashion(WithWidth<ZSize>(ZFashionElement)) {
   public static readonly register = registerCustomElement.bind(null, 'z-box', ZBoxElement);
   public static readonly observeAttributes = Object.freeze(['justification', ...WithFashionObservedAttributes]);
+  public static readonly device = new ZFashionDevice();
+
+  public static readonly BoxSizeChart = Object.freeze({
+    ...createSizeChartFixedCss(createSizeChartFixedGeometric(1.4, 18), 'rem'),
+    ...createSizeChartVariedCss(),
+    ...createSizeChartVoidCss()
+  });
 
   public readonly name = 'ZBox-root';
 
@@ -25,6 +43,24 @@ export class ZBoxElement extends WithFashion(ZFashionElement) {
       'textAlign': `var(--box-justification)`,
 
       'borderColor': 'var(--box-border-color)',
+
+      'maxWidth': 'var(--box-width-xl)',
+
+      [ZBoxElement.device.break(ZSizeFixed.Large)]: {
+        maxWidth: 'var(--box-width-lg)'
+      },
+
+      [ZBoxElement.device.break(ZSizeFixed.Medium)]: {
+        maxWidth: 'var(--box-width-md)'
+      },
+
+      [ZBoxElement.device.break(ZSizeFixed.Small)]: {
+        maxWidth: 'var(--box-width-sm)'
+      },
+
+      [ZBoxElement.device.break(ZSizeFixed.ExtraSmall)]: {
+        maxWidth: 'var(--box-width-xs)'
+      },
 
       '&:focus': {
         backgroundColor: 'var(--box-focus-background)',
@@ -59,6 +95,12 @@ export class ZBoxElement extends WithFashion(ZFashionElement) {
     this.style.setProperty('--box-border-color', border);
     this.style.setProperty('--box-focus-border-color', border);
     this.style.setProperty('--box-hover-border-color', border);
+
+    this.style.setProperty('--box-width-xl', ZBoxElement.BoxSizeChart[this.widthXl(ZSizeVaried.Fit)]);
+    this.style.setProperty('--box-width-lg', ZBoxElement.BoxSizeChart[this.widthLg(ZSizeVaried.Fit)]);
+    this.style.setProperty('--box-width-md', ZBoxElement.BoxSizeChart[this.widthMd(ZSizeVaried.Fit)]);
+    this.style.setProperty('--box-width-sm', ZBoxElement.BoxSizeChart[this.widthSm(ZSizeVaried.Fit)]);
+    this.style.setProperty('--box-width-xs', ZBoxElement.BoxSizeChart[this.widthXs(ZSizeVaried.Fit)]);
 
     if (this.tabIndex >= 0) {
       this.style.setProperty('--box-cursor', 'pointer');

@@ -8,7 +8,6 @@ export * from './box/box-element.mjs';
 export * from './box/box-margin-element.mjs';
 export * from './box/box-padding-element.mjs';
 export * from './box/box-rectangle-element.mjs';
-export * from './box/box-width-element.mjs';
 export * from './element/fashion-element.mjs';
 export * from './element/with-fashion.mjs';
 export * from './element/with-height.mjs';

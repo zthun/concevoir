@@ -1,20 +1,14 @@
-import {
-  ZBoxBorderElement,
-  ZBoxElement,
-  ZBoxMarginElement,
-  ZBoxPaddingElement,
-  ZBoxWidthElement
-} from '@zthun/fashion-boutique';
+import { ZBoxBorderElement, ZBoxElement, ZBoxMarginElement, ZBoxPaddingElement } from '@zthun/fashion-boutique';
 import { ZSize, ZSizeFixed, ZSizeVaried, ZSizeVoid } from '@zthun/fashion-tailor';
 import { ZHorizontalAnchor, cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import { get } from 'lodash-es';
-import React, { MouseEventHandler, useEffect, useRef } from 'react';
-import { useFashionWebComponent } from 'src/web-components/use-web-component.mjs';
+import React, { MouseEventHandler, useEffect, useMemo, useRef } from 'react';
 import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { IZComponentWidth } from '../component/component-width.mjs';
+import { useFashionWebComponent, useWidthWebComponent } from '../web-components/use-web-component.mjs';
 
 declare global {
   namespace React.JSX {
@@ -23,7 +17,6 @@ declare global {
       ['z-box-border']: ZBoxBorderElement & any;
       ['z-box-padding']: ZBoxPaddingElement & any;
       ['z-box-margin']: ZBoxMarginElement & any;
-      ['z-box-width']: ZBoxWidthElement & any;
     }
   }
 }
@@ -65,6 +58,10 @@ export function ZBox(props: IZBox) {
   const { padding } = props;
   const { children } = props;
   const tabIndex = onClick ? 0 : undefined;
+  const $width = useMemo(
+    () => ({ xl: width, lg: widthLg, md: widthMd, sm: widthSm, xs: widthXs }),
+    [width, widthLg, widthMd, widthSm, widthXs]
+  );
 
   const asDimension = (d: ZSize | object) => (typeof d === 'object' ? ZSizeVoid.None : d);
 
@@ -87,12 +84,12 @@ export function ZBox(props: IZBox) {
 
   useEffect(() => ZBoxElement.register(), []);
   useEffect(() => ZBoxBorderElement.register(), []);
-  useEffect(() => ZBoxWidthElement.register(), []);
   useEffect(() => ZBoxPaddingElement.register(), []);
   useEffect(() => ZBoxMarginElement.register(), []);
 
   const box = useRef<ZBoxElement>();
   useFashionWebComponent(box, fashion);
+  useWidthWebComponent(box, $width);
 
   return (
     <z-box
@@ -102,15 +99,13 @@ export function ZBox(props: IZBox) {
       onClick={onClick}
       ref={box}
     >
-      <z-box-width width={width} width-lg={widthLg} width-md={widthMd} width-sm={widthSm} width-xs={widthXs}>
-        <z-box-margin left={ml} right={mr} top={mt} bottom={mb}>
-          <z-box-border left={bl} right={br} top={bt} bottom={bb} kind={bk}>
-            <z-box-padding left={pl} right={pr} top={pt} bottom={pb}>
-              {children}
-            </z-box-padding>
-          </z-box-border>
-        </z-box-margin>
-      </z-box-width>
+      <z-box-margin left={ml} right={mr} top={mt} bottom={mb}>
+        <z-box-border left={bl} right={br} top={bt} bottom={bb} kind={bk}>
+          <z-box-padding left={pl} right={pr} top={pt} bottom={pb}>
+            {children}
+          </z-box-padding>
+        </z-box-border>
+      </z-box-margin>
     </z-box>
   );
 }

@@ -9,7 +9,7 @@ import {
   ZIconFontAwesome,
   ZLineItem
 } from '@zthun/fashion-react';
-import { ZSizeFixed } from '@zthun/fashion-tailor';
+import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { IZRoute } from '../route/route.mjs';
@@ -26,6 +26,7 @@ export function ZBoutiquePage() {
       padding={ZSizeFixed.Medium}
       fashion={body}
       border={{ width: ZSizeFixed.ExtraSmall, style: 'solid' }}
+      width={ZSizeVaried.Full}
       onClick={() => navigate(route.path)}
     >
       <ZLineItem
