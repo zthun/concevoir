@@ -3223,7 +3223,7 @@ __metadata:
     "@emotion/css": "npm:^11.11.2"
     "@zthun/fashion-tailor": "npm:^2.7.0"
     "@zthun/fashion-theme": "npm:^2.7.0"
-    "@zthun/helpful-dom": "npm:^3.5.0"
+    "@zthun/helpful-dom": "npm:^3.7.1"
     "@zthun/helpful-fn": "npm:^3.6.0"
     csstype: "npm:^3.1.3"
     lodash-es: "npm:^4.17.21"
@@ -3279,7 +3279,7 @@ __metadata:
     "@zthun/fashion-tailor": "npm:^2.7.0"
     "@zthun/fashion-theme": "npm:^2.7.0"
     "@zthun/helpful-brands": "npm:^3.5.0"
-    "@zthun/helpful-dom": "npm:^3.5.0"
+    "@zthun/helpful-dom": "npm:^3.7.1"
     "@zthun/helpful-fn": "npm:^3.6.0"
     "@zthun/helpful-query": "npm:^3.6.0"
     "@zthun/helpful-react": "npm:^3.6.0"
@@ -3391,10 +3391,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/helpful-dom@npm:^3.5.0":
-  version: 3.5.0
-  resolution: "@zthun/helpful-dom@npm:3.5.0"
-  checksum: d3f38696f722d521463ae1561b682df3579364071136b8d8b11105081f5c5acda05421400e789d96d788f6b8718f713947d1d1f14a947743d56e86e408867110
+"@zthun/helpful-dom@npm:^3.7.1":
+  version: 3.7.1
+  resolution: "@zthun/helpful-dom@npm:3.7.1"
+  dependencies:
+    "@zthun/helpful-fn": "npm:^3.5.0"
+    lodash-es: "npm:^4.17.21"
+  checksum: 775db0398aaa34869207b430d0d632f1cc71b346d2831fce1b944faecab44ca7a471c129a32bce81dd5fa76ef5f9cb04d4993b092612d72c24f9ce48babc180f
   languageName: node
   linkType: hard
 
