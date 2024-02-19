@@ -13,19 +13,19 @@ export interface IZWithMargin {
 
 export function WithMargin<TBase extends ZFashionElementCtor = ZFashionElementCtor>(Base: TBase) {
   return class extends Base implements IZWithMargin {
-    _padding?: Partial<IZQuadrilateral<ZGapSize>>;
+    _margin?: Partial<IZQuadrilateral<ZGapSize>>;
 
     public get margin() {
-      return this._padding;
+      return this._margin;
     }
 
     public set margin(val: Partial<IZQuadrilateral<ZGapSize>> | undefined) {
-      this._padding = val;
+      this._margin = val;
       this.refreshCssVariables?.call(this);
     }
 
     public marginBottom() {
-      return firstDefined(ZSizeVoid.None, this._padding?.bottom);
+      return firstDefined(ZSizeVoid.None, this.margin?.bottom);
     }
 
     public marginLeft() {
@@ -33,11 +33,11 @@ export function WithMargin<TBase extends ZFashionElementCtor = ZFashionElementCt
     }
 
     public marginRight() {
-      return firstDefined(ZSizeVoid.None, this._padding?.right);
+      return firstDefined(ZSizeVoid.None, this.margin?.right);
     }
 
     public marginTop() {
-      return firstDefined(ZSizeVoid.None, this._padding?.top);
+      return firstDefined(ZSizeVoid.None, this.margin?.top);
     }
   };
 }

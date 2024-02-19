@@ -3,25 +3,25 @@ import { registerCustomElement } from '@zthun/helpful-dom';
 import { IZQuadrilateral } from '@zthun/helpful-fn';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { ZFashionElement } from './fashion-element.mjs';
-import { IZWithPadding, WithPadding } from './with-padding.mjs';
+import { IZWithMargin, WithMargin } from './with-margin.mjs';
 
-const WithPaddingElement = WithPadding(ZFashionElement);
+const WithMarginElement = WithMargin(ZFashionElement);
 
-describe('WithPadding', () => {
-  const createTestTarget = () => new WithPaddingElement();
+describe('WithMargin', () => {
+  const createTestTarget = () => new WithMarginElement();
 
   beforeAll(() => {
-    registerCustomElement('with-padding-element', WithPaddingElement);
+    registerCustomElement('with-margin-element', WithMarginElement);
   });
 
   const shouldBeSetTo = (
     expected: ZGapSize,
-    actualFn: (t: IZWithPadding) => ZGapSize,
-    padding?: Partial<IZQuadrilateral<ZGapSize>>
+    actualFn: (t: IZWithMargin) => ZGapSize,
+    margin?: Partial<IZQuadrilateral<ZGapSize>>
   ) => {
     // Arrange.
     const target = createTestTarget();
-    target.padding = padding;
+    target.margin = margin;
     // Act.
     const actual = actualFn(target);
     // Assert.
@@ -30,45 +30,45 @@ describe('WithPadding', () => {
 
   describe('Bottom', () => {
     it('should return none by default', () => {
-      shouldBeSetTo(ZSizeVoid.None, (t) => t.paddingBottom());
+      shouldBeSetTo(ZSizeVoid.None, (t) => t.marginBottom());
     });
 
     it('should return the set padding', () => {
       const bottom = ZSizeFixed.Small;
-      shouldBeSetTo(bottom, (t) => t.paddingBottom(), { bottom });
+      shouldBeSetTo(bottom, (t) => t.marginBottom(), { bottom });
     });
   });
 
   describe('Left', () => {
     it('should return none by default', () => {
-      shouldBeSetTo(ZSizeVoid.None, (t) => t.paddingLeft());
+      shouldBeSetTo(ZSizeVoid.None, (t) => t.marginLeft());
     });
 
     it('should return the set padding', () => {
       const left = ZSizeFixed.Small;
-      shouldBeSetTo(left, (t) => t.paddingLeft(), { left });
+      shouldBeSetTo(left, (t) => t.marginLeft(), { left });
     });
   });
 
   describe('Right', () => {
     it('should return none by default', () => {
-      shouldBeSetTo(ZSizeVoid.None, (t) => t.paddingRight());
+      shouldBeSetTo(ZSizeVoid.None, (t) => t.marginRight());
     });
 
     it('should return the set padding', () => {
       const right = ZSizeFixed.Small;
-      shouldBeSetTo(right, (t) => t.paddingRight(), { right });
+      shouldBeSetTo(right, (t) => t.marginRight(), { right });
     });
   });
 
   describe('Top', () => {
     it('should return none by default', () => {
-      shouldBeSetTo(ZSizeVoid.None, (t) => t.paddingTop());
+      shouldBeSetTo(ZSizeVoid.None, (t) => t.marginTop());
     });
 
     it('should return the set padding', () => {
       const top = ZSizeFixed.Small;
-      shouldBeSetTo(top, (t) => t.paddingTop(), { top });
+      shouldBeSetTo(top, (t) => t.marginTop(), { top });
     });
   });
 });
