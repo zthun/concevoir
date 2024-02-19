@@ -1,7 +1,7 @@
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionPriority } from '@zthun/fashion-theme';
 import { registerCustomElement } from '@zthun/helpful-dom';
-import { IZComponentAttributeChanged, IZComponentConnected } from 'src/element/component-lifecycle.mjs';
+import { IZComponentAttributeChanged, IZComponentConnected } from '../element/component-lifecycle.mjs';
 import { WithFashion, WithFashionAttributes } from '../element/with-fashion.mjs';
 import { WithTailor } from '../element/with-tailor.mjs';
 
