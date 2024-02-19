@@ -22,24 +22,24 @@ export class ZBannerElement
     ...createSizeChartVariedCss()
   });
 
-  private _styled: HTMLDivElement;
+  private _root: HTMLDivElement;
 
   public constructor() {
     super();
     this.attachShadow({ mode: 'open' });
 
-    this._styled = document.createElement('div');
-    this._styled.style.boxSizing = 'border-box';
-    this._styled.style.display = 'block';
-    this._styled.style.left = 'auto';
-    this._styled.style.position = 'sticky';
-    this._styled.style.right = '0';
-    this._styled.style.top = '0';
-    this._styled.style.width = '100%';
-    this._styled.style.zIndex = '1100';
-    this._styled.appendChild(document.createElement('slot'));
+    this._root = document.createElement('div');
+    this._root.style.boxSizing = 'border-box';
+    this._root.style.display = 'block';
+    this._root.style.left = 'auto';
+    this._root.style.position = 'sticky';
+    this._root.style.right = '0';
+    this._root.style.top = '0';
+    this._root.style.width = '100%';
+    this._root.style.zIndex = '1100';
+    this._root.appendChild(document.createElement('slot'));
 
-    this.shadowRoot?.appendChild(this._styled);
+    this.shadowRoot?.appendChild(this._root);
   }
 
   public connectedCallback() {
@@ -48,8 +48,8 @@ export class ZBannerElement
   }
 
   public attributeChangedCallback(): void {
-    this._styled.style.background = this.color('main', ZFashionPriority.Primary);
-    this._styled.style.color = this.color('contrast', ZFashionPriority.Primary);
-    this._styled.style.height = ZBannerElement.HeightChart[this.heightXl(ZSizeVaried.Fit)];
+    this._root.style.background = this.color('main', ZFashionPriority.Primary);
+    this._root.style.color = this.color('contrast', ZFashionPriority.Primary);
+    this._root.style.height = ZBannerElement.HeightChart[this.heightXl(ZSizeVaried.Fit)];
   }
 }
