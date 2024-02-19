@@ -1,12 +1,12 @@
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionPriority } from '@zthun/fashion-theme';
 import { registerCustomElement } from '@zthun/helpful-dom';
+import { ZFashionTailorElement } from 'src/theme/fashion-tailor-element.mjs';
 import { IZComponentAttributeChanged, IZComponentConnected } from '../element/component-lifecycle.mjs';
 import { WithFashion, WithFashionAttributes } from '../element/with-fashion.mjs';
-import { WithTailor } from '../element/with-tailor.mjs';
 
 export class ZAlertElement
-  extends WithTailor(WithFashion(HTMLElement))
+  extends WithFashion(HTMLElement)
   implements IZComponentConnected, IZComponentAttributeChanged
 {
   public static readonly register = registerCustomElement.bind(null, 'z-alert', ZAlertElement);
@@ -26,12 +26,12 @@ export class ZAlertElement
     this._root.style.borderStyle = 'double';
     this._root.style.display = 'grid';
     this._root.style.gridTemplateColumns = 'auto auto 1fr';
-    this._root.style.borderRadius = this.thickness(ZSizeFixed.ExtraLarge);
-    this._root.style.borderWidth = this.thickness(ZSizeFixed.Medium);
-    this._root.style.paddingBottom = this.gap(ZSizeFixed.ExtraSmall);
-    this._root.style.paddingTop = this.gap(ZSizeFixed.ExtraSmall);
-    this._root.style.paddingLeft = this.gap(ZSizeFixed.Small);
-    this._root.style.paddingRight = this.gap(ZSizeFixed.Small);
+    this._root.style.borderRadius = ZFashionTailorElement.thicknessVar(ZSizeFixed.ExtraLarge);
+    this._root.style.borderWidth = ZFashionTailorElement.thicknessVar(ZSizeFixed.Medium);
+    this._root.style.paddingBottom = ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall);
+    this._root.style.paddingTop = ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall);
+    this._root.style.paddingLeft = ZFashionTailorElement.gapVar(ZSizeFixed.Small);
+    this._root.style.paddingRight = ZFashionTailorElement.gapVar(ZSizeFixed.Small);
 
     this._root.style.gridTemplateAreas = `
       "avatar heading ."
@@ -40,14 +40,14 @@ export class ZAlertElement
 
     this._avatar = document.createElement('div');
     this._avatar.style.gridArea = 'avatar';
-    this._avatar.style.marginRight = this.gap(ZSizeFixed.ExtraSmall);
+    this._avatar.style.marginRight = ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall);
     const avatar = document.createElement('slot');
     avatar.name = 'avatar';
     this._avatar.appendChild(avatar);
 
     this._heading = document.createElement('div');
     this._heading.style.gridArea = 'heading';
-    this._heading.style.marginBottom = `calc(${this.gap(ZSizeFixed.ExtraSmall)} / 2)`;
+    this._heading.style.marginBottom = `calc(${ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall)} / 2)`;
     const heading = document.createElement('slot');
     heading.name = 'heading';
     this._heading.appendChild(heading);
@@ -77,7 +77,7 @@ export class ZAlertElement
     this._root.style.backgroundColor = this.color('main', fallback);
     this._root.style.borderColor = this.color(['border', 'main'], fallback);
 
-    const thickness = this.thickness(ZSizeFixed.ExtraSmall);
+    const thickness = ZFashionTailorElement.thicknessVar(ZSizeFixed.ExtraSmall);
     const shadow = this.color(['border', 'main'], fallback);
     this._root.style.boxShadow = `0 0 0 ${thickness} ${shadow}`;
   }

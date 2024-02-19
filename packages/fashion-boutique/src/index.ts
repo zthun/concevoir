@@ -6,7 +6,7 @@ export * from './element/with-fashion.mjs';
 export * from './element/with-height.mjs';
 export * from './element/with-margin.mjs';
 export * from './element/with-padding.mjs';
-export * from './element/with-tailor.mjs';
+export * from './element/with-plane-2d.mjs';
 export * from './element/with-width.mjs';
 export * from './grid/grid-element.mjs';
 export * from './theme/css.mjs';
