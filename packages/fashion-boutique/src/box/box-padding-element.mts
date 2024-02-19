@@ -1,35 +1,42 @@
+import { ZGapSize, ZSizeVoid } from '@zthun/fashion-tailor';
 import { registerCustomElement } from '@zthun/helpful-dom';
-import { css } from '../theme/css.mjs';
-import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
-import { ZBoxRectangleElement } from './box-rectangle-element.mjs';
+import { IZQuadrilateral, firstDefined } from '@zthun/helpful-fn';
+import { ZFashionElement } from '../element/fashion-element.mjs';
+import { WithTailor } from '../element/with-tailor.mjs';
 
-export class ZBoxPaddingElement extends ZBoxRectangleElement {
+export class ZBoxPaddingElement extends WithTailor(ZFashionElement) {
   public static readonly register = registerCustomElement.bind(null, 'z-box-padding', ZBoxPaddingElement);
-  public static readonly observeAttributes = Object.freeze(['left', 'right', 'top', 'bottom']);
 
-  public connectedCallback() {
-    this._applyVariables();
-    this.classList.add('ZBox-padding');
-    this.classList.add(
-      css({
-        display: 'block',
-        paddingBottom: 'var(--box-padding-bottom)',
-        paddingLeft: 'var(--box-padding-left)',
-        paddingRight: 'var(--box-padding-right)',
-        paddingTop: 'var(--box-padding-top)'
-      })
-    );
+  public readonly name = 'ZBox-padding';
+
+  private _padding: Partial<IZQuadrilateral<ZGapSize>> = {};
+
+  public get padding() {
+    return this._padding;
   }
 
-  private _applyVariables() {
-    const pb = ZFashionTailorElement.gapProperty(this.bottom());
-    const pl = ZFashionTailorElement.gapProperty(this.left());
-    const pr = ZFashionTailorElement.gapProperty(this.right());
-    const pt = ZFashionTailorElement.gapProperty(this.top());
-
-    this.style.setProperty('--box-padding-bottom', `var(${pb})`);
-    this.style.setProperty('--box-padding-left', `var(${pl})`);
-    this.style.setProperty('--box-padding-right', `var(${pr})`);
-    this.style.setProperty('--box-padding-top', `var(${pt})`);
+  public set padding(val: Partial<IZQuadrilateral<ZGapSize>> | undefined) {
+    this._padding = firstDefined({}, val);
+    this.refreshCssVariables();
   }
+
+  public generateStaticCss = () => ({
+    display: 'block',
+    paddingBottom: 'var(--box-padding-bottom)',
+    paddingLeft: 'var(--box-padding-left)',
+    paddingRight: 'var(--box-padding-right)',
+    paddingTop: 'var(--box-padding-top)'
+  });
+
+  public refreshCssVariables = () => {
+    const bottom = firstDefined(ZSizeVoid.None, this._padding.bottom);
+    const left = firstDefined(ZSizeVoid.None, this._padding.left);
+    const right = firstDefined(ZSizeVoid.None, this._padding.right);
+    const top = firstDefined(ZSizeVoid.None, this._padding.top);
+
+    this.style.setProperty('--box-padding-bottom', this.gap(bottom));
+    this.style.setProperty('--box-padding-left', this.gap(left));
+    this.style.setProperty('--box-padding-right', this.gap(right));
+    this.style.setProperty('--box-padding-top', this.gap(top));
+  };
 }
