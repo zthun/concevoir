@@ -7,7 +7,7 @@ export interface IZComponentDisconnected {
 }
 
 export interface IZComponentAttributeChanged {
-  attributeChangedCallback(name, oldValue, newValue): void;
+  attributeChangedCallback(name: string, oldValue: string, newValue: string): void;
 }
 
 export interface IZComponentAdopted {

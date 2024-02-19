@@ -1,7 +1,7 @@
 import { ZGapSize, ZSizeVoid } from '@zthun/fashion-tailor';
 import { mutateAttribute } from '@zthun/helpful-dom';
 import { IZQuadrilateral, firstDefined } from '@zthun/helpful-fn';
-import { ZElementConstructor } from './fashion-element.mjs';
+import { ZElementConstructor } from './element-constructor.mjs';
 
 export interface IZWithPadding {
   padding?: Partial<IZQuadrilateral<ZGapSize>>;

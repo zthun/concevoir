@@ -1,6 +1,6 @@
 import { IZDeviceValueMap, ZSizeFixed, isDeviceValueMap } from '@zthun/fashion-tailor';
 import { mutateAttribute } from '@zthun/helpful-dom';
-import { ZElementConstructor } from './fashion-element.mjs';
+import { ZElementConstructor } from './element-constructor.mjs';
 
 export interface IZWithHeight<THeight> {
   componentHeight: THeight | IZDeviceValueMap<THeight> | null | undefined;

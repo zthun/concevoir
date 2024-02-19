@@ -2,7 +2,7 @@ import { ZSizeVoid, ZThicknessSize } from '@zthun/fashion-tailor';
 import { mutateAttribute } from '@zthun/helpful-dom';
 import { IZQuadrilateral, firstDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
-import { ZElementConstructor } from './fashion-element.mjs';
+import { ZElementConstructor } from './element-constructor.mjs';
 
 export interface IZWithBorder {
   border?: Partial<IZQuadrilateral<ZThicknessSize>>;

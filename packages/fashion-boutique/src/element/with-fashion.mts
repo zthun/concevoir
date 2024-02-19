@@ -3,7 +3,7 @@ import { cssVariable, mutateAttribute, queryAttribute } from '@zthun/helpful-dom
 import { firstDefined } from '@zthun/helpful-fn';
 import { castArray, get } from 'lodash-es';
 import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
-import { ZElementConstructor } from './fashion-element.mjs';
+import { ZElementConstructor } from './element-constructor.mjs';
 
 export interface IZWithFashion {
   fashion: IZFashion | null | undefined;
