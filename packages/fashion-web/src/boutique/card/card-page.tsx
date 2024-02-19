@@ -11,7 +11,6 @@ import {
 } from '@zthun/fashion-react';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { ZFashionArea } from '@zthun/fashion-theme';
-import { ZHorizontalAnchor } from '@zthun/helpful-fn';
 import React from 'react';
 import { ZFashionRouteCard } from '../../routes.mjs';
 import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
@@ -81,8 +80,8 @@ export function ZCardPage() {
             fashion={fashion}
             avatar={<ZIconFontAwesome name='house' width={ZSizeFixed.Medium} />}
           >
-            <ZBox margin={{ bottom: ZSizeFixed.Small }} justification={ZHorizontalAnchor.Center}>
-              <ZImageSource src='/images/svg/plant.svg' height={ZSizeFixed.ExtraLarge} />
+            <ZBox margin={{ bottom: ZSizeFixed.Small }}>
+              <ZImageSource src='/images/svg/plant.svg' height={ZSizeFixed.ExtraLarge} width={ZSizeVaried.Full} />
             </ZBox>
 
             <ZParagraph>Image with descriptions can make for great links and launchers.</ZParagraph>

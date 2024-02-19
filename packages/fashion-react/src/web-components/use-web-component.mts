@@ -1,6 +1,9 @@
-import { IZWithFashion, IZWithHeight, IZWithWidth } from '@zthun/fashion-boutique';
-import { IZDeviceValueMap } from '@zthun/fashion-tailor';
+import { IZWithFashion, IZWithHeight, IZWithMargin, IZWithPadding, IZWithWidth } from '@zthun/fashion-boutique';
+import { IZWithBorder } from '@zthun/fashion-boutique/src/element/with-border.mjs';
+import { IZDeviceValueMap, ZGapSize, ZSizeVaried, ZThicknessSize } from '@zthun/fashion-tailor';
 import { IZFashion } from '@zthun/fashion-theme';
+import { IZQuadrilateral } from '@zthun/helpful-fn';
+import { Property } from 'csstype';
 import { MutableRefObject, useEffect } from 'react';
 
 /*
@@ -18,6 +21,17 @@ export function useFashionWebComponent<TComponent extends IZWithFashion>(
   }, [component.current, fashion]);
 }
 
+export function useBorderWebComponent<TComponent extends IZWithBorder>(
+  component: MutableRefObject<TComponent | null | undefined>,
+  border: Partial<IZQuadrilateral<ZThicknessSize>> | undefined,
+  trim: Partial<IZQuadrilateral<Property.BorderStyle>> | undefined
+) {
+  useEffect(() => {
+    component.current!.border = border;
+    component.current!.trim = trim;
+  }, [component.current, border, trim]);
+}
+
 export function useHeightWebComponent<THeight, TComponent extends IZWithHeight<THeight>>(
   component: MutableRefObject<TComponent | null | undefined>,
   height?: THeight | IZDeviceValueMap<THeight>
@@ -25,6 +39,24 @@ export function useHeightWebComponent<THeight, TComponent extends IZWithHeight<T
   useEffect(() => {
     component.current!.componentHeight = height;
   }, [component.current, height]);
+}
+
+export function useMarginWebComponent<TComponent extends IZWithMargin>(
+  component: MutableRefObject<TComponent | null | undefined>,
+  margin?: Partial<IZQuadrilateral<ZGapSize | ZSizeVaried.Fit>>
+) {
+  useEffect(() => {
+    component.current!.margin = margin;
+  }, [component.current, margin]);
+}
+
+export function usePaddingWebComponent<TComponent extends IZWithPadding>(
+  component: MutableRefObject<TComponent | null | undefined>,
+  padding?: Partial<IZQuadrilateral<ZGapSize>>
+) {
+  useEffect(() => {
+    component.current!.padding = padding;
+  }, [component.current, padding]);
 }
 
 export function useWidthWebComponent<TWidth, TComponent extends IZWithWidth<TWidth>>(

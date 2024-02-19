@@ -25,7 +25,8 @@ export function ZBoutiquePage() {
       key={route.path}
       padding={square(ZSizeFixed.Medium)}
       fashion={body}
-      border={{ width: ZSizeFixed.ExtraSmall, style: 'solid' }}
+      border={square(ZSizeFixed.ExtraSmall)}
+      trim={square('solid')}
       width={ZSizeVaried.Full}
       onClick={() => navigate(route.path)}
     >
