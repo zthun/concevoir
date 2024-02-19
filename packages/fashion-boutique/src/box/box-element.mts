@@ -10,20 +10,29 @@ import {
 } from '@zthun/fashion-tailor';
 import { ZFashionIntrinsic } from '@zthun/fashion-theme';
 import { registerCustomElement } from '@zthun/helpful-dom';
-import { CSSInterpolation } from 'src/theme/css.mjs';
-import { ZFashionElement } from '../element/fashion-element.mjs';
-import { WithBorder } from '../element/with-border.mjs';
-import { WithFashion } from '../element/with-fashion.mjs';
-import { WithMargin } from '../element/with-margin.mjs';
-import { WithPadding } from '../element/with-padding.mjs';
+import { ZCssSerialize } from '../css/css-serialize.mjs';
+import { IZComponentAttributeChanged, IZComponentConnected } from '../element/component-lifecycle.mjs';
+import { WithBorder, WithBorderAttributes } from '../element/with-border.mjs';
+import { WithFashion, WithFashionAttributes } from '../element/with-fashion.mjs';
+import { WithMargin, WithMarginAttributes } from '../element/with-margin.mjs';
+import { WithPadding, WithPaddingAttributes } from '../element/with-padding.mjs';
 import { WithTailor } from '../element/with-tailor.mjs';
-import { WithWidth } from '../element/with-width.mjs';
+import { WithWidth, WithWidthAttributes } from '../element/with-width.mjs';
 
-export class ZBoxElement extends WithBorder(
-  WithMargin(WithPadding(WithTailor(WithFashion(WithWidth<ZSize>(ZFashionElement)))))
-) {
+export class ZBoxElement
+  extends WithBorder(WithMargin(WithPadding(WithTailor(WithFashion(WithWidth<ZSize>(HTMLElement))))))
+  implements IZComponentConnected, IZComponentAttributeChanged
+{
   public static readonly register = registerCustomElement.bind(null, 'z-box', ZBoxElement);
   public static readonly device = new ZFashionDevice();
+  public static readonly observedAttributes = [
+    'tabIndex',
+    ...WithMarginAttributes,
+    ...WithPaddingAttributes,
+    ...WithBorderAttributes,
+    ...WithWidthAttributes,
+    ...WithFashionAttributes
+  ];
 
   public static readonly BoxSizeChart = Object.freeze({
     ...createSizeChartFixedCss(createSizeChartFixedGeometric(1.4, 18), 'rem'),
@@ -31,10 +40,14 @@ export class ZBoxElement extends WithBorder(
     ...createSizeChartVoidCss()
   });
 
-  public readonly name = 'ZBox-root';
+  private _root: HTMLDivElement;
 
-  public generateStaticCss = () => {
-    return {
+  public constructor() {
+    super();
+
+    this.attachShadow({ mode: 'open' });
+
+    const css = new ZCssSerialize().serialize({
       'display': 'block',
       'backgroundColor': 'var(--box-background)',
       'color': 'var(--box-color)',
@@ -89,64 +102,80 @@ export class ZBoxElement extends WithBorder(
         borderColor: 'var(--box-hover-border-color)',
         color: 'var(--box-hover-color)'
       }
-    } as unknown as CSSInterpolation;
-  };
+    });
 
-  refreshCssVariables = () => {
+    const style = document.createElement('style');
+    style.textContent = `.ZBox-container { ${css} }`;
+    this.shadowRoot?.appendChild(style);
+
+    this._root = document.createElement('div');
+    this._root.appendChild(document.createElement('slot'));
+    this._root.classList.add('ZBox-container');
+    this.shadowRoot?.appendChild(this._root);
+  }
+
+  public connectedCallback() {
+    this.classList.add('ZBox-root');
+    this.attributeChangedCallback();
+  }
+
+  public attributeChangedCallback(): void {
     const fallback = ZFashionIntrinsic.Inherit;
-    this.style.setProperty('--box-cursor', 'default');
+    const { style } = this._root;
+
+    style.setProperty('--box-cursor', 'default');
 
     const main = this.color('main', fallback);
-    this.style.setProperty('--box-background', main);
-    this.style.setProperty('--box-focus-background', main);
-    this.style.setProperty('--box-hover-background', main);
+    style.setProperty('--box-background', main);
+    style.setProperty('--box-focus-background', main);
+    style.setProperty('--box-hover-background', main);
 
     const contrast = this.color('contrast', fallback);
-    this.style.setProperty('--box-color', contrast);
-    this.style.setProperty('--box-focus-color', contrast);
-    this.style.setProperty('--box-hover-color', contrast);
+    style.setProperty('--box-color', contrast);
+    style.setProperty('--box-focus-color', contrast);
+    style.setProperty('--box-hover-color', contrast);
 
     const border = this.color(['border', 'main'], fallback);
-    this.style.setProperty('--box-border-color', border);
-    this.style.setProperty('--box-focus-border-color', border);
-    this.style.setProperty('--box-hover-border-color', border);
+    style.setProperty('--box-border-color', border);
+    style.setProperty('--box-focus-border-color', border);
+    style.setProperty('--box-hover-border-color', border);
 
-    this.style.setProperty('--box-border-style-bottom', this.trimBottom());
-    this.style.setProperty('--box-border-style-left', this.trimLeft());
-    this.style.setProperty('--box-border-style-right', this.trimRight());
-    this.style.setProperty('--box-border-style-top', this.trimTop());
+    style.setProperty('--box-border-style-bottom', this.trimBottom());
+    style.setProperty('--box-border-style-left', this.trimLeft());
+    style.setProperty('--box-border-style-right', this.trimRight());
+    style.setProperty('--box-border-style-top', this.trimTop());
 
-    this.style.setProperty('--box-border-width-bottom', this.thickness(this.borderBottom()));
-    this.style.setProperty('--box-border-width-left', this.thickness(this.borderLeft()));
-    this.style.setProperty('--box-border-width-right', this.thickness(this.borderRight()));
-    this.style.setProperty('--box-border-width-top', this.thickness(this.borderTop()));
+    style.setProperty('--box-border-width-bottom', this.thickness(this.borderBottom()));
+    style.setProperty('--box-border-width-left', this.thickness(this.borderLeft()));
+    style.setProperty('--box-border-width-right', this.thickness(this.borderRight()));
+    style.setProperty('--box-border-width-top', this.thickness(this.borderTop()));
 
-    this.style.setProperty('--box-margin-bottom', this.gap(this.marginBottom()));
-    this.style.setProperty('--box-margin-left', this.gap(this.marginLeft()));
-    this.style.setProperty('--box-margin-right', this.gap(this.marginRight()));
-    this.style.setProperty('--box-margin-top', this.gap(this.marginTop()));
+    style.setProperty('--box-margin-bottom', this.gap(this.marginBottom()));
+    style.setProperty('--box-margin-left', this.gap(this.marginLeft()));
+    style.setProperty('--box-margin-right', this.gap(this.marginRight()));
+    style.setProperty('--box-margin-top', this.gap(this.marginTop()));
 
-    this.style.setProperty('--box-padding-bottom', this.gap(this.paddingBottom()));
-    this.style.setProperty('--box-padding-left', this.gap(this.paddingLeft()));
-    this.style.setProperty('--box-padding-right', this.gap(this.paddingRight()));
-    this.style.setProperty('--box-padding-top', this.gap(this.paddingTop()));
+    style.setProperty('--box-padding-bottom', this.gap(this.paddingBottom()));
+    style.setProperty('--box-padding-left', this.gap(this.paddingLeft()));
+    style.setProperty('--box-padding-right', this.gap(this.paddingRight()));
+    style.setProperty('--box-padding-top', this.gap(this.paddingTop()));
 
-    this.style.setProperty('--box-width-xl', ZBoxElement.BoxSizeChart[this.widthXl(ZSizeVaried.Fit)]);
-    this.style.setProperty('--box-width-lg', ZBoxElement.BoxSizeChart[this.widthLg(ZSizeVaried.Fit)]);
-    this.style.setProperty('--box-width-md', ZBoxElement.BoxSizeChart[this.widthMd(ZSizeVaried.Fit)]);
-    this.style.setProperty('--box-width-sm', ZBoxElement.BoxSizeChart[this.widthSm(ZSizeVaried.Fit)]);
-    this.style.setProperty('--box-width-xs', ZBoxElement.BoxSizeChart[this.widthXs(ZSizeVaried.Fit)]);
+    style.setProperty('--box-width-xl', ZBoxElement.BoxSizeChart[this.widthXl(ZSizeVaried.Fit)]);
+    style.setProperty('--box-width-lg', ZBoxElement.BoxSizeChart[this.widthLg(ZSizeVaried.Fit)]);
+    style.setProperty('--box-width-md', ZBoxElement.BoxSizeChart[this.widthMd(ZSizeVaried.Fit)]);
+    style.setProperty('--box-width-sm', ZBoxElement.BoxSizeChart[this.widthSm(ZSizeVaried.Fit)]);
+    style.setProperty('--box-width-xs', ZBoxElement.BoxSizeChart[this.widthXs(ZSizeVaried.Fit)]);
 
     if (this.tabIndex >= 0) {
-      this.style.setProperty('--box-cursor', 'pointer');
+      style.setProperty('--box-cursor', 'pointer');
 
-      this.style.setProperty('--box-focus-background', this.color(['focus.main', 'main'], fallback));
-      this.style.setProperty('--box-focus-border-color', this.color(['focus.border', 'border', 'main'], fallback));
-      this.style.setProperty('--box-focus-color', this.color(['focus.contrast', 'contrast'], fallback));
+      style.setProperty('--box-focus-background', this.color(['focus.main', 'main'], fallback));
+      style.setProperty('--box-focus-border-color', this.color(['focus.border', 'border', 'main'], fallback));
+      style.setProperty('--box-focus-color', this.color(['focus.contrast', 'contrast'], fallback));
 
-      this.style.setProperty('--box-hover-background', this.color(['hover.main', 'main'], fallback));
-      this.style.setProperty('--box-hover-border-color', this.color(['hover.border', 'border', 'main'], fallback));
-      this.style.setProperty('--box-hover-color', this.color(['hover.contrast', 'contrast'], fallback));
+      style.setProperty('--box-hover-background', this.color(['hover.main', 'main'], fallback));
+      style.setProperty('--box-hover-border-color', this.color(['hover.border', 'border', 'main'], fallback));
+      style.setProperty('--box-hover-color', this.color(['hover.contrast', 'contrast'], fallback));
     }
-  };
+  }
 }
