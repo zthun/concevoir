@@ -22,5 +22,5 @@ export class ZFashionElement extends HTMLElement {
   }
 }
 
-export type ZElementConstructor<T extends Element = Element> = new (...args: any[]) => T;
+export type ZElementConstructor<T extends HTMLElement = HTMLElement> = new (...args: any[]) => T;
 export type ZFashionElementCtor<T extends ZFashionElement = ZFashionElement> = new (...args: any[]) => T;

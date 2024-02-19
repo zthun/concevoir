@@ -11,7 +11,7 @@ export interface IZWithHeight<THeight> {
   heightXs(fallback: THeight): THeight;
 }
 
-export function WithHeight<THeight, TBase extends ZElementConstructor>(Base: TBase) {
+export function WithHeight<THeight, TBase extends ZElementConstructor = ZElementConstructor>(Base: TBase) {
   return class extends Base implements IZWithHeight<THeight> {
     _componentHeight: THeight | IZDeviceValueMap<THeight> | null | undefined;
     refreshCssVariables?: () => void;
