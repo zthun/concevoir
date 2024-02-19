@@ -1,7 +1,7 @@
 import { ZGapSize, ZSizeVoid } from '@zthun/fashion-tailor';
+import { mutateAttribute } from '@zthun/helpful-dom';
 import { IZQuadrilateral, firstDefined } from '@zthun/helpful-fn';
 import { ZElementConstructor } from './fashion-element.mjs';
-import { ZRefreshCssVariables } from './with-css-lifecycle.mjs';
 
 export interface IZWithPadding {
   padding?: Partial<IZQuadrilateral<ZGapSize>>;
@@ -12,10 +12,11 @@ export interface IZWithPadding {
   paddingTop(): ZGapSize;
 }
 
+export const WithPaddingAttributes = ['data-padding'];
+
 export function WithPadding<TBase extends ZElementConstructor = ZElementConstructor>(Base: TBase) {
   return class extends Base implements IZWithPadding {
     _padding?: Partial<IZQuadrilateral<ZGapSize>>;
-    refreshCssVariables: ZRefreshCssVariables;
 
     public get padding() {
       return this._padding;
@@ -23,7 +24,7 @@ export function WithPadding<TBase extends ZElementConstructor = ZElementConstruc
 
     public set padding(val: Partial<IZQuadrilateral<ZGapSize>> | undefined) {
       this._padding = val;
-      this.refreshCssVariables?.call(this);
+      mutateAttribute(this, 'data-padding', JSON.stringify(val));
     }
 
     public paddingBottom() {

@@ -1,4 +1,5 @@
 import { IZDeviceValueMap, ZSizeFixed, isDeviceValueMap } from '@zthun/fashion-tailor';
+import { mutateAttribute } from '@zthun/helpful-dom';
 import { ZElementConstructor } from './fashion-element.mjs';
 
 export interface IZWithHeight<THeight> {
@@ -11,10 +12,11 @@ export interface IZWithHeight<THeight> {
   heightXs(fallback: THeight): THeight;
 }
 
+export const WithHeightAttributes = ['data-height'];
+
 export function WithHeight<THeight, TBase extends ZElementConstructor = ZElementConstructor>(Base: TBase) {
   return class extends Base implements IZWithHeight<THeight> {
     _componentHeight: THeight | IZDeviceValueMap<THeight> | null | undefined;
-    refreshCssVariables?: () => void;
 
     get componentHeight() {
       return this._componentHeight;
@@ -22,7 +24,7 @@ export function WithHeight<THeight, TBase extends ZElementConstructor = ZElement
 
     set componentHeight(val: THeight | IZDeviceValueMap<THeight> | null | undefined) {
       this._componentHeight = val;
-      this.refreshCssVariables?.call(this);
+      mutateAttribute(this, 'data-height', JSON.stringify(val));
     }
 
     calculateHeight(device: ZSizeFixed): THeight | null | undefined {

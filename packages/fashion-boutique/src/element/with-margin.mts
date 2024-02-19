@@ -1,7 +1,7 @@
 import { ZGapSize, ZSizeVaried, ZSizeVoid } from '@zthun/fashion-tailor';
+import { mutateAttribute } from '@zthun/helpful-dom';
 import { IZQuadrilateral, firstDefined } from '@zthun/helpful-fn';
 import { ZElementConstructor } from './fashion-element.mjs';
-import { ZRefreshCssVariables } from './with-css-lifecycle.mjs';
 
 export interface IZWithMargin {
   margin?: Partial<IZQuadrilateral<ZGapSize | ZSizeVaried.Fit>>;
@@ -12,10 +12,11 @@ export interface IZWithMargin {
   marginTop(): ZGapSize;
 }
 
+export const WithMarginAttributes = ['data-margin'];
+
 export function WithMargin<TBase extends ZElementConstructor = ZElementConstructor>(Base: TBase) {
   return class extends Base implements IZWithMargin {
     _margin?: Partial<IZQuadrilateral<ZGapSize>>;
-    refreshCssVariables?: ZRefreshCssVariables;
 
     public get margin() {
       return this._margin;
@@ -23,7 +24,7 @@ export function WithMargin<TBase extends ZElementConstructor = ZElementConstruct
 
     public set margin(val: Partial<IZQuadrilateral<ZGapSize>> | undefined) {
       this._margin = val;
-      this.refreshCssVariables?.call(this);
+      mutateAttribute(this, 'data-margin', JSON.stringify(val));
     }
 
     public marginBottom() {

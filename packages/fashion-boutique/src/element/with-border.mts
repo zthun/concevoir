@@ -1,8 +1,8 @@
 import { ZSizeVoid, ZThicknessSize } from '@zthun/fashion-tailor';
+import { mutateAttribute } from '@zthun/helpful-dom';
 import { IZQuadrilateral, firstDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import { ZElementConstructor } from './fashion-element.mjs';
-import { ZRefreshCssVariables } from './with-css-lifecycle.mjs';
 
 export interface IZWithBorder {
   border?: Partial<IZQuadrilateral<ZThicknessSize>>;
@@ -19,11 +19,12 @@ export interface IZWithBorder {
   borderTop(): ZThicknessSize;
 }
 
+export const WithBorderAttributes = ['data-border', 'data-trim'];
+
 export function WithBorder<TBase extends ZElementConstructor = ZElementConstructor>(Base: TBase) {
   return class extends Base implements IZWithBorder {
     _trim?: Partial<IZQuadrilateral<Property.BorderStyle>>;
     _border?: Partial<IZQuadrilateral<ZThicknessSize>>;
-    refreshCssVariables?: ZRefreshCssVariables;
 
     public get border() {
       return this._border;
@@ -31,7 +32,7 @@ export function WithBorder<TBase extends ZElementConstructor = ZElementConstruct
 
     public set border(val: Partial<IZQuadrilateral<ZThicknessSize>> | undefined) {
       this._border = val;
-      this.refreshCssVariables?.call(this);
+      mutateAttribute(this, 'data-border', JSON.stringify(val));
     }
 
     public get trim() {
@@ -40,7 +41,7 @@ export function WithBorder<TBase extends ZElementConstructor = ZElementConstruct
 
     public set trim(val: Partial<IZQuadrilateral<Property.BorderStyle>> | undefined) {
       this._trim = val;
-      this.refreshCssVariables?.call(this);
+      mutateAttribute(this, 'data-trim', JSON.stringify(val));
     }
 
     public borderBottom() {
