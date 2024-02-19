@@ -2,7 +2,7 @@ import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionPriority } from '@zthun/fashion-theme';
 import { registerCustomElement } from '@zthun/helpful-dom';
 import { IZComponentAttributeChanged, IZComponentConnected } from 'src/element/component-lifecycle.mjs';
-import { WithFashion } from '../element/with-fashion.mjs';
+import { WithFashion, WithFashionAttributes } from '../element/with-fashion.mjs';
 import { WithTailor } from '../element/with-tailor.mjs';
 
 export class ZAlertElement
@@ -10,6 +10,7 @@ export class ZAlertElement
   implements IZComponentConnected, IZComponentAttributeChanged
 {
   public static readonly register = registerCustomElement.bind(null, 'z-alert', ZAlertElement);
+  public static readonly observedAttributes = Object.freeze([...WithFashionAttributes]);
 
   private _root: HTMLDivElement;
   private _avatar: HTMLDivElement;

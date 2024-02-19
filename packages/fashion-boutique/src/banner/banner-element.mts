@@ -8,14 +8,15 @@ import {
 import { ZFashionPriority } from '@zthun/fashion-theme';
 import { registerCustomElement } from '@zthun/helpful-dom';
 import { IZComponentAttributeChanged, IZComponentConnected } from '../element/component-lifecycle.mjs';
-import { WithFashion } from '../element/with-fashion.mjs';
-import { WithHeight } from '../element/with-height.mjs';
+import { WithFashion, WithFashionAttributes } from '../element/with-fashion.mjs';
+import { WithHeight, WithHeightAttributes } from '../element/with-height.mjs';
 
 export class ZBannerElement
   extends WithFashion(WithHeight<ZSizeFixed | ZSizeVaried.Fit>(HTMLElement))
   implements IZComponentConnected, IZComponentAttributeChanged
 {
   public static readonly register = registerCustomElement.bind(null, 'z-banner', ZBannerElement);
+  public static readonly observedAttributes = [...WithFashionAttributes, ...WithHeightAttributes];
 
   public static readonly HeightChart = Object.freeze({
     ...createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), 'rem'),
