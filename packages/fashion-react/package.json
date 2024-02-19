@@ -38,7 +38,7 @@
     "@zthun/fashion-circus": "^2.7.0",
     "@zthun/fashion-tailor": "^2.7.0",
     "@zthun/fashion-theme": "^2.7.0",
-    "@zthun/helpful-dom": "^3.5.0",
+    "@zthun/helpful-dom": "^3.7.1",
     "@zthun/helpful-fn": "^3.6.0",
     "@zthun/helpful-query": "^3.6.0",
     "@zthun/helpful-react": "^3.6.0",
