@@ -66,7 +66,7 @@ export function ZChoicePage() {
           </ZParagraph>
         </ZBox>
 
-        <ZGrid alignItems='center' columns='1fr 1fr' columnsSm='1fr' gap={ZSizeFixed.Large}>
+        <ZGrid align={{ items: 'center' }} columns={{ xl: '1fr 1fr', sm: '1fr' }} gap={ZSizeFixed.Large}>
           <ZChoiceDropDown
             disabled={disabled}
             label='Drop Down'

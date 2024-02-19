@@ -48,7 +48,7 @@ export function ZTextPage() {
         </ZParagraph>
 
         <ZBox margin={{ bottom: ZSizeFixed.Medium }}>
-          <ZGrid alignItems='center' columns='1fr 1fr 1fr' columnsSm='1fr' gap={ZSizeFixed.Medium}>
+          <ZGrid align={{ items: 'center' }} columns={{ xl: '1fr 1fr 1fr', sm: '1fr' }} gap={ZSizeFixed.Medium}>
             <ZTextInput
               disabled={disabled}
               readOnly={readOnly}

@@ -24,7 +24,12 @@ export function ZNotFound(props: IZNotFound) {
 
   return (
     <ZFullScreen>
-      <ZGrid className='ZNotFound-root' justifyContent='center' alignContent='center' height={ZSizeVaried.Full}>
+      <ZGrid
+        className='ZNotFound-root'
+        justify={{ content: 'center' }}
+        align={{ content: 'center' }}
+        height={ZSizeVaried.Full}
+      >
         <ZCard
           avatar={<ZSadFace />}
           heading={title}

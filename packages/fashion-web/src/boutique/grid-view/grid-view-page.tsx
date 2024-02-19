@@ -67,11 +67,7 @@ export function ZGridViewPage() {
       <ZGridView
         GridProps={{
           gap: ZSizeFixed.Small,
-          columns: '1fr 1fr 1fr 1fr 1fr 1fr',
-          columnsLg: '1fr 1fr 1fr 1fr',
-          columnsMd: '1fr 1fr 1fr',
-          columnsSm: '1fr 1fr',
-          columnsXs: '1fr'
+          columns: { xl: '1fr 1fr 1fr 1fr 1fr 1fr', lg: '1fr 1fr 1fr 1fr', md: '1fr 1fr 1fr', sm: '1fr 1fr', xs: '1fr' }
         }}
         renderItem={renderItem}
         dataSource={dataSource}

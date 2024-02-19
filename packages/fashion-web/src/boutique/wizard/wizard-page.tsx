@@ -66,7 +66,12 @@ export function ZWizardPage() {
 
         <ZParagraph>The last page of a wizard should allow the user to complete it.</ZParagraph>
 
-        <ZGrid columns='auto auto auto auto auto' alignItems='center' justifyContent='center' gap={ZSizeFixed.Medium}>
+        <ZGrid
+          columns='auto auto auto auto auto'
+          align={{ items: 'center' }}
+          justify={{ content: 'center' }}
+          gap={ZSizeFixed.Medium}
+        >
           <ZBubble width={ZSizeFixed.Large} fashion={info}>
             <ZH4 compact>First</ZH4>
           </ZBubble>

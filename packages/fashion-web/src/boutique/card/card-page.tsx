@@ -51,7 +51,7 @@ export function ZCardPage() {
           to create desireable experiences for your users.
         </ZParagraph>
 
-        <ZGrid columns='1fr 1fr 1fr' columnsMd='1fr' gap={ZSizeFixed.Small}>
+        <ZGrid columns={{ xl: '1fr 1fr 1fr', md: '1fr' }} gap={ZSizeFixed.Small}>
           <ZCard
             name='card'
             heading='Header'

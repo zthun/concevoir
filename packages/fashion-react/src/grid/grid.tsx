@@ -25,11 +25,7 @@ export interface IZGrid
   align?: IZGridTarget<Property.AlignItems, Property.AlignContent>;
   justify?: IZGridTarget<Property.JustifyItems, Property.JustifyContent>;
   gap?: ZGapSize;
-  columns?: Property.GridTemplateColumns;
-  columnsLg?: Property.GridTemplateColumns;
-  columnsMd?: Property.GridTemplateColumns;
-  columnsSm?: Property.GridTemplateColumns;
-  columnsXs?: Property.GridTemplateColumns;
+  columns?: Property.GridTemplateColumns | IZDeviceValueMap<Property.GridTemplateColumns>;
   rows?: Property.GridTemplateRows;
 }
 
@@ -90,14 +86,9 @@ function useRowsGridWebComponent(
 export function ZGrid(props: IZGrid) {
   const { className, children } = props;
   const { align, justify, rows, gap } = props;
-  const { columns, columnsLg, columnsMd, columnsSm, columnsXs } = props;
+  const { columns } = props;
   const { width, widthLg, widthMd, widthSm, widthXs } = props;
   const { height, heightLg, heightMd, heightSm, heightXs } = props;
-
-  const $columns: Partial<IZDeviceValueMap<Property.GridTemplateColumns>> = useMemo(
-    () => ({ xl: columns, lg: columnsLg, md: columnsMd, sm: columnsSm, xs: columnsXs }),
-    [columns, columnsLg, columnsMd, columnsSm, columnsXs]
-  );
 
   const $height: IZDeviceValueMap<ZSizeVaried | undefined> = useMemo(
     () => ({ xl: height, lg: heightLg, md: heightMd, sm: heightSm, xs: heightXs }),
@@ -112,7 +103,7 @@ export function ZGrid(props: IZGrid) {
   useEffect(() => ZGridElement.register(), []);
 
   const grid = useRef<ZGridElement>();
-  useColumnsGridWebComponent(grid, $columns);
+  useColumnsGridWebComponent(grid, columns);
   useAlignGridWebComponent(grid, align);
   useJustifyGridWebComponent(grid, justify);
   useHeightWebComponent(grid, $height);

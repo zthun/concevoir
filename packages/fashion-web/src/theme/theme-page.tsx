@@ -27,7 +27,7 @@ export function ZThemePage() {
         </ZParagraph>
 
         <ZBox margin={{ bottom: ZSizeFixed.Medium }}>
-          <ZGrid columns='1fr 1fr 1fr' columnsLg='1fr 1fr' columnsMd='1fr' gap={ZSizeFixed.Medium}>
+          <ZGrid columns={{ xl: '1fr 1fr 1fr', lg: '1fr 1fr', md: '1fr' }} gap={ZSizeFixed.Medium}>
             <ZFashionColors fashion={primary} />
             <ZFashionColors fashion={secondary} />
             <ZFashionColors fashion={success} />

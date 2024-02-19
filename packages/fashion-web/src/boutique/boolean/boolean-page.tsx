@@ -45,7 +45,7 @@ export function ZBooleanPage() {
         </ZParagraph>
 
         <ZBox margin={{ bottom: ZSizeFixed.Medium }}>
-          <ZGrid alignItems='center' columns='auto auto 1fr' gap={ZSizeFixed.ExtraSmall}>
+          <ZGrid align={{ items: 'center' }} columns='auto auto 1fr' gap={ZSizeFixed.ExtraSmall}>
             <ZBooleanCheckbox
               disabled={disabled}
               required={required}
@@ -89,7 +89,7 @@ export function ZBooleanPage() {
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Operations</ZH3>
 
-        <ZGrid columns='auto auto auto' columnsXs='auto' gap={ZSizeFixed.Small}>
+        <ZGrid columns={{ xl: 'auto auto auto', xs: 'auto' }} gap={ZSizeFixed.Small}>
           <ZButton fashion={success} onClick={setValue.bind(null, true)} label='True' name='on' />
           <ZButton fashion={error} onClick={setValue.bind(null, false)} label='False' name='off' />
           <ZButton fashion={warning} onClick={setValue.bind(null, null)} label='Indeterminate' name='indeterminate' />

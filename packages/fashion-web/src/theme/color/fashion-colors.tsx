@@ -2,6 +2,7 @@ import { IZComponentFashion, ZBox, ZCaption, ZGrid, ZH4, ZStack, createStyleHook
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionBuilder } from '@zthun/fashion-theme';
 import { ZOrientation, cssJoinDefined, firstDefined, square } from '@zthun/helpful-fn';
+import { startCase } from 'lodash-es';
 import React, { useMemo } from 'react';
 
 export interface IZFashionColors extends Required<IZComponentFashion> {}
@@ -60,7 +61,7 @@ export function ZFashionColors(props: IZFashionColors) {
   return (
     <ZBox className={cssJoinDefined('ZFashionColors-root')} fashion={boxFashion} padding={square(ZSizeFixed.Small)}>
       <ZStack orientation={ZOrientation.Vertical} gap={ZSizeFixed.Small}>
-        <ZH4 compact>{fashion.name}</ZH4>
+        <ZH4 compact>{startCase(fashion.name)}</ZH4>
         <ZGrid columns='1fr 1fr 1fr' gap={ZSizeFixed.Small}>
           {renderColor('Light', classes.light)}
           {renderColor('Main', classes.main)}
