@@ -9,12 +9,10 @@ export interface IZWithFashion {
   fashion: IZFashion | null | undefined;
 }
 
-export const WithFashionObservedAttributes = Object.freeze(['fashion']);
+export const WithFashionAttributes = Object.freeze(['data-fashion']);
 
 export function WithFashion<TBase extends ZElementConstructor>(Base: TBase) {
   return class ZElementWithFashion extends Base implements IZWithFashion {
-    public static readonly observedAttributes = WithFashionObservedAttributes;
-
     _fashion: IZFashion | null | undefined = null;
 
     public get fashion() {
@@ -23,7 +21,7 @@ export function WithFashion<TBase extends ZElementConstructor>(Base: TBase) {
 
     public set fashion(val: IZFashion | null | undefined) {
       this._fashion = val;
-      mutateAttribute(this, 'fashion', val?.name);
+      mutateAttribute(this, 'data-fashion', val?.name);
     }
 
     public color<TFashionName extends string = ZFashionName>(
@@ -38,7 +36,7 @@ export function WithFashion<TBase extends ZElementConstructor>(Base: TBase) {
 
       if (color == null) {
         const [$first] = $scopes;
-        const name = queryAttribute(this, 'fashion', fallback);
+        const name = queryAttribute(this, 'data-fashion', fallback);
         const globalColor = ZFashionThemeElement.property(name, $first);
         color = cssVariable(globalColor);
       }
