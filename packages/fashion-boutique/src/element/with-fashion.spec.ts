@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { ZFashionBuilder, ZFashionPriority, ZFashionSeverity, hex } from '@zthun/fashion-theme';
-import { registerCustomElement } from '@zthun/helpful-dom';
+import { cssVariable, mutateAttribute, registerCustomElement } from '@zthun/helpful-dom';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
 import { ZFashionElement } from './fashion-element.mjs';
@@ -47,9 +47,9 @@ describe('WithFashion', () => {
       // Arrange.
       const target = createTestTarget();
       target.fashion = null;
-      target.mutateAttribute('fashion', ZFashionPriority.Secondary);
+      mutateAttribute(target, 'fashion', ZFashionPriority.Secondary);
       const property = ZFashionThemeElement.property(ZFashionPriority.Secondary, 'contrast');
-      const expected = target.cssVariable(property);
+      const expected = cssVariable(property);
       // Act.
       const actual = target.color('contrast', name);
       // Assert
@@ -60,9 +60,9 @@ describe('WithFashion', () => {
       // Arrange.
       const target = createTestTarget();
       target.fashion = null;
-      target.mutateAttribute('fashion', null);
+      mutateAttribute(target, 'fashion', null);
       const property = ZFashionThemeElement.property(name, 'contrast');
-      const expected = target.cssVariable(property);
+      const expected = cssVariable(property);
       // Act.
       const actual = target.color('contrast', name);
       // Assert

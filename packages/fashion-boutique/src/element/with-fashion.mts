@@ -1,4 +1,5 @@
 import { IZFashion, ZColor, ZFashionName, ZFashionScope } from '@zthun/fashion-theme';
+import { cssVariable, mutateAttribute, queryAttribute } from '@zthun/helpful-dom';
 import { firstDefined } from '@zthun/helpful-fn';
 import { castArray, get } from 'lodash-es';
 import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
@@ -22,7 +23,7 @@ export function WithFashion<TBase extends ZFashionElementCtor>(Base: TBase) {
 
     public set fashion(val: IZFashion | null | undefined) {
       this._fashion = val;
-      this.mutateAttribute('fashion', val?.name);
+      mutateAttribute(this, 'fashion', val?.name);
     }
 
     public color<TFashionName extends string = ZFashionName>(
@@ -37,9 +38,9 @@ export function WithFashion<TBase extends ZFashionElementCtor>(Base: TBase) {
 
       if (color == null) {
         const [$first] = $scopes;
-        const name = this.queryAttribute('fashion', fallback);
+        const name = queryAttribute(this, 'fashion', fallback);
         const globalColor = ZFashionThemeElement.property(name, $first);
-        color = this.cssVariable(globalColor);
+        color = cssVariable(globalColor);
       }
 
       return color;
