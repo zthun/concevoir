@@ -1,7 +1,8 @@
 import { ZSizeVoid, ZThicknessSize } from '@zthun/fashion-tailor';
 import { IZQuadrilateral, firstDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
-import { ZFashionElementCtor } from './fashion-element.mjs';
+import { ZElementConstructor } from './fashion-element.mjs';
+import { ZRefreshCssVariables } from './with-css-lifecycle.mjs';
 
 export interface IZWithBorder {
   border?: Partial<IZQuadrilateral<ZThicknessSize>>;
@@ -18,10 +19,11 @@ export interface IZWithBorder {
   borderTop(): ZThicknessSize;
 }
 
-export function WithBorder<TBase extends ZFashionElementCtor = ZFashionElementCtor>(Base: TBase) {
+export function WithBorder<TBase extends ZElementConstructor = ZElementConstructor>(Base: TBase) {
   return class extends Base implements IZWithBorder {
     _trim?: Partial<IZQuadrilateral<Property.BorderStyle>>;
     _border?: Partial<IZQuadrilateral<ZThicknessSize>>;
+    refreshCssVariables?: ZRefreshCssVariables;
 
     public get border() {
       return this._border;

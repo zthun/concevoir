@@ -1,5 +1,5 @@
 import { IZDeviceValueMap, ZSizeFixed, isDeviceValueMap } from '@zthun/fashion-tailor';
-import { ZFashionElementCtor } from './fashion-element.mjs';
+import { ZElementConstructor } from './fashion-element.mjs';
 
 export interface IZWithHeight<THeight> {
   componentHeight: THeight | IZDeviceValueMap<THeight> | null | undefined;
@@ -11,40 +11,41 @@ export interface IZWithHeight<THeight> {
   heightXs(fallback: THeight): THeight;
 }
 
-export function WithHeight<THeight, TBase extends ZFashionElementCtor = ZFashionElementCtor>(Base: TBase) {
+export function WithHeight<THeight, TBase extends ZElementConstructor>(Base: TBase) {
   return class extends Base implements IZWithHeight<THeight> {
     _componentHeight: THeight | IZDeviceValueMap<THeight> | null | undefined;
+    refreshCssVariables?: () => void;
 
-    public get componentHeight() {
+    get componentHeight() {
       return this._componentHeight;
     }
 
-    public set componentHeight(val: THeight | IZDeviceValueMap<THeight> | null | undefined) {
+    set componentHeight(val: THeight | IZDeviceValueMap<THeight> | null | undefined) {
       this._componentHeight = val;
       this.refreshCssVariables?.call(this);
     }
 
-    public calculateHeight(device: ZSizeFixed): THeight | null | undefined {
+    calculateHeight(device: ZSizeFixed): THeight | null | undefined {
       return isDeviceValueMap(this.componentHeight) ? this.componentHeight[device] : this.componentHeight;
     }
 
-    public heightXl(fallback: THeight) {
+    heightXl(fallback: THeight) {
       return this.calculateHeight(ZSizeFixed.ExtraLarge) || fallback;
     }
 
-    public heightLg(fallback: THeight) {
+    heightLg(fallback: THeight) {
       return this.calculateHeight(ZSizeFixed.Large) || this.heightXl(fallback);
     }
 
-    public heightMd(fallback: THeight) {
+    heightMd(fallback: THeight) {
       return this.calculateHeight(ZSizeFixed.Medium) || this.heightLg(fallback);
     }
 
-    public heightSm(fallback: THeight) {
+    heightSm(fallback: THeight) {
       return this.calculateHeight(ZSizeFixed.Small) || this.heightMd(fallback);
     }
 
-    public heightXs(fallback: THeight) {
+    heightXs(fallback: THeight) {
       return this.calculateHeight(ZSizeFixed.ExtraSmall) || this.heightSm(fallback);
     }
   };

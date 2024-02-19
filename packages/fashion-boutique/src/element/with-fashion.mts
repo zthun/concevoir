@@ -3,7 +3,7 @@ import { cssVariable, mutateAttribute, queryAttribute } from '@zthun/helpful-dom
 import { firstDefined } from '@zthun/helpful-fn';
 import { castArray, get } from 'lodash-es';
 import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
-import { ZFashionElementCtor } from './fashion-element.mjs';
+import { ZElementConstructor } from './fashion-element.mjs';
 
 export interface IZWithFashion {
   fashion: IZFashion | null | undefined;
@@ -11,7 +11,7 @@ export interface IZWithFashion {
 
 export const WithFashionObservedAttributes = Object.freeze(['fashion']);
 
-export function WithFashion<TBase extends ZFashionElementCtor>(Base: TBase) {
+export function WithFashion<TBase extends ZElementConstructor>(Base: TBase) {
   return class ZElementWithFashion extends Base implements IZWithFashion {
     public static readonly observedAttributes = WithFashionObservedAttributes;
 

@@ -1,5 +1,6 @@
 import { IZDeviceValueMap, ZSizeFixed, isDeviceValueMap } from '@zthun/fashion-tailor';
-import { ZFashionElementCtor } from './fashion-element.mjs';
+import { ZElementConstructor } from './fashion-element.mjs';
+import { ZRefreshCssVariables } from './with-css-lifecycle.mjs';
 
 export interface IZWithWidth<TWidth> {
   componentWidth: TWidth | IZDeviceValueMap<TWidth> | null | undefined;
@@ -11,9 +12,10 @@ export interface IZWithWidth<TWidth> {
   widthXs(fallback: TWidth): TWidth;
 }
 
-export function WithWidth<TWidth, TBase extends ZFashionElementCtor = ZFashionElementCtor>(Base: TBase) {
+export function WithWidth<TWidth, TBase extends ZElementConstructor = ZElementConstructor>(Base: TBase) {
   return class extends Base implements IZWithWidth<TWidth> {
     _componentWidth: TWidth | IZDeviceValueMap<TWidth> | null | undefined;
+    refreshCssVariables?: ZRefreshCssVariables;
 
     public get componentWidth() {
       return this._componentWidth;

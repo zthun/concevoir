@@ -1,6 +1,7 @@
 import { ZGapSize, ZSizeVoid } from '@zthun/fashion-tailor';
 import { IZQuadrilateral, firstDefined } from '@zthun/helpful-fn';
-import { ZFashionElementCtor } from './fashion-element.mjs';
+import { ZElementConstructor } from './fashion-element.mjs';
+import { ZRefreshCssVariables } from './with-css-lifecycle.mjs';
 
 export interface IZWithPadding {
   padding?: Partial<IZQuadrilateral<ZGapSize>>;
@@ -11,9 +12,10 @@ export interface IZWithPadding {
   paddingTop(): ZGapSize;
 }
 
-export function WithPadding<TBase extends ZFashionElementCtor = ZFashionElementCtor>(Base: TBase) {
+export function WithPadding<TBase extends ZElementConstructor = ZElementConstructor>(Base: TBase) {
   return class extends Base implements IZWithPadding {
     _padding?: Partial<IZQuadrilateral<ZGapSize>>;
+    refreshCssVariables: ZRefreshCssVariables;
 
     public get padding() {
       return this._padding;
