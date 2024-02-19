@@ -1,42 +1,83 @@
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionPriority } from '@zthun/fashion-theme';
 import { registerCustomElement } from '@zthun/helpful-dom';
-import { ZFashionElement } from '../element/fashion-element.mjs';
+import { IZComponentAttributeChanged, IZComponentConnected } from 'src/element/component-lifecycle.mjs';
 import { WithFashion } from '../element/with-fashion.mjs';
 import { WithTailor } from '../element/with-tailor.mjs';
 
-export class ZAlertElement extends WithTailor(WithFashion(ZFashionElement)) {
+export class ZAlertElement
+  extends WithTailor(WithFashion(HTMLElement))
+  implements IZComponentConnected, IZComponentAttributeChanged
+{
   public static readonly register = registerCustomElement.bind(null, 'z-alert', ZAlertElement);
-  public readonly name = 'ZAlert-root';
 
-  public generateStaticCss = () => ({
-    alignItems: 'center',
-    backgroundColor: 'var(--alert-background)',
-    borderColor: 'var(--alert-border)',
-    borderStyle: 'double',
-    borderWidth: 'var(--alert-border-thickness)',
-    borderRadius: 'var(--alert-border-radius)',
-    boxShadow: '0 0 0 var(--alert-box-shadow-thickness) var(--alert-box-shadow-color)',
-    color: 'var(--alert-contrast)',
-    display: 'grid',
-    gridTemplateAreas: `
-        "avatar heading ."
-        "avatar message ."
-      `,
-    gridTemplateColumns: 'auto auto 1fr',
-    padding: 'var(--alert-padding-x) var(--alert-padding-y)'
-  });
+  private _root: HTMLDivElement;
+  private _avatar: HTMLDivElement;
+  private _heading: HTMLDivElement;
+  private _message: HTMLDivElement;
 
-  public refreshCssVariables = () => {
+  public constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+
+    this._root = document.createElement('div');
+    this._root.style.alignItems = 'center';
+    this._root.style.borderStyle = 'double';
+    this._root.style.display = 'grid';
+    this._root.style.gridTemplateColumns = 'auto auto 1fr';
+    this._root.style.borderRadius = this.thickness(ZSizeFixed.ExtraLarge);
+    this._root.style.borderWidth = this.thickness(ZSizeFixed.Medium);
+    this._root.style.paddingBottom = this.gap(ZSizeFixed.ExtraSmall);
+    this._root.style.paddingTop = this.gap(ZSizeFixed.ExtraSmall);
+    this._root.style.paddingLeft = this.gap(ZSizeFixed.Small);
+    this._root.style.paddingRight = this.gap(ZSizeFixed.Small);
+
+    this._root.style.gridTemplateAreas = `
+      "avatar heading ."
+      "avatar message ."
+    `;
+
+    this._avatar = document.createElement('div');
+    this._avatar.style.gridArea = 'avatar';
+    this._avatar.style.marginRight = this.gap(ZSizeFixed.ExtraSmall);
+    const avatar = document.createElement('slot');
+    avatar.name = 'avatar';
+    this._avatar.appendChild(avatar);
+
+    this._heading = document.createElement('div');
+    this._heading.style.gridArea = 'heading';
+    this._heading.style.marginBottom = `calc(${this.gap(ZSizeFixed.ExtraSmall)} / 2)`;
+    const heading = document.createElement('slot');
+    heading.name = 'heading';
+    this._heading.appendChild(heading);
+
+    this._message = document.createElement('div');
+    this._message.style.gridArea = 'message';
+    const message = document.createElement('slot');
+    message.name = 'message';
+    this._message.appendChild(message);
+
+    this._root.appendChild(this._avatar);
+    this._root.appendChild(this._heading);
+    this._root.appendChild(this._message);
+
+    this.shadowRoot?.appendChild(this._root);
+  }
+
+  public connectedCallback(): void {
+    this.classList.add('ZAlert-root');
+    this.attributeChangedCallback();
+  }
+
+  public attributeChangedCallback(): void {
     const fallback = ZFashionPriority.Primary;
 
-    this.style.setProperty('--alert-contrast', this.color('contrast', fallback));
-    this.style.setProperty('--alert-background', this.color('main', fallback));
-    this.style.setProperty('--alert-border', this.color(['dark', 'main'], fallback));
-    this.style.setProperty('--alert-box-shadow-color', this.color(['border', 'main'], fallback));
-    this.style.setProperty('--alert-border-radius', this.thickness(ZSizeFixed.ExtraLarge));
-    this.style.setProperty('--alert-box-shadow-thickness', this.thickness(ZSizeFixed.ExtraSmall));
-    this.style.setProperty('--alert-padding-x', this.gap(ZSizeFixed.ExtraSmall));
-    this.style.setProperty('--alert-padding-y', this.gap(ZSizeFixed.Small));
-  };
+    this._root.style.color = this.color('contrast', fallback);
+    this._root.style.backgroundColor = this.color('main', fallback);
+    this._root.style.borderColor = this.color(['border', 'main'], fallback);
+
+    const thickness = this.thickness(ZSizeFixed.ExtraSmall);
+    const shadow = this.color(['border', 'main'], fallback);
+    this._root.style.boxShadow = `0 0 0 ${thickness} ${shadow}`;
+  }
 }

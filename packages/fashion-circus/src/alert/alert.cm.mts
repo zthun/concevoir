@@ -15,7 +15,7 @@ export class ZAlertComponentModel extends ZCircusComponentModel {
    *        The message container.
    */
   public async message(): Promise<IZCircusDriver> {
-    return await this.driver.select('.ZAlert-message');
+    return await this.driver.select('[slot="message"]');
   }
 
   /**
@@ -25,7 +25,7 @@ export class ZAlertComponentModel extends ZCircusComponentModel {
    *        The heading container if one exists.
    */
   public async heading(): Promise<IZCircusDriver | null> {
-    const [heading] = await this.driver.query('.ZAlert-heading');
+    const [heading] = await this.driver.query('[slot="heading"]');
     return firstDefined(null, heading);
   }
 
@@ -36,7 +36,7 @@ export class ZAlertComponentModel extends ZCircusComponentModel {
    *        The avatar container, if one exists.
    */
   public async avatar(): Promise<IZCircusDriver | null> {
-    const [avatar] = await this.driver.query('.ZAlert-avatar');
+    const [avatar] = await this.driver.query('[slot="avatar"]');
     return firstDefined(null, avatar);
   }
 

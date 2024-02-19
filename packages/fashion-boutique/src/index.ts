@@ -1,7 +1,4 @@
-export * from './alert/alert-avatar-element.mjs';
 export * from './alert/alert-element.mjs';
-export * from './alert/alert-heading-element.mjs';
-export * from './alert/alert-message-element.mjs';
 export * from './banner/banner-element.mjs';
 export * from './box/box-element.mjs';
 export * from './element/fashion-element.mjs';
