@@ -1,4 +1,3 @@
-import { CSSInterpolation } from '@emotion/css';
 import {
   ZSizeFixed,
   ZSizeVaried,
@@ -8,11 +7,14 @@ import {
 } from '@zthun/fashion-tailor';
 import { ZFashionPriority } from '@zthun/fashion-theme';
 import { registerCustomElement } from '@zthun/helpful-dom';
-import { ZFashionElement } from '../element/fashion-element.mjs';
+import { IZComponentAttributeChanged, IZComponentConnected } from '../element/component-lifecycle.mjs';
 import { WithFashion } from '../element/with-fashion.mjs';
 import { WithHeight } from '../element/with-height.mjs';
 
-export class ZBannerElement extends WithFashion(WithHeight<ZSizeFixed | ZSizeVaried.Fit>(ZFashionElement)) {
+export class ZBannerElement
+  extends WithFashion(WithHeight<ZSizeFixed | ZSizeVaried.Fit>(HTMLElement))
+  implements IZComponentConnected, IZComponentAttributeChanged
+{
   public static readonly register = registerCustomElement.bind(null, 'z-banner', ZBannerElement);
 
   public static readonly HeightChart = Object.freeze({
@@ -20,27 +22,36 @@ export class ZBannerElement extends WithFashion(WithHeight<ZSizeFixed | ZSizeVar
     ...createSizeChartVariedCss()
   });
 
+  private _styled: HTMLDivElement;
+
   public readonly name = 'ZBanner-root';
 
-  public refreshCssVariables = () => {
-    const fallback = ZFashionPriority.Primary;
+  public constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
 
-    this.style.setProperty('--banner-background', this.color('main', fallback));
-    this.style.setProperty('--banner-color', this.color('contrast', fallback));
-    this.style.setProperty('--banner-height', ZBannerElement.HeightChart[this.heightXl(ZSizeVaried.Fit)]);
-  };
+    this._styled = document.createElement('div');
+    this._styled.style.boxSizing = 'border-box';
+    this._styled.style.display = 'block';
+    this._styled.style.left = 'auto';
+    this._styled.style.position = 'sticky';
+    this._styled.style.right = '0';
+    this._styled.style.top = '0';
+    this._styled.style.width = '100%';
+    this._styled.style.zIndex = '1100';
+    this._styled.appendChild(document.createElement('slot'));
 
-  public generateStaticCss = (): CSSInterpolation => ({
-    background: 'var(--banner-background)',
-    boxSizing: 'border-box',
-    color: 'var(--banner-color)',
-    display: 'block',
-    height: 'var(--banner-height)',
-    left: 'auto',
-    position: 'sticky',
-    right: 0,
-    top: 0,
-    width: '100%',
-    zIndex: 1100
-  });
+    this.shadowRoot?.appendChild(this._styled);
+  }
+
+  public connectedCallback() {
+    this.classList.add('ZBanner-root');
+    this.attributeChangedCallback();
+  }
+
+  public attributeChangedCallback(): void {
+    this._styled.style.background = this.color('main', ZFashionPriority.Primary);
+    this._styled.style.color = this.color('contrast', ZFashionPriority.Primary);
+    this._styled.style.height = ZBannerElement.HeightChart[this.heightXl(ZSizeVaried.Fit)];
+  }
 }
