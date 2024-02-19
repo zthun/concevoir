@@ -1,5 +1,6 @@
 import { ZBox, ZChartProgress, ZDataPointBuilder, ZGrid, ZH4, ZParagraph, useFashionTheme } from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
+import { square } from '@zthun/helpful-fn';
 import React, { useMemo } from 'react';
 
 export function ZChartPageProgress() {
@@ -15,7 +16,7 @@ export function ZChartPageProgress() {
     <ZBox
       className='ZChartPage-progress'
       fashion={component}
-      padding={ZSizeFixed.Medium}
+      padding={square(ZSizeFixed.Medium)}
       border={{ width: ZSizeFixed.Small }}
     >
       <ZH4>Progress Chart</ZH4>

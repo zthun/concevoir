@@ -1,6 +1,6 @@
 import { ZBoxBorderElement, ZBoxElement, ZBoxMarginElement, ZBoxPaddingElement } from '@zthun/fashion-boutique';
-import { ZSize, ZSizeFixed, ZSizeVaried, ZSizeVoid } from '@zthun/fashion-tailor';
-import { ZHorizontalAnchor, cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
+import { ZGapSize, ZSize, ZSizeFixed, ZSizeVaried, ZSizeVoid } from '@zthun/fashion-tailor';
+import { IZQuadrilateral, ZHorizontalAnchor, cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import { get } from 'lodash-es';
 import React, { MouseEventHandler, useEffect, useMemo, useRef } from 'react';
@@ -33,7 +33,7 @@ interface IZBorderProps extends Pick<IZComponentWidth<ZDimensionProps<ZSizeFixed
 export interface IZBox extends IZComponentHierarchy, IZComponentStyle, IZComponentWidth, IZComponentFashion {
   border?: IZBorderProps;
 
-  padding?: ZDimensionProps<ZSizeFixed | ZSizeVoid>;
+  padding?: Partial<IZQuadrilateral<ZGapSize>>;
   margin?: ZDimensionProps<ZSizeFixed | ZSizeVaried.Fit | ZSizeVoid>;
 
   justification?: ZHorizontalAnchor;
@@ -65,11 +65,6 @@ export function ZBox(props: IZBox) {
 
   const asDimension = (d: ZSize | object) => (typeof d === 'object' ? ZSizeVoid.None : d);
 
-  const pl = asDimension(firstDefined(ZSizeVoid.None, get(padding, 'left'), get(padding, 'x'), padding));
-  const pr = asDimension(firstDefined(ZSizeVoid.None, get(padding, 'right'), get(padding, 'x'), padding));
-  const pt = asDimension(firstDefined(ZSizeVoid.None, get(padding, 'top'), get(padding, 'y'), padding));
-  const pb = asDimension(firstDefined(ZSizeVoid.None, get(padding, 'bottom'), get(padding, 'y'), padding));
-
   const ml = asDimension(firstDefined(ZSizeVoid.None, get(margin, 'left'), get(margin, 'x'), margin));
   const mr = asDimension(firstDefined(ZSizeVoid.None, get(margin, 'right'), get(margin, 'x'), margin));
   const mt = asDimension(firstDefined(ZSizeVoid.None, get(margin, 'top'), get(margin, 'y'), margin));
@@ -91,6 +86,11 @@ export function ZBox(props: IZBox) {
   useFashionWebComponent(box, fashion);
   useWidthWebComponent(box, $width);
 
+  const pad = useRef<ZBoxPaddingElement>();
+  useEffect(() => {
+    pad.current!.padding = padding;
+  }, [pad.current, padding]);
+
   return (
     <z-box
       class={cssJoinDefined(className)}
@@ -101,9 +101,7 @@ export function ZBox(props: IZBox) {
     >
       <z-box-margin left={ml} right={mr} top={mt} bottom={mb}>
         <z-box-border left={bl} right={br} top={bt} bottom={bb} kind={bk}>
-          <z-box-padding left={pl} right={pr} top={pt} bottom={pb}>
-            {children}
-          </z-box-padding>
+          <z-box-padding ref={pad}>{children}</z-box-padding>
         </z-box-border>
       </z-box-margin>
     </z-box>

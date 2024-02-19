@@ -10,7 +10,7 @@ import {
   ZLineItem
 } from '@zthun/fashion-react';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
-import { cssJoinDefined } from '@zthun/helpful-fn';
+import { cssJoinDefined, square } from '@zthun/helpful-fn';
 import React from 'react';
 import { IZRoute } from '../route/route.mjs';
 import { ZFashionRouteAllComponents, ZFashionRouteBoutique } from '../routes.mjs';
@@ -23,7 +23,7 @@ export function ZBoutiquePage() {
     <ZBox
       className={cssJoinDefined('ZBoutiquePage-component')}
       key={route.path}
-      padding={ZSizeFixed.Medium}
+      padding={square(ZSizeFixed.Medium)}
       fashion={body}
       border={{ width: ZSizeFixed.ExtraSmall, style: 'solid' }}
       width={ZSizeVaried.Full}

@@ -11,7 +11,7 @@ import {
   ZParagraph
 } from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { setFirst, ZHorizontalAnchor, ZSideAnchor, ZVerticalAnchor } from '@zthun/helpful-fn';
+import { setFirst, square, ZHorizontalAnchor, ZSideAnchor, ZVerticalAnchor } from '@zthun/helpful-fn';
 import { identity, startCase } from 'lodash-es';
 import React, { useState } from 'react';
 import { ZFashionRouteDrawer } from '../../routes.mjs';
@@ -61,7 +61,7 @@ export function ZDrawerPage() {
           DrawerProps={{ anchor }}
           closeOnChange={[timestamp]}
         >
-          <ZBox padding={ZSizeFixed.Medium}>
+          <ZBox padding={square(ZSizeFixed.Medium)}>
             <ZH3>Drawer</ZH3>
             <ZParagraph>You can put whatever you want in a drawer.</ZParagraph>
             <ZButton label='Close Drawer' fashion={success} onClick={now} name='close' />
