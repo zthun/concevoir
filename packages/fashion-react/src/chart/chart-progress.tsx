@@ -49,7 +49,7 @@ export function ZChartProgress(props: IZChartProgress) {
   return (
     <div className={cssJoinDefined('ZChart-root', 'ZChart-progress')} data-name={name}>
       <ZLabeled label={_label}>
-        <ZGrid columns='1fr auto' gap={ZSizeFixed.Small} alignItems='center'>
+        <ZGrid columns='1fr auto' gap={ZSizeFixed.Small} align={{ items: 'center' }}>
           <LinearProgress
             className={cssJoinDefined('ZChart-point', classes.bar)}
             variant='determinate'

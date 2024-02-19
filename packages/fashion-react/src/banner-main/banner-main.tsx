@@ -20,7 +20,7 @@ export function ZBannerMain(props: IZBannerMain) {
     <ZStyled className='ZBannerMain-root'>
       <ZBanner className='ZBannerMain-header' fashion={primary}>
         <ZBox padding={rectangle(ZSizeFixed.ExtraSmall, ZSizeFixed.Medium)}>
-          <ZGrid columns='auto auto 1fr auto' alignItems='center' gap={ZSizeFixed.Small}>
+          <ZGrid columns='auto auto 1fr auto' align={{ items: 'center' }} gap={ZSizeFixed.Small}>
             <div className='ZBannerMain-avatar'>{avatar}</div>
             <div className='ZBannerMain-prefix'>{prefix}</div>
             <span />

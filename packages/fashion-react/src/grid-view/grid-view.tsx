@@ -109,7 +109,7 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
 
   return (
     <ZStack className={cssJoinDefined('ZGridView-root', className)} gap={ZSizeFixed.Medium}>
-      <ZGrid columns='1fr auto' alignItems='end' gap={ZSizeFixed.ExtraSmall}>
+      <ZGrid columns='1fr auto' align={{ items: 'end' }} gap={ZSizeFixed.ExtraSmall}>
         <ZTextInput
           className='ZGridView-search'
           label='Search'

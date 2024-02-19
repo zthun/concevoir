@@ -22,10 +22,8 @@ export interface IZGrid
     IZComponentHierarchy,
     IZComponentHeight<ZSizeVaried>,
     IZComponentWidth<ZSizeVaried> {
-  alignItems?: Property.AlignItems;
-  justifyItems?: Property.JustifyItems;
-  alignContent?: Property.AlignContent;
-  justifyContent?: Property.JustifyContent;
+  align?: IZGridTarget<Property.AlignItems, Property.AlignContent>;
+  justify?: IZGridTarget<Property.JustifyItems, Property.JustifyContent>;
   gap?: ZGapSize;
   columns?: Property.GridTemplateColumns;
   columnsLg?: Property.GridTemplateColumns;
@@ -46,7 +44,7 @@ function useColumnsGridWebComponent(
 
 function useAlignGridWebComponent(
   component: MutableRefObject<ZGridElement | null | undefined>,
-  align: IZGridTarget<Property.AlignItems, Property.AlignContent>
+  align: IZGridTarget<Property.AlignItems, Property.AlignContent> | undefined
 ) {
   useEffect(() => {
     component.current!.align = align;
@@ -55,7 +53,7 @@ function useAlignGridWebComponent(
 
 function useJustifyGridWebComponent(
   component: MutableRefObject<ZGridElement | null | undefined>,
-  justify: IZGridTarget<Property.AlignItems, Property.AlignContent>
+  justify: IZGridTarget<Property.AlignItems, Property.AlignContent> | undefined
 ) {
   useEffect(() => {
     component.current!.justify = justify;
@@ -91,7 +89,7 @@ function useRowsGridWebComponent(
  */
 export function ZGrid(props: IZGrid) {
   const { className, children } = props;
-  const { alignItems, justifyItems, alignContent, justifyContent, rows, gap } = props;
+  const { align, justify, rows, gap } = props;
   const { columns, columnsLg, columnsMd, columnsSm, columnsXs } = props;
   const { width, widthLg, widthMd, widthSm, widthXs } = props;
   const { height, heightLg, heightMd, heightSm, heightXs } = props;
@@ -111,22 +109,12 @@ export function ZGrid(props: IZGrid) {
     [width, widthLg, widthMd, widthSm, widthXs]
   );
 
-  const $align: IZGridTarget<Property.AlignContent, Property.AlignItems> = useMemo(
-    () => ({ items: alignItems, content: alignContent }),
-    [alignItems, alignContent]
-  );
-
-  const $justify: IZGridTarget<Property.JustifyContent, Property.JustifyItems> = useMemo(
-    () => ({ items: justifyItems, content: justifyContent }),
-    [justifyItems, justifyContent]
-  );
-
   useEffect(() => ZGridElement.register(), []);
 
   const grid = useRef<ZGridElement>();
   useColumnsGridWebComponent(grid, $columns);
-  useAlignGridWebComponent(grid, $align);
-  useJustifyGridWebComponent(grid, $justify);
+  useAlignGridWebComponent(grid, align);
+  useJustifyGridWebComponent(grid, justify);
   useHeightWebComponent(grid, $height);
   useWidthWebComponent(grid, $width);
   useGapGridWebComponent(grid, gap);

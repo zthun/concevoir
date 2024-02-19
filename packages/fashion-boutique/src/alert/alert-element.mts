@@ -1,9 +1,9 @@
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionPriority } from '@zthun/fashion-theme';
 import { registerCustomElement } from '@zthun/helpful-dom';
-import { ZFashionTailorElement } from 'src/theme/fashion-tailor-element.mjs';
 import { IZComponentAttributeChanged, IZComponentConnected } from '../element/component-lifecycle.mjs';
 import { WithFashion, WithFashionAttributes } from '../element/with-fashion.mjs';
+import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
 export class ZAlertElement
   extends WithFashion(HTMLElement)
