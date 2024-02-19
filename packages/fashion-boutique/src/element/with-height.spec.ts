@@ -1,10 +1,9 @@
 import { IZDeviceValueMap } from '@zthun/fashion-tailor';
 import { registerCustomElement } from '@zthun/helpful-dom';
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
-import { ZFashionElement } from './fashion-element.mjs';
 import { IZWithHeight, WithHeight } from './with-height.mjs';
 
-const WithHeightElement = WithHeight<number>(ZFashionElement);
+const WithHeightElement = WithHeight<number>(HTMLElement);
 
 describe('WithHeight', () => {
   const createTestTarget = () => new WithHeightElement();

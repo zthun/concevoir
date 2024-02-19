@@ -3,10 +3,9 @@ import { ZFashionBuilder, ZFashionPriority, ZFashionSeverity, hex } from '@zthun
 import { cssVariable, mutateAttribute, registerCustomElement } from '@zthun/helpful-dom';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
-import { ZFashionElement } from './fashion-element.mjs';
 import { WithFashion } from './with-fashion.mjs';
 
-const WithFashionElement = class extends WithFashion(ZFashionElement) {};
+const WithFashionElement = class extends WithFashion(HTMLElement) {};
 
 describe('WithFashion', () => {
   const name = ZFashionSeverity.Error;
@@ -47,7 +46,7 @@ describe('WithFashion', () => {
       // Arrange.
       const target = createTestTarget();
       target.fashion = null;
-      mutateAttribute(target, 'fashion', ZFashionPriority.Secondary);
+      mutateAttribute(target, 'data-fashion', ZFashionPriority.Secondary);
       const property = ZFashionThemeElement.property(ZFashionPriority.Secondary, 'contrast');
       const expected = cssVariable(property);
       // Act.
@@ -60,7 +59,7 @@ describe('WithFashion', () => {
       // Arrange.
       const target = createTestTarget();
       target.fashion = null;
-      mutateAttribute(target, 'fashion', null);
+      mutateAttribute(target, 'data-fashion', null);
       const property = ZFashionThemeElement.property(name, 'contrast');
       const expected = cssVariable(property);
       // Act.
