@@ -10,16 +10,19 @@ import {
 } from '@zthun/fashion-tailor';
 import { ZFashionIntrinsic } from '@zthun/fashion-theme';
 import { registerCustomElement } from '@zthun/helpful-dom';
-import { firstDefined } from '@zthun/helpful-fn';
-import { Property } from 'csstype';
+import { CSSInterpolation } from 'src/theme/css.mjs';
 import { ZFashionElement } from '../element/fashion-element.mjs';
-import { WithFashion, WithFashionObservedAttributes } from '../element/with-fashion.mjs';
+import { WithBorder } from '../element/with-border.mjs';
+import { WithFashion } from '../element/with-fashion.mjs';
+import { WithMargin } from '../element/with-margin.mjs';
+import { WithPadding } from '../element/with-padding.mjs';
+import { WithTailor } from '../element/with-tailor.mjs';
 import { WithWidth } from '../element/with-width.mjs';
-import { CSSInterpolation } from '../theme/css.mjs';
 
-export class ZBoxElement extends WithFashion(WithWidth<ZSize>(ZFashionElement)) {
+export class ZBoxElement extends WithBorder(
+  WithMargin(WithPadding(WithTailor(WithFashion(WithWidth<ZSize>(ZFashionElement)))))
+) {
   public static readonly register = registerCustomElement.bind(null, 'z-box', ZBoxElement);
-  public static readonly observeAttributes = Object.freeze(['justification', ...WithFashionObservedAttributes]);
   public static readonly device = new ZFashionDevice();
 
   public static readonly BoxSizeChart = Object.freeze({
@@ -30,19 +33,32 @@ export class ZBoxElement extends WithFashion(WithWidth<ZSize>(ZFashionElement)) 
 
   public readonly name = 'ZBox-root';
 
-  public justification(): Property.TextAlign {
-    return firstDefined('left', this.getAttribute('justification') as Property.TextAlign);
-  }
-
   public generateStaticCss = () => {
     return {
       'display': 'block',
       'backgroundColor': 'var(--box-background)',
       'color': 'var(--box-color)',
       'cursor': 'var(--box-cursor)',
-      'textAlign': `var(--box-justification)`,
 
-      'borderColor': 'var(--box-border-color)',
+      'border': 'var(--box-border-color)',
+      'borderBottomStyle': 'var(--box-border-style-bottom)',
+      'borderLeftStyle': 'var(--box-border-style-left)',
+      'borderRightStyle': 'var(--box-border-style-right)',
+      'borderTopStyle': 'var(--box-border-style-top)',
+      'borderBottomWidth': 'var(--box-border-width-bottom)',
+      'borderLeftWidth': 'var(--box-border-width-left)',
+      'borderRightWidth': 'var(--box-border-width-left)',
+      'borderTopWidth': 'var(--box-border-width-top)',
+
+      'paddingBottom': 'var(--box-padding-bottom)',
+      'paddingLeft': 'var(--box-padding-left)',
+      'paddingRight': 'var(--box-padding-right)',
+      'paddingTop': 'var(--box-padding-top)',
+
+      'marginBottom': 'var(--box-margin-bottom)',
+      'marginLeft': 'var(--box-margin-left)',
+      'marginRight': 'var(--box-margin-right)',
+      'marginTop': 'var(--box-margin-top)',
 
       'maxWidth': 'var(--box-width-xl)',
 
@@ -79,7 +95,6 @@ export class ZBoxElement extends WithFashion(WithWidth<ZSize>(ZFashionElement)) 
   refreshCssVariables = () => {
     const fallback = ZFashionIntrinsic.Inherit;
     this.style.setProperty('--box-cursor', 'default');
-    this.style.setProperty('--box-justification', this.justification());
 
     const main = this.color('main', fallback);
     this.style.setProperty('--box-background', main);
@@ -95,6 +110,26 @@ export class ZBoxElement extends WithFashion(WithWidth<ZSize>(ZFashionElement)) 
     this.style.setProperty('--box-border-color', border);
     this.style.setProperty('--box-focus-border-color', border);
     this.style.setProperty('--box-hover-border-color', border);
+
+    this.style.setProperty('--box-border-style-bottom', this.trimBottom());
+    this.style.setProperty('--box-border-style-left', this.trimLeft());
+    this.style.setProperty('--box-border-style-right', this.trimRight());
+    this.style.setProperty('--box-border-style-top', this.trimTop());
+
+    this.style.setProperty('--box-border-width-bottom', this.thickness(this.borderBottom()));
+    this.style.setProperty('--box-border-width-left', this.thickness(this.borderLeft()));
+    this.style.setProperty('--box-border-width-right', this.thickness(this.borderRight()));
+    this.style.setProperty('--box-border-width-top', this.thickness(this.borderTop()));
+
+    this.style.setProperty('--box-margin-bottom', this.gap(this.marginBottom()));
+    this.style.setProperty('--box-margin-left', this.gap(this.marginLeft()));
+    this.style.setProperty('--box-margin-right', this.gap(this.marginRight()));
+    this.style.setProperty('--box-margin-top', this.gap(this.marginTop()));
+
+    this.style.setProperty('--box-padding-bottom', this.gap(this.paddingBottom()));
+    this.style.setProperty('--box-padding-left', this.gap(this.paddingLeft()));
+    this.style.setProperty('--box-padding-right', this.gap(this.paddingRight()));
+    this.style.setProperty('--box-padding-top', this.gap(this.paddingTop()));
 
     this.style.setProperty('--box-width-xl', ZBoxElement.BoxSizeChart[this.widthXl(ZSizeVaried.Fit)]);
     this.style.setProperty('--box-width-lg', ZBoxElement.BoxSizeChart[this.widthLg(ZSizeVaried.Fit)]);
