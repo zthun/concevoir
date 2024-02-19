@@ -47,6 +47,6 @@ export class ZAlertComponentModel extends ZCircusComponentModel {
    *        The fashion for the alert.
    */
   public async fashion(): Promise<string> {
-    return this.driver.attribute('fashion', ZFashionPriority.Primary);
+    return this.driver.attribute('data-fashion', ZFashionPriority.Primary);
   }
 }
