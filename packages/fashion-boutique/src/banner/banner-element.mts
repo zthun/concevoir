@@ -24,8 +24,6 @@ export class ZBannerElement
 
   private _styled: HTMLDivElement;
 
-  public readonly name = 'ZBanner-root';
-
   public constructor() {
     super();
     this.attachShadow({ mode: 'open' });
