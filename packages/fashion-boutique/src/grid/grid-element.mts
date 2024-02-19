@@ -1,71 +1,121 @@
 import {
+  IZDeviceValueMap,
   ZFashionDevice,
   ZGapSize,
   ZSizeFixed,
   ZSizeVaried,
   ZSizeVoid,
-  createSizeChartVariedCss
+  createSizeChartVariedCss,
+  isDeviceValueMap
 } from '@zthun/fashion-tailor';
-import { registerCustomElement } from '@zthun/helpful-dom';
+import { mutateAttribute, registerCustomElement } from '@zthun/helpful-dom';
 import { firstDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
+import { IZComponentAttributeChanged, IZComponentConnected } from 'src/element/component-lifecycle.mjs';
+import { WithHeightAttributes } from '../element/with-height.mjs';
+import { WithPlane2d } from '../element/with-plane-2d.mjs';
+import { WithWidthAttributes } from '../element/with-width.mjs';
 import { css } from '../theme/css.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
-export class ZGridElement extends HTMLElement {
+export const ZGridAttributes = ['data-columns', 'data-gap', 'data-rows'];
+
+export interface IZGridTarget<TItems, TContent> {
+  items?: TItems;
+  content?: TContent;
+}
+
+export type ZGridColumns = Property.GridTemplateColumns | Partial<IZDeviceValueMap<Property.GridTemplateColumns>>;
+
+export class ZGridElement
+  extends WithPlane2d<ZSizeVaried, ZSizeVaried>(HTMLElement)
+  implements IZComponentConnected, IZComponentAttributeChanged
+{
   public static readonly register = registerCustomElement.bind(null, 'z-grid', ZGridElement);
+  public static readonly observedAttributes = [...WithWidthAttributes, ...WithHeightAttributes, ...ZGridAttributes];
   public static readonly Device = Object.freeze(new ZFashionDevice());
   public static readonly GridDimensionChart = Object.freeze(createSizeChartVariedCss());
 
-  private _dimension<T extends string>(size: ZSizeFixed, scope: 'columns' | 'width' | 'height', fallback: T): T {
-    const suffix = size === ZSizeFixed.ExtraLarge ? '' : `-${size}`;
-    return firstDefined(fallback, this.getAttribute(`${scope}${suffix}`) as T);
+  private _columns: ZGridColumns | undefined;
+
+  public get columns() {
+    return this._columns;
   }
 
-  public columns = this._dimension.bind(this, ZSizeFixed.ExtraLarge, 'columns', 'auto');
-  public columnsLg = this._dimension.bind(this, ZSizeFixed.Large, 'columns', this.columns());
-  public columnsMd = this._dimension.bind(this, ZSizeFixed.Medium, 'columns', this.columnsLg());
-  public columnsSm = this._dimension.bind(this, ZSizeFixed.Small, 'columns', this.columnsMd());
-  public columnsXs = this._dimension.bind(this, ZSizeFixed.ExtraSmall, 'columns', this.columnsSm());
-
-  public height = this._dimension.bind(this, ZSizeFixed.ExtraLarge, 'height', ZSizeVaried.Fit);
-  public heightLg = this._dimension.bind(this, ZSizeFixed.Large, 'height', this.height());
-  public heightMd = this._dimension.bind(this, ZSizeFixed.Medium, 'height', this.heightLg());
-  public heightSm = this._dimension.bind(this, ZSizeFixed.Small, 'height', this.heightMd());
-  public heightXs = this._dimension.bind(this, ZSizeFixed.ExtraSmall, 'height', this.heightSm());
-
-  public width = this._dimension.bind(this, ZSizeFixed.ExtraLarge, 'width', ZSizeVaried.Fit);
-  public widthLg = this._dimension.bind(this, ZSizeFixed.Large, 'width', this.width());
-  public widthMd = this._dimension.bind(this, ZSizeFixed.Medium, 'width', this.widthLg());
-  public widthSm = this._dimension.bind(this, ZSizeFixed.Small, 'width', this.widthMd());
-  public widthXs = this._dimension.bind(this, ZSizeFixed.ExtraSmall, 'width', this.widthSm());
-
-  public rows(): Property.GridTemplateRows {
-    return firstDefined('auto', this.getAttribute('rows'));
+  public set columns(val: ZGridColumns | undefined) {
+    this._columns = val;
+    mutateAttribute(this, 'data-columns', JSON.stringify(val));
   }
 
-  public gap(): ZGapSize {
-    return firstDefined(ZSizeVoid.None, this.getAttribute('gap') as ZGapSize);
+  public calculateColumns(device: ZSizeFixed): Property.GridTemplateColumns | null | undefined {
+    return isDeviceValueMap(this.columns) ? this.columns[device] : this.columns;
   }
 
-  public alignItems(): Property.AlignItems {
-    return firstDefined('stretch', this.getAttribute('align-items'));
+  public columnsXl() {
+    return this.calculateColumns(ZSizeFixed.ExtraLarge) || 'none';
   }
 
-  public justifyItems(): Property.JustifyItems {
-    return firstDefined('stretch', this.getAttribute('justify-items'));
+  public columnsLg() {
+    return this.calculateColumns(ZSizeFixed.Large) || this.columnsXl();
   }
 
-  public alignContent(): Property.AlignContent {
-    return firstDefined('normal', this.getAttribute('align-content'));
+  public columnsMd() {
+    return this.calculateColumns(ZSizeFixed.Medium) || this.columnsLg();
   }
 
-  public justifyContent(): Property.JustifyContent {
-    return firstDefined('normal', this.getAttribute('justify-content'));
+  public columnsSm() {
+    return this.calculateColumns(ZSizeFixed.Small) || this.columnsMd();
+  }
+
+  public columnsXs() {
+    return this.calculateColumns(ZSizeFixed.ExtraSmall) || this.columnsSm();
+  }
+
+  private _rows?: Property.GridTemplateRows;
+
+  public get rows() {
+    return this._rows;
+  }
+
+  public set rows(val: Property.GridTemplateRows | undefined) {
+    this._rows = val;
+    mutateAttribute(this, 'data-rows', `${val}`);
+  }
+
+  private _gap?: ZGapSize;
+
+  public get gap() {
+    return this._gap;
+  }
+
+  public set gap(val: ZGapSize | undefined) {
+    this._gap = val;
+    mutateAttribute(this, 'data-gap', val);
+  }
+
+  private _align?: IZGridTarget<Property.AlignItems, Property.AlignContent>;
+
+  public get align() {
+    return this._align;
+  }
+
+  public set align(val: IZGridTarget<Property.AlignItems, Property.AlignContent> | undefined) {
+    this._align = val;
+    mutateAttribute(this, 'data-align', JSON.stringify(val));
+  }
+
+  private _justify?: IZGridTarget<Property.JustifyItems, Property.JustifyContent>;
+
+  public get justify() {
+    return this._justify;
+  }
+
+  public set justify(val: IZGridTarget<Property.JustifyItems, Property.JustifyContent> | undefined) {
+    this._justify = val;
+    mutateAttribute(this, 'data-justify', JSON.stringify(val));
   }
 
   public connectedCallback() {
-    this._applyVariables();
     this.classList.add('ZGrid-root');
     this.classList.add(
       css({
@@ -109,29 +159,31 @@ export class ZGridElement extends HTMLElement {
         }
       })
     );
+
+    this.attributeChangedCallback();
   }
 
-  private _applyVariables() {
-    const gap = ZFashionTailorElement.gapProperty(this.gap());
-    this.style.setProperty('--grid-gap', `var(${gap})`);
-    this.style.setProperty('--grid-rows', `${this.rows()}`);
+  public attributeChangedCallback() {
+    const gap = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, this.gap));
+    this.style.setProperty('--grid-gap', gap);
+    this.style.setProperty('--grid-rows', `${this.rows}`);
 
-    this.style.setProperty('--grid-align-content', this.alignContent());
-    this.style.setProperty('--grid-align-items', this.alignItems());
-    this.style.setProperty('--grid-justify-content', this.justifyContent());
-    this.style.setProperty('--grid-justify-items', this.justifyItems());
+    this.style.setProperty('--grid-align-content', firstDefined('normal', this.align?.content));
+    this.style.setProperty('--grid-align-items', firstDefined('stretch', this.align?.items));
+    this.style.setProperty('--grid-justify-content', firstDefined('normal', this.justify?.content));
+    this.style.setProperty('--grid-justify-items', firstDefined('stretch', this.justify?.items));
 
-    this.style.setProperty('--grid-columns', this.columns());
+    this.style.setProperty('--grid-columns', this.columnsXl());
     this.style.setProperty('--grid-columns-lg', this.columnsLg());
     this.style.setProperty('--grid-columns-md', this.columnsMd());
     this.style.setProperty('--grid-columns-sm', this.columnsSm());
     this.style.setProperty('--grid-columns-xs', this.columnsXs());
 
-    const width = ZGridElement.GridDimensionChart[this.width()];
-    const widthLg = ZGridElement.GridDimensionChart[this.widthLg()];
-    const widthMd = ZGridElement.GridDimensionChart[this.widthMd()];
-    const widthSm = ZGridElement.GridDimensionChart[this.widthSm()];
-    const widthXs = ZGridElement.GridDimensionChart[this.widthXs()];
+    const width = ZGridElement.GridDimensionChart[this.widthXl(ZSizeVaried.Fit)];
+    const widthLg = ZGridElement.GridDimensionChart[this.widthLg(ZSizeVaried.Fit)];
+    const widthMd = ZGridElement.GridDimensionChart[this.widthMd(ZSizeVaried.Fit)];
+    const widthSm = ZGridElement.GridDimensionChart[this.widthSm(ZSizeVaried.Fit)];
+    const widthXs = ZGridElement.GridDimensionChart[this.widthXs(ZSizeVaried.Fit)];
 
     this.style.setProperty('--grid-width', width);
     this.style.setProperty('--grid-width-lg', widthLg);
@@ -139,11 +191,11 @@ export class ZGridElement extends HTMLElement {
     this.style.setProperty('--grid-width-sm', widthSm);
     this.style.setProperty('--grid-width-xs', widthXs);
 
-    const height = ZGridElement.GridDimensionChart[this.height()];
-    const heightLg = ZGridElement.GridDimensionChart[this.heightLg()];
-    const heightMd = ZGridElement.GridDimensionChart[this.heightMd()];
-    const heightSm = ZGridElement.GridDimensionChart[this.heightSm()];
-    const heightXs = ZGridElement.GridDimensionChart[this.heightXs()];
+    const height = ZGridElement.GridDimensionChart[this.heightXl(ZSizeVaried.Fit)];
+    const heightLg = ZGridElement.GridDimensionChart[this.heightLg(ZSizeVaried.Fit)];
+    const heightMd = ZGridElement.GridDimensionChart[this.heightMd(ZSizeVaried.Fit)];
+    const heightSm = ZGridElement.GridDimensionChart[this.heightSm(ZSizeVaried.Fit)];
+    const heightXs = ZGridElement.GridDimensionChart[this.heightXs(ZSizeVaried.Fit)];
 
     this.style.setProperty('--grid-height', height);
     this.style.setProperty('--grid-height-lg', heightLg);
