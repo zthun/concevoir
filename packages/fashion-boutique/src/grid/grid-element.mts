@@ -11,14 +11,14 @@ import {
 import { mutateAttribute, registerCustomElement } from '@zthun/helpful-dom';
 import { firstDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
+import { ZCssSerialize } from 'src/css/css-serialize.mjs';
 import { IZComponentAttributeChanged, IZComponentConnected } from '../element/component-lifecycle.mjs';
 import { WithHeightAttributes } from '../element/with-height.mjs';
 import { WithPlane2d } from '../element/with-plane-2d.mjs';
 import { WithWidthAttributes } from '../element/with-width.mjs';
-import { css } from '../theme/css.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
-export const ZGridAttributes = ['data-columns', 'data-gap', 'data-rows'];
+export const ZGridAttributes = ['data-align', 'data-columns', 'data-gap', 'data-justify', 'data-rows'];
 
 export interface IZGridTarget<TItems, TContent> {
   items?: TItems;
@@ -35,6 +35,64 @@ export class ZGridElement
   public static readonly observedAttributes = [...WithWidthAttributes, ...WithHeightAttributes, ...ZGridAttributes];
   public static readonly Device = Object.freeze(new ZFashionDevice());
   public static readonly GridDimensionChart = Object.freeze(createSizeChartVariedCss());
+
+  private _root: HTMLDivElement;
+
+  public constructor() {
+    super();
+
+    this.attachShadow({ mode: 'open' });
+
+    const css = new ZCssSerialize().serialize({
+      display: 'grid',
+
+      gap: 'var(--grid-gap)',
+      gridTemplateRows: 'var(--grid-rows)',
+
+      alignContent: 'var(--grid-align-content)',
+      alignItems: 'var(--grid-align-items)',
+
+      justifyItems: 'var(--grid-justify-items)',
+      justifyContent: 'var(--grid-justify-content)',
+
+      gridTemplateColumns: 'var(--grid-columns)',
+      height: 'var(--grid-height)',
+      width: 'var(--grid-width)',
+
+      [ZGridElement.Device.break(ZSizeFixed.Large)]: {
+        gridTemplateColumns: 'var(--grid-columns-lg)',
+        height: 'var(--grid-height-lg)',
+        width: 'var(--grid-width-lg)'
+      },
+
+      [ZGridElement.Device.break(ZSizeFixed.Medium)]: {
+        gridTemplateColumns: 'var(--grid-columns-md)',
+        height: 'var(--grid-height-md)',
+        width: 'var(--grid-width-md)'
+      },
+
+      [ZGridElement.Device.break(ZSizeFixed.Small)]: {
+        gridTemplateColumns: 'var(--grid-columns-sm)',
+        height: 'var(--grid-height-sm)',
+        width: 'var(--grid-width-sm)'
+      },
+
+      [ZGridElement.Device.break(ZSizeFixed.Small)]: {
+        gridTemplateColumns: 'var(--grid-columns-xs)',
+        height: 'var(--grid-height-xs)',
+        width: 'var(--grid-width-xs)'
+      }
+    });
+
+    const style = document.createElement('style');
+    style.textContent = `.ZGrid-container { ${css} }`;
+    this.shadowRoot?.appendChild(style);
+
+    this._root = document.createElement('div');
+    this._root.classList.add('ZGrid-container');
+    this._root.appendChild(document.createElement('slot'));
+    this.shadowRoot?.appendChild(this._root);
+  }
 
   private _columns: ZGridColumns | undefined;
 
@@ -117,67 +175,25 @@ export class ZGridElement
 
   public connectedCallback() {
     this.classList.add('ZGrid-root');
-    this.classList.add(
-      css({
-        display: 'grid',
-
-        gap: 'var(--grid-gap)',
-        gridTemplateRows: 'var(--grid-rows)',
-
-        alignContent: 'var(--grid-align-content)',
-        alignItems: 'var(--grid-align-items)',
-
-        justifyItems: 'var(--grid-justify-items)',
-        justifyContent: 'var(--grid-justify-content)',
-
-        gridTemplateColumns: 'var(--grid-columns)',
-        height: 'var(--grid-height)',
-        width: 'var(--grid-width)',
-
-        [ZGridElement.Device.break(ZSizeFixed.Large)]: {
-          gridTemplateColumns: 'var(--grid-columns-lg)',
-          height: 'var(--grid-height-lg)',
-          width: 'var(--grid-width-lg)'
-        },
-
-        [ZGridElement.Device.break(ZSizeFixed.Medium)]: {
-          gridTemplateColumns: 'var(--grid-columns-md)',
-          height: 'var(--grid-height-md)',
-          width: 'var(--grid-width-md)'
-        },
-
-        [ZGridElement.Device.break(ZSizeFixed.Small)]: {
-          gridTemplateColumns: 'var(--grid-columns-sm)',
-          height: 'var(--grid-height-sm)',
-          width: 'var(--grid-width-sm)'
-        },
-
-        [ZGridElement.Device.break(ZSizeFixed.Small)]: {
-          gridTemplateColumns: 'var(--grid-columns-xs)',
-          height: 'var(--grid-height-xs)',
-          width: 'var(--grid-width-xs)'
-        }
-      })
-    );
-
     this.attributeChangedCallback();
   }
 
   public attributeChangedCallback() {
+    const { style } = this._root;
     const gap = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, this.gap));
-    this.style.setProperty('--grid-gap', gap);
-    this.style.setProperty('--grid-rows', `${this.rows}`);
+    style.setProperty('--grid-gap', gap);
+    style.setProperty('--grid-rows', `${this.rows}`);
 
-    this.style.setProperty('--grid-align-content', firstDefined('normal', this.align?.content));
-    this.style.setProperty('--grid-align-items', firstDefined('stretch', this.align?.items));
-    this.style.setProperty('--grid-justify-content', firstDefined('normal', this.justify?.content));
-    this.style.setProperty('--grid-justify-items', firstDefined('stretch', this.justify?.items));
+    style.setProperty('--grid-align-content', firstDefined('normal', this.align?.content));
+    style.setProperty('--grid-align-items', firstDefined('stretch', this.align?.items));
+    style.setProperty('--grid-justify-content', firstDefined('normal', this.justify?.content));
+    style.setProperty('--grid-justify-items', firstDefined('stretch', this.justify?.items));
 
-    this.style.setProperty('--grid-columns', this.columnsXl());
-    this.style.setProperty('--grid-columns-lg', this.columnsLg());
-    this.style.setProperty('--grid-columns-md', this.columnsMd());
-    this.style.setProperty('--grid-columns-sm', this.columnsSm());
-    this.style.setProperty('--grid-columns-xs', this.columnsXs());
+    style.setProperty('--grid-columns', this.columnsXl());
+    style.setProperty('--grid-columns-lg', this.columnsLg());
+    style.setProperty('--grid-columns-md', this.columnsMd());
+    style.setProperty('--grid-columns-sm', this.columnsSm());
+    style.setProperty('--grid-columns-xs', this.columnsXs());
 
     const width = ZGridElement.GridDimensionChart[this.widthXl(ZSizeVaried.Fit)];
     const widthLg = ZGridElement.GridDimensionChart[this.widthLg(ZSizeVaried.Fit)];
@@ -185,11 +201,11 @@ export class ZGridElement
     const widthSm = ZGridElement.GridDimensionChart[this.widthSm(ZSizeVaried.Fit)];
     const widthXs = ZGridElement.GridDimensionChart[this.widthXs(ZSizeVaried.Fit)];
 
-    this.style.setProperty('--grid-width', width);
-    this.style.setProperty('--grid-width-lg', widthLg);
-    this.style.setProperty('--grid-width-md', widthMd);
-    this.style.setProperty('--grid-width-sm', widthSm);
-    this.style.setProperty('--grid-width-xs', widthXs);
+    style.setProperty('--grid-width', width);
+    style.setProperty('--grid-width-lg', widthLg);
+    style.setProperty('--grid-width-md', widthMd);
+    style.setProperty('--grid-width-sm', widthSm);
+    style.setProperty('--grid-width-xs', widthXs);
 
     const height = ZGridElement.GridDimensionChart[this.heightXl(ZSizeVaried.Fit)];
     const heightLg = ZGridElement.GridDimensionChart[this.heightLg(ZSizeVaried.Fit)];
@@ -197,10 +213,10 @@ export class ZGridElement
     const heightSm = ZGridElement.GridDimensionChart[this.heightSm(ZSizeVaried.Fit)];
     const heightXs = ZGridElement.GridDimensionChart[this.heightXs(ZSizeVaried.Fit)];
 
-    this.style.setProperty('--grid-height', height);
-    this.style.setProperty('--grid-height-lg', heightLg);
-    this.style.setProperty('--grid-height-md', heightMd);
-    this.style.setProperty('--grid-height-sm', heightSm);
-    this.style.setProperty('--grid-height-xs', heightXs);
+    style.setProperty('--grid-height', height);
+    style.setProperty('--grid-height-lg', heightLg);
+    style.setProperty('--grid-height-md', heightMd);
+    style.setProperty('--grid-height-sm', heightSm);
+    style.setProperty('--grid-height-xs', heightXs);
   }
 }
