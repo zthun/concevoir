@@ -8,17 +8,20 @@ import {
   createSizeChartVariedCss,
   isDeviceValueMap
 } from '@zthun/fashion-tailor';
-import { mutateAttribute, registerCustomElement } from '@zthun/helpful-dom';
+import {
+  IZComponentAttributeChanged,
+  IZComponentConnected,
+  IZComponentPropertyChanged,
+  ZProperty,
+  registerCustomElement
+} from '@zthun/helpful-dom';
 import { firstDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import { ZCssSerialize } from '../css/css-serialize.mjs';
-import { IZComponentAttributeChanged, IZComponentConnected } from '../element/component-lifecycle.mjs';
 import { WithHeightAttributes } from '../element/with-height.mjs';
 import { WithPlane2d } from '../element/with-plane-2d.mjs';
 import { WithWidthAttributes } from '../element/with-width.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
-
-export const ZGridAttributes = ['data-align', 'data-columns', 'data-gap', 'data-justify', 'data-rows'];
 
 export interface IZGridTarget<TItems, TContent> {
   items?: TItems;
@@ -29,10 +32,10 @@ export type ZGridColumns = Property.GridTemplateColumns | Partial<IZDeviceValueM
 
 export class ZGridElement
   extends WithPlane2d<ZSizeVaried, ZSizeVaried>(HTMLElement)
-  implements IZComponentConnected, IZComponentAttributeChanged
+  implements IZComponentConnected, IZComponentAttributeChanged, IZComponentPropertyChanged
 {
   public static readonly register = registerCustomElement.bind(null, 'z-grid', ZGridElement);
-  public static readonly observedAttributes = [...WithWidthAttributes, ...WithHeightAttributes, ...ZGridAttributes];
+  public static readonly observedAttributes = [...WithWidthAttributes, ...WithHeightAttributes];
   public static readonly Device = Object.freeze(new ZFashionDevice());
   public static readonly GridDimensionChart = Object.freeze(createSizeChartVariedCss());
 
@@ -94,16 +97,20 @@ export class ZGridElement
     this.shadowRoot?.appendChild(this._root);
   }
 
-  private _columns: ZGridColumns | undefined;
+  @ZProperty<ZGridColumns>({ initial: 'none' })
+  public columns?: ZGridColumns;
 
-  public get columns() {
-    return this._columns;
-  }
+  @ZProperty<Property.GridTemplateRows>({ initial: 'none' })
+  public rows?: Property.GridTemplateRows;
 
-  public set columns(val: ZGridColumns | undefined) {
-    this._columns = val;
-    mutateAttribute(this, 'data-columns', JSON.stringify(val));
-  }
+  @ZProperty<ZGapSize>({ initial: ZSizeVoid.None })
+  private gap?: ZGapSize;
+
+  @ZProperty<IZGridTarget<Property.AlignItems, Property.AlignContent>>()
+  private align?: IZGridTarget<Property.AlignItems, Property.AlignContent>;
+
+  @ZProperty<IZGridTarget<Property.JustifyItems, Property.JustifyContent>>()
+  private justify?: IZGridTarget<Property.JustifyItems, Property.JustifyContent>;
 
   public calculateColumns(device: ZSizeFixed): Property.GridTemplateColumns | null | undefined {
     return isDeviceValueMap(this.columns) ? this.columns[device] : this.columns;
@@ -129,56 +136,16 @@ export class ZGridElement
     return this.calculateColumns(ZSizeFixed.ExtraSmall) || this.columnsSm();
   }
 
-  private _rows?: Property.GridTemplateRows;
-
-  public get rows() {
-    return this._rows;
-  }
-
-  public set rows(val: Property.GridTemplateRows | undefined) {
-    this._rows = val;
-    mutateAttribute(this, 'data-rows', `${val}`);
-  }
-
-  private _gap?: ZGapSize;
-
-  public get gap() {
-    return this._gap;
-  }
-
-  public set gap(val: ZGapSize | undefined) {
-    this._gap = val;
-    mutateAttribute(this, 'data-gap', val);
-  }
-
-  private _align?: IZGridTarget<Property.AlignItems, Property.AlignContent>;
-
-  public get align() {
-    return this._align;
-  }
-
-  public set align(val: IZGridTarget<Property.AlignItems, Property.AlignContent> | undefined) {
-    this._align = val;
-    mutateAttribute(this, 'data-align', JSON.stringify(val));
-  }
-
-  private _justify?: IZGridTarget<Property.JustifyItems, Property.JustifyContent>;
-
-  public get justify() {
-    return this._justify;
-  }
-
-  public set justify(val: IZGridTarget<Property.JustifyItems, Property.JustifyContent> | undefined) {
-    this._justify = val;
-    mutateAttribute(this, 'data-justify', JSON.stringify(val));
-  }
-
   public connectedCallback() {
     this.classList.add('ZGrid-root');
     this.attributeChangedCallback();
   }
 
   public attributeChangedCallback() {
+    this.propertyChangedCallback();
+  }
+
+  public propertyChangedCallback() {
     const { style } = this._root;
     const gap = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, this.gap));
     style.setProperty('--grid-gap', gap);
