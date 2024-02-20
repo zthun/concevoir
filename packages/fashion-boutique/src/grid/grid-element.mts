@@ -11,7 +11,7 @@ import {
 import { mutateAttribute, registerCustomElement } from '@zthun/helpful-dom';
 import { firstDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
-import { ZCssSerialize } from 'src/css/css-serialize.mjs';
+import { ZCssSerialize } from '../css/css-serialize.mjs';
 import { IZComponentAttributeChanged, IZComponentConnected } from '../element/component-lifecycle.mjs';
 import { WithHeightAttributes } from '../element/with-height.mjs';
 import { WithPlane2d } from '../element/with-plane-2d.mjs';
