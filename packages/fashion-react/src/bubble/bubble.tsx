@@ -1,4 +1,10 @@
-import { ZSizeFixed, ZSizeVoid, createSizeChartFixedCss, createSizeChartFixedGeometric } from '@zthun/fashion-tailor';
+import {
+  ZSizeFixed,
+  ZSizeVoid,
+  castDeviceMap,
+  createSizeChartFixedCss,
+  createSizeChartFixedGeometric
+} from '@zthun/fashion-tailor';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import { useKeyboardActivate } from '@zthun/helpful-react';
 import React, { KeyboardEvent, MouseEvent } from 'react';
@@ -27,15 +33,9 @@ const BubbleSizeChart = {
 };
 
 const useBubbleStyles = createStyleHook(({ theme, tailor }, props: IZBubble) => {
-  const {
-    border = ZSizeVoid.None,
-    width = ZSizeFixed.Medium,
-    fashion = theme.component,
-    padding = ZSizeVoid.None,
-    onClick
-  } = props;
+  const { border = ZSizeVoid.None, width, fashion = theme.component, padding = ZSizeVoid.None, onClick } = props;
 
-  const size = BubbleSizeChart[width];
+  const size = BubbleSizeChart[castDeviceMap(width, ZSizeFixed.Medium).xl];
   const cursor = onClick ? 'pointer' : 'default';
 
   return {

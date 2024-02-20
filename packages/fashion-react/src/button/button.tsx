@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 
 import { IZFashion, transparent } from '@zthun/fashion-theme';
 
-import { createSizeChartVariedCss, ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
+import { castDeviceMap, createSizeChartVariedCss, ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import { noop } from 'lodash-es';
 import { IZComponentAvatar } from '../component/component-avatar.mjs';
@@ -37,7 +37,7 @@ export interface IZButton
 const ButtonSizeChart = createSizeChartVariedCss();
 
 export const useButtonStyles = createStyleHook(({ theme, tailor }, props: IZButton) => {
-  const { width = ZSizeVaried.Fit, fashion = theme.component, compact } = props;
+  const { width, fashion = theme.component, compact } = props;
 
   const text = fashion.contrast;
   const main = fashion.main;
@@ -53,7 +53,7 @@ export const useButtonStyles = createStyleHook(({ theme, tailor }, props: IZButt
   return {
     wrapper: {
       display: 'inline-flex',
-      width: ButtonSizeChart[width]
+      width: ButtonSizeChart[castDeviceMap(width, ZSizeVaried.Fit).xl]
     },
 
     button: {

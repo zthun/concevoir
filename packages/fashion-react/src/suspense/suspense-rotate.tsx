@@ -1,5 +1,6 @@
 import { CircularProgress } from '@mui/material';
 import {
+  castDeviceMap,
   createSizeChartFixedArithmetic,
   createSizeChartFixedCss,
   ZSizeFixed,
@@ -30,8 +31,8 @@ const useSuspenseRotateStyles = createStyleHook((_, props: IZSuspense) => {
  * @returns The jsx for the suspense.
  */
 export function ZSuspenseRotate(props: IZSuspense) {
-  const { className, loading = true, name, width = ZSizeFixed.ExtraSmall, fashion } = props;
-  const size = SuspenseRotateSizeChart[width];
+  const { className, loading = true, name, width, fashion } = props;
+  const size = SuspenseRotateSizeChart[castDeviceMap(width, ZSizeFixed.ExtraSmall).xl];
   const { classes } = useSuspenseRotateStyles(props);
   const _fashion = firstDefined('Inherit', fashion?.name);
 

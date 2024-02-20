@@ -1,5 +1,5 @@
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
-import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
+import { ZSizeFixed, ZSizeVaried, castDeviceMap } from '@zthun/fashion-tailor';
 import { rgb } from '@zthun/fashion-theme';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ReactNode } from 'react';
@@ -51,19 +51,9 @@ const useModalStyles = createStyleHook(({ theme, tailor }, props: IZModal) => {
 
 export function ZModal(props: IZModal) {
   const { transparent } = useFashionTheme();
-  const {
-    open,
-    children,
-    className,
-    name,
-    fashion = transparent,
-    width = ZSizeVaried.Fit,
-    renderHeader,
-    renderFooter,
-    onClose
-  } = props;
+  const { open, children, className, name, fashion = transparent, width, renderHeader, renderFooter, onClose } = props;
   const { classes } = useModalStyles(props);
-  const fullScreen = width === ZSizeVaried.Full;
+  const fullScreen = castDeviceMap(width, ZSizeVaried.Fit).xl === ZSizeVaried.Full;
 
   const _renderHeader = () => {
     if (!renderHeader) {
