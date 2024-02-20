@@ -9,6 +9,5 @@ export * from './element/with-padding.mjs';
 export * from './element/with-plane-2d.mjs';
 export * from './element/with-width.mjs';
 export * from './grid/grid-element.mjs';
-export * from './theme/css.mjs';
 export * from './theme/fashion-tailor-element.mjs';
 export * from './theme/fashion-theme-element.mjs';
