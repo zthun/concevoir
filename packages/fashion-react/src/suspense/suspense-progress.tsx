@@ -1,5 +1,6 @@
 import { LinearProgress } from '@mui/material';
 import {
+  castDeviceMap,
   createSizeChartFixedArithmetic,
   createSizeChartFixedCss,
   ZSizeFixed,
@@ -14,7 +15,7 @@ const SuspenseProgressSizeChart = createSizeChartFixedCss(createSizeChartFixedAr
 
 const useSuspenseProgressStyles = createStyleHook((_, props: IZSuspense<ZSizeVaried.Full, ZSizeFixed>) => {
   const { height = ZSizeFixed.ExtraSmall, fashion } = props;
-  const _height = SuspenseProgressSizeChart[height];
+  const _height = SuspenseProgressSizeChart[castDeviceMap(height, ZSizeFixed.ExtraSmall).xl];
   const color = firstDefined('inherit', fashion?.main);
 
   return {
