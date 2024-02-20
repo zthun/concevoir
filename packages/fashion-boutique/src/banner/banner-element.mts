@@ -6,8 +6,7 @@ import {
   createSizeChartVariedCss
 } from '@zthun/fashion-tailor';
 import { ZFashionPriority } from '@zthun/fashion-theme';
-import { registerCustomElement } from '@zthun/helpful-dom';
-import { IZComponentAttributeChanged, IZComponentConnected } from '../element/component-lifecycle.mjs';
+import { IZComponentAttributeChanged, IZComponentConnected, registerCustomElement } from '@zthun/helpful-dom';
 import { WithFashion, WithFashionAttributes } from '../element/with-fashion.mjs';
 import { WithHeight, WithHeightAttributes } from '../element/with-height.mjs';
 

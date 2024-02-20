@@ -9,9 +9,8 @@ import {
   createSizeChartVoidCss
 } from '@zthun/fashion-tailor';
 import { ZFashionIntrinsic } from '@zthun/fashion-theme';
-import { registerCustomElement } from '@zthun/helpful-dom';
+import { IZComponentAttributeChanged, IZComponentConnected, registerCustomElement } from '@zthun/helpful-dom';
 import { ZCssSerialize } from '../css/css-serialize.mjs';
-import { IZComponentAttributeChanged, IZComponentConnected } from '../element/component-lifecycle.mjs';
 import { WithBorder, WithBorderAttributes } from '../element/with-border.mjs';
 import { WithFashion, WithFashionAttributes } from '../element/with-fashion.mjs';
 import { WithMargin, WithMarginAttributes } from '../element/with-margin.mjs';
