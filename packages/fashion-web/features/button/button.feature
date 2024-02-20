@@ -49,11 +49,11 @@ Scenario: Should select the correct fashion
   And the fashion on the "iconButton" button should be "<fashion>"
   Examples:
     |fashion|
-    |Primary|
-    |Secondary|
-    |Success|
-    |Warning|
-    |Error|
-    |Info|
-    |Light|
-    |Dark|
+    |primary|
+    |secondary|
+    |success|
+    |warning|
+    |error|
+    |info|
+    |light|
+    |dark|

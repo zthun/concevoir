@@ -10,11 +10,11 @@ Scenario: Should select the correct fashion
   Then the typography fashion should be "<fashion>" on the typography page
   Examples:
     |fashion|
-    |Primary|
-    |Secondary|
-    |Success|
-    |Warning|
-    |Error|
-    |Info|
-    |Light|
-    |Dark|
+    |primary|
+    |secondary|
+    |success|
+    |warning|
+    |error|
+    |info|
+    |light|
+    |dark|

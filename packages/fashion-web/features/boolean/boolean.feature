@@ -56,14 +56,14 @@ Scenario: Should select the correct fashion
   And the fashion on the "switch" should be "<fashion>" on the boolean page
   Examples:
     |fashion|
-    |Primary|
-    |Secondary|
-    |Success|
-    |Warning|
-    |Error|
-    |Info|
-    |Light|
-    |Dark|
+    |primary|
+    |secondary|
+    |success|
+    |warning|
+    |error|
+    |info|
+    |light|
+    |dark|
 
 @BooleanPage-ValueToggle
 Scenario: The demo components should toggle to true when the true button is clicked.

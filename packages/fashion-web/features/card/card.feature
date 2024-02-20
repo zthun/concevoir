@@ -20,11 +20,11 @@ Scenario: Should select the correct fashion
   Then the fashion on the cards should be "<fashion>" on the card page
   Examples:
     |fashion|
-    |Primary|
-    |Secondary|
-    |Success|
-    |Warning|
-    |Error|
-    |Info|
-    |Light|
-    |Dark|
+    |primary|
+    |secondary|
+    |success|
+    |warning|
+    |error|
+    |info|
+    |light|
+    |dark|
