@@ -7,6 +7,11 @@ import { ZElementConstructor } from './element-constructor.mjs';
 
 export interface IZWithFashion {
   fashion: IZFashion | null | undefined;
+
+  color<TFashionName extends string = ZFashionName>(
+    scope: ZFashionScope | ZFashionScope[],
+    fallback: TFashionName
+  ): string;
 }
 
 export const WithFashionAttributes = Object.freeze(['data-fashion']);
