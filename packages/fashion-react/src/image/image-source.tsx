@@ -1,4 +1,5 @@
 import {
+  castDeviceMap,
   createSizeChartFixedCss,
   createSizeChartFixedGeometric,
   createSizeChartVariedCss,
@@ -30,41 +31,32 @@ const ImageSizeChart = {
 };
 
 const useImageSourceStyles = createStyleHook(({ device }, props: IZImageSource) => {
-  const {
-    height = ZSizeVaried.Fit,
-    heightLg = height,
-    heightMd = heightLg,
-    heightSm = heightMd,
-    heightXs = heightSm,
-    width = ZSizeVaried.Fit,
-    widthLg = width,
-    widthMd = widthLg,
-    widthSm = widthMd,
-    widthXs = widthSm
-  } = props;
+  const { width, height } = props;
+  const $width = castDeviceMap(width, ZSizeVaried.Fit);
+  const $height = castDeviceMap(height, ZSizeVaried.Fit);
 
   const dimensions = {
-    width: ImageSizeChart[width],
-    height: ImageSizeChart[height],
+    width: ImageSizeChart[$width.xl],
+    height: ImageSizeChart[$height.xl],
 
     [device.break(ZSizeFixed.Large)]: {
-      width: ImageSizeChart[widthLg],
-      height: ImageSizeChart[heightLg]
+      width: ImageSizeChart[$width.lg],
+      height: ImageSizeChart[$height.lg]
     },
 
     [device.break(ZSizeFixed.Medium)]: {
-      width: ImageSizeChart[widthMd],
-      height: ImageSizeChart[heightMd]
+      width: ImageSizeChart[$width.md],
+      height: ImageSizeChart[$height.md]
     },
 
     [device.break(ZSizeFixed.Small)]: {
-      width: ImageSizeChart[widthSm],
-      height: ImageSizeChart[heightSm]
+      width: ImageSizeChart[$width.sm],
+      height: ImageSizeChart[$height.sm]
     },
 
     [device.break(ZSizeFixed.ExtraSmall)]: {
-      width: ImageSizeChart[widthXs],
-      height: ImageSizeChart[heightXs]
+      width: ImageSizeChart[$width.xs],
+      height: ImageSizeChart[$height.xs]
     }
   };
 

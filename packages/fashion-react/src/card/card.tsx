@@ -2,6 +2,7 @@ import { Card, CardActions, CardContent, CardHeader } from '@mui/material';
 import {
   ZSizeFixed,
   ZSizeVaried,
+  castDeviceMap,
   createSizeChartFixedArithmetic,
   createSizeChartFixedCss,
   createSizeChartFixedGeometric,
@@ -51,42 +52,34 @@ const CardHeightChart = {
 };
 
 const useCardStyles = createStyleHook(({ theme, device }, props: IZCard) => {
-  const {
-    width = ZSizeVaried.Fit,
-    widthLg = width,
-    widthMd = widthLg,
-    widthSm = widthMd,
-    widthXs = widthSm,
-    height = ZSizeVaried.Fit,
-    heightLg = height,
-    heightMd = heightLg,
-    heightSm = heightMd,
-    heightXs = heightSm,
-    fashion = theme.surface
-  } = props;
+  const { surface } = theme;
+  const { width = ZSizeVaried.Fit, height = ZSizeVaried.Fit, fashion = surface } = props;
+
+  const $width = castDeviceMap(width, ZSizeVaried.Fit);
+  const $height = castDeviceMap(height, ZSizeVaried.Fit);
 
   const maxWidth = {
-    maxWidth: CardWidthChart[width],
-    minHeight: CardHeightChart[height],
+    maxWidth: CardWidthChart[$width.xl],
+    minHeight: CardHeightChart[$height.xl],
 
     [device.break(ZSizeFixed.Large)]: {
-      maxWidth: CardWidthChart[widthLg],
-      minHeight: CardHeightChart[heightLg]
+      maxWidth: CardWidthChart[$width.lg],
+      minHeight: CardHeightChart[$height.lg]
     },
 
     [device.break(ZSizeFixed.Medium)]: {
-      maxWidth: CardWidthChart[widthMd],
-      minHeight: CardHeightChart[heightMd]
+      maxWidth: CardWidthChart[$width.md],
+      minHeight: CardHeightChart[$height.md]
     },
 
     [device.break(ZSizeFixed.Small)]: {
-      maxWidth: CardWidthChart[widthSm],
-      minHeight: CardHeightChart[heightSm]
+      maxWidth: CardWidthChart[$width.sm],
+      minHeight: CardHeightChart[$height.sm]
     },
 
     [device.break(ZSizeFixed.ExtraSmall)]: {
-      maxWidth: CardWidthChart[widthXs],
-      minHeight: CardHeightChart[heightXs]
+      maxWidth: CardWidthChart[$width.xs],
+      minHeight: CardHeightChart[$height.xs]
     }
   };
 

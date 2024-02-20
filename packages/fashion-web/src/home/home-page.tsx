@@ -56,8 +56,7 @@ export function ZHomePage() {
         <ZBox className={classes.avatar} margin={{ bottom: ZSizeFixed.Medium }}>
           <ZIconFontAwesome
             name={ZFashionRouteTheme.avatar}
-            width={ZSizeFixed.ExtraLarge}
-            widthXs={ZSizeFixed.Large}
+            width={{ xl: ZSizeFixed.ExtraLarge, xs: ZSizeFixed.Large }}
             fashion={primary}
           />
         </ZBox>
@@ -93,8 +92,7 @@ export function ZHomePage() {
         <ZBox className={classes.avatar} margin={{ bottom: ZSizeFixed.Medium }}>
           <ZIconFontAwesome
             name={ZFashionRouteBoutique.avatar}
-            width={ZSizeFixed.ExtraLarge}
-            widthXs={ZSizeFixed.Large}
+            width={{ xl: ZSizeFixed.ExtraLarge, xs: ZSizeFixed.Large }}
             fashion={primary}
           />
         </ZBox>

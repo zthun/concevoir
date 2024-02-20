@@ -1,4 +1,9 @@
-import { ZSizeFixed, createSizeChartFixedCss, createSizeChartFixedGeometric } from '@zthun/fashion-tailor';
+import {
+  ZSizeFixed,
+  castDeviceMap,
+  createSizeChartFixedCss,
+  createSizeChartFixedGeometric
+} from '@zthun/fashion-tailor';
 import { firstDefined } from '@zthun/helpful-fn';
 import { KeyboardEvent, MouseEvent, ReactNode, useEffect } from 'react';
 import { IZComponentFashion } from '../component/component-fashion.mjs';
@@ -16,33 +21,27 @@ const IconSizeChart = createSizeChartFixedCss(createSizeChartFixedGeometric(2, 1
 
 export const useIconStyles = createStyleHook(({ theme, device }, props: IZIcon) => {
   const { primary } = theme;
-  const {
-    width = ZSizeFixed.Small,
-    widthLg = width,
-    widthMd = widthLg,
-    widthSm = widthMd,
-    widthXs = widthSm,
-    fashion,
-    onClick
-  } = props;
+  const { width } = props;
+  const $width = castDeviceMap(width, ZSizeFixed.Small);
+  const { fashion, onClick } = props;
 
   const fontSize = {
-    fontSize: `${IconSizeChart[width]} !important`,
+    fontSize: `${IconSizeChart[$width.xl]} !important`,
 
     [device.break(ZSizeFixed.Large)]: {
-      fontSize: `${IconSizeChart[widthLg]} !important`
+      fontSize: `${IconSizeChart[$width.lg]} !important`
     },
 
     [device.break(ZSizeFixed.Medium)]: {
-      fontSize: `${IconSizeChart[widthMd]} !important`
+      fontSize: `${IconSizeChart[$width.md]} !important`
     },
 
     [device.break(ZSizeFixed.Small)]: {
-      fontSize: `${IconSizeChart[widthSm]} !important`
+      fontSize: `${IconSizeChart[$width.sm]} !important`
     },
 
     [device.break(ZSizeFixed.ExtraSmall)]: {
-      fontSize: `${IconSizeChart[widthXs]} !important`
+      fontSize: `${IconSizeChart[$width.xs]} !important`
     }
   };
 

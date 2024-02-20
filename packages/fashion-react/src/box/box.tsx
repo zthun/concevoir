@@ -2,7 +2,7 @@ import { ZBoxElement } from '@zthun/fashion-boutique';
 import { ZGapSize, ZSizeVaried, ZThicknessSize } from '@zthun/fashion-tailor';
 import { IZQuadrilateral, cssJoinDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
-import React, { MouseEventHandler, useEffect, useMemo, useRef } from 'react';
+import React, { MouseEventHandler, useEffect, useRef } from 'react';
 import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
@@ -44,23 +44,19 @@ export interface IZBox extends IZComponentHierarchy, IZComponentStyle, IZCompone
  */
 export function ZBox(props: IZBox) {
   const { className, fashion, onClick } = props;
-  const { width, widthLg, widthMd, widthSm, widthXs } = props;
+  const { width } = props;
   const { margin } = props;
   const { border, trim } = props;
   const { padding } = props;
   const { children } = props;
   const tabIndex = onClick ? 0 : undefined;
-  const $width = useMemo(
-    () => ({ xl: width, lg: widthLg, md: widthMd, sm: widthSm, xs: widthXs }),
-    [width, widthLg, widthMd, widthSm, widthXs]
-  );
 
   useEffect(() => ZBoxElement.register(), []);
 
   const box = useRef<ZBoxElement>();
   useBorderWebComponent(box, border, trim);
   useFashionWebComponent(box, fashion);
-  useWidthWebComponent(box, $width);
+  useWidthWebComponent(box, width);
   useMarginWebComponent(box, margin);
   usePaddingWebComponent(box, padding);
 

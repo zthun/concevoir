@@ -2,7 +2,7 @@ import { IZGridTarget, ZGridColumns, ZGridElement } from '@zthun/fashion-boutiqu
 import { IZDeviceValueMap, ZGapSize, ZSizeVaried } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
-import React, { MutableRefObject, useEffect, useMemo, useRef } from 'react';
+import React, { MutableRefObject, useEffect, useRef } from 'react';
 import { IZComponentHeight } from '../component/component-height.mjs';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
@@ -87,18 +87,8 @@ export function ZGrid(props: IZGrid) {
   const { className, children } = props;
   const { align, justify, rows, gap } = props;
   const { columns } = props;
-  const { width, widthLg, widthMd, widthSm, widthXs } = props;
-  const { height, heightLg, heightMd, heightSm, heightXs } = props;
-
-  const $height: IZDeviceValueMap<ZSizeVaried | undefined> = useMemo(
-    () => ({ xl: height, lg: heightLg, md: heightMd, sm: heightSm, xs: heightXs }),
-    [height, heightLg, heightMd, heightSm, heightXs]
-  );
-
-  const $width: IZDeviceValueMap<ZSizeVaried | undefined> = useMemo(
-    () => ({ xl: width, lg: widthLg, md: widthMd, sm: widthSm, xs: widthXs }),
-    [width, widthLg, widthMd, widthSm, widthXs]
-  );
+  const { width } = props;
+  const { height } = props;
 
   useEffect(() => ZGridElement.register(), []);
 
@@ -106,8 +96,8 @@ export function ZGrid(props: IZGrid) {
   useColumnsGridWebComponent(grid, columns);
   useAlignGridWebComponent(grid, align);
   useJustifyGridWebComponent(grid, justify);
-  useHeightWebComponent(grid, $height);
-  useWidthWebComponent(grid, $width);
+  useHeightWebComponent(grid, height);
+  useWidthWebComponent(grid, width);
   useGapGridWebComponent(grid, gap);
   useRowsGridWebComponent(grid, rows);
 
