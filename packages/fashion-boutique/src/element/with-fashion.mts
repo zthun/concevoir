@@ -6,7 +6,7 @@ import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
 import { ZElementConstructor } from './element-constructor.mjs';
 
 export interface IZWithFashion {
-  fashion: IZFashion | null | undefined;
+  fashion?: IZFashion | null;
 
   color<TFashionName extends string = ZFashionName>(
     scope: ZFashionScope | ZFashionScope[],
@@ -18,7 +18,7 @@ export const WithFashionAttributes = Object.freeze(['data-fashion']);
 
 export function WithFashion<TBase extends ZElementConstructor>(Base: TBase) {
   return class ZElementWithFashion extends Base implements IZWithFashion {
-    _fashion: IZFashion | null | undefined = null;
+    _fashion?: IZFashion | null = null;
 
     public get fashion() {
       return this._fashion;
