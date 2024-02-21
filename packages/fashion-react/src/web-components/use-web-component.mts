@@ -5,11 +5,9 @@ import {
   IZWithMargin,
   IZWithPadding
 } from '@zthun/fashion-boutique';
-import { IZWithBorder } from '@zthun/fashion-boutique/src/element/with-border.mjs';
-import { ZDeviceValue, ZGapSize, ZSizeVaried, ZThicknessSize } from '@zthun/fashion-tailor';
+import { ZDeviceValue, ZGapSize, ZSizeVaried } from '@zthun/fashion-tailor';
 import { IZFashion } from '@zthun/fashion-theme';
 import { IZQuadrilateral } from '@zthun/helpful-fn';
-import { Property } from 'csstype';
 import { MutableRefObject, useEffect } from 'react';
 
 /*
@@ -25,17 +23,6 @@ export function useFashionWebComponent<TComponent extends IZWithFashion>(
   useEffect(() => {
     component.current!.fashion = fashion;
   }, [component.current, fashion]);
-}
-
-export function useBorderWebComponent<TComponent extends IZWithBorder>(
-  component: MutableRefObject<TComponent | null | undefined>,
-  border: Partial<IZQuadrilateral<ZThicknessSize>> | undefined,
-  trim: Partial<IZQuadrilateral<Property.BorderStyle>> | undefined
-) {
-  useEffect(() => {
-    component.current!.border = border;
-    component.current!.trim = trim;
-  }, [component.current, border, trim]);
 }
 
 export function useHeightWebComponent<THeight, TComponent extends IZComponentHeight<THeight>>(

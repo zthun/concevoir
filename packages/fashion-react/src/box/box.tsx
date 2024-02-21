@@ -2,12 +2,11 @@ import { IZComponentWidth, ZBoxElement } from '@zthun/fashion-boutique';
 import { ZGapSize, ZSizeVaried, ZThicknessSize } from '@zthun/fashion-tailor';
 import { IZQuadrilateral, cssJoinDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
-import React, { MouseEventHandler, useEffect, useRef } from 'react';
+import React, { MouseEventHandler, MutableRefObject, useEffect, useRef } from 'react';
 import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import {
-  useBorderWebComponent,
   useFashionWebComponent,
   useMarginWebComponent,
   usePaddingWebComponent,
@@ -20,6 +19,17 @@ declare global {
       ['z-box']: ZBoxElement & any;
     }
   }
+}
+
+export function useBoxWebComponent(
+  component: MutableRefObject<ZBoxElement | null | undefined>,
+  edge: Partial<IZQuadrilateral<ZThicknessSize>> | undefined,
+  trim: Partial<IZQuadrilateral<Property.BorderStyle>> | undefined
+) {
+  useEffect(() => {
+    component.current!.edge = edge;
+    component.current!.trim = trim;
+  }, [component.current, edge, trim]);
 }
 
 export interface IZBox extends IZComponentHierarchy, IZComponentStyle, IZComponentWidth, IZComponentFashion {
@@ -53,7 +63,7 @@ export function ZBox(props: IZBox) {
   useEffect(() => ZBoxElement.register(), []);
 
   const box = useRef<ZBoxElement>();
-  useBorderWebComponent(box, border, trim);
+  useBoxWebComponent(box, border, trim);
   useFashionWebComponent(box, fashion);
   useWidthWebComponent(box, width);
   useMarginWebComponent(box, margin);

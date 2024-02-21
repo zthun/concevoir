@@ -5,6 +5,8 @@ import {
   ZSize,
   ZSizeFixed,
   ZSizeVaried,
+  ZSizeVoid,
+  ZThicknessSize,
   createSizeChartFixedCss,
   createSizeChartFixedGeometric,
   createSizeChartVariedCss,
@@ -18,22 +20,22 @@ import {
   ZProperty,
   registerCustomElement
 } from '@zthun/helpful-dom';
+import { IZQuadrilateral, firstDefined } from '@zthun/helpful-fn';
+import { Property } from 'csstype';
 import { IZComponentWidth } from '../component/component-width.mjs';
 import { ZCssSerialize } from '../css/css-serialize.mjs';
-import { WithBorder, WithBorderAttributes } from '../element/with-border.mjs';
 import { WithFashion, WithFashionAttributes } from '../element/with-fashion.mjs';
 import { WithMargin, WithMarginAttributes } from '../element/with-margin.mjs';
 import { WithPadding, WithPaddingAttributes } from '../element/with-padding.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
 export class ZBoxElement
-  extends WithBorder(WithMargin(WithPadding(WithFashion(HTMLElement))))
+  extends WithMargin(WithPadding(WithFashion(HTMLElement)))
   implements IZComponentConnected, IZComponentAttributeChanged, IZComponentPropertyChanged, IZComponentWidth<ZSize>
 {
   public static readonly register = registerCustomElement.bind(null, 'z-box', ZBoxElement);
   public static readonly observedAttributes = [
     'tabIndex',
-    ...WithBorderAttributes,
     ...WithMarginAttributes,
     ...WithPaddingAttributes,
     ...WithFashionAttributes
@@ -47,6 +49,12 @@ export class ZBoxElement
 
   @ZProperty<ZDeviceValue<ZSize>>({ initial: ZSizeVaried.Fit })
   public width?: ZDeviceValue<ZSize>;
+
+  @ZProperty()
+  public edge?: Partial<IZQuadrilateral<ZThicknessSize>>;
+
+  @ZProperty()
+  public trim?: Partial<IZQuadrilateral<Property.BorderStyle>>;
 
   public constructor() {
     super();
@@ -148,15 +156,21 @@ export class ZBoxElement
     style.setProperty('--box-focus-border-color', border);
     style.setProperty('--box-hover-border-color', border);
 
-    style.setProperty('--box-border-style-bottom', this.trimBottom());
-    style.setProperty('--box-border-style-left', this.trimLeft());
-    style.setProperty('--box-border-style-right', this.trimRight());
-    style.setProperty('--box-border-style-top', this.trimTop());
+    const { trim } = this;
+    style.setProperty('--box-border-style-bottom', firstDefined('none', trim?.bottom));
+    style.setProperty('--box-border-style-left', firstDefined('none', trim?.left));
+    style.setProperty('--box-border-style-right', firstDefined('none', trim?.right));
+    style.setProperty('--box-border-style-top', firstDefined('none', trim?.top));
 
-    style.setProperty('--box-border-width-bottom', ZFashionTailorElement.thicknessVar(this.borderBottom()));
-    style.setProperty('--box-border-width-left', ZFashionTailorElement.thicknessVar(this.borderLeft()));
-    style.setProperty('--box-border-width-right', ZFashionTailorElement.thicknessVar(this.borderRight()));
-    style.setProperty('--box-border-width-top', ZFashionTailorElement.thicknessVar(this.borderTop()));
+    const { edge } = this;
+    const edgeBottom = ZFashionTailorElement.thicknessVar(firstDefined(ZSizeVoid.None, edge?.bottom));
+    const edgeLeft = ZFashionTailorElement.thicknessVar(firstDefined(ZSizeVoid.None, edge?.left));
+    const edgeRight = ZFashionTailorElement.thicknessVar(firstDefined(ZSizeVoid.None, edge?.right));
+    const edgeTop = ZFashionTailorElement.thicknessVar(firstDefined(ZSizeVoid.None, edge?.top));
+    style.setProperty('--box-border-width-bottom', edgeBottom);
+    style.setProperty('--box-border-width-left', edgeLeft);
+    style.setProperty('--box-border-width-right', edgeRight);
+    style.setProperty('--box-border-width-top', edgeTop);
 
     style.setProperty('--box-margin-bottom', ZFashionTailorElement.gapVar(this.marginBottom()));
     style.setProperty('--box-margin-left', ZFashionTailorElement.gapVar(this.marginLeft()));
