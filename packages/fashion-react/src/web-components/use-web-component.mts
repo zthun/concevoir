@@ -1,13 +1,6 @@
-import {
-  IZComponentHeight,
-  IZComponentWidth,
-  IZWithFashion,
-  IZWithMargin,
-  IZWithPadding
-} from '@zthun/fashion-boutique';
-import { ZDeviceValue, ZGapSize, ZSizeVaried } from '@zthun/fashion-tailor';
+import { IZComponentHeight, IZComponentWidth, IZWithFashion } from '@zthun/fashion-boutique';
+import { ZDeviceValue } from '@zthun/fashion-tailor';
 import { IZFashion } from '@zthun/fashion-theme';
-import { IZQuadrilateral } from '@zthun/helpful-fn';
 import { MutableRefObject, useEffect } from 'react';
 
 /*
@@ -32,24 +25,6 @@ export function useHeightWebComponent<THeight, TComponent extends IZComponentHei
   useEffect(() => {
     component.current!.height = height;
   }, [component.current, height]);
-}
-
-export function useMarginWebComponent<TComponent extends IZWithMargin>(
-  component: MutableRefObject<TComponent | null | undefined>,
-  margin?: Partial<IZQuadrilateral<ZGapSize | ZSizeVaried.Fit>>
-) {
-  useEffect(() => {
-    component.current!.margin = margin;
-  }, [component.current, margin]);
-}
-
-export function usePaddingWebComponent<TComponent extends IZWithPadding>(
-  component: MutableRefObject<TComponent | null | undefined>,
-  padding?: Partial<IZQuadrilateral<ZGapSize>>
-) {
-  useEffect(() => {
-    component.current!.padding = padding;
-  }, [component.current, padding]);
 }
 
 export function useWidthWebComponent<TWidth, TComponent extends IZComponentWidth<TWidth>>(

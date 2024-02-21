@@ -2,6 +2,7 @@ import {
   ZDeviceBounds,
   ZDeviceValue,
   ZFashionDevice,
+  ZGapSize,
   ZSize,
   ZSizeFixed,
   ZSizeVaried,
@@ -25,21 +26,14 @@ import { Property } from 'csstype';
 import { IZComponentWidth } from '../component/component-width.mjs';
 import { ZCssSerialize } from '../css/css-serialize.mjs';
 import { WithFashion, WithFashionAttributes } from '../element/with-fashion.mjs';
-import { WithMargin, WithMarginAttributes } from '../element/with-margin.mjs';
-import { WithPadding, WithPaddingAttributes } from '../element/with-padding.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
 export class ZBoxElement
-  extends WithMargin(WithPadding(WithFashion(HTMLElement)))
+  extends WithFashion(HTMLElement)
   implements IZComponentConnected, IZComponentAttributeChanged, IZComponentPropertyChanged, IZComponentWidth<ZSize>
 {
   public static readonly register = registerCustomElement.bind(null, 'z-box', ZBoxElement);
-  public static readonly observedAttributes = [
-    'tabIndex',
-    ...WithMarginAttributes,
-    ...WithPaddingAttributes,
-    ...WithFashionAttributes
-  ];
+  public static readonly observedAttributes = ['tabIndex', ...WithFashionAttributes];
 
   public static readonly BoxSizeChart = Object.freeze({
     ...createSizeChartFixedCss(createSizeChartFixedGeometric(1.4, 18), 'rem'),
@@ -55,6 +49,12 @@ export class ZBoxElement
 
   @ZProperty()
   public trim?: Partial<IZQuadrilateral<Property.BorderStyle>>;
+
+  @ZProperty()
+  public margin?: Partial<IZQuadrilateral<ZGapSize | ZSizeVaried.Fit>>;
+
+  @ZProperty()
+  public padding?: Partial<IZQuadrilateral<ZGapSize>>;
 
   public constructor() {
     super();
@@ -163,24 +163,35 @@ export class ZBoxElement
     style.setProperty('--box-border-style-top', firstDefined('none', trim?.top));
 
     const { edge } = this;
-    const edgeBottom = ZFashionTailorElement.thicknessVar(firstDefined(ZSizeVoid.None, edge?.bottom));
-    const edgeLeft = ZFashionTailorElement.thicknessVar(firstDefined(ZSizeVoid.None, edge?.left));
-    const edgeRight = ZFashionTailorElement.thicknessVar(firstDefined(ZSizeVoid.None, edge?.right));
-    const edgeTop = ZFashionTailorElement.thicknessVar(firstDefined(ZSizeVoid.None, edge?.top));
-    style.setProperty('--box-border-width-bottom', edgeBottom);
-    style.setProperty('--box-border-width-left', edgeLeft);
-    style.setProperty('--box-border-width-right', edgeRight);
-    style.setProperty('--box-border-width-top', edgeTop);
+    const eb = ZFashionTailorElement.thicknessVar(firstDefined(ZSizeVoid.None, edge?.bottom));
+    const el = ZFashionTailorElement.thicknessVar(firstDefined(ZSizeVoid.None, edge?.left));
+    const er = ZFashionTailorElement.thicknessVar(firstDefined(ZSizeVoid.None, edge?.right));
+    const et = ZFashionTailorElement.thicknessVar(firstDefined(ZSizeVoid.None, edge?.top));
+    style.setProperty('--box-border-width-bottom', eb);
+    style.setProperty('--box-border-width-left', el);
+    style.setProperty('--box-border-width-right', er);
+    style.setProperty('--box-border-width-top', et);
 
-    style.setProperty('--box-margin-bottom', ZFashionTailorElement.gapVar(this.marginBottom()));
-    style.setProperty('--box-margin-left', ZFashionTailorElement.gapVar(this.marginLeft()));
-    style.setProperty('--box-margin-right', ZFashionTailorElement.gapVar(this.marginRight()));
-    style.setProperty('--box-margin-top', ZFashionTailorElement.gapVar(this.marginTop()));
+    const { margin } = this;
+    const mb = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, margin?.bottom));
+    const ml = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, margin?.left));
+    const mr = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, margin?.right));
+    const mt = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, margin?.top));
+    style.setProperty('--box-margin-bottom', mb);
+    style.setProperty('--box-margin-left', ml);
+    style.setProperty('--box-margin-right', mr);
+    style.setProperty('--box-margin-top', mt);
 
-    style.setProperty('--box-padding-bottom', ZFashionTailorElement.gapVar(this.paddingBottom()));
-    style.setProperty('--box-padding-left', ZFashionTailorElement.gapVar(this.paddingLeft()));
-    style.setProperty('--box-padding-right', ZFashionTailorElement.gapVar(this.paddingRight()));
-    style.setProperty('--box-padding-top', ZFashionTailorElement.gapVar(this.paddingTop()));
+    const { padding } = this;
+    const pb = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, padding?.bottom));
+    const pl = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, padding?.left));
+    const pr = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, padding?.right));
+    const pt = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, padding?.top));
+
+    style.setProperty('--box-padding-bottom', pb);
+    style.setProperty('--box-padding-left', pl);
+    style.setProperty('--box-padding-right', pr);
+    style.setProperty('--box-padding-top', pt);
 
     const widthBounds = new ZDeviceBounds(this.width, ZSizeVaried.Fit);
     style.setProperty('--box-width-xl', ZBoxElement.BoxSizeChart[widthBounds.xl()]);

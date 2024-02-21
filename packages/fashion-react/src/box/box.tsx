@@ -6,12 +6,7 @@ import React, { MouseEventHandler, MutableRefObject, useEffect, useRef } from 'r
 import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
-import {
-  useFashionWebComponent,
-  useMarginWebComponent,
-  usePaddingWebComponent,
-  useWidthWebComponent
-} from '../web-components/use-web-component.mjs';
+import { useFashionWebComponent, useWidthWebComponent } from '../web-components/use-web-component.mjs';
 
 declare global {
   namespace React.JSX {
@@ -24,11 +19,15 @@ declare global {
 export function useBoxWebComponent(
   component: MutableRefObject<ZBoxElement | null | undefined>,
   edge: Partial<IZQuadrilateral<ZThicknessSize>> | undefined,
-  trim: Partial<IZQuadrilateral<Property.BorderStyle>> | undefined
+  trim: Partial<IZQuadrilateral<Property.BorderStyle>> | undefined,
+  margin: Partial<IZQuadrilateral<ZGapSize | ZSizeVaried.Fit>> | undefined,
+  padding: Partial<IZQuadrilateral<ZGapSize>> | undefined
 ) {
   useEffect(() => {
     component.current!.edge = edge;
     component.current!.trim = trim;
+    component.current!.margin = margin;
+    component.current!.padding = padding;
   }, [component.current, edge, trim]);
 }
 
@@ -63,11 +62,9 @@ export function ZBox(props: IZBox) {
   useEffect(() => ZBoxElement.register(), []);
 
   const box = useRef<ZBoxElement>();
-  useBoxWebComponent(box, border, trim);
+  useBoxWebComponent(box, border, trim, margin, padding);
   useFashionWebComponent(box, fashion);
   useWidthWebComponent(box, width);
-  useMarginWebComponent(box, margin);
-  usePaddingWebComponent(box, padding);
 
   return (
     <z-box class={cssJoinDefined(className)} tabIndex={tabIndex} onClick={onClick} ref={box}>
