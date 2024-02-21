@@ -18,7 +18,7 @@ import {
   ZProperty,
   registerCustomElement
 } from '@zthun/helpful-dom';
-import { IZComponentWidth } from 'src/component/component-width.mjs';
+import { IZComponentWidth } from '../component/component-width.mjs';
 import { ZCssSerialize } from '../css/css-serialize.mjs';
 import { WithBorder, WithBorderAttributes } from '../element/with-border.mjs';
 import { WithFashion, WithFashionAttributes } from '../element/with-fashion.mjs';
