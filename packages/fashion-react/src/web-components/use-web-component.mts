@@ -1,6 +1,12 @@
-import { IZWithFashion, IZWithHeight, IZWithMargin, IZWithPadding, IZWithWidth } from '@zthun/fashion-boutique';
+import {
+  IZComponentHeight,
+  IZComponentWidth,
+  IZWithFashion,
+  IZWithMargin,
+  IZWithPadding
+} from '@zthun/fashion-boutique';
 import { IZWithBorder } from '@zthun/fashion-boutique/src/element/with-border.mjs';
-import { IZDeviceValueMap, ZGapSize, ZSizeVaried, ZThicknessSize } from '@zthun/fashion-tailor';
+import { ZDeviceValue, ZGapSize, ZSizeVaried, ZThicknessSize } from '@zthun/fashion-tailor';
 import { IZFashion } from '@zthun/fashion-theme';
 import { IZQuadrilateral } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
@@ -32,12 +38,12 @@ export function useBorderWebComponent<TComponent extends IZWithBorder>(
   }, [component.current, border, trim]);
 }
 
-export function useHeightWebComponent<THeight, TComponent extends IZWithHeight<THeight>>(
+export function useHeightWebComponent<THeight, TComponent extends IZComponentHeight<THeight>>(
   component: MutableRefObject<TComponent | null | undefined>,
-  height?: THeight | IZDeviceValueMap<THeight>
+  height?: ZDeviceValue<THeight>
 ) {
   useEffect(() => {
-    component.current!.componentHeight = height;
+    component.current!.height = height;
   }, [component.current, height]);
 }
 
@@ -59,11 +65,11 @@ export function usePaddingWebComponent<TComponent extends IZWithPadding>(
   }, [component.current, padding]);
 }
 
-export function useWidthWebComponent<TWidth, TComponent extends IZWithWidth<TWidth>>(
+export function useWidthWebComponent<TWidth, TComponent extends IZComponentWidth<TWidth>>(
   component: MutableRefObject<TComponent | null | undefined>,
-  width?: TWidth | IZDeviceValueMap<TWidth>
+  width?: ZDeviceValue<TWidth>
 ) {
   useEffect(() => {
-    component.current!.componentWidth = width;
+    component.current!.width = width;
   }, [component.current, width]);
 }

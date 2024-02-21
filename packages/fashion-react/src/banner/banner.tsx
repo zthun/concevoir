@@ -1,9 +1,8 @@
-import { ZBannerElement } from '@zthun/fashion-boutique';
+import { IZComponentHeight, ZBannerElement } from '@zthun/fashion-boutique';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { useEffect, useRef } from 'react';
 import { IZComponentFashion } from '../component/component-fashion.mjs';
-import { IZComponentHeight } from '../component/component-height.mjs';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { useFashionWebComponent, useHeightWebComponent } from '../web-components/use-web-component.mjs';

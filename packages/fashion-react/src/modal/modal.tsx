@@ -1,4 +1,5 @@
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
+import { IZComponentWidth } from '@zthun/fashion-boutique';
 import { ZSizeFixed, ZSizeVaried, castDeviceMap } from '@zthun/fashion-tailor';
 import { rgb } from '@zthun/fashion-theme';
 import { cssJoinDefined } from '@zthun/helpful-fn';
@@ -7,7 +8,6 @@ import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentName } from '../component/component-name.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
-import { IZComponentWidth } from '../component/component-width.mjs';
 import { useFashionTheme } from '../theme/fashion';
 import { createStyleHook } from '../theme/styled';
 

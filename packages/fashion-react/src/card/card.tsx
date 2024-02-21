@@ -1,4 +1,5 @@
 import { Card, CardActions, CardContent, CardHeader } from '@mui/material';
+import { IZComponentHeight, IZComponentWidth } from '@zthun/fashion-boutique';
 import {
   ZSizeFixed,
   ZSizeVaried,
@@ -15,12 +16,10 @@ import React, { ReactNode } from 'react';
 import { IZComponentAvatar } from '../component/component-avatar.mjs';
 import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentHeading } from '../component/component-heading.mjs';
-import { IZComponentHeight } from '../component/component-height.mjs';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentLoading } from '../component/component-loading.mjs';
 import { IZComponentName } from '../component/component-name.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
-import { IZComponentWidth } from '../component/component-width.mjs';
 import { ZSuspenseProgress } from '../suspense/suspense-progress';
 import { useFashionTheme } from '../theme/fashion';
 import { createStyleHook } from '../theme/styled';

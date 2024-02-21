@@ -1,7 +1,8 @@
+import { IZComponentWidth } from '@zthun/fashion-boutique';
 import {
+  ZDeviceBounds,
   ZSizeFixed,
   ZSizeVoid,
-  castDeviceMap,
   createSizeChartFixedCss,
   createSizeChartFixedGeometric
 } from '@zthun/fashion-tailor';
@@ -12,7 +13,6 @@ import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentName } from '../component/component-name.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
-import { IZComponentWidth } from '../component/component-width.mjs';
 import { useFashionTheme } from '../theme/fashion';
 import { createStyleHook } from '../theme/styled';
 
@@ -35,7 +35,7 @@ const BubbleSizeChart = {
 const useBubbleStyles = createStyleHook(({ theme, tailor }, props: IZBubble) => {
   const { border = ZSizeVoid.None, width, fashion = theme.component, padding = ZSizeVoid.None, onClick } = props;
 
-  const size = BubbleSizeChart[castDeviceMap(width, ZSizeFixed.Medium).xl];
+  const size = BubbleSizeChart[new ZDeviceBounds(width, ZSizeFixed.Medium).toDeviceMap().xl];
   const cursor = onClick ? 'pointer' : 'default';
 
   return {

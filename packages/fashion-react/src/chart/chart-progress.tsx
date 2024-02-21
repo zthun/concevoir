@@ -1,4 +1,5 @@
 import { LinearProgress } from '@mui/material';
+import { IZComponentHeight } from '@zthun/fashion-boutique';
 import {
   ZSizeFixed,
   castDeviceMap,
@@ -7,7 +8,6 @@ import {
 } from '@zthun/fashion-tailor';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import React, { useMemo } from 'react';
-import { IZComponentHeight } from '../component/component-height.mjs';
 import { ZGrid } from '../grid/grid';
 import { ZLabeled } from '../label/labeled';
 import { createStyleHook } from '../theme/styled';

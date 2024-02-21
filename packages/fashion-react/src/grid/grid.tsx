@@ -1,12 +1,10 @@
-import { IZGridTarget, ZGridColumns, ZGridElement } from '@zthun/fashion-boutique';
-import { IZDeviceValueMap, ZGapSize, ZSizeVaried } from '@zthun/fashion-tailor';
+import { IZComponentHeight, IZComponentWidth, IZGridTarget, ZGridElement } from '@zthun/fashion-boutique';
+import { IZDeviceValueMap, ZDeviceValue, ZGapSize, ZSizeVaried } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import React, { MutableRefObject, useEffect, useRef } from 'react';
-import { IZComponentHeight } from '../component/component-height.mjs';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
-import { IZComponentWidth } from '../component/component-width.mjs';
 import { useHeightWebComponent, useWidthWebComponent } from '../web-components/use-web-component.mjs';
 
 declare global {
@@ -31,7 +29,7 @@ export interface IZGrid
 
 function useColumnsGridWebComponent(
   component: MutableRefObject<ZGridElement | null | undefined>,
-  columns: ZGridColumns | undefined
+  columns: ZDeviceValue<Property.GridTemplateColumns>
 ) {
   useEffect(() => {
     component.current!.columns = columns;

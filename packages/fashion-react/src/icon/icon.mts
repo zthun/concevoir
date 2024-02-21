@@ -1,3 +1,4 @@
+import { IZComponentWidth } from '@zthun/fashion-boutique';
 import {
   ZSizeFixed,
   castDeviceMap,
@@ -9,7 +10,6 @@ import { KeyboardEvent, MouseEvent, ReactNode, useEffect } from 'react';
 import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentName } from '../component/component-name.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
-import { IZComponentWidth } from '../component/component-width.mjs';
 import { createStyleHook } from '../theme/styled';
 
 export interface IZIcon extends IZComponentName, IZComponentStyle, IZComponentWidth<ZSizeFixed>, IZComponentFashion {

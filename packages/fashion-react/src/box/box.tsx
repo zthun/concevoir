@@ -1,4 +1,4 @@
-import { ZBoxElement } from '@zthun/fashion-boutique';
+import { IZComponentWidth, ZBoxElement } from '@zthun/fashion-boutique';
 import { ZGapSize, ZSizeVaried, ZThicknessSize } from '@zthun/fashion-tailor';
 import { IZQuadrilateral, cssJoinDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
@@ -6,7 +6,6 @@ import React, { MouseEventHandler, useEffect, useRef } from 'react';
 import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
-import { IZComponentWidth } from '../component/component-width.mjs';
 import {
   useBorderWebComponent,
   useFashionWebComponent,
