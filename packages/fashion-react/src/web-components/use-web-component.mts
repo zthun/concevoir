@@ -1,4 +1,4 @@
-import { IZComponentHeight, IZComponentWidth, IZWithFashion } from '@zthun/fashion-boutique';
+import { IZComponentFashion, IZComponentHeight, IZComponentWidth, IZWithFashion } from '@zthun/fashion-boutique';
 import { ZDeviceValue } from '@zthun/fashion-tailor';
 import { IZFashion } from '@zthun/fashion-theme';
 import { MutableRefObject, useEffect } from 'react';
@@ -9,7 +9,16 @@ import { MutableRefObject, useEffect } from 'react';
   attaching to properties.  See https://github.com/facebook/react/issues/11347.
 */
 
-export function useFashionWebComponent<TComponent extends IZWithFashion>(
+export function useFashionLegacyWebComponent<TComponent extends IZWithFashion>(
+  component: MutableRefObject<TComponent | null | undefined>,
+  fashion?: IZFashion
+) {
+  useEffect(() => {
+    component.current!.fashion = fashion;
+  }, [component.current, fashion]);
+}
+
+export function useFashionWebComponent<TComponent extends IZComponentFashion>(
   component: MutableRefObject<TComponent | null | undefined>,
   fashion?: IZFashion
 ) {

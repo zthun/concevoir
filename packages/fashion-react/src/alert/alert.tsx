@@ -30,7 +30,7 @@ export function ZAlert(props: IZAlert) {
   useEffect(() => ZAlertElement.register(), []);
 
   const alert = useRef<ZAlertElement>();
-  useFashionWebComponent<ZAlertElement>(alert, fashion);
+  useFashionWebComponent(alert, fashion);
 
   return (
     <z-alert class={cssJoinDefined(className)} data-name={name} ref={alert}>
