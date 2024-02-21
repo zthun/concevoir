@@ -14,6 +14,7 @@ import { ZFashionIntrinsic } from '@zthun/fashion-theme';
 import {
   IZComponentAttributeChanged,
   IZComponentConnected,
+  IZComponentPropertyChanged,
   ZProperty,
   registerCustomElement
 } from '@zthun/helpful-dom';
@@ -27,10 +28,9 @@ import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
 export class ZBoxElement
   extends WithBorder(WithMargin(WithPadding(WithFashion(HTMLElement))))
-  implements IZComponentConnected, IZComponentAttributeChanged, IZComponentWidth<ZSize>
+  implements IZComponentConnected, IZComponentAttributeChanged, IZComponentPropertyChanged, IZComponentWidth<ZSize>
 {
   public static readonly register = registerCustomElement.bind(null, 'z-box', ZBoxElement);
-  public static readonly device = new ZFashionDevice();
   public static readonly observedAttributes = [
     'tabIndex',
     ...WithBorderAttributes,
@@ -52,6 +52,8 @@ export class ZBoxElement
 
   public constructor() {
     super();
+
+    const device = new ZFashionDevice();
 
     const css = new ZCssSerialize().serialize({
       'display': 'block',
@@ -81,19 +83,19 @@ export class ZBoxElement
 
       'maxWidth': 'var(--box-width-xl)',
 
-      [ZBoxElement.device.break(ZSizeFixed.Large)]: {
+      [device.break(ZSizeFixed.Large)]: {
         maxWidth: 'var(--box-width-lg)'
       },
 
-      [ZBoxElement.device.break(ZSizeFixed.Medium)]: {
+      [device.break(ZSizeFixed.Medium)]: {
         maxWidth: 'var(--box-width-md)'
       },
 
-      [ZBoxElement.device.break(ZSizeFixed.Small)]: {
+      [device.break(ZSizeFixed.Small)]: {
         maxWidth: 'var(--box-width-sm)'
       },
 
-      [ZBoxElement.device.break(ZSizeFixed.ExtraSmall)]: {
+      [device.break(ZSizeFixed.ExtraSmall)]: {
         maxWidth: 'var(--box-width-xs)'
       },
 
@@ -120,10 +122,14 @@ export class ZBoxElement
 
   public connectedCallback() {
     this.classList.add('ZBox-root');
-    this.attributeChangedCallback();
+    this.propertyChangedCallback();
   }
 
   public attributeChangedCallback(): void {
+    this.propertyChangedCallback();
+  }
+
+  public propertyChangedCallback(): void {
     const fallback = ZFashionIntrinsic.Inherit;
     const { style } = this;
 
