@@ -45,8 +45,6 @@ export class ZBoxElement
     ...createSizeChartVoidCss()
   });
 
-  private _style: HTMLStyleElement;
-
   @ZProperty<ZDeviceValue<ZSize>>({ initial: ZSizeVaried.Fit })
   public width?: ZDeviceValue<ZSize>;
 
@@ -112,11 +110,11 @@ export class ZBoxElement
       }
     });
 
-    this._style = document.createElement('style');
-    this._style.textContent = `:host { ${css} }`;
+    const style = document.createElement('style');
+    style.textContent = `:host { ${css} }`;
 
     const shadow = this.attachShadow({ mode: 'open' });
-    shadow.appendChild(this._style);
+    shadow.appendChild(style);
     shadow.appendChild(document.createElement('slot'));
   }
 
