@@ -52,7 +52,7 @@ export function ZListPage() {
           event to a truthy or falsy value respectively.
         </ZParagraph>
 
-        <ZBox fashion={body} border={square(ZSizeFixed.ExtraSmall)} trim={square('solid')}>
+        <ZBox fashion={body} edge={square(ZSizeFixed.ExtraSmall)} trim={square('solid')}>
           <ZList>
             <ZListGroup heading='Without Click Support' />
             <ZListLineItem prefix={prefix} name='avatar-and-text' heading='Prefix and Text (No Click)' />

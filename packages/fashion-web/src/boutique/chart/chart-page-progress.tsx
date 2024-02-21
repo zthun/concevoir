@@ -17,7 +17,7 @@ export function ZChartPageProgress() {
       className='ZChartPage-progress'
       fashion={component}
       padding={square(ZSizeFixed.Medium)}
-      border={square(ZSizeFixed.Small)}
+      edge={square(ZSizeFixed.Small)}
     >
       <ZH4>Progress Chart</ZH4>
       <ZParagraph>

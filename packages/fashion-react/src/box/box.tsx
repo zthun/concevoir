@@ -33,7 +33,7 @@ export function useBoxWebComponent(
 }
 
 export interface IZBox extends IZComponentHierarchy, IZComponentStyle, IZComponentWidth, IZComponentFashion {
-  border?: Partial<IZQuadrilateral<ZThicknessSize>>;
+  edge?: Partial<IZQuadrilateral<ZThicknessSize>>;
   trim?: Partial<IZQuadrilateral<Property.BorderStyle>>;
 
   padding?: Partial<IZQuadrilateral<ZGapSize>>;
@@ -55,7 +55,7 @@ export function ZBox(props: IZBox) {
   const { className, fashion, onClick } = props;
   const { width } = props;
   const { margin } = props;
-  const { border, trim } = props;
+  const { edge: border, trim } = props;
   const { padding } = props;
   const { children } = props;
   const tabIndex = onClick ? 0 : undefined;
