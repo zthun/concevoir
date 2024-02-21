@@ -16,8 +16,8 @@ import {
   cssVariable,
   registerCustomElement
 } from '@zthun/helpful-dom';
-import { IZComponentHeight } from 'src/component/component-height.mjs';
-import { ZCssSerialize } from 'src/css/css-serialize.mjs';
+import { IZComponentHeight } from '../component/component-height.mjs';
+import { ZCssSerialize } from '../css/css-serialize.mjs';
 import { WithFashion, WithFashionAttributes } from '../element/with-fashion.mjs';
 
 export class ZBannerElement
