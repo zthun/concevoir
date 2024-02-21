@@ -47,7 +47,7 @@ export class ZDeviceBounds<T> {
 /**
  * Casts the data to a device value map.
  *
- * This is a shortcut to the following code block
+ * This is a shortcut to new ZDeviceBounds(data, fallback).toDeviceMap();
  *
  * @param data -
  *        The data to cast.
@@ -57,6 +57,5 @@ export class ZDeviceBounds<T> {
  *        as a fully populated {@link IZDeviceValueMap} if data is null or undefined;
  */
 export function castDeviceMap<TData>(data: ZDeviceValue<TData>, fallback: TData): Required<IZDeviceValueMap<TData>> {
-  const bounds = new ZDeviceBounds(data, fallback);
-  return bounds.toDeviceMap();
+  return new ZDeviceBounds(data, fallback).toDeviceMap();
 }
