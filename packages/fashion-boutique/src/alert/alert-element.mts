@@ -1,20 +1,22 @@
 import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { ZFashionPriority } from '@zthun/fashion-theme';
-import { IZComponentAttributeChanged, IZComponentConnected, registerCustomElement } from '@zthun/helpful-dom';
-import { WithFashion, WithFashionAttributes } from '../element/with-fashion.mjs';
+import { IZFashion, ZFashionPriority } from '@zthun/fashion-theme';
+import { IZComponentConnected, IZComponentPropertyChanged, ZProperty, registerCustomElement } from '@zthun/helpful-dom';
+import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
 export class ZAlertElement
-  extends WithFashion(HTMLElement)
-  implements IZComponentConnected, IZComponentAttributeChanged
+  extends HTMLElement
+  implements IZComponentConnected, IZComponentPropertyChanged, IZComponentFashion
 {
   public static readonly register = registerCustomElement.bind(null, 'z-alert', ZAlertElement);
-  public static readonly observedAttributes = Object.freeze([...WithFashionAttributes]);
 
   private _root: HTMLDivElement;
   private _avatar: HTMLDivElement;
   private _heading: HTMLDivElement;
   private _message: HTMLDivElement;
+
+  @ZProperty<IZFashion | string>({ attribute: ZFashionDetail.nameOf })
+  public fashion?: IZFashion | string;
 
   public constructor() {
     super();
@@ -66,18 +68,19 @@ export class ZAlertElement
 
   public connectedCallback(): void {
     this.classList.add('ZAlert-root');
-    this.attributeChangedCallback();
+    this.propertyChangedCallback();
   }
 
-  public attributeChangedCallback(): void {
+  public propertyChangedCallback(): void {
     const fallback = ZFashionPriority.Primary;
+    const detail = new ZFashionDetail(this.fashion);
 
-    this._root.style.color = this.color('contrast', fallback);
-    this._root.style.backgroundColor = this.color('main', fallback);
-    this._root.style.borderColor = this.color(['border', 'main'], fallback);
+    this._root.style.color = detail.color('contrast', fallback);
+    this._root.style.backgroundColor = detail.color('main', fallback);
+    this._root.style.borderColor = detail.color(['border', 'main'], fallback);
 
     const thickness = ZFashionTailorElement.thicknessVar(ZSizeFixed.ExtraSmall);
-    const shadow = this.color(['border', 'main'], fallback);
+    const shadow = detail.color(['border', 'main'], fallback);
     this._root.style.boxShadow = `0 0 0 ${thickness} ${shadow}`;
   }
 }
