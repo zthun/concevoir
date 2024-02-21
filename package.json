@@ -17,8 +17,9 @@
     "test": "vitest run --coverage",
     "e2e": "cucumber-js",
     "lint": "lint-janitor",
+    "check": "lerna run check",
     "build": "lerna run build",
-    "make": "yarn clean && yarn lint && yarn test && yarn build",
+    "make": "yarn clean && yarn lint && yarn check && yarn test && yarn build",
     "postinstall": "husky install"
   },
   "devDependencies": {

@@ -11,6 +11,5 @@
       "@zthun/fashion-circus": ["fashion-circus/src/index"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.mts"],
-  "exclude": ["**/node_modules/**"]
+  "include": ["**/*.ts", "**/*.tsx", "**/*.mts"]
 }

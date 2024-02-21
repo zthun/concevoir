@@ -17,6 +17,7 @@
     "directory": "packages/fashion-circus"
   },
   "scripts": {
+    "check": "tsc --noEmit",
     "build": "vite build"
   },
   "author": "Anthony Bonta",

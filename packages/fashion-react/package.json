@@ -17,6 +17,7 @@
     "directory": "packages/fashion-boutique"
   },
   "scripts": {
+    "check": "tsc --noEmit",
     "build": "vite build"
   },
   "author": "Anthony Bonta",

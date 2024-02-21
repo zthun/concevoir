@@ -9,6 +9,7 @@
     "directory": "packages/fashion-web"
   },
   "scripts": {
+    "check": "tsc --noEmit",
     "build": "vite build",
     "start": "vite"
   },
