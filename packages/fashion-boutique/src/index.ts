@@ -5,7 +5,6 @@ export * from './component/component-height.mjs';
 export * from './component/component-width.mjs';
 export * from './element/element-constructor.mjs';
 export * from './element/with-fashion.mjs';
-export * from './element/with-height.mjs';
 export * from './element/with-margin.mjs';
 export * from './element/with-padding.mjs';
 export * from './grid/grid-element.mjs';
