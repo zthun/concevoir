@@ -24,7 +24,7 @@ import { useFashionState } from '../common/use-fashion-state.mjs';
 export function ZAlertPage() {
   const [heading, setHeading] = useState(true);
   const [avatar, setAvatar] = useState(true);
-  const [fashion, fashionName, setFashion] = useFashionState();
+  const [, fashionName, setFashion] = useFashionState();
 
   return (
     <ZCard
@@ -48,9 +48,9 @@ export function ZAlertPage() {
 
       <ZBox margin={{ bottom: ZSizeFixed.Medium }}>
         <ZAlert
-          fashion={fashion}
+          fashion={fashionName}
           message='Alerts are great ways to notify users that something has happened.'
-          heading={heading && <ZH4 compact>{startCase(fashion?.name || 'alert')}</ZH4>}
+          heading={heading && <ZH4 compact>{startCase(fashionName || 'alert')}</ZH4>}
           name='alert'
           avatar={avatar && <ZIconFontAwesome name='hat-cowboy-side' width={ZSizeFixed.Small} />}
         />
