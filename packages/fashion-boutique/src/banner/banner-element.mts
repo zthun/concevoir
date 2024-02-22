@@ -42,39 +42,41 @@ export class ZBannerElement
     const device = new ZFashionDevice();
 
     const css = new ZCssSerialize().serialize({
-      background: `${cssVariable('--banner-background')}`,
-      boxSizing: 'border-box',
-      color: `${cssVariable('--banner-color')}`,
-      display: 'block',
-      left: 'auto',
-      position: 'sticky',
-      right: 0,
-      top: 0,
-      width: '100%',
-      zIndex: 1100,
+      ':host': {
+        background: `${cssVariable('--banner-background')}`,
+        boxSizing: 'border-box',
+        color: `${cssVariable('--banner-color')}`,
+        display: 'block',
+        left: 'auto',
+        position: 'sticky',
+        right: 0,
+        top: 0,
+        width: '100%',
+        zIndex: 1100,
 
-      height: `${cssVariable('--banner-height-xl')}`,
+        height: `${cssVariable('--banner-height-xl')}`,
 
-      [device.break(ZSizeFixed.Large)]: {
-        height: `${cssVariable('--banner-height-lg')}`
-      },
+        [device.break(ZSizeFixed.Large)]: {
+          height: `${cssVariable('--banner-height-lg')}`
+        },
 
-      [device.break(ZSizeFixed.Medium)]: {
-        height: `${cssVariable('--banner-height-md')}`
-      },
+        [device.break(ZSizeFixed.Medium)]: {
+          height: `${cssVariable('--banner-height-md')}`
+        },
 
-      [device.break(ZSizeFixed.Small)]: {
-        height: `${cssVariable('--banner-height-sm')}`
-      },
+        [device.break(ZSizeFixed.Small)]: {
+          height: `${cssVariable('--banner-height-sm')}`
+        },
 
-      [device.break(ZSizeFixed.ExtraSmall)]: {
-        height: `${cssVariable('--banner-height-xs')}`
+        [device.break(ZSizeFixed.ExtraSmall)]: {
+          height: `${cssVariable('--banner-height-xs')}`
+        }
       }
     });
 
     const shadow = this.attachShadow({ mode: 'open' });
     const style = document.createElement('style');
-    style.textContent = `:host { ${css} }`;
+    style.textContent = css;
     shadow.appendChild(style);
     shadow.appendChild(document.createElement('slot'));
   }
