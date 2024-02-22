@@ -1,9 +1,8 @@
-import { IZComponentWidth, ZBoxElement } from '@zthun/fashion-boutique';
+import { IZComponentFashion, IZComponentWidth, ZBoxElement } from '@zthun/fashion-boutique';
 import { ZGapSize, ZSizeVaried, ZThicknessSize } from '@zthun/fashion-tailor';
 import { IZQuadrilateral, cssJoinDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import React, { MouseEventHandler, MutableRefObject, useEffect, useRef } from 'react';
-import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { useFashionWebComponent, useWidthWebComponent } from '../web-components/use-web-component.mjs';
@@ -28,7 +27,7 @@ export function useBoxWebComponent(
     component.current!.trim = trim;
     component.current!.margin = margin;
     component.current!.padding = padding;
-  }, [component.current, edge, trim]);
+  }, [component.current, edge, trim, margin, padding]);
 }
 
 export interface IZBox extends IZComponentHierarchy, IZComponentStyle, IZComponentWidth, IZComponentFashion {
