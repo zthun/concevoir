@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 
 import { IZFashion, transparent } from '@zthun/fashion-theme';
 
-import { IZComponentWidth } from '@zthun/fashion-boutique';
+import { IZComponentLoading, IZComponentWidth } from '@zthun/fashion-boutique';
 import { ZSizeFixed, ZSizeVaried, castDeviceMap, createSizeChartVariedCss } from '@zthun/fashion-tailor';
 import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import { noop } from 'lodash-es';
@@ -11,7 +11,6 @@ import { IZComponentAvatar } from '../component/component-avatar.mjs';
 import { IZComponentDisabled } from '../component/component-disabled.mjs';
 import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentLabel } from '../component/component-label.mjs';
-import { IZComponentLoading } from '../component/component-loading.mjs';
 import { IZComponentName } from '../component/component-name.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { ZSuspenseRotate } from '../suspense/suspense-rotate';
