@@ -7,25 +7,23 @@ import {
   createSizeChartFixedCss,
   createSizeChartVariedCss
 } from '@zthun/fashion-tailor';
-import { ZFashionPriority } from '@zthun/fashion-theme';
+import { IZFashion, ZFashionPriority } from '@zthun/fashion-theme';
 import {
-  IZComponentAttributeChanged,
   IZComponentConnected,
   IZComponentPropertyChanged,
   ZProperty,
   cssVariable,
   registerCustomElement
 } from '@zthun/helpful-dom';
+import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 import { IZComponentHeight } from '../component/component-height.mjs';
 import { ZCssSerialize } from '../css/css-serialize.mjs';
-import { WithFashion, WithFashionAttributes } from '../element/with-fashion.mjs';
 
 export class ZBannerElement
-  extends WithFashion(HTMLElement)
-  implements IZComponentConnected, IZComponentAttributeChanged, IZComponentHeight, IZComponentPropertyChanged
+  extends HTMLElement
+  implements IZComponentConnected, IZComponentHeight, IZComponentPropertyChanged, IZComponentFashion
 {
   public static readonly register = registerCustomElement.bind(null, 'z-banner', ZBannerElement);
-  public static readonly observedAttributes = [...WithFashionAttributes];
 
   public static readonly HeightChart = Object.freeze({
     ...createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), 'rem'),
@@ -34,6 +32,9 @@ export class ZBannerElement
 
   @ZProperty<ZSizeFixed | ZSizeVaried.Fit>({ initial: ZSizeVaried.Fit })
   public height?: ZSizeFixed | ZSizeVaried.Fit;
+
+  @ZProperty<IZFashion | string>({ attribute: ZFashionDetail.nameOf })
+  public fashion?: IZFashion | string;
 
   public constructor() {
     super();
@@ -83,15 +84,12 @@ export class ZBannerElement
     this.propertyChangedCallback();
   }
 
-  public attributeChangedCallback(): void {
-    this.propertyChangedCallback();
-  }
-
   public propertyChangedCallback(): void {
+    const detail = new ZFashionDetail(this.fashion);
     const { style } = this;
 
-    style.setProperty('--banner-background', this.color('main', ZFashionPriority.Primary));
-    style.setProperty('--banner-color', this.color('contrast', ZFashionPriority.Primary));
+    style.setProperty('--banner-background', detail.color('main', ZFashionPriority.Primary));
+    style.setProperty('--banner-color', detail.color('contrast', ZFashionPriority.Primary));
 
     const heightBounds = new ZDeviceBounds(this.height, ZSizeVaried.Fit);
     const heightXl = ZBannerElement.HeightChart[heightBounds.xl()];

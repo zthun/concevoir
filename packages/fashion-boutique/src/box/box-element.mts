@@ -26,7 +26,6 @@ import { Property } from 'csstype';
 import { ZFashionDetail } from '../component/component-fashion.mjs';
 import { IZComponentWidth } from '../component/component-width.mjs';
 import { ZCssSerialize } from '../css/css-serialize.mjs';
-import { WithFashionAttributes } from '../element/with-fashion.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
 export class ZBoxElement
@@ -34,7 +33,7 @@ export class ZBoxElement
   implements IZComponentConnected, IZComponentAttributeChanged, IZComponentPropertyChanged, IZComponentWidth<ZSize>
 {
   public static readonly register = registerCustomElement.bind(null, 'z-box', ZBoxElement);
-  public static readonly observedAttributes = ['tabIndex', ...WithFashionAttributes];
+  public static readonly observedAttributes = ['tabIndex'];
 
   public static readonly BoxSizeChart = Object.freeze({
     ...createSizeChartFixedCss(createSizeChartFixedGeometric(1.4, 18), 'rem'),

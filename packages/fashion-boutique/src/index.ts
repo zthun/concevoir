@@ -4,8 +4,6 @@ export * from './box/box-element.mjs';
 export * from './component/component-fashion.mjs';
 export * from './component/component-height.mjs';
 export * from './component/component-width.mjs';
-export * from './element/element-constructor.mjs';
-export * from './element/with-fashion.mjs';
 export * from './grid/grid-element.mjs';
 export * from './theme/fashion-tailor-element.mjs';
 export * from './theme/fashion-theme-element.mjs';

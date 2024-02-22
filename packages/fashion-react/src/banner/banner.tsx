@@ -5,7 +5,7 @@ import React, { useEffect, useRef } from 'react';
 import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
-import { useFashionLegacyWebComponent, useHeightWebComponent } from '../web-components/use-web-component.mjs';
+import { useFashionWebComponent, useHeightWebComponent } from '../web-components/use-web-component.mjs';
 
 declare global {
   namespace React.JSX {
@@ -27,7 +27,7 @@ export function ZBanner(props: IZBanner) {
   useEffect(() => ZBannerElement.register(), []);
 
   const banner = useRef<ZBannerElement>();
-  useFashionLegacyWebComponent(banner, fashion);
+  useFashionWebComponent(banner, fashion);
   useHeightWebComponent(banner, height);
 
   return (
