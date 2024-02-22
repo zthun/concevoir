@@ -133,7 +133,7 @@ export class ZBoxElement
 
   public connectedCallback() {
     this.classList.add('ZBox-root');
-    this.propertyChangedCallback();
+    this.attributeChangedCallback();
   }
 
   public attributeChangedCallback(): void {
