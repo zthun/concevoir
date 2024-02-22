@@ -1,8 +1,7 @@
-import { ZAlertElement } from '@zthun/fashion-boutique';
+import { IZComponentFashion, ZAlertElement } from '@zthun/fashion-boutique';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ReactNode, useEffect, useRef } from 'react';
 import { IZComponentAvatar } from '../component/component-avatar.mjs';
-import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentHeading } from '../component/component-heading.mjs';
 import { IZComponentName } from '../component/component-name.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
