@@ -1,7 +1,14 @@
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { IZFashion, ZFashionPriority } from '@zthun/fashion-theme';
-import { IZComponentConnected, IZComponentPropertyChanged, ZProperty, registerCustomElement } from '@zthun/helpful-dom';
+import {
+  IZComponentConnected,
+  IZComponentPropertyChanged,
+  ZProperty,
+  cssVariable,
+  registerCustomElement
+} from '@zthun/helpful-dom';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
+import { ZCssSerialize } from '../css/css-serialize.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
 export class ZAlertElement
@@ -10,60 +17,74 @@ export class ZAlertElement
 {
   public static readonly register = registerCustomElement.bind(null, 'z-alert', ZAlertElement);
 
-  private _root: HTMLDivElement;
-  private _avatar: HTMLDivElement;
-  private _heading: HTMLDivElement;
-  private _message: HTMLDivElement;
-
   @ZProperty<IZFashion | string>({ attribute: ZFashionDetail.nameOf })
   public fashion?: IZFashion | string;
 
   public constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
 
-    this._root = document.createElement('div');
-    this._root.style.alignItems = 'center';
-    this._root.style.borderStyle = 'double';
-    this._root.style.display = 'grid';
-    this._root.style.gridTemplateColumns = 'auto auto 1fr';
-    this._root.style.borderRadius = ZFashionTailorElement.thicknessVar(ZSizeFixed.ExtraLarge);
-    this._root.style.borderWidth = ZFashionTailorElement.thicknessVar(ZSizeFixed.Medium);
-    this._root.style.paddingBottom = ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall);
-    this._root.style.paddingTop = ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall);
-    this._root.style.paddingLeft = ZFashionTailorElement.gapVar(ZSizeFixed.Small);
-    this._root.style.paddingRight = ZFashionTailorElement.gapVar(ZSizeFixed.Small);
+    const css = new ZCssSerialize().serialize({
+      ':host': {
+        alignItems: 'center',
+        background: `${cssVariable('--alert-background')}`,
+        borderColor: `${cssVariable('--alert-border-color')}`,
+        borderRadius: ZFashionTailorElement.thicknessVar(ZSizeFixed.ExtraLarge),
+        borderStyle: 'double',
+        borderWidth: ZFashionTailorElement.thicknessVar(ZSizeFixed.Medium),
+        boxShadow: `${cssVariable('--alert-box-shadow')}`,
+        color: `${cssVariable('--alert-color')}`,
+        display: 'grid',
+        gridTemplateColumns: 'auto auto 1fr',
+        gridTemplateAreas: `
+          "avatar heading ."
+          "avatar message ."
+        `,
+        paddingBottom: ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall),
+        paddingLeft: ZFashionTailorElement.gapVar(ZSizeFixed.Small),
+        paddingRight: ZFashionTailorElement.gapVar(ZSizeFixed.Small),
+        paddingTop: ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall)
+      },
 
-    this._root.style.gridTemplateAreas = `
-      "avatar heading ."
-      "avatar message ."
-    `;
+      ':host .ZAlert-avatar': {
+        gridArea: 'avatar',
+        marginRight: ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall)
+      },
 
-    this._avatar = document.createElement('div');
-    this._avatar.style.gridArea = 'avatar';
-    this._avatar.style.marginRight = ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall);
-    const avatar = document.createElement('slot');
-    avatar.name = 'avatar';
-    this._avatar.appendChild(avatar);
+      ':host .ZAlert-heading': {
+        gridArea: 'heading',
+        marginBottom: `calc(${ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall)} / 2)`
+      },
 
-    this._heading = document.createElement('div');
-    this._heading.style.gridArea = 'heading';
-    this._heading.style.marginBottom = `calc(${ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall)} / 2)`;
-    const heading = document.createElement('slot');
-    heading.name = 'heading';
-    this._heading.appendChild(heading);
+      ':host .ZAlert-message': {
+        gridArea: 'message'
+      }
+    });
 
-    this._message = document.createElement('div');
-    this._message.style.gridArea = 'message';
-    const message = document.createElement('slot');
-    message.name = 'message';
-    this._message.appendChild(message);
+    const avatar = document.createElement('div');
+    avatar.classList.add('ZAlert-avatar');
+    const $avatar = document.createElement('slot');
+    $avatar.name = 'avatar';
+    avatar.appendChild($avatar);
 
-    this._root.appendChild(this._avatar);
-    this._root.appendChild(this._heading);
-    this._root.appendChild(this._message);
+    const heading = document.createElement('div');
+    heading.classList.add('ZAlert-heading');
+    const $heading = document.createElement('slot');
+    $heading.name = 'heading';
+    heading.appendChild($heading);
 
-    this.shadowRoot?.appendChild(this._root);
+    const message = document.createElement('div');
+    message.classList.add('ZAlert-message');
+    const $message = document.createElement('slot');
+    $message.name = 'message';
+    message.appendChild($message);
+
+    const style = document.createElement('style');
+    style.textContent = css;
+    const shadow = this.attachShadow({ mode: 'open' });
+    shadow.appendChild(style);
+    shadow.appendChild(avatar);
+    shadow.appendChild(heading);
+    shadow.appendChild(message);
   }
 
   public connectedCallback(): void {
@@ -72,15 +93,16 @@ export class ZAlertElement
   }
 
   public propertyChangedCallback(): void {
+    const { style } = this;
     const fallback = ZFashionPriority.Primary;
     const detail = new ZFashionDetail(this.fashion);
 
-    this._root.style.color = detail.color('contrast', fallback);
-    this._root.style.backgroundColor = detail.color('main', fallback);
-    this._root.style.borderColor = detail.color(['border', 'main'], fallback);
+    style.setProperty('--alert-color', detail.color('contrast', fallback));
+    style.setProperty('--alert-background', detail.color('main', fallback));
+    style.setProperty('--alert-border-color', detail.color(['border', 'main'], fallback));
 
     const thickness = ZFashionTailorElement.thicknessVar(ZSizeFixed.ExtraSmall);
     const shadow = detail.color(['border', 'main'], fallback);
-    this._root.style.boxShadow = `0 0 0 ${thickness} ${shadow}`;
+    style.setProperty('--alert-box-shadow', `0 0 0 ${thickness} ${shadow}`);
   }
 }
