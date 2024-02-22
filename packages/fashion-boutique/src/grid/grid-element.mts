@@ -8,13 +8,7 @@ import {
   ZSizeVoid,
   createSizeChartVariedCss
 } from '@zthun/fashion-tailor';
-import {
-  IZComponentAttributeChanged,
-  IZComponentConnected,
-  IZComponentPropertyChanged,
-  ZProperty,
-  registerCustomElement
-} from '@zthun/helpful-dom';
+import { IZComponentConnected, IZComponentPropertyChanged, ZProperty, registerCustomElement } from '@zthun/helpful-dom';
 import { firstDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import { IZComponentHeight } from '../component/component-height.mjs';
@@ -29,7 +23,6 @@ export interface IZGridTarget<TItems, TContent> {
 
 export interface IZGridElement
   extends IZComponentConnected,
-    IZComponentAttributeChanged,
     IZComponentPropertyChanged,
     IZComponentWidth<ZSizeVaried>,
     IZComponentHeight<ZSizeVaried> {}
@@ -39,62 +32,58 @@ export class ZGridElement extends HTMLElement implements IZGridElement {
   public static readonly Device = Object.freeze(new ZFashionDevice());
   public static readonly GridDimensionChart = Object.freeze(createSizeChartVariedCss());
 
-  private _root: HTMLDivElement;
-
   public constructor() {
     super();
 
-    this.attachShadow({ mode: 'open' });
+    const shadow = this.attachShadow({ mode: 'open' });
 
     const css = new ZCssSerialize().serialize({
-      display: 'grid',
+      ':host': {
+        display: 'grid',
 
-      gap: 'var(--grid-gap)',
-      gridTemplateRows: 'var(--grid-rows)',
+        gap: 'var(--grid-gap)',
+        gridTemplateRows: 'var(--grid-rows)',
 
-      alignContent: 'var(--grid-align-content)',
-      alignItems: 'var(--grid-align-items)',
+        alignContent: 'var(--grid-align-content)',
+        alignItems: 'var(--grid-align-items)',
 
-      justifyItems: 'var(--grid-justify-items)',
-      justifyContent: 'var(--grid-justify-content)',
+        justifyItems: 'var(--grid-justify-items)',
+        justifyContent: 'var(--grid-justify-content)',
 
-      gridTemplateColumns: 'var(--grid-columns)',
-      height: 'var(--grid-height)',
-      width: 'var(--grid-width)',
+        gridTemplateColumns: 'var(--grid-columns)',
+        height: 'var(--grid-height)',
+        width: 'var(--grid-width)',
 
-      [ZGridElement.Device.break(ZSizeFixed.Large)]: {
-        gridTemplateColumns: 'var(--grid-columns-lg)',
-        height: 'var(--grid-height-lg)',
-        width: 'var(--grid-width-lg)'
-      },
+        [ZGridElement.Device.break(ZSizeFixed.Large)]: {
+          gridTemplateColumns: 'var(--grid-columns-lg)',
+          height: 'var(--grid-height-lg)',
+          width: 'var(--grid-width-lg)'
+        },
 
-      [ZGridElement.Device.break(ZSizeFixed.Medium)]: {
-        gridTemplateColumns: 'var(--grid-columns-md)',
-        height: 'var(--grid-height-md)',
-        width: 'var(--grid-width-md)'
-      },
+        [ZGridElement.Device.break(ZSizeFixed.Medium)]: {
+          gridTemplateColumns: 'var(--grid-columns-md)',
+          height: 'var(--grid-height-md)',
+          width: 'var(--grid-width-md)'
+        },
 
-      [ZGridElement.Device.break(ZSizeFixed.Small)]: {
-        gridTemplateColumns: 'var(--grid-columns-sm)',
-        height: 'var(--grid-height-sm)',
-        width: 'var(--grid-width-sm)'
-      },
+        [ZGridElement.Device.break(ZSizeFixed.Small)]: {
+          gridTemplateColumns: 'var(--grid-columns-sm)',
+          height: 'var(--grid-height-sm)',
+          width: 'var(--grid-width-sm)'
+        },
 
-      [ZGridElement.Device.break(ZSizeFixed.Small)]: {
-        gridTemplateColumns: 'var(--grid-columns-xs)',
-        height: 'var(--grid-height-xs)',
-        width: 'var(--grid-width-xs)'
+        [ZGridElement.Device.break(ZSizeFixed.Small)]: {
+          gridTemplateColumns: 'var(--grid-columns-xs)',
+          height: 'var(--grid-height-xs)',
+          width: 'var(--grid-width-xs)'
+        }
       }
     });
 
     const style = document.createElement('style');
-    style.textContent = `.ZGrid-container { ${css} }`;
-    this.shadowRoot?.appendChild(style);
-
-    this._root = document.createElement('div');
-    this._root.classList.add('ZGrid-container');
-    this._root.appendChild(document.createElement('slot'));
-    this.shadowRoot?.appendChild(this._root);
+    style.textContent = css;
+    shadow.appendChild(style);
+    shadow.appendChild(document.createElement('slot'));
   }
 
   @ZProperty<ZDeviceValue<Property.GridTemplateColumns>>({ initial: 'none' })
@@ -120,15 +109,11 @@ export class ZGridElement extends HTMLElement implements IZGridElement {
 
   public connectedCallback() {
     this.classList.add('ZGrid-root');
-    this.attributeChangedCallback();
-  }
-
-  public attributeChangedCallback() {
     this.propertyChangedCallback();
   }
 
   public propertyChangedCallback() {
-    const { style } = this._root;
+    const { style } = this;
     const gap = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, this.gap));
     style.setProperty('--grid-gap', gap);
     style.setProperty('--grid-rows', `${this.rows}`);
