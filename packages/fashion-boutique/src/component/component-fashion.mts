@@ -18,7 +18,7 @@ export interface IZComponentFashion {
 }
 
 export class ZFashionDetail {
-  public static nameOf(fashion?: IZFashion) {
+  public static nameOf(fashion?: IZFashion | string) {
     return new ZFashionDetail(fashion).name();
   }
 
