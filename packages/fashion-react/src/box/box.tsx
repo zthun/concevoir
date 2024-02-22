@@ -6,7 +6,7 @@ import React, { MouseEventHandler, MutableRefObject, useEffect, useRef } from 'r
 import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
-import { useFashionLegacyWebComponent, useWidthWebComponent } from '../web-components/use-web-component.mjs';
+import { useFashionWebComponent, useWidthWebComponent } from '../web-components/use-web-component.mjs';
 
 declare global {
   namespace React.JSX {
@@ -63,7 +63,7 @@ export function ZBox(props: IZBox) {
 
   const box = useRef<ZBoxElement>();
   useBoxWebComponent(box, border, trim, margin, padding);
-  useFashionLegacyWebComponent(box, fashion);
+  useFashionWebComponent(box, fashion);
   useWidthWebComponent(box, width);
 
   return (

@@ -13,7 +13,7 @@ import {
   createSizeChartVariedCss,
   createSizeChartVoidCss
 } from '@zthun/fashion-tailor';
-import { ZFashionIntrinsic } from '@zthun/fashion-theme';
+import { IZFashion, ZFashionIntrinsic } from '@zthun/fashion-theme';
 import {
   IZComponentAttributeChanged,
   IZComponentConnected,
@@ -23,13 +23,14 @@ import {
 } from '@zthun/helpful-dom';
 import { IZQuadrilateral, firstDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
+import { ZFashionDetail } from '../component/component-fashion.mjs';
 import { IZComponentWidth } from '../component/component-width.mjs';
 import { ZCssSerialize } from '../css/css-serialize.mjs';
-import { WithFashion, WithFashionAttributes } from '../element/with-fashion.mjs';
+import { WithFashionAttributes } from '../element/with-fashion.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
 export class ZBoxElement
-  extends WithFashion(HTMLElement)
+  extends HTMLElement
   implements IZComponentConnected, IZComponentAttributeChanged, IZComponentPropertyChanged, IZComponentWidth<ZSize>
 {
   public static readonly register = registerCustomElement.bind(null, 'z-box', ZBoxElement);
@@ -56,62 +57,67 @@ export class ZBoxElement
   @ZProperty()
   public padding?: Partial<IZQuadrilateral<ZGapSize>>;
 
+  @ZProperty<IZFashion | string>({ attribute: ZFashionDetail.nameOf })
+  public fashion?: IZFashion | string;
+
   public constructor() {
     super();
 
     const device = new ZFashionDevice();
 
     const css = new ZCssSerialize().serialize({
-      'display': 'block',
-      'backgroundColor': 'var(--box-background)',
-      'color': 'var(--box-color)',
-      'cursor': 'var(--box-cursor)',
+      ':host': {
+        display: 'block',
+        backgroundColor: 'var(--box-background)',
+        color: 'var(--box-color)',
+        cursor: 'var(--box-cursor)',
 
-      'border': 'var(--box-border-color)',
-      'borderBottomStyle': 'var(--box-border-style-bottom)',
-      'borderLeftStyle': 'var(--box-border-style-left)',
-      'borderRightStyle': 'var(--box-border-style-right)',
-      'borderTopStyle': 'var(--box-border-style-top)',
-      'borderBottomWidth': 'var(--box-border-width-bottom)',
-      'borderLeftWidth': 'var(--box-border-width-left)',
-      'borderRightWidth': 'var(--box-border-width-left)',
-      'borderTopWidth': 'var(--box-border-width-top)',
+        border: 'var(--box-border-color)',
+        borderBottomStyle: 'var(--box-border-style-bottom)',
+        borderLeftStyle: 'var(--box-border-style-left)',
+        borderRightStyle: 'var(--box-border-style-right)',
+        borderTopStyle: 'var(--box-border-style-top)',
+        borderBottomWidth: 'var(--box-border-width-bottom)',
+        borderLeftWidth: 'var(--box-border-width-left)',
+        borderRightWidth: 'var(--box-border-width-left)',
+        borderTopWidth: 'var(--box-border-width-top)',
 
-      'paddingBottom': 'var(--box-padding-bottom)',
-      'paddingLeft': 'var(--box-padding-left)',
-      'paddingRight': 'var(--box-padding-right)',
-      'paddingTop': 'var(--box-padding-top)',
+        paddingBottom: 'var(--box-padding-bottom)',
+        paddingLeft: 'var(--box-padding-left)',
+        paddingRight: 'var(--box-padding-right)',
+        paddingTop: 'var(--box-padding-top)',
 
-      'marginBottom': 'var(--box-margin-bottom)',
-      'marginLeft': 'var(--box-margin-left)',
-      'marginRight': 'var(--box-margin-right)',
-      'marginTop': 'var(--box-margin-top)',
+        marginBottom: 'var(--box-margin-bottom)',
+        marginLeft: 'var(--box-margin-left)',
+        marginRight: 'var(--box-margin-right)',
+        marginTop: 'var(--box-margin-top)',
 
-      'maxWidth': 'var(--box-width-xl)',
+        maxWidth: 'var(--box-width-xl)',
 
-      [device.break(ZSizeFixed.Large)]: {
-        maxWidth: 'var(--box-width-lg)'
+        [device.break(ZSizeFixed.Large)]: {
+          maxWidth: 'var(--box-width-lg)'
+        },
+
+        [device.break(ZSizeFixed.Medium)]: {
+          maxWidth: 'var(--box-width-md)'
+        },
+
+        [device.break(ZSizeFixed.Small)]: {
+          maxWidth: 'var(--box-width-sm)'
+        },
+
+        [device.break(ZSizeFixed.ExtraSmall)]: {
+          maxWidth: 'var(--box-width-xs)'
+        }
       },
 
-      [device.break(ZSizeFixed.Medium)]: {
-        maxWidth: 'var(--box-width-md)'
-      },
-
-      [device.break(ZSizeFixed.Small)]: {
-        maxWidth: 'var(--box-width-sm)'
-      },
-
-      [device.break(ZSizeFixed.ExtraSmall)]: {
-        maxWidth: 'var(--box-width-xs)'
-      },
-
-      '&:focus': {
+      ':host(:focus)': {
         backgroundColor: 'var(--box-focus-background)',
         borderColor: 'var(--box-focus-border-color)',
         color: 'var(--box-focus-color)'
       },
 
-      '&:hover': {
+      ':host(:hover)': {
         backgroundColor: 'var(--box-hover-background)',
         borderColor: 'var(--box-hover-border-color)',
         color: 'var(--box-hover-color)'
@@ -119,7 +125,7 @@ export class ZBoxElement
     });
 
     const style = document.createElement('style');
-    style.textContent = `:host { ${css} }`;
+    style.textContent = css;
 
     const shadow = this.attachShadow({ mode: 'open' });
     shadow.appendChild(style);
@@ -137,21 +143,22 @@ export class ZBoxElement
 
   public propertyChangedCallback(): void {
     const fallback = ZFashionIntrinsic.Inherit;
+    const detail = new ZFashionDetail(this.fashion);
     const { style } = this;
 
     style.setProperty('--box-cursor', 'default');
 
-    const main = this.color('main', fallback);
+    const main = detail.color('main', fallback);
     style.setProperty('--box-background', main);
     style.setProperty('--box-focus-background', main);
     style.setProperty('--box-hover-background', main);
 
-    const contrast = this.color('contrast', fallback);
+    const contrast = detail.color('contrast', fallback);
     style.setProperty('--box-color', contrast);
     style.setProperty('--box-focus-color', contrast);
     style.setProperty('--box-hover-color', contrast);
 
-    const border = this.color(['border', 'main'], fallback);
+    const border = detail.color(['border', 'main'], fallback);
     style.setProperty('--box-border-color', border);
     style.setProperty('--box-focus-border-color', border);
     style.setProperty('--box-hover-border-color', border);
@@ -203,13 +210,13 @@ export class ZBoxElement
     if (this.tabIndex >= 0) {
       style.setProperty('--box-cursor', 'pointer');
 
-      style.setProperty('--box-focus-background', this.color(['focus.main', 'main'], fallback));
-      style.setProperty('--box-focus-border-color', this.color(['focus.border', 'border', 'main'], fallback));
-      style.setProperty('--box-focus-color', this.color(['focus.contrast', 'contrast'], fallback));
+      style.setProperty('--box-focus-background', detail.color(['focus.main', 'main'], fallback));
+      style.setProperty('--box-focus-border-color', detail.color(['focus.border', 'border', 'main'], fallback));
+      style.setProperty('--box-focus-color', detail.color(['focus.contrast', 'contrast'], fallback));
 
-      style.setProperty('--box-hover-background', this.color(['hover.main', 'main'], fallback));
-      style.setProperty('--box-hover-border-color', this.color(['hover.border', 'border', 'main'], fallback));
-      style.setProperty('--box-hover-color', this.color(['hover.contrast', 'contrast'], fallback));
+      style.setProperty('--box-hover-background', detail.color(['hover.main', 'main'], fallback));
+      style.setProperty('--box-hover-border-color', detail.color(['hover.border', 'border', 'main'], fallback));
+      style.setProperty('--box-hover-color', detail.color(['hover.contrast', 'contrast'], fallback));
     }
   }
 }
