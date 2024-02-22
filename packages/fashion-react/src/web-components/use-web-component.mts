@@ -11,7 +11,7 @@ import { MutableRefObject, useEffect } from 'react';
 
 export function useFashionWebComponent<TComponent extends IZComponentFashion>(
   component: MutableRefObject<TComponent | null | undefined>,
-  fashion?: IZFashion
+  fashion?: IZFashion | string
 ) {
   useEffect(() => {
     component.current!.fashion = fashion;
