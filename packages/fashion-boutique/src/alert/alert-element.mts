@@ -8,16 +8,20 @@ import {
   registerCustomElement
 } from '@zthun/helpful-dom';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
+import { IZComponentName } from '../component/component-name.mjs';
 import { ZCssSerialize } from '../css/css-serialize.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
 export class ZAlertElement
   extends HTMLElement
-  implements IZComponentConnected, IZComponentPropertyChanged, IZComponentFashion
+  implements IZComponentConnected, IZComponentPropertyChanged, IZComponentFashion, IZComponentName
 {
   public static readonly register = registerCustomElement.bind(null, 'z-alert', ZAlertElement);
 
-  @ZProperty<IZFashion | string>({ attribute: ZFashionDetail.nameOf })
+  @ZProperty({ attribute: true })
+  public name?: string;
+
+  @ZProperty<IZFashion | string>({ initial: ZFashionPriority.Primary, attribute: ZFashionDetail.nameOf })
   public fashion?: IZFashion | string;
 
   public constructor() {
