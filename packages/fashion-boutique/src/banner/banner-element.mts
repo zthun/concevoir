@@ -34,8 +34,8 @@ export class ZBannerElement
   @ZProperty<ZSizeFixed | ZSizeVaried.Fit>({ initial: ZSizeVaried.Fit })
   public height?: ZSizeFixed | ZSizeVaried.Fit;
 
-  @ZAttribute()
-  public fashion?: string;
+  @ZAttribute({ fallback: ZFashionPriority.Primary })
+  public fashion: string;
 
   public constructor() {
     super();
@@ -91,8 +91,8 @@ export class ZBannerElement
     const detail = new ZFashionDetail(this.fashion);
     const { style } = this;
 
-    style.setProperty('--banner-background', detail.color('main', ZFashionPriority.Primary));
-    style.setProperty('--banner-color', detail.color('contrast', ZFashionPriority.Primary));
+    style.setProperty('--banner-background', detail.color('main'));
+    style.setProperty('--banner-color', detail.color('contrast'));
 
     const heightBounds = new ZDeviceBounds(this.height, ZSizeVaried.Fit);
     const heightXl = ZBannerElement.HeightChart[heightBounds.xl()];

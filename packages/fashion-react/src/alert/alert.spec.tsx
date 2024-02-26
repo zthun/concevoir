@@ -1,7 +1,7 @@
 import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { ZAlertComponentModel } from '@zthun/fashion-circus';
-import { IZFashion, ZFashionBuilder, ZFashionPriority } from '@zthun/fashion-theme';
+import { ZFashionPriority } from '@zthun/fashion-theme';
 import React, { ReactNode } from 'react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { ZFashionThemeProvider } from '../theme/fashion';
@@ -13,7 +13,7 @@ describe('ZAlert', () => {
   let message: ReactNode;
   let avatar: ReactNode | undefined;
   let heading: ReactNode | undefined;
-  let fashion: IZFashion | undefined;
+  let fashion: string | undefined;
 
   const createTestTarget = async () => {
     const element = (
@@ -103,12 +103,12 @@ describe('ZAlert', () => {
 
     it('should be set', async () => {
       // Arrange.
-      fashion = new ZFashionBuilder().name('my-fashion').build();
+      fashion = 'my-fashion';
       const target = await createTestTarget();
       // Act.
       const actual = await target.fashion();
       // Assert.
-      expect(actual).toEqual(fashion.name);
+      expect(actual).toEqual('my-fashion');
     });
   });
 });

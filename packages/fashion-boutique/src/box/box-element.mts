@@ -62,8 +62,8 @@ export class ZBoxElement
   @ZProperty()
   public padding?: Partial<IZQuadrilateral<ZGapSize>>;
 
-  @ZAttribute()
-  public fashion?: string;
+  @ZAttribute({ fallback: ZFashionIntrinsic.Inherit })
+  public fashion: string;
 
   public constructor() {
     super();
@@ -147,23 +147,22 @@ export class ZBoxElement
   }
 
   public propertyChangedCallback(): void {
-    const fallback = ZFashionIntrinsic.Inherit;
     const detail = new ZFashionDetail(this.fashion);
     const { style } = this;
 
     style.setProperty('--box-cursor', 'default');
 
-    const main = detail.color('main', fallback);
+    const main = detail.color('main');
     style.setProperty('--box-background', main);
     style.setProperty('--box-focus-background', main);
     style.setProperty('--box-hover-background', main);
 
-    const contrast = detail.color('contrast', fallback);
+    const contrast = detail.color('contrast');
     style.setProperty('--box-color', contrast);
     style.setProperty('--box-focus-color', contrast);
     style.setProperty('--box-hover-color', contrast);
 
-    const border = detail.color(['border', 'main'], fallback);
+    const border = detail.color('border');
     style.setProperty('--box-border-color', border);
     style.setProperty('--box-focus-border-color', border);
     style.setProperty('--box-hover-border-color', border);
@@ -215,13 +214,13 @@ export class ZBoxElement
     if (this.tabIndex >= 0) {
       style.setProperty('--box-cursor', 'pointer');
 
-      style.setProperty('--box-focus-background', detail.color(['focus.main', 'main'], fallback));
-      style.setProperty('--box-focus-border-color', detail.color(['focus.border', 'border', 'main'], fallback));
-      style.setProperty('--box-focus-color', detail.color(['focus.contrast', 'contrast'], fallback));
+      style.setProperty('--box-focus-background', detail.color('focus.main'));
+      style.setProperty('--box-focus-border-color', detail.color('focus.border'));
+      style.setProperty('--box-focus-color', detail.color('focus.contrast'));
 
-      style.setProperty('--box-hover-background', detail.color(['hover.main', 'main'], fallback));
-      style.setProperty('--box-hover-border-color', detail.color(['hover.border', 'border', 'main'], fallback));
-      style.setProperty('--box-hover-color', detail.color(['hover.contrast', 'contrast'], fallback));
+      style.setProperty('--box-hover-background', detail.color('hover.main'));
+      style.setProperty('--box-hover-border-color', detail.color('hover.border'));
+      style.setProperty('--box-hover-color', detail.color('hover.contrast'));
     }
   }
 }

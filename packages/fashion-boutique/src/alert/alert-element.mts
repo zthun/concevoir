@@ -23,7 +23,7 @@ export class ZAlertElement
   public name?: string;
 
   @ZAttribute({ fallback: ZFashionPriority.Primary })
-  public fashion?: string;
+  public fashion: string;
 
   public constructor() {
     super();
@@ -100,15 +100,14 @@ export class ZAlertElement
 
   public attributeChangedCallback(): void {
     const { style } = this;
-    const fallback = ZFashionPriority.Primary;
     const detail = new ZFashionDetail(this.fashion);
 
-    style.setProperty('--alert-color', detail.color('contrast', fallback));
-    style.setProperty('--alert-background', detail.color('main', fallback));
-    style.setProperty('--alert-border-color', detail.color(['border', 'main'], fallback));
+    style.setProperty('--alert-color', detail.color('contrast'));
+    style.setProperty('--alert-background', detail.color('main'));
+    style.setProperty('--alert-border-color', detail.color('border'));
 
     const thickness = ZFashionTailorElement.thicknessVar(ZSizeFixed.ExtraSmall);
-    const shadow = detail.color(['border', 'main'], fallback);
+    const shadow = detail.color('border');
     style.setProperty('--alert-box-shadow', `0 0 0 ${thickness} ${shadow}`);
   }
 }
