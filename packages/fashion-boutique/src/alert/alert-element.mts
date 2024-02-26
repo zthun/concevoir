@@ -92,13 +92,7 @@ export class ZAlertElement
     shadow.appendChild(message);
   }
 
-  public connectedCallback(): void {
-    this.classList.add('ZAlert-root');
-
-    this.attributeChangedCallback();
-  }
-
-  public attributeChangedCallback(): void {
+  private _refreshFashion = () => {
     const { style } = this;
     const detail = new ZFashionDetail(this.fashion);
 
@@ -109,5 +103,14 @@ export class ZAlertElement
     const thickness = ZFashionTailorElement.thicknessVar(ZSizeFixed.ExtraSmall);
     const shadow = detail.color('border');
     style.setProperty('--alert-box-shadow', `0 0 0 ${thickness} ${shadow}`);
+  };
+
+  public connectedCallback(): void {
+    this.classList.add('ZAlert-root');
+    this._refreshFashion();
+  }
+
+  public attributeChangedCallback(): void {
+    this._refreshFashion();
   }
 }
