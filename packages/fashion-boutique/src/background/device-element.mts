@@ -1,7 +1,7 @@
 import { ZAttribute, registerCustomElement } from '@zthun/helpful-dom';
 import { ZBackgroundElement } from './background-element.mjs';
 
-export class ZDeviceElement<T extends string | number = string> extends ZBackgroundElement {
+export class ZDeviceElement<T extends string = string> extends ZBackgroundElement {
   public static readonly register = registerCustomElement.bind(null, 'z-device', ZDeviceElement);
   public static readonly observedAttributes = ['xl', 'lg', 'md', 'sm', 'xs'];
 
