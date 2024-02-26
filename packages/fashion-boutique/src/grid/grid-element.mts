@@ -1,6 +1,5 @@
 import {
   ZDeviceBounds,
-  ZDeviceValue,
   ZFashionDevice,
   ZGapSize,
   ZSizeFixed,
@@ -8,22 +7,24 @@ import {
   ZSizeVoid,
   createSizeChartVariedCss
 } from '@zthun/fashion-tailor';
-import { IZComponentConnected, IZComponentPropertyChanged, ZProperty, registerCustomElement } from '@zthun/helpful-dom';
+import {
+  IZComponentAttributeChanged,
+  IZComponentConnected,
+  ZAttribute,
+  registerCustomElement
+} from '@zthun/helpful-dom';
 import { firstDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
+import { ZAlignmentElement } from '../background/alignment-element.mjs';
+import { ZDeviceElement } from '../background/device-element.mjs';
 import { IZComponentHeight } from '../component/component-height.mjs';
 import { IZComponentWidth } from '../component/component-width.mjs';
 import { ZCssSerialize } from '../css/css-serialize.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
-export interface IZGridTarget<TItems, TContent> {
-  items?: TItems;
-  content?: TContent;
-}
-
 export interface IZGridElement
   extends IZComponentConnected,
-    IZComponentPropertyChanged,
+    IZComponentAttributeChanged,
     IZComponentWidth<ZSizeVaried>,
     IZComponentHeight<ZSizeVaried> {}
 
@@ -31,6 +32,7 @@ export class ZGridElement extends HTMLElement implements IZGridElement {
   public static readonly register = registerCustomElement.bind(null, 'z-grid', ZGridElement);
   public static readonly Device = Object.freeze(new ZFashionDevice());
   public static readonly GridDimensionChart = Object.freeze(createSizeChartVariedCss());
+  public static readonly observedAttributes = ['rows', 'gap'];
 
   public constructor() {
     super();
@@ -50,9 +52,9 @@ export class ZGridElement extends HTMLElement implements IZGridElement {
         justifyItems: 'var(--grid-justify-items)',
         justifyContent: 'var(--grid-justify-content)',
 
-        gridTemplateColumns: 'var(--grid-columns)',
-        height: 'var(--grid-height)',
-        width: 'var(--grid-width)',
+        gridTemplateColumns: 'var(--grid-columns-xl)',
+        height: 'var(--grid-height-xl)',
+        width: 'var(--grid-width-xl)',
 
         [ZGridElement.Device.break(ZSizeFixed.Large)]: {
           gridTemplateColumns: 'var(--grid-columns-lg)',
@@ -86,74 +88,83 @@ export class ZGridElement extends HTMLElement implements IZGridElement {
     shadow.appendChild(document.createElement('slot'));
   }
 
-  @ZProperty<ZDeviceValue<Property.GridTemplateColumns>>({ initial: 'none' })
-  public columns?: ZDeviceValue<Property.GridTemplateColumns>;
-
-  @ZProperty<Property.GridTemplateRows>({ initial: 'none' })
+  @ZAttribute()
   public rows?: Property.GridTemplateRows;
 
-  @ZProperty<ZGapSize>({ initial: ZSizeVoid.None })
+  @ZAttribute()
   public gap?: ZGapSize;
 
-  @ZProperty<IZGridTarget<Property.AlignItems, Property.AlignContent>>()
-  public align?: IZGridTarget<Property.AlignItems, Property.AlignContent>;
+  private _refreshColumns = () => {
+    const { style } = this;
 
-  @ZProperty<IZGridTarget<Property.JustifyItems, Property.JustifyContent>>()
-  public justify?: IZGridTarget<Property.JustifyItems, Property.JustifyContent>;
+    const $columns = this.querySelector<ZDeviceElement>('z-device[name="columns"]');
+    const columns = new ZDeviceBounds<Property.GridTemplateColumns>($columns?.device(), 'none');
+    style.setProperty('--grid-columns-xl', `${columns.xl()}`);
+    style.setProperty('--grid-columns-lg', `${columns.lg()}`);
+    style.setProperty('--grid-columns-md', `${columns.md()}`);
+    style.setProperty('--grid-columns-sm', `${columns.sm()}`);
+    style.setProperty('--grid-columns-xs', `${columns.xs()}`);
+  };
 
-  @ZProperty<ZDeviceValue<ZSizeVaried>>({ initial: ZSizeVaried.Fit })
-  public width?: ZDeviceValue<ZSizeVaried>;
+  private _refreshAlignment = (a: 'align' | 'justify') => {
+    const { style } = this;
+    const $alignment = this.querySelector<ZAlignmentElement>(`z-alignment[name="${a}"]`);
+    style.setProperty(`--grid-${a}-content`, firstDefined('normal', $alignment?.content));
+    style.setProperty(`--grid-${a}-items`, firstDefined('stretch', $alignment?.items));
+  };
 
-  @ZProperty<ZDeviceValue<ZSizeVaried>>({ initial: ZSizeVaried.Fit })
-  public height?: ZDeviceValue<ZSizeVaried>;
+  private _refreshAlign = this._refreshAlignment.bind(this, 'align');
+  private _refreshJustify = this._refreshAlignment.bind(this, 'justify');
+
+  private _refreshDimension = (d: 'width' | 'height') => {
+    const { style } = this;
+
+    const $dimension = this.querySelector<ZDeviceElement>(`z-device[name="${d}"]`);
+    const dimension = new ZDeviceBounds($dimension?.device(), ZSizeVaried.Fit);
+    const xl = ZGridElement.GridDimensionChart[dimension.xl()];
+    const lg = ZGridElement.GridDimensionChart[dimension.lg()];
+    const md = ZGridElement.GridDimensionChart[dimension.md()];
+    const sm = ZGridElement.GridDimensionChart[dimension.sm()];
+    const xs = ZGridElement.GridDimensionChart[dimension.xs()];
+    style.setProperty(`--grid-${d}-xl`, xl);
+    style.setProperty(`--grid-${d}-lg`, lg);
+    style.setProperty(`--grid-${d}-md`, md);
+    style.setProperty(`--grid-${d}-sm`, sm);
+    style.setProperty(`--grid-${d}-xs`, xs);
+  };
+
+  private _refreshWidth = this._refreshDimension.bind(this, 'width');
+  private _refreshHeight = this._refreshDimension.bind(this, 'height');
 
   public connectedCallback() {
     this.classList.add('ZGrid-root');
-    this.propertyChangedCallback();
+
+    const $align = this.querySelector<ZAlignmentElement>('z-alignment[name="align"]');
+    $align?.addEventListener('change', this._refreshAlign);
+
+    const $justify = this.querySelector<ZAlignmentElement>('z-alignment[name="justify"]');
+    $justify?.addEventListener('change', this._refreshJustify);
+
+    const $columns = this.querySelector<ZDeviceElement>('z-device[name="columns"]');
+    $columns?.addEventListener('change', this._refreshColumns);
+
+    const $width = this.querySelector<ZDeviceElement>('z-device[name="width"]');
+    $width?.addEventListener('change', this._refreshWidth);
+
+    const $height = this.querySelector<ZDeviceElement>('z-device[name="height"]');
+    $height?.addEventListener('change', this._refreshHeight);
+
+    this._refreshAlign();
+    this._refreshJustify();
+    this._refreshColumns();
+    this._refreshWidth();
+    this._refreshHeight();
   }
 
-  public propertyChangedCallback() {
+  public attributeChangedCallback() {
     const { style } = this;
     const gap = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, this.gap));
     style.setProperty('--grid-gap', gap);
     style.setProperty('--grid-rows', `${this.rows}`);
-
-    style.setProperty('--grid-align-content', firstDefined('normal', this.align?.content));
-    style.setProperty('--grid-align-items', firstDefined('stretch', this.align?.items));
-    style.setProperty('--grid-justify-content', firstDefined('normal', this.justify?.content));
-    style.setProperty('--grid-justify-items', firstDefined('stretch', this.justify?.items));
-
-    const columnBounds = new ZDeviceBounds(this.columns, 'none');
-    style.setProperty('--grid-columns', `${columnBounds.xl()}`);
-    style.setProperty('--grid-columns-lg', `${columnBounds.lg()}`);
-    style.setProperty('--grid-columns-md', `${columnBounds.md()}`);
-    style.setProperty('--grid-columns-sm', `${columnBounds.sm()}`);
-    style.setProperty('--grid-columns-xs', `${columnBounds.xs()}`);
-
-    const widthBounds = new ZDeviceBounds(this.width, ZSizeVaried.Fit);
-    const width = ZGridElement.GridDimensionChart[widthBounds.xl()];
-    const widthLg = ZGridElement.GridDimensionChart[widthBounds.lg()];
-    const widthMd = ZGridElement.GridDimensionChart[widthBounds.md()];
-    const widthSm = ZGridElement.GridDimensionChart[widthBounds.sm()];
-    const widthXs = ZGridElement.GridDimensionChart[widthBounds.xs()];
-
-    style.setProperty('--grid-width', width);
-    style.setProperty('--grid-width-lg', widthLg);
-    style.setProperty('--grid-width-md', widthMd);
-    style.setProperty('--grid-width-sm', widthSm);
-    style.setProperty('--grid-width-xs', widthXs);
-
-    const heightBounds = new ZDeviceBounds(this.height, ZSizeVaried.Fit);
-    const height = ZGridElement.GridDimensionChart[heightBounds.xl()];
-    const heightLg = ZGridElement.GridDimensionChart[heightBounds.lg()];
-    const heightMd = ZGridElement.GridDimensionChart[heightBounds.md()];
-    const heightSm = ZGridElement.GridDimensionChart[heightBounds.sm()];
-    const heightXs = ZGridElement.GridDimensionChart[heightBounds.xs()];
-
-    style.setProperty('--grid-height', height);
-    style.setProperty('--grid-height-lg', heightLg);
-    style.setProperty('--grid-height-md', heightMd);
-    style.setProperty('--grid-height-sm', heightSm);
-    style.setProperty('--grid-height-xs', heightXs);
   }
 }
