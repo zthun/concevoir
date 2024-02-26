@@ -13,24 +13,30 @@ import {
   createSizeChartVariedCss,
   createSizeChartVoidCss
 } from '@zthun/fashion-tailor';
-import { IZFashion, ZFashionIntrinsic } from '@zthun/fashion-theme';
+import { ZFashionIntrinsic } from '@zthun/fashion-theme';
 import {
   IZComponentAttributeChanged,
   IZComponentConnected,
   IZComponentPropertyChanged,
+  ZAttribute,
   ZProperty,
   registerCustomElement
 } from '@zthun/helpful-dom';
 import { IZQuadrilateral, firstDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
-import { ZFashionDetail } from '../component/component-fashion.mjs';
+import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 import { IZComponentWidth } from '../component/component-width.mjs';
 import { ZCssSerialize } from '../css/css-serialize.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
 export class ZBoxElement
   extends HTMLElement
-  implements IZComponentConnected, IZComponentAttributeChanged, IZComponentPropertyChanged, IZComponentWidth<ZSize>
+  implements
+    IZComponentConnected,
+    IZComponentAttributeChanged,
+    IZComponentPropertyChanged,
+    IZComponentWidth<ZSize>,
+    IZComponentFashion
 {
   public static readonly register = registerCustomElement.bind(null, 'z-box', ZBoxElement);
   public static readonly observedAttributes = ['tabIndex'];
@@ -56,8 +62,8 @@ export class ZBoxElement
   @ZProperty()
   public padding?: Partial<IZQuadrilateral<ZGapSize>>;
 
-  @ZProperty<IZFashion | string>({ attribute: ZFashionDetail.nameOf })
-  public fashion?: IZFashion | string;
+  @ZAttribute()
+  public fashion?: string;
 
   public constructor() {
     super();

@@ -1,10 +1,11 @@
 import { ZBox, ZChartProgress, ZDataPointBuilder, ZGrid, ZH4, ZParagraph, useFashionTheme } from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
+import { ZFashionArea } from '@zthun/fashion-theme';
 import { square } from '@zthun/helpful-fn';
 import React, { useMemo } from 'react';
 
 export function ZChartPageProgress() {
-  const { success, error, secondary, warning, component } = useFashionTheme();
+  const { success, error, secondary, warning } = useFashionTheme();
 
   const hp = useMemo(() => new ZDataPointBuilder(300, 1000).name('HP').fashion(success).build(), []);
   const atk = useMemo(() => new ZDataPointBuilder(74, 255).name('Attack').fashion(error).build(), []);
@@ -15,7 +16,7 @@ export function ZChartPageProgress() {
   return (
     <ZBox
       className='ZChartPage-progress'
-      fashion={component}
+      fashion={ZFashionArea.Component}
       padding={square(ZSizeFixed.Medium)}
       edge={square(ZSizeFixed.Small)}
     >

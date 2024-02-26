@@ -1,5 +1,4 @@
 import {
-  useFashionTheme,
   ZBox,
   ZCaption,
   ZCard,
@@ -12,6 +11,7 @@ import {
   ZParagraph
 } from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
+import { ZFashionArea } from '@zthun/fashion-theme';
 import { square } from '@zthun/helpful-fn';
 import React, { useState } from 'react';
 import { ZFashionRouteList } from '../../routes.mjs';
@@ -23,7 +23,6 @@ import { ZFashionRouteList } from '../../routes.mjs';
  *    The JSX to render the list demo page.
  */
 export function ZListPage() {
-  const { body } = useFashionTheme();
   const [count, setCount] = useState(0);
 
   const prefix = <ZIconFontAwesome name='mask' width={ZSizeFixed.Small} />;
@@ -52,7 +51,7 @@ export function ZListPage() {
           event to a truthy or falsy value respectively.
         </ZParagraph>
 
-        <ZBox fashion={body} edge={square(ZSizeFixed.ExtraSmall)} trim={square('solid')}>
+        <ZBox fashion={ZFashionArea.Body} edge={square(ZSizeFixed.ExtraSmall)} trim={square('solid')}>
           <ZList>
             <ZListGroup heading='Without Click Support' />
             <ZListLineItem prefix={prefix} name='avatar-and-text' heading='Prefix and Text (No Click)' />

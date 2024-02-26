@@ -1,9 +1,9 @@
 import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { IZFashion, ZFashionPriority } from '@zthun/fashion-theme';
+import { ZFashionPriority } from '@zthun/fashion-theme';
 import {
+  IZComponentAttributeChanged,
   IZComponentConnected,
-  IZComponentPropertyChanged,
-  ZProperty,
+  ZAttribute,
   cssVariable,
   registerCustomElement
 } from '@zthun/helpful-dom';
@@ -14,15 +14,16 @@ import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
 export class ZAlertElement
   extends HTMLElement
-  implements IZComponentConnected, IZComponentPropertyChanged, IZComponentFashion, IZComponentName
+  implements IZComponentConnected, IZComponentAttributeChanged, IZComponentFashion, IZComponentName
 {
   public static readonly register = registerCustomElement.bind(null, 'z-alert', ZAlertElement);
+  public static readonly observedAttributes = ['fashion'];
 
-  @ZProperty({ attribute: true })
+  @ZAttribute()
   public name?: string;
 
-  @ZProperty<IZFashion | string>({ initial: ZFashionPriority.Primary, attribute: ZFashionDetail.nameOf })
-  public fashion?: IZFashion | string;
+  @ZAttribute({ fallback: ZFashionPriority.Primary })
+  public fashion?: string;
 
   public constructor() {
     super();
@@ -93,10 +94,11 @@ export class ZAlertElement
 
   public connectedCallback(): void {
     this.classList.add('ZAlert-root');
-    this.propertyChangedCallback();
+
+    this.attributeChangedCallback();
   }
 
-  public propertyChangedCallback(): void {
+  public attributeChangedCallback(): void {
     const { style } = this;
     const fallback = ZFashionPriority.Primary;
     const detail = new ZFashionDetail(this.fashion);

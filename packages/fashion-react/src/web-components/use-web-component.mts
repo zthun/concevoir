@@ -1,6 +1,5 @@
 import { IZComponentFashion, IZComponentHeight, IZComponentWidth } from '@zthun/fashion-boutique';
 import { ZDeviceValue } from '@zthun/fashion-tailor';
-import { IZFashion } from '@zthun/fashion-theme';
 import { MutableRefObject, useEffect } from 'react';
 
 /*
@@ -11,7 +10,7 @@ import { MutableRefObject, useEffect } from 'react';
 
 export function useFashionWebComponent<TComponent extends IZComponentFashion>(
   component: MutableRefObject<TComponent | null | undefined>,
-  fashion?: IZFashion | string
+  fashion?: string
 ) {
   useEffect(() => {
     component.current!.fashion = fashion;

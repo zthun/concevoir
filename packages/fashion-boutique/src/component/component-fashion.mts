@@ -14,7 +14,7 @@ export interface IZComponentFashion {
    * This can be an entire fashion or
    * the name of the fashion.
    */
-  fashion?: IZFashion | string;
+  fashion?: string;
 }
 
 export class ZFashionDetail {

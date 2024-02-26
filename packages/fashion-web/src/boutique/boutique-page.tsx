@@ -1,22 +1,12 @@
-import {
-  useFashionTheme,
-  useNavigate,
-  ZBox,
-  ZCaption,
-  ZCard,
-  ZGrid,
-  ZH3,
-  ZIconFontAwesome,
-  ZLineItem
-} from '@zthun/fashion-react';
+import { useNavigate, ZBox, ZCaption, ZCard, ZGrid, ZH3, ZIconFontAwesome, ZLineItem } from '@zthun/fashion-react';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
+import { ZFashionArea } from '@zthun/fashion-theme';
 import { cssJoinDefined, square } from '@zthun/helpful-fn';
 import React from 'react';
 import { IZRoute } from '../route/route.mjs';
 import { ZFashionRouteAllComponents, ZFashionRouteBoutique } from '../routes.mjs';
 
 export function ZBoutiquePage() {
-  const { body } = useFashionTheme();
   const navigate = useNavigate();
 
   const renderComponent = (route: IZRoute) => (
@@ -24,7 +14,7 @@ export function ZBoutiquePage() {
       className={cssJoinDefined('ZBoutiquePage-component')}
       key={route.path}
       padding={square(ZSizeFixed.Medium)}
-      fashion={body}
+      fashion={ZFashionArea.Body}
       edge={square(ZSizeFixed.ExtraSmall)}
       trim={square('solid')}
       width={ZSizeVaried.Full}

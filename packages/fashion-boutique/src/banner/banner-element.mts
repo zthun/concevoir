@@ -7,10 +7,11 @@ import {
   createSizeChartFixedCss,
   createSizeChartVariedCss
 } from '@zthun/fashion-tailor';
-import { IZFashion, ZFashionPriority } from '@zthun/fashion-theme';
+import { ZFashionPriority } from '@zthun/fashion-theme';
 import {
   IZComponentConnected,
   IZComponentPropertyChanged,
+  ZAttribute,
   ZProperty,
   cssVariable,
   registerCustomElement
@@ -33,8 +34,8 @@ export class ZBannerElement
   @ZProperty<ZSizeFixed | ZSizeVaried.Fit>({ initial: ZSizeVaried.Fit })
   public height?: ZSizeFixed | ZSizeVaried.Fit;
 
-  @ZProperty<IZFashion | string>({ attribute: ZFashionDetail.nameOf })
-  public fashion?: IZFashion | string;
+  @ZAttribute()
+  public fashion?: string;
 
   public constructor() {
     super();

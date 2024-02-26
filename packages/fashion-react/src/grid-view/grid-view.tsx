@@ -1,5 +1,6 @@
 import { IZComponentHeight, IZComponentWidth } from '@zthun/fashion-boutique';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
+import { ZFashionSeverity } from '@zthun/fashion-theme';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { IZDataRequest, ZDataRequestBuilder, ZDataSourceStatic } from '@zthun/helpful-query';
 import { isStateErrored, isStateLoading, useAmbassadorState, useMoreViewState } from '@zthun/helpful-react';
@@ -69,7 +70,7 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
         className={cssJoinDefined('ZGridView-error')}
         name='grid-error'
         message={last.message}
-        fashion={theme.error}
+        fashion={ZFashionSeverity.Error}
         heading={<ZH5 compact>Error</ZH5>}
         avatar={<ZIconFontAwesome name='circle-exclamation' width={ZSizeFixed.Small} />}
       />
