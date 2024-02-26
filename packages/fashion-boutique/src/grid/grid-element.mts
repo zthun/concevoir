@@ -136,6 +136,17 @@ export class ZGridElement extends HTMLElement implements IZGridElement {
   private _refreshWidth = this._refreshDimension.bind(this, 'width');
   private _refreshHeight = this._refreshDimension.bind(this, 'height');
 
+  private _refreshGap = () => {
+    const { style } = this;
+    const gap = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, this.gap));
+    style.setProperty('--grid-gap', gap);
+  };
+
+  private _refreshRows = () => {
+    const { style } = this;
+    style.setProperty('--grid-rows', `${this.rows}`);
+  };
+
   public connectedCallback() {
     this.classList.add('ZGrid-root');
 
@@ -159,12 +170,12 @@ export class ZGridElement extends HTMLElement implements IZGridElement {
     this._refreshColumns();
     this._refreshWidth();
     this._refreshHeight();
+    this._refreshGap();
+    this._refreshRows();
   }
 
   public attributeChangedCallback() {
-    const { style } = this;
-    const gap = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, this.gap));
-    style.setProperty('--grid-gap', gap);
-    style.setProperty('--grid-rows', `${this.rows}`);
+    this._refreshGap();
+    this._refreshRows();
   }
 }
