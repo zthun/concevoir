@@ -9,30 +9,28 @@ import {
 } from '@zthun/fashion-tailor';
 import { ZFashionPriority } from '@zthun/fashion-theme';
 import {
+  IZComponentAttributeChanged,
   IZComponentConnected,
-  IZComponentPropertyChanged,
+  IZComponentDisconnected,
   ZAttribute,
-  ZProperty,
   cssVariable,
   registerCustomElement
 } from '@zthun/helpful-dom';
+import { ZDeviceElement } from '../background/device-element.mjs';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
-import { IZComponentHeight } from '../component/component-height.mjs';
 import { ZCssSerialize } from '../css/css-serialize.mjs';
 
 export class ZBannerElement
   extends HTMLElement
-  implements IZComponentConnected, IZComponentHeight, IZComponentPropertyChanged, IZComponentFashion
+  implements IZComponentConnected, IZComponentDisconnected, IZComponentAttributeChanged, IZComponentFashion
 {
   public static readonly register = registerCustomElement.bind(null, 'z-banner', ZBannerElement);
+  public static readonly observedAttributes = ['fashion'];
 
   public static readonly HeightChart = Object.freeze({
     ...createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), 'rem'),
     ...createSizeChartVariedCss()
   });
-
-  @ZProperty<ZSizeFixed | ZSizeVaried.Fit>({ initial: ZSizeVaried.Fit })
-  public height?: ZSizeFixed | ZSizeVaried.Fit;
 
   @ZAttribute({ fallback: ZFashionPriority.Primary })
   public fashion: string;
@@ -82,29 +80,44 @@ export class ZBannerElement
     shadow.appendChild(document.createElement('slot'));
   }
 
+  private _refreshHeight = () => {
+    const { style } = this;
+
+    const $height = this.querySelector<ZDeviceElement>(`z-device[name="height"]`);
+    const height = new ZDeviceBounds($height?.device(), ZSizeVaried.Fit);
+
+    const xl = ZBannerElement.HeightChart[height.xl()];
+    const lg = ZBannerElement.HeightChart[height.lg()];
+    const md = ZBannerElement.HeightChart[height.md()];
+    const sm = ZBannerElement.HeightChart[height.sm()];
+    const xs = ZBannerElement.HeightChart[height.xs()];
+
+    style.setProperty('--banner-height-xl', xl);
+    style.setProperty('--banner-height-lg', lg);
+    style.setProperty('--banner-height-md', md);
+    style.setProperty('--banner-height-sm', sm);
+    style.setProperty('--banner-height-xs', xs);
+  };
+
   public connectedCallback() {
     this.classList.add('ZBanner-root');
-    this.propertyChangedCallback();
+
+    const $height = this.querySelector<ZDeviceElement>('z-device[name="height"]');
+    $height?.addEventListener('change', this._refreshHeight);
+
+    this._refreshHeight();
   }
 
-  public propertyChangedCallback(): void {
+  public disconnectedCallback() {
+    const $height = this.querySelector<ZDeviceElement>('z-device[name="height"]');
+    $height?.removeEventListener('change', this._refreshHeight);
+  }
+
+  public attributeChangedCallback(): void {
     const detail = new ZFashionDetail(this.fashion);
     const { style } = this;
 
     style.setProperty('--banner-background', detail.color('main'));
     style.setProperty('--banner-color', detail.color('contrast'));
-
-    const heightBounds = new ZDeviceBounds(this.height, ZSizeVaried.Fit);
-    const heightXl = ZBannerElement.HeightChart[heightBounds.xl()];
-    const heightLg = ZBannerElement.HeightChart[heightBounds.lg()];
-    const heightMd = ZBannerElement.HeightChart[heightBounds.md()];
-    const heightSm = ZBannerElement.HeightChart[heightBounds.sm()];
-    const heightXs = ZBannerElement.HeightChart[heightBounds.xs()];
-
-    style.setProperty('--banner-height-xl', heightXl);
-    style.setProperty('--banner-height-lg', heightLg);
-    style.setProperty('--banner-height-md', heightMd);
-    style.setProperty('--banner-height-sm', heightSm);
-    style.setProperty('--banner-height-xs', heightXs);
   }
 }
