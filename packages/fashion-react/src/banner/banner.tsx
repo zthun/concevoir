@@ -1,10 +1,11 @@
-import { IZComponentFashion, IZComponentHeight, ZBannerElement } from '@zthun/fashion-boutique';
-import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
+import { IZComponentFashion, IZComponentHeight, ZBannerElement, ZDeviceElement } from '@zthun/fashion-boutique';
+import { ZDeviceBounds, ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
-import { useFashionWebComponent, useHeightWebComponent } from '../web-components/use-web-component.mjs';
+
+import '../background/device';
 
 declare global {
   namespace React.JSX {
@@ -22,15 +23,14 @@ export interface IZBanner
 
 export function ZBanner(props: IZBanner) {
   const { children, className, fashion, height } = props;
+  const $height = useMemo(() => new ZDeviceBounds(height, ZSizeVaried.Fit).toDeviceMap(), [height]);
 
   useEffect(() => ZBannerElement.register(), []);
-
-  const banner = useRef<ZBannerElement>();
-  useFashionWebComponent(banner, fashion);
-  useHeightWebComponent(banner, height);
+  useEffect(() => ZDeviceElement.register(), []);
 
   return (
-    <z-banner class={cssJoinDefined(className)} ref={banner}>
+    <z-banner class={cssJoinDefined(className)} fashion={fashion}>
+      <z-device xl={$height.xl} lg={$height.lg} md={$height.md} sm={$height.sm} xs={$height.xs} name='height' />
       {children}
     </z-banner>
   );
