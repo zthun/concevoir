@@ -1,8 +1,8 @@
-import { ZCircusBy } from '@zthun/cirque';
+import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { ZBannerMainComponentModel } from '@zthun/fashion-circus';
 import React, { ReactNode } from 'react';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { ZBannerMain } from './banner-main';
 
 describe('ZBannerMain', () => {
@@ -10,6 +10,8 @@ describe('ZBannerMain', () => {
   let prefix: ReactNode | undefined;
   let suffix: ReactNode | undefined;
   let body: ReactNode;
+  let _renderer: IZCircusSetup<IZCircusDriver>;
+  let _driver: IZCircusDriver;
 
   async function createTestTarget() {
     const element = (
@@ -18,8 +20,9 @@ describe('ZBannerMain', () => {
       </ZBannerMain>
     );
 
-    const driver = await new ZCircusSetupRenderer(element).setup();
-    return ZCircusBy.first(driver, ZBannerMainComponentModel);
+    _renderer = new ZCircusSetupRenderer(element);
+    _driver = await _renderer.setup();
+    return ZCircusBy.first(_driver, ZBannerMainComponentModel);
   }
 
   beforeEach(() => {
@@ -27,6 +30,11 @@ describe('ZBannerMain', () => {
     prefix = undefined;
     suffix = undefined;
     body = 'Content';
+  });
+
+  afterEach(async () => {
+    await _driver?.destroy?.call(_driver);
+    await _renderer?.destroy?.call(_renderer);
   });
 
   it('should render the prefix', async () => {

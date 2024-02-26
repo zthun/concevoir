@@ -5,7 +5,6 @@ import { Property } from 'csstype';
 import React, { MouseEventHandler, MutableRefObject, useEffect, useMemo, useRef } from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
-import { useFashionWebComponent } from '../web-components/use-web-component.mjs';
 
 import '../background/device';
 
@@ -67,10 +66,9 @@ export function ZBox(props: IZBox) {
 
   const box = useRef<ZBoxElement>();
   useBoxWebComponent(box, border, trim, margin, padding);
-  useFashionWebComponent(box, fashion);
 
   return (
-    <z-box class={cssJoinDefined(className)} tabIndex={tabIndex} onClick={onClick} ref={box}>
+    <z-box class={cssJoinDefined(className)} fashion={fashion} tabIndex={tabIndex} onClick={onClick} ref={box}>
       <z-device xl={$width.xl} lg={$width.lg} md={$width.md} sm={$width.sm} xs={$width.xs} name='width' />
       {children}
     </z-box>

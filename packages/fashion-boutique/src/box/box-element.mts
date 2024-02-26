@@ -15,6 +15,7 @@ import { ZFashionIntrinsic } from '@zthun/fashion-theme';
 import {
   IZComponentAttributeChanged,
   IZComponentConnected,
+  IZComponentDisconnected,
   IZComponentPropertyChanged,
   ZAttribute,
   ZProperty,
@@ -29,10 +30,15 @@ import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
 export class ZBoxElement
   extends HTMLElement
-  implements IZComponentConnected, IZComponentAttributeChanged, IZComponentPropertyChanged, IZComponentFashion
+  implements
+    IZComponentConnected,
+    IZComponentAttributeChanged,
+    IZComponentDisconnected,
+    IZComponentPropertyChanged,
+    IZComponentFashion
 {
   public static readonly register = registerCustomElement.bind(null, 'z-box', ZBoxElement);
-  public static readonly observedAttributes = ['tabIndex'];
+  public static readonly observedAttributes = ['tabIndex', 'fashion'];
 
   public static readonly BoxSizeChart = Object.freeze({
     ...createSizeChartFixedCss(createSizeChartFixedGeometric(1.4, 18), 'rem'),
@@ -131,7 +137,7 @@ export class ZBoxElement
     const { style } = this;
 
     const $width = this.querySelector<ZDeviceElement>(`z-device[name="width"]`);
-    const width = new ZDeviceBounds($width?.device(), ZSizeVaried.Fit);
+    const width = new ZDeviceBounds($width?.device?.call($width), ZSizeVaried.Fit);
     style.setProperty('--box-width-xl', ZBoxElement.BoxSizeChart[width.xl()]);
     style.setProperty('--box-width-lg', ZBoxElement.BoxSizeChart[width.lg()]);
     style.setProperty('--box-width-md', ZBoxElement.BoxSizeChart[width.md()]);
@@ -141,11 +147,20 @@ export class ZBoxElement
 
   public connectedCallback() {
     this.classList.add('ZBox-root');
-    this.attributeChangedCallback();
+
+    const $width = this.querySelector<ZDeviceElement>('z-device[name="width"]');
+    $width?.addEventListener('change', this._refreshWidth);
+
+    this._refreshWidth();
+  }
+
+  public disconnectedCallback() {
+    const $width = this.querySelector<ZDeviceElement>('z-device[name="width"]');
+    $width?.removeEventListener('change', this._refreshWidth);
   }
 
   public attributeChangedCallback(): void {
-    this.propertyChangedCallback();
+    this._refreshWidth();
   }
 
   public propertyChangedCallback(): void {
@@ -205,8 +220,6 @@ export class ZBoxElement
     style.setProperty('--box-padding-left', pl);
     style.setProperty('--box-padding-right', pr);
     style.setProperty('--box-padding-top', pt);
-
-    this._refreshWidth();
 
     if (this.tabIndex >= 0) {
       style.setProperty('--box-cursor', 'pointer');
