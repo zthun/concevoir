@@ -16,26 +16,20 @@ import {
   IZComponentAttributeChanged,
   IZComponentConnected,
   IZComponentDisconnected,
-  IZComponentPropertyChanged,
   ZAttribute,
-  ZProperty,
   registerCustomElement
 } from '@zthun/helpful-dom';
-import { IZQuadrilateral, firstDefined } from '@zthun/helpful-fn';
+import { firstDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import { ZDeviceElement } from '../background/device-element.mjs';
+import { ZQuadrilateralElement } from '../background/quadrilateral-element.mjs';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 import { ZCssSerialize } from '../css/css-serialize.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
 export class ZBoxElement
   extends HTMLElement
-  implements
-    IZComponentConnected,
-    IZComponentAttributeChanged,
-    IZComponentDisconnected,
-    IZComponentPropertyChanged,
-    IZComponentFashion
+  implements IZComponentConnected, IZComponentAttributeChanged, IZComponentDisconnected, IZComponentFashion
 {
   public static readonly register = registerCustomElement.bind(null, 'z-box', ZBoxElement);
   public static readonly observedAttributes = ['tabIndex', 'fashion'];
@@ -45,18 +39,6 @@ export class ZBoxElement
     ...createSizeChartVariedCss(),
     ...createSizeChartVoidCss()
   });
-
-  @ZProperty()
-  public edge?: Partial<IZQuadrilateral<ZThicknessSize>>;
-
-  @ZProperty()
-  public trim?: Partial<IZQuadrilateral<Property.BorderStyle>>;
-
-  @ZProperty()
-  public margin?: Partial<IZQuadrilateral<ZGapSize | ZSizeVaried.Fit>>;
-
-  @ZProperty()
-  public padding?: Partial<IZQuadrilateral<ZGapSize>>;
 
   @ZAttribute({ fallback: ZFashionIntrinsic.Inherit })
   public fashion: string;
@@ -133,37 +115,24 @@ export class ZBoxElement
     shadow.appendChild(document.createElement('slot'));
   }
 
-  private _refreshWidth = () => {
+  private _refreshEdge = () => {
     const { style } = this;
 
-    const $width = this.querySelector<ZDeviceElement>(`z-device[name="width"]`);
-    const width = new ZDeviceBounds($width?.device?.call($width), ZSizeVaried.Fit);
-    style.setProperty('--box-width-xl', ZBoxElement.BoxSizeChart[width.xl()]);
-    style.setProperty('--box-width-lg', ZBoxElement.BoxSizeChart[width.lg()]);
-    style.setProperty('--box-width-md', ZBoxElement.BoxSizeChart[width.md()]);
-    style.setProperty('--box-width-sm', ZBoxElement.BoxSizeChart[width.sm()]);
-    style.setProperty('--box-width-xs', ZBoxElement.BoxSizeChart[width.xs()]);
+    const query = 'z-quadrilateral[name="edge"]';
+    const edge = this.querySelector<ZQuadrilateralElement<ZThicknessSize>>(query);
+
+    const bottom = ZFashionTailorElement.thicknessVar(firstDefined(ZSizeVoid.None, edge?.bottom));
+    const left = ZFashionTailorElement.thicknessVar(firstDefined(ZSizeVoid.None, edge?.left));
+    const right = ZFashionTailorElement.thicknessVar(firstDefined(ZSizeVoid.None, edge?.right));
+    const top = ZFashionTailorElement.thicknessVar(firstDefined(ZSizeVoid.None, edge?.top));
+
+    style.setProperty('--box-border-width-bottom', bottom);
+    style.setProperty('--box-border-width-left', left);
+    style.setProperty('--box-border-width-right', right);
+    style.setProperty('--box-border-width-top', top);
   };
 
-  public connectedCallback() {
-    this.classList.add('ZBox-root');
-
-    const $width = this.querySelector<ZDeviceElement>('z-device[name="width"]');
-    $width?.addEventListener('change', this._refreshWidth);
-
-    this._refreshWidth();
-  }
-
-  public disconnectedCallback() {
-    const $width = this.querySelector<ZDeviceElement>('z-device[name="width"]');
-    $width?.removeEventListener('change', this._refreshWidth);
-  }
-
-  public attributeChangedCallback(): void {
-    this._refreshWidth();
-  }
-
-  public propertyChangedCallback(): void {
+  private _refreshFashion = () => {
     const detail = new ZFashionDetail(this.fashion);
     const { style } = this;
 
@@ -184,43 +153,6 @@ export class ZBoxElement
     style.setProperty('--box-focus-border-color', border);
     style.setProperty('--box-hover-border-color', border);
 
-    const { trim } = this;
-    style.setProperty('--box-border-style-bottom', firstDefined('none', trim?.bottom));
-    style.setProperty('--box-border-style-left', firstDefined('none', trim?.left));
-    style.setProperty('--box-border-style-right', firstDefined('none', trim?.right));
-    style.setProperty('--box-border-style-top', firstDefined('none', trim?.top));
-
-    const { edge } = this;
-    const eb = ZFashionTailorElement.thicknessVar(firstDefined(ZSizeVoid.None, edge?.bottom));
-    const el = ZFashionTailorElement.thicknessVar(firstDefined(ZSizeVoid.None, edge?.left));
-    const er = ZFashionTailorElement.thicknessVar(firstDefined(ZSizeVoid.None, edge?.right));
-    const et = ZFashionTailorElement.thicknessVar(firstDefined(ZSizeVoid.None, edge?.top));
-    style.setProperty('--box-border-width-bottom', eb);
-    style.setProperty('--box-border-width-left', el);
-    style.setProperty('--box-border-width-right', er);
-    style.setProperty('--box-border-width-top', et);
-
-    const { margin } = this;
-    const mb = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, margin?.bottom));
-    const ml = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, margin?.left));
-    const mr = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, margin?.right));
-    const mt = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, margin?.top));
-    style.setProperty('--box-margin-bottom', mb);
-    style.setProperty('--box-margin-left', ml);
-    style.setProperty('--box-margin-right', mr);
-    style.setProperty('--box-margin-top', mt);
-
-    const { padding } = this;
-    const pb = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, padding?.bottom));
-    const pl = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, padding?.left));
-    const pr = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, padding?.right));
-    const pt = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, padding?.top));
-
-    style.setProperty('--box-padding-bottom', pb);
-    style.setProperty('--box-padding-left', pl);
-    style.setProperty('--box-padding-right', pr);
-    style.setProperty('--box-padding-top', pt);
-
     if (this.tabIndex >= 0) {
       style.setProperty('--box-cursor', 'pointer');
 
@@ -232,5 +164,116 @@ export class ZBoxElement
       style.setProperty('--box-hover-border-color', detail.color('hover.border'));
       style.setProperty('--box-hover-color', detail.color('hover.contrast'));
     }
+  };
+
+  private _refreshMargin = () => {
+    const { style } = this;
+
+    const m = 'z-quadrilateral[name="margin"]';
+    const margin = this.querySelector<ZQuadrilateralElement<ZGapSize | ZSizeVaried.Fit>>(m);
+
+    const bottom = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, margin?.bottom));
+    const left = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, margin?.left));
+    const right = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, margin?.right));
+    const top = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, margin?.top));
+
+    style.setProperty(`--box-margin-bottom`, bottom);
+    style.setProperty(`--box-margin-left`, left);
+    style.setProperty(`--box-margin-right`, right);
+    style.setProperty(`--box-margin-top`, top);
+  };
+
+  private _refreshPadding = () => {
+    const { style } = this;
+
+    const query = 'z-quadrilateral[name="padding"]';
+    const padding = this.querySelector<ZQuadrilateralElement<ZGapSize>>(query);
+
+    const bottom = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, padding?.bottom));
+    const left = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, padding?.left));
+    const right = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, padding?.right));
+    const top = ZFashionTailorElement.gapVar(firstDefined(ZSizeVoid.None, padding?.top));
+
+    style.setProperty('--box-padding-bottom', bottom);
+    style.setProperty('--box-padding-left', left);
+    style.setProperty('--box-padding-right', right);
+    style.setProperty('--box-padding-top', top);
+  };
+
+  private _refreshTrim = () => {
+    const { style } = this;
+
+    const query = 'z-quadrilateral[name="trim"]';
+    const trim = this.querySelector<ZQuadrilateralElement<Property.BorderStyle>>(query);
+
+    const bottom = firstDefined('none', trim?.bottom);
+    const left = firstDefined('none', trim?.left);
+    const right = firstDefined('none', trim?.right);
+    const top = firstDefined('none', trim?.top);
+
+    style.setProperty('--box-border-style-bottom', bottom);
+    style.setProperty('--box-border-style-left', left);
+    style.setProperty('--box-border-style-right', right);
+    style.setProperty('--box-border-style-top', top);
+  };
+
+  private _refreshWidth = () => {
+    const { style } = this;
+
+    const $width = this.querySelector<ZDeviceElement>(`z-device[name="width"]`);
+    const width = new ZDeviceBounds($width?.device?.call($width), ZSizeVaried.Fit);
+
+    style.setProperty('--box-width-xl', ZBoxElement.BoxSizeChart[width.xl()]);
+    style.setProperty('--box-width-lg', ZBoxElement.BoxSizeChart[width.lg()]);
+    style.setProperty('--box-width-md', ZBoxElement.BoxSizeChart[width.md()]);
+    style.setProperty('--box-width-sm', ZBoxElement.BoxSizeChart[width.sm()]);
+    style.setProperty('--box-width-xs', ZBoxElement.BoxSizeChart[width.xs()]);
+  };
+
+  public connectedCallback() {
+    this.classList.add('ZBox-root');
+
+    const $edge = this.querySelector<ZDeviceElement>('z-quadrilateral[name="edge"]');
+    $edge?.addEventListener('change', this._refreshEdge);
+
+    const $margin = this.querySelector<ZDeviceElement>('z-quadrilateral[name="margin"]');
+    $margin?.addEventListener('change', this._refreshMargin);
+
+    const $padding = this.querySelector<ZDeviceElement>('z-quadrilateral[name="padding"]');
+    $padding?.addEventListener('change', this._refreshPadding);
+
+    const $trim = this.querySelector<ZDeviceElement>('z-quadrilateral[name="trim"]');
+    $trim?.addEventListener('change', this._refreshTrim);
+
+    const $width = this.querySelector<ZDeviceElement>('z-device[name="width"]');
+    $width?.addEventListener('change', this._refreshWidth);
+
+    this._refreshMargin();
+    this._refreshPadding();
+    this._refreshWidth();
+    this._refreshEdge();
+    this._refreshTrim();
+    this._refreshFashion();
+  }
+
+  public disconnectedCallback() {
+    const $width = this.querySelector<ZDeviceElement>('z-device[name="width"]');
+    $width?.removeEventListener('change', this._refreshWidth);
+
+    const $trim = this.querySelector<ZDeviceElement>('z-quadrilateral[name="trim"]');
+    $trim?.removeEventListener('change', this._refreshTrim);
+
+    const $padding = this.querySelector<ZDeviceElement>('z-quadrilateral[name="padding"]');
+    $padding?.removeEventListener('change', this._refreshPadding);
+
+    const $margin = this.querySelector<ZDeviceElement>('z-quadrilateral[name="margin"]');
+    $margin?.removeEventListener('change', this._refreshMargin);
+
+    const $edge = this.querySelector<ZDeviceElement>('z-quadrilateral[name="edge"]');
+    $edge?.removeEventListener('change', this._refreshEdge);
+  }
+
+  public attributeChangedCallback(): void {
+    this._refreshFashion();
   }
 }

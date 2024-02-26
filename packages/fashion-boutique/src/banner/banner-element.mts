@@ -99,6 +99,14 @@ export class ZBannerElement
     style.setProperty('--banner-height-xs', xs);
   };
 
+  private _refreshFashion = () => {
+    const detail = new ZFashionDetail(this.fashion);
+    const { style } = this;
+
+    style.setProperty('--banner-background', detail.color('main'));
+    style.setProperty('--banner-color', detail.color('contrast'));
+  };
+
   public connectedCallback() {
     this.classList.add('ZBanner-root');
 
@@ -106,6 +114,7 @@ export class ZBannerElement
     $height?.addEventListener('change', this._refreshHeight);
 
     this._refreshHeight();
+    this._refreshFashion();
   }
 
   public disconnectedCallback() {
@@ -114,10 +123,6 @@ export class ZBannerElement
   }
 
   public attributeChangedCallback(): void {
-    const detail = new ZFashionDetail(this.fashion);
-    const { style } = this;
-
-    style.setProperty('--banner-background', detail.color('main'));
-    style.setProperty('--banner-color', detail.color('contrast'));
+    this._refreshFashion();
   }
 }
