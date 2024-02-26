@@ -1,9 +1,7 @@
 import {
   ZDeviceBounds,
-  ZDeviceValue,
   ZFashionDevice,
   ZGapSize,
-  ZSize,
   ZSizeFixed,
   ZSizeVaried,
   ZSizeVoid,
@@ -24,19 +22,14 @@ import {
 } from '@zthun/helpful-dom';
 import { IZQuadrilateral, firstDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
+import { ZDeviceElement } from '../background/device-element.mjs';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
-import { IZComponentWidth } from '../component/component-width.mjs';
 import { ZCssSerialize } from '../css/css-serialize.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
 export class ZBoxElement
   extends HTMLElement
-  implements
-    IZComponentConnected,
-    IZComponentAttributeChanged,
-    IZComponentPropertyChanged,
-    IZComponentWidth<ZSize>,
-    IZComponentFashion
+  implements IZComponentConnected, IZComponentAttributeChanged, IZComponentPropertyChanged, IZComponentFashion
 {
   public static readonly register = registerCustomElement.bind(null, 'z-box', ZBoxElement);
   public static readonly observedAttributes = ['tabIndex'];
@@ -46,9 +39,6 @@ export class ZBoxElement
     ...createSizeChartVariedCss(),
     ...createSizeChartVoidCss()
   });
-
-  @ZProperty<ZDeviceValue<ZSize>>({ initial: ZSizeVaried.Fit })
-  public width?: ZDeviceValue<ZSize>;
 
   @ZProperty()
   public edge?: Partial<IZQuadrilateral<ZThicknessSize>>;
@@ -137,6 +127,18 @@ export class ZBoxElement
     shadow.appendChild(document.createElement('slot'));
   }
 
+  private _refreshWidth = () => {
+    const { style } = this;
+
+    const $width = this.querySelector<ZDeviceElement>(`z-device[name="width"]`);
+    const width = new ZDeviceBounds($width?.device(), ZSizeVaried.Fit);
+    style.setProperty('--box-width-xl', ZBoxElement.BoxSizeChart[width.xl()]);
+    style.setProperty('--box-width-lg', ZBoxElement.BoxSizeChart[width.lg()]);
+    style.setProperty('--box-width-md', ZBoxElement.BoxSizeChart[width.md()]);
+    style.setProperty('--box-width-sm', ZBoxElement.BoxSizeChart[width.sm()]);
+    style.setProperty('--box-width-xs', ZBoxElement.BoxSizeChart[width.xs()]);
+  };
+
   public connectedCallback() {
     this.classList.add('ZBox-root');
     this.attributeChangedCallback();
@@ -204,12 +206,7 @@ export class ZBoxElement
     style.setProperty('--box-padding-right', pr);
     style.setProperty('--box-padding-top', pt);
 
-    const widthBounds = new ZDeviceBounds(this.width, ZSizeVaried.Fit);
-    style.setProperty('--box-width-xl', ZBoxElement.BoxSizeChart[widthBounds.xl()]);
-    style.setProperty('--box-width-lg', ZBoxElement.BoxSizeChart[widthBounds.lg()]);
-    style.setProperty('--box-width-md', ZBoxElement.BoxSizeChart[widthBounds.md()]);
-    style.setProperty('--box-width-sm', ZBoxElement.BoxSizeChart[widthBounds.sm()]);
-    style.setProperty('--box-width-xs', ZBoxElement.BoxSizeChart[widthBounds.xs()]);
+    this._refreshWidth();
 
     if (this.tabIndex >= 0) {
       style.setProperty('--box-cursor', 'pointer');

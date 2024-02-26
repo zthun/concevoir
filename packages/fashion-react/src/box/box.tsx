@@ -1,11 +1,13 @@
-import { IZComponentFashion, IZComponentWidth, ZBoxElement } from '@zthun/fashion-boutique';
-import { ZGapSize, ZSizeVaried, ZThicknessSize } from '@zthun/fashion-tailor';
+import { IZComponentFashion, IZComponentWidth, ZBoxElement, ZDeviceElement } from '@zthun/fashion-boutique';
+import { ZDeviceBounds, ZGapSize, ZSizeVaried, ZThicknessSize } from '@zthun/fashion-tailor';
 import { IZQuadrilateral, cssJoinDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
-import React, { MouseEventHandler, MutableRefObject, useEffect, useRef } from 'react';
+import React, { MouseEventHandler, MutableRefObject, useEffect, useMemo, useRef } from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
-import { useFashionWebComponent, useWidthWebComponent } from '../web-components/use-web-component.mjs';
+import { useFashionWebComponent } from '../web-components/use-web-component.mjs';
+
+import '../background/device';
 
 declare global {
   namespace React.JSX {
@@ -58,15 +60,18 @@ export function ZBox(props: IZBox) {
   const { children } = props;
   const tabIndex = onClick ? 0 : undefined;
 
+  const $width = useMemo(() => new ZDeviceBounds(width, ZSizeVaried.Fit).toDeviceMap(), [width]);
+
   useEffect(() => ZBoxElement.register(), []);
+  useEffect(() => ZDeviceElement.register(), []);
 
   const box = useRef<ZBoxElement>();
   useBoxWebComponent(box, border, trim, margin, padding);
   useFashionWebComponent(box, fashion);
-  useWidthWebComponent(box, width);
 
   return (
     <z-box class={cssJoinDefined(className)} tabIndex={tabIndex} onClick={onClick} ref={box}>
+      <z-device xl={$width.xl} lg={$width.lg} md={$width.md} sm={$width.sm} xs={$width.xs} name='width' />
       {children}
     </z-box>
   );
