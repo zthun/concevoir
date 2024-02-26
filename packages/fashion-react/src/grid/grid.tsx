@@ -1,11 +1,19 @@
-import { IZComponentHeight, IZComponentWidth, IZGridTarget, ZGridElement } from '@zthun/fashion-boutique';
-import { IZDeviceValueMap, ZDeviceValue, ZGapSize, ZSizeVaried } from '@zthun/fashion-tailor';
+import {
+  IZComponentHeight,
+  IZComponentWidth,
+  ZAlignmentElement,
+  ZDeviceElement,
+  ZGridElement
+} from '@zthun/fashion-boutique';
+import { IZDeviceValueMap, ZDeviceBounds, ZGapSize, ZSizeVaried } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
-import React, { MutableRefObject, useEffect, useRef } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
-import { useHeightWebComponent, useWidthWebComponent } from '../web-components/use-web-component.mjs';
+
+import '../background/alignment';
+import '../background/device';
 
 declare global {
   namespace React.JSX {
@@ -20,56 +28,17 @@ export interface IZGrid
     IZComponentHierarchy,
     IZComponentHeight<ZSizeVaried>,
     IZComponentWidth<ZSizeVaried> {
-  align?: IZGridTarget<Property.AlignItems, Property.AlignContent>;
-  justify?: IZGridTarget<Property.JustifyItems, Property.JustifyContent>;
+  align?: {
+    items?: Property.AlignItems;
+    content?: Property.AlignContent;
+  };
+  justify?: {
+    items?: Property.JustifyItems;
+    content?: Property.JustifyContent;
+  };
   gap?: ZGapSize;
   columns?: Property.GridTemplateColumns | IZDeviceValueMap<Property.GridTemplateColumns>;
   rows?: Property.GridTemplateRows;
-}
-
-function useColumnsGridWebComponent(
-  component: MutableRefObject<ZGridElement | null | undefined>,
-  columns: ZDeviceValue<Property.GridTemplateColumns>
-) {
-  useEffect(() => {
-    component.current!.columns = columns;
-  }, [component.current, columns]);
-}
-
-function useAlignGridWebComponent(
-  component: MutableRefObject<ZGridElement | null | undefined>,
-  align: IZGridTarget<Property.AlignItems, Property.AlignContent> | undefined
-) {
-  useEffect(() => {
-    component.current!.align = align;
-  }, [component.current, align]);
-}
-
-function useJustifyGridWebComponent(
-  component: MutableRefObject<ZGridElement | null | undefined>,
-  justify: IZGridTarget<Property.AlignItems, Property.AlignContent> | undefined
-) {
-  useEffect(() => {
-    component.current!.justify = justify;
-  }, [component.current, justify]);
-}
-
-function useGapGridWebComponent(
-  component: MutableRefObject<ZGridElement | null | undefined>,
-  gap: ZGapSize | undefined
-) {
-  useEffect(() => {
-    component.current!.gap = gap;
-  }, [component.current, gap]);
-}
-
-function useRowsGridWebComponent(
-  component: MutableRefObject<ZGridElement | null | undefined>,
-  rows: Property.GridTemplateRows | undefined
-) {
-  useEffect(() => {
-    component.current!.rows = rows;
-  }, [component.current, rows]);
 }
 
 /**
@@ -88,19 +57,22 @@ export function ZGrid(props: IZGrid) {
   const { width } = props;
   const { height } = props;
 
+  const $columns = useMemo(() => new ZDeviceBounds(columns, 'none').toDeviceMap(), [columns]);
+  const $height = useMemo(() => new ZDeviceBounds(height, ZSizeVaried.Fit).toDeviceMap(), [height]);
+  const $width = useMemo(() => new ZDeviceBounds(width, ZSizeVaried.Fit).toDeviceMap(), [width]);
+
+  useEffect(() => ZAlignmentElement.register(), []);
+  useEffect(() => ZDeviceElement.register(), []);
   useEffect(() => ZGridElement.register(), []);
 
-  const grid = useRef<ZGridElement>();
-  useColumnsGridWebComponent(grid, columns);
-  useAlignGridWebComponent(grid, align);
-  useJustifyGridWebComponent(grid, justify);
-  useHeightWebComponent(grid, height);
-  useWidthWebComponent(grid, width);
-  useGapGridWebComponent(grid, gap);
-  useRowsGridWebComponent(grid, rows);
-
   return (
-    <z-grid class={cssJoinDefined(className)} ref={grid}>
+    <z-grid class={cssJoinDefined(className)} gap={gap} rows={rows}>
+      <z-device xl={$columns.xl} lg={$columns.lg} md={$columns.md} sm={$columns.sm} xs={$columns.xs} name='columns' />
+      <z-device xl={$width.xl} lg={$width.lg} md={$width.md} sm={$width.sm} xs={$width.xs} name='width' />
+      <z-device xl={$height.xl} lg={$height.lg} md={$height.md} sm={$height.sm} xs={$height.xs} name='height' />
+      <z-alignment items={align?.items} content={align?.content} name='align' />
+      <z-alignment items={justify?.items} content={justify?.content} name='justify' />
+
       {children}
     </z-grid>
   );
