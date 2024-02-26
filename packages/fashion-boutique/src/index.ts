@@ -1,4 +1,7 @@
 export * from './alert/alert-element.mjs';
+export * from './background/alignment-element.mjs';
+export * from './background/background-element.mjs';
+export * from './background/device-element.mjs';
 export * from './banner/banner-element.mjs';
 export * from './box/box-element.mjs';
 export * from './component/component-fashion.mjs';
