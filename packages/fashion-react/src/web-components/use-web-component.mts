@@ -1,4 +1,4 @@
-import { IZComponentFashion, IZComponentHeight, IZComponentWidth } from '@zthun/fashion-boutique';
+import { IZComponentFashion, IZComponentWidth } from '@zthun/fashion-boutique';
 import { ZDeviceValue } from '@zthun/fashion-tailor';
 import { MutableRefObject, useEffect } from 'react';
 
@@ -15,15 +15,6 @@ export function useFashionWebComponent<TComponent extends IZComponentFashion>(
   useEffect(() => {
     component.current!.fashion = fashion;
   }, [component.current, fashion]);
-}
-
-export function useHeightWebComponent<THeight, TComponent extends IZComponentHeight<THeight>>(
-  component: MutableRefObject<TComponent | null | undefined>,
-  height?: ZDeviceValue<THeight>
-) {
-  useEffect(() => {
-    component.current!.height = height;
-  }, [component.current, height]);
 }
 
 export function useWidthWebComponent<TWidth, TComponent extends IZComponentWidth<TWidth>>(
