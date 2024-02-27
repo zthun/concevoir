@@ -1,6 +1,5 @@
-import { IZComponentHeight, IZComponentLoading, IZComponentWidth } from '@zthun/fashion-boutique';
+import { IZComponentFashion, IZComponentHeight, IZComponentLoading, IZComponentWidth } from '@zthun/fashion-boutique';
 import { ZSize, ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
-import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentName } from '../component/component-name.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 
@@ -9,8 +8,8 @@ import { IZComponentStyle } from '../component/component-style.mjs';
  */
 export interface IZSuspense<TWidth extends ZSize = ZSizeFixed, THeight extends ZSize = ZSizeVaried.Fit>
   extends IZComponentStyle,
-    Pick<IZComponentWidth<TWidth>, 'width'>,
-    Pick<IZComponentHeight<THeight>, 'height'>,
+    IZComponentWidth<TWidth>,
+    IZComponentHeight<THeight>,
     IZComponentLoading,
     IZComponentFashion,
     IZComponentName {}

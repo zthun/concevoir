@@ -1,54 +1,27 @@
-import { CircularProgress } from '@mui/material';
-import {
-  castDeviceMap,
-  createSizeChartFixedArithmetic,
-  createSizeChartFixedCss,
-  ZSizeFixed,
-  ZSizeVaried
-} from '@zthun/fashion-tailor';
-import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
-import React from 'react';
-import { createStyleHook } from '../theme/styled';
+import { ZSuspenseRotateElement } from '@zthun/fashion-boutique';
+import { ZDeviceBounds, ZSizeFixed } from '@zthun/fashion-tailor';
+import { cssJoinDefined } from '@zthun/helpful-fn';
+import React, { useEffect, useMemo } from 'react';
 import { IZSuspense } from './suspense.mjs';
 
-const SuspenseRotateSizeChart = createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), 'rem');
-
-const useSuspenseRotateStyles = createStyleHook((_, props: IZSuspense) => {
-  const { fashion } = props;
-
-  const color = firstDefined('inherit', fashion?.main);
-  return {
-    root: { color }
-  };
-});
-
-/**
- * Renders a rotating circle suspense.
- *
- * @param props -
- *        The properties for the component.
- *
- * @returns The jsx for the suspense.
- */
-export function ZSuspenseRotate(props: IZSuspense) {
-  const { className, loading = true, name, width, fashion } = props;
-  const size = SuspenseRotateSizeChart[castDeviceMap(width, ZSizeFixed.ExtraSmall).xl];
-  const { classes } = useSuspenseRotateStyles(props);
-  const _fashion = firstDefined('Inherit', fashion?.name);
-
-  if (!loading) {
-    return null;
+declare global {
+  namespace React.JSX {
+    interface IntrinsicElements {
+      ['z-suspense-rotate']: ZSuspenseRotateElement & any;
+    }
   }
+}
+
+export function ZSuspenseRotate(props: IZSuspense) {
+  const { className, loading, name, width, fashion } = props;
+
+  const $width = useMemo(() => new ZDeviceBounds(width, ZSizeFixed.ExtraSmall).toDeviceMap(), [width]);
+
+  useEffect(() => ZSuspenseRotateElement.register(), []);
 
   return (
-    <CircularProgress
-      className={cssJoinDefined('ZSuspense-root', 'ZSuspense-rotate', className, classes.root)}
-      size={size}
-      color='inherit'
-      data-name={name}
-      data-width={width}
-      data-height={ZSizeVaried.Fit}
-      data-fashion={_fashion}
-    />
+    <z-suspense-rotate class={cssJoinDefined(className)} fashion={fashion} loading={loading} name={name}>
+      <z-device xl={$width.xl} lg={$width.lg} md={$width.md} sm={$width.sm} xs={$width.xs} name='width' />
+    </z-suspense-rotate>
   );
 }
