@@ -13,8 +13,8 @@ export class ZSuspensePageComponentModel extends ZCircusComponentModel {
    * @returns
    *        The current suspense loader.
    */
-  public rotate(): Promise<ZSuspenseComponentModel | null> {
-    return ZCircusBy.optional(this.driver, ZSuspenseComponentModel, 'rotate');
+  public rotate(): Promise<ZSuspenseComponentModel> {
+    return ZCircusBy.first(this.driver, ZSuspenseComponentModel, 'rotate');
   }
 
   /**
@@ -23,8 +23,8 @@ export class ZSuspensePageComponentModel extends ZCircusComponentModel {
    * @returns
    *        The progress loader.
    */
-  public progress(): Promise<ZSuspenseComponentModel | null> {
-    return ZCircusBy.optional(this.driver, ZSuspenseComponentModel, 'progress');
+  public progress(): Promise<ZSuspenseComponentModel> {
+    return ZCircusBy.first(this.driver, ZSuspenseComponentModel, 'progress');
   }
 
   /**
@@ -45,15 +45,5 @@ export class ZSuspensePageComponentModel extends ZCircusComponentModel {
    */
   public fashion(): Promise<ZChoiceComponentModel> {
     return ZCircusBy.first(this.driver, ZChoiceComponentModel, 'fashion');
-  }
-
-  /**
-   * Gets the size drop down.
-   *
-   * @returns
-   *        The size drop down.
-   */
-  public size(): Promise<ZChoiceComponentModel> {
-    return ZCircusBy.first(this.driver, ZChoiceComponentModel, 'size');
   }
 }

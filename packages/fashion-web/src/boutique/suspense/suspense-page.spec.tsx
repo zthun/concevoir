@@ -1,6 +1,5 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionThemeBuilder } from '@zthun/fashion-theme';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
@@ -26,8 +25,8 @@ describe('ZSuspensePage', () => {
     const rotate = await target.rotate();
     const progress = await target.progress();
     // Assert.
-    expect(!!progress).toEqual(expected);
-    expect(!!rotate).toEqual(expected);
+    expect(await progress.loading()).toEqual(expected);
+    expect(await rotate.loading()).toEqual(expected);
   }
 
   async function assertSetsFashion(expected: string) {
@@ -43,50 +42,13 @@ describe('ZSuspensePage', () => {
     expect(progress).toEqual(expected);
   }
 
-  async function assertSetsSize(expected: ZSizeFixed) {
-    // Arrange
-    const target = await createTestTarget();
-    const size = await target.size();
-    // Act.
-    await size.select(expected);
-    const rotate = await target.rotate();
-    const progress = await target.progress();
-    const width = await rotate?.width();
-    const height = await progress?.height();
-    // Assert.
-    expect(width).toEqual(expected);
-    expect(height).toEqual(expected);
-  }
-
   describe('Display', () => {
-    it('should show the rotate loader when the loading option is checked.', async () => {
+    it('should show the suspense when the loading option is checked.', async () => {
       await assertDisplaysTheSuspenseWhenTheLoadingOptionIs(true);
     });
 
-    it('should hide the loader when the loading option is unchecked.', async () => {
+    it('should hide the suspense when the loading option is unchecked.', async () => {
       await assertDisplaysTheSuspenseWhenTheLoadingOptionIs(false);
-    });
-  });
-
-  describe('Size', () => {
-    it('should adjust the suspense size to xs.', async () => {
-      await assertSetsSize(ZSizeFixed.ExtraSmall);
-    });
-
-    it('should adjust the suspense size to sm.', async () => {
-      await assertSetsSize(ZSizeFixed.Small);
-    });
-
-    it('should adjust the suspense size to md.', async () => {
-      await assertSetsSize(ZSizeFixed.Medium);
-    });
-
-    it('should adjust the suspense size to lg.', async () => {
-      await assertSetsSize(ZSizeFixed.Large);
-    });
-
-    it('should adjust the suspense size to xl.', async () => {
-      await assertSetsSize(ZSizeFixed.ExtraLarge);
     });
   });
 
