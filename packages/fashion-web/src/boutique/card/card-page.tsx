@@ -1,16 +1,6 @@
-import {
-  ZBox,
-  ZButton,
-  ZCard,
-  ZGrid,
-  ZH3,
-  ZIconFontAwesome,
-  ZImageSource,
-  ZParagraph,
-  useFashionTheme
-} from '@zthun/fashion-react';
+import { ZBox, ZButton, ZCard, ZGrid, ZH3, ZIconFontAwesome, ZImageSource, ZParagraph } from '@zthun/fashion-react';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
-import { ZFashionArea } from '@zthun/fashion-theme';
+import { ZFashionArea, ZFashionSeverity } from '@zthun/fashion-theme';
 import React from 'react';
 import { ZFashionRouteCard } from '../../routes.mjs';
 import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
@@ -33,7 +23,6 @@ const LOREM =
  * @returns The JSX to render the alerts demo page.
  */
 export function ZCardPage() {
-  const { success } = useFashionTheme();
   const [fashion, fashionName, setFashion] = useFashionState(ZFashionArea.Component);
 
   return (
@@ -58,7 +47,7 @@ export function ZCardPage() {
             subHeading='Sub Header'
             fashion={fashion}
             avatar={<ZIconFontAwesome name='mask' width={ZSizeFixed.Medium} />}
-            footer={<ZButton label='Footer' width={ZSizeVaried.Full} fashion={success} />}
+            footer={<ZButton label='Footer' width={ZSizeVaried.Full} fashion={ZFashionSeverity.Success} />}
           >
             <ZParagraph compact>{LOREM}</ZParagraph>
           </ZCard>
@@ -70,7 +59,7 @@ export function ZCardPage() {
             fashion={fashion}
             loading
             avatar={<ZIconFontAwesome name='house' width={ZSizeFixed.Medium} />}
-            footer={<ZButton label='Footer' width={ZSizeVaried.Full} fashion={success} disabled />}
+            footer={<ZButton label='Footer' width={ZSizeVaried.Full} fashion={ZFashionSeverity.Success} disabled />}
           />
 
           <ZCard

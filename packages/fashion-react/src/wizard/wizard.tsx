@@ -1,4 +1,5 @@
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
+import { ZFashionPriority, ZFashionSeverity } from '@zthun/fashion-theme';
 import { ZOrientation, cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
 import { castArray } from 'lodash-es';
@@ -11,7 +12,6 @@ import { IZComponentValue } from '../component/component-value.mjs';
 import { ZGrid } from '../grid/grid';
 import { ZIconFontAwesome } from '../icon/icon-font-awesome';
 import { ZStack } from '../stack/stack';
-import { useFashionTheme } from '../theme/fashion';
 import { ZH4 } from '../typography/typography';
 
 export interface IZWizard extends IZComponentStyle, IZComponentName, IZComponentValue<number> {
@@ -36,7 +36,6 @@ export function ZWizard(props: IZWizard) {
     FinishButtonProps
   } = props;
 
-  const { primary, secondary, success } = useFashionTheme();
   const _children = castArray(children);
   const [page, setPage] = useAmbassadorState(value, onValueChange, 0);
   const _page = Math.min(_children.length - 1, Math.max(0, page));
@@ -74,7 +73,7 @@ export function ZWizard(props: IZWizard) {
           disabled={_page === 0 || PrevButtonProps?.disabled}
           onClick={PrevButtonProps?.onClick || handlePrevious}
           name='previous'
-          fashion={secondary}
+          fashion={ZFashionPriority.Secondary}
         />
       );
     };
@@ -100,7 +99,7 @@ export function ZWizard(props: IZWizard) {
           onClick={NextButtonProps?.onClick || handleNext}
           name='next'
           width={ZSizeVaried.Full}
-          fashion={primary}
+          fashion={ZFashionPriority.Primary}
           disabled={_disabled}
         />
       );
@@ -113,7 +112,7 @@ export function ZWizard(props: IZWizard) {
           label={firstDefined<ReactNode>(<ZIconFontAwesome name='circle-check' />, FinishButtonProps?.label)}
           name='finish'
           width={ZSizeVaried.Full}
-          fashion={success}
+          fashion={ZFashionSeverity.Success}
           disabled={_disabled}
         />
       );

@@ -1,6 +1,6 @@
 import { IZComponentHeight, IZComponentWidth } from '@zthun/fashion-boutique';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
-import { ZFashionSeverity } from '@zthun/fashion-theme';
+import { ZFashionPriority, ZFashionSeverity } from '@zthun/fashion-theme';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { IZDataRequest, ZDataRequestBuilder, ZDataSourceStatic } from '@zthun/helpful-query';
 import { isStateErrored, isStateLoading, useAmbassadorState, useMoreViewState } from '@zthun/helpful-react';
@@ -17,7 +17,6 @@ import { ZSuspenseProgress } from '../suspense/suspense-progress';
 import { IZSuspense } from '../suspense/suspense.mjs';
 import { IZText } from '../text/text';
 import { ZTextInput } from '../text/text-input';
-import { useFashionTheme } from '../theme/fashion';
 import { ZH5 } from '../typography/typography';
 
 export interface IZGridView<T = any>
@@ -50,7 +49,6 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
   } = props;
   const [request, setRequest] = useAmbassadorState(value, onValueChange, DefaultRequest);
   const { view, last, complete, more } = useMoreViewState(dataSource, request);
-  const theme = useFashionTheme();
 
   const handleSearch = (search: string) => {
     setRequest((r) => new ZDataRequestBuilder().copy(r).search(search).page(1).build());
@@ -98,7 +96,7 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
     return (
       <ZButton
         label='More...'
-        fashion={theme.secondary}
+        fashion={ZFashionPriority.Secondary}
         {...MoreProps}
         className={cssJoinDefined('ZGridView-more', MoreProps?.className)}
         onClick={more}

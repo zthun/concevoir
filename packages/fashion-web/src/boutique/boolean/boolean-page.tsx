@@ -1,5 +1,4 @@
 import {
-  useFashionTheme,
   ZBooleanCheckbox,
   ZBooleanSwitch,
   ZBox,
@@ -12,6 +11,7 @@ import {
   ZParagraph
 } from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
+import { ZFashionSeverity } from '@zthun/fashion-theme';
 import React, { useState } from 'react';
 import { ZFashionRouteBoolean } from '../../routes.mjs';
 import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
@@ -26,7 +26,6 @@ export function ZBooleanPage() {
   const [disabled, setDisabled] = useState(false);
   const [required, setRequired] = useState(false);
   const [value, setValue] = useState<boolean | null>(false);
-  const { success, warning, error } = useFashionTheme();
   const [fashion, fashionName, setFashion] = useFashionState();
 
   return (
@@ -90,9 +89,14 @@ export function ZBooleanPage() {
         <ZH3>Operations</ZH3>
 
         <ZGrid columns={{ xl: 'auto auto auto', xs: 'auto' }} gap={ZSizeFixed.Small}>
-          <ZButton fashion={success} onClick={setValue.bind(null, true)} label='True' name='on' />
-          <ZButton fashion={error} onClick={setValue.bind(null, false)} label='False' name='off' />
-          <ZButton fashion={warning} onClick={setValue.bind(null, null)} label='Indeterminate' name='indeterminate' />
+          <ZButton fashion={ZFashionSeverity.Success} onClick={setValue.bind(null, true)} label='True' name='on' />
+          <ZButton fashion={ZFashionSeverity.Error} onClick={setValue.bind(null, false)} label='False' name='off' />
+          <ZButton
+            fashion={ZFashionSeverity.Warning}
+            onClick={setValue.bind(null, null)}
+            label='Indeterminate'
+            name='indeterminate'
+          />
         </ZGrid>
 
         <ZBox margin={{ top: ZSizeFixed.Small }}></ZBox>

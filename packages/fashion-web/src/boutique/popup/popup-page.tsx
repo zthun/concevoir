@@ -1,12 +1,12 @@
-import { ZBox, ZCard, ZH3, ZIconFontAwesome, ZParagraph, ZPopupButton, useFashionTheme } from '@zthun/fashion-react';
+import { ZBox, ZCard, ZH3, ZIconFontAwesome, ZParagraph, ZPopupButton } from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
+import { ZFashionSeverity } from '@zthun/fashion-theme';
 import { square } from '@zthun/helpful-fn';
 import React, { useMemo } from 'react';
 import { ZFashionRoutePopup } from '../../routes.mjs';
 
 export function ZPopupPage() {
-  const { success } = useFashionTheme();
-  const PopupButtonProps = useMemo(() => ({ fashion: success, label: 'Open' }), []);
+  const PopupButtonProps = useMemo(() => ({ fashion: ZFashionSeverity.Success, label: 'Open' }), []);
 
   return (
     <ZCard

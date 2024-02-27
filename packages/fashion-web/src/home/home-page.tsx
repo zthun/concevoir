@@ -9,6 +9,7 @@ import {
   ZParagraph
 } from '@zthun/fashion-react';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
+import { ZFashionPriority } from '@zthun/fashion-theme';
 import React from 'react';
 import { ZFashionRouteBoutique, ZFashionRouteTheme } from '../routes.mjs';
 
@@ -32,13 +33,13 @@ const useHomePageStyles = createStyleHook(({ tailor }) => ({
 export function ZHomePage() {
   const { classes } = useHomePageStyles();
   const navigate = useNavigate();
-  const { primary, secondary } = useFashionTheme();
+  const { primary } = useFashionTheme();
 
   const renderGetStarted = (where: string) => (
     <ZButton
       label='Get Started'
       onClick={() => navigate(where)}
-      fashion={secondary}
+      fashion={ZFashionPriority.Secondary}
       name={`${where}-get-started`}
       width={ZSizeVaried.Full}
     />

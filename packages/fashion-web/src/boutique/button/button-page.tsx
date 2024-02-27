@@ -27,7 +27,7 @@ export function ZButtonPage() {
   const [outline, setOutline] = useState(false);
   const [borderless, setBorderless] = useState(false);
   const [compact, setCompact] = useState(false);
-  const [fashion, fashionName, setFashion] = useFashionState();
+  const [, fashionName, setFashion] = useFashionState();
   const [count, setCount] = useState<number>(0);
 
   const handleClick = () => {
@@ -67,7 +67,7 @@ export function ZButtonPage() {
             onClick={handleClick}
             label='Button'
             name='button'
-            fashion={fashion}
+            fashion={fashionName}
           />
 
           <ZButton
@@ -77,7 +77,7 @@ export function ZButtonPage() {
             outline={outline}
             compact={compact}
             onClick={handleClick}
-            fashion={fashion}
+            fashion={fashionName}
             label={avatar}
             name='icon-button'
             tooltip='Iconography Button'

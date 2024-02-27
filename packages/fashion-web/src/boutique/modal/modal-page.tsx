@@ -8,10 +8,10 @@ import {
   ZIconFontAwesome,
   ZModal,
   ZParagraph,
-  ZStack,
-  useFashionTheme
+  ZStack
 } from '@zthun/fashion-react';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
+import { ZFashionSeverity } from '@zthun/fashion-theme';
 import { ZOrientation } from '@zthun/helpful-fn';
 import React, { useState } from 'react';
 import { ZFashionRouteModal } from '../../routes.mjs';
@@ -31,21 +31,19 @@ export function ZModalPage() {
   const [fullScreen, setFullScreen] = useState(false);
   const [fashion, fashionName, setFashion] = useFashionState();
 
-  const { success, warning } = useFashionTheme();
-
   const renderHeader = () => 'Modal Header';
 
   const renderFooter = () => (
     <ZStack orientation={ZOrientation.Horizontal} gap={ZSizeFixed.ExtraSmall}>
       <ZButton
-        fashion={warning}
+        fashion={ZFashionSeverity.Warning}
         avatar={<ZIconFontAwesome name='close' width={ZSizeFixed.ExtraSmall} />}
         label='Cancel'
         onClick={setOpen.bind(null, false)}
         name='cancel'
       />
       <ZButton
-        fashion={success}
+        fashion={ZFashionSeverity.Success}
         avatar={<ZIconFontAwesome name='floppy-disk' width={ZSizeFixed.ExtraSmall} />}
         label='Save'
         onClick={setOpen.bind(null, false)}
@@ -70,7 +68,7 @@ export function ZModalPage() {
         </ZParagraph>
 
         <ZButton
-          fashion={success}
+          fashion={ZFashionSeverity.Success}
           label='Open Modal'
           avatar={<ZIconFontAwesome name='comment-dots' width={ZSizeFixed.ExtraSmall} />}
           onClick={setOpen.bind(null, true)}

@@ -1,4 +1,5 @@
 import { ZSizeVaried } from '@zthun/fashion-tailor';
+import { ZFashionSeverity } from '@zthun/fashion-theme';
 import { ZHttpCodeClient, getHttpCodeDescription, getHttpCodeName } from '@zthun/webigail-http';
 import React from 'react';
 import { ZButton } from '../button/button';
@@ -6,7 +7,6 @@ import { ZCard } from '../card/card';
 import { ZFullScreen } from '../full-screen/full-screen';
 import { ZGrid } from '../grid/grid';
 import { useNavigate } from '../router/router-dom.mjs';
-import { useFashionTheme } from '../theme/fashion';
 import { ZParagraph } from '../typography/typography';
 import { ZSadFace } from './sad-face';
 
@@ -20,7 +20,6 @@ export function ZNotFound(props: IZNotFound) {
   const name = getHttpCodeName(ZHttpCodeClient.NotFound);
   const title = `${name} (${ZHttpCodeClient.NotFound})`;
   const navigate = useNavigate();
-  const { error } = useFashionTheme();
 
   return (
     <ZFullScreen>
@@ -39,7 +38,7 @@ export function ZNotFound(props: IZNotFound) {
               name='return-home'
               label='Return home'
               width={ZSizeVaried.Full}
-              fashion={error}
+              fashion={ZFashionSeverity.Error}
               onClick={() => navigate(home)}
             />
           }

@@ -1,10 +1,10 @@
 import { ZSizeFixed } from '@zthun/fashion-tailor';
+import { ZFashionSeverity } from '@zthun/fashion-theme';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { useState } from 'react';
 import { ZButton } from '../button/button';
 import { ZGrid } from '../grid/grid';
 import { ZIconFontAwesome } from '../icon/icon-font-awesome';
-import { useFashionTheme } from '../theme/fashion';
 import { IZText } from './text';
 import { ZTextInput, ZTextType } from './text-input';
 
@@ -27,8 +27,7 @@ export function ZTextInputReveal(props: IZText) {
     <ZIconFontAwesome name='eye-slash' width={ZSizeFixed.ExtraSmall} />
   );
 
-  const { error, success } = useFashionTheme();
-  const fashion = revealed ? error : success;
+  const fashion = revealed ? ZFashionSeverity.Error : ZFashionSeverity.Success;
 
   const adornment = (
     <ZGrid columns='auto auto' align={{ items: 'center' }} gap={ZSizeFixed.Small}>

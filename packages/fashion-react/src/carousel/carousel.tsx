@@ -1,4 +1,5 @@
 import { ZSizeFixed } from '@zthun/fashion-tailor';
+import { ZFashionContrast } from '@zthun/fashion-theme';
 import { ZOrientation, cssJoinDefined } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
 import React, { ReactNode } from 'react';
@@ -9,7 +10,6 @@ import { IZComponentStyle } from '../component/component-style.mjs';
 import { IZComponentValue } from '../component/component-value.mjs';
 import { ZIconFontAwesome } from '../icon/icon-font-awesome';
 import { ZStack } from '../stack/stack';
-import { useFashionTheme } from '../theme/fashion';
 import { createStyleHook } from '../theme/styled';
 
 export interface IZCarousel
@@ -63,7 +63,6 @@ export function ZCarousel(props: IZCarousel) {
     renderEmpty = _renderEmpty
   } = props;
   const [index, setIndex] = useAmbassadorState(value, onValueChange, 0);
-  const { opposite } = useFashionTheme();
   const { classes } = useCarouselStyles(props);
   const forward = orientation === ZOrientation.Horizontal ? 'chevron-right' : 'chevron-down';
   const reverse = orientation === ZOrientation.Horizontal ? 'chevron-left' : 'chevron-up';
@@ -95,7 +94,7 @@ export function ZCarousel(props: IZCarousel) {
           borderless
           outline
           compact
-          fashion={opposite}
+          fashion={ZFashionContrast.Opposite}
           label={<ZIconFontAwesome name={reverse} width={ZSizeFixed.Small} />}
           {...ReverseProps}
           className={cssJoinDefined('ZCarousel-navigation ZCarousel-navigation-reverse', ReverseProps?.className)}
@@ -108,7 +107,7 @@ export function ZCarousel(props: IZCarousel) {
           borderless
           outline
           compact
-          fashion={opposite}
+          fashion={ZFashionContrast.Opposite}
           label={<ZIconFontAwesome name={forward} width={ZSizeFixed.Small} />}
           {...ForwardProps}
           className={cssJoinDefined('ZCarousel-navigation ZCarousel-navigation-forward', ForwardProps?.className)}

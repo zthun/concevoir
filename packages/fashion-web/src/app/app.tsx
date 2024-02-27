@@ -14,7 +14,7 @@ import {
   ZRouter
 } from '@zthun/fashion-react';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
-import { createDarkTheme, createLightTheme } from '@zthun/fashion-theme';
+import { ZFashionContrast, createDarkTheme, createLightTheme } from '@zthun/fashion-theme';
 import React, { useMemo, useState } from 'react';
 import { ZAlertPage } from '../boutique/alert/alert-page';
 import { ZBooleanPage } from '../boutique/boolean/boolean-page';
@@ -77,7 +77,6 @@ const darkTheme = createDarkTheme();
 export function ZFashionApp() {
   const avatar = <ZImageSource src={ZFashionRouteHome.avatar} height={ZSizeVaried.Full} />;
   const [theme, setTheme] = useState(darkTheme);
-  const { dark, light } = theme;
   const prefix = (
     <div className='ZFashionApp-description'>
       <ZH1 compact>{ZFashionRouteHome.name}</ZH1>
@@ -95,7 +94,7 @@ export function ZFashionApp() {
     <ZButton
       label={<ZIconFontAwesome name='lightbulb' width={ZSizeFixed.ExtraSmall} />}
       onClick={toggleTheme}
-      fashion={theme === lightTheme ? dark : light}
+      fashion={theme === lightTheme ? ZFashionContrast.Dark : ZFashionContrast.Light}
       tooltip={theme === lightTheme ? 'Switch to dark theme' : 'Switch to light theme'}
     />
   );
