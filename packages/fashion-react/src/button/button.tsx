@@ -1,20 +1,21 @@
-import { Button, Tooltip } from '@mui/material';
-import React, { ReactNode } from 'react';
+import { Tooltip } from '@mui/material';
+import React, { ReactNode, useEffect } from 'react';
 
-import { IZFashion, transparent } from '@zthun/fashion-theme';
-
-import { IZComponentLoading, IZComponentWidth } from '@zthun/fashion-boutique';
-import { ZSizeFixed, ZSizeVaried, castDeviceMap, createSizeChartVariedCss } from '@zthun/fashion-tailor';
-import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
-import { noop } from 'lodash-es';
+import { IZComponentFashion, IZComponentLoading, IZComponentWidth, ZButtonElement } from '@zthun/fashion-boutique';
+import { ZSizeVaried } from '@zthun/fashion-tailor';
 import { IZComponentAvatar } from '../component/component-avatar.mjs';
 import { IZComponentDisabled } from '../component/component-disabled.mjs';
-import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentLabel } from '../component/component-label.mjs';
 import { IZComponentName } from '../component/component-name.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
-import { ZSuspenseRotate } from '../suspense/suspense-rotate';
-import { createStyleHook } from '../theme/styled';
+
+declare global {
+  namespace React.JSX {
+    interface IntrinsicElements {
+      ['z-button']: ZButtonElement & any;
+    }
+  }
+}
 
 export interface IZButton
   extends IZComponentAvatar,
@@ -23,8 +24,8 @@ export interface IZButton
     IZComponentLoading,
     IZComponentStyle,
     IZComponentName,
-    IZComponentFashion<IZFashion>,
-    Pick<IZComponentWidth<ZSizeVaried>, 'width'> {
+    IZComponentFashion,
+    IZComponentWidth<ZSizeVaried> {
   borderless?: boolean;
   compact?: boolean;
   outline?: boolean;
@@ -32,91 +33,6 @@ export interface IZButton
 
   onClick?: (e: React.MouseEvent) => any;
 }
-
-const ButtonSizeChart = createSizeChartVariedCss();
-
-export const useButtonStyles = createStyleHook(({ theme, tailor }, props: IZButton) => {
-  const { width, fashion = theme.component, compact } = props;
-
-  const text = fashion.contrast;
-  const main = fashion.main;
-  const border = firstDefined(fashion.main, fashion.border);
-  const minWidth = compact ? 0 : undefined;
-
-  const borderless = {
-    border: 0,
-    outline: 'none',
-    boxShadow: 'none'
-  };
-
-  return {
-    wrapper: {
-      display: 'inline-flex',
-      width: ButtonSizeChart[castDeviceMap(width, ZSizeVaried.Fit).xl]
-    },
-
-    button: {
-      'display': 'inline-flex',
-      'alignItems': 'center',
-      'width': '100%',
-      'color': text,
-      'backgroundColor': main,
-      'borderColor': border,
-      'minWidth': minWidth,
-
-      '&:hover': {
-        outline: `${tailor.thickness()} solid ${firstDefined(fashion.main, fashion.hover.border)}`,
-        backgroundColor: firstDefined(fashion.main, fashion.hover.main)
-      },
-
-      '&:disabled': {
-        color: text,
-        backgroundColor: main,
-        opacity: '0.25'
-      },
-
-      '&.ZButton-outline': {
-        'backgroundColor': transparent(),
-        'color': main,
-        'borderColor': main,
-
-        '&:disabled': {
-          color: 'rgb(0, 0, 0, 0.25)'
-        },
-
-        '&:hover': {
-          backgroundColor: main,
-          color: text
-        }
-      },
-
-      '&.ZButton-borderless': {
-        ...borderless,
-        '&:hover': borderless,
-        '&:active': borderless
-      },
-
-      '&.ZButton-compact': {
-        'padding': tailor.thickness(ZSizeFixed.ExtraSmall),
-
-        '.MuiButton-startIcon': {
-          marginLeft: 0
-        },
-        '.MuiButton-endIcon': {
-          marginRight: 0
-        }
-      }
-    },
-
-    content: {
-      display: 'flex'
-    },
-
-    loading: {
-      marginLeft: tailor.gap(ZSizeFixed.ExtraSmall)
-    }
-  };
-});
 
 /**
  * Represents a basic button component.
@@ -127,56 +43,28 @@ export const useButtonStyles = createStyleHook(({ theme, tailor }, props: IZButt
  * @returns The JSX to render this button.
  */
 export function ZButton(props: IZButton) {
-  const {
-    avatar,
-    className,
-    borderless,
-    compact,
-    disabled,
-    fashion,
-    loading = false,
-    label,
-    name,
-    outline,
-    tooltip,
-    onClick = noop
-  } = props;
+  const { avatar, className, borderless, compact, disabled, fashion, loading, label, name, outline, tooltip, onClick } =
+    props;
 
-  const { classes } = useButtonStyles(props);
-  const buttonClass = cssJoinDefined(
-    'ZButton-root',
-    ['ZButton-borderless', !!borderless],
-    ['ZButton-outline', !!outline],
-    ['ZButton-compact', !!compact],
-    className,
-    classes.button
-  );
-  const contentClass = cssJoinDefined('ZButton-content', classes.content);
-  const variant = outline ? 'outlined' : 'contained';
+  useEffect(() => ZButtonElement.register(), []);
 
   return (
     <Tooltip title={tooltip}>
-      <span className={classes.wrapper}>
-        <Button
-          className={buttonClass}
-          variant={variant}
+      <span>
+        <z-button
+          borderless={borderless}
+          class={className}
+          compact={compact}
           disabled={disabled}
-          onClick={onClick}
+          fashion={fashion}
+          loading={loading}
+          outline={outline}
           name={name}
-          startIcon={avatar}
-          endIcon={
-            <ZSuspenseRotate
-              className={cssJoinDefined('ZButton-loading', classes.loading)}
-              width={ZSizeFixed.ExtraSmall}
-              loading={loading}
-              fashion={fashion?.name}
-            />
-          }
-          data-compact={compact}
-          data-fashion={fashion?.name}
+          onClick={onClick}
         >
-          <div className={contentClass}>{label}</div>
-        </Button>
+          <div slot='prefix'>{avatar}</div>
+          <div>{label}</div>
+        </z-button>
       </span>
     </Tooltip>
   );
