@@ -5,6 +5,7 @@ export * from './background/device-element.mjs';
 export * from './background/quadrilateral-element.mjs';
 export * from './banner/banner-element.mjs';
 export * from './box/box-element.mjs';
+export * from './button/button.mjs';
 export * from './component/component-fashion.mjs';
 export * from './component/component-height.mjs';
 export * from './component/component-loading.mjs';
