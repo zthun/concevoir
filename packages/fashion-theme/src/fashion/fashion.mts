@@ -343,27 +343,42 @@ export class ZFashionBuilder {
    *        The amount to lighten and darken.
    */
   public spectrum(color: number, amount = 77) {
-    const whiteContrast = contrast(color, 0xffffff);
-    const blackContrast = contrast(color, 0x000000);
-    const higherContrast = whiteContrast >= blackContrast ? white() : black();
+    const w = 0xffffff;
+    const b = 0x000000;
 
-    const main = hex(color);
-    const light = hex(brighten(color, amount));
-    const dark = hex(brighten(color, -amount));
+    const whiteMainContrast = contrast(color, w);
+    const blackMainContrast = contrast(color, b);
+    const higherMainContrast = whiteMainContrast >= blackMainContrast ? white() : black();
 
-    return this.main(main)
-      .dark(dark)
-      .light(light)
-      .contrast(higherContrast)
+    const light = brighten(color, amount);
+    const whiteLightContrast = contrast(light, w);
+    const blackLightContrast = contrast(light, b);
+    const higherLightContrast = whiteLightContrast >= blackLightContrast ? white() : black();
+
+    const dark = brighten(color, -amount);
+    const whiteDarkContrast = contrast(dark, w);
+    const blackDarkContrast = contrast(dark, b);
+    const higherDarkContrast = whiteDarkContrast >= blackDarkContrast ? white() : black();
+
+    const mainColor = hex(color);
+    const lightColor = hex(light);
+    const darkColor = hex(dark);
+
+    return this.main(mainColor)
+      .dark(darkColor)
+      .light(lightColor)
+      .contrast(higherMainContrast)
       .focus({
-        main: light,
-        border: dark
+        contrast: higherLightContrast,
+        main: lightColor,
+        border: darkColor
       })
       .hover({
-        main: dark,
-        border: light
+        contrast: higherDarkContrast,
+        main: darkColor,
+        border: lightColor
       })
-      .border(dark);
+      .border(darkColor);
   }
 
   /**
