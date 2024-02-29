@@ -1,7 +1,7 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { ZButtonComponentModel } from '@zthun/fashion-circus';
-import { black, IZFashion, white, ZFashionBuilder } from '@zthun/fashion-theme';
+import { ZFashionPriority } from '@zthun/fashion-theme';
 import React, { ReactNode } from 'react';
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 import { ZButton } from './button';
@@ -14,7 +14,7 @@ describe('ZButton', () => {
   let outline: boolean | undefined;
   let borderless: boolean | undefined;
   let compact: boolean | undefined;
-  let fashion: IZFashion | undefined;
+  let fashion: string | undefined;
   let name: string | undefined;
   let onClick: Mock | undefined;
 
@@ -218,7 +218,7 @@ describe('ZButton', () => {
 
   describe('Fashion', () => {
     beforeEach(() => {
-      fashion = new ZFashionBuilder().name('Test Fashion').main(black()).contrast(white()).build();
+      fashion = ZFashionPriority.Primary;
     });
 
     it('should set the fashion', async () => {
@@ -227,7 +227,7 @@ describe('ZButton', () => {
       // Act.
       const actual = await target.fashion();
       // Assert.
-      expect(actual).toEqual(fashion?.name);
+      expect(actual).toEqual(fashion);
     });
   });
 });
