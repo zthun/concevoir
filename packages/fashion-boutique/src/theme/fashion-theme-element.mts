@@ -37,14 +37,20 @@ export class ZFashionThemeElement extends HTMLElement {
     const dark = firstDefined(main, fashion.dark);
     const light = firstDefined(main, fashion.light);
 
+    const active = {
+      border: firstDefined(main, fashion.active.border, fashion.active.main),
+      contrast: firstDefined(contrast, fashion.active.contrast),
+      main: firstDefined(main, fashion.active.main)
+    };
+
     const focus = {
-      border: firstDefined(main, fashion.focus.main, fashion.focus.border),
+      border: firstDefined(main, fashion.focus.border, fashion.focus.main),
       contrast: firstDefined(contrast, fashion.focus.contrast),
       main: firstDefined(main, fashion.focus.main)
     };
 
     const hover = {
-      border: firstDefined(main, fashion.hover.main, fashion.hover.border),
+      border: firstDefined(main, fashion.hover.border, fashion.hover.main),
       contrast: firstDefined(contrast, fashion.hover.contrast),
       main: firstDefined(main, fashion.hover.main)
     };
@@ -62,5 +68,9 @@ export class ZFashionThemeElement extends HTMLElement {
     this.style.setProperty(ZFashionThemeElement.property(name, 'hover.border'), hover.border);
     this.style.setProperty(ZFashionThemeElement.property(name, 'hover.contrast'), hover.contrast);
     this.style.setProperty(ZFashionThemeElement.property(name, 'hover.main'), hover.main);
+
+    this.style.setProperty(ZFashionThemeElement.property(name, 'active.border'), active.border);
+    this.style.setProperty(ZFashionThemeElement.property(name, 'active.contrast'), active.contrast);
+    this.style.setProperty(ZFashionThemeElement.property(name, 'active.main'), active.main);
   }
 }
