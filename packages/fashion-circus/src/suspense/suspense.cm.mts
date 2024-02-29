@@ -41,7 +41,7 @@ export class ZSuspenseComponentModel extends ZCircusComponentModel {
    */
   public static async loading(driver: IZCircusDriver, name?: string): Promise<boolean> {
     const suspense = await ZCircusBy.optional(driver, ZSuspenseComponentModel, name);
-    return suspense != null && suspense.loading();
+    return suspense == null ? Promise.resolve(false) : suspense.loading();
   }
 
   /**
