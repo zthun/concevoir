@@ -157,6 +157,11 @@ export interface IZFashion {
    * The color overrides for when a component is focused.
    */
   readonly focus: IZFashionOverrides;
+
+  /**
+   * The color overrides for when a component is active.
+   */
+  readonly active: IZFashionOverrides;
 }
 
 /**
@@ -173,7 +178,10 @@ export type ZFashionScope =
   | 'hover.border'
   | 'focus.main'
   | 'focus.contrast'
-  | 'focus.border';
+  | 'focus.border'
+  | 'active.main'
+  | 'active.contrast'
+  | 'active.border';
 
 /**
  * Represents a builder for a complementary fashion objects.
@@ -189,11 +197,12 @@ export class ZFashionBuilder {
    */
   public constructor() {
     this._fashion = {
-      main: white(),
+      active: {},
       contrast: black(),
-      name: 'default',
+      focus: {},
       hover: {},
-      focus: {}
+      main: white(),
+      name: 'default'
     };
   }
 
@@ -350,6 +359,11 @@ export class ZFashionBuilder {
     const blackMainContrast = contrast(color, b);
     const higherMainContrast = whiteMainContrast >= blackMainContrast ? white() : black();
 
+    const lighter = brighten(color, Math.floor(amount / 2));
+    const whiteLighterContrast = contrast(lighter, w);
+    const blackLighterContrast = contrast(lighter, b);
+    const higherLighterContrast = whiteLighterContrast >= blackLighterContrast ? white() : black();
+
     const light = brighten(color, amount);
     const whiteLightContrast = contrast(light, w);
     const blackLightContrast = contrast(light, b);
@@ -361,6 +375,7 @@ export class ZFashionBuilder {
     const higherDarkContrast = whiteDarkContrast >= blackDarkContrast ? white() : black();
 
     const mainColor = hex(color);
+    const lighterColor = hex(lighter);
     const lightColor = hex(light);
     const darkColor = hex(dark);
 
@@ -368,6 +383,11 @@ export class ZFashionBuilder {
       .dark(darkColor)
       .light(lightColor)
       .contrast(higherMainContrast)
+      .active({
+        contrast: higherLighterContrast,
+        main: lighterColor,
+        border: lightColor
+      })
       .focus({
         contrast: higherLightContrast,
         main: lightColor,
@@ -476,6 +496,20 @@ export class ZFashionBuilder {
    */
   public hover(hover: IZFashionOverrides): this {
     this._fashion.hover = { ...this._fashion.hover, ...hover };
+    return this;
+  }
+
+  /**
+   * Sets the active fashion.
+   *
+   * @param hover -
+   *        The fashion overrides.
+   *
+   * @returns
+   *        This object.
+   */
+  public active(active: IZFashionOverrides): this {
+    this._fashion.active = { ...this._fashion.active, ...active };
     return this;
   }
 
