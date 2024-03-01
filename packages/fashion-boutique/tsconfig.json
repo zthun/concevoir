@@ -7,5 +7,5 @@
       "@zthun/fashion-tailor": ["../fashion-tailor/src/index"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.mts"]
+  "include": ["src/**/*.ts", "src/**/*.mts"]
 }
