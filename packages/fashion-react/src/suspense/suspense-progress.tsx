@@ -27,7 +27,6 @@ export function ZSuspenseProgress(props: IZSuspense<ZSizeVaried.Full, ZSizeFixed
 
   const $height = useMemo(() => new ZDeviceBounds(height, ZSizeFixed.ExtraSmall).toDeviceMap(), [height]);
 
-  useEffect(() => ZSuspenseProgressElement.register(), []);
   useEffect(() => ZDeviceElement.register(), []);
 
   return (

@@ -1,6 +1,6 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZFashionThemeBuilder } from '@zthun/fashion-theme';
+import { ZFashionContrast, ZFashionThemeBuilder } from '@zthun/fashion-theme';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZSuspensePage } from './suspense-page';
@@ -53,10 +53,10 @@ describe('ZSuspensePage', () => {
   });
 
   describe('Fashion', () => {
-    it('should default the fashion to inherit the color.', async () => {
+    it('should default the fashion to opposite.', async () => {
       // Arrange
       const target = await createTestTarget();
-      const expected = 'Inherit';
+      const expected = ZFashionContrast.Opposite;
       // Act
       const rotate = await (await target.rotate())?.fashion();
       const progress = await (await target.progress())?.fashion();

@@ -1,4 +1,5 @@
 import { IZCircusDriver, ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
+import { ZFashionContrast } from '@zthun/fashion-theme';
 
 /**
  * Represents a component model for suspense.
@@ -13,7 +14,7 @@ export class ZSuspenseComponentModel extends ZCircusComponentModel {
    *      The name of the fashion theme.
    */
   public fashion(): Promise<string> {
-    return this.driver.attribute('fashion', 'Inherit');
+    return this.driver.attribute('fashion', ZFashionContrast.Opposite);
   }
 
   /**
