@@ -1,5 +1,5 @@
 import { Tooltip } from '@mui/material';
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode } from 'react';
 
 import { IZComponentFashion, IZComponentLoading, IZComponentWidth, ZButtonElement } from '@zthun/fashion-boutique';
 import { ZSizeVaried } from '@zthun/fashion-tailor';
@@ -45,8 +45,6 @@ export interface IZButton
 export function ZButton(props: IZButton) {
   const { avatar, className, borderless, compact, disabled, fashion, loading, label, name, outline, tooltip, onClick } =
     props;
-
-  useEffect(() => ZButtonElement.register(), []);
 
   return (
     <Tooltip title={tooltip}>

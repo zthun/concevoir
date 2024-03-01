@@ -1,9 +1,10 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
+import { ZButtonElement } from '@zthun/fashion-boutique';
 import { ZButtonComponentModel } from '@zthun/fashion-circus';
 import { ZFashionPriority } from '@zthun/fashion-theme';
 import React, { ReactNode } from 'react';
-import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
+import { beforeAll, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 import { ZButton } from './button';
 
 describe('ZButton', () => {
@@ -37,6 +38,10 @@ describe('ZButton', () => {
     const driver = await new ZCircusSetupRenderer(element).setup();
     return await ZCircusBy.first(driver, ZButtonComponentModel);
   }
+
+  beforeAll(() => {
+    ZButtonElement.toString();
+  });
 
   beforeEach(() => {
     avatar = undefined;

@@ -1,170 +1,109 @@
 import { ZSizeFixed, createSizeChartVariedCss } from '@zthun/fashion-tailor';
 import { ZFashionArea } from '@zthun/fashion-theme';
-import {
-  IZComponentAttributeChanged,
-  IZComponentConnected,
-  ZAttribute,
-  registerCustomElement
-} from '@zthun/helpful-dom';
-import { ZFashionDetail } from '../component/component-fashion.mjs';
+import { $attr, IZComponentRender, ZAttribute, ZComponentShadow } from '@zthun/helpful-dom';
+import { css, html } from '@zthun/helpful-fn';
+import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 import { IZComponentLoading } from '../component/component-loading.mjs';
-import { ZCssSerialize } from '../css/css-serialize.mjs';
-import { ZSuspenseRotateElement } from '../suspense/suspense-rotate-element.mjs';
+import { IZComponentName } from '../component/component-name.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
-export class ZButtonElement
-  extends HTMLElement
-  implements IZComponentConnected, IZComponentAttributeChanged, IZComponentLoading
-{
-  public static readonly register = registerCustomElement.bind(null, 'z-button', ZButtonElement);
+export interface IZButton extends IZComponentFashion, IZComponentLoading, IZComponentName {
+  borderless?: boolean;
+  compact?: boolean;
+  disabled?: boolean;
+  outline?: boolean;
+}
+
+@ZComponentShadow({ name: 'ZButton' })
+export class ZButtonElement extends HTMLElement implements IZButton, IZComponentRender {
   public static readonly observedAttributes = ['borderless', 'compact', 'disabled', 'fashion', 'loading', 'outline'];
   public static readonly SizeChart = createSizeChartVariedCss();
 
   @ZAttribute({ type: 'boolean' })
-  public borderless?: boolean;
+  public borderless: boolean | undefined;
 
   @ZAttribute({ type: 'boolean' })
-  public compact?: boolean;
+  public compact: boolean | undefined;
 
   @ZAttribute({ type: 'boolean' })
-  public disabled?: boolean;
+  public disabled: boolean | undefined;
 
   @ZAttribute({ fallback: ZFashionArea.Component })
   public fashion: string;
 
-  @ZAttribute({ type: 'boolean' })
-  public loading?: boolean;
+  @ZAttribute()
+  public name: string | undefined;
 
   @ZAttribute({ type: 'boolean' })
-  public outline?: boolean;
+  public loading: boolean | undefined;
 
-  public constructor() {
-    super();
+  @ZAttribute({ type: 'boolean' })
+  public outline: boolean | undefined;
 
-    ZSuspenseRotateElement.register();
-
-    const shadow = this.attachShadow({ mode: 'open' });
-    this._refreshStyles(shadow);
-    this._refreshTemplate(shadow);
-  }
-
-  private _refreshTemplate(shadow: ShadowRoot) {
-    const btn = shadow.querySelector('button');
-    btn?.remove();
-
-    const { loading, fashion } = this;
-
-    const disabled = this.disabled ? 'disabled' : '';
-
-    const template = document.createElement('template');
-    template.innerHTML = `
-      <button ${disabled}>
-        <span class="pulse"></span>
-        <slot name='prefix'></slot>
-        <slot></slot>
-        <z-suspense-rotate class="ZButton-loading" loading="${!!loading}"  fashion="${fashion}">
-        </z-suspense-rotate>
-      </button>
-    `;
-
-    shadow.appendChild(template.content.cloneNode(true));
-  }
-
-  private _refreshStyles(shadow: ShadowRoot) {
-    let style = shadow.querySelector<HTMLStyleElement>('style');
-    style?.remove();
-
-    const { borderless, compact, fashion, outline } = this;
+  public render(shadow: ShadowRoot) {
+    const { borderless, compact, disabled, fashion, loading, outline } = this;
 
     const detail = new ZFashionDetail(fashion);
     const gap = ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall);
     const padding = compact ? '0' : gap;
     const thickness = ZFashionTailorElement.thicknessVar(ZSizeFixed.Medium);
 
-    const css = new ZCssSerialize().serialize({
-      '@keyframes pulse': {
-        from: {
-          transform: 'scale(0)'
-        },
-        to: {
-          transform: 'scale(1)'
-        }
-      },
-      ':host': {
-        button: {
-          'alignItems': 'center',
-          'background': outline ? 'transparent' : detail.color('main'),
-          'borderRadius': '0.375rem',
-          // By design use main so we can get a double border
-          // on focus.
-          'borderColor': detail.color('main'),
-          'borderStyle': borderless ? 'none' : 'solid',
-          'color': outline ? detail.color('main') : detail.color('contrast'),
-          'display': 'grid',
-          'gridTemplateColumns': 'auto 1fr auto',
-          'gap': gap,
-          'overflow': 'hidden',
-          'padding': `calc(${padding} / 2) ${padding}`,
-          'position': 'relative',
-
-          '.pulse': {
-            backgroundColor: detail.color('focus.main'),
-            borderColor: detail.color('focus.border'),
-            borderRadius: '50%',
-            color: detail.color('focus.contrast'),
-            opacity: 0.5,
-            position: 'absolute',
-            left: -50,
-            top: -50,
-            right: -50,
-            bottom: -50,
-            transform: 'scale(0)'
-          },
-
-          '&:focus': {
-            outlineStyle: 'solid',
-            // Might look a little confusing here but the border color we want
-            // to use the main focus and the border color for the outline.  This
-            // gives us a nice double border.
-            borderColor: detail.color('focus.main'),
-            outlineColor: detail.color('focus.border'),
-            outlineWidth: thickness
-          },
-
-          '&:hover:not([disabled])': {
-            backgroundColor: detail.color('hover.main'),
-            borderColor: detail.color('hover.border'),
-            color: detail.color('hover.contrast'),
-            cursor: 'pointer'
-          },
-
-          '&:active:not([disabled])': {
-            backgroundColor: detail.color('active.main'),
-            borderColor: detail.color('active.border'),
-            color: detail.color('active.contrast')
-          },
-
-          '&:disabled': {
-            opacity: 0.25
-          }
-        }
+    const $css = css`
+      button {
+        align-items: center;
+        background: ${outline ? 'transparent' : detail.color('main')};
+        border-color: ${detail.color('main')};
+        border-radius: 0.375rem;
+        border-style: ${borderless ? 'none' : 'solid'};
+        color: ${outline ? detail.color('main') : detail.color('contrast')};
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: ${gap};
+        overflow: hidden;
+        padding: ${padding};
+        position: relative;
       }
-    });
 
-    style = document.createElement('style');
-    style.textContent = css;
+      button:focus {
+        border-color: ${detail.color('focus.main')};
+        outline-color: ${detail.color('focus.border')};
+        outline-style: solid;
+        outline-width: ${thickness};
+      }
+
+      button:hover:not([disabled]) {
+        background-color: ${detail.color('hover.main')};
+        border-color: ${detail.color('hover.border')};
+        color: ${detail.color('hover.contrast')};
+        cursor: pointer;
+      }
+
+      button:active:not([disabled]) {
+        background-color: ${detail.color('active.main')};
+        border-color: ${detail.color('active.border')};
+        color: ${detail.color('active.contrast')};
+      }
+
+      button:disabled {
+        opacity: 0.25;
+      }
+    `;
+
+    const $html = html`
+      <button ${$attr('disabled', disabled)}>
+        <slot name="prefix"></slot>
+        <slot></slot>
+        <z-suspense-rotate class="ZButton-loading" ${$attr('loading', loading)} ${$attr('fashion', fashion)}>
+        </z-suspense-rotate>
+      </button>
+    `;
+
+    const style = document.createElement('style');
+    style.textContent = $css;
+    const template = document.createElement('template');
+    template.innerHTML = $html;
 
     shadow.appendChild(style);
-  }
-
-  public connectedCallback(): void {
-    this.classList.add('ZButton-root');
-
-    this._refreshTemplate(this.shadowRoot!);
-  }
-
-  public attributeChangedCallback(): void {
-    this._refreshStyles(this.shadowRoot!);
-    this._refreshTemplate(this.shadowRoot!);
+    shadow.appendChild(template.content.cloneNode(true));
   }
 }
