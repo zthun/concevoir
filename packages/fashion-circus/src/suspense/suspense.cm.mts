@@ -24,8 +24,8 @@ export class ZSuspenseComponentModel extends ZCircusComponentModel {
    *        The current loading state.
    */
   public async loading(): Promise<boolean> {
-    const loading = await this.driver.attribute<string>('loading', 'true');
-    return loading !== 'false';
+    const disabled = await this.driver.attribute<string>('disabled', 'false');
+    return disabled !== 'true';
   }
 
   /**

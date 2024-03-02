@@ -14,7 +14,7 @@ declare global {
 }
 
 export function ZSuspenseRotate(props: IZSuspense) {
-  const { className, loading, name, width, fashion } = props;
+  const { className, loading = true, name, width, fashion } = props;
 
   const $width = useMemo(() => new ZDeviceBounds(width, ZSizeFixed.ExtraSmall).toDeviceMap(), [width]);
 
