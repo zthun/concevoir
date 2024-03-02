@@ -1,8 +1,8 @@
-import { ZAttribute, registerCustomElement } from '@zthun/helpful-dom';
-import { ZBackgroundElement } from './background-element.mjs';
+import { ZAttribute } from '@zthun/helpful-dom';
+import { ZComponentBackground } from '../dom/component-background.mjs';
 
-export class ZAlignmentElement<T extends string = string> extends ZBackgroundElement {
-  public static readonly register = registerCustomElement.bind(null, 'z-alignment', ZAlignmentElement);
+@ZComponentBackground({ name: 'ZAlignment' })
+export class ZAlignmentElement<T extends string = string> extends HTMLElement {
   public static readonly observedAttributes = ['items', 'content'];
 
   @ZAttribute()

@@ -1,7 +1,8 @@
 import { ZAttribute, registerCustomElement } from '@zthun/helpful-dom';
-import { ZBackgroundElement } from './background-element.mjs';
+import { ZComponentBackground } from '../dom/component-background.mjs';
 
-export class ZQuadrilateralElement<T extends string = string> extends ZBackgroundElement {
+@ZComponentBackground({ name: 'ZQuadrilateral' })
+export class ZQuadrilateralElement<T extends string = string> extends HTMLElement {
   public static readonly register = registerCustomElement.bind(null, 'z-quadrilateral', ZQuadrilateralElement);
   public static readonly observedAttributes = ['bottom', 'left', 'right', 'top'];
 
