@@ -1,10 +1,4 @@
-import {
-  IZComponentHeight,
-  IZComponentWidth,
-  ZAlignmentElement,
-  ZDeviceElement,
-  ZGridElement
-} from '@zthun/fashion-boutique';
+import { IZComponentHeight, IZComponentWidth, ZGridElement } from '@zthun/fashion-boutique';
 import { IZDeviceValueMap, ZDeviceBounds, ZGapSize, ZSizeVaried } from '@zthun/fashion-tailor';
 import { includeCustomElement } from '@zthun/helpful-dom';
 import { cssJoinDefined } from '@zthun/helpful-fn';
@@ -63,8 +57,6 @@ export function ZGrid(props: IZGrid) {
   const $width = useMemo(() => new ZDeviceBounds(width, ZSizeVaried.Fit).toDeviceMap(), [width]);
 
   useMemo(() => includeCustomElement(ZGridElement), []);
-  useMemo(() => includeCustomElement(ZDeviceElement), []);
-  useMemo(() => includeCustomElement(ZAlignmentElement), []);
 
   return (
     <z-grid class={cssJoinDefined(className)} gap={gap} rows={rows}>
