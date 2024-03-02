@@ -1,14 +1,16 @@
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionPriority } from '@zthun/fashion-theme';
-import { ZAttribute, ZComponentShadow } from '@zthun/helpful-dom';
+import { IZComponentStyles, IZComponentTemplate, ZAttribute, ZComponentShadow } from '@zthun/helpful-dom';
 import { css, html } from '@zthun/helpful-fn';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 import { IZComponentName } from '../component/component-name.mjs';
-import { paintShadow } from '../dom/shadow-util.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
 @ZComponentShadow({ name: 'ZAlert' })
-export class ZAlertElement extends HTMLElement implements IZComponentFashion, IZComponentName {
+export class ZAlertElement
+  extends HTMLElement
+  implements IZComponentFashion, IZComponentName, IZComponentTemplate, IZComponentStyles
+{
   public static readonly observedAttributes = ['fashion'];
 
   @ZAttribute()
@@ -17,7 +19,7 @@ export class ZAlertElement extends HTMLElement implements IZComponentFashion, IZ
   @ZAttribute({ fallback: ZFashionPriority.Primary })
   public fashion: string;
 
-  public render(shadow: ShadowRoot) {
+  public styles() {
     const { fashion } = this;
 
     const detail = new ZFashionDetail(fashion);
@@ -26,7 +28,8 @@ export class ZAlertElement extends HTMLElement implements IZComponentFashion, IZ
     const boxShadow = detail.color('border');
     const padX = ZFashionTailorElement.gapVar(ZSizeFixed.Small);
     const padY = ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall);
-    const $css = css`
+
+    return css`
       :host {
         align-items: center;
         background: ${detail.color('main')};
@@ -57,8 +60,10 @@ export class ZAlertElement extends HTMLElement implements IZComponentFashion, IZ
         grid-area: message;
       }
     `;
+  }
 
-    const $html = html`
+  public template() {
+    return html`
       <div class="ZAlert-avatar">
         <slot name="avatar"></slot>
       </div>
@@ -69,7 +74,5 @@ export class ZAlertElement extends HTMLElement implements IZComponentFashion, IZ
         <slot name="message"></slot>
       </div>
     `;
-
-    paintShadow(shadow, $css, $html);
   }
 }

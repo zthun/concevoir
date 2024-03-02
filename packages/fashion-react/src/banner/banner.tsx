@@ -1,11 +1,11 @@
-import { IZComponentFashion, IZComponentHeight, ZBannerElement, ZDeviceElement } from '@zthun/fashion-boutique';
+import { IZComponentFashion, IZComponentHeight, ZBannerElement } from '@zthun/fashion-boutique';
 import { ZDeviceBounds, ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
+import { includeCustomElement } from '@zthun/helpful-dom';
 import { cssJoinDefined } from '@zthun/helpful-fn';
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 
-import { includeCustomElement } from '@zthun/helpful-dom';
 import '../background/device';
 
 declare global {
@@ -26,8 +26,7 @@ export function ZBanner(props: IZBanner) {
   const { children, className, fashion, height } = props;
   const $height = useMemo(() => new ZDeviceBounds(height, ZSizeVaried.Fit).toDeviceMap(), [height]);
 
-  useEffect(() => ZBannerElement.register(), []);
-  useMemo(() => includeCustomElement(ZDeviceElement), []);
+  useMemo(() => includeCustomElement(ZBannerElement), []);
 
   return (
     <z-banner class={cssJoinDefined(className)} fashion={fashion}>

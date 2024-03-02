@@ -6,17 +6,27 @@ import {
   createSizeChartFixedCss
 } from '@zthun/fashion-tailor';
 import { ZFashionContrast } from '@zthun/fashion-theme';
-import { IZComponentRender, ZAttribute, ZComponentShadow } from '@zthun/helpful-dom';
+import {
+  IZComponentStyles,
+  IZComponentTemplate,
+  ZAttribute,
+  ZComponentShadow,
+  ZElementListenBuilder
+} from '@zthun/helpful-dom';
 import { css, html } from '@zthun/helpful-fn';
 import { ZDeviceElement } from '../background/device-element.mjs';
-import { ZFashionDetail } from '../component/component-fashion.mjs';
-import { ZComponentBackgroundListen } from '../dom/component-background.mjs';
-import { paintShadow } from '../dom/shadow-util.mjs';
-import { IZSuspenseElement } from './suspense-element.mjs';
+import { IZComponentDisabled } from '../component/component-disabled.mjs';
+import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 
-@ZComponentShadow({ name: 'ZSuspenseRotate', className: ['ZSuspense-root', 'ZSuspense-rotate'] })
-@ZComponentBackgroundListen({ selectors: ['z-device[name="width"]'] })
-export class ZSuspenseRotateElement extends HTMLElement implements IZSuspenseElement, IZComponentRender {
+@ZComponentShadow({
+  name: 'ZSuspenseRotate',
+  className: ['ZSuspense-root', 'ZSuspense-rotate'],
+  listen: [new ZElementListenBuilder().namedElement('z-device', 'width').build()]
+})
+export class ZSuspenseRotateElement
+  extends HTMLElement
+  implements IZComponentFashion, IZComponentDisabled, IZComponentStyles, IZComponentTemplate
+{
   public static readonly SizeChart = createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), 'rem');
   public static readonly observedAttributes = ['fashion', 'disabled'];
 
@@ -26,7 +36,7 @@ export class ZSuspenseRotateElement extends HTMLElement implements IZSuspenseEle
   @ZAttribute({ type: 'boolean' })
   public disabled?: boolean;
 
-  public render(shadow: ShadowRoot) {
+  public styles() {
     const { fashion, disabled } = this;
     const detail = new ZFashionDetail(fashion);
     const device = new ZFashionDevice();
@@ -40,7 +50,7 @@ export class ZSuspenseRotateElement extends HTMLElement implements IZSuspenseEle
     const sm = ZSuspenseRotateElement.SizeChart[width.sm()];
     const xs = ZSuspenseRotateElement.SizeChart[width.xs()];
 
-    const $css = css`
+    return css`
       @keyframes rotating {
         from {
           transform: rotate(0deg);
@@ -86,8 +96,9 @@ export class ZSuspenseRotateElement extends HTMLElement implements IZSuspenseEle
         }
       }
     `;
+  }
 
-    const $html = html` <div class="ZSuspense-rotate-circle"></div> `;
-    paintShadow(shadow, $css, $html);
+  public template() {
+    return html` <div class="ZSuspense-rotate-circle"></div> `;
   }
 }

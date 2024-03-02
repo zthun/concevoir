@@ -1,23 +1,25 @@
 import { ZSizeFixed, createSizeChartVariedCss } from '@zthun/fashion-tailor';
 import { ZFashionArea } from '@zthun/fashion-theme';
-import { $attr, IZComponentRender, ZAttribute, ZComponentShadow } from '@zthun/helpful-dom';
+import { $attr, IZComponentStyles, IZComponentTemplate, ZAttribute, ZComponentShadow } from '@zthun/helpful-dom';
 import { css, html } from '@zthun/helpful-fn';
+import { IZComponentDisabled } from '../component/component-disabled.mjs';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 import { IZComponentLoading } from '../component/component-loading.mjs';
 import { IZComponentName } from '../component/component-name.mjs';
-import { paintShadow } from '../dom/shadow-util.mjs';
 import { ZSuspenseRotateElement } from '../suspense/suspense-rotate-element.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
-export interface IZButton extends IZComponentFashion, IZComponentLoading, IZComponentName {
-  borderless?: boolean;
-  compact?: boolean;
-  disabled?: boolean;
-  outline?: boolean;
-}
-
 @ZComponentShadow({ name: 'ZButton', dependencies: [ZSuspenseRotateElement] })
-export class ZButtonElement extends HTMLElement implements IZButton, IZComponentRender {
+export class ZButtonElement
+  extends HTMLElement
+  implements
+    IZComponentLoading,
+    IZComponentDisabled,
+    IZComponentFashion,
+    IZComponentName,
+    IZComponentStyles,
+    IZComponentTemplate
+{
   public static readonly observedAttributes = ['borderless', 'compact', 'disabled', 'fashion', 'loading', 'outline'];
   public static readonly SizeChart = createSizeChartVariedCss();
 
@@ -42,15 +44,15 @@ export class ZButtonElement extends HTMLElement implements IZButton, IZComponent
   @ZAttribute({ type: 'boolean' })
   public outline: boolean | undefined;
 
-  public render(shadow: ShadowRoot) {
-    const { borderless, compact, disabled, fashion, loading, outline } = this;
+  public styles() {
+    const { borderless, compact, fashion, outline } = this;
 
     const detail = new ZFashionDetail(fashion);
     const gap = ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall);
     const padding = compact ? '0' : gap;
     const thickness = ZFashionTailorElement.thicknessVar(ZSizeFixed.Medium);
 
-    const $css = css`
+    return css`
       button {
         align-items: center;
         background: ${outline ? 'transparent' : detail.color('main')};
@@ -90,8 +92,12 @@ export class ZButtonElement extends HTMLElement implements IZButton, IZComponent
         opacity: 0.25;
       }
     `;
+  }
 
-    const $html = html`
+  public template() {
+    const { disabled, loading, fashion } = this;
+
+    return html`
       <button ${$attr('disabled', disabled)}>
         <slot name="prefix"></slot>
         <slot></slot>
@@ -99,7 +105,5 @@ export class ZButtonElement extends HTMLElement implements IZButton, IZComponent
         </z-suspense-rotate>
       </button>
     `;
-
-    paintShadow(shadow, $css, $html);
   }
 }

@@ -8,20 +8,25 @@ import {
   createSizeChartVariedCss
 } from '@zthun/fashion-tailor';
 import { ZFashionPriority } from '@zthun/fashion-theme';
-import { ZAttribute, ZComponentShadow, registerCustomElement } from '@zthun/helpful-dom';
+import {
+  IZComponentStyles,
+  IZComponentTemplate,
+  ZAttribute,
+  ZComponentShadow,
+  ZElementListenBuilder
+} from '@zthun/helpful-dom';
 import { css, html } from '@zthun/helpful-fn';
 import { ZDeviceElement } from '../background/device-element.mjs';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
-import { ZComponentBackgroundListen } from '../dom/component-background.mjs';
-import { paintShadow } from '../dom/shadow-util.mjs';
 
-@ZComponentShadow({ name: 'ZBanner', dependencies: [ZDeviceElement] })
-@ZComponentBackgroundListen({ selectors: ['z-device[name="height"]'] })
-export class ZBannerElement extends HTMLElement implements IZComponentFashion {
-  public static readonly register = registerCustomElement.bind(null, 'z-banner', ZBannerElement);
+@ZComponentShadow({
+  name: 'ZBanner',
+  dependencies: [ZDeviceElement],
+  listen: [new ZElementListenBuilder().namedElement('z-device', 'height').build()]
+})
+export class ZBannerElement extends HTMLElement implements IZComponentFashion, IZComponentStyles, IZComponentTemplate {
   public static readonly observedAttributes = ['fashion'];
-
-  public static readonly HeightChart = Object.freeze({
+  public static readonly SizeChart = Object.freeze({
     ...createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), 'rem'),
     ...createSizeChartVariedCss()
   });
@@ -29,7 +34,7 @@ export class ZBannerElement extends HTMLElement implements IZComponentFashion {
   @ZAttribute({ fallback: ZFashionPriority.Primary })
   public fashion: string;
 
-  public render(shadow: ShadowRoot) {
+  public styles() {
     const { fashion } = this;
     const detail = new ZFashionDetail(fashion);
     const device = new ZFashionDevice();
@@ -37,7 +42,7 @@ export class ZBannerElement extends HTMLElement implements IZComponentFashion {
     const $height = this.querySelector<ZDeviceElement>(`z-device[name="height"]`);
     const height = new ZDeviceBounds($height?.device?.call($height), ZSizeVaried.Fit);
 
-    const $css = css`
+    return css`
       :host {
         background: ${detail.color('main')};
         box-sizing: border-box;
@@ -51,35 +56,36 @@ export class ZBannerElement extends HTMLElement implements IZComponentFashion {
         right: 0;
         top: 0;
 
-        height: ${ZBannerElement.HeightChart[height.xl()]}
+        height: ${ZBannerElement.SizeChart[height.xl()]}
       }
 
       ${device.break(ZSizeFixed.Large)} {
         :host {
-          height: ${ZBannerElement.HeightChart[height.lg()]};
+          height: ${ZBannerElement.SizeChart[height.lg()]};
         }
       },
       
       ${device.break(ZSizeFixed.Medium)} {
         :host {
-          height: ${ZBannerElement.HeightChart[height.md()]};
+          height: ${ZBannerElement.SizeChart[height.md()]};
         }
       },      
       
       ${device.break(ZSizeFixed.Small)} {
         :host {
-          height: ${ZBannerElement.HeightChart[height.sm()]};
+          height: ${ZBannerElement.SizeChart[height.sm()]};
         }
       },
 
       ${device.break(ZSizeFixed.ExtraSmall)} {
         :host {
-          height: ${ZBannerElement.HeightChart[height.xs()]};
+          height: ${ZBannerElement.SizeChart[height.xs()]};
         }
       },
     `;
+  }
 
-    const $html = html`<slot></slot>`;
-    paintShadow(shadow, $css, $html);
+  public template() {
+    return html`<slot></slot>`;
   }
 }

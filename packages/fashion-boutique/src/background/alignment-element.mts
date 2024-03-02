@@ -1,5 +1,4 @@
-import { ZAttribute } from '@zthun/helpful-dom';
-import { ZComponentBackground } from '../dom/component-background.mjs';
+import { ZAttribute, ZComponentBackground } from '@zthun/helpful-dom';
 
 @ZComponentBackground({ name: 'ZAlignment' })
 export class ZAlignmentElement<T extends string = string> extends HTMLElement {

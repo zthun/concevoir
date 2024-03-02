@@ -7,26 +7,31 @@ import {
   ZSizeVoid,
   createSizeChartVariedCss
 } from '@zthun/fashion-tailor';
-import { IZComponentRender, ZAttribute, ZComponentShadow } from '@zthun/helpful-dom';
+import {
+  IZComponentStyles,
+  IZComponentTemplate,
+  ZAttribute,
+  ZComponentShadow,
+  ZElementListenBuilder
+} from '@zthun/helpful-dom';
 import { css, firstTruthy, html } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import { ZAlignmentElement } from '../background/alignment-element.mjs';
 import { ZDeviceElement } from '../background/device-element.mjs';
-import { ZComponentBackgroundListen } from '../dom/component-background.mjs';
-import { paintShadow } from '../dom/shadow-util.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
-@ZComponentShadow({ name: 'ZGrid', dependencies: [ZDeviceElement, ZAlignmentElement] })
-@ZComponentBackgroundListen({
-  selectors: [
-    'z-alignment[name="align"]',
-    'z-device[name="columns"]',
-    'z-alignment[name="justify"]',
-    'z-device[name="height"]',
-    'z-device[name="width"]'
+@ZComponentShadow({
+  name: 'ZGrid',
+  dependencies: [ZDeviceElement, ZAlignmentElement],
+  listen: [
+    new ZElementListenBuilder().namedElement('z-alignment', 'align').build(),
+    new ZElementListenBuilder().namedElement('z-device', 'columns').build(),
+    new ZElementListenBuilder().namedElement('z-alignment', 'justify').build(),
+    new ZElementListenBuilder().namedElement('z-device', 'height').build(),
+    new ZElementListenBuilder().namedElement('z-device', 'width').build()
   ]
 })
-export class ZGridElement extends HTMLElement implements IZComponentRender {
+export class ZGridElement extends HTMLElement implements IZComponentStyles, IZComponentTemplate {
   public static readonly GridDimensionChart = Object.freeze(createSizeChartVariedCss());
   public static readonly observedAttributes = ['rows', 'gap'];
 
@@ -36,7 +41,7 @@ export class ZGridElement extends HTMLElement implements IZComponentRender {
   @ZAttribute()
   public gap?: ZGapSize;
 
-  public render(shadow: ShadowRoot) {
+  public styles() {
     const { rows, gap } = this;
 
     const device = new ZFashionDevice();
@@ -53,7 +58,7 @@ export class ZGridElement extends HTMLElement implements IZComponentRender {
     const $height = this.querySelector<ZDeviceElement>(`z-device[name="height"]`);
     const height = new ZDeviceBounds($height?.device?.call($height), ZSizeVaried.Fit);
 
-    const $css = css`
+    return css`
       :host {
         align-content: ${firstTruthy('normal', $align?.content)};
         align-items: ${firstTruthy('stretch', $align?.items)};
@@ -100,8 +105,9 @@ export class ZGridElement extends HTMLElement implements IZComponentRender {
         }
       }
     `;
+  }
 
-    const $html = html` <slot></slot> `;
-    paintShadow(shadow, $css, $html);
+  public template() {
+    return html` <slot></slot> `;
   }
 }

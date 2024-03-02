@@ -6,17 +6,27 @@ import {
   createSizeChartFixedCss
 } from '@zthun/fashion-tailor';
 import { ZFashionContrast } from '@zthun/fashion-theme';
-import { ZAttribute, ZComponentShadow } from '@zthun/helpful-dom';
+import {
+  IZComponentStyles,
+  IZComponentTemplate,
+  ZAttribute,
+  ZComponentShadow,
+  ZElementListenBuilder
+} from '@zthun/helpful-dom';
 import { css, html } from '@zthun/helpful-fn';
 import { ZDeviceElement } from '../background/device-element.mjs';
-import { ZFashionDetail } from '../component/component-fashion.mjs';
-import { ZComponentBackgroundListen } from '../dom/component-background.mjs';
-import { paintShadow } from '../dom/shadow-util.mjs';
-import { IZSuspenseElement } from './suspense-element.mjs';
+import { IZComponentDisabled } from '../component/component-disabled.mjs';
+import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 
-@ZComponentShadow({ name: 'ZSuspenseProgress', className: ['ZSuspense-root', 'ZSuspense-progress'] })
-@ZComponentBackgroundListen({ selectors: ['z-device[name="height"]'] })
-export class ZSuspenseProgressElement extends HTMLElement implements IZSuspenseElement {
+@ZComponentShadow({
+  name: 'ZSuspenseProgress',
+  className: ['ZSuspense-root', 'ZSuspense-progress'],
+  listen: [new ZElementListenBuilder().namedElement('z-device', 'height').build()]
+})
+export class ZSuspenseProgressElement
+  extends HTMLElement
+  implements IZComponentFashion, IZComponentDisabled, IZComponentTemplate, IZComponentStyles
+{
   public static readonly SizeChart = createSizeChartFixedCss(createSizeChartFixedArithmetic(0.25, 0.25), 'rem');
   public static readonly observedAttributes = ['fashion', 'disabled'];
 
@@ -26,7 +36,7 @@ export class ZSuspenseProgressElement extends HTMLElement implements IZSuspenseE
   @ZAttribute({ type: 'boolean' })
   public disabled?: boolean;
 
-  public render(shadow: ShadowRoot) {
+  public styles() {
     const { fashion, disabled } = this;
     const detail = new ZFashionDetail(fashion);
     const device = new ZFashionDevice();
@@ -40,7 +50,7 @@ export class ZSuspenseProgressElement extends HTMLElement implements IZSuspenseE
     const sm = ZSuspenseProgressElement.SizeChart[height.sm()];
     const xs = ZSuspenseProgressElement.SizeChart[height.xs()];
 
-    const $css = css`
+    return css`
       @keyframes scroll {
         from {
           transform: translateX(-100%);
@@ -87,12 +97,13 @@ export class ZSuspenseProgressElement extends HTMLElement implements IZSuspenseE
         width: 25%;
       }
     `;
+  }
 
-    const $html = html`
+  public template() {
+    return html`
       <div class="ZSuspense-progress-bar">
         <div class="ZSuspense-progress-scroll"></div>
       </div>
     `;
-    paintShadow(shadow, $css, $html);
   }
 }

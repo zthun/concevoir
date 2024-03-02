@@ -12,30 +12,35 @@ import {
   createSizeChartVoidCss
 } from '@zthun/fashion-tailor';
 import { ZFashionIntrinsic } from '@zthun/fashion-theme';
-import { ZAttribute, ZComponentShadow } from '@zthun/helpful-dom';
+import {
+  IZComponentStyles,
+  IZComponentTemplate,
+  ZAttribute,
+  ZComponentShadow,
+  ZElementListenBuilder
+} from '@zthun/helpful-dom';
 import { css, firstTruthy, html } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import { ZDeviceElement } from '../background/device-element.mjs';
 import { ZQuadrilateralElement } from '../background/quadrilateral-element.mjs';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
-import { ZComponentBackgroundListen } from '../dom/component-background.mjs';
-import { paintShadow } from '../dom/shadow-util.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
-@ZComponentShadow({ name: 'ZBox', dependencies: [ZQuadrilateralElement, ZDeviceElement] })
-@ZComponentBackgroundListen({
-  selectors: [
-    'z-quadrilateral[name="edge"]',
-    'z-quadrilateral[name="margin"]',
-    'z-quadrilateral[name="padding"]',
-    'z-quadrilateral[name="trim"]',
-    'z-device[name="width"]'
+@ZComponentShadow({
+  name: 'ZBox',
+  dependencies: [ZQuadrilateralElement, ZDeviceElement],
+  listen: [
+    new ZElementListenBuilder().namedElement('z-quadrilateral', 'edge').build(),
+    new ZElementListenBuilder().namedElement('z-quadrilateral', 'margin').build(),
+    new ZElementListenBuilder().namedElement('z-quadrilateral', 'padding').build(),
+    new ZElementListenBuilder().namedElement('z-quadrilateral', 'trim').build(),
+    new ZElementListenBuilder().namedElement('z-device', 'width').build()
   ]
 })
-export class ZBoxElement extends HTMLElement implements IZComponentFashion {
+export class ZBoxElement extends HTMLElement implements IZComponentFashion, IZComponentStyles, IZComponentTemplate {
   public static readonly observedAttributes = ['tabIndex', 'fashion'];
 
-  public static readonly BoxSizeChart = Object.freeze({
+  public static readonly SizeChart = Object.freeze({
     ...createSizeChartFixedCss(createSizeChartFixedGeometric(1.4, 18), 'rem'),
     ...createSizeChartVariedCss(),
     ...createSizeChartVoidCss()
@@ -44,7 +49,7 @@ export class ZBoxElement extends HTMLElement implements IZComponentFashion {
   @ZAttribute({ fallback: ZFashionIntrinsic.Inherit })
   public fashion: string;
 
-  public render(shadow: ShadowRoot) {
+  public styles() {
     const focusable = this.tabIndex >= 0;
     const device = new ZFashionDevice();
     const detail = new ZFashionDetail(this.fashion);
@@ -64,7 +69,7 @@ export class ZBoxElement extends HTMLElement implements IZComponentFashion {
     const $width = this.querySelector<ZDeviceElement>(`z-device[name="width"]`);
     const width = new ZDeviceBounds($width?.device?.call($width), ZSizeVaried.Fit);
 
-    const $css = css`
+    return css`
       :host {
         background-color: ${detail.color('main')};
         border: ${detail.color('border')};
@@ -93,7 +98,7 @@ export class ZBoxElement extends HTMLElement implements IZComponentFashion {
         margin-right: ${ZFashionTailorElement.gapVar(firstTruthy(ZSizeVoid.None, margin?.right))};
         margin-top: ${ZFashionTailorElement.gapVar(firstTruthy(ZSizeVoid.None, margin?.top))};
 
-        max-width: ${ZBoxElement.BoxSizeChart[width.xl()]};
+        max-width: ${ZBoxElement.SizeChart[width.xl()]};
       }
 
       :host(:focus) {
@@ -110,30 +115,31 @@ export class ZBoxElement extends HTMLElement implements IZComponentFashion {
 
       ${device.break(ZSizeFixed.Large)} {
         :host {
-          max-width: ${ZBoxElement.BoxSizeChart[width.lg()]};
+          max-width: ${ZBoxElement.SizeChart[width.lg()]};
         }
       }
 
       ${device.break(ZSizeFixed.Medium)} {
         :host {
-          max-width: ${ZBoxElement.BoxSizeChart[width.md()]};
+          max-width: ${ZBoxElement.SizeChart[width.md()]};
         }
       }
 
       ${device.break(ZSizeFixed.Small)} {
         :host {
-          max-width: ${ZBoxElement.BoxSizeChart[width.sm()]};
+          max-width: ${ZBoxElement.SizeChart[width.sm()]};
         }
       }
 
       ${device.break(ZSizeFixed.ExtraSmall)} {
         :host {
-          max-width: ${ZBoxElement.BoxSizeChart[width.xs()]};
+          max-width: ${ZBoxElement.SizeChart[width.xs()]};
         }
       }
     `;
+  }
 
-    const $html = html`<slot></slot>`;
-    paintShadow(shadow, $css, $html);
+  public template() {
+    return html`<slot></slot>`;
   }
 }
