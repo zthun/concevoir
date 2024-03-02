@@ -84,7 +84,7 @@ export class ZBannerElement
     const { style } = this;
 
     const $height = this.querySelector<ZDeviceElement>(`z-device[name="height"]`);
-    const height = new ZDeviceBounds($height?.device(), ZSizeVaried.Fit);
+    const height = new ZDeviceBounds($height?.device?.call($height), ZSizeVaried.Fit);
 
     const xl = ZBannerElement.HeightChart[height.xl()];
     const lg = ZBannerElement.HeightChart[height.lg()];
