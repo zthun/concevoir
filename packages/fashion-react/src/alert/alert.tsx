@@ -1,6 +1,7 @@
 import { IZComponentFashion, ZAlertElement } from '@zthun/fashion-boutique';
+import { includeCustomElement } from '@zthun/helpful-dom';
 import { cssJoinDefined } from '@zthun/helpful-fn';
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode, useMemo } from 'react';
 import { IZComponentAvatar } from '../component/component-avatar.mjs';
 import { IZComponentHeading } from '../component/component-heading.mjs';
 import { IZComponentName } from '../component/component-name.mjs';
@@ -25,7 +26,7 @@ export interface IZAlert
 
 export function ZAlert(props: IZAlert) {
   const { heading, name, className, message, avatar, fashion } = props;
-  useEffect(() => ZAlertElement.register(), []);
+  useMemo(() => includeCustomElement(ZAlertElement), []);
 
   return (
     <z-alert class={cssJoinDefined(className)} fashion={fashion} name={name}>

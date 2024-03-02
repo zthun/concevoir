@@ -1,22 +1,13 @@
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionPriority } from '@zthun/fashion-theme';
-import {
-  IZComponentAttributeChanged,
-  IZComponentConnected,
-  ZAttribute,
-  cssVariable,
-  registerCustomElement
-} from '@zthun/helpful-dom';
+import { ZAttribute, ZComponentShadow } from '@zthun/helpful-dom';
+import { css, html } from '@zthun/helpful-fn';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 import { IZComponentName } from '../component/component-name.mjs';
-import { ZCssSerialize } from '../css/css-serialize.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
-export class ZAlertElement
-  extends HTMLElement
-  implements IZComponentConnected, IZComponentAttributeChanged, IZComponentFashion, IZComponentName
-{
-  public static readonly register = registerCustomElement.bind(null, 'z-alert', ZAlertElement);
+@ZComponentShadow({ name: 'ZAlert' })
+export class ZAlertElement extends HTMLElement implements IZComponentFashion, IZComponentName {
   public static readonly observedAttributes = ['fashion'];
 
   @ZAttribute()
@@ -25,92 +16,66 @@ export class ZAlertElement
   @ZAttribute({ fallback: ZFashionPriority.Primary })
   public fashion: string;
 
-  public constructor() {
-    super();
+  public render(shadow: ShadowRoot) {
+    const { fashion } = this;
 
-    const css = new ZCssSerialize().serialize({
-      ':host': {
-        alignItems: 'center',
-        background: `${cssVariable('--alert-background')}`,
-        borderColor: `${cssVariable('--alert-border-color')}`,
-        borderRadius: ZFashionTailorElement.thicknessVar(ZSizeFixed.ExtraLarge),
-        borderStyle: 'double',
-        borderWidth: ZFashionTailorElement.thicknessVar(ZSizeFixed.Medium),
-        boxShadow: `${cssVariable('--alert-box-shadow')}`,
-        color: `${cssVariable('--alert-color')}`,
-        display: 'grid',
-        gridTemplateColumns: 'auto auto 1fr',
-        gridTemplateAreas: `
-          "avatar heading ."
-          "avatar message ."
-        `,
-        paddingBottom: ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall),
-        paddingLeft: ZFashionTailorElement.gapVar(ZSizeFixed.Small),
-        paddingRight: ZFashionTailorElement.gapVar(ZSizeFixed.Small),
-        paddingTop: ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall)
-      },
+    const detail = new ZFashionDetail(fashion);
 
-      ':host .ZAlert-avatar': {
-        gridArea: 'avatar',
-        marginRight: ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall)
-      },
-
-      ':host .ZAlert-heading': {
-        gridArea: 'heading',
-        marginBottom: `calc(${ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall)} / 2)`
-      },
-
-      ':host .ZAlert-message': {
-        gridArea: 'message'
+    const boxWidth = ZFashionTailorElement.thicknessVar(ZSizeFixed.ExtraSmall);
+    const boxShadow = detail.color('border');
+    const padX = ZFashionTailorElement.gapVar(ZSizeFixed.Small);
+    const padY = ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall);
+    const $css = css`
+      :host {
+        align-items: center;
+        background: ${detail.color('main')};
+        border-color: ${detail.color('border')};
+        border-radius: ${ZFashionTailorElement.thicknessVar(ZSizeFixed.Medium)};
+        border-style: double;
+        box-shadow: 0 0 0 ${boxWidth} ${boxShadow};
+        color: ${detail.color('contrast')};
+        display: grid;
+        grid-template-columns: auto auto 1fr;
+        grid-template-areas:
+          'avatar heading .'
+          'avatar message .';
+        padding: ${padX} ${padY};
       }
-    });
 
-    const avatar = document.createElement('div');
-    avatar.classList.add('ZAlert-avatar');
-    const $avatar = document.createElement('slot');
-    $avatar.name = 'avatar';
-    avatar.appendChild($avatar);
+      .ZAlert-avatar {
+        grid-area: avatar;
+        margin-right: ${ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall)};
+      }
 
-    const heading = document.createElement('div');
-    heading.classList.add('ZAlert-heading');
-    const $heading = document.createElement('slot');
-    $heading.name = 'heading';
-    heading.appendChild($heading);
+      .ZAlert-heading {
+        grid-area: heading;
+        margin-bottom: calc(${ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall)} / 2);
+      }
 
-    const message = document.createElement('div');
-    message.classList.add('ZAlert-message');
-    const $message = document.createElement('slot');
-    $message.name = 'message';
-    message.appendChild($message);
+      .ZAlert-message {
+        grid-area: message;
+      }
+    `;
+
+    const $html = html`
+      <div class="ZAlert-avatar">
+        <slot name="avatar"></slot>
+      </div>
+      <div class="ZAlert-heading">
+        <slot name="heading"></slot>
+      </div>
+      <div class="ZAlert-message">
+        <slot name="message"></slot>
+      </div>
+    `;
 
     const style = document.createElement('style');
-    style.textContent = css;
-    const shadow = this.attachShadow({ mode: 'open' });
+    style.textContent = $css;
+
+    const template = document.createElement('template');
+    template.innerHTML = $html;
+
     shadow.appendChild(style);
-    shadow.appendChild(avatar);
-    shadow.appendChild(heading);
-    shadow.appendChild(message);
-  }
-
-  private _refreshFashion = () => {
-    const { style } = this;
-    const detail = new ZFashionDetail(this.fashion);
-
-    style.setProperty('--alert-color', detail.color('contrast'));
-    style.setProperty('--alert-background', detail.color('main'));
-    style.setProperty('--alert-border-color', detail.color('border'));
-
-    const thickness = ZFashionTailorElement.thicknessVar(ZSizeFixed.ExtraSmall);
-    const shadow = detail.color('border');
-    style.setProperty('--alert-box-shadow', `0 0 0 ${thickness} ${shadow}`);
-  };
-
-  public connectedCallback(): void {
-    this.classList.add('ZAlert-root');
-    this._refreshFashion();
-  }
-
-  public attributeChangedCallback(): void {
-    this._refreshFashion();
+    shadow.appendChild(template.content.cloneNode(true));
   }
 }
