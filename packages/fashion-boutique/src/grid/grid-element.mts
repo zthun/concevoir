@@ -7,24 +7,25 @@ import {
   ZSizeVoid,
   createSizeChartVariedCss
 } from '@zthun/fashion-tailor';
-import {
-  IZComponentConnected,
-  IZComponentDisconnected,
-  IZComponentRender,
-  ZAttribute,
-  ZComponentShadow
-} from '@zthun/helpful-dom';
+import { IZComponentRender, ZAttribute, ZComponentShadow } from '@zthun/helpful-dom';
 import { css, firstTruthy, html } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import { ZAlignmentElement } from '../background/alignment-element.mjs';
 import { ZDeviceElement } from '../background/device-element.mjs';
+import { ZComponentBackgroundListen } from '../dom/component-background.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
 @ZComponentShadow({ name: 'ZGrid', dependencies: [ZDeviceElement, ZAlignmentElement] })
-export class ZGridElement
-  extends HTMLElement
-  implements IZComponentConnected, IZComponentDisconnected, IZComponentRender
-{
+@ZComponentBackgroundListen({
+  selectors: [
+    'z-alignment[name="align"]',
+    'z-device[name="columns"]',
+    'z-alignment[name="justify"]',
+    'z-device[name="height"]',
+    'z-device[name="width"]'
+  ]
+})
+export class ZGridElement extends HTMLElement implements IZComponentRender {
   public static readonly GridDimensionChart = Object.freeze(createSizeChartVariedCss());
   public static readonly observedAttributes = ['rows', 'gap'];
 
@@ -109,47 +110,5 @@ export class ZGridElement
 
     shadow.appendChild(style);
     shadow.appendChild(template.content.cloneNode(true));
-  }
-
-  private _handleChange = () => {
-    while (this.shadowRoot!.firstChild) {
-      this.shadowRoot!.firstChild.remove();
-    }
-
-    this.render(this.shadowRoot!);
-  };
-
-  public connectedCallback() {
-    const $align = this.querySelector<ZAlignmentElement>('z-alignment[name="align"]');
-    $align?.addEventListener('change', this._handleChange);
-
-    const $justify = this.querySelector<ZAlignmentElement>('z-alignment[name="justify"]');
-    $justify?.addEventListener('change', this._handleChange);
-
-    const $columns = this.querySelector<ZDeviceElement>('z-device[name="columns"]');
-    $columns?.addEventListener('change', this._handleChange);
-
-    const $width = this.querySelector<ZDeviceElement>('z-device[name="width"]');
-    $width?.addEventListener('change', this._handleChange);
-
-    const $height = this.querySelector<ZDeviceElement>('z-device[name="height"]');
-    $height?.addEventListener('change', this._handleChange);
-  }
-
-  public disconnectedCallback(): void {
-    const $align = this.querySelector<ZAlignmentElement>('z-alignment[name="align"]');
-    $align?.removeEventListener('change', this._handleChange);
-
-    const $justify = this.querySelector<ZAlignmentElement>('z-alignment[name="justify"]');
-    $justify?.removeEventListener('change', this._handleChange);
-
-    const $columns = this.querySelector<ZDeviceElement>('z-device[name="columns"]');
-    $columns?.removeEventListener('change', this._handleChange);
-
-    const $width = this.querySelector<ZDeviceElement>('z-device[name="width"]');
-    $width?.removeEventListener('change', this._handleChange);
-
-    const $height = this.querySelector<ZDeviceElement>('z-device[name="height"]');
-    $height?.removeEventListener('change', this._handleChange);
   }
 }
