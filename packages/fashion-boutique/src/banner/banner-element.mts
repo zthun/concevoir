@@ -8,22 +8,15 @@ import {
   createSizeChartVariedCss
 } from '@zthun/fashion-tailor';
 import { ZFashionPriority } from '@zthun/fashion-theme';
-import {
-  IZComponentAttributeChanged,
-  IZComponentConnected,
-  IZComponentDisconnected,
-  ZAttribute,
-  cssVariable,
-  registerCustomElement
-} from '@zthun/helpful-dom';
+import { ZAttribute, ZComponentShadow, registerCustomElement } from '@zthun/helpful-dom';
+import { css, html } from '@zthun/helpful-fn';
 import { ZDeviceElement } from '../background/device-element.mjs';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
-import { ZCssSerialize } from '../css/css-serialize.mjs';
+import { ZComponentBackgroundListen } from '../dom/component-background.mjs';
 
-export class ZBannerElement
-  extends HTMLElement
-  implements IZComponentConnected, IZComponentDisconnected, IZComponentAttributeChanged, IZComponentFashion
-{
+@ZComponentShadow({ name: 'ZBanner', dependencies: [ZDeviceElement] })
+@ZComponentBackgroundListen({ selectors: ['z-device[name="height"]'] })
+export class ZBannerElement extends HTMLElement implements IZComponentFashion {
   public static readonly register = registerCustomElement.bind(null, 'z-banner', ZBannerElement);
   public static readonly observedAttributes = ['fashion'];
 
@@ -35,94 +28,63 @@ export class ZBannerElement
   @ZAttribute({ fallback: ZFashionPriority.Primary })
   public fashion: string;
 
-  public constructor() {
-    super();
-
+  public render(shadow: ShadowRoot) {
+    const { fashion } = this;
+    const detail = new ZFashionDetail(fashion);
     const device = new ZFashionDevice();
-
-    const css = new ZCssSerialize().serialize({
-      ':host': {
-        background: `${cssVariable('--banner-background')}`,
-        boxSizing: 'border-box',
-        color: `${cssVariable('--banner-color')}`,
-        display: 'block',
-        left: 'auto',
-        position: 'sticky',
-        right: 0,
-        top: 0,
-        width: '100%',
-        zIndex: 1100,
-
-        height: `${cssVariable('--banner-height-xl')}`,
-
-        [device.break(ZSizeFixed.Large)]: {
-          height: `${cssVariable('--banner-height-lg')}`
-        },
-
-        [device.break(ZSizeFixed.Medium)]: {
-          height: `${cssVariable('--banner-height-md')}`
-        },
-
-        [device.break(ZSizeFixed.Small)]: {
-          height: `${cssVariable('--banner-height-sm')}`
-        },
-
-        [device.break(ZSizeFixed.ExtraSmall)]: {
-          height: `${cssVariable('--banner-height-xs')}`
-        }
-      }
-    });
-
-    const shadow = this.attachShadow({ mode: 'open' });
-    const style = document.createElement('style');
-    style.textContent = css;
-    shadow.appendChild(style);
-    shadow.appendChild(document.createElement('slot'));
-  }
-
-  private _refreshHeight = () => {
-    const { style } = this;
 
     const $height = this.querySelector<ZDeviceElement>(`z-device[name="height"]`);
     const height = new ZDeviceBounds($height?.device?.call($height), ZSizeVaried.Fit);
 
-    const xl = ZBannerElement.HeightChart[height.xl()];
-    const lg = ZBannerElement.HeightChart[height.lg()];
-    const md = ZBannerElement.HeightChart[height.md()];
-    const sm = ZBannerElement.HeightChart[height.sm()];
-    const xs = ZBannerElement.HeightChart[height.xs()];
+    const $css = css`
+      :host {
+        background: ${detail.color('main')};
+        box-sizing: border-box;
+        color: ${detail.color('contrast')};
+        display: block;
+        position: sticky;
+        width: 100%;
+        z-index: 1100;
 
-    style.setProperty('--banner-height-xl', xl);
-    style.setProperty('--banner-height-lg', lg);
-    style.setProperty('--banner-height-md', md);
-    style.setProperty('--banner-height-sm', sm);
-    style.setProperty('--banner-height-xs', xs);
-  };
+        left: auto;
+        right: 0;
+        top: 0;
 
-  private _refreshFashion = () => {
-    const detail = new ZFashionDetail(this.fashion);
-    const { style } = this;
+        height: ${ZBannerElement.HeightChart[height.xl()]}
+      }
 
-    style.setProperty('--banner-background', detail.color('main'));
-    style.setProperty('--banner-color', detail.color('contrast'));
-  };
+      ${device.break(ZSizeFixed.Large)} {
+        :host {
+          height: ${ZBannerElement.HeightChart[height.lg()]};
+        }
+      },
+      
+      ${device.break(ZSizeFixed.Medium)} {
+        :host {
+          height: ${ZBannerElement.HeightChart[height.md()]};
+        }
+      },      
+      
+      ${device.break(ZSizeFixed.Small)} {
+        :host {
+          height: ${ZBannerElement.HeightChart[height.sm()]};
+        }
+      },
 
-  public connectedCallback() {
-    this.classList.add('ZBanner-root');
+      ${device.break(ZSizeFixed.ExtraSmall)} {
+        :host {
+          height: ${ZBannerElement.HeightChart[height.xs()]};
+        }
+      },
+    `;
 
-    const $height = this.querySelector<ZDeviceElement>('z-device[name="height"]');
-    $height?.addEventListener('change', this._refreshHeight);
+    const style = document.createElement('style');
+    style.textContent = $css;
 
-    this._refreshHeight();
-    this._refreshFashion();
-  }
+    const template = document.createElement('template');
+    template.innerHTML = html`<slot></slot>`;
 
-  public disconnectedCallback() {
-    const $height = this.querySelector<ZDeviceElement>('z-device[name="height"]');
-    $height?.removeEventListener('change', this._refreshHeight);
-  }
-
-  public attributeChangedCallback(): void {
-    this._refreshFashion();
+    shadow.appendChild(style);
+    shadow.appendChild(template.content.cloneNode(true));
   }
 }
