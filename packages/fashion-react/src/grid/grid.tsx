@@ -6,6 +6,7 @@ import {
   ZGridElement
 } from '@zthun/fashion-boutique';
 import { IZDeviceValueMap, ZDeviceBounds, ZGapSize, ZSizeVaried } from '@zthun/fashion-tailor';
+import { includeCustomElement } from '@zthun/helpful-dom';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import React, { useEffect, useMemo } from 'react';
@@ -61,9 +62,10 @@ export function ZGrid(props: IZGrid) {
   const $height = useMemo(() => new ZDeviceBounds(height, ZSizeVaried.Fit).toDeviceMap(), [height]);
   const $width = useMemo(() => new ZDeviceBounds(width, ZSizeVaried.Fit).toDeviceMap(), [width]);
 
+  useMemo(() => includeCustomElement(ZGridElement), []);
+
   useEffect(() => ZAlignmentElement.register(), []);
   useEffect(() => ZDeviceElement.register(), []);
-  useEffect(() => ZGridElement.register(), []);
 
   return (
     <z-grid class={cssJoinDefined(className)} gap={gap} rows={rows}>
