@@ -8,7 +8,7 @@ import {
 import { ZDeviceBounds, ZGapSize, ZSizeVaried, ZThicknessSize } from '@zthun/fashion-tailor';
 import { IZQuadrilateral, cssJoinDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
-import React, { MouseEventHandler, useEffect, useMemo } from 'react';
+import React, { MouseEventHandler, useMemo } from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 
@@ -53,9 +53,9 @@ export function ZBox(props: IZBox) {
 
   const $width = useMemo(() => new ZDeviceBounds(width, ZSizeVaried.Fit).toDeviceMap(), [width]);
 
-  useEffect(() => ZBoxElement.register(), []);
+  useMemo(() => ZBoxElement.register(), []);
   useMemo(() => includeCustomElement(ZDeviceElement), []);
-  useEffect(() => includeCustomElement(ZQuadrilateralElement), []);
+  useMemo(() => includeCustomElement(ZQuadrilateralElement), []);
 
   return (
     <z-box class={cssJoinDefined(className)} fashion={fashion} tabIndex={tabIndex} onClick={onClick}>
