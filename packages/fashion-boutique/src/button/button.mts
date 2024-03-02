@@ -94,7 +94,7 @@ export class ZButtonElement extends HTMLElement implements IZButton, IZComponent
       <button ${$attr('disabled', disabled)}>
         <slot name="prefix"></slot>
         <slot></slot>
-        <z-suspense-rotate class="ZButton-loading" ${$attr('loading', loading)} ${$attr('fashion', fashion)}>
+        <z-suspense-rotate class="ZButton-loading" ${$attr('disabled', !loading)} ${$attr('fashion', fashion)}>
         </z-suspense-rotate>
       </button>
     `;

@@ -22,7 +22,7 @@ export function ZSuspenseRotate(props: IZSuspense) {
   useMemo(() => includeCustomElement(ZDeviceElement), []);
 
   return (
-    <z-suspense-rotate class={cssJoinDefined(className)} fashion={fashion} loading={loading} name={name}>
+    <z-suspense-rotate class={cssJoinDefined(className)} fashion={fashion} disabled={!loading} name={name}>
       <z-device xl={$width.xl} lg={$width.lg} md={$width.md} sm={$width.sm} xs={$width.xs} name='width' />
     </z-suspense-rotate>
   );

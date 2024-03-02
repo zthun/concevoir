@@ -17,16 +17,16 @@ import { IZSuspenseElement } from './suspense-element.mjs';
 @ZComponentBackgroundListen({ selectors: ['z-device[name="height"]'] })
 export class ZSuspenseProgressElement extends HTMLElement implements IZSuspenseElement {
   public static readonly SizeChart = createSizeChartFixedCss(createSizeChartFixedArithmetic(0.25, 0.25), 'rem');
-  public static readonly observedAttributes = ['fashion', 'loading'];
+  public static readonly observedAttributes = ['fashion', 'disabled'];
 
   @ZAttribute({ fallback: ZFashionContrast.Opposite })
   public fashion: string;
 
   @ZAttribute({ type: 'boolean' })
-  public loading?: boolean;
+  public disabled?: boolean;
 
   public render(shadow: ShadowRoot) {
-    const { fashion, loading } = this;
+    const { fashion, disabled } = this;
     const detail = new ZFashionDetail(fashion);
     const device = new ZFashionDevice();
 
@@ -50,7 +50,7 @@ export class ZSuspenseProgressElement extends HTMLElement implements IZSuspenseE
       }
 
       :host {
-        display: ${loading ? 'block' : 'none'};
+        display: ${disabled ? 'none' : 'block'};
       }
 
       .ZSuspense-progress-bar {

@@ -17,16 +17,16 @@ import { IZSuspenseElement } from './suspense-element.mjs';
 @ZComponentBackgroundListen({ selectors: ['z-device[name="width"]'] })
 export class ZSuspenseRotateElement extends HTMLElement implements IZSuspenseElement, IZComponentRender {
   public static readonly SizeChart = createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), 'rem');
-  public static readonly observedAttributes = ['fashion', 'loading'];
+  public static readonly observedAttributes = ['fashion', 'disabled'];
 
   @ZAttribute({ fallback: ZFashionContrast.Opposite })
   public fashion: string;
 
   @ZAttribute({ type: 'boolean' })
-  public loading?: boolean;
+  public disabled?: boolean;
 
   public render(shadow: ShadowRoot) {
-    const { fashion, loading } = this;
+    const { fashion, disabled } = this;
     const detail = new ZFashionDetail(fashion);
     const device = new ZFashionDevice();
 
@@ -51,7 +51,7 @@ export class ZSuspenseRotateElement extends HTMLElement implements IZSuspenseEle
       }
 
       :host {
-        display: ${loading ? 'block' : 'none'};
+        display: ${disabled ? 'none' : 'block'};
       }
 
       .ZSuspense-rotate-circle {

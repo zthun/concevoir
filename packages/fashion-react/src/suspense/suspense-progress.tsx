@@ -33,7 +33,7 @@ export function ZSuspenseProgress(props: IZSuspense<ZSizeVaried.Full, ZSizeFixed
   useMemo(() => includeCustomElement(ZDeviceElement), []);
 
   return (
-    <z-suspense-progress className={cssJoinDefined(className)} loading={loading} fashion={fashion} name={name}>
+    <z-suspense-progress className={cssJoinDefined(className)} disabled={!loading} fashion={fashion} name={name}>
       <z-device xl={$height.xl} lg={$height.lg} md={$height.md} sm={$height.sm} xs={$height.xs} name='height' />
     </z-suspense-progress>
   );
