@@ -5,6 +5,7 @@ import { css, html } from '@zthun/helpful-fn';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 import { IZComponentLoading } from '../component/component-loading.mjs';
 import { IZComponentName } from '../component/component-name.mjs';
+import { paintShadow } from '../dom/shadow-util.mjs';
 import { ZSuspenseRotateElement } from '../suspense/suspense-rotate-element.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
@@ -99,12 +100,6 @@ export class ZButtonElement extends HTMLElement implements IZButton, IZComponent
       </button>
     `;
 
-    const style = document.createElement('style');
-    style.textContent = $css;
-    const template = document.createElement('template');
-    template.innerHTML = $html;
-
-    shadow.appendChild(style);
-    shadow.appendChild(template.content.cloneNode(true));
+    paintShadow(shadow, $css, $html);
   }
 }

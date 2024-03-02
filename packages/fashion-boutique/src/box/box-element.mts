@@ -19,6 +19,7 @@ import { ZDeviceElement } from '../background/device-element.mjs';
 import { ZQuadrilateralElement } from '../background/quadrilateral-element.mjs';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 import { ZComponentBackgroundListen } from '../dom/component-background.mjs';
+import { paintShadow } from '../dom/shadow-util.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
 @ZComponentShadow({ name: 'ZBox', dependencies: [ZQuadrilateralElement, ZDeviceElement] })
@@ -133,14 +134,6 @@ export class ZBoxElement extends HTMLElement implements IZComponentFashion {
     `;
 
     const $html = html`<slot></slot>`;
-
-    const style = document.createElement('style');
-    style.textContent = $css;
-
-    const template = document.createElement('template');
-    template.innerHTML = $html;
-
-    shadow.appendChild(style);
-    shadow.appendChild(template.content.cloneNode(true));
+    paintShadow(shadow, $css, $html);
   }
 }

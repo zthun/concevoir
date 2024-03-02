@@ -11,6 +11,7 @@ import { css, html } from '@zthun/helpful-fn';
 import { ZDeviceElement } from '../background/device-element.mjs';
 import { ZFashionDetail } from '../component/component-fashion.mjs';
 import { ZComponentBackgroundListen } from '../dom/component-background.mjs';
+import { paintShadow } from '../dom/shadow-util.mjs';
 import { IZSuspenseElement } from './suspense-element.mjs';
 
 @ZComponentShadow({ name: 'ZSuspenseProgress', className: ['ZSuspense-root', 'ZSuspense-progress'] })
@@ -92,14 +93,6 @@ export class ZSuspenseProgressElement extends HTMLElement implements IZSuspenseE
         <div class="ZSuspense-progress-scroll"></div>
       </div>
     `;
-
-    const style = document.createElement('style');
-    style.textContent = $css;
-
-    const template = document.createElement('template');
-    template.innerHTML = $html;
-
-    shadow.append(style);
-    shadow.appendChild(template.content.cloneNode(true));
+    paintShadow(shadow, $css, $html);
   }
 }

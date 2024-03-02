@@ -13,6 +13,7 @@ import { Property } from 'csstype';
 import { ZAlignmentElement } from '../background/alignment-element.mjs';
 import { ZDeviceElement } from '../background/device-element.mjs';
 import { ZComponentBackgroundListen } from '../dom/component-background.mjs';
+import { paintShadow } from '../dom/shadow-util.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
 @ZComponentShadow({ name: 'ZGrid', dependencies: [ZDeviceElement, ZAlignmentElement] })
@@ -101,14 +102,6 @@ export class ZGridElement extends HTMLElement implements IZComponentRender {
     `;
 
     const $html = html` <slot></slot> `;
-
-    const style = document.createElement('style');
-    style.textContent = $css;
-
-    const template = document.createElement('template');
-    template.innerHTML = $html;
-
-    shadow.appendChild(style);
-    shadow.appendChild(template.content.cloneNode(true));
+    paintShadow(shadow, $css, $html);
   }
 }

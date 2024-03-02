@@ -13,6 +13,7 @@ import { css, html } from '@zthun/helpful-fn';
 import { ZDeviceElement } from '../background/device-element.mjs';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 import { ZComponentBackgroundListen } from '../dom/component-background.mjs';
+import { paintShadow } from '../dom/shadow-util.mjs';
 
 @ZComponentShadow({ name: 'ZBanner', dependencies: [ZDeviceElement] })
 @ZComponentBackgroundListen({ selectors: ['z-device[name="height"]'] })
@@ -78,13 +79,7 @@ export class ZBannerElement extends HTMLElement implements IZComponentFashion {
       },
     `;
 
-    const style = document.createElement('style');
-    style.textContent = $css;
-
-    const template = document.createElement('template');
-    template.innerHTML = html`<slot></slot>`;
-
-    shadow.appendChild(style);
-    shadow.appendChild(template.content.cloneNode(true));
+    const $html = html`<slot></slot>`;
+    paintShadow(shadow, $css, $html);
   }
 }

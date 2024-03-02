@@ -14,23 +14,23 @@ export class ZFashionThemeElement extends HTMLElement {
   }
 
   public applyTheme(theme: IZFashionTheme): void {
-    this.setFashionVariables(theme.body);
-    this.setFashionVariables(theme.component);
-    this.setFashionVariables(theme.dark);
-    this.setFashionVariables(theme.error);
-    this.setFashionVariables(theme.info);
-    this.setFashionVariables(theme.inherit);
-    this.setFashionVariables(theme.light);
-    this.setFashionVariables(theme.opposite);
-    this.setFashionVariables(theme.primary);
-    this.setFashionVariables(theme.secondary);
-    this.setFashionVariables(theme.success);
-    this.setFashionVariables(theme.surface);
-    this.setFashionVariables(theme.transparent);
-    this.setFashionVariables(theme.warning);
+    this.applyFashion(theme.body);
+    this.applyFashion(theme.component);
+    this.applyFashion(theme.dark);
+    this.applyFashion(theme.error);
+    this.applyFashion(theme.info);
+    this.applyFashion(theme.inherit);
+    this.applyFashion(theme.light);
+    this.applyFashion(theme.opposite);
+    this.applyFashion(theme.primary);
+    this.applyFashion(theme.secondary);
+    this.applyFashion(theme.success);
+    this.applyFashion(theme.surface);
+    this.applyFashion(theme.transparent);
+    this.applyFashion(theme.warning);
   }
 
-  public setFashionVariables(fashion: IZFashion): void {
+  public applyFashion(fashion: IZFashion): void {
     const { contrast, main, name } = fashion;
 
     const border = firstDefined(main, fashion.border);
