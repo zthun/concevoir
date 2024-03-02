@@ -85,7 +85,7 @@ export function ZButton(props: IZButton) {
     >
       <z-device xl={$width.xl} lg={$width.lg} md={$width.md} sm={$width.sm} xs={$width.xs} name='width'></z-device>
       <div slot='prefix'>{avatar}</div>
-      <div>{label}</div>
+      <div slot='content'>{label}</div>
     </z-button>
   );
 }

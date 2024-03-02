@@ -168,7 +168,7 @@ export class ZButtonElement
     return html`
       <button ${$attr('disabled', disabled)}>
         <slot name="prefix"></slot>
-        <slot></slot>
+        <slot name="content"></slot>
         <z-suspense-rotate class="ZButton-loading" ${$attr('disabled', !loading)} ${$attr('fashion', fashion)}>
         </z-suspense-rotate>
       </button>

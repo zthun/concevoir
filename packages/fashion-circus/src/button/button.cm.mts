@@ -76,9 +76,9 @@ export class ZButtonComponentModel extends ZCircusComponentModel {
    * @returns
    *        The button content text, if any.
    */
-  public async text(): Promise<string> {
-    const content = await this.driver.select(':not([slot])');
-    return content.text();
+  public async text(): Promise<string | null> {
+    const [content] = await this.driver.query('[slot="content"]');
+    return content?.text();
   }
 
   /**

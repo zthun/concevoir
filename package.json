@@ -16,6 +16,7 @@
     "clean": "rimraf --glob 'coverage' '*.tgz' '*.log' 'packages/**/dist' 'packages/**/*.tgz' 'packages/**/*.log' 'packages/**/stats'",
     "test": "vitest run --coverage",
     "e2e": "cucumber-js",
+    "check": "tsc --noEmit",
     "lint": "lint-janitor",
     "build": "lerna run build",
     "make": "yarn clean && yarn lint && yarn check && yarn test && yarn build",
