@@ -11,11 +11,11 @@ import { css, html } from '@zthun/helpful-fn';
 import { ZDeviceElement } from '../background/device-element.mjs';
 import { ZFashionDetail } from '../component/component-fashion.mjs';
 import { ZComponentBackgroundListen } from '../dom/component-background.mjs';
-import { IZSuspense } from './suspense-element.mjs';
+import { IZSuspenseElement } from './suspense-element.mjs';
 
 @ZComponentShadow({ name: 'ZSuspenseRotate', className: ['ZSuspense-root', 'ZSuspense-rotate'] })
 @ZComponentBackgroundListen({ selectors: ['z-device[name="width"]'] })
-export class ZSuspenseRotateElement extends HTMLElement implements IZSuspense, IZComponentRender {
+export class ZSuspenseRotateElement extends HTMLElement implements IZSuspenseElement, IZComponentRender {
   public static readonly SizeChart = createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), 'rem');
   public static readonly observedAttributes = ['fashion', 'loading'];
 
