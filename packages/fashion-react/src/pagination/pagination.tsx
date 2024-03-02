@@ -1,8 +1,8 @@
 import { Pagination } from '@mui/material';
+import { IZComponentDisabled } from '@zthun/fashion-boutique';
 import { ZOrientation, cssJoinDefined } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
 import React from 'react';
-import { IZComponentDisabled } from '../component/component-disabled.mjs';
 import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentOrientation } from '../component/component-orientation.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';

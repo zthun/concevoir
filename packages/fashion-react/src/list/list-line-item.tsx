@@ -1,8 +1,8 @@
 import { ListItem, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material';
+import { IZComponentDisabled } from '@zthun/fashion-boutique';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { IZComponentAdornment } from '../component/component-adornment.mjs';
-import { IZComponentDisabled } from '../component/component-disabled.mjs';
 import { IZComponentHeading } from '../component/component-heading.mjs';
 import { createStyleHook } from '../theme/styled';
 import { IZListItem } from './list-item.mjs';
