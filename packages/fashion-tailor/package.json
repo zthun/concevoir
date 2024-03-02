@@ -19,7 +19,6 @@
     "types": "./dist/index.d.ts"
   },
   "scripts": {
-    "check": "tsc --noEmit",
     "build": "vite build"
   },
   "publishConfig": {
