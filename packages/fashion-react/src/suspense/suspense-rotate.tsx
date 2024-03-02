@@ -1,5 +1,6 @@
 import { ZDeviceElement, ZSuspenseRotateElement } from '@zthun/fashion-boutique';
 import { ZDeviceBounds, ZSizeFixed } from '@zthun/fashion-tailor';
+import { includeCustomElement } from '@zthun/helpful-dom';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { useMemo } from 'react';
 import { IZSuspense } from './suspense.mjs';
@@ -17,6 +18,7 @@ export function ZSuspenseRotate(props: IZSuspense) {
 
   const $width = useMemo(() => new ZDeviceBounds(width, ZSizeFixed.ExtraSmall).toDeviceMap(), [width]);
 
+  useMemo(() => includeCustomElement(ZSuspenseRotateElement), []);
   useMemo(() => ZDeviceElement.register(), []);
 
   return (

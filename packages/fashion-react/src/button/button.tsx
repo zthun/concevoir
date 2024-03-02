@@ -1,8 +1,9 @@
 import { Tooltip } from '@mui/material';
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useMemo } from 'react';
 
 import { IZComponentFashion, IZComponentLoading, IZComponentWidth, ZButtonElement } from '@zthun/fashion-boutique';
 import { ZSizeVaried } from '@zthun/fashion-tailor';
+import { includeCustomElement } from '@zthun/helpful-dom';
 import { IZComponentAvatar } from '../component/component-avatar.mjs';
 import { IZComponentDisabled } from '../component/component-disabled.mjs';
 import { IZComponentLabel } from '../component/component-label.mjs';
@@ -45,6 +46,8 @@ export interface IZButton
 export function ZButton(props: IZButton) {
   const { avatar, className, borderless, compact, disabled, fashion, loading, label, name, outline, tooltip, onClick } =
     props;
+
+  useMemo(() => includeCustomElement(ZButtonElement), []);
 
   return (
     <Tooltip title={tooltip}>

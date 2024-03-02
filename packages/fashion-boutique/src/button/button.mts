@@ -5,6 +5,7 @@ import { css, html } from '@zthun/helpful-fn';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 import { IZComponentLoading } from '../component/component-loading.mjs';
 import { IZComponentName } from '../component/component-name.mjs';
+import { ZSuspenseRotateElement } from '../suspense/suspense-rotate-element.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
 export interface IZButton extends IZComponentFashion, IZComponentLoading, IZComponentName {
@@ -14,7 +15,7 @@ export interface IZButton extends IZComponentFashion, IZComponentLoading, IZComp
   outline?: boolean;
 }
 
-@ZComponentShadow({ name: 'ZButton' })
+@ZComponentShadow({ name: 'ZButton', dependencies: [ZSuspenseRotateElement] })
 export class ZButtonElement extends HTMLElement implements IZButton, IZComponentRender {
   public static readonly observedAttributes = ['borderless', 'compact', 'disabled', 'fashion', 'loading', 'outline'];
   public static readonly SizeChart = createSizeChartVariedCss();

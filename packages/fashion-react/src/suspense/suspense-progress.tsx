@@ -4,6 +4,7 @@ import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { useEffect, useMemo } from 'react';
 import { IZSuspense } from './suspense.mjs';
 
+import { includeCustomElement } from '@zthun/helpful-dom';
 import '../background/device';
 
 declare global {
@@ -20,13 +21,15 @@ declare global {
  * @param props -
  *        The properties for the component.
  *
- * @returns The jsx for the component.
+ * @returns
+ *        The jsx for the component.
  */
 export function ZSuspenseProgress(props: IZSuspense<ZSizeVaried.Full, ZSizeFixed>) {
   const { className, loading = true, height, name, fashion } = props;
 
   const $height = useMemo(() => new ZDeviceBounds(height, ZSizeFixed.ExtraSmall).toDeviceMap(), [height]);
 
+  useMemo(() => includeCustomElement(ZSuspenseProgressElement), []);
   useEffect(() => ZDeviceElement.register(), []);
 
   return (
