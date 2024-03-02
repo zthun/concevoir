@@ -6,17 +6,16 @@ import {
   createSizeChartFixedCss
 } from '@zthun/fashion-tailor';
 import { ZFashionContrast } from '@zthun/fashion-theme';
-import { IZComponentConnected, IZComponentDisconnected, ZAttribute, ZComponentShadow } from '@zthun/helpful-dom';
+import { ZAttribute, ZComponentShadow } from '@zthun/helpful-dom';
 import { css, html } from '@zthun/helpful-fn';
 import { ZDeviceElement } from '../background/device-element.mjs';
 import { ZFashionDetail } from '../component/component-fashion.mjs';
+import { ZComponentBackgroundListen } from '../dom/component-background.mjs';
 import { IZSuspense } from './suspense-element.mjs';
 
 @ZComponentShadow({ name: 'ZSuspenseProgress', className: ['ZSuspense-root', 'ZSuspense-progress'] })
-export class ZSuspenseProgressElement
-  extends HTMLElement
-  implements IZSuspense, IZComponentConnected, IZComponentDisconnected
-{
+@ZComponentBackgroundListen({ selectors: ['z-device[name="height"]'] })
+export class ZSuspenseProgressElement extends HTMLElement implements IZSuspense {
   public static readonly SizeChart = createSizeChartFixedCss(createSizeChartFixedArithmetic(0.25, 0.25), 'rem');
   public static readonly observedAttributes = ['fashion', 'loading'];
 
@@ -102,27 +101,5 @@ export class ZSuspenseProgressElement
 
     shadow.append(style);
     shadow.appendChild(template.content.cloneNode(true));
-  }
-
-  private _render = () => {
-    if (!this.shadowRoot) {
-      return;
-    }
-
-    while (this.shadowRoot.firstChild) {
-      this.shadowRoot.firstChild.remove();
-    }
-
-    this.render(this.shadowRoot!);
-  };
-
-  public connectedCallback(): void {
-    const $height = this.querySelector('z-device[name="height"]');
-    $height?.addEventListener('change', this._render);
-  }
-
-  public disconnectedCallback(): void {
-    const $height = this.querySelector('z-device[name="height"]');
-    $height?.removeEventListener('change', this._render);
   }
 }
