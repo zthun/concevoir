@@ -19,7 +19,7 @@ export function ZSuspenseRotate(props: IZSuspense) {
   const $width = useMemo(() => new ZDeviceBounds(width, ZSizeFixed.ExtraSmall).toDeviceMap(), [width]);
 
   useMemo(() => includeCustomElement(ZSuspenseRotateElement), []);
-  useMemo(() => ZDeviceElement.register(), []);
+  useMemo(() => includeCustomElement(ZDeviceElement), []);
 
   return (
     <z-suspense-rotate class={cssJoinDefined(className)} fashion={fashion} loading={loading} name={name}>

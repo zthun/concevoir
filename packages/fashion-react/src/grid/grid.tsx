@@ -9,7 +9,7 @@ import { IZDeviceValueMap, ZDeviceBounds, ZGapSize, ZSizeVaried } from '@zthun/f
 import { includeCustomElement } from '@zthun/helpful-dom';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 
@@ -63,9 +63,8 @@ export function ZGrid(props: IZGrid) {
   const $width = useMemo(() => new ZDeviceBounds(width, ZSizeVaried.Fit).toDeviceMap(), [width]);
 
   useMemo(() => includeCustomElement(ZGridElement), []);
-
-  useEffect(() => ZAlignmentElement.register(), []);
-  useEffect(() => ZDeviceElement.register(), []);
+  useMemo(() => includeCustomElement(ZDeviceElement), []);
+  useMemo(() => includeCustomElement(ZAlignmentElement), []);
 
   return (
     <z-grid class={cssJoinDefined(className)} gap={gap} rows={rows}>

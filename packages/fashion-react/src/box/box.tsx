@@ -12,6 +12,7 @@ import React, { MouseEventHandler, useEffect, useMemo } from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 
+import { includeCustomElement } from '@zthun/helpful-dom';
 import '../background/device';
 import '../background/quadrilateral';
 
@@ -53,7 +54,7 @@ export function ZBox(props: IZBox) {
   const $width = useMemo(() => new ZDeviceBounds(width, ZSizeVaried.Fit).toDeviceMap(), [width]);
 
   useEffect(() => ZBoxElement.register(), []);
-  useEffect(() => ZDeviceElement.register(), []);
+  useMemo(() => includeCustomElement(ZDeviceElement), []);
   useEffect(() => ZQuadrilateralElement.register(), []);
 
   return (

@@ -5,6 +5,7 @@ import React, { useEffect, useMemo } from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 
+import { includeCustomElement } from '@zthun/helpful-dom';
 import '../background/device';
 
 declare global {
@@ -26,7 +27,7 @@ export function ZBanner(props: IZBanner) {
   const $height = useMemo(() => new ZDeviceBounds(height, ZSizeVaried.Fit).toDeviceMap(), [height]);
 
   useEffect(() => ZBannerElement.register(), []);
-  useEffect(() => ZDeviceElement.register(), []);
+  useMemo(() => includeCustomElement(ZDeviceElement), []);
 
   return (
     <z-banner class={cssJoinDefined(className)} fashion={fashion}>
