@@ -55,7 +55,7 @@ export function ZBox(props: IZBox) {
 
   useEffect(() => ZBoxElement.register(), []);
   useMemo(() => includeCustomElement(ZDeviceElement), []);
-  useEffect(() => ZQuadrilateralElement.register(), []);
+  useEffect(() => includeCustomElement(ZQuadrilateralElement), []);
 
   return (
     <z-box class={cssJoinDefined(className)} fashion={fashion} tabIndex={tabIndex} onClick={onClick}>

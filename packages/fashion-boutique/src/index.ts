@@ -1,6 +1,5 @@
 export * from './alert/alert-element.mjs';
 export * from './background/alignment-element.mjs';
-export * from './background/background-element.mjs';
 export * from './background/device-element.mjs';
 export * from './background/quadrilateral-element.mjs';
 export * from './banner/banner-element.mjs';
