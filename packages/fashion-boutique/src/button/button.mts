@@ -1,7 +1,21 @@
-import { ZSizeFixed, createSizeChartVariedCss } from '@zthun/fashion-tailor';
+import {
+  ZDeviceBounds,
+  ZFashionDevice,
+  ZSizeFixed,
+  ZSizeVaried,
+  createSizeChartVariedCss
+} from '@zthun/fashion-tailor';
 import { ZFashionArea } from '@zthun/fashion-theme';
-import { $attr, IZComponentStyles, IZComponentTemplate, ZAttribute, ZComponentShadow } from '@zthun/helpful-dom';
+import {
+  $attr,
+  IZComponentStyles,
+  IZComponentTemplate,
+  ZAttribute,
+  ZComponentShadow,
+  ZElementListenBuilder
+} from '@zthun/helpful-dom';
 import { css, html } from '@zthun/helpful-fn';
+import { ZDeviceElement } from '../background/device-element.mjs';
 import { IZComponentDisabled } from '../component/component-disabled.mjs';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 import { IZComponentLoading } from '../component/component-loading.mjs';
@@ -9,7 +23,11 @@ import { IZComponentName } from '../component/component-name.mjs';
 import { ZSuspenseRotateElement } from '../suspense/suspense-rotate-element.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
-@ZComponentShadow({ name: 'ZButton', dependencies: [ZSuspenseRotateElement] })
+@ZComponentShadow({
+  name: 'ZButton',
+  dependencies: [ZSuspenseRotateElement, ZDeviceElement],
+  listen: [new ZElementListenBuilder().namedElement('z-device', 'width').build()]
+})
 export class ZButtonElement
   extends HTMLElement
   implements
@@ -47,12 +65,21 @@ export class ZButtonElement
   public styles() {
     const { borderless, compact, fashion, outline } = this;
 
+    const device = new ZFashionDevice();
     const detail = new ZFashionDetail(fashion);
     const gap = ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall);
     const padding = compact ? '0' : gap;
     const thickness = ZFashionTailorElement.thicknessVar(ZSizeFixed.Medium);
 
+    const $width = this.querySelector<ZDeviceElement>('z-device[name="width"]');
+    const width = new ZDeviceBounds($width?.device?.call($width), ZSizeVaried.Fit);
+
     return css`
+      :host {
+        display: block;
+        width: ${ZButtonElement.SizeChart[width.xl()]};
+      }
+
       button {
         align-items: center;
         background: ${outline ? 'transparent' : detail.color('main')};
@@ -66,6 +93,7 @@ export class ZButtonElement
         overflow: hidden;
         padding: ${padding};
         position: relative;
+        width: ${ZButtonElement.SizeChart[width.xl()]};
       }
 
       button:focus {
@@ -90,6 +118,46 @@ export class ZButtonElement
 
       button:disabled {
         opacity: 0.25;
+      }
+
+      ${device.break(ZSizeFixed.Large)} {
+        :host {
+          width: ${ZButtonElement.SizeChart[width.lg()]};
+        }
+
+        button {
+          width: ${ZButtonElement.SizeChart[width.lg()]};
+        }
+      }
+
+      ${device.break(ZSizeFixed.Medium)} {
+        :host {
+          width: ${ZButtonElement.SizeChart[width.md()]};
+        }
+
+        button {
+          width: ${ZButtonElement.SizeChart[width.md()]};
+        }
+      }
+
+      ${device.break(ZSizeFixed.Small)} {
+        :host {
+          width: ${ZButtonElement.SizeChart[width.sm()]};
+        }
+
+        button {
+          width: ${ZButtonElement.SizeChart[width.sm()]};
+        }
+      }
+
+      ${device.break(ZSizeFixed.ExtraSmall)} {
+        :host {
+          width: ${ZButtonElement.SizeChart[width.xs()]};
+        }
+
+        button {
+          width: ${ZButtonElement.SizeChart[width.xs()]};
+        }
       }
     `;
   }
