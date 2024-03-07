@@ -10,7 +10,7 @@ import {
   ZIconFontAwesome,
   ZParagraph
 } from '@zthun/fashion-react';
-import { ZSizeFixed } from '@zthun/fashion-tailor';
+import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { ZFashionSeverity } from '@zthun/fashion-theme';
 import React, { useState } from 'react';
 import { ZFashionRouteBoolean } from '../../routes.mjs';
@@ -25,8 +25,8 @@ import { useFashionState } from '../common/use-fashion-state.mjs';
 export function ZBooleanPage() {
   const [disabled, setDisabled] = useState(false);
   const [required, setRequired] = useState(false);
-  const [value, setValue] = useState<boolean | null>(false);
-  const [fashion, fashionName, setFashion] = useFashionState();
+  const [value, setValue] = useState<boolean>(false);
+  const [, fashionName, setFashion] = useFashionState();
 
   return (
     <ZCard
@@ -48,7 +48,7 @@ export function ZBooleanPage() {
             <ZBooleanCheckbox
               disabled={disabled}
               required={required}
-              fashion={fashion}
+              fashion={fashionName}
               value={value}
               onValueChange={setValue.bind(null)}
               label='Checkbox'
@@ -57,7 +57,7 @@ export function ZBooleanPage() {
             <ZBooleanSwitch
               disabled={disabled}
               required={required}
-              fashion={fashion}
+              fashion={fashionName}
               value={!!value}
               onValueChange={setValue.bind(null)}
               label='Switch'
@@ -88,14 +88,20 @@ export function ZBooleanPage() {
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Operations</ZH3>
 
-        <ZGrid columns={{ xl: 'auto auto auto', xs: 'auto' }} gap={ZSizeFixed.Small}>
-          <ZButton fashion={ZFashionSeverity.Success} onClick={setValue.bind(null, true)} label='True' name='on' />
-          <ZButton fashion={ZFashionSeverity.Error} onClick={setValue.bind(null, false)} label='False' name='off' />
+        <ZGrid columns={{ xl: '1fr 1fr', xs: '1fr' }} gap={ZSizeFixed.Small}>
           <ZButton
-            fashion={ZFashionSeverity.Warning}
-            onClick={setValue.bind(null, null)}
-            label='Indeterminate'
-            name='indeterminate'
+            fashion={ZFashionSeverity.Success}
+            width={ZSizeVaried.Full}
+            onClick={setValue.bind(null, true)}
+            label='True'
+            name='on'
+          />
+          <ZButton
+            fashion={ZFashionSeverity.Error}
+            width={ZSizeVaried.Full}
+            onClick={setValue.bind(null, false)}
+            label='False'
+            name='off'
           />
         </ZGrid>
 
