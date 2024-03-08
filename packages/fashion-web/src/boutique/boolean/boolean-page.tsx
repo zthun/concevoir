@@ -25,7 +25,7 @@ import { useFashionState } from '../common/use-fashion-state.mjs';
 export function ZBooleanPage() {
   const [disabled, setDisabled] = useState(false);
   const [required, setRequired] = useState(false);
-  const [value, setValue] = useState<boolean>(false);
+  const [value, setValue] = useState<boolean | null>(false);
   const [, fashionName, setFashion] = useFashionState();
 
   return (
@@ -88,7 +88,7 @@ export function ZBooleanPage() {
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Operations</ZH3>
 
-        <ZGrid columns={{ xl: '1fr 1fr', xs: '1fr' }} gap={ZSizeFixed.Small}>
+        <ZGrid columns={{ xl: '1fr 1fr 1fr', xs: '1fr' }} gap={ZSizeFixed.Small}>
           <ZButton
             fashion={ZFashionSeverity.Success}
             width={ZSizeVaried.Full}
@@ -101,6 +101,13 @@ export function ZBooleanPage() {
             width={ZSizeVaried.Full}
             onClick={setValue.bind(null, false)}
             label='False'
+            name='off'
+          />
+          <ZButton
+            fashion={ZFashionSeverity.Warning}
+            width={ZSizeVaried.Full}
+            onClick={setValue.bind(null, null)}
+            label='Indeterminate'
             name='off'
           />
         </ZGrid>
