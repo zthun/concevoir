@@ -1,67 +1,48 @@
-import { Checkbox, FormControlLabel } from '@mui/material';
-import { cssJoinDefined } from '@zthun/helpful-fn';
+import { ZBooleanCheckboxElement } from '@zthun/fashion-boutique';
+import { includeCustomElement } from '@zthun/helpful-dom';
+import { ZTrilean, cssJoinDefined, trilean } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
-import React from 'react';
-import { useFashionTheme } from '../theme/fashion';
-import { createStyleHook } from '../theme/styled';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { IZBoolean } from './boolean';
 
-const useBooleanCheckboxStyles = createStyleHook(({ theme }, props: IZBoolean<boolean | null>) => {
-  const { fashion = theme.primary } = props;
-  const svg = { color: fashion.main };
-
-  return {
-    root: {
-      'whiteSpace': 'nowrap',
-
-      '.MuiFormControlLabel-asterisk': {
-        color: theme.error.main
-      }
-    },
-    checkbox: {
-      '&.Mui-checked': { svg },
-      '&.MuiCheckbox-indeterminate': { svg }
+declare global {
+  namespace React.JSX {
+    interface IntrinsicElements {
+      ['z-boolean-checkbox']: ZBooleanCheckboxElement & any;
     }
+  }
+}
+
+export function ZBooleanCheckbox(props: IZBoolean<trilean>) {
+  const { className, disabled, label, value, onValueChange, name, fashion, required } = props;
+  const [_value, _setValue] = useAmbassadorState(value, onValueChange, false);
+  const checkbox = useRef<HTMLElement>();
+
+  useMemo(() => includeCustomElement(ZBooleanCheckboxElement), []);
+
+  const handleChange = (e: Event) => {
+    const target = e.target as ZBooleanCheckboxElement;
+    _setValue(target.value);
   };
-});
 
-/**
- * A boolean component that can be checked, unchecked, or indeterminate
- *
- * @param props -
- *        The properties for this boolean component.
- *
- * @returns
- *        The JSX to render the checkbox
- */
-export function ZBooleanCheckbox(props: IZBoolean<boolean | null>) {
-  const { primary } = useFashionTheme();
-  const { className, disabled, label, value, onValueChange, name, fashion = primary, required } = props;
-  const [_value, _setValue] = useAmbassadorState(value, onValueChange);
-  const checked = _value == null ? false : _value;
-  const indeterminate = _value === null;
-  const { classes } = useBooleanCheckboxStyles(props);
+  useEffect(() => {
+    checkbox.current?.removeEventListener('change', handleChange);
+    checkbox.current?.addEventListener('change', handleChange);
 
-  const control = (
-    <Checkbox
-      className={classes.checkbox}
-      disabled={disabled}
-      checked={checked}
-      indeterminate={indeterminate}
-      onChange={(_, checked) => _setValue(checked)}
-      name={name}
-    />
-  );
+    return () => checkbox.current?.removeEventListener('change', handleChange);
+  }, [checkbox.current]);
 
   return (
-    <FormControlLabel
-      className={cssJoinDefined('ZBoolean-root', 'ZBoolean-checkbox', className, classes.root)}
-      control={control}
-      name={name}
+    <z-boolean-checkbox
+      class={cssJoinDefined(className)}
+      disabled={!!disabled}
+      value={ZTrilean.stringify(_value)}
+      fashion={fashion}
       required={required}
-      data-name={name}
-      data-fashion={fashion.name}
-      label={label}
-    />
+      name={name}
+      ref={checkbox}
+    >
+      {label}
+    </z-boolean-checkbox>
   );
 }
