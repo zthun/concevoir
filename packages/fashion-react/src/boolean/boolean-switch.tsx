@@ -1,36 +1,11 @@
-import { FormControlLabel, Switch } from '@mui/material';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
-import React, { ChangeEvent } from 'react';
-import { useFashionTheme } from '../theme/fashion';
-import { createStyleHook } from '../theme/styled';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { IZBoolean } from './boolean';
 
-const useBooleanSwitchStyles = createStyleHook(({ theme }, props: IZBoolean<boolean>) => {
-  const { fashion = theme.primary, value } = props;
-  const track = value ? fashion.main : undefined;
-
-  return {
-    root: {
-      'whiteSpace': 'nowrap',
-
-      '.MuiFormControlLabel-asterisk': {
-        color: theme.error.main
-      }
-    },
-
-    switch: {
-      '.Mui-checked': {
-        '.MuiSwitch-thumb ': {
-          color: fashion.main
-        }
-      },
-      '.MuiSwitch-track': {
-        backgroundColor: `${track} !important`
-      }
-    }
-  };
-});
+import { ZBooleanCheckboxElement } from '@zthun/fashion-boutique';
+import { includeCustomElement } from '@zthun/helpful-dom';
+import './boolean-checkbox';
 
 /**
  * A boolean component that can be checked, unchecked, or indeterminate
@@ -42,29 +17,35 @@ const useBooleanSwitchStyles = createStyleHook(({ theme }, props: IZBoolean<bool
  *        The JSX to render the checkbox
  */
 export function ZBooleanSwitch(props: IZBoolean<boolean>) {
-  const theme = useFashionTheme();
-  const { className, disabled, label, value, onValueChange, name, fashion = theme.primary, required } = props;
-  const [_value, _setValue] = useAmbassadorState(value, onValueChange);
-  const checked = !!_value;
-  const { classes } = useBooleanSwitchStyles(props);
+  const { className, disabled, label, value = false, onValueChange, name, fashion, required } = props;
+  const [_value, _setValue] = useAmbassadorState(value, onValueChange, false);
+  const checkbox = useRef<HTMLElement>();
 
-  const handleChange = (_: ChangeEvent, checked: boolean) => {
-    _setValue(checked);
+  useMemo(() => includeCustomElement(ZBooleanCheckboxElement), []);
+
+  const handleChange = (e: Event) => {
+    const target = e.target as ZBooleanCheckboxElement;
+    _setValue(!!target.value);
   };
 
-  const control = (
-    <Switch className={classes.switch} disabled={disabled} checked={checked} onChange={handleChange} name={name} />
-  );
+  useEffect(() => {
+    checkbox.current?.removeEventListener('change', handleChange);
+    checkbox.current?.addEventListener('change', handleChange);
+
+    return () => checkbox.current?.removeEventListener('change', handleChange);
+  }, [checkbox.current]);
 
   return (
-    <FormControlLabel
-      className={cssJoinDefined('ZBoolean-root', 'ZBoolean-switch', className, classes.root)}
-      control={control}
-      label={label}
-      name={name}
+    <z-boolean-checkbox
+      class={cssJoinDefined(className)}
+      disabled={!!disabled}
+      value={String(_value)}
+      fashion={fashion}
       required={required}
-      data-name={name}
-      data-fashion={fashion.name}
-    />
+      name={name}
+      ref={checkbox}
+    >
+      {label}
+    </z-boolean-checkbox>
   );
 }
