@@ -12,6 +12,7 @@ import {
 } from '@zthun/fashion-react';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { ZFashionSeverity } from '@zthun/fashion-theme';
+import { ZTrilean, trilean } from '@zthun/helpful-fn';
 import React, { useState } from 'react';
 import { ZFashionRouteBoolean } from '../../routes.mjs';
 import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
@@ -25,7 +26,7 @@ import { useFashionState } from '../common/use-fashion-state.mjs';
 export function ZBooleanPage() {
   const [disabled, setDisabled] = useState(false);
   const [required, setRequired] = useState(false);
-  const [value, setValue] = useState<boolean | null>(false);
+  const [value, setValue] = useState<trilean>(false);
   const [, fashionName, setFashion] = useFashionState();
 
   return (
@@ -106,9 +107,9 @@ export function ZBooleanPage() {
           <ZButton
             fashion={ZFashionSeverity.Warning}
             width={ZSizeVaried.Full}
-            onClick={setValue.bind(null, null)}
+            onClick={setValue.bind(null, ZTrilean.Indeterminate)}
             label='Indeterminate'
-            name='off'
+            name='indeterminate'
           />
         </ZGrid>
 
