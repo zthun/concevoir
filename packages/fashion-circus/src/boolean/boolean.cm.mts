@@ -1,20 +1,11 @@
-import { IZCircusDriver, ZCircusActBuilder, ZCircusComponentModel } from '@zthun/cirque';
+import { IZCircusKey, ZCircusActBuilder, ZCircusComponentModel } from '@zthun/cirque';
+import { ZTrilean, trilean } from '@zthun/helpful-fn';
 
 /**
  * Represents a react component model for the ZBoolean component.
  */
 export class ZBooleanComponentModel extends ZCircusComponentModel {
   public static readonly Selector = '.ZBoolean-root';
-
-  /**
-   * Gets the underlying input element.
-   *
-   * @returns
-   *        The underlying input element.
-   */
-  private async _input(): Promise<IZCircusDriver> {
-    return this.driver.select('input[type="checkbox"]');
-  }
 
   /**
    * Gets whether this boolean is disabled.
@@ -24,7 +15,8 @@ export class ZBooleanComponentModel extends ZCircusComponentModel {
    *        false otherwise.
    */
   public async disabled(): Promise<boolean> {
-    return (await this._input()).disabled();
+    const attr = await this.driver.attribute<string>('disabled', 'false');
+    return attr !== 'false';
   }
 
   /**
@@ -34,7 +26,8 @@ export class ZBooleanComponentModel extends ZCircusComponentModel {
    *        True if the component is required.
    */
   public async required(): Promise<boolean> {
-    return this.driver.peek('.MuiFormControlLabel-asterisk');
+    const attr = await this.driver.attribute('required', 'false');
+    return attr !== 'false';
   }
 
   /**
@@ -44,7 +37,7 @@ export class ZBooleanComponentModel extends ZCircusComponentModel {
    *        The fashion name.
    */
   public fashion(): Promise<string | null> {
-    return this.driver.attribute('data-fashion');
+    return this.driver.attribute('fashion');
   }
 
   /**
@@ -53,10 +46,9 @@ export class ZBooleanComponentModel extends ZCircusComponentModel {
    * @returns
    *        The check state value or null if indeterminate.
    */
-  public async value(): Promise<boolean | null> {
-    const input = await this._input();
-    const indeterminate = await input.attribute('data-indeterminate');
-    return indeterminate === 'true' ? null : input.selected();
+  public async value(): Promise<trilean> {
+    const attr = await this.driver.attribute<string>('value');
+    return ZTrilean.convert(attr);
   }
 
   /**
@@ -79,8 +71,26 @@ export class ZBooleanComponentModel extends ZCircusComponentModel {
       return;
     }
 
-    const input = await this._input();
     const act = new ZCircusActBuilder().click().build();
-    await input.perform(act);
+    await this.driver.perform(act);
+  }
+
+  /**
+   * Toggles the checkbox twice and then presses the key while
+   * it is in focus.
+   *
+   * @param key -
+   *        The key to press.
+   *
+   * @returns
+   *        A promise that resolves once the toggle has
+   *        reached the given state.
+   */
+  public async keyboard(key: IZCircusKey): Promise<void> {
+    await this.toggle();
+    await this.toggle();
+
+    const act = new ZCircusActBuilder().press(key).build();
+    await this.driver.perform(act);
   }
 }
