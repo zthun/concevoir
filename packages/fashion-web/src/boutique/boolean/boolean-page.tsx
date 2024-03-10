@@ -59,7 +59,7 @@ export function ZBooleanPage() {
               disabled={disabled}
               required={required}
               fashion={fashionName}
-              value={!!value}
+              value={value === true}
               onValueChange={setValue.bind(null)}
               label='Switch'
               name='switch'
@@ -76,7 +76,7 @@ export function ZBooleanPage() {
       <ZBox margin={{ bottom: ZSizeFixed.Medium }}>
         <ZH3>Options</ZH3>
 
-        <ZGrid>
+        <ZGrid justify={{ items: 'flex-start' }} gap={ZSizeFixed.ExtraSmall}>
           <ZBooleanSwitch value={disabled} onValueChange={setDisabled} label='Disabled' name='disabled' />
           <ZBooleanSwitch value={required} onValueChange={setRequired} label='Required' name='required' />
         </ZGrid>
