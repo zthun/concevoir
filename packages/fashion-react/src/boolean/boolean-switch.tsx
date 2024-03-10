@@ -3,28 +3,26 @@ import { useAmbassadorState } from '@zthun/helpful-react';
 import React, { useEffect, useMemo, useRef } from 'react';
 import { IZBoolean } from './boolean';
 
-import { ZBooleanCheckboxElement } from '@zthun/fashion-boutique';
+import { ZBooleanSwitchElement } from '@zthun/fashion-boutique';
 import { includeCustomElement } from '@zthun/helpful-dom';
-import './boolean-checkbox';
 
-/**
- * A boolean component that can be checked, unchecked, or indeterminate
- *
- * @param props -
- *        The properties for this boolean component.
- *
- * @returns
- *        The JSX to render the checkbox
- */
+declare global {
+  namespace React.JSX {
+    interface IntrinsicElements {
+      ['z-boolean-switch']: ZBooleanSwitchElement & any;
+    }
+  }
+}
+
 export function ZBooleanSwitch(props: IZBoolean<boolean>) {
   const { className, disabled, label, value = false, onValueChange, name, fashion, required } = props;
   const [_value, _setValue] = useAmbassadorState(value, onValueChange, false);
   const checkbox = useRef<HTMLElement>();
 
-  useMemo(() => includeCustomElement(ZBooleanCheckboxElement), []);
+  useMemo(() => includeCustomElement(ZBooleanSwitchElement), []);
 
   const handleChange = (e: Event) => {
-    const target = e.target as ZBooleanCheckboxElement;
+    const target = e.target as ZBooleanSwitchElement;
     _setValue(!!target.value);
   };
 
@@ -36,7 +34,7 @@ export function ZBooleanSwitch(props: IZBoolean<boolean>) {
   }, [checkbox.current]);
 
   return (
-    <z-boolean-checkbox
+    <z-boolean-switch
       class={cssJoinDefined(className)}
       disabled={!!disabled}
       value={String(_value)}
@@ -46,6 +44,6 @@ export function ZBooleanSwitch(props: IZBoolean<boolean>) {
       ref={checkbox}
     >
       {label}
-    </z-boolean-checkbox>
+    </z-boolean-switch>
   );
 }
