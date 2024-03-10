@@ -68,8 +68,8 @@ export function ZBooleanPage() {
         </ZBox>
 
         <ZCaption compact>
-          <span>Value:</span>
-          <span className='ZBooleanPage-value'>{JSON.stringify(value)}</span>
+          <span>Value: </span>
+          <span className='ZBooleanPage-value'>{ZTrilean.stringify(value)}</span>
         </ZCaption>
       </ZBox>
 
