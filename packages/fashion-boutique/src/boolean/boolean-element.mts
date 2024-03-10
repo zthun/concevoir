@@ -49,13 +49,13 @@ export abstract class ZBooleanElement<T>
       return;
     }
 
-    this.toggle();
+    await this.toggle();
     this.dispatchEvent(new Event('change', { composed: true, bubbles: true }));
     await sleep();
     this.shadowRoot?.querySelector<HTMLElement>('[role="checkbox"]')?.focus();
   };
 
-  public abstract toggle(): void;
+  public abstract toggle(): Promise<void>;
 
   public connectedCallback(): void {
     this.addEventListener('click', this._handleClick);

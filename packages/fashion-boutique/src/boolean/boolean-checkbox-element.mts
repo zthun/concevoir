@@ -72,7 +72,7 @@ export class ZBooleanCheckboxElement
     `;
   }
 
-  public toggle() {
+  public async toggle() {
     const { value } = this;
     this.value = ZTrilean.isIndeterminate(value) ? true : !value;
   }
