@@ -1,5 +1,5 @@
 import { IZCircusKey, ZCircusActBuilder, ZCircusComponentModel } from '@zthun/cirque';
-import { ZTrilean, trilean } from '@zthun/helpful-fn';
+import { ZTrilean, sleep, trilean } from '@zthun/helpful-fn';
 
 /**
  * Represents a react component model for the ZBoolean component.
@@ -73,6 +73,8 @@ export class ZBooleanComponentModel extends ZCircusComponentModel {
 
     const act = new ZCircusActBuilder().click().build();
     await this.driver.perform(act);
+    // Allow time for any animations to play.
+    await sleep(200);
   }
 
   /**
