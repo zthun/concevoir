@@ -1,53 +1,18 @@
-import { ZCircusKeyboardQwerty } from '@zthun/cirque';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { ZFashionArea, ZFashionPriority, rgb } from '@zthun/fashion-theme';
-import {
-  $attr,
-  IZComponentConnected,
-  IZComponentDisconnected,
-  IZComponentStyles,
-  IZComponentTemplate,
-  ZAttribute,
-  ZComponentShadow
-} from '@zthun/helpful-dom';
-import { ZTrilean, css, html, sleep, trilean } from '@zthun/helpful-fn';
-import { IZComponentDisabled } from '../component/component-disabled.mjs';
-import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
-import { IZComponentName } from '../component/component-name.mjs';
-import { IZComponentRequired } from '../component/component-required.mjs';
+import { ZFashionArea, rgb } from '@zthun/fashion-theme';
+import { $attr, IZComponentStyles, IZComponentTemplate, ZAttribute, ZComponentShadow } from '@zthun/helpful-dom';
+import { ZTrilean, css, html, trilean } from '@zthun/helpful-fn';
+import { ZFashionDetail } from '../component/component-fashion.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
-
-export type ZBooleanTriStateValue = 'true' | 'false' | 'indeterminate';
+import { ZBooleanElement } from './boolean-element.mjs';
 
 @ZComponentShadow({ name: 'ZBooleanCheckbox', className: ['ZBoolean-root', 'ZBoolean-checkbox'] })
 export class ZBooleanCheckboxElement
-  extends HTMLElement
-  implements
-    IZComponentTemplate,
-    IZComponentStyles,
-    IZComponentConnected,
-    IZComponentFashion,
-    IZComponentRequired,
-    IZComponentName,
-    IZComponentDisabled,
-    IZComponentDisconnected
+  extends ZBooleanElement<trilean>
+  implements IZComponentTemplate, IZComponentStyles
 {
-  public static readonly observedAttributes = ['fashion', 'value', 'disabled', 'required'];
-
-  @ZAttribute({ type: 'boolean' })
-  public required: boolean;
-
-  @ZAttribute({ type: 'boolean' })
-  public disabled: boolean;
-
-  @ZAttribute({ fallback: ZFashionPriority.Primary })
-  public fashion: string;
-
   @ZAttribute({ type: 'trilean' })
   public value: trilean;
-
-  @ZAttribute()
-  public name: string;
 
   public styles() {
     const { fashion, required, disabled, value } = this;
@@ -107,36 +72,8 @@ export class ZBooleanCheckboxElement
     `;
   }
 
-  private _handleKeyDown = async (e: KeyboardEvent) => {
-    if (e.key !== ZCircusKeyboardQwerty.enter.lower && e.key !== ZCircusKeyboardQwerty.space.lower) {
-      return;
-    }
-
-    e.preventDefault();
-    await this._handleClick();
-  };
-
-  private _handleClick = async () => {
-    const { disabled } = this;
-
-    if (disabled) {
-      return;
-    }
-
+  public toggle() {
     const { value } = this;
     this.value = ZTrilean.isIndeterminate(value) ? true : !value;
-    this.dispatchEvent(new Event('change', { composed: true, bubbles: true }));
-    await sleep();
-    this.shadowRoot?.querySelector<HTMLElement>('[role="checkbox"]')?.focus();
-  };
-
-  public connectedCallback(): void {
-    this.addEventListener('click', this._handleClick);
-    this.addEventListener('keydown', this._handleKeyDown);
-  }
-
-  public disconnectedCallback(): void {
-    this.removeEventListener('click', this._handleClick);
-    this.removeEventListener('keydown', this._handleKeyDown);
   }
 }

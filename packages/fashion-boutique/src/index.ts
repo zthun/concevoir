@@ -4,6 +4,8 @@ export * from './background/device-element.mjs';
 export * from './background/quadrilateral-element.mjs';
 export * from './banner/banner-element.mjs';
 export * from './boolean/boolean-checkbox-element.mjs';
+export * from './boolean/boolean-element.mjs';
+export * from './boolean/boolean-switch-element.mjs';
 export * from './box/box-element.mjs';
 export * from './button/button-element.mjs';
 export * from './component/component-disabled.mjs';
