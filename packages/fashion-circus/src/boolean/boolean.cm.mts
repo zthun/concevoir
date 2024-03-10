@@ -74,7 +74,7 @@ export class ZBooleanComponentModel extends ZCircusComponentModel {
     const act = new ZCircusActBuilder().click().build();
     await this.driver.perform(act);
     // Allow time for any animations to play.
-    await sleep(200);
+    await sleep(500);
   }
 
   /**
