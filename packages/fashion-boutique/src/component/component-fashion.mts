@@ -9,9 +9,6 @@ import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
 export interface IZComponentFashion {
   /**
    * The fashion for the component.
-   *
-   * This can be an entire fashion or
-   * the name of the fashion.
    */
   fashion?: string;
 }
