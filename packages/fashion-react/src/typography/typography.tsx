@@ -39,9 +39,11 @@ const render = (variant: Variant, component: ElementType, props: IZTypographyPro
 };
 
 const renderParagraph = (is: string, props: IZTypographyProps) => {
-  const { fashion, children, compact } = props;
+  const { fashion, children, className, compact } = props;
   return (
-    <p is={is} data-fashion={fashion} data-compact={compact}>
+    // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case
+    // classname instead of class.
+    <p class={className} is={is} data-fashion={fashion} data-compact={compact}>
       {children}
     </p>
   );
