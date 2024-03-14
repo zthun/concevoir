@@ -7,7 +7,7 @@ import { ZCard } from '../card/card';
 import { ZFullScreen } from '../full-screen/full-screen';
 import { ZGrid } from '../grid/grid';
 import { useNavigate } from '../router/router-dom.mjs';
-import { ZParagraph } from '../typography/typography';
+import { ZParagraph } from '../typography/paragraph';
 import { ZSadFace } from './sad-face';
 
 export interface IZNotFound {

@@ -22,7 +22,8 @@ import { IZComponentStyle } from '../component/component-style.mjs';
 import { ZSuspenseProgress } from '../suspense/suspense-progress';
 import { useFashionTheme } from '../theme/fashion';
 import { createStyleHook } from '../theme/styled';
-import { ZCaption, ZH2 } from '../typography/typography';
+import { ZH2 } from '../typography/heading';
+import { ZCaption } from '../typography/paragraph';
 
 export interface IZCard
   extends IZComponentHeading,
