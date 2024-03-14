@@ -1,19 +1,9 @@
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
-import {
-  IZTypographyProps,
-  ZCaption,
-  ZH1,
-  ZH2,
-  ZH3,
-  ZH4,
-  ZH5,
-  ZH6,
-  ZOverline,
-  ZParagraph,
-  ZSubtitle
-} from './typography';
+import { ZH1, ZH2, ZH3, ZH4, ZH5, ZH6 } from './heading';
+import { ZCaption, ZOverline, ZParagraph, ZSubtitle } from './paragraph';
+import { IZTypographyProps } from './typography';
 
 describe('Typography', () => {
   async function createTestTarget(Typography: (props: IZTypographyProps) => JSX.Element) {
@@ -52,7 +42,7 @@ describe('Typography', () => {
       await assertTypography('h5', ZH5);
     });
 
-    it('should render an h5 tag', async () => {
+    it('should render an h6 tag', async () => {
       await assertTypography('h6', ZH6);
     });
   });
