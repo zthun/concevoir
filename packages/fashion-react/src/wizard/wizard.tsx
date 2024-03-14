@@ -12,7 +12,7 @@ import { IZComponentValue } from '../component/component-value.mjs';
 import { ZGrid } from '../grid/grid';
 import { ZIconFontAwesome } from '../icon/icon-font-awesome';
 import { ZStack } from '../stack/stack';
-import { ZH4 } from '../typography/typography';
+import { ZH4 } from '../typography/heading';
 
 export interface IZWizard extends IZComponentStyle, IZComponentName, IZComponentValue<number> {
   children: JSX.Element | JSX.Element[];
