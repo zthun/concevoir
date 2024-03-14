@@ -18,10 +18,14 @@ When(
 );
 
 Then(
-  'the typography fashion should be {string} on the typography page',
-  async function (this: ZFashionWorld<ZTypographyPageComponentModel>, name: string) {
-    const color = await this.parameters.page.color();
-    const actual = await color.fashion();
+  'the typography fashion should be {string} on the typography page for {string}',
+  async function (
+    this: ZFashionWorld<ZTypographyPageComponentModel>,
+    name: string,
+    part: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body' | 'subtitle' | 'caption' | 'overline'
+  ) {
+    const _part = await this.parameters.page[part]();
+    const actual = await _part.fashion();
     assert.equal(name, actual);
   }
 );
