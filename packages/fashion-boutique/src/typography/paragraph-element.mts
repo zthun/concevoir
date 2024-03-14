@@ -33,7 +33,7 @@ export abstract class ZParagraphElement
     const { compact, fashion } = this;
     const detail = new ZFashionDetail(fashion);
     const fs = `var(--typography-font-size, 1em)`;
-    const ff = `var(--typography-font-family, "'Roboto', 'Arial', 'sans-serif'")`;
+    const ff = `var(--typography-font-family, 'Roboto', 'Arial', 'sans-serif')`;
 
     nodePaint(this.shadowRoot!);
 
