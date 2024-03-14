@@ -5,6 +5,7 @@ import { css, html } from '@zthun/helpful-fn';
 import { IZComponentCompact } from '../component/component-compact.mjs';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
+import { ZTypographyElement } from './typography.mjs';
 
 export abstract class ZParagraphElement
   extends HTMLParagraphElement
@@ -32,8 +33,8 @@ export abstract class ZParagraphElement
   public attributeChangedCallback(): void {
     const { compact, fashion } = this;
     const detail = new ZFashionDetail(fashion);
-    const fs = `var(--typography-font-size, 1em)`;
-    const ff = `var(--typography-font-family, 'Roboto', 'Arial', 'sans-serif')`;
+    const fs = ZTypographyElement.VariableFontSize;
+    const ff = ZTypographyElement.VariableFontFamily;
 
     nodePaint(this.shadowRoot!);
 
