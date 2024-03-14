@@ -19,10 +19,12 @@ export abstract class ZParagraphElement
   @ZAttribute({ name: 'data-fashion', fallback: ZFashionIntrinsic.Inherit })
   public fashion: string;
 
-  public constructor() {
+  public constructor(part: string) {
     super();
 
     this.attachShadow({ mode: 'open' });
+    this.classList.add('ZParagraph-root');
+    this.classList.add(`ZParagraph-${part}`);
     this.attributeChangedCallback();
   }
 

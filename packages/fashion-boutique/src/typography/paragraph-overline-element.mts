@@ -2,6 +2,10 @@ import { registerCustomElement } from '@zthun/helpful-dom';
 import { ZParagraphElement } from './paragraph-element.mjs';
 
 export class ZParagraphOverlineElement extends ZParagraphElement {
+  public constructor() {
+    super('overline');
+  }
+
   public scale() {
     return 0.95;
   }

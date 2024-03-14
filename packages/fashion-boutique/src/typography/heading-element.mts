@@ -24,6 +24,8 @@ export abstract class ZHeadingElement
     super();
 
     this.attachShadow({ mode: 'open' });
+    this.classList.add('ZHeading-root');
+    this.classList.add(`ZHeading-${this.tagName}`);
     this.attributeChangedCallback();
   }
 
