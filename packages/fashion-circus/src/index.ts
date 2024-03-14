@@ -31,6 +31,5 @@ export * from './popup/popup.cm.mjs';
 export * from './stack/stack.cm.mjs';
 export * from './suspense/suspense.cm.mjs';
 export * from './text/text.cm.mjs';
-export * from './typography/text-color.cm.mjs';
 export * from './wizard/wizard.cm.mjs';
 export * from './you-tube/you-tube-video.cm.mjs';
