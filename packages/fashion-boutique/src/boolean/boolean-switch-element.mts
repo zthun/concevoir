@@ -56,7 +56,7 @@ export class ZBooleanSwitchElement extends ZBooleanElement<boolean> implements I
       }
 
       label:hover .slider {
-        background-color: ${detail.color('hover.main')};
+        background-color: ${_fashion.color('hover.main')};
       }
 
       .switch {
@@ -74,7 +74,7 @@ export class ZBooleanSwitchElement extends ZBooleanElement<boolean> implements I
       }
 
       .switch:focus .slider {
-        box-shadow: 0 0 0.16rem 0.25rem ${detail.color('focus.main')};
+        box-shadow: 0 0 0.16rem 0.25rem ${_fashion.color('focus.main')};
       }
 
       .slider {
