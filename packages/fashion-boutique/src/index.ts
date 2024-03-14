@@ -35,3 +35,4 @@ export * from './typography/paragraph-caption-element.mjs';
 export * from './typography/paragraph-element.mjs';
 export * from './typography/paragraph-overline-element.mjs';
 export * from './typography/paragraph-subtitle-element.mjs';
+export * from './typography/typography.mjs';
