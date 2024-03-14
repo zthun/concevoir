@@ -1,29 +1,59 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZChoiceComponentModel, ZTextColorComponentModel } from '@zthun/fashion-circus';
+import {
+  ZBooleanComponentModel,
+  ZChoiceComponentModel,
+  ZHeadingComponentModel,
+  ZParagraphComponentModel
+} from '@zthun/fashion-circus';
 
-/**
- * Represents the component model for the typography page.
- */
 export class ZTypographyPageComponentModel extends ZCircusComponentModel {
   public static readonly Selector = '.ZTypographyPage-root';
 
-  /**
-   * Gets information about the current text color.
-   *
-   * @returns
-   *        The current text color.
-   */
-  public color(): Promise<ZTextColorComponentModel> {
-    return ZCircusBy.first(this.driver, ZTextColorComponentModel, 'color');
+  public h1(): Promise<ZHeadingComponentModel> {
+    return ZCircusBy.first(this.driver, ZHeadingComponentModel, 'heading-1');
   }
 
-  /**
-   * Gets the fashion drop down.
-   *
-   * @returns
-   *        The fashion drop down.
-   */
+  public h2(): Promise<ZHeadingComponentModel> {
+    return ZCircusBy.first(this.driver, ZHeadingComponentModel, 'heading-2');
+  }
+
+  public h3(): Promise<ZHeadingComponentModel> {
+    return ZCircusBy.first(this.driver, ZHeadingComponentModel, 'heading-3');
+  }
+
+  public h4(): Promise<ZHeadingComponentModel> {
+    return ZCircusBy.first(this.driver, ZHeadingComponentModel, 'heading-4');
+  }
+
+  public h5(): Promise<ZHeadingComponentModel> {
+    return ZCircusBy.first(this.driver, ZHeadingComponentModel, 'heading-5');
+  }
+
+  public h6(): Promise<ZHeadingComponentModel> {
+    return ZCircusBy.first(this.driver, ZHeadingComponentModel, 'heading-6');
+  }
+
+  public body(): Promise<ZParagraphComponentModel> {
+    return ZCircusBy.first(this.driver, ZParagraphComponentModel, 'body');
+  }
+
+  public subtitle(): Promise<ZParagraphComponentModel> {
+    return ZCircusBy.first(this.driver, ZParagraphComponentModel, 'subtitle');
+  }
+
+  public caption(): Promise<ZParagraphComponentModel> {
+    return ZCircusBy.first(this.driver, ZParagraphComponentModel, 'caption');
+  }
+
+  public overline(): Promise<ZParagraphComponentModel> {
+    return ZCircusBy.first(this.driver, ZParagraphComponentModel, 'overline');
+  }
+
   public fashion(): Promise<ZChoiceComponentModel> {
     return ZCircusBy.first(this.driver, ZChoiceComponentModel, 'fashion');
+  }
+
+  public compact(): Promise<ZBooleanComponentModel> {
+    return ZCircusBy.first(this.driver, ZBooleanComponentModel, 'compact');
   }
 }
