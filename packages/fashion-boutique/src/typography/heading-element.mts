@@ -6,6 +6,7 @@ import { Property } from 'csstype';
 import { IZComponentCompact } from '../component/component-compact.mjs';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
+import { ZTypographyElement } from './typography.mjs';
 
 export abstract class ZHeadingElement
   extends HTMLHeadingElement
@@ -38,8 +39,8 @@ export abstract class ZHeadingElement
     const { compact, fashion } = this;
     const device = new ZFashionDevice();
     const detail = new ZFashionDetail(fashion);
-    const fs = `var(--typography-font-size, 1em)`;
-    const ff = `var(--typography-font-family, 'Roboto', 'Arial Black', 'Arial', 'sans-serif')`;
+    const fs = ZTypographyElement.VariableFontSize;
+    const ff = ZTypographyElement.VariableFontFamily;
 
     nodePaint(this.shadowRoot!);
 
