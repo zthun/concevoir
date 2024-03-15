@@ -1,17 +1,16 @@
-import { IZComponentHeight, IZComponentWidth } from '@zthun/fashion-boutique';
+import { IZComponentHeight, IZComponentName, IZComponentWidth } from '@zthun/fashion-boutique';
 import {
+  ZSizeFixed,
+  ZSizeVaried,
   castDeviceMap,
   createSizeChartFixedCss,
   createSizeChartFixedGeometric,
   createSizeChartVariedCss,
-  createSizeChartVoidCss,
-  ZSizeFixed,
-  ZSizeVaried
+  createSizeChartVoidCss
 } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { ZDataUrlBuilder } from '@zthun/webigail-url';
 import React from 'react';
-import { IZComponentName } from '../component/component-name.mjs';
 import { IZComponentSource } from '../component/component-source.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { createStyleHook } from '../theme/styled';

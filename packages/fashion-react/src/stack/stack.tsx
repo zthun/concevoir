@@ -1,10 +1,10 @@
 import { Stack } from '@mui/material';
+import { IZComponentName } from '@zthun/fashion-boutique';
 import { createSizeChartFixedArithmetic, createSizeChartVoidZero, ZSizeFixed, ZSizeVoid } from '@zthun/fashion-tailor';
 import { cssJoinDefined, firstDefined, ZOrientation } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import React from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
-import { IZComponentName } from '../component/component-name.mjs';
 import { IZComponentOrientation } from '../component/component-orientation.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 

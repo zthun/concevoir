@@ -1,5 +1,5 @@
 import { Card, CardActions, CardContent, CardHeader } from '@mui/material';
-import { IZComponentHeight, IZComponentLoading, IZComponentWidth } from '@zthun/fashion-boutique';
+import { IZComponentHeight, IZComponentLoading, IZComponentName, IZComponentWidth } from '@zthun/fashion-boutique';
 import {
   ZSizeFixed,
   ZSizeVaried,
@@ -17,7 +17,6 @@ import { IZComponentAvatar } from '../component/component-avatar.mjs';
 import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentHeading } from '../component/component-heading.mjs';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
-import { IZComponentName } from '../component/component-name.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { ZSuspenseProgress } from '../suspense/suspense-progress';
 import { useFashionTheme } from '../theme/fashion';

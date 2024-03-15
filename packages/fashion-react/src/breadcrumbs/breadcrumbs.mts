@@ -1,4 +1,4 @@
-import { IZComponentName } from '../component/component-name.mjs';
+import { IZComponentName } from '@zthun/fashion-boutique';
 import { IZComponentStyle } from '../component/component-style.mjs';
 
 /**

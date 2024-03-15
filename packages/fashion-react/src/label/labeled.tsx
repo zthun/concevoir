@@ -1,9 +1,9 @@
+import { IZComponentName } from '@zthun/fashion-boutique';
 import { ZSizeFixed, ZSizeVoid } from '@zthun/fashion-tailor';
 import { ZOrientation, cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentLabel } from '../component/component-label.mjs';
-import { IZComponentName } from '../component/component-name.mjs';
 import { IZComponentOrientation } from '../component/component-orientation.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { ZStack } from '../stack/stack';

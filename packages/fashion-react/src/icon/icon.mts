@@ -1,4 +1,4 @@
-import { IZComponentWidth } from '@zthun/fashion-boutique';
+import { IZComponentName, IZComponentWidth } from '@zthun/fashion-boutique';
 import {
   ZSizeFixed,
   castDeviceMap,
@@ -8,7 +8,6 @@ import {
 import { firstDefined } from '@zthun/helpful-fn';
 import { KeyboardEvent, MouseEvent, ReactNode, useEffect } from 'react';
 import { IZComponentFashion } from '../component/component-fashion.mjs';
-import { IZComponentName } from '../component/component-name.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { createStyleHook } from '../theme/styled';
 

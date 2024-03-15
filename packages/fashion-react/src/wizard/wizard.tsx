@@ -1,3 +1,4 @@
+import { IZComponentName } from '@zthun/fashion-boutique';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { ZFashionPriority, ZFashionSeverity } from '@zthun/fashion-theme';
 import { ZOrientation, cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
@@ -6,7 +7,6 @@ import { castArray } from 'lodash-es';
 import React, { ReactNode } from 'react';
 import { IZButton, ZButton } from '../button/button';
 import { IZCard, ZCard } from '../card/card';
-import { IZComponentName } from '../component/component-name.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { IZComponentValue } from '../component/component-value.mjs';
 import { ZGrid } from '../grid/grid';

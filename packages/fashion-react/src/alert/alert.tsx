@@ -1,10 +1,9 @@
-import { IZComponentFashion, ZAlertElement } from '@zthun/fashion-boutique';
+import { IZComponentFashion, IZComponentName, ZAlertElement } from '@zthun/fashion-boutique';
 import { includeCustomElement } from '@zthun/helpful-dom';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ReactNode, useMemo } from 'react';
 import { IZComponentAvatar } from '../component/component-avatar.mjs';
 import { IZComponentHeading } from '../component/component-heading.mjs';
-import { IZComponentName } from '../component/component-name.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 
 declare global {
@@ -17,9 +16,9 @@ declare global {
 
 export interface IZAlert
   extends Omit<IZComponentHeading, 'subheader'>,
-    IZComponentName,
     IZComponentStyle,
     IZComponentFashion,
+    IZComponentName,
     IZComponentAvatar {
   message: ReactNode;
 }

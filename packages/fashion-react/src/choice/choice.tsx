@@ -1,10 +1,9 @@
-import { IZComponentDisabled, IZComponentRequired } from '@zthun/fashion-boutique';
+import { IZComponentDisabled, IZComponentName, IZComponentRequired } from '@zthun/fashion-boutique';
 import { createGuid } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
 import { first } from 'lodash-es';
 import { ReactNode, useMemo } from 'react';
 import { IZComponentLabel } from '../component/component-label.mjs';
-import { IZComponentName } from '../component/component-name.mjs';
 import { IZComponentOrientation } from '../component/component-orientation.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { IZComponentValue } from '../component/component-value.mjs';
