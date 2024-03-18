@@ -32,27 +32,28 @@ import { useFashionState } from '../common/use-fashion-state.mjs';
 export function ZTypographyPage() {
   const [compact, setCompact] = useState(false);
   const [, fashion, setFashion] = useFashionState();
+  // TODO: Enable changing these options.
   const [family] = useState<string>('Roboto');
   const [size] = useState<number>(1);
   const [unit] = useState<ZUnit>('em');
 
   return (
-    <ZTypography family={family} size={size} unit={unit}>
-      <ZCard
-        className='ZTypographyPage-root'
-        heading={ZFashionRouteTypography.name}
-        subHeading={ZFashionRouteTypography.description}
-        avatar={<ZIconFontAwesome name={ZFashionRouteTypography.avatar} width={ZSizeFixed.Medium} />}
-      >
-        <ZH3>Description</ZH3>
+    <ZCard
+      className='ZTypographyPage-root'
+      heading={ZFashionRouteTypography.name}
+      subHeading={ZFashionRouteTypography.description}
+      avatar={<ZIconFontAwesome name={ZFashionRouteTypography.avatar} width={ZSizeFixed.Medium} />}
+    >
+      <ZH3>Description</ZH3>
 
-        <ZParagraph>
-          Typography is the concept of a document outline. HTML essentially has this built in with different tags, such
-          as &lt;p&gt;. The main reason to use custom typography in your applications is for responsiveness. As you
-          shrink and resize the window, or if users access your page on small devices, you want the page to respond to
-          changes made.
-        </ZParagraph>
+      <ZParagraph>
+        Typography is the concept of a document outline. HTML essentially has this built in with different tags, such as
+        &lt;p&gt;. The main reason to use custom typography in your applications is for responsiveness. As you shrink
+        and resize the window, or if users access your page on small devices, you want the page to respond to changes
+        made.
+      </ZParagraph>
 
+      <ZTypography family={family} size={size} unit={unit}>
         <ZH1 fashion={fashion} compact={compact} name='heading-1'>
           Headline
         </ZH1>
@@ -98,15 +99,15 @@ export function ZTypographyPage() {
         <ZOverline fashion={fashion} compact={compact} name='overline'>
           Overline: Pretium quam vulputate dignissim suspendisse.
         </ZOverline>
+      </ZTypography>
 
-        <ZBox margin={{ top: ZSizeFixed.Medium }}>
-          <ZH3>Options</ZH3>
-          <ZStack gap={ZSizeFixed.Small}>
-            <ZBooleanSwitch value={compact} onValueChange={setCompact} name='compact' label='Compact' />
-            <ZChoiceDropDownFashion value={fashion} onValueChange={setFashion} name='fashion' />
-          </ZStack>
-        </ZBox>
-      </ZCard>
-    </ZTypography>
+      <ZBox margin={{ top: ZSizeFixed.Medium }}>
+        <ZH3>Options</ZH3>
+        <ZStack gap={ZSizeFixed.Small}>
+          <ZBooleanSwitch value={compact} onValueChange={setCompact} name='compact' label='Compact' />
+          <ZChoiceDropDownFashion value={fashion} onValueChange={setFashion} name='fashion' />
+        </ZStack>
+      </ZBox>
+    </ZCard>
   );
 }
