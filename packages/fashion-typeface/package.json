@@ -1,0 +1,38 @@
+{
+  "name": "@zthun/fashion-typeface",
+  "version": "2.7.0",
+  "description": "A library that deals with loading supported font families.",
+  "author": "Anthony Bonta",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zthun/fashion",
+    "directory": "packages/fashion-tailor"
+  },
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    "require": "./dist/index.cjs",
+    "import": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "scripts": {
+    "build": "vite build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.21"
+  },
+  "devDependencies": {
+    "vite": "^5.1.4",
+    "vitest": "^1.3.1"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false
+}
