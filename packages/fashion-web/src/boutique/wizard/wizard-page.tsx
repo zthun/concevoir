@@ -15,7 +15,7 @@ import {
   useNavigate
 } from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { ZOrientation, square } from '@zthun/helpful-fn';
+import { ZOrientation, ZQuadrilateralBuilder } from '@zthun/helpful-fn';
 import React, { useState } from 'react';
 import { ZFashionRouteBoutique, ZFashionRouteWizard } from '../../routes.mjs';
 
@@ -25,12 +25,12 @@ export function ZWizardPage() {
   const { success, error, info } = useFashionTheme();
 
   const yes = (
-    <ZBox padding={square(ZSizeFixed.ExtraSmall)}>
+    <ZBox padding={new ZQuadrilateralBuilder(ZSizeFixed.ExtraSmall).build()}>
       <ZIconFontAwesome name='circle-check' fashion={success} />
     </ZBox>
   );
   const no = (
-    <ZBox padding={square(ZSizeFixed.ExtraSmall)}>
+    <ZBox padding={new ZQuadrilateralBuilder(ZSizeFixed.ExtraSmall).build()}>
       <ZIconFontAwesome name='circle-xmark' fashion={error} />
     </ZBox>
   );

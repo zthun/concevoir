@@ -1,6 +1,6 @@
 import { IZComponentFashion, ZBox, ZCaption, ZGrid, ZH4, ZStack, createStyleHook } from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { ZOrientation, cssJoinDefined, firstDefined, square } from '@zthun/helpful-fn';
+import { ZOrientation, ZQuadrilateralBuilder, cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import { startCase } from 'lodash-es';
 import React from 'react';
 
@@ -57,7 +57,10 @@ export function ZFashionColors(props: IZFashionColors) {
   );
 
   return (
-    <ZBox className={cssJoinDefined('ZFashionColors-root')} padding={square(ZSizeFixed.Small)}>
+    <ZBox
+      className={cssJoinDefined('ZFashionColors-root')}
+      padding={new ZQuadrilateralBuilder(ZSizeFixed.Small).build()}
+    >
       <ZStack orientation={ZOrientation.Vertical} gap={ZSizeFixed.Small}>
         <ZH4 compact>{startCase(fashion.name)}</ZH4>
         <ZGrid columns='1fr 1fr 1fr' gap={ZSizeFixed.Small}>

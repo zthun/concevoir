@@ -1,7 +1,7 @@
 import { useNavigate, ZBox, ZCaption, ZCard, ZGrid, ZH3, ZIconFontAwesome, ZLineItem } from '@zthun/fashion-react';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { ZFashionArea } from '@zthun/fashion-theme';
-import { cssJoinDefined, square } from '@zthun/helpful-fn';
+import { cssJoinDefined, ZQuadrilateralBuilder } from '@zthun/helpful-fn';
 import React from 'react';
 import { IZRoute } from '../route/route.mjs';
 import { ZFashionRouteAllComponents, ZFashionRouteBoutique } from '../routes.mjs';
@@ -13,10 +13,10 @@ export function ZBoutiquePage() {
     <ZBox
       className={cssJoinDefined('ZBoutiquePage-component')}
       key={route.path}
-      padding={square(ZSizeFixed.Medium)}
+      padding={new ZQuadrilateralBuilder(ZSizeFixed.Medium).build()}
       fashion={ZFashionArea.Body}
-      edge={square(ZSizeFixed.ExtraSmall)}
-      trim={square('solid')}
+      edge={new ZQuadrilateralBuilder(ZSizeFixed.ExtraSmall).build()}
+      trim={new ZQuadrilateralBuilder('solid').build()}
       width={ZSizeVaried.Full}
       onClick={() => navigate(route.path)}
     >

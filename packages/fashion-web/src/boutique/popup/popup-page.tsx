@@ -1,7 +1,7 @@
 import { ZBox, ZCard, ZH3, ZIconFontAwesome, ZParagraph, ZPopupButton } from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionSeverity } from '@zthun/fashion-theme';
-import { square } from '@zthun/helpful-fn';
+import { ZQuadrilateralBuilder } from '@zthun/helpful-fn';
 import React, { useMemo } from 'react';
 import { ZFashionRoutePopup } from '../../routes.mjs';
 
@@ -25,7 +25,9 @@ export function ZPopupPage() {
       </ZParagraph>
 
       <ZPopupButton ButtonProps={PopupButtonProps}>
-        <ZBox padding={square(ZSizeFixed.Large)}>You can put anything you want in popup content.</ZBox>
+        <ZBox padding={new ZQuadrilateralBuilder(ZSizeFixed.Large).build()}>
+          You can put anything you want in popup content.
+        </ZBox>
       </ZPopupButton>
     </ZCard>
   );

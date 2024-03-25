@@ -12,7 +12,7 @@ import {
 } from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionArea } from '@zthun/fashion-theme';
-import { square } from '@zthun/helpful-fn';
+import { ZQuadrilateralBuilder } from '@zthun/helpful-fn';
 import React, { useState } from 'react';
 import { ZFashionRouteList } from '../../routes.mjs';
 
@@ -51,7 +51,11 @@ export function ZListPage() {
           event to a truthy or falsy value respectively.
         </ZParagraph>
 
-        <ZBox fashion={ZFashionArea.Body} edge={square(ZSizeFixed.ExtraSmall)} trim={square('solid')}>
+        <ZBox
+          fashion={ZFashionArea.Body}
+          edge={new ZQuadrilateralBuilder(ZSizeFixed.ExtraSmall).build()}
+          trim={new ZQuadrilateralBuilder('solid').build()}
+        >
           <ZList>
             <ZListGroup heading='Without Click Support' />
             <ZListLineItem prefix={prefix} name='avatar-and-text' heading='Prefix and Text (No Click)' />
