@@ -1,6 +1,6 @@
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionPriority } from '@zthun/fashion-theme';
-import { rectangle, square } from '@zthun/helpful-fn';
+import { ZQuadrilateralBuilder } from '@zthun/helpful-fn';
 import React from 'react';
 import { ZBanner } from '../banner/banner';
 import { ZBox } from '../box/box';
@@ -18,7 +18,7 @@ export function ZBannerMain(props: IZBannerMain) {
   return (
     <ZStyled className='ZBannerMain-root'>
       <ZBanner className='ZBannerMain-header' fashion={ZFashionPriority.Primary}>
-        <ZBox padding={rectangle(ZSizeFixed.ExtraSmall, ZSizeFixed.Medium)}>
+        <ZBox padding={new ZQuadrilateralBuilder(ZSizeFixed.ExtraSmall).y(ZSizeFixed.Medium).build()}>
           <ZGrid columns='auto auto 1fr auto' align={{ items: 'center' }} gap={ZSizeFixed.Small}>
             <div className='ZBannerMain-avatar'>{avatar}</div>
             <div className='ZBannerMain-prefix'>{prefix}</div>
@@ -27,7 +27,7 @@ export function ZBannerMain(props: IZBannerMain) {
           </ZGrid>
         </ZBox>
       </ZBanner>
-      <ZBox padding={square(ZSizeFixed.Large)}>
+      <ZBox padding={new ZQuadrilateralBuilder(ZSizeFixed.Large).build()}>
         <main className='ZBannerMain-content'>{children}</main>
       </ZBox>
     </ZStyled>
