@@ -76,7 +76,7 @@ export class ZButtonElement
 
     return css`
       :host {
-        display: block;
+        display: inline-flex;
         width: ${ZButtonElement.SizeChart[width.xl()]};
       }
 
