@@ -11,8 +11,8 @@ export class ZPopupButtonComponentModel extends ZCircusComponentModel {
   /**
    * Retrieves the underlying button component.
    */
-  public async button(): Promise<ZButtonComponentModel> {
-    return ZCircusBy.first(this.driver, ZButtonComponentModel);
+  public button(): Promise<ZButtonComponentModel> {
+    return Promise.resolve(new ZButtonComponentModel(this.driver));
   }
 
   /**
