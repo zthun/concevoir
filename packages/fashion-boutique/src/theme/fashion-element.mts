@@ -11,10 +11,6 @@ export class ZFashionElement extends HTMLElement implements IZComponentStyles {
   @ZProperty({ initial: new ZFashionBuilder().build(), attribute: (f) => f?.name })
   public fashion: IZFashion;
 
-  public applyFashion(fashion: IZFashion): void {
-    this.fashion = fashion;
-  }
-
   public property(scope: ZFashionScope) {
     return `--fashion-${this.fashion.name}-${kebabCase(scope)}`;
   }

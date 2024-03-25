@@ -4,7 +4,6 @@ import {
   IZComponentDisconnected,
   IZComponentPropertyChanged,
   IZComponentRender,
-  IZComponentShadowOptions,
   registerCustomElement
 } from '@zthun/helpful-dom';
 import { firstDefined } from '@zthun/helpful-fn';
@@ -13,7 +12,11 @@ import { castArray, kebabCase } from 'lodash-es';
 /**
  * Options for a style component.
  */
-export interface IZComponentStyleOptions extends IZComponentShadowOptions {}
+export interface IZComponentStyleOptions {
+  name: string;
+  tag?: string;
+  className?: string | string[];
+}
 
 /**
  * A mixin decorator that extends a WebComponent and adds a standard flow.
@@ -31,7 +34,7 @@ export interface IZComponentStyleOptions extends IZComponentShadowOptions {}
  *        and {@link IZComponentPropertyChanged}.
  */
 export function ZComponentStyle(options: IZComponentStyleOptions) {
-  const { className, listen, name, tag } = options;
+  const { className, name, tag } = options;
 
   const $className = castArray(firstDefined(`${name}-root`, className));
   const $tag = firstDefined(kebabCase(name), tag);
@@ -48,10 +51,6 @@ export function ZComponentStyle(options: IZComponentStyleOptions) {
         IZComponentPropertyChanged,
         IZComponentRender
     {
-      _handleListen = () => {
-        this.render();
-      };
-
       _style: HTMLElement;
 
       public render() {
@@ -64,12 +63,6 @@ export function ZComponentStyle(options: IZComponentStyleOptions) {
         this._style = document.createElement('style');
         $className.forEach(($class) => this._style.classList.add($class));
 
-        listen?.forEach((t) => {
-          const { selector, event = 'change' } = t;
-          const element = this.querySelector(selector);
-          element?.addEventListener(event, this._handleListen);
-        });
-
         document.head.appendChild(this._style);
 
         this.render();
@@ -77,12 +70,6 @@ export function ZComponentStyle(options: IZComponentStyleOptions) {
 
       public disconnectedCallback() {
         super.disconnectedCallback?.call(this);
-        listen?.forEach((t) => {
-          const { selector, event = 'change' } = t;
-          const element = this.querySelector(selector);
-          element?.removeEventListener(event, this._handleListen);
-        });
-
         this._style.remove();
       }
 
