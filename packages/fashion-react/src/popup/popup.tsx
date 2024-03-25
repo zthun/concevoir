@@ -1,8 +1,16 @@
-import { Popover } from '@mui/material';
-import { ZHorizontalAnchor, ZVerticalAnchor, cssJoinDefined } from '@zthun/helpful-fn';
-import React from 'react';
+import { ZPopupElement } from '@zthun/fashion-boutique';
+import { ZAnchor, ZHorizontalAnchor, ZVerticalAnchor } from '@zthun/helpful-fn';
+import React, { useEffect, useRef } from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
+
+declare global {
+  namespace React.JSX {
+    interface IntrinsicElements {
+      ['z-popup']: ZPopupElement & any;
+    }
+  }
+}
 
 /**
  * Represents props for a popup component.
@@ -27,7 +35,7 @@ export interface IZPopup extends IZComponentHierarchy, IZComponentStyle {
    * If the attach is an element, this is the origin on that element. If it is
    * a point, then this is ignored and it is opened at that point.
    */
-  attachOrigin?: [ZVerticalAnchor, ZHorizontalAnchor];
+  attachOrigin?: ZAnchor;
 
   /**
    * The origin of the popup relative to the attach point or attachOrigin.
@@ -35,7 +43,7 @@ export interface IZPopup extends IZComponentHierarchy, IZComponentStyle {
    * This is the point that is referenced on the popup which is consistent every
    * time it is opened, regardless of the popup content.
    */
-  popupOrigin?: [ZVerticalAnchor, ZHorizontalAnchor];
+  popupOrigin?: ZAnchor;
 }
 
 /**
@@ -56,25 +64,30 @@ export function ZPopup(props: IZPopup) {
     popupOrigin = [ZVerticalAnchor.Top, ZHorizontalAnchor.Left],
     onClose
   } = props;
-  const [attachVertical, attachHorizontal] = attachOrigin;
-  const [popupVertical, popupHorizontal] = popupOrigin;
+  const popper = useRef<ZPopupElement>(null);
 
-  const _attachVertical: 'center' | 'top' | 'bottom' =
-    attachVertical === ZVerticalAnchor.Middle ? 'center' : attachVertical;
+  const onClosed = () => {
+    onClose?.call(null);
+  };
 
-  const _popupVertical: 'center' | 'top' | 'bottom' =
-    popupVertical === ZVerticalAnchor.Middle ? 'center' : popupVertical;
+  useEffect(() => {
+    popper.current?.removeEventListener(ZPopupElement.EventClosed, onClosed);
+    popper.current?.addEventListener(ZPopupElement.EventClosed, onClosed);
+
+    return () => popper.current?.removeEventListener(ZPopupElement.EventClosed, onClosed);
+  }, [popper.current]);
+
+  useEffect(() => {
+    if (attach) {
+      popper.current?.open({ autoClose: true, target: attach, anchor: attachOrigin, origin: popupOrigin });
+    } else {
+      popper.current?.close();
+    }
+  }, [popper.current, attach]);
 
   return (
-    <Popover
-      className={cssJoinDefined('ZPopup-root', className)}
-      anchorEl={attach}
-      open={!!attach}
-      onClose={onClose}
-      anchorOrigin={{ vertical: _attachVertical, horizontal: attachHorizontal }}
-      transformOrigin={{ vertical: _popupVertical, horizontal: popupHorizontal }}
-    >
-      <div className='ZPopup-content'>{children}</div>
-    </Popover>
+    <z-popup class={className} ref={popper}>
+      {children}
+    </z-popup>
   );
 }
