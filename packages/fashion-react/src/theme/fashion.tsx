@@ -1,6 +1,7 @@
 import { ZFashionTailorElement, ZFashionThemeElement } from '@zthun/fashion-boutique';
 import { IZFashionDevice, IZFashionTailor, ZFashionDevice, ZFashionTailor } from '@zthun/fashion-tailor';
 import { IZFashionTheme, ZFashionName, ZFashionThemeBuilder } from '@zthun/fashion-theme';
+import { includeCustomElement } from '@zthun/helpful-dom';
 import { firstDefined } from '@zthun/helpful-fn';
 import React, { createContext, useContext, useEffect, useMemo, useRef } from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
@@ -33,22 +34,23 @@ export function ZFashionThemeProvider(props: IZFashionThemeProvider) {
   const $theme = useRef<ZFashionThemeElement | null>(null);
   const $tailor = useRef<ZFashionTailorElement | null>(null);
 
-  useEffect(() => ZFashionThemeElement.register(), []);
+  useMemo(() => includeCustomElement(ZFashionThemeElement), []);
   useEffect(() => ZFashionTailorElement.register(), []);
 
   useEffect(() => $theme.current?.applyTheme(_theme), [_theme, $theme.current]);
   useEffect(() => $tailor.current?.applyTailor(_tailor), [_tailor, $tailor.current]);
 
   return (
-    <ZFashionThemeContext.Provider value={_theme}>
-      <z-fashion-theme ref={$theme}>
+    <>
+      <z-fashion-theme ref={$theme}></z-fashion-theme>
+      <ZFashionThemeContext.Provider value={_theme}>
         <ZFashionTailorContext.Provider value={_tailor}>
           <z-fashion-tailor ref={$tailor}>
             <ZFashionDeviceContext.Provider value={_device}>{children}</ZFashionDeviceContext.Provider>
           </z-fashion-tailor>
         </ZFashionTailorContext.Provider>
-      </z-fashion-theme>
-    </ZFashionThemeContext.Provider>
+      </ZFashionThemeContext.Provider>
+    </>
   );
 }
 

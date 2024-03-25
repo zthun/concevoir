@@ -1,10 +1,18 @@
-import { IZFashion, IZFashionTheme, ZFashionName, ZFashionScope } from '@zthun/fashion-theme';
-import { registerCustomElement } from '@zthun/helpful-dom';
-import { firstDefined } from '@zthun/helpful-fn';
-import { kebabCase } from 'lodash-es';
+/* eslint-disable @typescript-eslint/no-unsafe-declaration-merging */
 
-export class ZFashionThemeElement extends HTMLElement {
-  public static register = registerCustomElement.bind(null, 'z-fashion-theme', ZFashionThemeElement);
+import { IZFashion, IZFashionTheme, ZFashionName, ZFashionScope } from '@zthun/fashion-theme';
+import { IZComponentStyles } from '@zthun/helpful-dom';
+import { css, firstDefined } from '@zthun/helpful-fn';
+import { kebabCase, set } from 'lodash-es';
+import { ZComponentStyle } from './component-style.mjs';
+
+export interface ZFashionThemeElement {
+  render(): void;
+}
+
+@ZComponentStyle({ name: 'ZFashionTheme' })
+export class ZFashionThemeElement extends HTMLElement implements IZComponentStyles {
+  private _fashions: Record<string, string> = {};
 
   public static property<TCustomNames extends string = ZFashionName>(
     name: ZFashionName | TCustomNames,
@@ -28,6 +36,8 @@ export class ZFashionThemeElement extends HTMLElement {
     this.applyFashion(theme.surface);
     this.applyFashion(theme.transparent);
     this.applyFashion(theme.warning);
+
+    this.setAttribute('data-theme', theme.name);
   }
 
   public applyFashion(fashion: IZFashion): void {
@@ -55,22 +65,37 @@ export class ZFashionThemeElement extends HTMLElement {
       main: firstDefined(main, fashion.hover.main)
     };
 
-    this.style.setProperty(ZFashionThemeElement.property(name, 'border'), border);
-    this.style.setProperty(ZFashionThemeElement.property(name, 'contrast'), contrast);
-    this.style.setProperty(ZFashionThemeElement.property(name, 'dark'), dark);
-    this.style.setProperty(ZFashionThemeElement.property(name, 'light'), light);
-    this.style.setProperty(ZFashionThemeElement.property(name, 'main'), main);
+    set(this._fashions, ZFashionThemeElement.property(name, 'border'), border);
+    set(this._fashions, ZFashionThemeElement.property(name, 'contrast'), contrast);
+    set(this._fashions, ZFashionThemeElement.property(name, 'dark'), dark);
+    set(this._fashions, ZFashionThemeElement.property(name, 'light'), light);
+    set(this._fashions, ZFashionThemeElement.property(name, 'main'), main);
 
-    this.style.setProperty(ZFashionThemeElement.property(name, 'focus.border'), focus.border);
-    this.style.setProperty(ZFashionThemeElement.property(name, 'focus.contrast'), focus.contrast);
-    this.style.setProperty(ZFashionThemeElement.property(name, 'focus.main'), focus.main);
+    set(this._fashions, ZFashionThemeElement.property(name, 'focus.border'), focus.border);
+    set(this._fashions, ZFashionThemeElement.property(name, 'focus.contrast'), focus.contrast);
+    set(this._fashions, ZFashionThemeElement.property(name, 'focus.main'), focus.main);
 
-    this.style.setProperty(ZFashionThemeElement.property(name, 'hover.border'), hover.border);
-    this.style.setProperty(ZFashionThemeElement.property(name, 'hover.contrast'), hover.contrast);
-    this.style.setProperty(ZFashionThemeElement.property(name, 'hover.main'), hover.main);
+    set(this._fashions, ZFashionThemeElement.property(name, 'hover.border'), hover.border);
+    set(this._fashions, ZFashionThemeElement.property(name, 'hover.contrast'), hover.contrast);
+    set(this._fashions, ZFashionThemeElement.property(name, 'hover.main'), hover.main);
 
-    this.style.setProperty(ZFashionThemeElement.property(name, 'active.border'), active.border);
-    this.style.setProperty(ZFashionThemeElement.property(name, 'active.contrast'), active.contrast);
-    this.style.setProperty(ZFashionThemeElement.property(name, 'active.main'), active.main);
+    set(this._fashions, ZFashionThemeElement.property(name, 'active.border'), active.border);
+    set(this._fashions, ZFashionThemeElement.property(name, 'active.contrast'), active.contrast);
+    set(this._fashions, ZFashionThemeElement.property(name, 'active.main'), active.main);
+
+    this.render();
+  }
+
+  public styles() {
+    const variables = Object.keys(this._fashions).map((key) => {
+      const value = this._fashions[key];
+      return `${key}: ${value}`;
+    });
+
+    return css`
+      html {
+        ${variables.join(';\n')}
+      }
+    `;
   }
 }
