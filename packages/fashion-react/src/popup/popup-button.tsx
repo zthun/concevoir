@@ -33,11 +33,15 @@ export function ZPopupButton(props: IZPopupButton) {
   const [attach, setAttach] = useState<Element | null>(null);
 
   return (
-    <div className={cssJoinDefined('ZPopupButton-root', className)}>
-      <ZButton {...ButtonProps} onClick={(e) => setAttach(e.currentTarget)} />
+    <>
+      <ZButton
+        {...ButtonProps}
+        className={cssJoinDefined('ZPopupButton-root', className)}
+        onClick={(e) => setAttach(e.currentTarget)}
+      />
       <ZPopup {...PopupProps} attach={attach} onClose={setAttach.bind(null, null)}>
         {children}
       </ZPopup>
-    </div>
+    </>
   );
 }

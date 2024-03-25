@@ -2,13 +2,12 @@ import { ZCircusKeyboardQwerty } from '@zthun/cirque';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionArea } from '@zthun/fashion-theme';
 import { IZComponentDisconnected, ZAttribute, ZComponentShadow, cssVariable } from '@zthun/helpful-dom';
-import { IZQuadrilateral, ZAnchor, ZHorizontalAnchor, ZVerticalAnchor } from '@zthun/helpful-fn';
+import { ZAnchor, ZHorizontalAnchor, ZQuadrilateralBuilder, ZRectangle, ZVerticalAnchor } from '@zthun/helpful-fn';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
 
 export interface IZPopupOpenOptions {
   autoClose?: boolean;
-  target?: Element;
   anchor?: ZAnchor;
   origin?: ZAnchor;
 }
@@ -37,16 +36,30 @@ export class ZPopupElement extends HTMLElement implements IZComponentDisconnecte
     }
   };
 
-  private _createContent(options: IZPopupOpenOptions) {
-    const { target } = options;
+  private _repositionContent(target: Element, options: Required<IZPopupOpenOptions>) {
+    const content = this._content!;
+
+    const tq = target.getBoundingClientRect();
+    const cq = content.getBoundingClientRect();
+
+    const targetRectangle = new ZRectangle(new ZQuadrilateralBuilder(0).right(tq.width).bottom(tq.height).build());
+    const contentRectangle = new ZRectangle(new ZQuadrilateralBuilder(0).right(cq.width).bottom(cq.height).build());
+
+    const { x: ax, y: ay } = targetRectangle.point(options.anchor);
+    const { x: ox, y: oy } = contentRectangle.point(options.origin);
+
+    const left: number = tq.left + ax - ox;
+    const top: number = tq.top + ay - oy;
+
+    content.style.left = `${left}px`;
+    content.style.top = `${top}px`;
+  }
+
+  private _createContent() {
     const content = document.createElement('div');
     content.classList.add('ZPopup-content');
 
-    const targetQuadrilateral: IZQuadrilateral = target!.getBoundingClientRect();
-
     content.style.position = 'absolute';
-    content.style.left = `${targetQuadrilateral.left}px`;
-    content.style.top = `${targetQuadrilateral.top}px`;
     content.style.backgroundColor = cssVariable(ZFashionThemeElement.property(this.fashion, 'main'));
     content.style.color = cssVariable(ZFashionThemeElement.property(this.fashion, 'contrast'));
     content.style.borderColor = cssVariable(ZFashionThemeElement.property(this.fashion, 'border'));
@@ -78,8 +91,8 @@ export class ZPopupElement extends HTMLElement implements IZComponentDisconnecte
     return backdrop;
   }
 
-  public open(options?: IZPopupOpenOptions) {
-    options = {
+  public open(target: Element, options?: IZPopupOpenOptions) {
+    const _options: Required<IZPopupOpenOptions> = {
       autoClose: true,
       anchor: [ZVerticalAnchor.Bottom, ZHorizontalAnchor.Left],
       origin: [ZVerticalAnchor.Top, ZHorizontalAnchor.Left],
@@ -87,7 +100,7 @@ export class ZPopupElement extends HTMLElement implements IZComponentDisconnecte
     };
 
     if (this._root == null) {
-      this._content = this._createContent(options);
+      this._content = this._createContent();
 
       this._backdrop = this._createBackdrop();
       this._backdrop.appendChild(this._content);
@@ -101,13 +114,15 @@ export class ZPopupElement extends HTMLElement implements IZComponentDisconnecte
 
     document.body.removeEventListener('keydown', this._escape);
 
-    this._content?.removeEventListener('click', this._keepOpen);
-    this._content?.addEventListener('click', this._keepOpen);
+    this._repositionContent(target, _options);
 
-    this._backdrop?.removeEventListener('click', this._destroy);
+    this._content!.removeEventListener('click', this._keepOpen);
+    this._content!.addEventListener('click', this._keepOpen);
 
-    if (options.autoClose) {
-      this._backdrop?.addEventListener('click', this._destroy);
+    this._backdrop!.removeEventListener('click', this._destroy);
+
+    if (_options.autoClose) {
+      this._backdrop!.addEventListener('click', this._destroy);
       document.body.addEventListener('keydown', this._escape);
     }
   }

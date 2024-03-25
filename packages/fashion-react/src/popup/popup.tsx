@@ -79,7 +79,7 @@ export function ZPopup(props: IZPopup) {
 
   useEffect(() => {
     if (attach) {
-      popper.current?.open({ autoClose: true, target: attach, anchor: attachOrigin, origin: popupOrigin });
+      popper.current?.open(attach, { autoClose: true, anchor: attachOrigin, origin: popupOrigin });
     } else {
       popper.current?.close();
     }
