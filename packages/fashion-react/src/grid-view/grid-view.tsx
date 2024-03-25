@@ -97,6 +97,7 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
       <ZButton
         label='More...'
         fashion={ZFashionPriority.Secondary}
+        width={ZSizeVaried.Full}
         {...MoreProps}
         className={cssJoinDefined('ZGridView-more', MoreProps?.className)}
         onClick={more}
