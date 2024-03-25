@@ -23,7 +23,7 @@ export class ZPopupComponentModel extends ZCircusComponentModel {
    *        The popup backdrop.
    */
   public async backdrop() {
-    return this.driver.select('.MuiBackdrop-root');
+    return this.driver.select('.ZPopup-backdrop');
   }
 
   /**
