@@ -35,19 +35,21 @@ export function ZFashionThemeProvider(props: IZFashionThemeProvider) {
   const $tailor = useRef<ZFashionTailorElement | null>(null);
 
   useMemo(() => includeCustomElement(ZFashionThemeElement), []);
-  useEffect(() => ZFashionTailorElement.register(), []);
+  useMemo(() => includeCustomElement(ZFashionTailorElement), []);
 
   useEffect(() => $theme.current?.applyTheme(_theme), [_theme, $theme.current]);
-  useEffect(() => $tailor.current?.applyTailor(_tailor), [_tailor, $tailor.current]);
+  useEffect(() => {
+    $tailor.current?.applyTailor(_tailor);
+  }, [$tailor.current, _tailor]);
 
   return (
     <>
       <z-fashion-theme ref={$theme}></z-fashion-theme>
+      <z-fashion-tailor ref={$tailor}></z-fashion-tailor>
+
       <ZFashionThemeContext.Provider value={_theme}>
         <ZFashionTailorContext.Provider value={_tailor}>
-          <z-fashion-tailor ref={$tailor}>
-            <ZFashionDeviceContext.Provider value={_device}>{children}</ZFashionDeviceContext.Provider>
-          </z-fashion-tailor>
+          <ZFashionDeviceContext.Provider value={_device}>{children}</ZFashionDeviceContext.Provider>
         </ZFashionTailorContext.Provider>
       </ZFashionThemeContext.Provider>
     </>
