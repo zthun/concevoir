@@ -1,9 +1,22 @@
-import { IZFashionTailor, ZGapSize, ZSizeFixed, ZSizeVaried, ZSizeVoid, ZThicknessSize } from '@zthun/fashion-tailor';
-import { cssVariable, registerCustomElement } from '@zthun/helpful-dom';
+import {
+  IZFashionTailor,
+  ZFashionTailor,
+  ZGapSize,
+  ZSizeFixed,
+  ZSizeVaried,
+  ZSizeVoid,
+  ZThicknessSize
+} from '@zthun/fashion-tailor';
+import { ZProperty, cssVariable } from '@zthun/helpful-dom';
+import { css } from '@zthun/helpful-fn';
+import { ZComponentStyle } from './component-style.mjs';
 
+export interface IZFashionTailorElement {
+  render(): void;
+}
+
+@ZComponentStyle({ name: 'ZFashionTailor' })
 export class ZFashionTailorElement extends HTMLElement {
-  public static register = registerCustomElement.bind(null, 'z-fashion-tailor', ZFashionTailorElement);
-
   public static gapProp(size: ZGapSize | ZSizeVaried.Fit): string {
     return `--fashion-tailor-gap-${size}`;
   }
@@ -20,16 +33,33 @@ export class ZFashionTailorElement extends HTMLElement {
     return cssVariable(ZFashionTailorElement.thicknessProp(size));
   }
 
+  @ZProperty({ initial: new ZFashionTailor() })
+  public tailor: IZFashionTailor;
+
+  public styles() {
+    return css`
+      html {
+        ${ZFashionTailorElement.gapProp(ZSizeFixed.ExtraSmall)}: ${this.tailor.gap(ZSizeFixed.ExtraSmall)};
+        ${ZFashionTailorElement.gapProp(ZSizeFixed.Small)}: ${this.tailor.gap(ZSizeFixed.Small)};
+        ${ZFashionTailorElement.gapProp(ZSizeFixed.Medium)}: ${this.tailor.gap(ZSizeFixed.Medium)};
+        ${ZFashionTailorElement.gapProp(ZSizeFixed.Large)}: ${this.tailor.gap(ZSizeFixed.Large)};
+        ${ZFashionTailorElement.gapProp(ZSizeFixed.ExtraLarge)}: ${this.tailor.gap(ZSizeFixed.ExtraLarge)};
+        ${ZFashionTailorElement.gapProp(ZSizeVoid.None)}: ${this.tailor.gap(ZSizeVoid.None)};
+        --fashion-tailor-gap-auto: auto;
+
+        ${ZFashionTailorElement.thicknessProp(ZSizeFixed.ExtraSmall)}: ${this.tailor.thickness(ZSizeFixed.ExtraSmall)};
+        ${ZFashionTailorElement.thicknessProp(ZSizeFixed.Small)}: ${this.tailor.thickness(ZSizeFixed.Small)};
+        ${ZFashionTailorElement.thicknessProp(ZSizeFixed.Medium)}: ${this.tailor.thickness(ZSizeFixed.Medium)};
+        ${ZFashionTailorElement.thicknessProp(ZSizeFixed.Large)}: ${this.tailor.thickness(ZSizeFixed.Large)};
+        ${ZFashionTailorElement.thicknessProp(ZSizeFixed.ExtraLarge)}: ${this.tailor.thickness(ZSizeFixed.ExtraLarge)};
+        ${ZFashionTailorElement.thicknessProp(ZSizeVoid.None)}: ${this.tailor.thickness(ZSizeVoid.None)};
+
+        --fashion-tailor-full: 100%;
+      }
+    `;
+  }
+
   public applyTailor(tailor: IZFashionTailor): void {
-    const setVariables = (s: ZSizeFixed | ZSizeVoid) => {
-      this.style.setProperty(ZFashionTailorElement.gapProp(s), tailor.gap(s));
-      this.style.setProperty(ZFashionTailorElement.thicknessProp(s), tailor.thickness(s));
-    };
-
-    this.style.setProperty(ZFashionTailorElement.gapProp(ZSizeVaried.Fit), 'auto');
-    this.style.setProperty('--fashion-tailor-full', '100%');
-
-    Object.values(ZSizeFixed).forEach(setVariables);
-    Object.values(ZSizeVoid).forEach(setVariables);
+    this.tailor = tailor;
   }
 }
