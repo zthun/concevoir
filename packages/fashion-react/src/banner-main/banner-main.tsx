@@ -18,7 +18,7 @@ export function ZBannerMain(props: IZBannerMain) {
   return (
     <ZStyled className='ZBannerMain-root'>
       <ZBanner className='ZBannerMain-header' fashion={ZFashionPriority.Primary}>
-        <ZBox padding={new ZQuadrilateralBuilder(ZSizeFixed.ExtraSmall).y(ZSizeFixed.Medium).build()}>
+        <ZBox padding={new ZQuadrilateralBuilder(ZSizeFixed.ExtraSmall).x(ZSizeFixed.Medium).build()}>
           <ZGrid columns='auto auto 1fr auto' align={{ items: 'center' }} gap={ZSizeFixed.Small}>
             <div className='ZBannerMain-avatar'>{avatar}</div>
             <div className='ZBannerMain-prefix'>{prefix}</div>
