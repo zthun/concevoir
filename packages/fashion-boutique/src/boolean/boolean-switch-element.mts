@@ -18,6 +18,10 @@ export class ZBooleanSwitchElement extends ZBooleanElement<boolean> implements I
     const _component = new ZFashionDetail(ZFashionArea.Component);
     const detail = value ? _fashion : _component;
 
+    const switchHeight = `1.25rem`;
+    const sliderSize = `1.2rem`;
+    const sliderSlide = `1rem`;
+
     return css`
       @keyframes scroll-on {
         from {
@@ -25,13 +29,13 @@ export class ZBooleanSwitchElement extends ZBooleanElement<boolean> implements I
         }
 
         to {
-          transform: translateX(50%);
+          transform: translateX(${sliderSlide});
         }
       }
 
       @keyframes scroll-off {
         from {
-          transform: translateX(50%);
+          transform: translateX(${sliderSlide});
         }
 
         to {
@@ -61,10 +65,10 @@ export class ZBooleanSwitchElement extends ZBooleanElement<boolean> implements I
 
       .switch {
         align-items: center;
-        background-color: ${detail.color('light')};
-        border-radius: calc(${ZFashionTailorElement.thicknessVar(ZSizeFixed.ExtraLarge)} * 2);
+        background-color: ${detail.color('main')};
+        border-radius: 1rem;
         display: flex;
-        height: 0.3rem;
+        height: ${switchHeight};
         padding: calc(${ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall)} / 2);
         width: 2.25rem;
       }
@@ -74,18 +78,18 @@ export class ZBooleanSwitchElement extends ZBooleanElement<boolean> implements I
       }
 
       .switch:focus .slider {
-        box-shadow: 0 0 0.16rem 0.25rem ${_fashion.color('focus.main')};
+        box-shadow: 0 0 0.16rem 0.25rem ${detail.color('focus.main')};
       }
 
       .slider {
         animation-duration: 0.1s;
         animation-iteration-count: 1;
         animation-timing-function: linear;
-        background-color: ${detail.color('main')};
+        background-color: ${detail.color('dark')};
         border-radius: 50%;
-        height: 1.5rem;
-        transform: translateX(${value ? '50%' : 0});
-        width: 1.5rem;
+        height: ${sliderSize};
+        transform: translateX(${value ? sliderSlide : 0});
+        width: ${sliderSize};
       }
     `;
   }
@@ -108,7 +112,7 @@ export class ZBooleanSwitchElement extends ZBooleanElement<boolean> implements I
     const next = !this.value;
     const slider = this.shadowRoot!.querySelector<HTMLElement>('.slider')!;
     slider.style.animationName = `${next ? 'scroll-on' : 'scroll-off'}`;
-    slider.style.transform = `translateX(${next ? '50%' : 0})`;
+    slider.style.transform = `translateX(${next ? '1rem' : 0})`;
     await sleep(110);
     this.value = !this.value;
   }
