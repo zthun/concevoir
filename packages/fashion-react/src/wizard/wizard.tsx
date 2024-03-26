@@ -68,12 +68,13 @@ export function ZWizard(props: IZWizard) {
 
       return (
         <ZButton
+          fashion={ZFashionPriority.Secondary}
+          width={ZSizeVaried.Full}
           {...PrevButtonProps}
           label={firstDefined<ReactNode>(defaultLabel, PrevButtonProps?.label)}
           disabled={_page === 0 || PrevButtonProps?.disabled}
           onClick={PrevButtonProps?.onClick || handlePrevious}
           name='previous'
-          fashion={ZFashionPriority.Secondary}
         />
       );
     };
