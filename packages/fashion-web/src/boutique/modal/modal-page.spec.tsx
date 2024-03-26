@@ -1,4 +1,4 @@
-import { IZCircusDriver, ZCircusBy } from '@zthun/cirque';
+import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { ZButtonComponentModel } from '@zthun/fashion-circus';
 import { ZSizeVaried } from '@zthun/fashion-tailor';
@@ -11,17 +11,20 @@ import { ZModalPage } from './modal-page';
 import { ZModalPageComponentModel } from './modal-page.cm.mjs';
 
 describe('ZModalPage', () => {
+  let _renderer: IZCircusSetup;
   let _driver: IZCircusDriver;
 
   const createTestTarget = async () => {
     const element = <ZModalPage />;
 
-    _driver = await new ZCircusSetupRenderer(element).setup();
+    _renderer = new ZCircusSetupRenderer(element);
+    _driver = await _renderer.setup();
     return ZCircusBy.first(_driver, ZModalPageComponentModel);
   };
 
   afterEach(async () => {
     await _driver?.destroy?.call(_driver);
+    await _renderer?.destroy?.call(_renderer);
   });
 
   describe('Header', () => {

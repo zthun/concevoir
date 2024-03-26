@@ -1,4 +1,4 @@
-import { IZCircusDriver, ZCircusBy } from '@zthun/cirque';
+import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { ZModalComponentModel } from '@zthun/fashion-circus';
 import { ZSizeVaried } from '@zthun/fashion-tailor';
@@ -13,8 +13,8 @@ describe('ZModal', () => {
   let onClose: Mock | undefined;
   let fashion: IZFashion | undefined;
   let width: ZSizeVaried | undefined;
+  let _renderer: IZCircusSetup;
   let _driver: IZCircusDriver;
-  let _target: ZModalComponentModel;
 
   const createTestTarget = async () => {
     const element = (
@@ -27,9 +27,9 @@ describe('ZModal', () => {
         fashion={fashion}
       />
     );
-    _driver = await new ZCircusSetupRenderer(element).setup();
-    _target = await ZCircusBy.first(await _driver.body(), ZModalComponentModel);
-    return _target;
+    _renderer = new ZCircusSetupRenderer(element);
+    _driver = await _renderer.setup();
+    return ZCircusBy.first(await _driver.body(), ZModalComponentModel);
   };
 
   beforeEach(() => {
@@ -41,8 +41,8 @@ describe('ZModal', () => {
   });
 
   afterEach(async () => {
-    await _target?.driver?.destroy?.call(_target.driver);
     await _driver?.destroy?.call(_driver);
+    await _renderer?.destroy?.call(_renderer);
   });
 
   describe('Header', () => {

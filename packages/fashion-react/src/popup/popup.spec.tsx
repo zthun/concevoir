@@ -1,4 +1,4 @@
-import { IZCircusDriver, ZCircusBy } from '@zthun/cirque';
+import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { ZPopupButtonComponentModel } from '@zthun/fashion-circus';
 import { ZHorizontalAnchor, ZVerticalAnchor } from '@zthun/helpful-fn';
@@ -9,11 +9,13 @@ import { ZPopupButton } from './popup-button';
 describe('ZPopup', () => {
   let attachOrigin: [ZVerticalAnchor, ZHorizontalAnchor] | undefined;
   let popupOrigin: [ZVerticalAnchor, ZHorizontalAnchor] | undefined;
+  let _renderer: IZCircusSetup;
   let _driver: IZCircusDriver;
 
   async function createTestTarget() {
     const element = <ZPopupButton PopupProps={{ attachOrigin, popupOrigin }}>Content</ZPopupButton>;
-    _driver = await new ZCircusSetupRenderer(element).setup();
+    _renderer = new ZCircusSetupRenderer(element);
+    _driver = await _renderer.setup();
     return ZCircusBy.first(_driver, ZPopupButtonComponentModel);
   }
 
@@ -24,6 +26,7 @@ describe('ZPopup', () => {
 
   afterEach(async () => {
     await _driver?.destroy?.call(_driver);
+    await _renderer?.destroy?.call(_renderer);
   });
 
   describe('Open', () => {

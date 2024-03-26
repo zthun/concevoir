@@ -2612,7 +2612,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/dom@npm:^9.0.0, @testing-library/dom@npm:^9.3.3":
+"@testing-library/dom@npm:^9.0.0, @testing-library/dom@npm:^9.3.4":
   version: 9.3.4
   resolution: "@testing-library/dom@npm:9.3.4"
   dependencies:
@@ -2628,7 +2628,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/react@npm:^14.1.2":
+"@testing-library/react@npm:^14.2.2":
   version: 14.2.2
   resolution: "@testing-library/react@npm:14.2.2"
   dependencies:
@@ -2642,7 +2642,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/user-event@npm:^14.5.1":
+"@testing-library/user-event@npm:^14.5.2":
   version: 14.5.2
   resolution: "@testing-library/user-event@npm:14.5.2"
   peerDependencies:
@@ -3219,37 +3219,51 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/cirque-du-react@npm:^5.0.3":
-  version: 5.0.3
-  resolution: "@zthun/cirque-du-react@npm:5.0.3"
+"@zthun/cirque-du-dom@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "@zthun/cirque-du-dom@npm:6.0.1"
   dependencies:
-    "@testing-library/dom": "npm:^9.3.3"
-    "@testing-library/react": "npm:^14.1.2"
-    "@testing-library/user-event": "npm:^14.5.1"
-    "@zthun/cirque": "npm:^5.0.1"
+    "@testing-library/dom": "npm:^9.3.4"
+    "@testing-library/user-event": "npm:^14.5.2"
+    "@zthun/cirque": "npm:^6.0.1"
     lodash: "npm:^4.17.21"
   peerDependencies:
     react: ^18.2.0
     react-dom: ^18.2.0
-  checksum: 10c0/5928b81ecdd243e1172fc5f8835e4a6e07b83eb1dc46eee02eea5dba26da6521cf587e5eb262a206888a9d59c121360e2bd56f4078d4671aa7ed82704aa1939c
+  checksum: 10c0/f61ce1e893d3fd4bdd7ea30ae3c60befc27d8a7a99f81773d3b761cdeb8b13c657ffe6d5802e017ce118422cce48e2506e68232a7e2de34712c9424233e39b6e
   languageName: node
   linkType: hard
 
-"@zthun/cirque-du-selenium@npm:^5.0.3":
-  version: 5.0.3
-  resolution: "@zthun/cirque-du-selenium@npm:5.0.3"
+"@zthun/cirque-du-react@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "@zthun/cirque-du-react@npm:6.0.1"
   dependencies:
-    "@zthun/cirque": "npm:^5.0.1"
+    "@testing-library/react": "npm:^14.2.2"
+    "@zthun/cirque": "npm:^6.0.1"
+    "@zthun/cirque-du-dom": "npm:^6.0.1"
     lodash: "npm:^4.17.21"
-    selenium-webdriver: "npm:^4.16.0"
-  checksum: 10c0/ce2ee7a36c825e783321b7beaf7353bcde9d921a744f4ace9557b37a8b7993fc91e6324309d41f8881664449f9cba8014a10100137e213ab99fdade16b0c84c7
+  peerDependencies:
+    react: ^18.2.0
+    react-dom: ^18.2.0
+  checksum: 10c0/26402dfb64251a863fa05dabc7a588413f5966a24f108be6d96832da0502c74b7b60fe70784b69620ed2b2a1847b3dabf90f821e3d0098cb60ce68f81544c6cf
   languageName: node
   linkType: hard
 
-"@zthun/cirque@npm:^5.0.1":
-  version: 5.0.1
-  resolution: "@zthun/cirque@npm:5.0.1"
-  checksum: 10c0/370ffc50f5298e8dbcc27a256b87de2a9fe68fc252a2ca0ed776f6ecbcb6e801e695fe62b9bf0cf35fb1ce5d2d74d3473b6a663b99e530fc86d01efedc08351c
+"@zthun/cirque-du-selenium@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "@zthun/cirque-du-selenium@npm:6.0.1"
+  dependencies:
+    "@zthun/cirque": "npm:^6.0.1"
+    lodash: "npm:^4.17.21"
+    selenium-webdriver: "npm:^4.18.1"
+  checksum: 10c0/33acd1975c11c8605e431945ef315c7a8ea9b0e65d4162a4745606e3e9ff6d7b7c6d7c79cde22854d16b9eb86f896ec1e53554b16815884245a17aaa408c59e5
+  languageName: node
+  linkType: hard
+
+"@zthun/cirque@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "@zthun/cirque@npm:6.0.1"
+  checksum: 10c0/123974469486aa17198aed583cb2bdedc806b512f5ec65f3c966f03f80767a8a452bc5ae7a8911c2e56b488a5d8bfc86a5012f86f1a1c323c8cb5a4f86c317fa
   languageName: node
   linkType: hard
 
@@ -3283,7 +3297,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@zthun/fashion-boutique@workspace:packages/fashion-boutique"
   dependencies:
-    "@zthun/cirque": "npm:^5.0.1"
+    "@zthun/cirque": "npm:^6.0.1"
     "@zthun/fashion-tailor": "npm:^2.7.0"
     "@zthun/fashion-theme": "npm:^2.7.0"
     "@zthun/helpful-dom": "npm:^4.0.1"
@@ -3299,7 +3313,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@zthun/fashion-circus@workspace:packages/fashion-circus"
   dependencies:
-    "@zthun/cirque": "npm:^5.0.1"
+    "@zthun/cirque": "npm:^6.0.1"
     "@zthun/fashion-tailor": "npm:^2.7.0"
     "@zthun/fashion-theme": "npm:^2.7.0"
     "@zthun/helpful-fn": "npm:^4.0.1"
@@ -3336,8 +3350,8 @@ __metadata:
     "@emotion/styled": "npm:^11.11.0"
     "@mui/material": "npm:^5.15.10"
     "@mui/system": "npm:^5.15.9"
-    "@zthun/cirque": "npm:^5.0.1"
-    "@zthun/cirque-du-react": "npm:^5.0.3"
+    "@zthun/cirque": "npm:^6.0.1"
+    "@zthun/cirque-du-react": "npm:^6.0.1"
     "@zthun/fashion-boutique": "npm:^2.7.0"
     "@zthun/fashion-circus": "npm:^2.7.0"
     "@zthun/fashion-tailor": "npm:^2.7.0"
@@ -3398,9 +3412,9 @@ __metadata:
   resolution: "@zthun/fashion-web@workspace:packages/fashion-web"
   dependencies:
     "@cucumber/cucumber": "npm:^10.3.1"
-    "@zthun/cirque": "npm:^5.0.1"
-    "@zthun/cirque-du-react": "npm:^5.0.3"
-    "@zthun/cirque-du-selenium": "npm:^5.0.3"
+    "@zthun/cirque": "npm:^6.0.1"
+    "@zthun/cirque-du-react": "npm:^6.0.1"
+    "@zthun/cirque-du-selenium": "npm:^6.0.1"
     "@zthun/fashion-boutique": "npm:^2.7.0"
     "@zthun/fashion-circus": "npm:^2.7.0"
     "@zthun/fashion-labs": "npm:^2.7.0"
@@ -11139,7 +11153,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"selenium-webdriver@npm:^4.16.0":
+"selenium-webdriver@npm:^4.18.1":
   version: 4.18.1
   resolution: "selenium-webdriver@npm:4.18.1"
   dependencies:

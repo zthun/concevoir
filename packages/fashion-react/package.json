@@ -33,7 +33,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.15.10",
     "@mui/system": "^5.15.9",
-    "@zthun/cirque": "^5.0.1",
+    "@zthun/cirque": "^6.0.1",
     "@zthun/fashion-boutique": "^2.7.0",
     "@zthun/fashion-circus": "^2.7.0",
     "@zthun/fashion-tailor": "^2.7.0",
@@ -51,7 +51,7 @@
     "tss-react": "^4.9.4"
   },
   "devDependencies": {
-    "@zthun/cirque-du-react": "^5.0.3",
+    "@zthun/cirque-du-react": "^6.0.1",
     "@zthun/helpful-brands": "^4.0.0",
     "vite": "^5.2.6",
     "vitest": "^1.4.0"
