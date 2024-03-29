@@ -42,6 +42,7 @@
     "@zthun/helpful-fn": "^4.0.2",
     "@zthun/helpful-query": "^4.0.2",
     "@zthun/helpful-react": "^4.0.2",
+    "@zthun/trilean": "^1.1.0",
     "@zthun/webigail-http": "^2.4.0",
     "@zthun/webigail-url": "^2.4.0",
     "csstype": "^3.1.3",
