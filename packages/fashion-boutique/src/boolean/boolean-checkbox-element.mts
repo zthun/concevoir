@@ -1,7 +1,8 @@
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionArea, rgb } from '@zthun/fashion-theme';
 import { $attr, IZComponentStyles, IZComponentTemplate, ZAttribute, ZComponentShadow } from '@zthun/helpful-dom';
-import { ZTrilean, css, html, trilean } from '@zthun/helpful-fn';
+import { css, html } from '@zthun/helpful-fn';
+import { ZTrilean, trilean } from '@zthun/trilean';
 import { ZFashionDetail } from '../component/component-fashion.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 import { ZBooleanElement } from './boolean-element.mjs';

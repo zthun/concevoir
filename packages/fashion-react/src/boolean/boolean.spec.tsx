@@ -2,7 +2,7 @@ import { IZCircusDriver, IZCircusKey, IZCircusSetup, ZCircusBy, ZCircusKeyboardQ
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { ZBooleanComponentModel } from '@zthun/fashion-circus';
 import { ZFashionPriority } from '@zthun/fashion-theme';
-import { ZTrilean, trilean } from '@zthun/helpful-fn';
+import { ZTrilean, trilean } from '@zthun/trilean';
 import React, { ReactElement } from 'react';
 import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ZBooleanCheckbox } from './boolean-checkbox';

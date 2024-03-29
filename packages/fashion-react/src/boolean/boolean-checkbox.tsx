@@ -1,7 +1,8 @@
 import { ZBooleanCheckboxElement } from '@zthun/fashion-boutique';
 import { includeCustomElement } from '@zthun/helpful-dom';
-import { ZTrilean, cssJoinDefined, trilean } from '@zthun/helpful-fn';
+import { cssJoinDefined } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
+import { ZTrilean, trilean } from '@zthun/trilean';
 import React, { useEffect, useMemo, useRef } from 'react';
 import { IZBoolean } from './boolean';
 

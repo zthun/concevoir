@@ -12,7 +12,7 @@ import {
 } from '@zthun/fashion-react';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { ZFashionSeverity } from '@zthun/fashion-theme';
-import { ZTrilean, trilean } from '@zthun/helpful-fn';
+import { ZTrilean, trilean } from '@zthun/trilean';
 import React, { useState } from 'react';
 import { ZFashionRouteBoolean } from '../../routes.mjs';
 import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';

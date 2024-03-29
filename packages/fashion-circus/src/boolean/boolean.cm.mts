@@ -1,5 +1,6 @@
 import { IZCircusKey, ZCircusActBuilder, ZCircusComponentModel } from '@zthun/cirque';
-import { ZTrilean, sleep, trilean } from '@zthun/helpful-fn';
+import { sleep } from '@zthun/helpful-fn';
+import { ZTrilean, trilean } from '@zthun/trilean';
 
 /**
  * Represents a react component model for the ZBoolean component.
