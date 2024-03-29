@@ -6,7 +6,7 @@ import { firstDefined } from '@zthun/helpful-fn';
  * Represents the component model for the alert component.
  */
 export class ZAlertComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZAlert-root';
+  public static readonly Selector = 'z-alert';
 
   /**
    * Gets the alert message.
