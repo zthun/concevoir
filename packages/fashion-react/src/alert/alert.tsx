@@ -26,7 +26,7 @@ export function ZAlert(props: IZAlert) {
   const { heading, name, className, message, avatar, fashion } = props;
 
   return (
-    <z-alert class={cssJoinDefined(className)} fashion={fashion} name={name}>
+    <z-alert class={cssJoinDefined('ZAlert-root', className)} fashion={fashion} name={name}>
       {avatar ? <div slot='avatar'>{avatar}</div> : null}
       {heading ? <div slot='heading'>{heading}</div> : null}
       <div slot='message'>{message}</div>
