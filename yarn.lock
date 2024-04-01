@@ -3315,6 +3315,7 @@ __metadata:
     "@zthun/cirque": "npm:^6.0.1"
     "@zthun/fashion-tailor": "npm:^2.7.0"
     "@zthun/fashion-theme": "npm:^2.7.0"
+    "@zthun/fashion-typeface": "npm:^2.7.0"
     "@zthun/helpful-dom": "npm:^4.0.4"
     "@zthun/helpful-fn": "npm:^4.0.4"
     "@zthun/spellcraft": "npm:^2.0.1"
@@ -3416,7 +3417,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@zthun/fashion-typeface@workspace:packages/fashion-typeface":
+"@zthun/fashion-typeface@npm:^2.7.0, @zthun/fashion-typeface@workspace:packages/fashion-typeface":
   version: 0.0.0-use.local
   resolution: "@zthun/fashion-typeface@workspace:packages/fashion-typeface"
   dependencies:

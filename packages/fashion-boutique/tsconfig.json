@@ -4,7 +4,8 @@
     "baseUrl": ".",
     "paths": {
       "@zthun/fashion-theme": ["../fashion-theme/src/index"],
-      "@zthun/fashion-tailor": ["../fashion-tailor/src/index"]
+      "@zthun/fashion-tailor": ["../fashion-tailor/src/index"],
+      "@zthun/fashion-typeface": ["../fashion-typeface/src/index"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.mts"]

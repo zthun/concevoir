@@ -31,6 +31,7 @@
     "@zthun/cirque": "^6.0.1",
     "@zthun/fashion-tailor": "^2.7.0",
     "@zthun/fashion-theme": "^2.7.0",
+    "@zthun/fashion-typeface": "^2.7.0",
     "@zthun/helpful-dom": "^4.0.4",
     "@zthun/helpful-fn": "^4.0.4",
     "@zthun/spellcraft": "^2.0.1",
