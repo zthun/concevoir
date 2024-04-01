@@ -1,15 +1,16 @@
-import { registerCustomElement } from '@zthun/helpful-dom';
-import { Property } from 'csstype';
-import { ZHeadingElement } from './heading-element.mjs';
+import {
+  ZComponentRegister,
+  ZComponentRenderOnAttributeChanged,
+  ZComponentRenderOnConnected,
+  ZComponentRenderTemplate,
+  ZComponentShadow
+} from '@zthun/spellcraft';
+import { ZTypography } from './typography.mjs';
 
-export class ZHeadingFourElement extends ZHeadingElement {
-  public scale() {
-    return 1.5;
-  }
-
-  public transform(): Property.TextTransform {
-    return 'uppercase';
-  }
-}
-
-registerCustomElement('z-h4', ZHeadingFourElement, { extends: 'h4' });
+@ZComponentRegister('z-h4', { extend: 'h4' })
+@ZTypography({ scale: { xl: 1.7, lg: 1.6, md: 1.5, sm: 1.4, xs: 1.3 }, weight: 'bold', transform: 'uppercase' })
+@ZComponentRenderTemplate()
+@ZComponentRenderOnConnected()
+@ZComponentRenderOnAttributeChanged()
+@ZComponentShadow()
+export class ZHeadingFourElement extends HTMLHeadingElement {}

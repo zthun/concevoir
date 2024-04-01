@@ -1,14 +1,16 @@
-import { registerCustomElement } from '@zthun/helpful-dom';
-import { ZParagraphElement } from './paragraph-element.mjs';
+import {
+  ZComponentRegister,
+  ZComponentRenderOnAttributeChanged,
+  ZComponentRenderOnConnected,
+  ZComponentRenderTemplate,
+  ZComponentShadow
+} from '@zthun/spellcraft';
+import { ZTypography } from './typography.mjs';
 
-export class ZParagraphOverlineElement extends ZParagraphElement {
-  public constructor() {
-    super('overline');
-  }
-
-  public scale() {
-    return 0.95;
-  }
-}
-
-registerCustomElement('z-paragraph-overline', ZParagraphOverlineElement, { extends: 'p' });
+@ZComponentRegister('z-paragraph-overline', { extend: 'p' })
+@ZTypography({ scale: { xl: 0.95 } })
+@ZComponentRenderTemplate()
+@ZComponentRenderOnConnected()
+@ZComponentRenderOnAttributeChanged()
+@ZComponentShadow()
+export class ZParagraphOverlineElement extends HTMLParagraphElement {}

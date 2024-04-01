@@ -1,10 +1,16 @@
-import { registerCustomElement } from '@zthun/helpful-dom';
-import { ZHeadingElement } from './heading-element.mjs';
+import {
+  ZComponentRegister,
+  ZComponentRenderOnAttributeChanged,
+  ZComponentRenderOnConnected,
+  ZComponentRenderTemplate,
+  ZComponentShadow
+} from '@zthun/spellcraft';
+import { ZTypography } from './typography.mjs';
 
-export class ZHeadingTwoElement extends ZHeadingElement {
-  public scale() {
-    return 2.5;
-  }
-}
-
-registerCustomElement('z-h2', ZHeadingTwoElement, { extends: 'h2' });
+@ZComponentRegister('z-h2', { extend: 'h2' })
+@ZTypography({ scale: { xl: 2.2, lg: 2.1, md: 2, sm: 1.9, xs: 1.8 }, weight: 'bold' })
+@ZComponentRenderTemplate()
+@ZComponentRenderOnConnected()
+@ZComponentRenderOnAttributeChanged()
+@ZComponentShadow()
+export class ZHeadingTwoElement extends HTMLHeadingElement {}
