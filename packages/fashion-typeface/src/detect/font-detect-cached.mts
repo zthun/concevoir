@@ -1,4 +1,4 @@
-import { ZFontFamily } from '../family/font-family.mjs';
+import { ZFontFamily } from '../font/font-family.mjs';
 import { IZFontDetect } from './font-detect.mjs';
 
 /**

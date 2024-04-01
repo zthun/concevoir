@@ -1,6 +1,6 @@
 import { trimEnd } from 'lodash-es';
 import { describe, expect, it } from 'vitest';
-import { ZFontFamily } from '../family/font-family.mjs';
+import { ZFontFamily } from '../font/font-family.mjs';
 import { ZFontDetectFontFaceSet } from './font-detect-font-face-set.mjs';
 import { ZFontDetectStatic } from './font-detect-static.mjs';
 

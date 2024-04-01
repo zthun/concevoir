@@ -1,5 +1,4 @@
 // cspell:disable
-import { ZUnit } from '@zthun/fashion-boutique';
 import {
   ZBooleanSwitch,
   ZBox,
@@ -15,8 +14,7 @@ import {
   ZOverline,
   ZParagraph,
   ZStack,
-  ZSubtitle,
-  ZTypography
+  ZSubtitle
 } from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import React, { useState } from 'react';
@@ -32,10 +30,6 @@ import { useFashionState } from '../common/use-fashion-state.mjs';
 export function ZTypographyPage() {
   const [compact, setCompact] = useState(false);
   const [, fashion, setFashion] = useFashionState();
-  // TODO: Enable changing these options.
-  const [family] = useState<string>('Roboto');
-  const [size] = useState<number>(1);
-  const [unit] = useState<ZUnit>('em');
 
   return (
     <ZCard
@@ -53,53 +47,51 @@ export function ZTypographyPage() {
         made.
       </ZParagraph>
 
-      <ZTypography family={family} size={size} unit={unit}>
-        <ZH1 fashion={fashion} compact={compact} name='heading-1'>
-          Headline
-        </ZH1>
-        <ZH2 fashion={fashion} compact={compact} name='heading-2'>
-          Heading 2
-        </ZH2>
-        <ZH3 fashion={fashion} compact={compact} name='heading-3'>
-          Heading 3
-        </ZH3>
-        <ZH4 fashion={fashion} compact={compact} name='heading-4'>
-          Heading 4
-        </ZH4>
-        <ZH5 fashion={fashion} compact={compact} name='heading-5'>
-          Heading 5
-        </ZH5>
-        <ZH6 fashion={fashion} compact={compact} name='heading-6'>
-          Heading 6
-        </ZH6>
+      <ZH1 fashion={fashion} compact={compact} name='heading-1'>
+        Heading 1
+      </ZH1>
+      <ZH2 fashion={fashion} compact={compact} name='heading-2'>
+        Heading 2
+      </ZH2>
+      <ZH3 fashion={fashion} compact={compact} name='heading-3'>
+        Heading 3
+      </ZH3>
+      <ZH4 fashion={fashion} compact={compact} name='heading-4'>
+        Heading 4
+      </ZH4>
+      <ZH5 fashion={fashion} compact={compact} name='heading-5'>
+        Heading 5
+      </ZH5>
+      <ZH6 fashion={fashion} compact={compact} name='heading-6'>
+        Heading 6
+      </ZH6>
 
-        <hr />
-        <ZParagraph fashion={fashion} compact={compact} name='body'>
-          Paragraph: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-          et dolore magna aliqua. Nec dui nunc mattis enim. Velit laoreet id donec ultrices tincidunt arcu. In mollis
-          nunc sed id semper. Aliquet lectus proin nibh nisl condimentum id venenatis. Convallis aenean et tortor at
-          risus. Fringilla phasellus faucibus scelerisque eleifend. Eu sem integer vitae justo eget magna fermentum
-          iaculis eu. Enim sit amet venenatis urna cursus. Nisl suscipit adipiscing bibendum est ultricies integer. In
-          hendrerit gravida rutrum quisque non tellus. Adipiscing tristique risus nec feugiat in fermentum posuere urna
-          nec. Quam adipiscing vitae proin sagittis nisl rhoncus.
-        </ZParagraph>
+      <hr />
+      <ZParagraph fashion={fashion} compact={compact} name='body'>
+        Paragraph: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+        et dolore magna aliqua. Nec dui nunc mattis enim. Velit laoreet id donec ultrices tincidunt arcu. In mollis nunc
+        sed id semper. Aliquet lectus proin nibh nisl condimentum id venenatis. Convallis aenean et tortor at risus.
+        Fringilla phasellus faucibus scelerisque eleifend. Eu sem integer vitae justo eget magna fermentum iaculis eu.
+        Enim sit amet venenatis urna cursus. Nisl suscipit adipiscing bibendum est ultricies integer. In hendrerit
+        gravida rutrum quisque non tellus. Adipiscing tristique risus nec feugiat in fermentum posuere urna nec. Quam
+        adipiscing vitae proin sagittis nisl rhoncus.
+      </ZParagraph>
 
-        <hr />
-        <ZSubtitle fashion={fashion} compact={compact} name='subtitle'>
-          Subtitle: Pulvinar elementum integer enim neque volutpat ac. Ullamcorper a lacus vestibulum sed. Risus pretium
-          quam vulputate dignissim suspendisse in est ante.
-        </ZSubtitle>
+      <hr />
+      <ZSubtitle fashion={fashion} compact={compact} name='subtitle'>
+        Subtitle: Pulvinar elementum integer enim neque volutpat ac. Ullamcorper a lacus vestibulum sed. Risus pretium
+        quam vulputate dignissim suspendisse in est ante.
+      </ZSubtitle>
 
-        <hr />
-        <ZCaption fashion={fashion} compact={compact} name='caption'>
-          Caption: Viverra maecenas accumsan lacus vel facilisis volutpat est.
-        </ZCaption>
+      <hr />
+      <ZCaption fashion={fashion} compact={compact} name='caption'>
+        Caption: Viverra maecenas accumsan lacus vel facilisis volutpat est.
+      </ZCaption>
 
-        <hr />
-        <ZOverline fashion={fashion} compact={compact} name='overline'>
-          Overline: Pretium quam vulputate dignissim suspendisse.
-        </ZOverline>
-      </ZTypography>
+      <hr />
+      <ZOverline fashion={fashion} compact={compact} name='overline'>
+        Overline: Pretium quam vulputate dignissim suspendisse.
+      </ZOverline>
 
       <ZBox margin={{ top: ZSizeFixed.Medium }}>
         <ZH3>Options</ZH3>
