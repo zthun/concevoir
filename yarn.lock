@@ -3317,7 +3317,7 @@ __metadata:
     "@zthun/fashion-theme": "npm:^2.7.0"
     "@zthun/helpful-dom": "npm:^4.0.4"
     "@zthun/helpful-fn": "npm:^4.0.4"
-    "@zthun/spellcraft": "npm:^2.0.0"
+    "@zthun/spellcraft": "npm:^2.0.1"
     "@zthun/trilean": "npm:^1.1.0"
     csstype: "npm:^3.1.3"
     lodash-es: "npm:^4.17.21"
@@ -3520,15 +3520,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/helpful-fn@npm:^4.0.2":
-  version: 4.0.2
-  resolution: "@zthun/helpful-fn@npm:4.0.2"
-  dependencies:
-    uuid: "npm:^9.0.1"
-  checksum: 10c0/a123eb954d5784714ea303fd405257c821969db189bcfe04840623a4c1f906b386dffc4ca8f23ed9196255e70f0a42339214504d670cf24c084c29b3013323e6
-  languageName: node
-  linkType: hard
-
 "@zthun/helpful-fn@npm:^4.0.4":
   version: 4.0.4
   resolution: "@zthun/helpful-fn@npm:4.0.4"
@@ -3669,14 +3660,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/spellcraft@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@zthun/spellcraft@npm:2.0.0"
+"@zthun/spellcraft@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@zthun/spellcraft@npm:2.0.1"
   dependencies:
-    "@zthun/helpful-fn": "npm:^4.0.2"
+    "@zthun/helpful-fn": "npm:^4.0.4"
     "@zthun/trilean": "npm:^1.1.0"
     lodash-es: "npm:^4.17.21"
-  checksum: 10c0/03791ff204bbb674dd5867c18549f48293b2994d8928038272c950985265bb886f31e01d5405aa24e2e0c7b6637d5968b2a2d2ffd270e708e7ccb470f7c15a9e
+  checksum: 10c0/55262b98bee5d3cbc4acb03cbf2cc38a93db1ee7fdf751c9d626b2e9ecc2ba2424bde4b3529cb47ea2b4e4dcb3f09665b721c41de73aa0936a15b2ba2c050244
   languageName: node
   linkType: hard
 
