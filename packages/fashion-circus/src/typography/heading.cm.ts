@@ -2,7 +2,7 @@ import { ZCircusComponentModel } from '@zthun/cirque';
 import { ZFashionIntrinsic } from '@zthun/fashion-theme';
 
 export class ZHeadingComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZHeading-root';
+  public static readonly Selector = '.ZTypography-heading';
 
   public fashion() {
     return this.driver.attribute('data-fashion', ZFashionIntrinsic.Inherit);
