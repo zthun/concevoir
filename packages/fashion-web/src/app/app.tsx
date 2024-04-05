@@ -11,8 +11,7 @@ import {
   ZNotFound,
   ZRoute,
   ZRouteMap,
-  ZRouter,
-  ZTypography
+  ZRouter
 } from '@zthun/fashion-react';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { ZFashionContrast, createDarkTheme, createLightTheme } from '@zthun/fashion-theme';
@@ -102,42 +101,40 @@ export function ZFashionApp() {
 
   return (
     <ZRouter>
-      <ZTypography>
-        <ZFashionThemeProvider theme={theme}>
-          <ZBannerMain avatar={avatar} prefix={prefix} suffix={suffix}>
-            <ZRouteMap>
-              <ZRoute path={ZFashionRouteHome.path} element={<ZHomePage />} />
-              <ZRoute path={ZFashionRouteTheme.path} element={<ZBreadcrumbsOutlet breadcrumbsProps={breadcrumbs} />}>
-                <ZRoute path='' element={<ZThemePage />} />
-              </ZRoute>
-              <ZRoute path={ZFashionRouteBoutique.path} element={<ZBreadcrumbsOutlet breadcrumbsProps={breadcrumbs} />}>
-                <ZRoute path={ZFashionRouteAlert.path} element={<ZAlertPage />} />
-                <ZRoute path={ZFashionRouteBoolean.path} element={<ZBooleanPage />} />
-                <ZRoute path={ZFashionRouteBubble.path} element={<ZBubblePage />} />
-                <ZRoute path={ZFashionRouteButton.path} element={<ZButtonPage />} />
-                <ZRoute path={ZFashionRouteCard.path} element={<ZCardPage />} />
-                <ZRoute path={ZFashionRouteCarousel.path} element={<ZCarouselPage />} />
-                <ZRoute path={ZFashionRouteChart.path} element={<ZChartPage />} />
-                <ZRoute path={ZFashionRouteChoice.path} element={<ZChoicePage />} />
-                <ZRoute path={ZFashionRouteDrawer.path} element={<ZDrawerPage />} />
-                <ZRoute path={ZFashionRouteGridView.path} element={<ZGridViewPage />} />
-                <ZRoute path={ZFashionRouteImage.path} element={<ZImagePage />} />
-                <ZRoute path={ZFashionRouteList.path} element={<ZListPage />} />
-                <ZRoute path={ZFashionRouteModal.path} element={<ZModalPage />} />
-                <ZRoute path={ZFashionRouteNumber.path} element={<ZNumberPage />} />
-                <ZRoute path={ZFashionRoutePopup.path} element={<ZPopupPage />} />
-                <ZRoute path={ZFashionRouteSuspense.path} element={<ZSuspensePage />} />
-                <ZRoute path={ZFashionRouteText.path} element={<ZTextPage />} />
-                <ZRoute path={ZFashionRouteTypography.path} element={<ZTypographyPage />} />
-                <ZRoute path={ZFashionRouteWizard.path} element={<ZWizardPage />} />
-                <ZRoute path={ZFashionRouteYouTube.path} element={<ZYouTubePage />} />
-                <ZRoute path='' element={<ZBoutiquePage />} />
-              </ZRoute>
-              <ZRoute path='*' element={<ZNotFound />} />
-            </ZRouteMap>
-          </ZBannerMain>
-        </ZFashionThemeProvider>
-      </ZTypography>
+      <ZFashionThemeProvider theme={theme}>
+        <ZBannerMain avatar={avatar} prefix={prefix} suffix={suffix}>
+          <ZRouteMap>
+            <ZRoute path={ZFashionRouteHome.path} element={<ZHomePage />} />
+            <ZRoute path={ZFashionRouteTheme.path} element={<ZBreadcrumbsOutlet breadcrumbsProps={breadcrumbs} />}>
+              <ZRoute path='' element={<ZThemePage />} />
+            </ZRoute>
+            <ZRoute path={ZFashionRouteBoutique.path} element={<ZBreadcrumbsOutlet breadcrumbsProps={breadcrumbs} />}>
+              <ZRoute path={ZFashionRouteAlert.path} element={<ZAlertPage />} />
+              <ZRoute path={ZFashionRouteBoolean.path} element={<ZBooleanPage />} />
+              <ZRoute path={ZFashionRouteBubble.path} element={<ZBubblePage />} />
+              <ZRoute path={ZFashionRouteButton.path} element={<ZButtonPage />} />
+              <ZRoute path={ZFashionRouteCard.path} element={<ZCardPage />} />
+              <ZRoute path={ZFashionRouteCarousel.path} element={<ZCarouselPage />} />
+              <ZRoute path={ZFashionRouteChart.path} element={<ZChartPage />} />
+              <ZRoute path={ZFashionRouteChoice.path} element={<ZChoicePage />} />
+              <ZRoute path={ZFashionRouteDrawer.path} element={<ZDrawerPage />} />
+              <ZRoute path={ZFashionRouteGridView.path} element={<ZGridViewPage />} />
+              <ZRoute path={ZFashionRouteImage.path} element={<ZImagePage />} />
+              <ZRoute path={ZFashionRouteList.path} element={<ZListPage />} />
+              <ZRoute path={ZFashionRouteModal.path} element={<ZModalPage />} />
+              <ZRoute path={ZFashionRouteNumber.path} element={<ZNumberPage />} />
+              <ZRoute path={ZFashionRoutePopup.path} element={<ZPopupPage />} />
+              <ZRoute path={ZFashionRouteSuspense.path} element={<ZSuspensePage />} />
+              <ZRoute path={ZFashionRouteText.path} element={<ZTextPage />} />
+              <ZRoute path={ZFashionRouteTypography.path} element={<ZTypographyPage />} />
+              <ZRoute path={ZFashionRouteWizard.path} element={<ZWizardPage />} />
+              <ZRoute path={ZFashionRouteYouTube.path} element={<ZYouTubePage />} />
+              <ZRoute path='' element={<ZBoutiquePage />} />
+            </ZRoute>
+            <ZRoute path='*' element={<ZNotFound />} />
+          </ZRouteMap>
+        </ZBannerMain>
+      </ZFashionThemeProvider>
     </ZRouter>
   );
 }
