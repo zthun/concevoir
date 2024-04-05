@@ -7,8 +7,7 @@ import {
   ZParagraphOverlineElement,
   ZParagraphSubtitleElement
 } from '@zthun/fashion-boutique';
-import { includeCustomElement } from '@zthun/helpful-dom';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 
@@ -21,7 +20,7 @@ export interface IZParagraphProps
 
 export const ZParagraph = (props: IZParagraphProps) => {
   const { children, className, compact, fashion, name } = props;
-  useMemo(() => includeCustomElement(ZParagraphBodyElement), []);
+  ZParagraphBodyElement;
 
   return (
     // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
@@ -33,7 +32,7 @@ export const ZParagraph = (props: IZParagraphProps) => {
 
 export const ZSubtitle = (props: IZParagraphProps) => {
   const { children, className, compact, fashion, name } = props;
-  useMemo(() => includeCustomElement(ZParagraphSubtitleElement), []);
+  ZParagraphSubtitleElement;
 
   return (
     // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
@@ -45,7 +44,7 @@ export const ZSubtitle = (props: IZParagraphProps) => {
 
 export const ZCaption = (props: IZParagraphProps) => {
   const { children, className, compact, fashion, name } = props;
-  useMemo(() => includeCustomElement(ZParagraphCaptionElement), []);
+  ZParagraphCaptionElement;
 
   return (
     // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
@@ -57,7 +56,7 @@ export const ZCaption = (props: IZParagraphProps) => {
 
 export const ZOverline = (props: IZParagraphProps) => {
   const { children, className, compact, fashion, name } = props;
-  useMemo(() => includeCustomElement(ZParagraphOverlineElement), []);
+  ZParagraphOverlineElement;
 
   return (
     // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.

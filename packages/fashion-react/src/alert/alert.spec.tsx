@@ -4,7 +4,6 @@ import { ZAlertComponentModel } from '@zthun/fashion-circus';
 import { ZFashionPriority } from '@zthun/fashion-theme';
 import React, { ReactNode } from 'react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { ZFashionThemeProvider } from '../theme/fashion';
 import { ZAlert } from './alert';
 
 describe('ZAlert', () => {
@@ -16,11 +15,7 @@ describe('ZAlert', () => {
   let fashion: string | undefined;
 
   const createTestTarget = async () => {
-    const element = (
-      <ZFashionThemeProvider>
-        <ZAlert message={message} heading={heading} fashion={fashion} avatar={avatar} />
-      </ZFashionThemeProvider>
-    );
+    const element = <ZAlert message={message} heading={heading} fashion={fashion} avatar={avatar} />;
     _renderer = new ZCircusSetupRenderer(element);
     _driver = await _renderer.setup();
     return ZCircusBy.first(_driver, ZAlertComponentModel);

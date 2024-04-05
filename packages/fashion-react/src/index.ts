@@ -71,6 +71,5 @@ export * from './theme/fashion';
 export * from './theme/styled';
 export * from './typography/heading';
 export * from './typography/paragraph';
-export * from './typography/typography';
 export * from './wizard/wizard';
 export * from './you-tube/you-tube-video';
