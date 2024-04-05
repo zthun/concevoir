@@ -1,16 +1,26 @@
 import {
+  IZComponentRender,
+  IZComponentTemplate,
   ZComponentRegister,
   ZComponentRenderOnAttributeChanged,
   ZComponentRenderOnConnected,
   ZComponentRenderTemplate,
   ZComponentShadow
 } from '@zthun/spellcraft';
-import { ZTypography } from './typography.mjs';
+import { ZComponentClass } from './component-class.mjs';
+import { ZComponentTemplateTypography } from './component-template-typography.mjs';
+
+export interface ZParagraphOverlineElement extends IZComponentRender, IZComponentTemplate {}
 
 @ZComponentRegister('z-paragraph-overline', { extend: 'p' })
-@ZTypography({ scale: { xl: 0.95 } })
-@ZComponentRenderTemplate()
 @ZComponentRenderOnConnected()
 @ZComponentRenderOnAttributeChanged()
+@ZComponentRenderTemplate()
+@ZComponentTemplateTypography({
+  scale: {
+    xl: 0.95
+  }
+})
+@ZComponentClass('ZTypography-root', 'ZTypography-paragraph', 'ZTypography-paragraph-overline')
 @ZComponentShadow()
 export class ZParagraphOverlineElement extends HTMLParagraphElement {}
