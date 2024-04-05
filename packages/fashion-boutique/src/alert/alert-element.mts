@@ -2,6 +2,7 @@ import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionPriority } from '@zthun/fashion-theme';
 import { html } from '@zthun/helpful-fn';
 import {
+  IZComponentRender,
   IZComponentTemplate,
   ZAttribute,
   ZComponentRegister,
@@ -14,10 +15,12 @@ import { IZComponentFashion, ZFashionDetail } from '../component/component-fashi
 import { IZComponentName } from '../component/component-name.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
+export interface ZAlertElement extends IZComponentRender {}
+
 @ZComponentRegister('z-alert')
-@ZComponentRenderTemplate()
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
+@ZComponentRenderTemplate()
 @ZComponentShadow()
 export class ZAlertElement extends HTMLElement implements IZComponentFashion, IZComponentName, IZComponentTemplate {
   public static readonly observedAttributes = ['fashion'];
