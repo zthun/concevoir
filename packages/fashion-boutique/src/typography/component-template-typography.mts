@@ -15,7 +15,7 @@ export interface IZTypographyOptions {
   weight?: Property.FontWeight;
 }
 
-export function ZTemplateTypography<TElement extends ZHtmlTypographyElement>(options?: IZTypographyOptions) {
+export function ZComponentTemplateTypography<TElement extends ZHtmlTypographyElement>(options?: IZTypographyOptions) {
   const scale = firstTruthy({ xl: 1 }, options?.scale);
   const _scale = new ZDeviceBounds(scale, 1);
   const transform = firstTruthy('none', options?.transform);
