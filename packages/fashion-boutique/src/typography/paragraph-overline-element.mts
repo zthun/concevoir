@@ -1,13 +1,13 @@
 import {
   IZComponentRender,
   IZComponentTemplate,
+  ZComponentClass,
   ZComponentRegister,
   ZComponentRenderOnAttributeChanged,
   ZComponentRenderOnConnected,
   ZComponentRenderTemplate,
   ZComponentShadow
 } from '@zthun/spellcraft';
-import { ZComponentClass } from './component-class.mjs';
 import { ZComponentTemplateTypography } from './component-template-typography.mjs';
 
 export interface ZParagraphOverlineElement extends IZComponentRender, IZComponentTemplate {}
