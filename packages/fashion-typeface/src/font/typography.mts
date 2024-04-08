@@ -13,7 +13,7 @@ export class ZFashionTypographyBuilder {
   public constructor() {
     this._typography = {
       families: [ZFontFamily.Roboto, ZFontFamily.Arial],
-      unit: 'rem',
+      unit: 'em',
       size: 1
     };
   }
