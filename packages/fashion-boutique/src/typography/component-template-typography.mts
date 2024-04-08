@@ -21,9 +21,9 @@ export function ZComponentTemplateTypography<TElement extends ZHtmlTypographyEle
   const transform = firstTruthy('none', options?.transform);
   const weight = firstTruthy('normal', options?.weight);
 
-  return (Target: ZComponentConstructor<TElement>): any => {
+  return (target: ZComponentConstructor<TElement>): any => {
     // @ts-expect-error See https://github.com/microsoft/TypeScript/issues/37142
-    class _Typography extends Target implements IZComponentTemplate {
+    class _Typography extends target implements IZComponentTemplate {
       public static readonly observedAttributes = ['data-compact', 'data-fashion'];
 
       @ZAttribute({ name: 'data-compact', type: 'boolean' })
