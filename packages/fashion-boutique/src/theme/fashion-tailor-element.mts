@@ -7,7 +7,7 @@ import {
   ZSizeVoid,
   ZThicknessSize
 } from '@zthun/fashion-tailor';
-import { ZProperty, cssVariable } from '@zthun/helpful-dom';
+import { ZProperty } from '@zthun/helpful-dom';
 import { css } from '@zthun/helpful-fn';
 import { ZComponentStyle } from './component-style.mjs';
 
@@ -22,7 +22,7 @@ export class ZFashionTailorElement extends HTMLElement {
   }
 
   public static gapVar(size: ZGapSize | ZSizeVaried.Fit): string {
-    return cssVariable(ZFashionTailorElement.gapProp(size));
+    return `var(${ZFashionTailorElement.gapProp(size)})`;
   }
 
   public static thicknessProp(size: ZThicknessSize): string {
@@ -30,7 +30,7 @@ export class ZFashionTailorElement extends HTMLElement {
   }
 
   public static thicknessVar(size: ZThicknessSize): string {
-    return cssVariable(ZFashionTailorElement.thicknessProp(size));
+    return `var(${ZFashionTailorElement.thicknessProp(size)})`;
   }
 
   @ZProperty({ initial: new ZFashionTailor() })

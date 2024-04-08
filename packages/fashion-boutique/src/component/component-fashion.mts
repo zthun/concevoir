@@ -1,5 +1,4 @@
 import { ZFashionScope } from '@zthun/fashion-theme';
-import { cssVariable } from '@zthun/helpful-dom';
 import { castArray } from 'lodash-es';
 import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
 
@@ -21,6 +20,6 @@ export class ZFashionDetail {
     const [$first] = $scopes;
 
     const globalColor = ZFashionThemeElement.property(this._fashion, $first);
-    return cssVariable(globalColor);
+    return `var(${globalColor})`;
   }
 }
