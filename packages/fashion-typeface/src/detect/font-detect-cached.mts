@@ -4,7 +4,7 @@ import { IZFontDetect } from './font-detect.mjs';
 /**
  * A font detect implementation that caches the font list as soon as it is accessed.
  */
-export abstract class ZFontDetectCached implements IZFontDetect {
+export class ZFontDetectCached implements IZFontDetect {
   private _fonts: Promise<ZFontFamily[]> | null;
 
   /**

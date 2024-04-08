@@ -1,6 +1,7 @@
 import { trimEnd } from 'lodash-es';
 import { describe, expect, it } from 'vitest';
 import { ZFontFamily } from '../font/font-family.mjs';
+import { ZFontDetectCached } from './font-detect-cached.mjs';
 import { ZFontDetectFontFaceSet } from './font-detect-font-face-set.mjs';
 import { ZFontDetectStatic } from './font-detect-static.mjs';
 
@@ -10,10 +11,11 @@ describe('Font Detect', () => {
   describe('Static', () => {
     it('should load available fonts', async () => {
       // Arrange.
-      const target = new ZFontDetectStatic(SampleFontSet);
+      const target = new ZFontDetectCached(new ZFontDetectStatic(SampleFontSet));
       const expected = [...SampleFontSet];
       expected.sort();
       // Act.
+      await target.detect();
       const fonts = await target.detect();
       // Assert.
       expect(fonts).toEqual(expected);
