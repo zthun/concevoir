@@ -2820,12 +2820,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.11.30":
-  version: 20.11.30
-  resolution: "@types/node@npm:20.11.30"
+"@types/node@npm:*, @types/node@npm:^20.12.5":
+  version: 20.12.5
+  resolution: "@types/node@npm:20.12.5"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 10c0/867cfaf969c6d8850d8d7304e7ab739898a50ecb1395b61ff2335644f5f48d7a46fbc4a14cee967aed65ec134b61a746edae70d1f32f11321ccf29165e3bc4e6
+  checksum: 10c0/2da65516fba98f0417620e42bddbe53e144d4782d69cd37f99df2537c6850b9cfbdb8a017f02c61e9a074bcac84f9f3f221b250474ac8c6b95d507a47e8d53f9
   languageName: node
   linkType: hard
 
@@ -3318,11 +3318,11 @@ __metadata:
     "@zthun/fashion-typeface": "npm:^2.7.0"
     "@zthun/helpful-dom": "npm:^4.1.0"
     "@zthun/helpful-fn": "npm:^4.1.0"
-    "@zthun/spellcraft": "npm:^2.1.1"
+    "@zthun/spellcraft": "npm:^2.2.0"
     "@zthun/trilean": "npm:^1.1.0"
     csstype: "npm:^3.1.3"
     lodash-es: "npm:^4.17.21"
-    vite: "npm:^5.2.6"
+    vite: "npm:^5.2.8"
     vitest: "npm:^1.4.0"
   languageName: unknown
   linkType: soft
@@ -3336,7 +3336,7 @@ __metadata:
     "@zthun/fashion-theme": "npm:^2.7.0"
     "@zthun/helpful-fn": "npm:^4.1.0"
     "@zthun/trilean": "npm:^1.1.0"
-    vite: "npm:^5.2.6"
+    vite: "npm:^5.2.8"
     vitest: "npm:^1.4.0"
   languageName: unknown
   linkType: soft
@@ -3388,7 +3388,7 @@ __metadata:
     lodash-es: "npm:^4.17.21"
     react-router-dom: "npm:^6.22.3"
     tss-react: "npm:^4.9.4"
-    vite: "npm:^5.2.6"
+    vite: "npm:^5.2.8"
     vitest: "npm:^1.4.0"
   peerDependencies:
     react: ^18.1.0
@@ -3401,7 +3401,7 @@ __metadata:
   resolution: "@zthun/fashion-tailor@workspace:packages/fashion-tailor"
   dependencies:
     lodash-es: "npm:^4.17.21"
-    vite: "npm:^5.2.6"
+    vite: "npm:^5.2.8"
     vitest: "npm:^1.4.0"
   languageName: unknown
   linkType: soft
@@ -3412,7 +3412,7 @@ __metadata:
   dependencies:
     csstype: "npm:^3.1.3"
     lodash-es: "npm:^4.17.21"
-    vite: "npm:^5.2.6"
+    vite: "npm:^5.2.8"
     vitest: "npm:^1.4.0"
   languageName: unknown
   linkType: soft
@@ -3422,7 +3422,7 @@ __metadata:
   resolution: "@zthun/fashion-typeface@workspace:packages/fashion-typeface"
   dependencies:
     lodash-es: "npm:^4.17.21"
-    vite: "npm:^5.2.6"
+    vite: "npm:^5.2.8"
     vitest: "npm:^1.4.0"
   languageName: unknown
   linkType: soft
@@ -3453,7 +3453,7 @@ __metadata:
     react-dom: "npm:^18.2.0"
     react-router-dom: "npm:^6.22.3"
     rollup-plugin-visualizer: "npm:^5.12.0"
-    vite: "npm:^5.2.6"
+    vite: "npm:^5.2.8"
     vite-tsconfig-paths: "npm:^4.3.2"
     vitest: "npm:^1.4.0"
   languageName: unknown
@@ -3469,7 +3469,7 @@ __metadata:
     "@types/jsdom": "npm:^21.1.6"
     "@types/lodash": "npm:^4.17.0"
     "@types/lodash-es": "npm:^4.17.12"
-    "@types/node": "npm:^20.11.30"
+    "@types/node": "npm:^20.12.5"
     "@types/react-window": "npm:^1.8.8"
     "@vitest/coverage-istanbul": "npm:^1.4.0"
     "@zthun/lint-janitor": "npm:^16.0.0"
@@ -3484,10 +3484,10 @@ __metadata:
     rimraf: "npm:^5.0.5"
     ts-node: "npm:^10.9.2"
     tsconfig-paths: "npm:^4.2.0"
-    typescript: "npm:~5.4.3"
-    vite: "npm:^5.2.6"
+    typescript: "npm:~5.4.4"
+    vite: "npm:^5.2.8"
     vite-plugin-checker: "npm:^0.6.4"
-    vite-plugin-dts: "npm:^3.8.0"
+    vite-plugin-dts: "npm:^3.8.1"
     vite-plugin-externalize-deps: "npm:^0.8.0"
     vite-tsconfig-paths: "npm:^4.3.2"
     vitest: "npm:^1.4.0"
@@ -3661,14 +3661,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/spellcraft@npm:^2.1.1":
-  version: 2.1.1
-  resolution: "@zthun/spellcraft@npm:2.1.1"
+"@zthun/spellcraft@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "@zthun/spellcraft@npm:2.2.0"
   dependencies:
     "@zthun/helpful-fn": "npm:^4.1.0"
     "@zthun/trilean": "npm:^1.1.0"
     lodash-es: "npm:^4.17.21"
-  checksum: 10c0/419528991a51a6e69e47c16d5239b9e5b47c7f6868f7274342e498ec3fe7c8377c5e609824ea8fe084ae1dc71c5f5b14ef42a5c7c07c541e5cb4dec009b3e9a1
+  checksum: 10c0/a15aa8dd6256b242a1802caa3a6b03180a8f3bb2c4ed83ecfe39897bb7f70a99db5e760233905734b6bf3842d015f22a31573e9deb85344326cf510282ebba01
   languageName: node
   linkType: hard
 
@@ -10376,7 +10376,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.36, postcss@npm:^8.4.38":
+"postcss@npm:^8.4.38":
   version: 8.4.38
   resolution: "postcss@npm:8.4.38"
   dependencies:
@@ -12575,13 +12575,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:>=3 < 6, typescript@npm:~5.4.3":
-  version: 5.4.3
-  resolution: "typescript@npm:5.4.3"
+"typescript@npm:>=3 < 6, typescript@npm:~5.4.4":
+  version: 5.4.4
+  resolution: "typescript@npm:5.4.4"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/22443a8760c3668e256c0b34b6b45c359ef6cecc10c42558806177a7d500ab1a7d7aac1f976d712e26989ddf6731d2fbdd3212b7c73290a45127c1c43ba2005a
+  checksum: 10c0/4d8de0291204ed61ca97ad0cba2ce064e09c4988ca1c451c787e4653ba76296ba35177a52694e8a00cf4ef899d0ee83338663b926d8b7d55167ff0ba81549999
   languageName: node
   linkType: hard
 
@@ -12595,13 +12595,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A>=3 < 6#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A~5.4.3#optional!builtin<compat/typescript>":
-  version: 5.4.3
-  resolution: "typescript@patch:typescript@npm%3A5.4.3#optional!builtin<compat/typescript>::version=5.4.3&hash=5adc0c"
+"typescript@patch:typescript@npm%3A>=3 < 6#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A~5.4.4#optional!builtin<compat/typescript>":
+  version: 5.4.4
+  resolution: "typescript@patch:typescript@npm%3A5.4.4#optional!builtin<compat/typescript>::version=5.4.4&hash=5adc0c"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/6e51f8b7e6ec55b897b9e56b67e864fe8f44e30f4a14357aad5dc0f7432db2f01efc0522df0b6c36d361c51f2dc3dcac5c832efd96a404cfabf884e915d38828
+  checksum: 10c0/1fa41b9964a9ff0ed913b339c90b46031b2d2da3cb1a192af516610733f7f1d5f7f9754a8e22b9ac7076d3d8aedd2c4f84db3f113bad060eac3a95962443a1bf
   languageName: node
   linkType: hard
 
@@ -12897,9 +12897,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-dts@npm:^3.8.0":
-  version: 3.8.0
-  resolution: "vite-plugin-dts@npm:3.8.0"
+"vite-plugin-dts@npm:^3.8.1":
+  version: 3.8.1
+  resolution: "vite-plugin-dts@npm:3.8.1"
   dependencies:
     "@microsoft/api-extractor": "npm:7.43.0"
     "@rollup/pluginutils": "npm:^5.1.0"
@@ -12914,7 +12914,7 @@ __metadata:
   peerDependenciesMeta:
     vite:
       optional: true
-  checksum: 10c0/2b82f77ce1f9e370865073b6572a9e2b192f4a30aa80e7f97487ec36663b26306092b5685374fc5a2e92698493a9c56b475cf70dcb0b32bb9818dd96e2b29e7a
+  checksum: 10c0/0d61a6eae3c97d78efd74bc647fc94b446a8461ad97530e69b18173084e728411a1005d8ad97142508d1a8252b00cf9b849dd94e9fcc72560a69c92f48e9185c
   languageName: node
   linkType: hard
 
@@ -12943,13 +12943,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^5.0.0, vite@npm:^5.2.6":
-  version: 5.2.6
-  resolution: "vite@npm:5.2.6"
+"vite@npm:^5.0.0, vite@npm:^5.2.8":
+  version: 5.2.8
+  resolution: "vite@npm:5.2.8"
   dependencies:
     esbuild: "npm:^0.20.1"
     fsevents: "npm:~2.3.3"
-    postcss: "npm:^8.4.36"
+    postcss: "npm:^8.4.38"
     rollup: "npm:^4.13.0"
   peerDependencies:
     "@types/node": ^18.0.0 || >=20.0.0
@@ -12979,7 +12979,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10c0/9ccaa65521b738ed5d6ad9cd118584a833191d29649eaa77ccb8096a60ded2ca9014193b8b866ad76054d0c89443f7b68b578686e4e2ef83147273e7788408c2
+  checksum: 10c0/b5717bb00c2570c08ff6d8ed917655e79184efcafa9dd62d52eea19c5d6dfc5a708ec3de9ebc670a7165fc5d401c2bdf1563bb39e2748d8e51e1593d286a9a13
   languageName: node
   linkType: hard
 
