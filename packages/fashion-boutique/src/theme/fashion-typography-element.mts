@@ -13,7 +13,7 @@ export interface ZFashionTypographyElement extends IZComponentWithStyleElement {
 
 @ZComponentRegister('z-fashion-typography')
 @ZComponentStylesAddOnConnect()
-@ZComponentStyles({ id: 'ZFashionTypography-root' })
+@ZComponentStyles({ id: 'ZFashionTypography-styles' })
 export class ZFashionTypographyElement extends HTMLElement implements IZComponentStyles {
   public static readonly defaultTypography = new ZFashionTypographyBuilder().build();
   public static readonly defaultFontSize = `${ZFashionTypographyElement.defaultTypography.size}${ZFashionTypographyElement.defaultTypography.unit}`;

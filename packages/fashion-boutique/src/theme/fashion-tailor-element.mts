@@ -7,15 +7,22 @@ import {
   ZSizeVoid,
   ZThicknessSize
 } from '@zthun/fashion-tailor';
-import { ZProperty } from '@zthun/helpful-dom';
 import { css } from '@zthun/helpful-fn';
-import { ZComponentStyle } from './component-style.mjs';
+import {
+  IZComponentWithStyleElement,
+  ZComponentRegister,
+  ZComponentStyles,
+  ZComponentStylesAddOnConnect,
+  ZComponentStylesUpdateOnPropertyChange,
+  ZProperty
+} from '@zthun/spellcraft';
 
-export interface IZFashionTailorElement {
-  render(): void;
-}
+export interface ZFashionTailorElement extends IZComponentWithStyleElement {}
 
-@ZComponentStyle({ name: 'ZFashionTailor' })
+@ZComponentRegister('z-fashion-tailor')
+@ZComponentStylesUpdateOnPropertyChange()
+@ZComponentStylesAddOnConnect()
+@ZComponentStyles({ id: 'ZFashionTailor-styles' })
 export class ZFashionTailorElement extends HTMLElement {
   public static gapProp(size: ZGapSize | ZSizeVaried.Fit): string {
     return `--fashion-tailor-gap-${size}`;

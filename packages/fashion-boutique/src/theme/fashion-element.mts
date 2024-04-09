@@ -1,12 +1,26 @@
 /* eslint-disable @typescript-eslint/no-unsafe-declaration-merging */
 
 import { IZFashion, ZFashionBuilder, ZFashionScope } from '@zthun/fashion-theme';
-import { IZComponentStyles, ZProperty } from '@zthun/helpful-dom';
 import { css, firstDefined } from '@zthun/helpful-fn';
+import {
+  IZComponentStyles,
+  IZComponentWithStyleElement,
+  ZComponentRegister,
+  ZComponentStyles,
+  ZComponentStylesAddOnConnect,
+  ZComponentStylesRemoveOnDisconnect,
+  ZComponentStylesUpdateOnPropertyChange,
+  ZProperty
+} from '@zthun/spellcraft';
 import { kebabCase } from 'lodash-es';
-import { ZComponentStyle } from './component-style.mjs';
 
-@ZComponentStyle({ name: 'ZFashion' })
+export interface ZFashionElement extends IZComponentWithStyleElement {}
+
+@ZComponentRegister('z-fashion')
+@ZComponentStylesRemoveOnDisconnect()
+@ZComponentStylesUpdateOnPropertyChange()
+@ZComponentStylesAddOnConnect()
+@ZComponentStyles()
 export class ZFashionElement extends HTMLElement implements IZComponentStyles {
   @ZProperty({ initial: new ZFashionBuilder().build(), attribute: (f) => f?.name })
   public fashion: IZFashion;
