@@ -1,7 +1,7 @@
 import { ZCircusKeyboardQwerty } from '@zthun/cirque';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionArea } from '@zthun/fashion-theme';
-import { IZComponentDisconnected, ZAttribute, ZComponentShadow, cssVariable } from '@zthun/helpful-dom';
+import { IZComponentDisconnected, ZAttribute, ZComponentShadow } from '@zthun/helpful-dom';
 import { ZAnchor, ZHorizontalAnchor, ZQuadrilateralBuilder, ZRectangle, ZVerticalAnchor } from '@zthun/helpful-fn';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
@@ -60,9 +60,9 @@ export class ZPopupElement extends HTMLElement implements IZComponentDisconnecte
     content.classList.add('ZPopup-content');
 
     content.style.position = 'absolute';
-    content.style.backgroundColor = cssVariable(ZFashionThemeElement.property(this.fashion, 'main'));
-    content.style.color = cssVariable(ZFashionThemeElement.property(this.fashion, 'contrast'));
-    content.style.borderColor = cssVariable(ZFashionThemeElement.property(this.fashion, 'border'));
+    content.style.backgroundColor = ZFashionThemeElement.variable(this.fashion, 'main');
+    content.style.color = ZFashionThemeElement.variable(this.fashion, 'contrast');
+    content.style.borderColor = ZFashionThemeElement.variable(this.fashion, 'border');
     content.style.borderWidth = '0.016rem';
     content.style.borderStyle = 'solid';
     content.style.padding = ZFashionTailorElement.gapVar(ZSizeFixed.Small);

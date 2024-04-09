@@ -27,6 +27,13 @@ export class ZFashionThemeElement extends HTMLElement implements IZComponentRend
     return `--fashion-${kebabCase(name)}-${kebabCase(scope)}`;
   }
 
+  public static variable<TCustomNames extends string = ZFashionName>(
+    name: ZFashionName | TCustomNames,
+    scope: ZFashionScope
+  ) {
+    return `var(${ZFashionThemeElement.property(name, scope)})`;
+  }
+
   @ZProperty({ initial: new ZFashionThemeBuilder().build(), attribute: (v) => v?.name })
   public theme: IZFashionTheme;
 
