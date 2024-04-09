@@ -6,22 +6,14 @@ import {
   IZComponentLoading,
   IZComponentName,
   IZComponentWidth,
-  ZButtonElement
+  ZButtonElement,
+  ZDeviceElement
 } from '@zthun/fashion-boutique';
 import { ZDeviceBounds, ZSizeVaried } from '@zthun/fashion-tailor';
 import { IZComponentAvatar } from '../component/component-avatar.mjs';
 import { IZComponentLabel } from '../component/component-label.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
-
-import '../background/device';
-
-declare global {
-  namespace React.JSX {
-    interface IntrinsicElements {
-      ['z-button']: ZButtonElement & any;
-    }
-  }
-}
+import { useWebComponent } from '../component/use-web-component.mjs';
 
 export interface IZButton
   extends IZComponentAvatar,
@@ -66,7 +58,8 @@ export function ZButton(props: IZButton) {
   } = props;
 
   const $width = useMemo(() => new ZDeviceBounds(width, ZSizeVaried.Fit).toDeviceMap(), [width]);
-  useMemo(() => ZButtonElement, []);
+  useWebComponent(ZButtonElement);
+  useWebComponent(ZDeviceElement);
 
   return (
     <button
