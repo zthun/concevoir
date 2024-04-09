@@ -10,6 +10,7 @@ import {
 import React from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
+import { useWebComponent } from '../component/use-web-component.mjs';
 
 export interface IZParagraphProps
   extends IZComponentHierarchy,
@@ -20,7 +21,7 @@ export interface IZParagraphProps
 
 export const ZParagraph = (props: IZParagraphProps) => {
   const { children, className, compact, fashion, name } = props;
-  ZParagraphBodyElement;
+  useWebComponent(ZParagraphBodyElement);
 
   return (
     // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
@@ -32,7 +33,7 @@ export const ZParagraph = (props: IZParagraphProps) => {
 
 export const ZSubtitle = (props: IZParagraphProps) => {
   const { children, className, compact, fashion, name } = props;
-  ZParagraphSubtitleElement;
+  useWebComponent(ZParagraphSubtitleElement);
 
   return (
     // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
@@ -44,7 +45,7 @@ export const ZSubtitle = (props: IZParagraphProps) => {
 
 export const ZCaption = (props: IZParagraphProps) => {
   const { children, className, compact, fashion, name } = props;
-  ZParagraphCaptionElement;
+  useWebComponent(ZParagraphCaptionElement);
 
   return (
     // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
@@ -56,7 +57,7 @@ export const ZCaption = (props: IZParagraphProps) => {
 
 export const ZOverline = (props: IZParagraphProps) => {
   const { children, className, compact, fashion, name } = props;
-  ZParagraphOverlineElement;
+  useWebComponent(ZParagraphOverlineElement);
 
   return (
     // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.

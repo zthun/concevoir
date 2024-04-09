@@ -9,10 +9,10 @@ import {
   ZHeadingThreeElement,
   ZHeadingTwoElement
 } from '@zthun/fashion-boutique';
-import { includeCustomElement } from '@zthun/helpful-dom';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
+import { useWebComponent } from '../component/use-web-component.mjs';
 
 export interface IZHeadingProps
   extends IZComponentHierarchy,
@@ -23,7 +23,7 @@ export interface IZHeadingProps
 
 export const ZH1 = (props: IZHeadingProps) => {
   const { children, className, compact, fashion, name } = props;
-  useMemo(() => includeCustomElement(ZHeadingOneElement), []);
+  useWebComponent(ZHeadingOneElement);
 
   return (
     // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
@@ -35,7 +35,7 @@ export const ZH1 = (props: IZHeadingProps) => {
 
 export const ZH2 = (props: IZHeadingProps) => {
   const { children, className, compact, fashion, name } = props;
-  useMemo(() => includeCustomElement(ZHeadingTwoElement), []);
+  useWebComponent(ZHeadingTwoElement);
 
   return (
     // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
@@ -47,7 +47,7 @@ export const ZH2 = (props: IZHeadingProps) => {
 
 export const ZH3 = (props: IZHeadingProps) => {
   const { children, className, compact, fashion, name } = props;
-  useMemo(() => includeCustomElement(ZHeadingThreeElement), []);
+  useWebComponent(ZHeadingThreeElement);
 
   return (
     // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
@@ -59,7 +59,7 @@ export const ZH3 = (props: IZHeadingProps) => {
 
 export const ZH4 = (props: IZHeadingProps) => {
   const { children, className, compact, fashion, name } = props;
-  useMemo(() => includeCustomElement(ZHeadingFourElement), []);
+  useWebComponent(ZHeadingFourElement);
 
   return (
     // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
@@ -71,7 +71,7 @@ export const ZH4 = (props: IZHeadingProps) => {
 
 export const ZH5 = (props: IZHeadingProps) => {
   const { children, className, compact, fashion, name } = props;
-  useMemo(() => includeCustomElement(ZHeadingFiveElement), []);
+  useWebComponent(ZHeadingFiveElement);
 
   return (
     // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
@@ -83,7 +83,7 @@ export const ZH5 = (props: IZHeadingProps) => {
 
 export const ZH6 = (props: IZHeadingProps) => {
   const { children, className, compact, fashion, name } = props;
-  useMemo(() => includeCustomElement(ZHeadingSixElement), []);
+  useWebComponent(ZHeadingSixElement);
 
   return (
     // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
