@@ -9,7 +9,6 @@ import {
   ZButtonElement
 } from '@zthun/fashion-boutique';
 import { ZDeviceBounds, ZSizeVaried } from '@zthun/fashion-tailor';
-import { includeCustomElement } from '@zthun/helpful-dom';
 import { IZComponentAvatar } from '../component/component-avatar.mjs';
 import { IZComponentLabel } from '../component/component-label.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
@@ -68,24 +67,28 @@ export function ZButton(props: IZButton) {
 
   const $width = useMemo(() => new ZDeviceBounds(width, ZSizeVaried.Fit).toDeviceMap(), [width]);
 
-  useMemo(() => includeCustomElement(ZButtonElement), []);
-
   return (
-    <z-button
-      borderless={borderless}
+    <button
+      // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
       class={className}
-      compact={compact}
-      disabled={disabled}
-      fashion={fashion}
-      loading={loading}
-      outline={outline}
+      data-borderless={borderless}
+      data-compact={compact}
+      data-fashion={fashion}
+      data-loading={loading}
+      data-outline={outline}
+      disabled={disabled || undefined}
       name={name}
       title={tooltip}
+      is='z-button'
       onClick={onClick}
     >
       <z-device xl={$width.xl} lg={$width.lg} md={$width.md} sm={$width.sm} xs={$width.xs} name='width'></z-device>
-      <div slot='prefix'>{avatar}</div>
-      <div slot='content'>{label}</div>
-    </z-button>
+      <div className='ZButton-avatar' style={{ display: avatar ? 'block' : 'none' }}>
+        {avatar}
+      </div>
+      <div className='ZButton-label' style={{ display: label ? 'block' : 'none' }}>
+        {label}
+      </div>
+    </button>
   );
 }
