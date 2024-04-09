@@ -23,7 +23,7 @@ export class ZButtonComponentModel extends ZCircusComponentModel {
    *        True if the button is in the loading state.  False otherwise.
    */
   public async loading(): Promise<boolean> {
-    const c = await this.driver.attribute('loading');
+    const c = await this.driver.attribute('data-loading');
     return c === 'true';
   }
 
@@ -44,7 +44,7 @@ export class ZButtonComponentModel extends ZCircusComponentModel {
    *        True if the button is outlined.  False otherwise.
    */
   public async outlined(): Promise<boolean> {
-    const c = await this.driver.attribute('outline');
+    const c = await this.driver.attribute('data-outline');
     return c === 'true';
   }
 
@@ -55,7 +55,7 @@ export class ZButtonComponentModel extends ZCircusComponentModel {
    *        True if the button is compact. False otherwise.
    */
   public async compact(): Promise<boolean> {
-    const c = await this.driver.attribute('compact');
+    const c = await this.driver.attribute('data-compact');
     return c === 'true';
   }
 
@@ -66,7 +66,7 @@ export class ZButtonComponentModel extends ZCircusComponentModel {
    *        True if the button is borderless.  False otherwise.
    */
   public async borderless(): Promise<boolean> {
-    const c = await this.driver.attribute('borderless');
+    const c = await this.driver.attribute('data-borderless');
     return c === 'true';
   }
 
@@ -77,8 +77,7 @@ export class ZButtonComponentModel extends ZCircusComponentModel {
    *        The button content text, if any.
    */
   public async text(): Promise<string | null> {
-    const [content] = await this.driver.query('[slot="content"]');
-    return content?.text();
+    return this.driver.text();
   }
 
   /**
@@ -89,7 +88,7 @@ export class ZButtonComponentModel extends ZCircusComponentModel {
    *        Null if there is no fashion assigned.
    */
   public fashion(): Promise<string | null> {
-    return this.driver.attribute('fashion');
+    return this.driver.attribute('data-fashion');
   }
 
   /**
