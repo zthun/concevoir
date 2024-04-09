@@ -66,6 +66,7 @@ export function ZButton(props: IZButton) {
   } = props;
 
   const $width = useMemo(() => new ZDeviceBounds(width, ZSizeVaried.Fit).toDeviceMap(), [width]);
+  useMemo(() => ZButtonElement, []);
 
   return (
     <button
