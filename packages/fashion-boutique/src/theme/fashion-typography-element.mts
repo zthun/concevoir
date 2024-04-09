@@ -43,7 +43,7 @@ export class ZFashionTypographyElement extends HTMLElement implements IZComponen
         ${ZFashionTypographyElement.PropertyFontFamily}: ${family};
       }
 
-      body: {
+      body {
         font-family: ${family};
         font-size: ${fontSize};
       }
