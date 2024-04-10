@@ -7,31 +7,38 @@ import {
   ZSizeVoid,
   createSizeChartVariedCss
 } from '@zthun/fashion-tailor';
+import { firstTruthy, html } from '@zthun/helpful-fn';
 import {
-  IZComponentStyles,
+  IZComponentRender,
   IZComponentTemplate,
   ZAttribute,
-  ZComponentShadow,
-  ZElementListenBuilder
-} from '@zthun/helpful-dom';
-import { css, firstTruthy, html } from '@zthun/helpful-fn';
+  ZComponentClass,
+  ZComponentRegister,
+  ZComponentRenderOnAttributeChanged,
+  ZComponentRenderOnConnected,
+  ZComponentRenderOnEvent,
+  ZComponentRenderTemplate,
+  ZComponentShadow
+} from '@zthun/spellcraft';
 import { Property } from 'csstype';
 import { ZAlignmentElement } from '../background/alignment-element.mjs';
 import { ZDeviceElement } from '../background/device-element.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
-@ZComponentShadow({
-  name: 'ZGrid',
-  dependencies: [ZDeviceElement, ZAlignmentElement],
-  listen: [
-    new ZElementListenBuilder().namedElement('z-alignment', 'align').build(),
-    new ZElementListenBuilder().namedElement('z-device', 'columns').build(),
-    new ZElementListenBuilder().namedElement('z-alignment', 'justify').build(),
-    new ZElementListenBuilder().namedElement('z-device', 'height').build(),
-    new ZElementListenBuilder().namedElement('z-device', 'width').build()
-  ]
-})
-export class ZGridElement extends HTMLElement implements IZComponentStyles, IZComponentTemplate {
+export interface ZGridElement extends IZComponentRender {}
+
+@ZComponentRegister('z-grid')
+@ZComponentRenderOnEvent('change', { selector: 'z-alignment[name="align"]' })
+@ZComponentRenderOnEvent('change', { selector: 'z-alignment[name="justify"]' })
+@ZComponentRenderOnEvent('change', { selector: 'z-device[name="columns"]' })
+@ZComponentRenderOnEvent('change', { selector: 'z-device[name="width"]' })
+@ZComponentRenderOnEvent('change', { selector: 'z-device[name="height"]' })
+@ZComponentRenderOnAttributeChanged()
+@ZComponentRenderOnConnected()
+@ZComponentRenderTemplate()
+@ZComponentClass('ZGrid-root')
+@ZComponentShadow()
+export class ZGridElement extends HTMLElement implements IZComponentTemplate {
   public static readonly GridDimensionChart = Object.freeze(createSizeChartVariedCss());
   public static readonly observedAttributes = ['rows', 'gap'];
 
@@ -41,7 +48,7 @@ export class ZGridElement extends HTMLElement implements IZComponentStyles, IZCo
   @ZAttribute()
   public gap?: ZGapSize;
 
-  public styles() {
+  public template() {
     const { rows, gap } = this;
 
     const device = new ZFashionDevice();
@@ -58,56 +65,55 @@ export class ZGridElement extends HTMLElement implements IZComponentStyles, IZCo
     const $height = this.querySelector<ZDeviceElement>(`z-device[name="height"]`);
     const height = new ZDeviceBounds($height?.device?.call($height), ZSizeVaried.Fit);
 
-    return css`
-      :host {
-        align-content: ${firstTruthy('normal', $align?.content)};
-        align-items: ${firstTruthy('stretch', $align?.items)};
-        display: grid;
-        gap: ${ZFashionTailorElement.gapVar(firstTruthy(ZSizeVoid.None, gap))};
-        grid-template-rows: ${firstTruthy('auto', rows)};
-        justify-content: ${firstTruthy('normal', $justify?.content)};
-        justify-items: ${firstTruthy('stretch', $justify?.items)};
-
-        grid-template-columns: ${columns.xl()};
-        height: ${ZGridElement.GridDimensionChart[height.xl()]};
-        width: ${ZGridElement.GridDimensionChart[width.xl()]};
-      }
-
-      ${device.break(ZSizeFixed.Large)} {
+    return html`
+      <style>
         :host {
-          grid-template-columns: ${columns.lg()};
-          height: ${ZGridElement.GridDimensionChart[height.lg()]};
-          width: ${ZGridElement.GridDimensionChart[width.lg()]};
-        }
-      }
+          align-content: ${firstTruthy('normal', $align?.content)};
+          align-items: ${firstTruthy('stretch', $align?.items)};
+          display: grid;
+          gap: ${ZFashionTailorElement.gapVar(firstTruthy(ZSizeVoid.None, gap))};
+          grid-template-rows: ${firstTruthy('auto', rows)};
+          justify-content: ${firstTruthy('normal', $justify?.content)};
+          justify-items: ${firstTruthy('stretch', $justify?.items)};
 
-      ${device.break(ZSizeFixed.Medium)} {
-        :host {
-          grid-template-columns: ${columns.md()};
-          height: ${ZGridElement.GridDimensionChart[height.md()]};
-          width: ${ZGridElement.GridDimensionChart[width.md()]};
+          grid-template-columns: ${columns.xl()};
+          height: ${ZGridElement.GridDimensionChart[height.xl()]};
+          width: ${ZGridElement.GridDimensionChart[width.xl()]};
         }
-      }
 
-      ${device.break(ZSizeFixed.Small)} {
-        :host {
-          grid-template-columns: ${columns.sm()};
-          height: ${ZGridElement.GridDimensionChart[height.sm()]};
-          width: ${ZGridElement.GridDimensionChart[width.sm()]};
+        ${device.break(ZSizeFixed.Large)} {
+          :host {
+            grid-template-columns: ${columns.lg()};
+            height: ${ZGridElement.GridDimensionChart[height.lg()]};
+            width: ${ZGridElement.GridDimensionChart[width.lg()]};
+          }
         }
-      }
 
-      ${device.break(ZSizeFixed.ExtraSmall)} {
-        :host {
-          grid-template-columns: ${columns.xs()};
-          height: ${ZGridElement.GridDimensionChart[height.xs()]};
-          width: ${ZGridElement.GridDimensionChart[width.xs()]};
+        ${device.break(ZSizeFixed.Medium)} {
+          :host {
+            grid-template-columns: ${columns.md()};
+            height: ${ZGridElement.GridDimensionChart[height.md()]};
+            width: ${ZGridElement.GridDimensionChart[width.md()]};
+          }
         }
-      }
+
+        ${device.break(ZSizeFixed.Small)} {
+          :host {
+            grid-template-columns: ${columns.sm()};
+            height: ${ZGridElement.GridDimensionChart[height.sm()]};
+            width: ${ZGridElement.GridDimensionChart[width.sm()]};
+          }
+        }
+
+        ${device.break(ZSizeFixed.ExtraSmall)} {
+          :host {
+            grid-template-columns: ${columns.xs()};
+            height: ${ZGridElement.GridDimensionChart[height.xs()]};
+            width: ${ZGridElement.GridDimensionChart[width.xs()]};
+          }
+        }
+      </style>
+      <slot></slot>
     `;
-  }
-
-  public template() {
-    return html` <slot></slot> `;
   }
 }
