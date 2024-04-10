@@ -6,26 +6,33 @@ import {
   createSizeChartFixedCss
 } from '@zthun/fashion-tailor';
 import { ZFashionContrast } from '@zthun/fashion-theme';
+import { html } from '@zthun/helpful-fn';
 import {
-  IZComponentStyles,
+  IZComponentRender,
   IZComponentTemplate,
   ZAttribute,
-  ZComponentShadow,
-  ZElementListenBuilder
-} from '@zthun/helpful-dom';
-import { css, html } from '@zthun/helpful-fn';
+  ZComponentClass,
+  ZComponentRegister,
+  ZComponentRenderOnAttributeChanged,
+  ZComponentRenderOnConnected,
+  ZComponentRenderTemplate,
+  ZComponentShadow
+} from '@zthun/spellcraft';
 import { ZDeviceElement } from '../background/device-element.mjs';
 import { IZComponentDisabled } from '../component/component-disabled.mjs';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 
-@ZComponentShadow({
-  name: 'ZSuspenseRotate',
-  className: ['ZSuspense-root', 'ZSuspense-rotate'],
-  listen: [new ZElementListenBuilder().namedElement('z-device', 'width').build()]
-})
+export interface ZSuspenseRotateElement extends IZComponentRender {}
+
+@ZComponentRegister('z-suspense-rotate')
+@ZComponentRenderOnAttributeChanged()
+@ZComponentRenderOnConnected()
+@ZComponentRenderTemplate()
+@ZComponentClass('ZSuspense-root', 'ZSuspense-rotate')
+@ZComponentShadow()
 export class ZSuspenseRotateElement
   extends HTMLElement
-  implements IZComponentFashion, IZComponentDisabled, IZComponentStyles, IZComponentTemplate
+  implements IZComponentFashion, IZComponentDisabled, IZComponentTemplate
 {
   public static readonly SizeChart = createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), 'rem');
   public static readonly observedAttributes = ['fashion', 'disabled'];
@@ -36,7 +43,7 @@ export class ZSuspenseRotateElement
   @ZAttribute({ type: 'boolean' })
   public disabled?: boolean;
 
-  public styles() {
+  public template() {
     const { fashion, disabled } = this;
     const detail = new ZFashionDetail(fashion);
     const device = new ZFashionDevice();
@@ -50,55 +57,54 @@ export class ZSuspenseRotateElement
     const sm = ZSuspenseRotateElement.SizeChart[width.sm()];
     const xs = ZSuspenseRotateElement.SizeChart[width.xs()];
 
-    return css`
-      @keyframes rotating {
-        from {
-          transform: rotate(0deg);
+    return html`
+      <style>
+        @keyframes rotating {
+          from {
+            transform: rotate(0deg);
+          }
+
+          to {
+            transform: rotate(360deg);
+          }
         }
 
-        to {
-          transform: rotate(360deg);
-        }
-      }
-
-      :host {
-        display: ${disabled ? 'none' : 'block'};
-      }
-
-      .ZSuspense-rotate-circle {
-        animation: rotating 1s ease-in-out infinite;
-        border-color: ${detail.color('border')};
-        border-radius: 50%;
-        border-style: dashed;
-        box-shadow: 0 0 0.25rem ${detail.color('main')};
-
-        height: ${xl};
-        width: ${xl};
-
-        ${device.break(ZSizeFixed.Large)} {
-          height: ${lg};
-          width: ${lg};
+        :host {
+          display: ${disabled ? 'none' : 'block'};
         }
 
-        ${device.break(ZSizeFixed.Medium)} {
-          height: ${md};
-          width: ${md};
-        }
+        .ZSuspense-rotate-circle {
+          animation: rotating 1s ease-in-out infinite;
+          border-color: ${detail.color('border')};
+          border-radius: 50%;
+          border-style: dashed;
+          box-shadow: 0 0 0.25rem ${detail.color('main')};
 
-        ${device.break(ZSizeFixed.Small)} {
-          height: ${sm};
-          width: ${sm};
-        }
+          height: ${xl};
+          width: ${xl};
 
-        ${device.break(ZSizeFixed.ExtraSmall)} {
-          height: ${xs};
-          width: ${xs};
+          ${device.break(ZSizeFixed.Large)} {
+            height: ${lg};
+            width: ${lg};
+          }
+
+          ${device.break(ZSizeFixed.Medium)} {
+            height: ${md};
+            width: ${md};
+          }
+
+          ${device.break(ZSizeFixed.Small)} {
+            height: ${sm};
+            width: ${sm};
+          }
+
+          ${device.break(ZSizeFixed.ExtraSmall)} {
+            height: ${xs};
+            width: ${xs};
+          }
         }
-      }
+      </style>
+      <div class="ZSuspense-rotate-circle"></div>
     `;
-  }
-
-  public template() {
-    return html` <div class="ZSuspense-rotate-circle"></div> `;
   }
 }

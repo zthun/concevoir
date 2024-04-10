@@ -18,7 +18,6 @@ export * from './component/component-required.mjs';
 export * from './component/component-width.mjs';
 export * from './grid/grid-element.mjs';
 export * from './popup/popup-element.mjs';
-export * from './suspense/suspense-element.mjs';
 export * from './suspense/suspense-progress-element.mjs';
 export * from './suspense/suspense-rotate-element.mjs';
 export * from './theme/fashion-tailor-element.mjs';
