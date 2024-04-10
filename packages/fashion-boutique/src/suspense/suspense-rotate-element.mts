@@ -15,6 +15,7 @@ import {
   ZComponentRegister,
   ZComponentRenderOnAttributeChanged,
   ZComponentRenderOnConnected,
+  ZComponentRenderOnEvent,
   ZComponentRenderTemplate,
   ZComponentShadow
 } from '@zthun/spellcraft';
@@ -25,6 +26,7 @@ import { IZComponentFashion, ZFashionDetail } from '../component/component-fashi
 export interface ZSuspenseRotateElement extends IZComponentRender {}
 
 @ZComponentRegister('z-suspense-rotate')
+@ZComponentRenderOnEvent('change', { selector: 'z-device[name="width"]' })
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()

@@ -26,7 +26,7 @@ import { IZComponentFashion, ZFashionDetail } from '../component/component-fashi
 export interface ZSuspenseProgressElement extends IZComponentRender {}
 
 @ZComponentRegister('z-suspense-progress')
-@ZComponentRenderOnEvent('change')
+@ZComponentRenderOnEvent('change', { selector: 'z-device[name="height"]' })
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
