@@ -2820,16 +2820,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
-  version: 20.12.5
-  resolution: "@types/node@npm:20.12.5"
-  dependencies:
-    undici-types: "npm:~5.26.4"
-  checksum: 10c0/2da65516fba98f0417620e42bddbe53e144d4782d69cd37f99df2537c6850b9cfbdb8a017f02c61e9a074bcac84f9f3f221b250474ac8c6b95d507a47e8d53f9
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^20.12.6":
+"@types/node@npm:*, @types/node@npm:^20.12.6":
   version: 20.12.6
   resolution: "@types/node@npm:20.12.6"
   dependencies:
@@ -3325,7 +3316,6 @@ __metadata:
     "@zthun/fashion-tailor": "npm:^2.7.0"
     "@zthun/fashion-theme": "npm:^2.7.0"
     "@zthun/fashion-typeface": "npm:^2.7.0"
-    "@zthun/helpful-dom": "npm:^4.1.2"
     "@zthun/helpful-fn": "npm:^4.1.1"
     "@zthun/spellcraft": "npm:^2.7.2"
     "@zthun/trilean": "npm:^1.1.0"
@@ -3385,7 +3375,6 @@ __metadata:
     "@zthun/fashion-tailor": "npm:^2.7.0"
     "@zthun/fashion-theme": "npm:^2.7.0"
     "@zthun/helpful-brands": "npm:^4.1.1"
-    "@zthun/helpful-dom": "npm:^4.1.2"
     "@zthun/helpful-fn": "npm:^4.1.1"
     "@zthun/helpful-query": "npm:^4.1.1"
     "@zthun/helpful-react": "npm:^4.1.1"
@@ -3507,17 +3496,6 @@ __metadata:
   version: 4.1.1
   resolution: "@zthun/helpful-brands@npm:4.1.1"
   checksum: 10c0/b2cc2ed4ad0d6e0e6da40f07cec7a8b99eeea15dce56ba449cfeec70ad2d6dc46ac83d2c1bbb34e4166e9bb61fedbd562020937110d536fc9781bc0d1e3ded6a
-  languageName: node
-  linkType: hard
-
-"@zthun/helpful-dom@npm:^4.1.2":
-  version: 4.1.2
-  resolution: "@zthun/helpful-dom@npm:4.1.2"
-  dependencies:
-    "@zthun/helpful-fn": "npm:^4.1.1"
-    "@zthun/trilean": "npm:^1.1.0"
-    lodash-es: "npm:^4.17.21"
-  checksum: 10c0/a6a045cd75621cada1978a1361ee1e2c6f2b45105a604ebac016857daf5c68aa135cb72bf93c81aac89fa36bd8b9a562ec5fd40f5f256822cf74d2f0218eef32
   languageName: node
   linkType: hard
 
