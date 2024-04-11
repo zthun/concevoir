@@ -28,7 +28,7 @@
     "dist/**"
   ],
   "dependencies": {
-    "@zthun/cirque": "^6.0.1",
+    "@zthun/cirque": "^6.1.0",
     "@zthun/fashion-tailor": "^2.7.0",
     "@zthun/fashion-theme": "^2.7.0",
     "@zthun/fashion-typeface": "^2.7.0",

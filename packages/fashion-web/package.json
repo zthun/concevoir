@@ -21,10 +21,10 @@
     "dist/**"
   ],
   "devDependencies": {
-    "@cucumber/cucumber": "^10.3.1",
-    "@zthun/cirque": "^6.0.1",
-    "@zthun/cirque-du-react": "^6.0.1",
-    "@zthun/cirque-du-selenium": "^6.0.1",
+    "@cucumber/cucumber": "^10.4.0",
+    "@zthun/cirque": "^6.1.0",
+    "@zthun/cirque-du-react": "^6.1.0",
+    "@zthun/cirque-du-selenium": "^6.1.0",
     "@zthun/fashion-boutique": "^2.7.0",
     "@zthun/fashion-circus": "^2.7.0",
     "@zthun/fashion-labs": "^2.7.0",
