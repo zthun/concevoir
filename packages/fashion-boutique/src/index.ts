@@ -7,6 +7,7 @@ export * from './boolean/boolean-checkbox-element.mjs';
 export * from './boolean/boolean-element.mjs';
 export * from './boolean/boolean-switch-element.mjs';
 export * from './box/box-element.mjs';
+export * from './bubble/bubble-element.mjs';
 export * from './button/button-element.mjs';
 export * from './component/component-compact.mjs';
 export * from './component/component-disabled.mjs';

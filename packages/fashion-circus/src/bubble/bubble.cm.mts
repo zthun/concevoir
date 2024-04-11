@@ -10,10 +10,10 @@ export class ZBubbleComponentModel extends ZCircusComponentModel {
   }
 
   public borderSize(): Promise<ZSizeFixed | ZSizeVoid> {
-    return this.driver.attribute('data-border-size', ZSizeVoid.None);
+    return this.driver.attribute('border', ZSizeVoid.None);
   }
 
   public fashion(): Promise<string> {
-    return this.driver.attribute('data-fashion', '');
+    return this.driver.attribute('fashion', '');
   }
 }
