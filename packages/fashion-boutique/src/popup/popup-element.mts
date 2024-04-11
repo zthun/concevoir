@@ -1,8 +1,8 @@
 import { ZCircusKeyboardQwerty } from '@zthun/cirque';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionArea } from '@zthun/fashion-theme';
-import { IZComponentDisconnected, ZAttribute, ZComponentShadow } from '@zthun/helpful-dom';
 import { ZAnchor, ZHorizontalAnchor, ZQuadrilateralBuilder, ZRectangle, ZVerticalAnchor } from '@zthun/helpful-fn';
+import { IZLifecycleDisconnected, ZAttribute, ZComponentRegister, ZComponentShadow } from '@zthun/spellcraft';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
 
@@ -12,9 +12,9 @@ export interface IZPopupOpenOptions {
   origin?: ZAnchor;
 }
 
-// @ZComponentPopper
-@ZComponentShadow({ name: 'ZPopup', className: [] })
-export class ZPopupElement extends HTMLElement implements IZComponentDisconnected {
+@ZComponentRegister('z-popup')
+@ZComponentShadow()
+export class ZPopupElement extends HTMLElement implements IZLifecycleDisconnected {
   public static readonly observedProperties = ['fashion'];
 
   public static readonly EventOpened = 'z-popup-opened';
