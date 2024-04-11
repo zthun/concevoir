@@ -5,7 +5,7 @@ import {
   createSizeChartFixedArithmetic,
   createSizeChartFixedCss
 } from '@zthun/fashion-tailor';
-import { ZFashionContrast } from '@zthun/fashion-theme';
+import { ZFashionArea } from '@zthun/fashion-theme';
 import { html } from '@zthun/helpful-fn';
 import {
   IZComponentRender,
@@ -39,7 +39,7 @@ export class ZSuspenseProgressElement
   public static readonly SizeChart = createSizeChartFixedCss(createSizeChartFixedArithmetic(0.25, 0.25), 'rem');
   public static readonly observedAttributes = ['fashion', 'disabled'];
 
-  @ZAttribute({ fallback: ZFashionContrast.Opposite })
+  @ZAttribute({ fallback: ZFashionArea.Component })
   public fashion: string;
 
   @ZAttribute({ type: 'boolean' })
@@ -75,7 +75,7 @@ export class ZSuspenseProgressElement
         }
 
         .ZSuspense-progress-bar {
-          background-color: ${detail.color('main')};
+          background-color: currentColor;
           box-shadow: 0 0 0.5rem ${detail.color('border')};
           overflow: hidden;
           position: relative;
@@ -100,7 +100,7 @@ export class ZSuspenseProgressElement
         .ZSuspense-progress-scroll {
           animation: scroll 1.5s ease-in-out infinite;
           position: absolute;
-          background-color: ${detail.color('contrast')};
+          background-color: ${detail.color('main')};
           bottom: 0;
           left: 0;
           top: 0;
