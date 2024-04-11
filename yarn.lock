@@ -3325,9 +3325,9 @@ __metadata:
     "@zthun/fashion-tailor": "npm:^2.7.0"
     "@zthun/fashion-theme": "npm:^2.7.0"
     "@zthun/fashion-typeface": "npm:^2.7.0"
-    "@zthun/helpful-dom": "npm:^4.1.1"
+    "@zthun/helpful-dom": "npm:^4.1.2"
     "@zthun/helpful-fn": "npm:^4.1.1"
-    "@zthun/spellcraft": "npm:^2.6.2"
+    "@zthun/spellcraft": "npm:^2.7.2"
     "@zthun/trilean": "npm:^1.1.0"
     csstype: "npm:^3.1.3"
     lodash-es: "npm:^4.17.21"
@@ -3385,7 +3385,7 @@ __metadata:
     "@zthun/fashion-tailor": "npm:^2.7.0"
     "@zthun/fashion-theme": "npm:^2.7.0"
     "@zthun/helpful-brands": "npm:^4.1.1"
-    "@zthun/helpful-dom": "npm:^4.1.1"
+    "@zthun/helpful-dom": "npm:^4.1.2"
     "@zthun/helpful-fn": "npm:^4.1.1"
     "@zthun/helpful-query": "npm:^4.1.1"
     "@zthun/helpful-react": "npm:^4.1.1"
@@ -3510,14 +3510,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/helpful-dom@npm:^4.1.1":
-  version: 4.1.1
-  resolution: "@zthun/helpful-dom@npm:4.1.1"
+"@zthun/helpful-dom@npm:^4.1.2":
+  version: 4.1.2
+  resolution: "@zthun/helpful-dom@npm:4.1.2"
   dependencies:
     "@zthun/helpful-fn": "npm:^4.1.1"
     "@zthun/trilean": "npm:^1.1.0"
     lodash-es: "npm:^4.17.21"
-  checksum: 10c0/28327e341c96e12e326bcf276912379685e22d1519f933e7073d92b39a8970da877766d2b06c4804923563aebdd2ce10f6475e42dd2714b1f961654feb367393
+  checksum: 10c0/a6a045cd75621cada1978a1361ee1e2c6f2b45105a604ebac016857daf5c68aa135cb72bf93c81aac89fa36bd8b9a562ec5fd40f5f256822cf74d2f0218eef32
   languageName: node
   linkType: hard
 
@@ -3670,14 +3670,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/spellcraft@npm:^2.6.2":
-  version: 2.6.2
-  resolution: "@zthun/spellcraft@npm:2.6.2"
+"@zthun/spellcraft@npm:^2.7.2":
+  version: 2.7.2
+  resolution: "@zthun/spellcraft@npm:2.7.2"
   dependencies:
     "@zthun/helpful-fn": "npm:^4.1.1"
     "@zthun/trilean": "npm:^1.1.0"
     lodash-es: "npm:^4.17.21"
-  checksum: 10c0/e8832f8d9c2321a0ccd221f7d8f49669acbd692c47b33410bd442413e1877071e0842eeef54b87a15625a55ffa0d4787c8ac74e9c51e94a5c43579fb41e46024
+  checksum: 10c0/191b06b80ddfcd3e18f3a3407fc71fb6a8463fa07d34ec68d8f589ea3706e2940e6a90f444540658bb0a92ba45c7847de9004f2ad701921d8fff1b2389249eff
   languageName: node
   linkType: hard
 
