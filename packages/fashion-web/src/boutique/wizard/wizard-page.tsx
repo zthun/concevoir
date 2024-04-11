@@ -15,6 +15,7 @@ import {
   useNavigate
 } from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
+import { ZFashionSeverity } from '@zthun/fashion-theme';
 import { ZOrientation, ZQuadrilateralBuilder } from '@zthun/helpful-fn';
 import React, { useState } from 'react';
 import { ZFashionRouteBoutique, ZFashionRouteWizard } from '../../routes.mjs';
@@ -22,7 +23,7 @@ import { ZFashionRouteBoutique, ZFashionRouteWizard } from '../../routes.mjs';
 export function ZWizardPage() {
   const navigate = useNavigate();
   const [understood, setUnderstood] = useState(false);
-  const { success, error, info } = useFashionTheme();
+  const { success, error } = useFashionTheme();
 
   const yes = (
     <ZBox padding={new ZQuadrilateralBuilder(ZSizeFixed.ExtraSmall).build()}>
@@ -72,15 +73,15 @@ export function ZWizardPage() {
           justify={{ content: 'center' }}
           gap={ZSizeFixed.Medium}
         >
-          <ZBubble width={ZSizeFixed.Large} fashion={info}>
+          <ZBubble width={ZSizeFixed.Large} fashion={ZFashionSeverity.Info}>
             <ZH4 compact>First</ZH4>
           </ZBubble>
           <ZIconFontAwesome name='arrows-left-right'></ZIconFontAwesome>
-          <ZBubble width={ZSizeFixed.Large} fashion={info}>
+          <ZBubble width={ZSizeFixed.Large} fashion={ZFashionSeverity.Info}>
             <ZH4 compact>Page 2</ZH4>
           </ZBubble>
           <ZIconFontAwesome name='arrows-left-right'></ZIconFontAwesome>
-          <ZBubble width={ZSizeFixed.Large} fashion={info}>
+          <ZBubble width={ZSizeFixed.Large} fashion={ZFashionSeverity.Info}>
             <ZH4 compact>Last</ZH4>
           </ZBubble>
         </ZGrid>

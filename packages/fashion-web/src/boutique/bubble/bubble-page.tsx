@@ -20,7 +20,7 @@ import { useFashionState } from '../common/use-fashion-state.mjs';
 
 export function ZBubblePage() {
   const [borderSize, setBorderSize] = useState<ZSizeFixed | undefined>(undefined);
-  const [fashion, fashionName, setFashion] = useFashionState();
+  const [, fashionName, setFashion] = useFashionState();
   const [count, setCount] = useState<number>(0);
   const [clickable, setClickable] = useState(true);
   const sizes = Object.values(ZSizeFixed);
@@ -50,7 +50,7 @@ export function ZBubblePage() {
             border={borderSize}
             onClick={clickable ? handleClick : undefined}
             name='button'
-            fashion={fashion}
+            fashion={fashionName}
             width={ZSizeFixed.Large}
             padding={ZSizeFixed.Medium}
           >
