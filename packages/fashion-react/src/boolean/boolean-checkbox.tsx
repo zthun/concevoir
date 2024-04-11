@@ -1,9 +1,9 @@
 import { ZBooleanCheckboxElement } from '@zthun/fashion-boutique';
-import { includeCustomElement } from '@zthun/helpful-dom';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
 import { ZTrilean, trilean } from '@zthun/trilean';
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useWebComponent } from '../component/use-web-component.mjs';
 import { IZBoolean } from './boolean';
 
 declare global {
@@ -18,8 +18,7 @@ export function ZBooleanCheckbox(props: IZBoolean<trilean>) {
   const { className, disabled, label, value, onValueChange, name, fashion, required } = props;
   const [_value, _setValue] = useAmbassadorState(value, onValueChange, false);
   const checkbox = useRef<HTMLElement>();
-
-  useMemo(() => includeCustomElement(ZBooleanCheckboxElement), []);
+  useWebComponent(ZBooleanCheckboxElement);
 
   const handleChange = (e: Event) => {
     const target = e.target as ZBooleanCheckboxElement;

@@ -1,4 +1,7 @@
 export * from './alert/alert';
+export * from './background/alignment';
+export * from './background/device';
+export * from './background/quadrilateral';
 export * from './banner-main/banner-main';
 export * from './banner/banner';
 export * from './boolean/boolean';

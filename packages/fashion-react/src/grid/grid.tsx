@@ -1,14 +1,17 @@
-import { IZComponentHeight, IZComponentWidth, ZGridElement } from '@zthun/fashion-boutique';
+import {
+  IZComponentHeight,
+  IZComponentWidth,
+  ZAlignmentElement,
+  ZDeviceElement,
+  ZGridElement
+} from '@zthun/fashion-boutique';
 import { IZDeviceValueMap, ZDeviceBounds, ZGapSize, ZSizeVaried } from '@zthun/fashion-tailor';
-import { includeCustomElement } from '@zthun/helpful-dom';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
 import React, { useMemo } from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
-
-import '../background/alignment';
-import '../background/device';
+import { useWebComponent } from '../component/use-web-component.mjs';
 
 declare global {
   namespace React.JSX {
@@ -55,8 +58,9 @@ export function ZGrid(props: IZGrid) {
   const $columns = useMemo(() => new ZDeviceBounds(columns, 'none').toDeviceMap(), [columns]);
   const $height = useMemo(() => new ZDeviceBounds(height, ZSizeVaried.Fit).toDeviceMap(), [height]);
   const $width = useMemo(() => new ZDeviceBounds(width, ZSizeVaried.Fit).toDeviceMap(), [width]);
-
-  useMemo(() => includeCustomElement(ZGridElement), []);
+  useWebComponent(ZGridElement);
+  useWebComponent(ZDeviceElement);
+  useWebComponent(ZAlignmentElement);
 
   return (
     <z-grid class={cssJoinDefined(className)} gap={gap} rows={rows}>

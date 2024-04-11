@@ -1,8 +1,8 @@
 import { ZDeviceElement, ZSuspenseRotateElement } from '@zthun/fashion-boutique';
 import { ZDeviceBounds, ZSizeFixed } from '@zthun/fashion-tailor';
-import { includeCustomElement } from '@zthun/helpful-dom';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { useMemo } from 'react';
+import { useWebComponent } from '../component/use-web-component.mjs';
 import { IZSuspense } from './suspense.mjs';
 
 declare global {
@@ -17,9 +17,8 @@ export function ZSuspenseRotate(props: IZSuspense) {
   const { className, loading = true, name, width, fashion } = props;
 
   const $width = useMemo(() => new ZDeviceBounds(width, ZSizeFixed.ExtraSmall).toDeviceMap(), [width]);
-
-  useMemo(() => includeCustomElement(ZSuspenseRotateElement), []);
-  useMemo(() => includeCustomElement(ZDeviceElement), []);
+  useWebComponent(ZSuspenseRotateElement);
+  useWebComponent(ZDeviceElement);
 
   return (
     <z-suspense-rotate class={cssJoinDefined(className)} fashion={fashion} disabled={!loading} name={name}>
