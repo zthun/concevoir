@@ -31,8 +31,8 @@
     "@zthun/cirque": "^6.1.0",
     "@zthun/fashion-tailor": "^2.7.0",
     "@zthun/fashion-theme": "^2.7.0",
-    "@zthun/helpful-fn": "^4.1.1",
-    "@zthun/trilean": "^1.1.0"
+    "@zthun/helpful-fn": "^5.0.0",
+    "@zthun/trilean": "^1.1.1"
   },
   "devDependencies": {
     "vite": "^5.2.8",

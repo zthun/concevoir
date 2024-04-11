@@ -2807,16 +2807,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
-  version: 20.12.6
-  resolution: "@types/node@npm:20.12.6"
-  dependencies:
-    undici-types: "npm:~5.26.4"
-  checksum: 10c0/48ce732162cd6c02656aa5f996f0e695b57fdeb1ae762fbaa966afac2dcdcf52cb56be5ce1efb4babf8f97c2de545889aebc7f43c2e86f033487245c41fa1e6b
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^20.12.7":
+"@types/node@npm:*, @types/node@npm:^20.12.7":
   version: 20.12.7
   resolution: "@types/node@npm:20.12.7"
   dependencies:
@@ -3305,9 +3296,9 @@ __metadata:
     "@zthun/fashion-tailor": "npm:^2.7.0"
     "@zthun/fashion-theme": "npm:^2.7.0"
     "@zthun/fashion-typeface": "npm:^2.7.0"
-    "@zthun/helpful-fn": "npm:^4.1.1"
-    "@zthun/spellcraft": "npm:^2.7.2"
-    "@zthun/trilean": "npm:^1.1.0"
+    "@zthun/helpful-fn": "npm:^5.0.0"
+    "@zthun/spellcraft": "npm:^2.7.3"
+    "@zthun/trilean": "npm:^1.1.1"
     csstype: "npm:^3.1.3"
     lodash-es: "npm:^4.17.21"
     vite: "npm:^5.2.8"
@@ -3322,8 +3313,8 @@ __metadata:
     "@zthun/cirque": "npm:^6.1.0"
     "@zthun/fashion-tailor": "npm:^2.7.0"
     "@zthun/fashion-theme": "npm:^2.7.0"
-    "@zthun/helpful-fn": "npm:^4.1.1"
-    "@zthun/trilean": "npm:^1.1.0"
+    "@zthun/helpful-fn": "npm:^5.0.0"
+    "@zthun/trilean": "npm:^1.1.1"
     vite: "npm:^5.2.8"
     vitest: "npm:^1.4.0"
   languageName: unknown
@@ -3363,11 +3354,11 @@ __metadata:
     "@zthun/fashion-circus": "npm:^2.7.0"
     "@zthun/fashion-tailor": "npm:^2.7.0"
     "@zthun/fashion-theme": "npm:^2.7.0"
-    "@zthun/helpful-brands": "npm:^4.1.1"
-    "@zthun/helpful-fn": "npm:^4.1.1"
-    "@zthun/helpful-query": "npm:^4.1.1"
-    "@zthun/helpful-react": "npm:^4.1.1"
-    "@zthun/trilean": "npm:^1.1.0"
+    "@zthun/helpful-brands": "npm:^5.0.0"
+    "@zthun/helpful-fn": "npm:^5.0.0"
+    "@zthun/helpful-query": "npm:^5.0.0"
+    "@zthun/helpful-react": "npm:^5.0.0"
+    "@zthun/trilean": "npm:^1.1.1"
     "@zthun/webigail-http": "npm:^2.4.0"
     "@zthun/webigail-url": "npm:^2.4.0"
     csstype: "npm:^3.1.3"
@@ -3428,11 +3419,11 @@ __metadata:
     "@zthun/fashion-react": "npm:^2.7.0"
     "@zthun/fashion-tailor": "npm:^2.7.0"
     "@zthun/fashion-theme": "npm:^2.7.0"
-    "@zthun/helpful-brands": "npm:^4.1.1"
-    "@zthun/helpful-fn": "npm:^4.1.1"
-    "@zthun/helpful-query": "npm:^4.1.1"
-    "@zthun/helpful-react": "npm:^4.1.1"
-    "@zthun/trilean": "npm:^1.1.0"
+    "@zthun/helpful-brands": "npm:^5.0.0"
+    "@zthun/helpful-fn": "npm:^5.0.0"
+    "@zthun/helpful-query": "npm:^5.0.0"
+    "@zthun/helpful-react": "npm:^5.0.0"
+    "@zthun/trilean": "npm:^1.1.1"
     "@zthun/webigail-url": "npm:^2.4.0"
     history: "npm:^5.3.0"
     lodash-es: "npm:^4.17.21"
@@ -3481,10 +3472,10 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@zthun/helpful-brands@npm:^4.1.1":
-  version: 4.1.1
-  resolution: "@zthun/helpful-brands@npm:4.1.1"
-  checksum: 10c0/b2cc2ed4ad0d6e0e6da40f07cec7a8b99eeea15dce56ba449cfeec70ad2d6dc46ac83d2c1bbb34e4166e9bb61fedbd562020937110d536fc9781bc0d1e3ded6a
+"@zthun/helpful-brands@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@zthun/helpful-brands@npm:5.0.0"
+  checksum: 10c0/ccba46b069e8d143125c7552115827ae4bcd09c39ac7217bfc51ed9a7fededd37e6a11f07713fc8d97ba8b25916f43b355b98008d0608fde669e13d09228a2e6
   languageName: node
   linkType: hard
 
@@ -3497,12 +3488,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/helpful-fn@npm:^4.1.1":
-  version: 4.1.1
-  resolution: "@zthun/helpful-fn@npm:4.1.1"
+"@zthun/helpful-fn@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@zthun/helpful-fn@npm:5.0.0"
   dependencies:
     uuid: "npm:^9.0.1"
-  checksum: 10c0/7ae5efffb13599cbf049c7fa49243a17828bbc3574345097e0a721ef847471af993c6454732e20b4ad1e06789e7b7f80536c3d55d83489e1a6ca1198bccd5bab
+  checksum: 10c0/756d00ac3886ad370fd62ad25b17fe5971c2b9a445611137b34557a691e33ab6e58aaf76bc21be0381b16ad5acee4957f93e309033afabade4d03ee59941862e
   languageName: node
   linkType: hard
 
@@ -3516,13 +3507,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/helpful-query@npm:^4.1.1":
-  version: 4.1.1
-  resolution: "@zthun/helpful-query@npm:4.1.1"
+"@zthun/helpful-query@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@zthun/helpful-query@npm:5.0.0"
   dependencies:
-    "@zthun/helpful-fn": "npm:^4.1.1"
+    "@zthun/helpful-fn": "npm:^5.0.0"
     lodash-es: "npm:^4.17.21"
-  checksum: 10c0/e09f33ffa8c1722f1375a34b462804ea97e909f48dabce9b604029868ee5e03304c4991b7fb96cef138c0ae3d1b5bee72222efe4164468e295a5b34e7c58685b
+  checksum: 10c0/c052ebe11f3213ea0b55b604da9d63c739a0879570b62ace9dfba9671895426914ab42c99b56838a51516efcac64c12ac711a2e23dc75b12a49ad7e8c48d9209
   languageName: node
   linkType: hard
 
@@ -3545,12 +3536,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/helpful-react@npm:^4.1.1":
-  version: 4.1.1
-  resolution: "@zthun/helpful-react@npm:4.1.1"
+"@zthun/helpful-react@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@zthun/helpful-react@npm:5.0.0"
   dependencies:
-    "@zthun/helpful-fn": "npm:^4.1.1"
-    "@zthun/helpful-query": "npm:^4.1.1"
+    "@zthun/helpful-fn": "npm:^5.0.0"
+    "@zthun/helpful-query": "npm:^5.0.0"
     lodash-es: "npm:^4.17.21"
     rxjs: "npm:^7.8.1"
   peerDependencies:
@@ -3560,7 +3551,7 @@ __metadata:
   peerDependenciesMeta:
     rxjs:
       optional: true
-  checksum: 10c0/dd31b59e2049152cc1d86a746130a697509d70093731616c2c5d1b7b52f4d37aaf31617b84080f94b1bff2ee0fb8ed751ad78495bf033f863180d2255279575f
+  checksum: 10c0/69882f539e4b767f022bec88445d1465081f9a6e00949db213669c62f26422b1b81539be9f095767affabb0423d2a6aabf22400d9ec8724508640452010a36ee
   languageName: node
   linkType: hard
 
@@ -3637,14 +3628,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/spellcraft@npm:^2.7.2":
-  version: 2.7.2
-  resolution: "@zthun/spellcraft@npm:2.7.2"
+"@zthun/spellcraft@npm:^2.7.3":
+  version: 2.7.3
+  resolution: "@zthun/spellcraft@npm:2.7.3"
   dependencies:
-    "@zthun/helpful-fn": "npm:^4.1.1"
-    "@zthun/trilean": "npm:^1.1.0"
+    "@zthun/helpful-fn": "npm:^5.0.0"
+    "@zthun/trilean": "npm:^1.1.1"
     lodash-es: "npm:^4.17.21"
-  checksum: 10c0/191b06b80ddfcd3e18f3a3407fc71fb6a8463fa07d34ec68d8f589ea3706e2940e6a90f444540658bb0a92ba45c7847de9004f2ad701921d8fff1b2389249eff
+  checksum: 10c0/aec923b571ae9992d5d2d0d5569b2142d752d2ea63b177693aa343b98e3aa71073ce456c6993a2783fe5b1654377b861b6bf733b3982836dbc4042ebc5d2f1fa
   languageName: node
   linkType: hard
 
@@ -3683,10 +3674,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/trilean@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@zthun/trilean@npm:1.1.0"
-  checksum: 10c0/0e4917fc6af4f67b089219149c014eda95101866a6bf68cd3de6629e21c20ca9a60dd8aea31df4d7713b1e039b0560e0f30aa3efe71a03baa95e2545d48b6959
+"@zthun/trilean@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "@zthun/trilean@npm:1.1.1"
+  checksum: 10c0/86d089bc40246a3ad592e5154a1f6a6d0fcaa4603498a21a6a850596ec61648b0d604ab9ec0855f9ef16e0df5f9666a47c40490419a4d8e22209ab6b60156ce4
   languageName: node
   linkType: hard
 
@@ -6728,22 +6719,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^10.2.2, glob@npm:^10.3.10, glob@npm:^10.3.7":
-  version: 10.3.10
-  resolution: "glob@npm:10.3.10"
-  dependencies:
-    foreground-child: "npm:^3.1.0"
-    jackspeak: "npm:^2.3.5"
-    minimatch: "npm:^9.0.1"
-    minipass: "npm:^5.0.0 || ^6.0.2 || ^7.0.0"
-    path-scurry: "npm:^1.10.1"
-  bin:
-    glob: dist/esm/bin.mjs
-  checksum: 10c0/13d8a1feb7eac7945f8c8480e11cd4a44b24d26503d99a8d8ac8d5aefbf3e9802a2b6087318a829fad04cb4e829f25c5f4f1110c68966c498720dd261c7e344d
-  languageName: node
-  linkType: hard
-
-"glob@npm:^10.3.12":
+"glob@npm:^10.2.2, glob@npm:^10.3.10, glob@npm:^10.3.12, glob@npm:^10.3.7":
   version: 10.3.12
   resolution: "glob@npm:10.3.12"
   dependencies:
@@ -7913,7 +7889,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jackspeak@npm:^2.3.5, jackspeak@npm:^2.3.6":
+"jackspeak@npm:^2.3.6":
   version: 2.3.6
   resolution: "jackspeak@npm:2.3.6"
   dependencies:
@@ -8630,7 +8606,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lru-cache@npm:^10.0.1, lru-cache@npm:^10.2.0, lru-cache@npm:^9.1.1 || ^10.0.0":
+"lru-cache@npm:^10.0.1, lru-cache@npm:^10.2.0":
   version: 10.2.0
   resolution: "lru-cache@npm:10.2.0"
   checksum: 10c0/c9847612aa2daaef102d30542a8d6d9b2c2bb36581c1bf0dc3ebf5e5f3352c772a749e604afae2e46873b930a9e9523743faac4e5b937c576ab29196774712ee
@@ -8937,7 +8913,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimatch@npm:9.0.3, minimatch@npm:^9.0.0, minimatch@npm:^9.0.1, minimatch@npm:^9.0.3":
+"minimatch@npm:9.0.3":
   version: 9.0.3
   resolution: "minimatch@npm:9.0.3"
   dependencies:
@@ -8973,7 +8949,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimatch@npm:^9.0.4":
+"minimatch@npm:^9.0.0, minimatch@npm:^9.0.1, minimatch@npm:^9.0.3, minimatch@npm:^9.0.4":
   version: 9.0.4
   resolution: "minimatch@npm:9.0.4"
   dependencies:
@@ -10153,17 +10129,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"path-scurry@npm:^1.10.1, path-scurry@npm:^1.6.1":
-  version: 1.10.1
-  resolution: "path-scurry@npm:1.10.1"
-  dependencies:
-    lru-cache: "npm:^9.1.1 || ^10.0.0"
-    minipass: "npm:^5.0.0 || ^6.0.2 || ^7.0.0"
-  checksum: 10c0/e5dc78a7348d25eec61ab166317e9e9c7b46818aa2c2b9006c507a6ff48c672d011292d9662527213e558f5652ce0afcc788663a061d8b59ab495681840c0c1e
-  languageName: node
-  linkType: hard
-
-"path-scurry@npm:^1.10.2":
+"path-scurry@npm:^1.10.2, path-scurry@npm:^1.6.1":
   version: 1.10.2
   resolution: "path-scurry@npm:1.10.2"
   dependencies:
@@ -12513,17 +12479,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:>=3 < 6":
-  version: 5.4.4
-  resolution: "typescript@npm:5.4.4"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 10c0/4d8de0291204ed61ca97ad0cba2ce064e09c4988ca1c451c787e4653ba76296ba35177a52694e8a00cf4ef899d0ee83338663b926d8b7d55167ff0ba81549999
-  languageName: node
-  linkType: hard
-
-"typescript@npm:~5.4.5":
+"typescript@npm:>=3 < 6, typescript@npm:~5.4.5":
   version: 5.4.5
   resolution: "typescript@npm:5.4.5"
   bin:
@@ -12543,17 +12499,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A>=3 < 6#optional!builtin<compat/typescript>":
-  version: 5.4.4
-  resolution: "typescript@patch:typescript@npm%3A5.4.4#optional!builtin<compat/typescript>::version=5.4.4&hash=5adc0c"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 10c0/1fa41b9964a9ff0ed913b339c90b46031b2d2da3cb1a192af516610733f7f1d5f7f9754a8e22b9ac7076d3d8aedd2c4f84db3f113bad060eac3a95962443a1bf
-  languageName: node
-  linkType: hard
-
-"typescript@patch:typescript@npm%3A~5.4.5#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A>=3 < 6#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A~5.4.5#optional!builtin<compat/typescript>":
   version: 5.4.5
   resolution: "typescript@patch:typescript@npm%3A5.4.5#optional!builtin<compat/typescript>::version=5.4.5&hash=5adc0c"
   bin:
