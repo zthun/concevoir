@@ -9,6 +9,7 @@ export * from './boolean/boolean-switch-element.mjs';
 export * from './box/box-element.mjs';
 export * from './bubble/bubble-element.mjs';
 export * from './button/button-element.mjs';
+export * from './card/card-element.mjs';
 export * from './component/component-compact.mjs';
 export * from './component/component-disabled.mjs';
 export * from './component/component-fashion.mjs';
