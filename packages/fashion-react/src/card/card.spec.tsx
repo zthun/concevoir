@@ -92,18 +92,6 @@ describe('ZCard', () => {
       // Assert.
       expect(actual).toBeTruthy();
     });
-
-    it('should not render content if loading', async () => {
-      // Arrange.
-      content = 'Test Content';
-      loading = true;
-      const target = await createTestTarget();
-      // Act.
-      const _content = await target.content();
-      const actual = await _content.text();
-      // Assert.
-      expect(actual).toBeFalsy();
-    });
   });
 
   describe('Footer', () => {

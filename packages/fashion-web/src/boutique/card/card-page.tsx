@@ -23,7 +23,7 @@ const LOREM =
  * @returns The JSX to render the alerts demo page.
  */
 export function ZCardPage() {
-  const [fashion, fashionName, setFashion] = useFashionState(ZFashionArea.Component);
+  const [, fashionName, setFashion] = useFashionState(ZFashionArea.Component);
 
   return (
     <ZCard
@@ -45,7 +45,7 @@ export function ZCardPage() {
             name='card'
             heading='Header'
             subHeading='Sub Header'
-            fashion={fashion}
+            fashion={fashionName}
             avatar={<ZIconFontAwesome name='mask' width={ZSizeFixed.Medium} />}
             footer={<ZButton label='Footer' width={ZSizeVaried.Full} fashion={ZFashionSeverity.Success} />}
           >
@@ -56,7 +56,7 @@ export function ZCardPage() {
             name='loading'
             heading='Loading'
             subHeading='Content not ready yet'
-            fashion={fashion}
+            fashion={fashionName}
             loading
             avatar={<ZIconFontAwesome name='house' width={ZSizeFixed.Medium} />}
             footer={<ZButton label='Footer' width={ZSizeVaried.Full} fashion={ZFashionSeverity.Success} disabled />}
@@ -66,7 +66,7 @@ export function ZCardPage() {
             name='image'
             heading='Graphics'
             subHeading='Card with an image'
-            fashion={fashion}
+            fashion={fashionName}
             avatar={<ZIconFontAwesome name='house' width={ZSizeFixed.Medium} />}
           >
             <ZBox margin={{ bottom: ZSizeFixed.Small }}>
@@ -78,13 +78,11 @@ export function ZCardPage() {
         </ZGrid>
       </ZBox>
 
-      <ZBox padding={{ bottom: ZSizeFixed.Large }}>
-        <ZH3>Options</ZH3>
+      <ZH3>Options</ZH3>
 
-        <ZGrid gap={ZSizeFixed.Medium}>
-          <ZChoiceDropDownFashion value={fashionName} onValueChange={setFashion} name='fashion' />
-        </ZGrid>
-      </ZBox>
+      <ZGrid gap={ZSizeFixed.Medium}>
+        <ZChoiceDropDownFashion value={fashionName} onValueChange={setFashion} name='fashion' />
+      </ZGrid>
     </ZCard>
   );
 }

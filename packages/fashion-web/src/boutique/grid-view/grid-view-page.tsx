@@ -6,10 +6,10 @@ import {
   ZH3,
   ZIconFontAwesome,
   ZParagraph,
-  ZStack,
-  useFashionTheme
+  ZStack
 } from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
+import { ZFashionArea } from '@zthun/fashion-theme';
 import { IZBrand, ZBrands } from '@zthun/helpful-brands';
 import { ZOrientation } from '@zthun/helpful-fn';
 import { ZDataSearchFields, ZDataSourceStatic, ZDataSourceStaticOptionsBuilder } from '@zthun/helpful-query';
@@ -33,10 +33,14 @@ const ZErrorDataSource = new ZDataSourceStatic(
  */
 export function ZGridViewPage() {
   const [dataSource, setDataSource] = useState(ZBrandDataSource);
-  const { component } = useFashionTheme();
 
   const renderItem = (item: IZBrand) => (
-    <ZCard key={item.id} heading={item.name} avatar={<ZIconFontAwesome name='hashtag' />} fashion={component}>
+    <ZCard
+      key={item.id}
+      heading={item.name}
+      avatar={<ZIconFontAwesome name='hashtag' />}
+      fashion={ZFashionArea.Component}
+    >
       <ZStack justifyContent='center' orientation={ZOrientation.Horizontal}>
         <ZIconFontAwesome family='brands' name={item.id} width={{ xl: ZSizeFixed.Large, xs: ZSizeFixed.Medium }} />
       </ZStack>
@@ -67,7 +71,17 @@ export function ZGridViewPage() {
       <ZGridView
         GridProps={{
           gap: ZSizeFixed.Small,
-          columns: { xl: '1fr 1fr 1fr 1fr 1fr 1fr', lg: '1fr 1fr 1fr 1fr', md: '1fr 1fr 1fr', sm: '1fr 1fr', xs: '1fr' }
+          columns: {
+            xl: '1fr 1fr 1fr 1fr 1fr 1fr',
+            lg: '1fr 1fr 1fr 1fr',
+            md: '1fr 1fr 1fr',
+            sm: '1fr 1fr',
+            xs: '1fr'
+          },
+          align: {
+            items: 'stretch',
+            content: 'stretch'
+          }
         }}
         renderItem={renderItem}
         dataSource={dataSource}
