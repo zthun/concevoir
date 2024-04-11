@@ -1,6 +1,26 @@
-import { ZAttribute, ZComponentBackground } from '@zthun/helpful-dom';
+import {
+  IZComponentDispatch,
+  IZComponentRender,
+  IZComponentTemplate,
+  ZAttribute,
+  ZComponentDispatch,
+  ZComponentDispatchOnAttributeChanged,
+  ZComponentRegister,
+  ZComponentRenderOnConnected,
+  ZComponentRenderTemplate,
+  ZComponentShadow,
+  ZComponentTemplateNoDisplay
+} from '@zthun/spellcraft';
 
-@ZComponentBackground({ name: 'ZDevice' })
+export interface ZDeviceElement extends IZComponentDispatch, IZComponentRender, IZComponentTemplate {}
+
+@ZComponentRegister('z-device')
+@ZComponentDispatchOnAttributeChanged()
+@ZComponentDispatch(new Event('change'))
+@ZComponentRenderOnConnected()
+@ZComponentRenderTemplate()
+@ZComponentTemplateNoDisplay()
+@ZComponentShadow()
 export class ZDeviceElement<T extends string = string> extends HTMLElement {
   public static readonly observedAttributes = ['xl', 'lg', 'md', 'sm', 'xs'];
 
