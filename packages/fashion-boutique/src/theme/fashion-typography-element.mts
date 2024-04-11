@@ -1,12 +1,12 @@
 import { IZFashionTypography, ZFashionTypographyBuilder } from '@zthun/fashion-typeface';
-import { ZProperty } from '@zthun/helpful-dom';
 import { css } from '@zthun/helpful-fn';
 import {
   IZComponentStyles,
   IZComponentWithStyleElement,
   ZComponentRegister,
   ZComponentStyles,
-  ZComponentStylesAddOnConnect
+  ZComponentStylesAddOnConnect,
+  ZProperty
 } from '@zthun/spellcraft';
 
 export interface ZFashionTypographyElement extends IZComponentWithStyleElement {}
