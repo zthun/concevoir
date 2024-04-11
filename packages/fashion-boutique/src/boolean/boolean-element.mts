@@ -1,7 +1,7 @@
 import { ZCircusKeyboardQwerty } from '@zthun/cirque';
 import { ZFashionPriority } from '@zthun/fashion-theme';
-import { IZComponentConnected, IZComponentDisconnected, ZAttribute } from '@zthun/helpful-dom';
 import { sleep } from '@zthun/helpful-fn';
+import { IZLifecycleConnected, IZLifecycleDisconnected, ZAttribute } from '@zthun/spellcraft';
 import { IZComponentDisabled } from '../component/component-disabled.mjs';
 import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentName } from '../component/component-name.mjs';
@@ -10,12 +10,12 @@ import { IZComponentRequired } from '../component/component-required.mjs';
 export abstract class ZBooleanElement<T>
   extends HTMLElement
   implements
-    IZComponentConnected,
     IZComponentFashion,
     IZComponentRequired,
     IZComponentName,
     IZComponentDisabled,
-    IZComponentDisconnected
+    IZLifecycleConnected,
+    IZLifecycleDisconnected
 {
   public static readonly observedAttributes = ['fashion', 'value', 'disabled', 'required', 'value'];
 
