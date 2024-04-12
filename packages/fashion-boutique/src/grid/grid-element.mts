@@ -28,11 +28,11 @@ import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 export interface ZGridElement extends IZComponentRender {}
 
 @ZComponentRegister('z-grid')
-@ZComponentRenderOnEvent('change', { selector: 'z-alignment[name="align"]' })
-@ZComponentRenderOnEvent('change', { selector: 'z-alignment[name="justify"]' })
-@ZComponentRenderOnEvent('change', { selector: 'z-device[name="columns"]' })
-@ZComponentRenderOnEvent('change', { selector: 'z-device[name="width"]' })
-@ZComponentRenderOnEvent('change', { selector: 'z-device[name="height"]' })
+@ZComponentRenderOnEvent('change', { selector: ':scope > z-alignment[name="align"]' })
+@ZComponentRenderOnEvent('change', { selector: ':scope > z-alignment[name="justify"]' })
+@ZComponentRenderOnEvent('change', { selector: ':scope > z-device[name="columns"]' })
+@ZComponentRenderOnEvent('change', { selector: ':scope > z-device[name="width"]' })
+@ZComponentRenderOnEvent('change', { selector: ':scope > z-device[name="height"]' })
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()

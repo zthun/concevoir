@@ -33,11 +33,11 @@ import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 export interface ZBoxElement extends IZComponentRender {}
 
 @ZComponentRegister('z-box')
-@ZComponentRenderOnEvent('change', { selector: 'z-quadrilateral[name="edge"]' })
-@ZComponentRenderOnEvent('change', { selector: 'z-quadrilateral[name="margin"]' })
-@ZComponentRenderOnEvent('change', { selector: 'z-quadrilateral[name="padding"]' })
-@ZComponentRenderOnEvent('change', { selector: 'z-quadrilateral[name="trim"]' })
-@ZComponentRenderOnEvent('change', { selector: 'z-device[name="width"]' })
+@ZComponentRenderOnEvent('change', { selector: ':scope > z-quadrilateral[name="edge"]' })
+@ZComponentRenderOnEvent('change', { selector: ':scope > z-quadrilateral[name="margin"]' })
+@ZComponentRenderOnEvent('change', { selector: ':scope > z-quadrilateral[name="padding"]' })
+@ZComponentRenderOnEvent('change', { selector: ':scope > z-quadrilateral[name="trim"]' })
+@ZComponentRenderOnEvent('change', { selector: ':scope > z-device[name="width"]' })
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()

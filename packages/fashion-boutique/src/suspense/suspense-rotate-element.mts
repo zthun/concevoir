@@ -26,7 +26,7 @@ import { IZComponentFashion, ZFashionDetail } from '../component/component-fashi
 export interface ZSuspenseRotateElement extends IZComponentRender {}
 
 @ZComponentRegister('z-suspense-rotate')
-@ZComponentRenderOnEvent('change', { selector: 'z-device[name="width"]' })
+@ZComponentRenderOnEvent('change', { selector: ':scope > z-device[name="width"]' })
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()

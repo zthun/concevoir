@@ -32,8 +32,8 @@ export interface ZBubbleElement extends IZComponentRender {}
 
 @ZComponentRegister('z-bubble')
 @ZComponentClass('ZBubble-root')
-@ZComponentRenderOnEvent('change', { selector: 'z-quadrilateral[name="padding"]' })
-@ZComponentRenderOnEvent('change', { selector: 'z-device[name="width"]' })
+@ZComponentRenderOnEvent('change', { selector: ':scope > z-quadrilateral[name="padding"]' })
+@ZComponentRenderOnEvent('change', { selector: ':scope > z-device[name="width"]' })
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()

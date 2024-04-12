@@ -26,7 +26,7 @@ import { IZComponentFashion, ZFashionDetail } from '../component/component-fashi
 export interface ZBannerElement extends IZComponentRender {}
 
 @ZComponentRegister('z-banner')
-@ZComponentRenderOnEvent('change', { selector: 'z-device[name="height"]' })
+@ZComponentRenderOnEvent('change', { selector: ':scope > z-device[name="height"]' })
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
