@@ -53,6 +53,7 @@ export class ZFashionTailorElement extends HTMLElement {
         ${ZFashionTailorElement.gapProp(ZSizeFixed.ExtraLarge)}: ${this.tailor.gap(ZSizeFixed.ExtraLarge)};
         ${ZFashionTailorElement.gapProp(ZSizeVoid.None)}: ${this.tailor.gap(ZSizeVoid.None)};
         --fashion-tailor-gap-auto: auto;
+        --fashion-tailor-gap-fit: auto;
 
         ${ZFashionTailorElement.thicknessProp(ZSizeFixed.ExtraSmall)}: ${this.tailor.thickness(ZSizeFixed.ExtraSmall)};
         ${ZFashionTailorElement.thicknessProp(ZSizeFixed.Small)}: ${this.tailor.thickness(ZSizeFixed.Small)};
