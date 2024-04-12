@@ -1,4 +1,4 @@
-import { ZCircusComponentModel } from '@zthun/cirque';
+import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
 import { ZBreadcrumbComponentModel } from './breadcrumb.cm.mjs';
 
 /**
@@ -14,7 +14,7 @@ export class ZBreadcrumbsComponentModel extends ZCircusComponentModel {
    *        The list of breadcrumb items.
    */
   public async items(): Promise<ZBreadcrumbComponentModel[]> {
-    return (await this.driver.query('.ZBreadcrumbs-item')).map((item) => new ZBreadcrumbComponentModel(item));
+    return ZCircusBy.all(this.driver, ZBreadcrumbComponentModel);
   }
 
   /**
@@ -28,7 +28,6 @@ export class ZBreadcrumbsComponentModel extends ZCircusComponentModel {
    *        no such breadcrumb is found.
    */
   public async item(name: string): Promise<ZBreadcrumbComponentModel | null> {
-    const [item] = await this.driver.query(`.ZBreadcrumbs-item[data-name="${name}"]`);
-    return item ? new ZBreadcrumbComponentModel(item) : null;
+    return ZCircusBy.optional(this.driver, ZBreadcrumbComponentModel, name);
   }
 }
