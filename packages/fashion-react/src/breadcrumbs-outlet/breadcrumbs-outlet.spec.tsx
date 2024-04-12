@@ -1,6 +1,6 @@
 import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZBreadcrumbsOutletComponentModel } from '@zthun/fashion-circus';
+import { ZBreadcrumbsComponentModel } from '@zthun/fashion-circus';
 import { createMemoryHistory } from 'history';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
@@ -17,14 +17,14 @@ describe('ZBreadcrumbsOutlet', () => {
     );
 
     const driver = await new ZCircusSetupRenderer(element).setup();
-    return ZCircusBy.first(driver, ZBreadcrumbsOutletComponentModel);
+    return ZCircusBy.first(driver, ZBreadcrumbsComponentModel);
   }
 
   it('should render the breadcrumbs', async () => {
     // Arrange.
-    const target = await createTestTarget();
+    const target = createTestTarget();
     // Act.
     // Assert.
-    await expect(target.breadcrumbs()).resolves.toBeTruthy();
+    await expect(target).resolves.toBeTruthy();
   });
 });

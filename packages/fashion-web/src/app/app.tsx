@@ -105,10 +105,10 @@ export function ZFashionApp() {
         <ZBannerMain avatar={avatar} prefix={prefix} suffix={suffix}>
           <ZRouteMap>
             <ZRoute path={ZFashionRouteHome.path} element={<ZHomePage />} />
-            <ZRoute path={ZFashionRouteTheme.path} element={<ZBreadcrumbsOutlet breadcrumbsProps={breadcrumbs} />}>
+            <ZRoute path={ZFashionRouteTheme.path} element={<ZBreadcrumbsOutlet BreadcrumbsProps={breadcrumbs} />}>
               <ZRoute path='' element={<ZThemePage />} />
             </ZRoute>
-            <ZRoute path={ZFashionRouteBoutique.path} element={<ZBreadcrumbsOutlet breadcrumbsProps={breadcrumbs} />}>
+            <ZRoute path={ZFashionRouteBoutique.path} element={<ZBreadcrumbsOutlet BreadcrumbsProps={breadcrumbs} />}>
               <ZRoute path={ZFashionRouteAlert.path} element={<ZAlertPage />} />
               <ZRoute path={ZFashionRouteBoolean.path} element={<ZBooleanPage />} />
               <ZRoute path={ZFashionRouteBubble.path} element={<ZBubblePage />} />
