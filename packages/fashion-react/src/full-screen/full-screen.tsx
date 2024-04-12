@@ -1,21 +1,17 @@
+import { ZFullScreenElement } from '@zthun/fashion-boutique';
 import React from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
-import { createStyleHook } from '../theme/styled';
+import { useWebComponent } from '../component/use-web-component.mjs';
 
-const useFullScreenStyles = createStyleHook(({ tailor }) => ({
-  screen: {
-    padding: tailor.gap(),
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0
+declare global {
+  namespace React.JSX {
+    interface IntrinsicElements {
+      ['z-full-screen']: ZFullScreenElement & any;
+    }
   }
-}));
-
+}
 export function ZFullScreen(props: IZComponentHierarchy) {
   const { children } = props;
-  const { classes } = useFullScreenStyles();
-
-  return <div className={classes.screen}>{children}</div>;
+  useWebComponent(ZFullScreenElement);
+  return <z-full-screen>{children}</z-full-screen>;
 }
