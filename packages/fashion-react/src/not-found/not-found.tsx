@@ -7,8 +7,8 @@ import { ZCard } from '../card/card';
 import { ZFullScreen } from '../full-screen/full-screen';
 import { ZGrid } from '../grid/grid';
 import { useNavigate } from '../router/router-dom.mjs';
+import { ZSadFace } from '../svg/sad-face';
 import { ZParagraph } from '../typography/paragraph';
-import { ZSadFace } from './sad-face';
 
 export interface IZNotFound {
   home?: string;
