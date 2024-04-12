@@ -59,19 +59,19 @@ export class ZBoxElement extends HTMLElement implements IZComponentFashion, IZCo
     const device = new ZFashionDevice();
     const detail = new ZFashionDetail(this.fashion);
 
-    const edgeQuery = 'z-quadrilateral[name="edge"]';
+    const edgeQuery = ':scope > z-quadrilateral[name="edge"]';
     const edge = this.querySelector<ZQuadrilateralElement<ZThicknessSize>>(edgeQuery);
 
-    const trimQuery = 'z-quadrilateral[name="trim"]';
+    const trimQuery = ':scope > z-quadrilateral[name="trim"]';
     const trim = this.querySelector<ZQuadrilateralElement<Property.BorderStyle>>(trimQuery);
 
-    const marginQuery = 'z-quadrilateral[name="margin"]';
+    const marginQuery = ':scope > z-quadrilateral[name="margin"]';
     const margin = this.querySelector<ZQuadrilateralElement<ZGapSize | ZSizeVaried.Fit>>(marginQuery);
 
-    const paddingQuery = 'z-quadrilateral[name="padding"]';
+    const paddingQuery = ':scope > z-quadrilateral[name="padding"]';
     const padding = this.querySelector<ZQuadrilateralElement<ZGapSize>>(paddingQuery);
 
-    const $width = this.querySelector<ZDeviceElement>(`z-device[name="width"]`);
+    const $width = this.querySelector<ZDeviceElement>(`:scope > z-device[name="width"]`);
     const width = new ZDeviceBounds($width?.device?.call($width), ZSizeVaried.Fit);
 
     return html`

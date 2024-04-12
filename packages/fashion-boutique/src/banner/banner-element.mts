@@ -46,7 +46,7 @@ export class ZBannerElement extends HTMLElement implements IZComponentFashion, I
     const detail = new ZFashionDetail(fashion);
     const device = new ZFashionDevice();
 
-    const $height = this.querySelector<ZDeviceElement>(`z-device[name="height"]`);
+    const $height = this.querySelector<ZDeviceElement>(`:scope > z-device[name="height"]`);
     const height = new ZDeviceBounds($height?.device?.call($height), ZSizeVaried.Fit);
 
     return html`

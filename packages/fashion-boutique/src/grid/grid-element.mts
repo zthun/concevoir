@@ -53,16 +53,16 @@ export class ZGridElement extends HTMLElement implements IZComponentTemplate {
 
     const device = new ZFashionDevice();
 
-    const $columns = this.querySelector<ZDeviceElement>('z-device[name="columns"]');
+    const $columns = this.querySelector<ZDeviceElement>(':scope > z-device[name="columns"]');
     const columns = new ZDeviceBounds<Property.GridTemplateColumns>($columns?.device?.call($columns), 'none');
 
-    const $align = this.querySelector<ZAlignmentElement>(`z-alignment[name="align"]`);
-    const $justify = this.querySelector<ZAlignmentElement>(`z-alignment[name="justify"]`);
+    const $align = this.querySelector<ZAlignmentElement>(`:scope > z-alignment[name="align"]`);
+    const $justify = this.querySelector<ZAlignmentElement>(`:scope > z-alignment[name="justify"]`);
 
-    const $width = this.querySelector<ZDeviceElement>(`z-device[name="width"]`);
+    const $width = this.querySelector<ZDeviceElement>(`:scope > z-device[name="width"]`);
     const width = new ZDeviceBounds($width?.device?.call($width), ZSizeVaried.Fit);
 
-    const $height = this.querySelector<ZDeviceElement>(`z-device[name="height"]`);
+    const $height = this.querySelector<ZDeviceElement>(`:scope > z-device[name="height"]`);
     const height = new ZDeviceBounds($height?.device?.call($height), ZSizeVaried.Fit);
 
     return html`

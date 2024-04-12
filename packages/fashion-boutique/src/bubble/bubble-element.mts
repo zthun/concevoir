@@ -60,10 +60,10 @@ export class ZBubbleElement extends HTMLElement implements IZComponentTemplate {
     const thickness = ZFashionTailorElement.thicknessVar(border);
     const device = new ZFashionDevice();
 
-    const $size = this.querySelector<ZDeviceElement>(`z-device[name="width"]`);
+    const $size = this.querySelector<ZDeviceElement>(`:scope > z-device[name="width"]`);
     const size = new ZDeviceBounds($size?.device?.call($size), ZSizeVaried.Fit);
 
-    const padding = this.querySelector<ZQuadrilateralElement<ZGapSize>>(`z-quadrilateral[name="padding"]`);
+    const padding = this.querySelector<ZQuadrilateralElement<ZGapSize>>(`:scope > z-quadrilateral[name="padding"]`);
 
     return html`
       <style>

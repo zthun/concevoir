@@ -50,7 +50,7 @@ export class ZSuspenseRotateElement
     const detail = new ZFashionDetail(fashion);
     const device = new ZFashionDevice();
 
-    const $width = this.querySelector<ZDeviceElement>('z-device[name="width"]');
+    const $width = this.querySelector<ZDeviceElement>(':scope > z-device[name="width"]');
     const width = new ZDeviceBounds($width?.device?.call($width), ZSizeFixed.ExtraSmall);
 
     const xl = ZSuspenseRotateElement.SizeChart[width.xl()];
