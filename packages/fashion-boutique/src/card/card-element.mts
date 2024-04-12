@@ -10,13 +10,12 @@ import {
   createSizeChartVoidCss
 } from '@zthun/fashion-tailor';
 import { ZFashionArea } from '@zthun/fashion-theme';
-import { css, html } from '@zthun/helpful-fn';
+import { html } from '@zthun/helpful-fn';
 import {
   IZComponentRender,
   IZComponentTemplate,
   ZAttribute,
   ZComponentClass,
-  ZComponentCss,
   ZComponentDependencies,
   ZComponentRegister,
   ZComponentRenderOnAttributeChanged,
@@ -41,26 +40,6 @@ export interface ZCardElement extends IZComponentRender {}
 @ZComponentRenderTemplate()
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
-@ZComponentCss(
-  css`
-    @keyframes ZCard-gradient {
-      0% {
-        background-position-y: 0%;
-      }
-      50% {
-        background-position-y: 100%;
-      }
-      100% {
-        background-position-y: 0%;
-      }
-    }
-
-    .ZCard-root[loading='true'] {
-      animation: ZCard-gradient 1.5s linear infinite;
-    }
-  `,
-  { id: 'ZCard-styles' }
-)
 @ZComponentShadow()
 export class ZCardElement extends HTMLElement implements IZComponentTemplate {
   public static readonly observedAttributes = ['fashion', 'loading'];
@@ -97,8 +76,21 @@ export class ZCardElement extends HTMLElement implements IZComponentTemplate {
 
     return html`
       <style>
+        @keyframes ZCard-gradient {
+          0% {
+            background-position-y: 0%;
+          }
+          50% {
+            background-position-y: 100%;
+          }
+          100% {
+            background-position-y: 0%;
+          }
+        }
+
         :host {
           background-color: ${detail.color('main')};
+          box-shadow: 0 0.2rem 8pt #101010;
           color: ${detail.color('contrast')};
           display: flex;
           flex-direction: column;
@@ -108,6 +100,7 @@ export class ZCardElement extends HTMLElement implements IZComponentTemplate {
         }
 
         :host([loading='true']) {
+          animation: ZCard-gradient 1.5s linear infinite;
           background: linear-gradient(0, ${detail.color('main')}, ${detail.color('dark')}, ${detail.color('main')});
           background-size: 100% 300%;
         }
