@@ -27,8 +27,8 @@ export function ZAlert(props: IZAlert) {
 
   return (
     <z-alert class={cssJoinDefined('ZAlert-root', className)} fashion={fashion} name={name}>
-      {avatar ? <div slot='avatar'>{avatar}</div> : null}
-      {heading ? <div slot='heading'>{heading}</div> : null}
+      {avatar && <div slot='avatar'>{avatar}</div>}
+      {heading && <div slot='heading'>{heading}</div>}
       <div slot='message'>{message}</div>
     </z-alert>
   );
