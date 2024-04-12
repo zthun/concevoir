@@ -20,7 +20,7 @@ describe('ZNewspaper', () => {
 
   async function createTestTarget() {
     const element = (
-      <ZNewspaper className='ZTestNewspaper-root' range={xl} rangeLg={lg} rangeMd={md} rangeSm={sm} rangeXs={xs}>
+      <ZNewspaper className='ZTestNewspaper-root' range={{ xl, lg, md, sm, xs }}>
         12 Column Content
       </ZNewspaper>
     );
