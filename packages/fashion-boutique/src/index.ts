@@ -41,3 +41,4 @@ export * from './typography/paragraph-body-element.mjs';
 export * from './typography/paragraph-caption-element.mjs';
 export * from './typography/paragraph-overline-element.mjs';
 export * from './typography/paragraph-subtitle-element.mjs';
+export * from './you-tube/you-tube-video-element.mjs';
