@@ -25,6 +25,7 @@ export * from './link/link-element.mjs';
 export * from './popup/popup-element.mjs';
 export * from './suspense/suspense-progress-element.mjs';
 export * from './suspense/suspense-rotate-element.mjs';
+export * from './svg/sad-face.mjs';
 export * from './theme/fashion-tailor-element.mjs';
 export * from './theme/fashion-theme-element.mjs';
 export * from './theme/fashion-typography-element.mjs';
