@@ -13,6 +13,6 @@ export class ZYouTubeVideoComponentModel extends ZCircusComponentModel {
    *        The video id that is embedded.
    */
   public identity(): Promise<string> {
-    return this.driver.attribute<string>('data-identity', '?');
+    return this.driver.attribute<string>('identity', '?');
   }
 }
