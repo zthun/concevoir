@@ -20,7 +20,7 @@ export interface ZFashionElement extends IZComponentWithStyleElement {}
 @ZComponentStylesRemoveOnDisconnect()
 @ZComponentStylesUpdateOnPropertyChange()
 @ZComponentStylesAddOnConnect()
-@ZComponentStyles()
+@ZComponentStyles({ prefix: 'z-fashion' })
 export class ZFashionElement extends HTMLElement implements IZComponentStyles {
   @ZProperty({ initial: new ZFashionBuilder().build(), attribute: (f) => f?.name })
   public fashion: IZFashion;

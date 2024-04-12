@@ -34,7 +34,7 @@ export interface ZButtonElement extends IZComponentWithStyleElement {}
 @ZComponentStylesRemoveOnDisconnect()
 @ZComponentStylesUpdateOnAttributeChange()
 @ZComponentStylesAddOnConnect()
-@ZComponentStyles()
+@ZComponentStyles({ prefix: 'z-button' })
 @ZComponentCss(
   css`
     @keyframes ZButton-gradient {

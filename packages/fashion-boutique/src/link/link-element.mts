@@ -20,7 +20,7 @@ export interface ZLinkElement extends IZComponentWithStyleElement {}
 @ZComponentStylesUpdateOnAttributeChange()
 @ZComponentStylesAddOnConnect()
 @ZComponentGenerateId()
-@ZComponentStyles()
+@ZComponentStyles({ prefix: 'z-link' })
 export class ZLinkElement extends HTMLAnchorElement implements IZComponentStyles {
   public static readonly observedAttributes = ['data-fashion'];
 
