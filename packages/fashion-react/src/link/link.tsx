@@ -1,15 +1,14 @@
-import { Link } from '@mui/material';
-import { IZComponentName } from '@zthun/fashion-boutique';
+import { IZComponentFashion, IZComponentName, ZLinkElement } from '@zthun/fashion-boutique';
 import { cssJoinDefined } from '@zthun/helpful-fn';
-import { noop } from 'lodash-es';
 import React from 'react';
 import { IZComponentLabel } from '../component/component-label.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
+import { useWebComponent } from '../component/use-web-component.mjs';
 
 /**
  * Represents a link component (anchor tag).
  */
-export interface IZLink extends IZComponentStyle, IZComponentName, IZComponentLabel {
+export interface IZLink extends IZComponentStyle, IZComponentName, IZComponentLabel, IZComponentFashion {
   /**
    * The link url.
    */
@@ -35,15 +34,20 @@ export interface IZLink extends IZComponentStyle, IZComponentName, IZComponentLa
  *        The JSX to render this component.
  */
 export function ZLink(props: IZLink) {
-  const { className, name, href, label, onClick = noop } = props;
-
-  const handleClick = () => {
-    onClick(href);
-  };
+  const { className, fashion, name, href, label, onClick } = props;
+  useWebComponent(ZLinkElement);
 
   return (
-    <Link className={cssJoinDefined('ZLink-root', className)} href={href} data-name={name} onClick={handleClick}>
+    <a
+      // @ts-expect-error directives require class instead of className
+      class={cssJoinDefined(className)}
+      href={href}
+      is='z-link'
+      data-fashion={fashion}
+      data-name={name}
+      onClick={() => onClick?.call(this, href)}
+    >
       {label}
-    </Link>
+    </a>
   );
 }
