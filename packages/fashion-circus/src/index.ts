@@ -2,7 +2,7 @@ export * from './alert/alert.cm.mjs';
 export * from './banner-main/banner-main.cm.mjs';
 export * from './boolean/boolean.cm.mjs';
 export * from './box/box.cm.mjs';
-export * from './breadcrumbs-outlet/breadcrumbs-outlet.cm.mjs';
+export * from './breadcrumbs/breadcrumb.cm.mjs';
 export * from './breadcrumbs/breadcrumbs.cm.mjs';
 export * from './bubble/bubble.cm.mjs';
 export * from './button/button.cm.mjs';

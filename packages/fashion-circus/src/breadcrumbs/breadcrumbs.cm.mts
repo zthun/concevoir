@@ -1,5 +1,5 @@
 import { ZCircusComponentModel } from '@zthun/cirque';
-import { ZLinkComponentModel } from '../link/link.cm.mjs';
+import { ZBreadcrumbComponentModel } from './breadcrumb.cm.mjs';
 
 /**
  * Represents a component model a ZBreadcrumbs component.
@@ -13,8 +13,8 @@ export class ZBreadcrumbsComponentModel extends ZCircusComponentModel {
    * @returns
    *        The list of breadcrumb items.
    */
-  public async items(): Promise<ZLinkComponentModel[]> {
-    return (await this.driver.query('.ZBreadcrumbs-item')).map((item) => new ZLinkComponentModel(item));
+  public async items(): Promise<ZBreadcrumbComponentModel[]> {
+    return (await this.driver.query('.ZBreadcrumbs-item')).map((item) => new ZBreadcrumbComponentModel(item));
   }
 
   /**
@@ -27,8 +27,8 @@ export class ZBreadcrumbsComponentModel extends ZCircusComponentModel {
    *        The link with the given name or href, or null if
    *        no such breadcrumb is found.
    */
-  public async item(name: string): Promise<ZLinkComponentModel | null> {
+  public async item(name: string): Promise<ZBreadcrumbComponentModel | null> {
     const [item] = await this.driver.query(`.ZBreadcrumbs-item[data-name="${name}"]`);
-    return item ? new ZLinkComponentModel(item) : null;
+    return item ? new ZBreadcrumbComponentModel(item) : null;
   }
 }
