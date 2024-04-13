@@ -24,6 +24,7 @@ export * from './full-screen/full-screen-element.mjs';
 export * from './grid/grid-element.mjs';
 export * from './grid/grid-span-element.mjs';
 export * from './icon/icon-font-awesome-element.mjs';
+export * from './icon/icon-material-element.mjs';
 export * from './link/link-element.mjs';
 export * from './popup/popup-element.mjs';
 export * from './suspense/suspense-progress-element.mjs';
