@@ -6,14 +6,14 @@ import {
   createSizeChartFixedGeometric
 } from '@zthun/fashion-tailor';
 import { firstDefined } from '@zthun/helpful-fn';
-import { KeyboardEvent, MouseEvent, ReactNode, useEffect } from 'react';
+import { KeyboardEvent, MouseEvent, useEffect } from 'react';
 import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { createStyleHook } from '../theme/styled';
 
 export interface IZIcon extends IZComponentName, IZComponentStyle, IZComponentWidth<ZSizeFixed>, IZComponentFashion {
   onClick?: (event: MouseEvent | KeyboardEvent) => void;
-  tooltip?: ReactNode;
+  tooltip?: string;
 }
 
 const IconSizeChart = createSizeChartFixedCss(createSizeChartFixedGeometric(2, 1), 'rem');
