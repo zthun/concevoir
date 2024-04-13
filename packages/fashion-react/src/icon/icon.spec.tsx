@@ -1,22 +1,24 @@
-import { IZCircusDriver, ZCircusBy } from '@zthun/cirque';
+import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
+import { ZIconFontAwesomeElement } from '@zthun/fashion-boutique';
 import { ZIconComponentModel } from '@zthun/fashion-circus';
 import React from 'react';
 import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { ZIconFontAwesome, ZIconFontAwesomeProvider, ZIconFontAwesomeVendor } from './icon-font-awesome';
+import { ZIconFontAwesome } from './icon-font-awesome';
 import { ZIconMaterial, ZIconMaterialProvider, ZIconMaterialVendor } from './icon-material';
 
 describe('ZIcon', () => {
-  let _drivers: IZCircusDriver[];
+  let _renderer: IZCircusSetup;
+  let _driver: IZCircusDriver;
   let onClick: Mock | undefined;
 
   beforeEach(() => {
     onClick = undefined;
-    _drivers = [];
   });
 
   afterEach(async () => {
-    await Promise.all(_drivers.map((d) => d.destroy?.call(d)));
+    await _driver?.destroy?.call(_driver);
+    await _renderer?.destroy?.call(_renderer);
   });
 
   async function shouldRegisterTheProvider(
@@ -24,7 +26,6 @@ describe('ZIcon', () => {
     createTestTarget: (name: string) => Promise<ZIconComponentModel>
   ) {
     // Arrange.
-    await createTestTarget('save');
     await createTestTarget('home');
     // Act.
     const actual = document.head.querySelectorAll(`link[href="${expected}"]`).length;
@@ -71,9 +72,9 @@ describe('ZIcon', () => {
   describe('Material', () => {
     async function createTestTarget(name: string) {
       const element = <ZIconMaterial name={name} onClick={onClick} />;
-      const driver = await new ZCircusSetupRenderer(element).setup();
-      _drivers.push(driver);
-      return ZCircusBy.first(driver, ZIconComponentModel, name);
+      _renderer = new ZCircusSetupRenderer(element);
+      _driver = await _renderer.setup();
+      return ZCircusBy.first(_driver, ZIconComponentModel, name);
     }
 
     it('should register the provider.', async () => {
@@ -96,13 +97,13 @@ describe('ZIcon', () => {
   describe('Font Awesome', () => {
     async function createTestTarget(name: string) {
       const element = <ZIconFontAwesome name={name} onClick={onClick} />;
-      const driver = await new ZCircusSetupRenderer(element).setup();
-      _drivers.push(driver);
-      return ZCircusBy.first(driver, ZIconComponentModel, name);
+      _renderer = new ZCircusSetupRenderer(element);
+      _driver = await _renderer.setup();
+      return ZCircusBy.first(_driver, ZIconComponentModel, name);
     }
 
     it('should register the provider.', async () => {
-      await shouldRegisterTheProvider(ZIconFontAwesomeProvider, createTestTarget);
+      await shouldRegisterTheProvider(ZIconFontAwesomeElement.Provider, createTestTarget);
     });
 
     it('should render the icon by name.', async () => {
@@ -110,7 +111,7 @@ describe('ZIcon', () => {
     });
 
     it('should provide the correct vendor.', async () => {
-      await shouldProvideTheCorrectVendor(ZIconFontAwesomeVendor, createTestTarget);
+      await shouldProvideTheCorrectVendor(ZIconFontAwesomeElement.Vendor, createTestTarget);
     });
 
     it('should raise the onClick event when clicked.', async () => {
