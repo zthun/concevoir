@@ -12,9 +12,8 @@ export class ZIconComponentModel extends ZCircusComponentModel {
    * @returns
    *        The name of the icon.
    */
-  public async name(): Promise<string> {
-    const name = await this.driver.attribute<string>('name');
-    return name || this.driver.attribute<string>('data-name', '');
+  public name(): Promise<string> {
+    return this.driver.attribute<string>('name', '');
   }
 
   /**
