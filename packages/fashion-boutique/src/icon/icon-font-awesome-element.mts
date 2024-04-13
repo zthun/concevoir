@@ -1,13 +1,4 @@
 import {
-  ZDeviceBounds,
-  ZFashionDevice,
-  ZSizeFixed,
-  createSizeChartFixedCss,
-  createSizeChartFixedGeometric
-} from '@zthun/fashion-tailor';
-import { ZFashionIntrinsic } from '@zthun/fashion-theme';
-import { createGuid, css } from '@zthun/helpful-fn';
-import {
   IZComponentRender,
   IZComponentStyles,
   IZComponentWithStyleElement,
@@ -15,6 +6,7 @@ import {
   IZLifecycleConnected,
   ZAttribute,
   ZComponentClass,
+  ZComponentGenerateId,
   ZComponentLink,
   ZComponentRegister,
   ZComponentStyles,
@@ -22,18 +14,26 @@ import {
   ZComponentStylesRemoveOnDisconnect,
   ZComponentStylesUpdateOnAttributeChange
 } from '@zthun/spellcraft';
-import { ZDeviceElement } from '../background/device-element.mjs';
-import { ZFashionDetail } from '../component/component-fashion.mjs';
+import { IZComponentFashion } from '../component/component-fashion.mjs';
+import { IZComponentName } from '../component/component-name.mjs';
+import { ZComponentIcon } from './component-icon.mjs';
 
-export interface ZIconFontAwesomeElement extends IZComponentRender, IZComponentWithStyleElement {}
+export interface ZIconFontAwesomeElement
+  extends IZComponentRender,
+    IZComponentStyles,
+    IZComponentWithStyleElement,
+    Required<IZComponentName>,
+    Required<IZComponentFashion> {}
 
 @ZComponentRegister('z-icon-font-awesome')
 @ZComponentLink('stylesheet', ZIconFontAwesomeElement.Provider)
-@ZComponentClass('ZIcon-root', 'ZIcon-font-awesome')
+@ZComponentClass('ZIcon-root', 'ZIcon-font-awesome', 'ZIcon-font')
 @ZComponentStylesRemoveOnDisconnect()
 @ZComponentStylesUpdateOnAttributeChange()
 @ZComponentStylesAddOnConnect()
 @ZComponentStyles({ prefix: 'z-icon-font-awesome' })
+@ZComponentIcon('question')
+@ZComponentGenerateId({ prefix: 'z-icon-font-awesome' })
 export class ZIconFontAwesomeElement
   extends HTMLElement
   implements IZComponentStyles, IZLifecycleConnected, IZLifecycleAttributeChanged
@@ -41,13 +41,6 @@ export class ZIconFontAwesomeElement
   public static readonly observedAttributes = ['fashion', 'name', 'family', 'kind'];
   public static readonly Provider = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css';
   public static readonly Vendor = 'font-awesome';
-  public static readonly SizeChart = createSizeChartFixedCss(createSizeChartFixedGeometric(2, 1), 'rem');
-
-  @ZAttribute({ fallback: 'question' })
-  public name: string;
-
-  @ZAttribute({ fallback: ZFashionIntrinsic.Inherit })
-  public fashion: string;
 
   @ZAttribute({ fallback: 'classic' })
   public family: 'classic' | 'sharp' | 'brands';
@@ -55,53 +48,12 @@ export class ZIconFontAwesomeElement
   @ZAttribute({ fallback: 'solid' })
   public kind: 'solid' | 'regular' | 'duotone' | 'light' | 'thin';
 
-  public styles() {
-    const { fashion, id } = this;
-    const detail = new ZFashionDetail(fashion);
-    const device = new ZFashionDevice();
-
-    const $width = this.querySelector<ZDeviceElement>(':scope > z-device[name="width"]');
-    const width = new ZDeviceBounds($width?.device?.call($width), ZSizeFixed.Small);
-
-    return css`
-      #${id} {
-        color: ${detail.color('main')};
-        font-size: ${ZIconFontAwesomeElement.SizeChart[width.xl()]};
-      }
-
-      ${device.break(ZSizeFixed.Large)} {
-        #${id} {
-          font-size: ${ZIconFontAwesomeElement.SizeChart[width.lg()]};
-        }
-      }
-
-      ${device.break(ZSizeFixed.Medium)} {
-        #${id} {
-          font-size: ${ZIconFontAwesomeElement.SizeChart[width.md()]};
-        }
-      }
-
-      ${device.break(ZSizeFixed.Small)} {
-        #${id} {
-          font-size: ${ZIconFontAwesomeElement.SizeChart[width.sm()]};
-        }
-      }
-
-      ${device.break(ZSizeFixed.ExtraSmall)} {
-        #${id} {
-          font-size: ${ZIconFontAwesomeElement.SizeChart[width.xs()]};
-        }
-      }
-    `;
-  }
-
   public connectedCallback(): void {
     const { family, kind, name } = this;
-    this.id = `z-icon-font-awesome-${createGuid()}`;
     this.classList.add(`fa-${family}`);
     this.classList.add(`fa-${kind}`);
     this.classList.add(`fa-${name}`);
-    this.setAttribute('data-vendor', 'font-awesome');
+    this.setAttribute('data-vendor', ZIconFontAwesomeElement.Vendor);
   }
 
   public attributeChangedCallback(_: string, oldValue: string, newValue: string): void {
