@@ -33,7 +33,7 @@ export interface ZIconFontAwesomeElement extends IZComponentRender, IZComponentW
 @ZComponentStylesRemoveOnDisconnect()
 @ZComponentStylesUpdateOnAttributeChange()
 @ZComponentStylesAddOnConnect()
-@ZComponentStyles({ prefix: 'z-icon' })
+@ZComponentStyles({ prefix: 'z-icon-font-awesome' })
 export class ZIconFontAwesomeElement
   extends HTMLElement
   implements IZComponentStyles, IZLifecycleConnected, IZLifecycleAttributeChanged
