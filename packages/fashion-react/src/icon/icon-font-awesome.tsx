@@ -32,7 +32,7 @@ export function ZIconFontAwesome(props: IZIconFontAwesome) {
       family={family}
       kind={style}
       name={name}
-      fashion={fashion?.name}
+      fashion={fashion}
       title={tooltip}
       onClick={onClick}
       onKeyDown={onKey}
