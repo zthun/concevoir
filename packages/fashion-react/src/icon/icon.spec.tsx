@@ -1,11 +1,11 @@
 import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZIconFontAwesomeElement } from '@zthun/fashion-boutique';
+import { ZIconFontAwesomeElement, ZIconMaterialElement } from '@zthun/fashion-boutique';
 import { ZIconComponentModel } from '@zthun/fashion-circus';
 import React from 'react';
 import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ZIconFontAwesome } from './icon-font-awesome';
-import { ZIconMaterial, ZIconMaterialProvider, ZIconMaterialVendor } from './icon-material';
+import { ZIconMaterial } from './icon-material';
 
 describe('ZIcon', () => {
   let _renderer: IZCircusSetup;
@@ -78,7 +78,7 @@ describe('ZIcon', () => {
     }
 
     it('should register the provider.', async () => {
-      await shouldRegisterTheProvider(ZIconMaterialProvider, createTestTarget);
+      await shouldRegisterTheProvider(ZIconMaterialElement.Provider, createTestTarget);
     });
 
     it('should render the icon by name.', async () => {
@@ -86,7 +86,7 @@ describe('ZIcon', () => {
     });
 
     it('should provide the correct vendor.', async () => {
-      await shouldProvideTheCorrectVendor(ZIconMaterialVendor, createTestTarget);
+      await shouldProvideTheCorrectVendor(ZIconMaterialElement.Vendor, createTestTarget);
     });
 
     it('should raise the onClick event when clicked.', async () => {

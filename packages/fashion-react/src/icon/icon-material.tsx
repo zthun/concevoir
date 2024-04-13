@@ -1,31 +1,36 @@
-import { Tooltip } from '@mui/material';
+import { ZIconMaterialElement } from '@zthun/fashion-boutique';
+import { ZDeviceBounds, ZSizeFixed } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { useKeyboardActivate } from '@zthun/helpful-react';
 import React from 'react';
-import { IZIcon, useIconProvider, useIconStyles } from './icon.mjs';
+import { useWebComponent } from '../component/use-web-component.mjs';
+import { IZIcon } from './icon.mjs';
 
-export const ZIconMaterialProvider = 'https://fonts.googleapis.com/icon?family=Material+Icons';
-export const ZIconMaterialVendor = 'material';
+declare global {
+  namespace React.JSX {
+    interface IntrinsicElements {
+      ['z-icon-material']: ZIconMaterialElement & any;
+    }
+  }
+}
 
 export function ZIconMaterial(props: IZIcon) {
-  const { name, fashion, className, onClick, tooltip } = props;
-  const { classes } = useIconStyles(props);
-  useIconProvider(ZIconMaterialProvider);
+  const { name, fashion, className, onClick, tooltip, width } = props;
   const { onKey, tabIndex } = useKeyboardActivate(onClick);
+  const $width = new ZDeviceBounds(width, ZSizeFixed.Small);
+  useWebComponent(ZIconMaterialElement);
 
   return (
-    <Tooltip title={tooltip}>
-      <span
-        className={cssJoinDefined('ZIcon-root', 'ZIcon-material', 'material-icons', className, classes.root)}
-        onClick={onClick}
-        onKeyDown={onKey}
-        tabIndex={tabIndex}
-        data-fashion={fashion?.name}
-        data-name={name}
-        data-vendor={ZIconMaterialVendor}
-      >
-        {name}
-      </span>
-    </Tooltip>
+    <z-icon-material
+      class={cssJoinDefined(className)}
+      name={name}
+      fashion={fashion}
+      title={tooltip}
+      onClick={onClick}
+      onKeyDown={onKey}
+      tabIndex={tabIndex}
+    >
+      <z-device name='width' xl={$width.xl()} lg={$width.lg()} md={$width.md()} sm={$width.sm()} xs={$width.xs()} />
+    </z-icon-material>
   );
 }
