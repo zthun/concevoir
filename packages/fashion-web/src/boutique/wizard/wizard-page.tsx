@@ -11,7 +11,6 @@ import {
   ZParagraph,
   ZStack,
   ZWizard,
-  useFashionTheme,
   useNavigate
 } from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
@@ -23,16 +22,15 @@ import { ZFashionRouteBoutique, ZFashionRouteWizard } from '../../routes.mjs';
 export function ZWizardPage() {
   const navigate = useNavigate();
   const [understood, setUnderstood] = useState(false);
-  const { success, error } = useFashionTheme();
 
   const yes = (
     <ZBox padding={new ZQuadrilateralBuilder(ZSizeFixed.ExtraSmall).build()}>
-      <ZIconFontAwesome name='circle-check' fashion={success} />
+      <ZIconFontAwesome name='circle-check' fashion={ZFashionSeverity.Success} />
     </ZBox>
   );
   const no = (
     <ZBox padding={new ZQuadrilateralBuilder(ZSizeFixed.ExtraSmall).build()}>
-      <ZIconFontAwesome name='circle-xmark' fashion={error} />
+      <ZIconFontAwesome name='circle-xmark' fashion={ZFashionSeverity.Error} />
     </ZBox>
   );
 

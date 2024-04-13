@@ -1,11 +1,11 @@
 import {
-  useFashionTheme,
   useNavigate,
   ZBox,
   ZButton,
   ZCard,
   ZGrid,
   ZIconFontAwesome,
+  ZIconMaterial,
   ZParagraph,
   ZStack
 } from '@zthun/fashion-react';
@@ -22,7 +22,6 @@ import { ZFashionRouteBoutique, ZFashionRouteTheme } from '../routes.mjs';
  */
 export function ZHomePage() {
   const navigate = useNavigate();
-  const { primary } = useFashionTheme();
 
   const renderGetStarted = (where: string) => (
     <ZButton
@@ -45,10 +44,10 @@ export function ZHomePage() {
         >
           <ZBox margin={{ bottom: ZSizeFixed.Medium }}>
             <ZStack orientation={ZOrientation.Horizontal} justifyContent='center'>
-              <ZIconFontAwesome
+              <ZIconMaterial
                 name={ZFashionRouteTheme.avatar}
                 width={{ xl: ZSizeFixed.ExtraLarge, xs: ZSizeFixed.Large }}
-                fashion={primary}
+                fashion={ZFashionPriority.Primary}
               />
             </ZStack>
           </ZBox>
@@ -87,7 +86,7 @@ export function ZHomePage() {
               <ZIconFontAwesome
                 name={ZFashionRouteBoutique.avatar}
                 width={{ xl: ZSizeFixed.ExtraLarge, xs: ZSizeFixed.Large }}
-                fashion={primary}
+                fashion={ZFashionPriority.Primary}
               />
             </ZStack>
           </ZBox>

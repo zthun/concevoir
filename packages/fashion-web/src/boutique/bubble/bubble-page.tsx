@@ -7,8 +7,7 @@ import {
   ZH3,
   ZIconFontAwesome,
   ZParagraph,
-  ZStack,
-  useFashionTheme
+  ZStack
 } from '@zthun/fashion-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZOrientation } from '@zthun/helpful-fn';
@@ -24,7 +23,6 @@ export function ZBubblePage() {
   const [count, setCount] = useState<number>(0);
   const [clickable, setClickable] = useState(true);
   const sizes = Object.values(ZSizeFixed);
-  const { inherit } = useFashionTheme();
 
   const handleClick = () => {
     setCount((c) => c + 1);
@@ -54,7 +52,7 @@ export function ZBubblePage() {
             width={ZSizeFixed.Large}
             padding={ZSizeFixed.Medium}
           >
-            <ZIconFontAwesome name='floppy-disk' width={ZSizeFixed.Large} fashion={inherit} />
+            <ZIconFontAwesome name='floppy-disk' width={ZSizeFixed.Large} />
           </ZBubble>
         </ZStack>
 
