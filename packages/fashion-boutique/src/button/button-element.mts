@@ -1,5 +1,5 @@
 import {
-  ZDeviceBounds,
+  IZDeviceValueMap,
   ZFashionDevice,
   ZSizeFixed,
   ZSizeVaried,
@@ -20,7 +20,7 @@ import {
   ZComponentStylesRemoveOnDisconnect,
   ZComponentStylesUpdateOnAttributeChange
 } from '@zthun/spellcraft';
-import { ZDeviceElement } from '../background/device-element.mjs';
+import { ZPropertyDevice } from '../background/device-element.mjs';
 import { IZComponentDisabled } from '../component/component-disabled.mjs';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 import { IZComponentLoading } from '../component/component-loading.mjs';
@@ -108,15 +108,15 @@ export class ZButtonElement
   @ZAttribute({ name: 'data-outline', type: 'boolean' })
   public outline: boolean | undefined;
 
+  @ZPropertyDevice('width', ZSizeVaried.Fit)
+  public width: Required<IZDeviceValueMap<ZSizeVaried>>;
+
   public styles() {
-    const { borderless, compact, fashion, outline } = this;
+    const { borderless, compact, fashion, outline, width } = this;
 
     const device = new ZFashionDevice();
     const detail = new ZFashionDetail(fashion);
     const padding = compact ? '0' : ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall);
-
-    const $width = this.querySelector<ZDeviceElement>('z-device[name="width"]');
-    const width = new ZDeviceBounds($width?.device?.call($width), ZSizeVaried.Fit);
 
     return css`
       #${this.id} {
@@ -125,7 +125,7 @@ export class ZButtonElement
         border-style: ${borderless ? 'none' : 'solid'};
         color: ${outline ? detail.color('main') : detail.color('contrast')};
         padding: ${padding};
-        width: ${ZButtonElement.SizeChart[width.xl()]};
+        width: ${ZButtonElement.SizeChart[width.xl]};
       }
 
       #${this.id}:focus {
@@ -156,25 +156,25 @@ export class ZButtonElement
 
       ${device.break(ZSizeFixed.Large)} {
         #${this.id} {
-          width: ${ZButtonElement.SizeChart[width.lg()]};
+          width: ${ZButtonElement.SizeChart[width.lg]};
         }
       }
 
       ${device.break(ZSizeFixed.Medium)} {
         #${this.id} {
-          width: ${ZButtonElement.SizeChart[width.md()]};
+          width: ${ZButtonElement.SizeChart[width.md]};
         }
       }
 
       ${device.break(ZSizeFixed.Small)} {
         #${this.id} {
-          width: ${ZButtonElement.SizeChart[width.sm()]};
+          width: ${ZButtonElement.SizeChart[width.sm]};
         }
       }
 
       ${device.break(ZSizeFixed.ExtraSmall)} {
         #${this.id} {
-          width: ${ZButtonElement.SizeChart[width.xs()]};
+          width: ${ZButtonElement.SizeChart[width.xs]};
         }
       }
     `;

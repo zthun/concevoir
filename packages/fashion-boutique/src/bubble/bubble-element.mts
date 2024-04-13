@@ -1,5 +1,5 @@
 import {
-  ZDeviceBounds,
+  IZDeviceValueMap,
   ZFashionDevice,
   ZGapSize,
   ZSizeFixed,
@@ -7,7 +7,8 @@ import {
   ZSizeVoid,
   ZThicknessSize,
   createSizeChartFixedCss,
-  createSizeChartFixedGeometric
+  createSizeChartFixedGeometric,
+  createSizeChartVariedCss
 } from '@zthun/fashion-tailor';
 import { ZFashionArea } from '@zthun/fashion-theme';
 import { firstTruthy, html } from '@zthun/helpful-fn';
@@ -23,7 +24,7 @@ import {
   ZComponentRenderTemplate,
   ZComponentShadow
 } from '@zthun/spellcraft';
-import { ZDeviceElement } from '../background/device-element.mjs';
+import { ZDeviceElement, ZPropertyDevice } from '../background/device-element.mjs';
 import { ZQuadrilateralElement } from '../background/quadrilateral-element.mjs';
 import { ZFashionDetail } from '../component/component-fashion.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
@@ -33,7 +34,7 @@ export interface ZBubbleElement extends IZComponentRender {}
 @ZComponentRegister('z-bubble')
 @ZComponentClass('ZBubble-root')
 @ZComponentRenderOnEvent('change', { selector: ':scope > z-quadrilateral[name="padding"]' })
-@ZComponentRenderOnEvent('change', { selector: ':scope > z-device[name="width"]' })
+@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.selector('width') })
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
@@ -42,7 +43,8 @@ export class ZBubbleElement extends HTMLElement implements IZComponentTemplate {
   public static readonly observedAttributes = Object.freeze(['active', 'border', 'fashion']);
 
   public static readonly SizeChart = {
-    ...createSizeChartFixedCss(createSizeChartFixedGeometric(2, 1), 'rem')
+    ...createSizeChartFixedCss(createSizeChartFixedGeometric(2, 1), 'rem'),
+    ...createSizeChartVariedCss()
   };
 
   @ZAttribute({ type: 'boolean', fallback: false })
@@ -54,14 +56,14 @@ export class ZBubbleElement extends HTMLElement implements IZComponentTemplate {
   @ZAttribute({ fallback: ZFashionArea.Component })
   public fashion: string;
 
+  @ZPropertyDevice('width', ZSizeVaried.Fit)
+  public width: Required<IZDeviceValueMap<ZSizeFixed | ZSizeVaried>>;
+
   public template(): string {
-    const { active, border, fashion } = this;
+    const { active, border, fashion, width } = this;
     const detail = new ZFashionDetail(fashion);
     const thickness = ZFashionTailorElement.thicknessVar(border);
     const device = new ZFashionDevice();
-
-    const $size = this.querySelector<ZDeviceElement>(`:scope > z-device[name="width"]`);
-    const size = new ZDeviceBounds($size?.device?.call($size), ZSizeVaried.Fit);
 
     const padding = this.querySelector<ZQuadrilateralElement<ZGapSize>>(`:scope > z-quadrilateral[name="padding"]`);
 
@@ -78,13 +80,13 @@ export class ZBubbleElement extends HTMLElement implements IZComponentTemplate {
           clip-path: circle();
           display: flex;
           flex-direction: column;
-          height: ${ZBubbleElement.SizeChart[size.xl()]};
+          height: ${ZBubbleElement.SizeChart[width.xl]};
           justify-content: center;
           padding-bottom: ${ZFashionTailorElement.gapVar(firstTruthy(ZSizeVoid.None, padding?.bottom))};
           padding-left: ${ZFashionTailorElement.gapVar(firstTruthy(ZSizeVoid.None, padding?.left))};
           padding-right: ${ZFashionTailorElement.gapVar(firstTruthy(ZSizeVoid.None, padding?.right))};
           padding-top: ${ZFashionTailorElement.gapVar(firstTruthy(ZSizeVoid.None, padding?.top))};
-          width: ${ZBubbleElement.SizeChart[size.xl()]};
+          width: ${ZBubbleElement.SizeChart[width.xl]};
         }
 
         :host(:focus) {
@@ -102,29 +104,29 @@ export class ZBubbleElement extends HTMLElement implements IZComponentTemplate {
 
         ${device.break(ZSizeFixed.Large)} {
           :host {
-            height: ${ZBubbleElement.SizeChart[size.lg()]};
-            width: ${ZBubbleElement.SizeChart[size.lg()]};
+            height: ${ZBubbleElement.SizeChart[width.lg]};
+            width: ${ZBubbleElement.SizeChart[width.lg]};
           }
         }
 
         ${device.break(ZSizeFixed.Medium)} {
           :host {
-            height: ${ZBubbleElement.SizeChart[size.md()]};
-            width: ${ZBubbleElement.SizeChart[size.md()]};
+            height: ${ZBubbleElement.SizeChart[width.md]};
+            width: ${ZBubbleElement.SizeChart[width.md]};
           }
         }
 
         ${device.break(ZSizeFixed.Small)} {
           :host {
-            height: ${ZBubbleElement.SizeChart[size.sm()]};
-            width: ${ZBubbleElement.SizeChart[size.sm()]};
+            height: ${ZBubbleElement.SizeChart[width.sm]};
+            width: ${ZBubbleElement.SizeChart[width.sm]};
           }
         }
 
         ${device.break(ZSizeFixed.ExtraSmall)} {
           :host {
-            height: ${ZBubbleElement.SizeChart[size.xs()]};
-            width: ${ZBubbleElement.SizeChart[size.xs()]};
+            height: ${ZBubbleElement.SizeChart[width.xs]};
+            width: ${ZBubbleElement.SizeChart[width.xs]};
           }
         }
       </style>

@@ -1,6 +1,7 @@
 import {
-  ZDeviceBounds,
+  IZDeviceValueMap,
   ZFashionDevice,
+  ZSize,
   ZSizeFixed,
   ZSizeVaried,
   createSizeChartFixedArithmetic,
@@ -24,7 +25,7 @@ import {
   ZComponentRenderTemplate,
   ZComponentShadow
 } from '@zthun/spellcraft';
-import { ZDeviceElement } from '../background/device-element.mjs';
+import { ZDeviceElement, ZPropertyDevice } from '../background/device-element.mjs';
 import { ZFashionDetail } from '../component/component-fashion.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 import { ZHeadingTwoElement } from '../typography/heading-2-element.mjs';
@@ -35,8 +36,8 @@ export interface ZCardElement extends IZComponentRender {}
 @ZComponentRegister('z-card')
 @ZComponentDependencies([ZHeadingTwoElement, ZParagraphCaptionElement])
 @ZComponentClass('ZCard-root')
-@ZComponentRenderOnEvent('change', { selector: ':scope > z-device[name="width"]' })
-@ZComponentRenderOnEvent('change', { selector: ':scope > z-device[name="height"]' })
+@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.selector('width') })
+@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.selector('height') })
 @ZComponentRenderTemplate()
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
@@ -62,17 +63,17 @@ export class ZCardElement extends HTMLElement implements IZComponentTemplate {
   @ZAttribute({ type: 'boolean' })
   public loading: boolean;
 
+  @ZPropertyDevice('height', ZSizeVaried.Fit)
+  public height: Required<IZDeviceValueMap<ZSize>>;
+
+  @ZPropertyDevice('width', ZSizeVaried.Full)
+  public width: Required<IZDeviceValueMap<ZSize>>;
+
   public template() {
-    const { fashion } = this;
+    const { fashion, height, width } = this;
 
     const detail = new ZFashionDetail(fashion);
     const device = new ZFashionDevice();
-
-    const $height = this.querySelector<ZDeviceElement>(`:scope > z-device[name="height"]`);
-    const height = new ZDeviceBounds($height?.device?.call($height), ZSizeVaried.Fit);
-
-    const $width = this.querySelector<ZDeviceElement>(`:scope > z-device[name="width"]`);
-    const width = new ZDeviceBounds($width?.device?.call($width), ZSizeVaried.Fit);
 
     return html`
       <style>
@@ -95,8 +96,8 @@ export class ZCardElement extends HTMLElement implements IZComponentTemplate {
           display: flex;
           flex-direction: column;
           padding: ${ZFashionTailorElement.gapVar(ZSizeFixed.Small)};
-          max-width: ${ZCardElement.WidthChart[width.xl()]};
-          min-height: ${ZCardElement.HeightChart[height.xl()]};
+          max-width: ${ZCardElement.WidthChart[width.xl]};
+          min-height: ${ZCardElement.HeightChart[height.xl]};
         }
 
         :host([loading='true']) {
@@ -163,29 +164,29 @@ export class ZCardElement extends HTMLElement implements IZComponentTemplate {
 
         ${device.break(ZSizeFixed.Large)} {
           :host {
-            max-width: ${ZCardElement.WidthChart[width.lg()]};
-            min-height: ${ZCardElement.HeightChart[height.lg()]};
+            max-width: ${ZCardElement.WidthChart[width.lg]};
+            min-height: ${ZCardElement.HeightChart[height.lg]};
           }
         }
 
         ${device.break(ZSizeFixed.Medium)} {
           :host {
-            max-width: ${ZCardElement.WidthChart[width.md()]};
-            min-height: ${ZCardElement.HeightChart[height.md()]};
+            max-width: ${ZCardElement.WidthChart[width.md]};
+            min-height: ${ZCardElement.HeightChart[height.md]};
           }
         }
 
         ${device.break(ZSizeFixed.Small)} {
           :host {
-            max-width: ${ZCardElement.WidthChart[width.sm()]};
-            min-height: ${ZCardElement.HeightChart[height.sm()]};
+            max-width: ${ZCardElement.WidthChart[width.sm]};
+            min-height: ${ZCardElement.HeightChart[height.sm]};
           }
         }
 
         ${device.break(ZSizeFixed.ExtraSmall)} {
           :host {
-            max-width: ${ZCardElement.WidthChart[width.xs()]};
-            min-height: ${ZCardElement.HeightChart[height.xs()]};
+            max-width: ${ZCardElement.WidthChart[width.xs]};
+            min-height: ${ZCardElement.HeightChart[height.xs]};
           }
         }
       </style>

@@ -1,5 +1,5 @@
 import {
-  ZDeviceBounds,
+  IZDeviceValueMap,
   ZFashionDevice,
   ZGapSize,
   ZSizeFixed,
@@ -25,7 +25,7 @@ import {
   ZComponentShadow
 } from '@zthun/spellcraft';
 import { Property } from 'csstype';
-import { ZDeviceElement } from '../background/device-element.mjs';
+import { ZDeviceElement, ZPropertyDevice } from '../background/device-element.mjs';
 import { ZQuadrilateralElement } from '../background/quadrilateral-element.mjs';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
@@ -37,7 +37,7 @@ export interface ZBoxElement extends IZComponentRender {}
 @ZComponentRenderOnEvent('change', { selector: ':scope > z-quadrilateral[name="margin"]' })
 @ZComponentRenderOnEvent('change', { selector: ':scope > z-quadrilateral[name="padding"]' })
 @ZComponentRenderOnEvent('change', { selector: ':scope > z-quadrilateral[name="trim"]' })
-@ZComponentRenderOnEvent('change', { selector: ':scope > z-device[name="width"]' })
+@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.selector('width') })
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
@@ -54,10 +54,15 @@ export class ZBoxElement extends HTMLElement implements IZComponentFashion, IZCo
   @ZAttribute({ fallback: ZFashionIntrinsic.Inherit })
   public fashion: string;
 
+  @ZPropertyDevice('width', ZSizeVaried.Fit)
+  public width: Required<IZDeviceValueMap<string>>;
+
   public template() {
-    const focusable = this.tabIndex >= 0;
+    const { fashion, width, tabIndex } = this;
+    const focusable = tabIndex >= 0;
+
     const device = new ZFashionDevice();
-    const detail = new ZFashionDetail(this.fashion);
+    const detail = new ZFashionDetail(fashion);
 
     const edgeQuery = ':scope > z-quadrilateral[name="edge"]';
     const edge = this.querySelector<ZQuadrilateralElement<ZThicknessSize>>(edgeQuery);
@@ -70,9 +75,6 @@ export class ZBoxElement extends HTMLElement implements IZComponentFashion, IZCo
 
     const paddingQuery = ':scope > z-quadrilateral[name="padding"]';
     const padding = this.querySelector<ZQuadrilateralElement<ZGapSize>>(paddingQuery);
-
-    const $width = this.querySelector<ZDeviceElement>(`:scope > z-device[name="width"]`);
-    const width = new ZDeviceBounds($width?.device?.call($width), ZSizeVaried.Fit);
 
     return html`
       <style>
@@ -104,7 +106,7 @@ export class ZBoxElement extends HTMLElement implements IZComponentFashion, IZCo
           margin-right: ${ZFashionTailorElement.gapVar(firstTruthy(ZSizeVoid.None, margin?.right))};
           margin-top: ${ZFashionTailorElement.gapVar(firstTruthy(ZSizeVoid.None, margin?.top))};
 
-          max-width: ${ZBoxElement.SizeChart[width.xl()]};
+          max-width: ${ZBoxElement.SizeChart[width.xl]};
         }
 
         :host(:focus) {
@@ -121,25 +123,25 @@ export class ZBoxElement extends HTMLElement implements IZComponentFashion, IZCo
 
         ${device.break(ZSizeFixed.Large)} {
           :host {
-            max-width: ${ZBoxElement.SizeChart[width.lg()]};
+            max-width: ${ZBoxElement.SizeChart[width.lg]};
           }
         }
 
         ${device.break(ZSizeFixed.Medium)} {
           :host {
-            max-width: ${ZBoxElement.SizeChart[width.md()]};
+            max-width: ${ZBoxElement.SizeChart[width.md]};
           }
         }
 
         ${device.break(ZSizeFixed.Small)} {
           :host {
-            max-width: ${ZBoxElement.SizeChart[width.sm()]};
+            max-width: ${ZBoxElement.SizeChart[width.sm]};
           }
         }
 
         ${device.break(ZSizeFixed.ExtraSmall)} {
           :host {
-            max-width: ${ZBoxElement.SizeChart[width.xs()]};
+            max-width: ${ZBoxElement.SizeChart[width.xs]};
           }
         }
       </style>

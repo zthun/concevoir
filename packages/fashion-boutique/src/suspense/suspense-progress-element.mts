@@ -1,5 +1,5 @@
 import {
-  ZDeviceBounds,
+  IZDeviceValueMap,
   ZFashionDevice,
   ZSizeFixed,
   createSizeChartFixedArithmetic,
@@ -19,14 +19,14 @@ import {
   ZComponentRenderTemplate,
   ZComponentShadow
 } from '@zthun/spellcraft';
-import { ZDeviceElement } from '../background/device-element.mjs';
+import { ZDeviceElement, ZPropertyDevice } from '../background/device-element.mjs';
 import { IZComponentDisabled } from '../component/component-disabled.mjs';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 
 export interface ZSuspenseProgressElement extends IZComponentRender {}
 
 @ZComponentRegister('z-suspense-progress')
-@ZComponentRenderOnEvent('change', { selector: ':scope > z-device[name="height"]' })
+@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.selector('height') })
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
@@ -45,19 +45,13 @@ export class ZSuspenseProgressElement
   @ZAttribute({ type: 'boolean' })
   public disabled?: boolean;
 
+  @ZPropertyDevice('height', ZSizeFixed.ExtraSmall)
+  public height: Required<IZDeviceValueMap<ZSizeFixed>>;
+
   public template() {
-    const { fashion, disabled } = this;
+    const { fashion, disabled, height } = this;
     const detail = new ZFashionDetail(fashion);
     const device = new ZFashionDevice();
-
-    const $height = this.querySelector<ZDeviceElement>(':scope > z-device[name="height"]');
-    const height = new ZDeviceBounds($height?.device?.call($height), ZSizeFixed.ExtraSmall);
-
-    const xl = ZSuspenseProgressElement.SizeChart[height.xl()];
-    const lg = ZSuspenseProgressElement.SizeChart[height.lg()];
-    const md = ZSuspenseProgressElement.SizeChart[height.md()];
-    const sm = ZSuspenseProgressElement.SizeChart[height.sm()];
-    const xs = ZSuspenseProgressElement.SizeChart[height.xs()];
 
     return html`
       <style>
@@ -77,24 +71,10 @@ export class ZSuspenseProgressElement
         .ZSuspense-progress-bar {
           background-color: currentColor;
           box-shadow: 0 0 0.5rem ${detail.color('border')};
+          height: ${ZSuspenseProgressElement.SizeChart[height.xl]};
           overflow: hidden;
           position: relative;
           width: 100%;
-
-          height: ${xl};
-
-          ${device.break(ZSizeFixed.Large)} {
-            height: ${lg};
-          }
-          ${device.break(ZSizeFixed.Medium)} {
-            height: ${md};
-          }
-          ${device.break(ZSizeFixed.Small)} {
-            height: ${sm};
-          }
-          ${device.break(ZSizeFixed.ExtraSmall)} {
-            height: ${xs};
-          }
         }
 
         .ZSuspense-progress-scroll {
@@ -105,6 +85,27 @@ export class ZSuspenseProgressElement
           left: 0;
           top: 0;
           width: 25%;
+        }
+
+        ${device.break(ZSizeFixed.Large)} {
+          .ZSuspense-progress-bar {
+            height: ${ZSuspenseProgressElement.SizeChart[height.lg]};
+          }
+        }
+        ${device.break(ZSizeFixed.Medium)} {
+          .ZSuspense-progress-bar {
+            height: ${ZSuspenseProgressElement.SizeChart[height.md]};
+          }
+        }
+        ${device.break(ZSizeFixed.Small)} {
+          .ZSuspense-progress-bar {
+            height: ${ZSuspenseProgressElement.SizeChart[height.sm]};
+          }
+        }
+        ${device.break(ZSizeFixed.ExtraSmall)} {
+          .ZSuspense-progress-bar {
+            height: ${ZSuspenseProgressElement.SizeChart[height.xs]};
+          }
         }
       </style>
       <div class="ZSuspense-progress-bar">

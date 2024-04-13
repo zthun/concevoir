@@ -1,5 +1,5 @@
 import {
-  ZDeviceBounds,
+  IZDeviceValueMap,
   ZFashionDevice,
   ZSizeFixed,
   createSizeChartFixedArithmetic,
@@ -19,14 +19,14 @@ import {
   ZComponentRenderTemplate,
   ZComponentShadow
 } from '@zthun/spellcraft';
-import { ZDeviceElement } from '../background/device-element.mjs';
+import { ZDeviceElement, ZPropertyDevice } from '../background/device-element.mjs';
 import { IZComponentDisabled } from '../component/component-disabled.mjs';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 
 export interface ZSuspenseRotateElement extends IZComponentRender {}
 
 @ZComponentRegister('z-suspense-rotate')
-@ZComponentRenderOnEvent('change', { selector: ':scope > z-device[name="width"]' })
+@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.selector('width') })
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
@@ -45,19 +45,13 @@ export class ZSuspenseRotateElement
   @ZAttribute({ type: 'boolean' })
   public disabled?: boolean;
 
+  @ZPropertyDevice('width', ZSizeFixed.ExtraSmall)
+  public width: Required<IZDeviceValueMap<ZSizeFixed>>;
+
   public template() {
-    const { fashion, disabled } = this;
+    const { fashion, disabled, width } = this;
     const detail = new ZFashionDetail(fashion);
     const device = new ZFashionDevice();
-
-    const $width = this.querySelector<ZDeviceElement>(':scope > z-device[name="width"]');
-    const width = new ZDeviceBounds($width?.device?.call($width), ZSizeFixed.ExtraSmall);
-
-    const xl = ZSuspenseRotateElement.SizeChart[width.xl()];
-    const lg = ZSuspenseRotateElement.SizeChart[width.lg()];
-    const md = ZSuspenseRotateElement.SizeChart[width.md()];
-    const sm = ZSuspenseRotateElement.SizeChart[width.sm()];
-    const xs = ZSuspenseRotateElement.SizeChart[width.xs()];
 
     return html`
       <style>
@@ -81,28 +75,35 @@ export class ZSuspenseRotateElement
           border-radius: 50%;
           border-style: dashed;
           box-shadow: 0 0 0.25rem ${detail.color('main')};
+          height: ${ZSuspenseRotateElement.SizeChart[width.xl]};
+          width: ${ZSuspenseRotateElement.SizeChart[width.xl]};
+        }
 
-          height: ${xl};
-          width: ${xl};
-
-          ${device.break(ZSizeFixed.Large)} {
-            height: ${lg};
-            width: ${lg};
+        ${device.break(ZSizeFixed.Large)} {
+          .ZSuspense-rotate-circle {
+            height: ${ZSuspenseRotateElement.SizeChart[width.lg]};
+            width: ${ZSuspenseRotateElement.SizeChart[width.lg]};
           }
+        }
 
-          ${device.break(ZSizeFixed.Medium)} {
-            height: ${md};
-            width: ${md};
+        ${device.break(ZSizeFixed.Medium)} {
+          .ZSuspense-rotate-circle {
+            height: ${ZSuspenseRotateElement.SizeChart[width.md]};
+            width: ${ZSuspenseRotateElement.SizeChart[width.md]};
           }
+        }
 
-          ${device.break(ZSizeFixed.Small)} {
-            height: ${sm};
-            width: ${sm};
+        ${device.break(ZSizeFixed.Small)} {
+          .ZSuspense-rotate-circle {
+            height: ${ZSuspenseRotateElement.SizeChart[width.sm]};
+            width: ${ZSuspenseRotateElement.SizeChart[width.sm]};
           }
+        }
 
-          ${device.break(ZSizeFixed.ExtraSmall)} {
-            height: ${xs};
-            width: ${xs};
+        ${device.break(ZSizeFixed.ExtraSmall)} {
+          .ZSuspense-rotate-circle {
+            height: ${ZSuspenseRotateElement.SizeChart[width.xs]};
+            width: ${ZSuspenseRotateElement.SizeChart[width.xs]};
           }
         }
       </style>

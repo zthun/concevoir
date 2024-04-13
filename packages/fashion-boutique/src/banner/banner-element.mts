@@ -1,5 +1,5 @@
 import {
-  ZDeviceBounds,
+  IZDeviceValueMap,
   ZFashionDevice,
   ZSizeFixed,
   ZSizeVaried,
@@ -20,13 +20,13 @@ import {
   ZComponentRenderTemplate,
   ZComponentShadow
 } from '@zthun/spellcraft';
-import { ZDeviceElement } from '../background/device-element.mjs';
+import { ZDeviceElement, ZPropertyDevice } from '../background/device-element.mjs';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 
 export interface ZBannerElement extends IZComponentRender {}
 
 @ZComponentRegister('z-banner')
-@ZComponentRenderOnEvent('change', { selector: ':scope > z-device[name="height"]' })
+@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.selector('height') })
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
@@ -41,13 +41,13 @@ export class ZBannerElement extends HTMLElement implements IZComponentFashion, I
   @ZAttribute({ fallback: ZFashionPriority.Primary })
   public fashion: string;
 
+  @ZPropertyDevice('height', ZSizeVaried.Fit)
+  public height: Required<IZDeviceValueMap<ZSizeFixed | ZSizeVaried>>;
+
   public template() {
-    const { fashion } = this;
+    const { fashion, height } = this;
     const detail = new ZFashionDetail(fashion);
     const device = new ZFashionDevice();
-
-    const $height = this.querySelector<ZDeviceElement>(`:scope > z-device[name="height"]`);
-    const height = new ZDeviceBounds($height?.device?.call($height), ZSizeVaried.Fit);
 
     return html`
       <style>
@@ -64,30 +64,30 @@ export class ZBannerElement extends HTMLElement implements IZComponentFashion, I
           right: 0;
           top: 0;
 
-          height: ${ZBannerElement.SizeChart[height.xl()]};
+          height: ${ZBannerElement.SizeChart[height.xl]};
         }
 
         ${device.break(ZSizeFixed.Large)} {
           :host {
-            height: ${ZBannerElement.SizeChart[height.lg()]};
+            height: ${ZBannerElement.SizeChart[height.lg]};
           }
         }
 
         ${device.break(ZSizeFixed.Medium)} {
           :host {
-            height: ${ZBannerElement.SizeChart[height.md()]};
+            height: ${ZBannerElement.SizeChart[height.md]};
           }
         }
 
         ${device.break(ZSizeFixed.Small)} {
           :host {
-            height: ${ZBannerElement.SizeChart[height.sm()]};
+            height: ${ZBannerElement.SizeChart[height.sm]};
           }
         }
 
         ${device.break(ZSizeFixed.ExtraSmall)} {
           :host {
-            height: ${ZBannerElement.SizeChart[height.xs()]};
+            height: ${ZBannerElement.SizeChart[height.xs]};
           }
         }
       </style>

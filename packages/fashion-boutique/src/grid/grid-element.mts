@@ -1,5 +1,5 @@
 import {
-  ZDeviceBounds,
+  IZDeviceValueMap,
   ZFashionDevice,
   ZGapSize,
   ZSizeFixed,
@@ -22,7 +22,7 @@ import {
 } from '@zthun/spellcraft';
 import { Property } from 'csstype';
 import { ZAlignmentElement } from '../background/alignment-element.mjs';
-import { ZDeviceElement } from '../background/device-element.mjs';
+import { ZDeviceElement, ZPropertyDevice } from '../background/device-element.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
 export interface ZGridElement extends IZComponentRender {}
@@ -30,16 +30,16 @@ export interface ZGridElement extends IZComponentRender {}
 @ZComponentRegister('z-grid')
 @ZComponentRenderOnEvent('change', { selector: ':scope > z-alignment[name="align"]' })
 @ZComponentRenderOnEvent('change', { selector: ':scope > z-alignment[name="justify"]' })
-@ZComponentRenderOnEvent('change', { selector: ':scope > z-device[name="columns"]' })
-@ZComponentRenderOnEvent('change', { selector: ':scope > z-device[name="width"]' })
-@ZComponentRenderOnEvent('change', { selector: ':scope > z-device[name="height"]' })
+@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.selector('columns') })
+@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.selector('width') })
+@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.selector('height') })
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
 @ZComponentClass('ZGrid-root')
 @ZComponentShadow()
 export class ZGridElement extends HTMLElement implements IZComponentTemplate {
-  public static readonly GridDimensionChart = Object.freeze(createSizeChartVariedCss());
+  public static readonly SizeChart = Object.freeze(createSizeChartVariedCss());
   public static readonly observedAttributes = ['rows', 'gap'];
 
   @ZAttribute()
@@ -48,22 +48,22 @@ export class ZGridElement extends HTMLElement implements IZComponentTemplate {
   @ZAttribute()
   public gap?: ZGapSize;
 
+  @ZPropertyDevice('columns', 'none')
+  public columns: Required<IZDeviceValueMap<Property.GridTemplateColumns>>;
+
+  @ZPropertyDevice('width', ZSizeVaried.Fit)
+  public width: Required<IZDeviceValueMap<ZSizeVaried>>;
+
+  @ZPropertyDevice('columns', ZSizeVaried.Fit)
+  public height: Required<IZDeviceValueMap<ZSizeVaried>>;
+
   public template() {
-    const { rows, gap } = this;
+    const { columns, rows, gap, width, height } = this;
 
     const device = new ZFashionDevice();
 
-    const $columns = this.querySelector<ZDeviceElement>(':scope > z-device[name="columns"]');
-    const columns = new ZDeviceBounds<Property.GridTemplateColumns>($columns?.device?.call($columns), 'none');
-
     const $align = this.querySelector<ZAlignmentElement>(`:scope > z-alignment[name="align"]`);
     const $justify = this.querySelector<ZAlignmentElement>(`:scope > z-alignment[name="justify"]`);
-
-    const $width = this.querySelector<ZDeviceElement>(`:scope > z-device[name="width"]`);
-    const width = new ZDeviceBounds($width?.device?.call($width), ZSizeVaried.Fit);
-
-    const $height = this.querySelector<ZDeviceElement>(`:scope > z-device[name="height"]`);
-    const height = new ZDeviceBounds($height?.device?.call($height), ZSizeVaried.Fit);
 
     return html`
       <style>
@@ -76,40 +76,40 @@ export class ZGridElement extends HTMLElement implements IZComponentTemplate {
           justify-content: ${firstTruthy('normal', $justify?.content)};
           justify-items: ${firstTruthy('stretch', $justify?.items)};
 
-          grid-template-columns: ${columns.xl()};
-          height: ${ZGridElement.GridDimensionChart[height.xl()]};
-          width: ${ZGridElement.GridDimensionChart[width.xl()]};
+          grid-template-columns: ${columns.xl};
+          height: ${ZGridElement.SizeChart[height.xl]};
+          width: ${ZGridElement.SizeChart[width.xl]};
         }
 
         ${device.break(ZSizeFixed.Large)} {
           :host {
-            grid-template-columns: ${columns.lg()};
-            height: ${ZGridElement.GridDimensionChart[height.lg()]};
-            width: ${ZGridElement.GridDimensionChart[width.lg()]};
+            grid-template-columns: ${columns.lg};
+            height: ${ZGridElement.SizeChart[height.lg]};
+            width: ${ZGridElement.SizeChart[width.lg]};
           }
         }
 
         ${device.break(ZSizeFixed.Medium)} {
           :host {
-            grid-template-columns: ${columns.md()};
-            height: ${ZGridElement.GridDimensionChart[height.md()]};
-            width: ${ZGridElement.GridDimensionChart[width.md()]};
+            grid-template-columns: ${columns.md};
+            height: ${ZGridElement.SizeChart[height.md]};
+            width: ${ZGridElement.SizeChart[width.md]};
           }
         }
 
         ${device.break(ZSizeFixed.Small)} {
           :host {
-            grid-template-columns: ${columns.sm()};
-            height: ${ZGridElement.GridDimensionChart[height.sm()]};
-            width: ${ZGridElement.GridDimensionChart[width.sm()]};
+            grid-template-columns: ${columns.sm};
+            height: ${ZGridElement.SizeChart[height.sm]};
+            width: ${ZGridElement.SizeChart[width.sm]};
           }
         }
 
         ${device.break(ZSizeFixed.ExtraSmall)} {
           :host {
-            grid-template-columns: ${columns.xs()};
-            height: ${ZGridElement.GridDimensionChart[height.xs()]};
-            width: ${ZGridElement.GridDimensionChart[width.xs()]};
+            grid-template-columns: ${columns.xs};
+            height: ${ZGridElement.SizeChart[height.xs]};
+            width: ${ZGridElement.SizeChart[width.xs]};
           }
         }
       </style>
