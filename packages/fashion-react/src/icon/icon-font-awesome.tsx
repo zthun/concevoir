@@ -1,11 +1,18 @@
-import { Tooltip } from '@mui/material';
+import { ZIconFontAwesomeElement } from '@zthun/fashion-boutique';
+import { ZDeviceBounds, ZSizeFixed } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { useKeyboardActivate } from '@zthun/helpful-react';
 import React from 'react';
-import { IZIcon, useIconProvider, useIconStyles } from './icon.mjs';
+import { useWebComponent } from '../component/use-web-component.mjs';
+import { IZIcon } from './icon.mjs';
 
-export const ZIconFontAwesomeProvider = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css';
-export const ZIconFontAwesomeVendor = 'font-awesome';
+declare global {
+  namespace React.JSX {
+    interface IntrinsicElements {
+      ['z-icon-font-awesome']: ZIconFontAwesomeElement & any;
+    }
+  }
+}
 
 export interface IZIconFontAwesome extends IZIcon {
   family?: 'classic' | 'sharp' | 'brands';
@@ -13,32 +20,25 @@ export interface IZIconFontAwesome extends IZIcon {
 }
 
 export function ZIconFontAwesome(props: IZIconFontAwesome) {
-  const { name, className, family = 'classic', style = 'solid', onClick, fashion, tooltip } = props;
-  const { classes } = useIconStyles(props);
-  useIconProvider(ZIconFontAwesomeProvider);
+  const { name, className, family, style, onClick, fashion, tooltip, width } = props;
   const { onKey, tabIndex } = useKeyboardActivate(onClick);
+  const $width = new ZDeviceBounds(width, ZSizeFixed.Small);
+
+  useWebComponent(ZIconFontAwesomeElement);
 
   return (
-    <Tooltip title={tooltip}>
-      <span
-        className={cssJoinDefined(
-          'ZIcon-root',
-          'ZIcon-font-awesome',
-          `fa-${family}`,
-          `fa-${style}`,
-          `fa-${name}`,
-          className,
-          classes.root
-        )}
-        onClick={onClick}
-        onKeyDown={onKey}
-        tabIndex={tabIndex}
-        data-fashion={fashion?.name}
-        data-family={family}
-        data-style={style}
-        data-name={name}
-        data-vendor={ZIconFontAwesomeVendor}
-      ></span>
-    </Tooltip>
+    <z-icon-font-awesome
+      class={cssJoinDefined(className)}
+      family={family}
+      kind={style}
+      name={name}
+      fashion={fashion?.name}
+      title={tooltip}
+      onClick={onClick}
+      onKeyDown={onKey}
+      tabIndex={tabIndex}
+    >
+      <z-device name='width' xl={$width.xl()} lg={$width.lg()} md={$width.md()} sm={$width.sm()} xs={$width.xs()} />
+    </z-icon-font-awesome>
   );
 }
