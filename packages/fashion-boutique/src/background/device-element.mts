@@ -25,6 +25,10 @@ export interface ZDeviceElement extends IZComponentDispatch, IZComponentRender, 
 export class ZDeviceElement<T extends string = string> extends HTMLElement {
   public static readonly observedAttributes = ['xl', 'lg', 'md', 'sm', 'xs'];
 
+  public static selector(name: string) {
+    return `:scope > z-device[name="${name}"]`;
+  }
+
   public device() {
     return { xl: this.xl, lg: this.lg, md: this.md, sm: this.sm, xs: this.xs };
   }
@@ -48,7 +52,8 @@ export class ZDeviceElement<T extends string = string> extends HTMLElement {
 export function ZPropertyDevice<K extends string, T extends HTMLElement>(name: string, fallback: K) {
   return (target: T, propertyKey: string | symbol): void => {
     function get(this: T): Required<IZDeviceValueMap<K>> {
-      const $device = this.querySelector<ZDeviceElement<K>>(`:scope > z-device[name="${name}"]`);
+      const selector = ZDeviceElement.selector(name);
+      const $device = this.querySelector<ZDeviceElement<K>>(selector);
       const device = new ZDeviceBounds<K>($device?.device?.call($device), fallback);
       return device.toDeviceMap();
     }
