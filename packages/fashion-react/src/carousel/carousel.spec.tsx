@@ -4,11 +4,11 @@ import React, { ReactNode } from 'react';
 import { ZIconFontAwesome } from '../icon/icon-font-awesome';
 import { ZCarousel } from './carousel';
 
-import { ZCircusBy } from '@zthun/cirque';
+import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { ZCarouselComponentModel, ZIconComponentModel } from '@zthun/fashion-circus';
 import { ZOrientation } from '@zthun/helpful-fn';
-import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
+import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 describe('ZCarousel', () => {
   let brands: IZBrand[];
@@ -16,6 +16,8 @@ describe('ZCarousel', () => {
   let value: number | undefined;
   let onValueChange: Mock | undefined;
   let renderEmpty: (() => ReactNode) | undefined;
+  let _renderer: IZCircusSetup;
+  let _driver: IZCircusDriver;
 
   const createTestTarget = async () => {
     const element = (
@@ -25,13 +27,14 @@ describe('ZCarousel', () => {
         orientation={orientation}
         value={value}
         onValueChange={onValueChange}
-        renderAtIndex={(i) => <ZIconFontAwesome name={brands[i].name} width={ZSizeFixed.Medium} />}
+        renderAtIndex={(i) => <ZIconFontAwesome name={brands[i].id} family='brands' width={ZSizeFixed.Medium} />}
         renderEmpty={renderEmpty}
       />
     );
 
-    const driver = await new ZCircusSetupRenderer(element).setup();
-    return ZCircusBy.first(driver, ZCarouselComponentModel);
+    _renderer = new ZCircusSetupRenderer(element);
+    _driver = await _renderer.setup();
+    return ZCircusBy.first(_driver, ZCarouselComponentModel);
   };
 
   beforeEach(() => {
@@ -45,6 +48,11 @@ describe('ZCarousel', () => {
     value = undefined;
     onValueChange = undefined;
     renderEmpty = undefined;
+  });
+
+  afterEach(async () => {
+    await _driver?.destroy?.call(_driver);
+    await _renderer?.destroy?.call(_renderer);
   });
 
   describe('State', () => {
