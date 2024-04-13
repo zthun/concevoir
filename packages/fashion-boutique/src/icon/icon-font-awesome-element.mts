@@ -70,19 +70,27 @@ export class ZIconFontAwesomeElement
       }
 
       ${device.break(ZSizeFixed.Large)} {
-        font-size: ${ZIconFontAwesomeElement.SizeChart[width.lg()]};
+        #${id} {
+          font-size: ${ZIconFontAwesomeElement.SizeChart[width.lg()]};
+        }
       }
 
       ${device.break(ZSizeFixed.Medium)} {
-        font-size: ${ZIconFontAwesomeElement.SizeChart[width.md()]};
+        #${id} {
+          font-size: ${ZIconFontAwesomeElement.SizeChart[width.md()]};
+        }
       }
 
       ${device.break(ZSizeFixed.Small)} {
-        font-size: ${ZIconFontAwesomeElement.SizeChart[width.sm()]};
+        #${id} {
+          font-size: ${ZIconFontAwesomeElement.SizeChart[width.sm()]};
+        }
       }
 
       ${device.break(ZSizeFixed.ExtraSmall)} {
-        font-size: ${ZIconFontAwesomeElement.SizeChart[width.xs()]};
+        #${id} {
+          font-size: ${ZIconFontAwesomeElement.SizeChart[width.xs()]};
+        }
       }
     `;
   }
