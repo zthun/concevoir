@@ -1,3 +1,4 @@
+import { IZDeviceValueMap, ZDeviceBounds } from '@zthun/fashion-tailor';
 import {
   IZComponentDispatch,
   IZComponentRender,
@@ -42,4 +43,18 @@ export class ZDeviceElement<T extends string = string> extends HTMLElement {
 
   @ZAttribute()
   public xs?: T;
+}
+
+export function ZPropertyDevice<K extends string, T extends HTMLElement>(name: string, fallback: K) {
+  return (target: T, propertyKey: string | symbol): void => {
+    function get(this: T): Required<IZDeviceValueMap<K>> {
+      const $device = this.querySelector<ZDeviceElement<K>>(`:scope > z-device[name="${name}"]`);
+      const device = new ZDeviceBounds<K>($device?.device?.call($device), fallback);
+      return device.toDeviceMap();
+    }
+
+    Object.defineProperty(target, propertyKey, {
+      get
+    });
+  };
 }
