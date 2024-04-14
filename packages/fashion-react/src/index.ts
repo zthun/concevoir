@@ -24,7 +24,6 @@ export * from './choice/choice-drop-down';
 export * from './choice/choice-toggle';
 export * from './component/component-adornment.mjs';
 export * from './component/component-avatar.mjs';
-export * from './component/component-data-source.mjs';
 export * from './component/component-fashion.mjs';
 export * from './component/component-heading.mjs';
 export * from './component/component-hierarchy.mjs';
