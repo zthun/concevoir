@@ -1,23 +1,17 @@
-import { IZComponentRequired } from '@zthun/fashion-boutique';
-import { ZSizeFixed } from '@zthun/fashion-tailor';
+import { IZComponentRequired, ZLabelElement } from '@zthun/fashion-boutique';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
-import { createStyleHook } from '../theme/styled';
+import { useWebComponent } from '../component/use-web-component.mjs';
 
-const useLabelStyles = createStyleHook(({ theme, tailor }) => ({
-  root: {
-    'display': 'block',
-    'fontWeight': 'bold',
-
-    '&[data-required="true"]::after': {
-      content: '"*"',
-      color: theme.error.main,
-      marginLeft: tailor.thickness(ZSizeFixed.Medium)
+declare global {
+  namespace React.JSX {
+    interface IntrinsicElements {
+      ['z-label']: ZLabelElement & any;
     }
   }
-}));
+}
 
 export interface IZLabel extends IZComponentHierarchy, IZComponentStyle, IZComponentRequired {
   htmlFor?: string;
@@ -25,12 +19,14 @@ export interface IZLabel extends IZComponentHierarchy, IZComponentStyle, IZCompo
 
 export function ZLabel(props: IZLabel) {
   const { children, className, required, htmlFor } = props;
-  const { classes } = useLabelStyles();
+  useWebComponent(ZLabelElement);
 
   return (
     <label
-      className={cssJoinDefined('ZLabel-root', className, classes.root)}
-      htmlFor={htmlFor}
+      is='z-label'
+      // @ts-expect-error Should be class for web components
+      class={cssJoinDefined(className)}
+      for={htmlFor}
       data-required={required}
     >
       {children}
