@@ -1,11 +1,10 @@
-import { IZComponentName } from '@zthun/fashion-boutique';
+import { IZComponentName, IZComponentOrientation } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionContrast } from '@zthun/fashion-theme';
 import { ZOrientation, cssJoinDefined } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
 import React, { ReactNode } from 'react';
 import { IZButton, ZButton } from '../button/button';
-import { IZComponentOrientation } from '../component/component-orientation.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { IZComponentValue } from '../component/component-value.mjs';
 import { ZIconFontAwesome } from '../icon/icon-font-awesome';

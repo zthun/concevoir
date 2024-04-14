@@ -1,12 +1,16 @@
 import { InputAdornment, InputBaseProps } from '@mui/material';
 import { ZCircusKeyboardQwerty } from '@zthun/cirque';
-import { IZComponentDisabled, IZComponentName, IZComponentRequired } from '@zthun/fashion-boutique';
+import {
+  IZComponentDisabled,
+  IZComponentName,
+  IZComponentOrientation,
+  IZComponentRequired
+} from '@zthun/fashion-boutique';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { get, noop } from 'lodash-es';
 import React, { KeyboardEvent, ReactNode, useEffect, useState } from 'react';
 import { IZComponentAdornment } from '../component/component-adornment.mjs';
 import { IZComponentLabel } from '../component/component-label.mjs';
-import { IZComponentOrientation } from '../component/component-orientation.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { IZComponentValue } from '../component/component-value.mjs';
 
