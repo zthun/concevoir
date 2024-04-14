@@ -25,6 +25,7 @@ export * from './grid/grid-element.mjs';
 export * from './grid/grid-span-element.mjs';
 export * from './icon/icon-font-awesome-element.mjs';
 export * from './icon/icon-material-element.mjs';
+export * from './image-source/image-source-element.mjs';
 export * from './label/label-element.mjs';
 export * from './link/link-element.mjs';
 export * from './popup/popup-element.mjs';
