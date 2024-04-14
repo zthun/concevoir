@@ -19,6 +19,7 @@ export * from './component/component-height.mjs';
 export * from './component/component-loading.mjs';
 export * from './component/component-name.mjs';
 export * from './component/component-orientation.mjs';
+export * from './component/component-range.mjs';
 export * from './component/component-required.mjs';
 export * from './component/component-width.mjs';
 export * from './full-screen/full-screen-element.mjs';
