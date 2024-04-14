@@ -1,8 +1,13 @@
-import { IZComponentHeight, IZComponentName, IZComponentWidth, ZImageSourceElement } from '@zthun/fashion-boutique';
+import {
+  IZComponentHeight,
+  IZComponentName,
+  IZComponentSource,
+  IZComponentWidth,
+  ZImageSourceElement
+} from '@zthun/fashion-boutique';
 import { ZDeviceBounds, ZSizeVaried } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React from 'react';
-import { IZComponentSource } from '../component/component-source.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { useWebComponent } from '../component/use-web-component.mjs';
 
