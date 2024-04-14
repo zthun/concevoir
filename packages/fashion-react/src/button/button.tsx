@@ -1,6 +1,7 @@
 import React, { ReactNode, useMemo } from 'react';
 
 import {
+  IZComponentAvatar,
   IZComponentDisabled,
   IZComponentFashion,
   IZComponentLabel,
@@ -11,12 +12,11 @@ import {
   ZDeviceElement
 } from '@zthun/fashion-boutique';
 import { ZDeviceBounds, ZSizeVaried } from '@zthun/fashion-tailor';
-import { IZComponentAvatar } from '../component/component-avatar.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { useWebComponent } from '../component/use-web-component.mjs';
 
 export interface IZButton
-  extends IZComponentAvatar,
+  extends IZComponentAvatar<ReactNode>,
     IZComponentLabel<ReactNode>,
     IZComponentDisabled,
     IZComponentLoading,

@@ -1,7 +1,6 @@
-import { IZComponentFashion, IZComponentName, ZAlertElement } from '@zthun/fashion-boutique';
+import { IZComponentAvatar, IZComponentFashion, IZComponentName, ZAlertElement } from '@zthun/fashion-boutique';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ReactNode } from 'react';
-import { IZComponentAvatar } from '../component/component-avatar.mjs';
 import { IZComponentHeading } from '../component/component-heading.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 
@@ -18,7 +17,7 @@ export interface IZAlert
     IZComponentStyle,
     IZComponentFashion,
     IZComponentName,
-    IZComponentAvatar {
+    IZComponentAvatar<ReactNode> {
   message: ReactNode;
 }
 
