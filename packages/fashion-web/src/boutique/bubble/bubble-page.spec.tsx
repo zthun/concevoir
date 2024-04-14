@@ -2,6 +2,7 @@ import { ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionName, ZFashionPriority } from '@zthun/fashion-theme';
+import { Property } from 'csstype';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { ZBubblePage } from './bubble-page';
@@ -44,25 +45,47 @@ describe('ZBubblePage', () => {
     });
   });
 
-  describe('Size', () => {
-    const shouldSetBorderSize = async (expected: ZSizeFixed) => {
+  describe('Edge', () => {
+    const shouldSetEdge = async (expected: ZSizeFixed) => {
       // Arrange.
       const target = await createTestTarget();
-      const border = await target.borderWidth();
-      await border.select(expected);
+      const edge = await target.edge();
+      await edge.select(expected);
       const bubble = await target.bubble();
       // Act.
-      const actual = await bubble.borderSize();
+      const actual = await bubble.edge();
       // Assert.
       expect(actual).toEqual(expected);
     };
 
-    it('should set the border width to small', async () => {
-      await shouldSetBorderSize(ZSizeFixed.Small);
+    it('should set the edge to small', async () => {
+      await shouldSetEdge(ZSizeFixed.Small);
     });
 
-    it('should set the border with to large', async () => {
-      await shouldSetBorderSize(ZSizeFixed.Large);
+    it('should set the edge to large', async () => {
+      await shouldSetEdge(ZSizeFixed.Large);
+    });
+  });
+
+  describe('Trim', () => {
+    const shouldSetTrim = async (expected: Property.BorderStyle) => {
+      // Arrange.
+      const target = await createTestTarget();
+      const trim = await target.trim();
+      await trim.select(expected);
+      const bubble = await target.bubble();
+      // Act.
+      const actual = await bubble.trim();
+      // Assert.
+      expect(actual).toEqual(expected);
+    };
+
+    it('should set the trim to dashed', async () => {
+      await shouldSetTrim('dashed');
+    });
+
+    it('should set the trim to double', async () => {
+      await shouldSetTrim('double');
     });
   });
 

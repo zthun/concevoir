@@ -2,6 +2,7 @@ import { IZComponentFashion, IZComponentName, IZComponentWidth, ZBubbleElement }
 import { ZDeviceBounds, ZGapSize, ZSizeFixed, ZSizeVoid } from '@zthun/fashion-tailor';
 import { ZQuadrilateralBuilder, cssJoinDefined, firstTruthy } from '@zthun/helpful-fn';
 import { useKeyboardActivate } from '@zthun/helpful-react';
+import { Property } from 'csstype';
 import React, { KeyboardEvent, MouseEvent } from 'react';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
@@ -22,13 +23,14 @@ export interface IZBubble
     IZComponentHierarchy,
     IZComponentFashion {
   padding?: ZSizeFixed | ZSizeVoid;
-  border?: ZSizeFixed | ZSizeVoid;
+  edge?: ZSizeFixed | ZSizeVoid;
+  trim?: Property.BorderStyle;
 
   onClick?: (event: MouseEvent | KeyboardEvent) => void;
 }
 
 export function ZBubble(props: IZBubble) {
-  const { children, className, name, border, fashion, padding, width, onClick } = props;
+  const { children, className, name, edge, fashion, padding, trim, width, onClick } = props;
   const { onKey, tabIndex } = useKeyboardActivate(onClick);
   const $width = new ZDeviceBounds(width, ZSizeFixed.Medium);
   const $padding = new ZQuadrilateralBuilder<ZGapSize>(firstTruthy(ZSizeVoid.None, padding)).build();
@@ -40,7 +42,8 @@ export function ZBubble(props: IZBubble) {
       active={!!onClick}
       name={name}
       fashion={fashion}
-      border={border}
+      edge={edge}
+      trim={trim}
       onClick={onClick}
       onKeyDown={onKey}
       tabIndex={tabIndex}

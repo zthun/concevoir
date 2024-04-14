@@ -16,8 +16,12 @@ export class ZBubblePageComponentModel extends ZCircusComponentModel {
     return ZCircusBy.first(this.driver, ZChoiceComponentModel, 'fashion');
   }
 
-  public borderWidth(): Promise<ZChoiceComponentModel> {
-    return ZCircusBy.first(this.driver, ZChoiceComponentModel, 'border-width');
+  public edge(): Promise<ZChoiceComponentModel> {
+    return ZCircusBy.first(this.driver, ZChoiceComponentModel, 'edge');
+  }
+
+  public trim(): Promise<ZChoiceComponentModel> {
+    return ZCircusBy.first(this.driver, ZChoiceComponentModel, 'trim');
   }
 
   public async clicks(): Promise<number> {
