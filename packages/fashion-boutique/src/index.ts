@@ -17,6 +17,7 @@ export * from './component/component-compact.mjs';
 export * from './component/component-data-source.mjs';
 export * from './component/component-disabled.mjs';
 export * from './component/component-fashion.mjs';
+export * from './component/component-heading.mjs';
 export * from './component/component-height.mjs';
 export * from './component/component-label.mjs';
 export * from './component/component-loading.mjs';
