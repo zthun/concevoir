@@ -2,6 +2,7 @@ import { InputAdornment, InputBaseProps } from '@mui/material';
 import { ZCircusKeyboardQwerty } from '@zthun/cirque';
 import {
   IZComponentDisabled,
+  IZComponentLabel,
   IZComponentName,
   IZComponentOrientation,
   IZComponentRequired,
@@ -11,7 +12,6 @@ import { cssJoinDefined } from '@zthun/helpful-fn';
 import { get, noop } from 'lodash-es';
 import React, { KeyboardEvent, ReactNode, useEffect, useState } from 'react';
 import { IZComponentAdornment } from '../component/component-adornment.mjs';
-import { IZComponentLabel } from '../component/component-label.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 
 /**
@@ -21,7 +21,7 @@ export interface IZText<T = string>
   extends IZComponentDisabled,
     IZComponentName,
     IZComponentValue<T>,
-    IZComponentLabel,
+    IZComponentLabel<ReactNode>,
     IZComponentAdornment,
     IZComponentOrientation,
     IZComponentRequired,

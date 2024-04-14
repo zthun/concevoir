@@ -1,5 +1,6 @@
 import {
   IZComponentDisabled,
+  IZComponentLabel,
   IZComponentName,
   IZComponentOrientation,
   IZComponentRequired,
@@ -9,7 +10,6 @@ import { createGuid } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
 import { first } from 'lodash-es';
 import { ReactNode, useMemo } from 'react';
-import { IZComponentLabel } from '../component/component-label.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 
 export interface IZChoiceOption<O, V> {
@@ -22,7 +22,7 @@ export interface IZChoice<O, V>
   extends IZComponentDisabled,
     IZComponentStyle,
     IZComponentValue<V[]>,
-    IZComponentLabel,
+    IZComponentLabel<ReactNode>,
     IZComponentRequired,
     IZComponentOrientation,
     IZComponentName {

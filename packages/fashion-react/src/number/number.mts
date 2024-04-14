@@ -1,11 +1,12 @@
 import {
   IZComponentDisabled,
+  IZComponentLabel,
   IZComponentName,
   IZComponentRange,
   IZComponentRequired,
   IZComponentValue
 } from '@zthun/fashion-boutique';
-import { IZComponentLabel } from '../component/component-label.mjs';
+import { ReactNode } from 'react';
 import { IZComponentStyle } from '../component/component-style.mjs';
 
 /**
@@ -16,7 +17,7 @@ export interface IZNumber<T = number>
     IZComponentDisabled,
     IZComponentRange<number>,
     IZComponentName,
-    IZComponentLabel,
+    IZComponentLabel<ReactNode>,
     IZComponentRequired,
     IZComponentStyle {
   step?: number;

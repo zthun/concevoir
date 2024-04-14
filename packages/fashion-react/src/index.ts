@@ -27,7 +27,6 @@ export * from './component/component-avatar.mjs';
 export * from './component/component-fashion.mjs';
 export * from './component/component-heading.mjs';
 export * from './component/component-hierarchy.mjs';
-export * from './component/component-label.mjs';
 export * from './component/component-style.mjs';
 export * from './drawer/drawer';
 export * from './drawer/drawer-button';

@@ -1,14 +1,13 @@
-import { IZComponentFashion, IZComponentName, ZLinkElement } from '@zthun/fashion-boutique';
+import { IZComponentFashion, IZComponentLabel, IZComponentName, ZLinkElement } from '@zthun/fashion-boutique';
 import { cssJoinDefined } from '@zthun/helpful-fn';
-import React from 'react';
-import { IZComponentLabel } from '../component/component-label.mjs';
+import React, { ReactNode } from 'react';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { useWebComponent } from '../component/use-web-component.mjs';
 
 /**
  * Represents a link component (anchor tag).
  */
-export interface IZLink extends IZComponentStyle, IZComponentName, IZComponentLabel, IZComponentFashion {
+export interface IZLink extends IZComponentStyle, IZComponentName, IZComponentLabel<ReactNode>, IZComponentFashion {
   /**
    * The link url.
    */
