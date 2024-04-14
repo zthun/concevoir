@@ -1,5 +1,5 @@
-import { IZComponentName } from '@zthun/fashion-boutique';
-import { IZComponentValue, ZChoiceDropDown } from '@zthun/fashion-react';
+import { IZComponentName, IZComponentValue } from '@zthun/fashion-boutique';
+import { ZChoiceDropDown } from '@zthun/fashion-react';
 import { ZSize, ZSizeFixed, ZSizeVaried, ZSizeVoid } from '@zthun/fashion-tailor';
 import { setFirst } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';

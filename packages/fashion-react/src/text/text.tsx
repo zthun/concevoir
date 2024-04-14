@@ -4,7 +4,8 @@ import {
   IZComponentDisabled,
   IZComponentName,
   IZComponentOrientation,
-  IZComponentRequired
+  IZComponentRequired,
+  IZComponentValue
 } from '@zthun/fashion-boutique';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { get, noop } from 'lodash-es';
@@ -12,7 +13,6 @@ import React, { KeyboardEvent, ReactNode, useEffect, useState } from 'react';
 import { IZComponentAdornment } from '../component/component-adornment.mjs';
 import { IZComponentLabel } from '../component/component-label.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
-import { IZComponentValue } from '../component/component-value.mjs';
 
 /**
  * Represents an input for free form text

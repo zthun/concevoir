@@ -1,4 +1,4 @@
-import { IZComponentDataSource, IZComponentHeight, IZComponentWidth } from '@zthun/fashion-boutique';
+import { IZComponentDataSource, IZComponentHeight, IZComponentValue, IZComponentWidth } from '@zthun/fashion-boutique';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { ZFashionPriority, ZFashionSeverity } from '@zthun/fashion-theme';
 import { cssJoinDefined } from '@zthun/helpful-fn';
@@ -8,7 +8,6 @@ import React, { ReactNode } from 'react';
 import { ZAlert } from '../alert/alert';
 import { IZButton, ZButton } from '../button/button';
 import { IZComponentStyle } from '../component/component-style.mjs';
-import { IZComponentValue } from '../component/component-value.mjs';
 import { IZGrid, ZGrid } from '../grid/grid';
 import { ZIconFontAwesome } from '../icon/icon-font-awesome';
 import { ZStack } from '../stack/stack';

@@ -2,7 +2,8 @@ import {
   IZComponentDisabled,
   IZComponentName,
   IZComponentOrientation,
-  IZComponentRequired
+  IZComponentRequired,
+  IZComponentValue
 } from '@zthun/fashion-boutique';
 import { createGuid } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
@@ -10,7 +11,6 @@ import { first } from 'lodash-es';
 import { ReactNode, useMemo } from 'react';
 import { IZComponentLabel } from '../component/component-label.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
-import { IZComponentValue } from '../component/component-value.mjs';
 
 export interface IZChoiceOption<O, V> {
   key: string;
