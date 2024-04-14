@@ -1,16 +1,19 @@
 import { ListItem, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material';
-import { IZComponentDisabled } from '@zthun/fashion-boutique';
+import { IZComponentDisabled, IZComponentHeading } from '@zthun/fashion-boutique';
 import { cssJoinDefined } from '@zthun/helpful-fn';
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { IZComponentAdornment } from '../component/component-adornment.mjs';
-import { IZComponentHeading } from '../component/component-heading.mjs';
 import { createStyleHook } from '../theme/styled';
 import { IZListItem } from './list-item.mjs';
 
 /**
  * The props for the line item list.
  */
-export interface IZListLineItem extends IZListItem, IZComponentHeading, IZComponentAdornment, IZComponentDisabled {
+export interface IZListLineItem
+  extends IZListItem,
+    IZComponentHeading<ReactNode>,
+    IZComponentAdornment,
+    IZComponentDisabled {
   /**
    * Occurs when the line item is clicked.
    */

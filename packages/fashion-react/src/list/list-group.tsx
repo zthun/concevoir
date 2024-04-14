@@ -1,13 +1,13 @@
 import { ListSubheader } from '@mui/material';
+import { IZComponentHeading } from '@zthun/fashion-boutique';
 import { cssJoinDefined } from '@zthun/helpful-fn';
-import React from 'react';
-import { IZComponentHeading } from '../component/component-heading.mjs';
+import React, { ReactNode } from 'react';
 import { IZListItem } from './list-item.mjs';
 
 /**
  * Represents the properties for a list group component.
  */
-export interface IZListGroup extends IZListItem, Pick<IZComponentHeading, 'heading'> {}
+export interface IZListGroup extends IZListItem, Pick<IZComponentHeading<ReactNode>, 'heading'> {}
 
 /**
  * Represents a list item that sections off other list items.

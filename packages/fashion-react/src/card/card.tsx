@@ -1,6 +1,7 @@
 import {
   IZComponentAvatar,
   IZComponentFashion,
+  IZComponentHeading,
   IZComponentHeight,
   IZComponentLoading,
   IZComponentName,
@@ -12,7 +13,6 @@ import { ZDeviceBounds, ZSizeVaried } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { pickBy, startsWith } from 'lodash-es';
 import React, { ReactNode } from 'react';
-import { IZComponentHeading } from '../component/component-heading.mjs';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { useWebComponent } from '../component/use-web-component.mjs';
@@ -26,7 +26,7 @@ declare global {
 }
 
 export interface IZCard
-  extends IZComponentHeading,
+  extends IZComponentHeading<ReactNode>,
     IZComponentAvatar<ReactNode>,
     IZComponentHierarchy,
     IZComponentLoading,
