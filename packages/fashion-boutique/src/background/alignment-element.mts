@@ -60,7 +60,9 @@ export class ZAlignmentElement<TItems extends string, TContent extends string> e
   public content?: TContent;
 }
 
-function ZPropertyAlignment<TItems extends string, TContent extends string, T extends HTMLElement>(name: string) {
+export function ZPropertyAlignment<TItems extends string, TContent extends string, T extends HTMLElement>(
+  name: string
+) {
   return function (target: T, propertyKey: string | symbol): void {
     function get(this: T) {
       const selector = ZAlignmentElement.selector(name);
