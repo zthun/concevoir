@@ -1,10 +1,14 @@
-import { ZFashionTailorElement, ZFashionThemeElement, ZFashionTypographyElement } from '@zthun/fashion-boutique';
+import {
+  IZComponentHierarchy,
+  ZFashionTailorElement,
+  ZFashionThemeElement,
+  ZFashionTypographyElement
+} from '@zthun/fashion-boutique';
 import { IZFashionDevice, IZFashionTailor, ZFashionDevice, ZFashionTailor } from '@zthun/fashion-tailor';
 import { IZFashionTheme, ZFashionName, ZFashionThemeBuilder } from '@zthun/fashion-theme';
 import { IZFashionTypography, ZFashionTypographyBuilder } from '@zthun/fashion-typeface';
 import { firstDefined } from '@zthun/helpful-fn';
-import React, { createContext, useContext, useEffect, useMemo, useRef } from 'react';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
+import React, { ReactNode, createContext, useContext, useEffect, useMemo, useRef } from 'react';
 
 const ZFashionThemeContext = createContext(new ZFashionThemeBuilder().build());
 const ZFashionTailorContext = createContext<IZFashionTailor>(new ZFashionTailor());
@@ -20,7 +24,7 @@ declare global {
   }
 }
 
-export interface IZFashionThemeProvider extends IZComponentHierarchy {
+export interface IZFashionThemeProvider extends IZComponentHierarchy<ReactNode> {
   theme?: IZFashionTheme;
   tailor?: IZFashionTailor;
   device?: IZFashionDevice;

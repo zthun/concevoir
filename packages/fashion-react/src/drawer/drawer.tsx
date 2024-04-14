@@ -1,14 +1,14 @@
 import { Drawer } from '@mui/material';
+import { IZComponentHierarchy } from '@zthun/fashion-boutique';
 import { ZSideAnchor, cssJoinDefined } from '@zthun/helpful-fn';
-import React from 'react';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
+import React, { ReactNode } from 'react';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { createStyleHook } from '../theme/styled';
 
 /**
  * Represents props for the drawer.
  */
-export interface IZDrawer extends IZComponentHierarchy, IZComponentStyle {
+export interface IZDrawer extends IZComponentHierarchy<ReactNode>, IZComponentStyle {
   anchor?: ZSideAnchor;
   open: boolean;
 

@@ -1,6 +1,5 @@
-import { ZFullScreenElement } from '@zthun/fashion-boutique';
-import React from 'react';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
+import { IZComponentHierarchy, ZFullScreenElement } from '@zthun/fashion-boutique';
+import React, { ReactNode } from 'react';
 import { useWebComponent } from '../component/use-web-component.mjs';
 
 declare global {
@@ -10,7 +9,7 @@ declare global {
     }
   }
 }
-export function ZFullScreen(props: IZComponentHierarchy) {
+export function ZFullScreen(props: IZComponentHierarchy<ReactNode>) {
   const { children } = props;
   useWebComponent(ZFullScreenElement);
   return <z-full-screen>{children}</z-full-screen>;

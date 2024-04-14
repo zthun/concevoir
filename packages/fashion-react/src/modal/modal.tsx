@@ -1,17 +1,16 @@
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
-import { IZComponentName, IZComponentWidth } from '@zthun/fashion-boutique';
+import { IZComponentHierarchy, IZComponentName, IZComponentWidth } from '@zthun/fashion-boutique';
 import { ZSizeFixed, ZSizeVaried, castDeviceMap } from '@zthun/fashion-tailor';
 import { rgb } from '@zthun/fashion-theme';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ReactNode } from 'react';
 import { IZComponentFashion } from '../component/component-fashion.mjs';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { useFashionTheme } from '../theme/fashion';
 import { createStyleHook } from '../theme/styled';
 
 export interface IZModal
-  extends IZComponentHierarchy,
+  extends IZComponentHierarchy<ReactNode>,
     IZComponentName,
     IZComponentStyle,
     IZComponentFashion,

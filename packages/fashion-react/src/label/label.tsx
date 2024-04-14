@@ -1,7 +1,6 @@
-import { IZComponentRequired, ZLabelElement } from '@zthun/fashion-boutique';
+import { IZComponentHierarchy, IZComponentRequired, ZLabelElement } from '@zthun/fashion-boutique';
 import { cssJoinDefined } from '@zthun/helpful-fn';
-import React from 'react';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
+import React, { ReactNode } from 'react';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { useWebComponent } from '../component/use-web-component.mjs';
 
@@ -13,7 +12,7 @@ declare global {
   }
 }
 
-export interface IZLabel extends IZComponentHierarchy, IZComponentStyle, IZComponentRequired {
+export interface IZLabel extends IZComponentHierarchy<ReactNode>, IZComponentStyle, IZComponentRequired {
   htmlFor?: string;
 }
 

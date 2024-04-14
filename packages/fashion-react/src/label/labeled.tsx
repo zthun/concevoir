@@ -1,8 +1,12 @@
-import { IZComponentLabel, IZComponentName, IZComponentOrientation } from '@zthun/fashion-boutique';
+import {
+  IZComponentHierarchy,
+  IZComponentLabel,
+  IZComponentName,
+  IZComponentOrientation
+} from '@zthun/fashion-boutique';
 import { ZSizeFixed, ZSizeVoid } from '@zthun/fashion-tailor';
 import { ZOrientation, cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ReactNode } from 'react';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { ZStack } from '../stack/stack';
 import { IZLabel, ZLabel } from './label';
@@ -12,7 +16,7 @@ export interface ZLabeled
     IZComponentLabel<ReactNode>,
     IZComponentStyle,
     IZComponentOrientation,
-    IZComponentHierarchy {
+    IZComponentHierarchy<ReactNode> {
   LabelProps?: Omit<IZLabel, 'id'>;
   gap?: ZSizeVoid | ZSizeFixed;
 }

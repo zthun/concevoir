@@ -1,11 +1,11 @@
 import { PaletteColor, useTheme } from '@mui/material';
 import { ThemeProvider, createSpacing } from '@mui/system';
+import { IZComponentHierarchy } from '@zthun/fashion-boutique';
 import { IZFashionDevice, IZFashionTailor, ZSizeFixed } from '@zthun/fashion-tailor';
 import { IZFashion, IZFashionTheme } from '@zthun/fashion-theme';
 import { firstDefined } from '@zthun/helpful-fn';
-import React, { useMemo } from 'react';
+import React, { ReactNode, useMemo } from 'react';
 import { CSSInterpolation, CSSObject, GlobalStyles, createMakeStyles } from 'tss-react';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { useFashionDevice, useFashionTailor, useFashionTheme } from './fashion';
 
@@ -183,7 +183,7 @@ export function createStyleHook<T, U extends object, R extends string>(
 /**
  * Properties for the styled application.
  */
-export interface IZStyled extends IZComponentHierarchy, IZComponentStyle {}
+export interface IZStyled extends IZComponentHierarchy<ReactNode>, IZComponentStyle {}
 
 /**
  * Represents the root element that sets the overall theme.

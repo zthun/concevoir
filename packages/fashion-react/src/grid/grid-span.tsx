@@ -1,9 +1,8 @@
-import { ZDeviceElement, ZGridSpanElement } from '@zthun/fashion-boutique';
+import { IZComponentHierarchy, ZDeviceElement, ZGridSpanElement } from '@zthun/fashion-boutique';
 import { ZDeviceBounds, ZDeviceValue } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
-import React from 'react';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
+import React, { ReactNode } from 'react';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { useWebComponent } from '../component/use-web-component.mjs';
 
@@ -15,7 +14,7 @@ declare global {
   }
 }
 
-export interface IZGridSpan extends IZComponentHierarchy, IZComponentStyle {
+export interface IZGridSpan extends IZComponentHierarchy<ReactNode>, IZComponentStyle {
   columnStart?: ZDeviceValue<Property.GridColumnStart>;
   columnEnd?: ZDeviceValue<Property.GridColumnEnd>;
   rowStart?: ZDeviceValue<Property.GridRowStart>;

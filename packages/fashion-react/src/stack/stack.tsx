@@ -1,16 +1,15 @@
 import { Stack } from '@mui/material';
-import { IZComponentName, IZComponentOrientation } from '@zthun/fashion-boutique';
+import { IZComponentHierarchy, IZComponentName, IZComponentOrientation } from '@zthun/fashion-boutique';
 import { ZSizeFixed, ZSizeVoid, createSizeChartFixedArithmetic, createSizeChartVoidZero } from '@zthun/fashion-tailor';
 import { ZOrientation, cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
-import React from 'react';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
+import React, { ReactNode } from 'react';
 import { IZComponentStyle } from '../component/component-style.mjs';
 
 /**
  * Represents a stack component.
  */
-interface IZStack extends IZComponentHierarchy, IZComponentStyle, IZComponentName, IZComponentOrientation {
+interface IZStack extends IZComponentHierarchy<ReactNode>, IZComponentStyle, IZComponentName, IZComponentOrientation {
   alignItems?: Property.AlignItems;
   gap?: ZSizeFixed | ZSizeVoid;
   justifyContent?: Property.JustifyContent;

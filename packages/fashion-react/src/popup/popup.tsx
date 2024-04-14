@@ -1,7 +1,6 @@
-import { ZPopupElement } from '@zthun/fashion-boutique';
+import { IZComponentHierarchy, ZPopupElement } from '@zthun/fashion-boutique';
 import { ZAnchor, ZHorizontalAnchor, ZVerticalAnchor } from '@zthun/helpful-fn';
-import React, { useEffect, useRef } from 'react';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
+import React, { ReactNode, useEffect, useRef } from 'react';
 import { IZComponentStyle } from '../component/component-style.mjs';
 
 declare global {
@@ -15,7 +14,7 @@ declare global {
 /**
  * Represents props for a popup component.
  */
-export interface IZPopup extends IZComponentHierarchy, IZComponentStyle {
+export interface IZPopup extends IZComponentHierarchy<ReactNode>, IZComponentStyle {
   /**
    * The position the popup is attached to.
    *

@@ -1,6 +1,7 @@
 import {
   IZComponentCompact,
   IZComponentFashion,
+  IZComponentHierarchy,
   IZComponentName,
   ZHeadingFiveElement,
   ZHeadingFourElement,
@@ -9,13 +10,12 @@ import {
   ZHeadingThreeElement,
   ZHeadingTwoElement
 } from '@zthun/fashion-boutique';
-import React from 'react';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
+import React, { ReactNode } from 'react';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { useWebComponent } from '../component/use-web-component.mjs';
 
 export interface IZHeadingProps
-  extends IZComponentHierarchy,
+  extends IZComponentHierarchy<ReactNode>,
     IZComponentStyle,
     IZComponentFashion,
     IZComponentCompact,

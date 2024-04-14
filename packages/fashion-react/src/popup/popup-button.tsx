@@ -1,14 +1,14 @@
+import { IZComponentHierarchy } from '@zthun/fashion-boutique';
 import { cssJoinDefined } from '@zthun/helpful-fn';
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { IZButton, ZButton } from '../button/button';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { IZPopup, ZPopup } from './popup';
 
 /**
  * Represents properties for a pop button component.
  */
-export interface IZPopupButton extends IZComponentHierarchy, IZComponentStyle {
+export interface IZPopupButton extends IZComponentHierarchy<ReactNode>, IZComponentStyle {
   /**
    * The properties for the underlying button component.
    */

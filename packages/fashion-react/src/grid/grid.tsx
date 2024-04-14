@@ -1,5 +1,6 @@
 import {
   IZComponentHeight,
+  IZComponentHierarchy,
   IZComponentWidth,
   ZAlignmentElement,
   ZDeviceElement,
@@ -8,8 +9,7 @@ import {
 import { IZDeviceValueMap, ZDeviceBounds, ZGapSize, ZSizeVaried } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
-import React, { useMemo } from 'react';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
+import React, { ReactNode, useMemo } from 'react';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { useWebComponent } from '../component/use-web-component.mjs';
 
@@ -23,7 +23,7 @@ declare global {
 
 export interface IZGrid
   extends IZComponentStyle,
-    IZComponentHierarchy,
+    IZComponentHierarchy<ReactNode>,
     IZComponentHeight<ZSizeVaried>,
     IZComponentWidth<ZSizeVaried> {
   align?: {

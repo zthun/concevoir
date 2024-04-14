@@ -1,8 +1,8 @@
+import { IZComponentHierarchy } from '@zthun/fashion-boutique';
 import { ZDeviceBounds, ZDeviceValue, ZSizeVaried } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { mapValues } from 'lodash-es';
-import React from 'react';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
+import React, { ReactNode } from 'react';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { IZGrid, ZGrid } from './grid';
 import { ZGridSpan } from './grid-span';
@@ -10,7 +10,7 @@ import { ZGridSpan } from './grid-span';
 export type ZNewspaperColumn = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 export type ZNewspaperRange = [ZNewspaperColumn, ZNewspaperColumn];
 
-export interface IZNewspaper extends IZComponentStyle, IZComponentHierarchy {
+export interface IZNewspaper extends IZComponentStyle, IZComponentHierarchy<ReactNode> {
   GridProps?: Omit<IZGrid, 'columns' | 'children' | 'className' | 'width'>;
   range?: ZDeviceValue<ZNewspaperRange>;
 }

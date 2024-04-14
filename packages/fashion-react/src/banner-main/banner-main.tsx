@@ -1,16 +1,15 @@
-import { IZComponentAvatar, IZComponentPrefix, IZComponentSuffix } from '@zthun/fashion-boutique';
+import { IZComponentAvatar, IZComponentHierarchy, IZComponentPrefix, IZComponentSuffix } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionPriority } from '@zthun/fashion-theme';
 import { ZQuadrilateralBuilder } from '@zthun/helpful-fn';
 import React, { ReactNode } from 'react';
 import { ZBanner } from '../banner/banner';
 import { ZBox } from '../box/box';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { ZGrid } from '../grid/grid';
 import { ZStyled } from '../theme/styled';
 
 export interface IZBannerMain
-  extends IZComponentHierarchy,
+  extends IZComponentHierarchy<ReactNode>,
     IZComponentAvatar<ReactNode>,
     IZComponentPrefix<ReactNode>,
     IZComponentSuffix<ReactNode> {}

@@ -1,8 +1,13 @@
-import { IZComponentFashion, IZComponentHeight, ZBannerElement, ZDeviceElement } from '@zthun/fashion-boutique';
+import {
+  IZComponentFashion,
+  IZComponentHeight,
+  IZComponentHierarchy,
+  ZBannerElement,
+  ZDeviceElement
+} from '@zthun/fashion-boutique';
 import { ZDeviceBounds, ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
-import React, { useMemo } from 'react';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
+import React, { ReactNode, useMemo } from 'react';
 import { IZComponentStyle } from '../component/component-style.mjs';
 
 import { useWebComponent } from '../component/use-web-component.mjs';
@@ -16,7 +21,7 @@ declare global {
 }
 
 export interface IZBanner
-  extends IZComponentHierarchy,
+  extends IZComponentHierarchy<ReactNode>,
     IZComponentFashion,
     Pick<IZComponentHeight<ZSizeFixed | ZSizeVaried.Fit>, 'height'>,
     IZComponentStyle {}

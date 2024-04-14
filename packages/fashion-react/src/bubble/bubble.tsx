@@ -1,10 +1,15 @@
-import { IZComponentFashion, IZComponentName, IZComponentWidth, ZBubbleElement } from '@zthun/fashion-boutique';
+import {
+  IZComponentFashion,
+  IZComponentHierarchy,
+  IZComponentName,
+  IZComponentWidth,
+  ZBubbleElement
+} from '@zthun/fashion-boutique';
 import { ZDeviceBounds, ZGapSize, ZSizeFixed, ZSizeVoid } from '@zthun/fashion-tailor';
 import { ZQuadrilateralBuilder, cssJoinDefined, firstTruthy } from '@zthun/helpful-fn';
 import { useKeyboardActivate } from '@zthun/helpful-react';
 import { Property } from 'csstype';
-import React, { KeyboardEvent, MouseEvent } from 'react';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
+import React, { KeyboardEvent, MouseEvent, ReactNode } from 'react';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { useWebComponent } from '../component/use-web-component.mjs';
 
@@ -20,7 +25,7 @@ export interface IZBubble
   extends IZComponentStyle,
     IZComponentName,
     IZComponentWidth<ZSizeFixed>,
-    IZComponentHierarchy,
+    IZComponentHierarchy<ReactNode>,
     IZComponentFashion {
   padding?: ZSizeFixed | ZSizeVoid;
   edge?: ZSizeFixed | ZSizeVoid;

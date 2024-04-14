@@ -1,5 +1,6 @@
 import {
   IZComponentFashion,
+  IZComponentHierarchy,
   IZComponentWidth,
   ZBoxElement,
   ZDeviceElement,
@@ -8,8 +9,7 @@ import {
 import { ZDeviceBounds, ZGapSize, ZSizeVaried, ZThicknessSize } from '@zthun/fashion-tailor';
 import { IZQuadrilateral, cssJoinDefined } from '@zthun/helpful-fn';
 import { Property } from 'csstype';
-import React, { MouseEventHandler, useMemo } from 'react';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
+import React, { MouseEventHandler, ReactNode, useMemo } from 'react';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { useWebComponent } from '../component/use-web-component.mjs';
 
@@ -21,7 +21,7 @@ declare global {
   }
 }
 
-export interface IZBox extends IZComponentHierarchy, IZComponentStyle, IZComponentWidth, IZComponentFashion {
+export interface IZBox extends IZComponentHierarchy<ReactNode>, IZComponentStyle, IZComponentWidth, IZComponentFashion {
   edge?: Partial<IZQuadrilateral<ZThicknessSize>>;
   trim?: Partial<IZQuadrilateral<Property.BorderStyle>>;
 

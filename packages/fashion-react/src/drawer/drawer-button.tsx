@@ -1,8 +1,8 @@
+import { IZComponentHierarchy } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ReactNode, useEffect, useState } from 'react';
 import { IZButton, ZButton } from '../button/button';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { ZIconFontAwesome } from '../icon/icon-font-awesome';
 import { IZDrawer, ZDrawer } from './drawer';
@@ -10,7 +10,7 @@ import { IZDrawer, ZDrawer } from './drawer';
 /**
  * The props for the drawer button.
  */
-export interface IZDrawerButton extends IZComponentHierarchy, IZComponentStyle {
+export interface IZDrawerButton extends IZComponentHierarchy<ReactNode>, IZComponentStyle {
   ButtonProps?: Omit<IZButton, 'onClick' | 'avatar' | 'label'>;
   DrawerProps?: Omit<IZDrawer, 'open' | 'onClose' | 'children'>;
 
