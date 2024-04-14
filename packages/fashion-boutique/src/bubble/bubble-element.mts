@@ -11,7 +11,7 @@ import {
   createSizeChartVariedCss
 } from '@zthun/fashion-tailor';
 import { ZFashionArea } from '@zthun/fashion-theme';
-import { firstTruthy, html } from '@zthun/helpful-fn';
+import { IZQuadrilateral, html } from '@zthun/helpful-fn';
 import {
   IZComponentRender,
   IZComponentTemplate,
@@ -24,8 +24,9 @@ import {
   ZComponentRenderTemplate,
   ZComponentShadow
 } from '@zthun/spellcraft';
+import { Property } from 'csstype';
 import { ZDeviceElement, ZPropertyDeviceWidth } from '../background/device-element.mjs';
-import { ZQuadrilateralElement } from '../background/quadrilateral-element.mjs';
+import { ZPropertyQuadrilateralPadding, ZQuadrilateralElement } from '../background/quadrilateral-element.mjs';
 import { ZFashionDetail } from '../component/component-fashion.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
@@ -33,14 +34,14 @@ export interface ZBubbleElement extends IZComponentRender {}
 
 @ZComponentRegister('z-bubble')
 @ZComponentClass('ZBubble-root')
-@ZComponentRenderOnEvent('change', { selector: ':scope > z-quadrilateral[name="padding"]' })
+@ZComponentRenderOnEvent('change', { selector: ZQuadrilateralElement.padding() })
 @ZComponentRenderOnEvent('change', { selector: ZDeviceElement.width() })
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
 @ZComponentShadow()
 export class ZBubbleElement extends HTMLElement implements IZComponentTemplate {
-  public static readonly observedAttributes = Object.freeze(['active', 'border', 'fashion']);
+  public static readonly observedAttributes = Object.freeze(['active', 'edge', 'fashion', 'trim']);
 
   public static readonly SizeChart = {
     ...createSizeChartFixedCss(createSizeChartFixedGeometric(2, 1), 'rem'),
@@ -51,7 +52,10 @@ export class ZBubbleElement extends HTMLElement implements IZComponentTemplate {
   public active: boolean;
 
   @ZAttribute({ fallback: ZSizeVoid.None })
-  public border: ZThicknessSize;
+  public edge: ZThicknessSize;
+
+  @ZAttribute({ fallback: 'solid' })
+  public trim: Property.BorderStyle;
 
   @ZAttribute({ fallback: ZFashionArea.Component })
   public fashion: string;
@@ -59,13 +63,14 @@ export class ZBubbleElement extends HTMLElement implements IZComponentTemplate {
   @ZPropertyDeviceWidth(ZSizeVaried.Fit)
   public width: Required<IZDeviceValueMap<ZSizeFixed | ZSizeVaried>>;
 
-  public template(): string {
-    const { active, border, fashion, width } = this;
-    const detail = new ZFashionDetail(fashion);
-    const thickness = ZFashionTailorElement.thicknessVar(border);
-    const device = new ZFashionDevice();
+  @ZPropertyQuadrilateralPadding(ZSizeVoid.None)
+  public padding: IZQuadrilateral<ZGapSize>;
 
-    const padding = this.querySelector<ZQuadrilateralElement<ZGapSize>>(`:scope > z-quadrilateral[name="padding"]`);
+  public template(): string {
+    const { active, edge, fashion, padding, trim, width } = this;
+    const detail = new ZFashionDetail(fashion);
+    const thickness = ZFashionTailorElement.thicknessVar(edge);
+    const device = new ZFashionDevice();
 
     return html`
       <style>
@@ -75,17 +80,17 @@ export class ZBubbleElement extends HTMLElement implements IZComponentTemplate {
           background: ${detail.color('main')};
           color: ${detail.color('contrast')};
           cursor: ${active ? 'pointer' : 'default'};
-          border: ${thickness} solid ${detail.color('border')};
+          border: ${thickness} ${trim} ${detail.color('border')};
           border-radius: 50%;
           clip-path: circle();
           display: flex;
           flex-direction: column;
           height: ${ZBubbleElement.SizeChart[width.xl]};
           justify-content: center;
-          padding-bottom: ${ZFashionTailorElement.gapVar(firstTruthy(ZSizeVoid.None, padding?.bottom))};
-          padding-left: ${ZFashionTailorElement.gapVar(firstTruthy(ZSizeVoid.None, padding?.left))};
-          padding-right: ${ZFashionTailorElement.gapVar(firstTruthy(ZSizeVoid.None, padding?.right))};
-          padding-top: ${ZFashionTailorElement.gapVar(firstTruthy(ZSizeVoid.None, padding?.top))};
+          padding-bottom: ${ZFashionTailorElement.gapVar(padding.bottom)};
+          padding-left: ${ZFashionTailorElement.gapVar(padding.left)};
+          padding-right: ${ZFashionTailorElement.gapVar(padding.right)};
+          padding-top: ${ZFashionTailorElement.gapVar(padding.top)};
           width: ${ZBubbleElement.SizeChart[width.xl]};
         }
 

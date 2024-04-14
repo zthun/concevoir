@@ -1,5 +1,6 @@
 import { ZCircusActBuilder, ZCircusComponentModel } from '@zthun/cirque';
-import { ZSizeFixed, ZSizeVoid } from '@zthun/fashion-tailor';
+import { ZSizeVoid, ZThicknessSize } from '@zthun/fashion-tailor';
+import { Property } from 'csstype';
 
 export class ZBubbleComponentModel extends ZCircusComponentModel {
   public static readonly Selector = '.ZBubble-root';
@@ -9,8 +10,12 @@ export class ZBubbleComponentModel extends ZCircusComponentModel {
     await this.driver.perform(act);
   }
 
-  public borderSize(): Promise<ZSizeFixed | ZSizeVoid> {
-    return this.driver.attribute('border', ZSizeVoid.None);
+  public edge(): Promise<ZThicknessSize> {
+    return this.driver.attribute('edge', ZSizeVoid.None);
+  }
+
+  public trim(): Promise<Property.BorderStyle> {
+    return this.driver.attribute('trim', 'solid');
   }
 
   public fashion(): Promise<string> {
