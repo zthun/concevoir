@@ -13,7 +13,17 @@ export class ZImageSourceComponentModel extends ZCircusComponentModel {
    *        The name of the image.
    */
   public name(): Promise<string | null> {
-    return this.driver.attribute('data-name');
+    return this.driver.attribute('name');
+  }
+
+  /**
+   * Gets the kind of image.
+   *
+   * @returns
+   *        The kind of image detected.
+   */
+  public kind(): Promise<'img' | 'svg' | 'empty'> {
+    return this.driver.attribute('data-kind', 'img');
   }
 
   /**
@@ -23,8 +33,7 @@ export class ZImageSourceComponentModel extends ZCircusComponentModel {
    *        True if the underlying image source is an svg.
    */
   public async svg(): Promise<boolean> {
-    const [tag] = await this.driver.query('svg');
-    return !!tag;
+    return (await this.kind()) === 'svg';
   }
 
   /**
@@ -34,8 +43,7 @@ export class ZImageSourceComponentModel extends ZCircusComponentModel {
    *        True if the underlying image source is an img.
    */
   public async img(): Promise<boolean> {
-    const [tag] = await this.driver.query('img');
-    return !!tag;
+    return (await this.kind()) === 'img';
   }
 
   /**
@@ -45,8 +53,6 @@ export class ZImageSourceComponentModel extends ZCircusComponentModel {
    *        True if the underlying image is empty.
    */
   public async empty(): Promise<boolean> {
-    const svg = await this.svg();
-    const img = await this.img();
-    return !svg && !img;
+    return (await this.kind()) === 'empty';
   }
 }
