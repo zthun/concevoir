@@ -1,11 +1,11 @@
+import { IZComponentPrefix, IZComponentSuffix } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ReactNode } from 'react';
-import { IZComponentAdornment } from '../component/component-adornment.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { createStyleHook } from '../theme/styled';
 
-export interface IZLineItem extends IZComponentStyle, IZComponentAdornment {
+export interface IZLineItem extends IZComponentStyle, IZComponentPrefix<ReactNode>, IZComponentSuffix<ReactNode> {
   body?: ReactNode;
 }
 

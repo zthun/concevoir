@@ -1,8 +1,7 @@
 import { ListItem, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material';
-import { IZComponentDisabled, IZComponentHeading } from '@zthun/fashion-boutique';
+import { IZComponentDisabled, IZComponentHeading, IZComponentPrefix, IZComponentSuffix } from '@zthun/fashion-boutique';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ReactNode } from 'react';
-import { IZComponentAdornment } from '../component/component-adornment.mjs';
 import { createStyleHook } from '../theme/styled';
 import { IZListItem } from './list-item.mjs';
 
@@ -12,7 +11,8 @@ import { IZListItem } from './list-item.mjs';
 export interface IZListLineItem
   extends IZListItem,
     IZComponentHeading<ReactNode>,
-    IZComponentAdornment,
+    IZComponentPrefix<ReactNode>,
+    IZComponentSuffix<ReactNode>,
     IZComponentDisabled {
   /**
    * Occurs when the line item is clicked.

@@ -1,16 +1,19 @@
-import { IZComponentAvatar } from '@zthun/fashion-boutique';
+import { IZComponentAvatar, IZComponentPrefix, IZComponentSuffix } from '@zthun/fashion-boutique';
 import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionPriority } from '@zthun/fashion-theme';
 import { ZQuadrilateralBuilder } from '@zthun/helpful-fn';
 import React, { ReactNode } from 'react';
 import { ZBanner } from '../banner/banner';
 import { ZBox } from '../box/box';
-import { IZComponentAdornment } from '../component/component-adornment.mjs';
 import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
 import { ZGrid } from '../grid/grid';
 import { ZStyled } from '../theme/styled';
 
-export interface IZBannerMain extends IZComponentHierarchy, IZComponentAvatar<ReactNode>, IZComponentAdornment {}
+export interface IZBannerMain
+  extends IZComponentHierarchy,
+    IZComponentAvatar<ReactNode>,
+    IZComponentPrefix<ReactNode>,
+    IZComponentSuffix<ReactNode> {}
 
 export function ZBannerMain(props: IZBannerMain) {
   const { children, avatar, prefix = <span />, suffix = <span /> } = props;

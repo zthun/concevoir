@@ -5,13 +5,14 @@ import {
   IZComponentLabel,
   IZComponentName,
   IZComponentOrientation,
+  IZComponentPrefix,
   IZComponentRequired,
+  IZComponentSuffix,
   IZComponentValue
 } from '@zthun/fashion-boutique';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import { get, noop } from 'lodash-es';
 import React, { KeyboardEvent, ReactNode, useEffect, useState } from 'react';
-import { IZComponentAdornment } from '../component/component-adornment.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 
 /**
@@ -22,7 +23,8 @@ export interface IZText<T = string>
     IZComponentName,
     IZComponentValue<T>,
     IZComponentLabel<ReactNode>,
-    IZComponentAdornment,
+    IZComponentPrefix<ReactNode>,
+    IZComponentSuffix<ReactNode>,
     IZComponentOrientation,
     IZComponentRequired,
     IZComponentStyle {

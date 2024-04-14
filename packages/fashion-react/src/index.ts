@@ -22,7 +22,6 @@ export * from './choice/choice';
 export * from './choice/choice-autocomplete';
 export * from './choice/choice-drop-down';
 export * from './choice/choice-toggle';
-export * from './component/component-adornment.mjs';
 export * from './component/component-fashion.mjs';
 export * from './component/component-hierarchy.mjs';
 export * from './component/component-style.mjs';
