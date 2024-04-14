@@ -25,7 +25,7 @@ import {
   ZComponentShadow
 } from '@zthun/spellcraft';
 import { Property } from 'csstype';
-import { ZDeviceElement, ZPropertyDevice } from '../background/device-element.mjs';
+import { ZDeviceElement, ZPropertyDeviceWidth } from '../background/device-element.mjs';
 import { ZQuadrilateralElement } from '../background/quadrilateral-element.mjs';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
@@ -37,7 +37,7 @@ export interface ZBoxElement extends IZComponentRender {}
 @ZComponentRenderOnEvent('change', { selector: ':scope > z-quadrilateral[name="margin"]' })
 @ZComponentRenderOnEvent('change', { selector: ':scope > z-quadrilateral[name="padding"]' })
 @ZComponentRenderOnEvent('change', { selector: ':scope > z-quadrilateral[name="trim"]' })
-@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.selector('width') })
+@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.width() })
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
@@ -54,7 +54,7 @@ export class ZBoxElement extends HTMLElement implements IZComponentFashion, IZCo
   @ZAttribute({ fallback: ZFashionIntrinsic.Inherit })
   public fashion: string;
 
-  @ZPropertyDevice('width', ZSizeVaried.Fit)
+  @ZPropertyDeviceWidth(ZSizeVaried.Fit)
   public width: Required<IZDeviceValueMap<string>>;
 
   public template() {

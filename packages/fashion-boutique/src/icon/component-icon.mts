@@ -8,7 +8,7 @@ import {
 import { ZFashionIntrinsic } from '@zthun/fashion-theme';
 import { css } from '@zthun/helpful-fn';
 import { IZComponentStyles, ZAttribute, ZComponentConstructor } from '@zthun/spellcraft';
-import { ZPropertyDevice } from '../background/device-element.mjs';
+import { ZPropertyDeviceWidth } from '../background/device-element.mjs';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 import { IZComponentName } from '../component/component-name.mjs';
 
@@ -24,7 +24,7 @@ export function ZComponentIcon<T extends HTMLElement>(fallback: string) {
       @ZAttribute({ fallback: ZFashionIntrinsic.Inherit })
       public fashion: string;
 
-      @ZPropertyDevice('width', ZSizeFixed.Small)
+      @ZPropertyDeviceWidth(ZSizeFixed.Small)
       public readonly width: Required<IZDeviceValueMap<ZSizeFixed>>;
 
       public styles() {

@@ -20,7 +20,7 @@ import {
   ZComponentRenderTemplate,
   ZComponentShadow
 } from '@zthun/spellcraft';
-import { ZDeviceElement, ZPropertyDevice } from '../background/device-element.mjs';
+import { ZDeviceElement, ZPropertyDeviceHeight } from '../background/device-element.mjs';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 
 export interface ZBannerElement extends IZComponentRender {}
@@ -41,7 +41,7 @@ export class ZBannerElement extends HTMLElement implements IZComponentFashion, I
   @ZAttribute({ fallback: ZFashionPriority.Primary })
   public fashion: string;
 
-  @ZPropertyDevice('height', ZSizeVaried.Fit)
+  @ZPropertyDeviceHeight(ZSizeVaried.Fit)
   public height: Required<IZDeviceValueMap<ZSizeFixed | ZSizeVaried>>;
 
   public template() {

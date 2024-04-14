@@ -25,7 +25,7 @@ import {
   ZComponentRenderTemplate,
   ZComponentShadow
 } from '@zthun/spellcraft';
-import { ZDeviceElement, ZPropertyDevice } from '../background/device-element.mjs';
+import { ZDeviceElement, ZPropertyDeviceHeight, ZPropertyDeviceWidth } from '../background/device-element.mjs';
 import { ZFashionDetail } from '../component/component-fashion.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 import { ZHeadingTwoElement } from '../typography/heading-2-element.mjs';
@@ -36,8 +36,8 @@ export interface ZCardElement extends IZComponentRender {}
 @ZComponentRegister('z-card')
 @ZComponentDependencies([ZHeadingTwoElement, ZParagraphCaptionElement])
 @ZComponentClass('ZCard-root')
-@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.selector('width') })
-@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.selector('height') })
+@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.width() })
+@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.height() })
 @ZComponentRenderTemplate()
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
@@ -63,10 +63,10 @@ export class ZCardElement extends HTMLElement implements IZComponentTemplate {
   @ZAttribute({ type: 'boolean' })
   public loading: boolean;
 
-  @ZPropertyDevice('height', ZSizeVaried.Fit)
+  @ZPropertyDeviceHeight(ZSizeVaried.Fit)
   public height: Required<IZDeviceValueMap<ZSize>>;
 
-  @ZPropertyDevice('width', ZSizeVaried.Full)
+  @ZPropertyDeviceWidth(ZSizeVaried.Full)
   public width: Required<IZDeviceValueMap<ZSize>>;
 
   public template() {

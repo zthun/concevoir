@@ -21,18 +21,29 @@ import {
   ZComponentShadow
 } from '@zthun/spellcraft';
 import { Property } from 'csstype';
-import { ZAlignmentElement } from '../background/alignment-element.mjs';
-import { ZDeviceElement, ZPropertyDevice } from '../background/device-element.mjs';
+import {
+  IZAlign,
+  IZJustify,
+  ZAlignmentElement,
+  ZPropertyAlignmentAlign,
+  ZPropertyAlignmentJustify
+} from '../background/alignment-element.mjs';
+import {
+  ZDeviceElement,
+  ZPropertyDevice,
+  ZPropertyDeviceHeight,
+  ZPropertyDeviceWidth
+} from '../background/device-element.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 
 export interface ZGridElement extends IZComponentRender {}
 
 @ZComponentRegister('z-grid')
-@ZComponentRenderOnEvent('change', { selector: ':scope > z-alignment[name="align"]' })
-@ZComponentRenderOnEvent('change', { selector: ':scope > z-alignment[name="justify"]' })
+@ZComponentRenderOnEvent('change', { selector: ZAlignmentElement.align() })
+@ZComponentRenderOnEvent('change', { selector: ZAlignmentElement.justify() })
 @ZComponentRenderOnEvent('change', { selector: ZDeviceElement.selector('columns') })
-@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.selector('width') })
-@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.selector('height') })
+@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.width() })
+@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.height() })
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
@@ -51,30 +62,32 @@ export class ZGridElement extends HTMLElement implements IZComponentTemplate {
   @ZPropertyDevice('columns', 'none')
   public columns: Required<IZDeviceValueMap<Property.GridTemplateColumns>>;
 
-  @ZPropertyDevice('width', ZSizeVaried.Fit)
+  @ZPropertyDeviceWidth(ZSizeVaried.Fit)
   public width: Required<IZDeviceValueMap<ZSizeVaried>>;
 
-  @ZPropertyDevice('columns', ZSizeVaried.Fit)
+  @ZPropertyDeviceHeight(ZSizeVaried.Fit)
   public height: Required<IZDeviceValueMap<ZSizeVaried>>;
 
+  @ZPropertyAlignmentAlign()
+  public align: IZAlign;
+
+  @ZPropertyAlignmentJustify()
+  public justify: IZJustify;
+
   public template() {
-    const { columns, rows, gap, width, height } = this;
-
+    const { align, justify, columns, rows, gap, width, height } = this;
     const device = new ZFashionDevice();
-
-    const $align = this.querySelector<ZAlignmentElement>(`:scope > z-alignment[name="align"]`);
-    const $justify = this.querySelector<ZAlignmentElement>(`:scope > z-alignment[name="justify"]`);
 
     return html`
       <style>
         :host {
-          align-content: ${firstTruthy('normal', $align?.content)};
-          align-items: ${firstTruthy('stretch', $align?.items)};
+          align-content: ${firstTruthy('normal', align?.content)};
+          align-items: ${firstTruthy('stretch', align?.items)};
           display: grid;
           gap: ${ZFashionTailorElement.gapVar(firstTruthy(ZSizeVoid.None, gap))};
           grid-template-rows: ${firstTruthy('auto', rows)};
-          justify-content: ${firstTruthy('normal', $justify?.content)};
-          justify-items: ${firstTruthy('stretch', $justify?.items)};
+          justify-content: ${firstTruthy('normal', justify?.content)};
+          justify-items: ${firstTruthy('stretch', justify?.items)};
 
           grid-template-columns: ${columns.xl};
           height: ${ZGridElement.SizeChart[height.xl]};

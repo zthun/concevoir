@@ -19,14 +19,14 @@ import {
   ZComponentRenderTemplate,
   ZComponentShadow
 } from '@zthun/spellcraft';
-import { ZDeviceElement, ZPropertyDevice } from '../background/device-element.mjs';
+import { ZDeviceElement, ZPropertyDeviceWidth } from '../background/device-element.mjs';
 import { IZComponentDisabled } from '../component/component-disabled.mjs';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 
 export interface ZSuspenseRotateElement extends IZComponentRender {}
 
 @ZComponentRegister('z-suspense-rotate')
-@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.selector('width') })
+@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.width() })
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
@@ -45,7 +45,7 @@ export class ZSuspenseRotateElement
   @ZAttribute({ type: 'boolean' })
   public disabled?: boolean;
 
-  @ZPropertyDevice('width', ZSizeFixed.ExtraSmall)
+  @ZPropertyDeviceWidth(ZSizeFixed.ExtraSmall)
   public width: Required<IZDeviceValueMap<ZSizeFixed>>;
 
   public template() {

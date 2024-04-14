@@ -24,7 +24,7 @@ import {
   ZComponentRenderTemplate,
   ZComponentShadow
 } from '@zthun/spellcraft';
-import { ZDeviceElement, ZPropertyDevice } from '../background/device-element.mjs';
+import { ZDeviceElement, ZPropertyDeviceWidth } from '../background/device-element.mjs';
 import { ZQuadrilateralElement } from '../background/quadrilateral-element.mjs';
 import { ZFashionDetail } from '../component/component-fashion.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
@@ -34,7 +34,7 @@ export interface ZBubbleElement extends IZComponentRender {}
 @ZComponentRegister('z-bubble')
 @ZComponentClass('ZBubble-root')
 @ZComponentRenderOnEvent('change', { selector: ':scope > z-quadrilateral[name="padding"]' })
-@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.selector('width') })
+@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.width() })
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
@@ -56,7 +56,7 @@ export class ZBubbleElement extends HTMLElement implements IZComponentTemplate {
   @ZAttribute({ fallback: ZFashionArea.Component })
   public fashion: string;
 
-  @ZPropertyDevice('width', ZSizeVaried.Fit)
+  @ZPropertyDeviceWidth(ZSizeVaried.Fit)
   public width: Required<IZDeviceValueMap<ZSizeFixed | ZSizeVaried>>;
 
   public template(): string {

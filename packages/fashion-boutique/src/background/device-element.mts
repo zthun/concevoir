@@ -29,6 +29,9 @@ export class ZDeviceElement<T extends string = string> extends HTMLElement {
     return `:scope > z-device[name="${name}"]`;
   }
 
+  public static width = ZDeviceElement.selector.bind(null, 'width');
+  public static height = ZDeviceElement.selector.bind(null, 'height');
+
   public device() {
     return { xl: this.xl, lg: this.lg, md: this.md, sm: this.sm, xs: this.xs };
   }
@@ -58,8 +61,14 @@ export function ZPropertyDevice<K extends string, T extends HTMLElement>(name: s
       return device.toDeviceMap();
     }
 
-    Object.defineProperty(target, propertyKey, {
-      get
-    });
+    Object.defineProperty(target, propertyKey, { get });
   };
+}
+
+export function ZPropertyDeviceWidth<K extends string, T extends HTMLElement>(fallback: K) {
+  return ZPropertyDevice<K, T>('width', fallback);
+}
+
+export function ZPropertyDeviceHeight<K extends string, T extends HTMLElement>(fallback: K) {
+  return ZPropertyDevice<K, T>('height', fallback);
 }

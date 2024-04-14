@@ -20,7 +20,7 @@ import {
   ZComponentStylesRemoveOnDisconnect,
   ZComponentStylesUpdateOnAttributeChange
 } from '@zthun/spellcraft';
-import { ZPropertyDevice } from '../background/device-element.mjs';
+import { ZPropertyDeviceWidth } from '../background/device-element.mjs';
 import { IZComponentDisabled } from '../component/component-disabled.mjs';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 import { IZComponentLoading } from '../component/component-loading.mjs';
@@ -108,7 +108,7 @@ export class ZButtonElement
   @ZAttribute({ name: 'data-outline', type: 'boolean' })
   public outline: boolean | undefined;
 
-  @ZPropertyDevice('width', ZSizeVaried.Fit)
+  @ZPropertyDeviceWidth(ZSizeVaried.Fit)
   public width: Required<IZDeviceValueMap<ZSizeVaried>>;
 
   public styles() {

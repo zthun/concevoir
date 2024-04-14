@@ -19,7 +19,7 @@ import {
   ZComponentRenderTemplate,
   ZComponentShadow
 } from '@zthun/spellcraft';
-import { ZDeviceElement, ZPropertyDevice } from '../background/device-element.mjs';
+import { ZDeviceElement, ZPropertyDeviceHeight } from '../background/device-element.mjs';
 import { IZComponentDisabled } from '../component/component-disabled.mjs';
 import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
 
@@ -45,7 +45,7 @@ export class ZSuspenseProgressElement
   @ZAttribute({ type: 'boolean' })
   public disabled?: boolean;
 
-  @ZPropertyDevice('height', ZSizeFixed.ExtraSmall)
+  @ZPropertyDeviceHeight(ZSizeFixed.ExtraSmall)
   public height: Required<IZDeviceValueMap<ZSizeFixed>>;
 
   public template() {
