@@ -26,6 +26,16 @@ export class ZPaginationComponentModel extends ZCircusComponentModel {
     return items.length;
   }
 
+  public async pages(): Promise<number> {
+    const pages = await this.driver.attribute('data-pages', '0');
+    return +pages;
+  }
+
+  public async fashion(): Promise<string> {
+    const fashion = await this.driver.attribute('data-fashion', '');
+    return fashion;
+  }
+
   private async _goToPage(aria: string) {
     const selector = `.MuiPaginationItem-root[aria-label="${aria}"]`;
     const [button] = await this.driver.query(selector);

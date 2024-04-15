@@ -1,9 +1,14 @@
 import { Pagination } from '@mui/material';
-import { IZComponentDisabled, IZComponentOrientation, IZComponentValue } from '@zthun/fashion-boutique';
+import {
+  IZComponentDisabled,
+  IZComponentFashion,
+  IZComponentOrientation,
+  IZComponentValue
+} from '@zthun/fashion-boutique';
+import { ZFashionArea } from '@zthun/fashion-theme';
 import { ZOrientation, cssJoinDefined } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
 import React from 'react';
-import { IZComponentFashion } from '../component/component-fashion.mjs';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { createStyleHook } from '../theme/styled';
 
@@ -23,7 +28,8 @@ export interface IZPagination
 }
 
 const usePaginationStyles = createStyleHook(({ theme }, props: IZPagination) => {
-  const { orientation, fashion = theme.component } = props;
+  const { orientation, fashion } = props;
+  const $fashion = theme[fashion || ZFashionArea.Component];
   const flexDirection = orientation === ZOrientation.Vertical ? 'column' : 'row';
 
   return {
@@ -32,14 +38,14 @@ const usePaginationStyles = createStyleHook(({ theme }, props: IZPagination) => 
         flexDirection
       },
       '.MuiPaginationItem-root': {
-        'color': fashion.contrast,
+        'color': $fashion.contrast,
 
         '&.Mui-selected': {
-          backgroundColor: fashion.main
+          backgroundColor: $fashion.main
         },
 
         '&:hover': {
-          backgroundColor: fashion.light
+          backgroundColor: $fashion.light
         }
       }
     }
@@ -56,7 +62,7 @@ const usePaginationStyles = createStyleHook(({ theme }, props: IZPagination) => 
  *        The JSX to render the component.
  */
 export function ZPagination(props: IZPagination) {
-  const { value, onValueChange, pages, className, disabled } = props;
+  const { value, onValueChange, pages, className, disabled, fashion } = props;
   const [page, setPage] = useAmbassadorState(value, onValueChange, 1);
   const { classes } = usePaginationStyles(props);
 
@@ -71,6 +77,8 @@ export function ZPagination(props: IZPagination) {
       onChange={handleChange}
       siblingCount={1}
       data-page={page}
+      data-pages={pages}
+      data-fashion={fashion}
     />
   );
 }
