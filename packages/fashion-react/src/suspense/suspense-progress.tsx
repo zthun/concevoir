@@ -1,6 +1,6 @@
 import { ZDeviceElement, ZSuspenseProgressElement } from '@zthun/fashion-boutique';
 import { ZDeviceBounds, ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
-import { cssJoinDefined } from '@zthun/helpful-fn';
+import { cssJoinDefined, firstTruthy } from '@zthun/helpful-fn';
 import React, { useMemo } from 'react';
 import { useWebComponent } from '../component/use-web-component.mjs';
 import { IZSuspense } from './suspense.mjs';
@@ -30,7 +30,12 @@ export function ZSuspenseProgress(props: IZSuspense<ZSizeVaried.Full, ZSizeFixed
   useWebComponent(ZDeviceElement);
 
   return (
-    <z-suspense-progress className={cssJoinDefined(className)} disabled={!loading} fashion={fashion} name={name}>
+    <z-suspense-progress
+      className={cssJoinDefined(className)}
+      disabled={firstTruthy(undefined, !loading)}
+      fashion={fashion}
+      name={name}
+    >
       <z-device xl={$height.xl} lg={$height.lg} md={$height.md} sm={$height.sm} xs={$height.xs} name='height' />
     </z-suspense-progress>
   );
