@@ -1,4 +1,4 @@
-import { cssJoinDefined } from '@zthun/helpful-fn';
+import { cssJoinDefined, firstTruthy } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
 import React, { useEffect, useRef } from 'react';
 import { IZBoolean } from './boolean';
@@ -15,7 +15,7 @@ declare global {
 }
 
 export function ZBooleanSwitch(props: IZBoolean<boolean>) {
-  const { className, disabled, label, value = false, onValueChange, name, fashion, required } = props;
+  const { className, disabled, label, value, onValueChange, name, fashion, required } = props;
   const [_value, _setValue] = useAmbassadorState(value, onValueChange, false);
   const checkbox = useRef<HTMLElement>();
   useWebComponent(ZBooleanSwitchElement);
@@ -35,10 +35,10 @@ export function ZBooleanSwitch(props: IZBoolean<boolean>) {
   return (
     <z-boolean-switch
       class={cssJoinDefined(className)}
-      disabled={!!disabled}
+      disabled={firstTruthy(undefined, disabled)}
       value={String(_value)}
       fashion={fashion}
-      required={required}
+      required={firstTruthy(undefined, required)}
       name={name}
       ref={checkbox}
     >

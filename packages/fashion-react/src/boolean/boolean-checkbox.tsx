@@ -1,5 +1,5 @@
 import { ZBooleanCheckboxElement } from '@zthun/fashion-boutique';
-import { cssJoinDefined } from '@zthun/helpful-fn';
+import { cssJoinDefined, firstTruthy } from '@zthun/helpful-fn';
 import { useAmbassadorState } from '@zthun/helpful-react';
 import { ZTrilean, trilean } from '@zthun/trilean';
 import React, { useEffect, useRef } from 'react';
@@ -35,10 +35,10 @@ export function ZBooleanCheckbox(props: IZBoolean<trilean>) {
   return (
     <z-boolean-checkbox
       class={cssJoinDefined(className)}
-      disabled={!!disabled}
+      disabled={firstTruthy(undefined, disabled)}
       value={ZTrilean.stringify(_value)}
       fashion={fashion}
-      required={required}
+      required={firstTruthy(undefined, required)}
       name={name}
       ref={checkbox}
     >
