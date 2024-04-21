@@ -38,9 +38,9 @@
     "@zthun/fashion-tailor": "^2.7.0",
     "@zthun/fashion-theme": "^2.7.0",
     "@zthun/fashion-typeface": "^2.7.0",
-    "@zthun/helpful-fn": "^5.0.0",
-    "@zthun/helpful-query": "^5.0.0",
-    "@zthun/helpful-react": "^5.0.0",
+    "@zthun/helpful-fn": "^5.0.1",
+    "@zthun/helpful-query": "^5.0.1",
+    "@zthun/helpful-react": "^5.0.1",
     "@zthun/trilean": "^1.1.1",
     "@zthun/webigail-http": "^2.4.0",
     "@zthun/webigail-url": "^2.4.0",
@@ -53,7 +53,7 @@
   "devDependencies": {
     "@zthun/cirque-du-react": "^6.1.0",
     "@zthun/fashion-circus": "^2.7.0",
-    "@zthun/helpful-brands": "^5.0.0",
+    "@zthun/helpful-brands": "^5.0.1",
     "vite": "^5.2.8",
     "vitest": "^1.5.0"
   },
