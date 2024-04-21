@@ -1,4 +1,5 @@
 import { Given, Then, When } from '@cucumber/cucumber';
+import { ZTrilean } from '@zthun/trilean';
 import assert from 'assert';
 import { ZBooleanPageComponentModel } from '../../src/boutique/boolean/boolean-page.cm.mjs';
 import { ZFashionRouteBoolean, ZFashionRouteBoutique } from '../../src/routes.mjs';
@@ -96,7 +97,7 @@ Then(
     const { page } = this.parameters;
     const checkbox = await page.checkbox();
     const value = await checkbox.value();
-    assert.equal(value, null);
+    assert.equal(value, ZTrilean.Indeterminate);
   }
 );
 

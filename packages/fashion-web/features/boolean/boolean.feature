@@ -51,7 +51,8 @@ Scenario: The disabled option should enable all components when off
 
 @BooleanPage-Fashion
 Scenario: Should select the correct fashion
-  When I select the "<fashion>" fashion option on the boolean page
+  When I click the "on" button on the boolean page
+  And I select the "<fashion>" fashion option on the boolean page
   Then the fashion on the "checkbox" should be "<fashion>" on the boolean page
   And the fashion on the "switch" should be "<fashion>" on the boolean page
   Examples:
