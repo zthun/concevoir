@@ -996,9 +996,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cucumber/cucumber@npm:^10.4.0":
-  version: 10.4.0
-  resolution: "@cucumber/cucumber@npm:10.4.0"
+"@cucumber/cucumber@npm:^10.5.1":
+  version: 10.5.1
+  resolution: "@cucumber/cucumber@npm:10.5.1"
   dependencies:
     "@cucumber/ci-environment": "npm:10.0.1"
     "@cucumber/cucumber-expressions": "npm:17.1.0"
@@ -1043,7 +1043,7 @@ __metadata:
     yup: "npm:1.2.0"
   bin:
     cucumber-js: bin/cucumber.js
-  checksum: 10c0/fb2ad943f8070453afac8205387af3b569f5fee574b59840601d89459d511b5f2e5d8b8121caf8c64c201cef6e03dc3e2ae8769a185e45038b4dbd7b8fa9e9d5
+  checksum: 10c0/22e193d5830b6ece47681c5aa14ec89341a0b0cf1037e4c360e7aadaf2614f849b4da415593ce3a2f4c9898fd078b52cdae5c3d4d0e705913f543af8f8cb0820
   languageName: node
   linkType: hard
 
@@ -3413,7 +3413,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@zthun/fashion-web@workspace:packages/fashion-web"
   dependencies:
-    "@cucumber/cucumber": "npm:^10.4.0"
+    "@cucumber/cucumber": "npm:^10.5.1"
     "@zthun/cirque": "npm:^6.1.0"
     "@zthun/cirque-du-react": "npm:^6.1.0"
     "@zthun/cirque-du-selenium": "npm:^6.1.0"
@@ -3448,7 +3448,7 @@ __metadata:
   dependencies:
     "@commitlint/cli": "npm:^19.2.2"
     "@commitlint/config-conventional": "npm:^19.2.2"
-    "@cucumber/cucumber": "npm:^10.4.0"
+    "@cucumber/cucumber": "npm:^10.5.1"
     "@types/jsdom": "npm:^21.1.6"
     "@types/lodash": "npm:^4.17.0"
     "@types/lodash-es": "npm:^4.17.12"
