@@ -21,7 +21,7 @@ import { ZBooleanElement } from './boolean-element.mjs';
 export interface ZBooleanCheckboxElement extends IZComponentRender {}
 
 @ZComponentRegister('z-boolean-checkbox')
-@ZComponentClass('ZBoolean-root', 'ZBoolean')
+@ZComponentClass('ZBoolean-root', 'ZBoolean-checkbox')
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
