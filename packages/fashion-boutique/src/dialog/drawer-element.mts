@@ -1,7 +1,6 @@
 import { ZFashionArea } from '@zthun/fashion-theme';
 import { ZHorizontalAnchor, ZVerticalAnchor, css, sleep } from '@zthun/helpful-fn';
 import {
-  IZComponentWithStyleElement,
   IZLifecycleConnected,
   IZLifecycleDisconnected,
   ZComponentClass,
@@ -10,8 +9,6 @@ import {
 } from '@zthun/spellcraft';
 import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
 import { closeOnBackdropClick } from './close-on-backdrop-click';
-
-export interface ZDrawerElement extends IZComponentWithStyleElement {}
 
 @ZComponentRegister('z-drawer', { extend: 'dialog' })
 @ZComponentClass('ZDrawer-root')
