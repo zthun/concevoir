@@ -1,4 +1,9 @@
-import { IZCircusDriver, ZCircusActBuilder, ZCircusComponentModel, ZCircusKeyboardQwerty } from '@zthun/cirque';
+import {
+  ZCircusActBuilder,
+  ZCircusComponentModel,
+  ZCircusKeyboardQwerty,
+  ZCircusWaitOptionsBuilder
+} from '@zthun/cirque';
 import { ZHorizontalAnchor, ZSideAnchor } from '@zthun/helpful-fn';
 
 /**
@@ -8,47 +13,37 @@ export class ZDrawerComponentModel extends ZCircusComponentModel {
   public static readonly Selector = '.ZDrawer-root';
 
   /**
-   * Gets the paper element for an opened drawer.
-   *
-   * @returns
-   *        The root element for where the drawer is opened.
+   * Gets a value that determines if the drawer is opened.
    */
-  public root(): Promise<IZCircusDriver> {
-    return this.driver.select('.MuiDrawer-paper');
+  public async opened() {
+    const opened = await this.driver.attribute('open', 'false');
+    return opened !== 'false';
   }
 
   /**
-   * Gets the drawer backdrop.
-   *
-   * @returns
-   *      A element for the backdrop.
+   * Waits for a drawer to open.
    */
-  public backdrop(): Promise<IZCircusDriver> {
-    return this.driver.select('.MuiBackdrop-root');
+  public async waitForOpen() {
+    const options = new ZCircusWaitOptionsBuilder().description('Waiting for a drawer to open').timeout(2000).build();
+    return this.driver.wait(() => this.opened(), options);
   }
 
   /**
-   * Clicks the close button.
-   *
-   * Note that this does not wait for the drawer to close
-   * as the drawer itself is controlled from the outside.
+   * Waits for the drawer to close.
+   */
+  public async waitForClose() {
+    const options = new ZCircusWaitOptionsBuilder().description('Waiting for a drawer to close').timeout(2000).build();
+    return this.driver.wait(() => this.opened().then((open) => !open), options);
+  }
+
+  /**
+   * Closes the drawer component.
    *
    * @returns
-   *        A promise that resolves once the button is clicked.
+   *        A promise that resolves once the escape key is clicked and the drawer is
+   *        closed.
    */
   public async close() {
-    const backdrop = await this.backdrop();
-    const act = new ZCircusActBuilder().click().build();
-    return backdrop.perform(act);
-  }
-
-  /**
-   * Same as close, but uses the escape key instead of clicking on the backdrop.
-   *
-   * @returns
-   *        A promise that resolves once the escape key is clicked.
-   */
-  public async escape() {
     const act = new ZCircusActBuilder().press(ZCircusKeyboardQwerty.escape).build();
     return this.driver.perform(act);
   }

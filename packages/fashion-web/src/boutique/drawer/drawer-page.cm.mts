@@ -1,10 +1,5 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import {
-  ZButtonComponentModel,
-  ZChoiceComponentModel,
-  ZDrawerButtonComponentModel,
-  ZDrawerComponentModel
-} from '@zthun/fashion-circus';
+import { ZButtonComponentModel, ZChoiceComponentModel, ZDrawerComponentModel } from '@zthun/fashion-circus';
 import { ZSideAnchor } from '@zthun/helpful-fn';
 
 /**
@@ -17,10 +12,20 @@ export class ZDrawerPageComponentModel extends ZCircusComponentModel {
    * Gets the drawer open button.
    *
    * @returns
-   *      The opened drawer.
+   *      The button that opens the drawer.
    */
-  public drawerButton(): Promise<ZDrawerButtonComponentModel> {
-    return ZCircusBy.first(this.driver, ZDrawerButtonComponentModel);
+  public drawerButton(): Promise<ZButtonComponentModel> {
+    return ZCircusBy.first(this.driver, ZButtonComponentModel, 'open-drawer');
+  }
+
+  /**
+   * Gets the current state of the drawer.
+   *
+   * @returns
+   *      The current drawer.
+   */
+  public drawer(): Promise<ZDrawerComponentModel> {
+    return ZCircusBy.first(this.driver, ZDrawerComponentModel);
   }
 
   /**
@@ -29,11 +34,11 @@ export class ZDrawerPageComponentModel extends ZCircusComponentModel {
    * @param drawer -
    *        The drawer that was opened from the drawerButton.
    */
-  public async close(drawer: ZDrawerComponentModel): Promise<void> {
+  public async close(): Promise<void> {
+    const drawer = await this.drawer();
     const btn = await ZCircusBy.first(drawer.driver, ZButtonComponentModel, 'close');
     await btn.click();
-    const drawerBtn = await this.drawerButton();
-    await this.driver.wait(() => drawerBtn.opened().then((o) => !o));
+    await drawer.waitForClose();
   }
 
   /**
