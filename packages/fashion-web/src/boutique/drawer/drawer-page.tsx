@@ -56,7 +56,7 @@ export function ZDrawerPage() {
         </ZParagraph>
 
         <ZDrawerButton
-          ButtonProps={{ fashion: ZFashionPriority.Primary, outline: true }}
+          ButtonProps={{ fashion: ZFashionPriority.Primary, outline: true, name: 'open-drawer' }}
           DrawerProps={{ anchor }}
           closeOnChange={[timestamp]}
         >

@@ -1,26 +1,35 @@
-import { ZCircusBy } from '@zthun/cirque';
+// @vitest-environment happy-dom
+import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { ZHorizontalAnchor, ZSideAnchor, ZVerticalAnchor } from '@zthun/helpful-fn';
 import React from 'react';
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 import { ZDrawerPage } from './drawer-page';
 import { ZDrawerPageComponentModel } from './drawer-page.cm.mjs';
 
 describe('ZDrawerPage', () => {
+  let _renderer: IZCircusSetup;
+  let _driver: IZCircusDriver;
+
   async function createTestTarget() {
     const element = <ZDrawerPage />;
-    const driver = await new ZCircusSetupRenderer(element).setup();
-    return ZCircusBy.first(driver, ZDrawerPageComponentModel);
+    _renderer = new ZCircusSetupRenderer(element);
+    _driver = await _renderer.setup();
+    return ZCircusBy.first(_driver, ZDrawerPageComponentModel);
   }
+
+  afterEach(async () => {
+    await _driver?.destroy?.call(_driver);
+    await _renderer?.destroy?.call(_renderer);
+  });
 
   async function shouldPositionDrawer(expected: ZSideAnchor) {
     // Arrange.
     const target = await createTestTarget();
     await target.anchor(expected);
     // Act.
-    const drawer = await (await target.drawerButton()).open();
+    const drawer = await target.drawer();
     const actual = await drawer.anchor();
-    await target.close(drawer);
     // Assert.
     expect(actual).toEqual(expected);
   }
@@ -30,8 +39,10 @@ describe('ZDrawerPage', () => {
     const target = await createTestTarget();
     const button = await target.drawerButton();
     // Act.
-    await button.open();
-    const actual = await button.opened();
+    await button.click();
+    const drawer = await target.drawer();
+    await drawer.waitForOpen();
+    const actual = await drawer.opened();
     // Assert.
     expect(actual).toBeTruthy();
   });
@@ -56,10 +67,11 @@ describe('ZDrawerPage', () => {
     // Arrange.
     const target = await createTestTarget();
     const button = await target.drawerButton();
-    const drawer = await button.open();
+    await button.click();
     // Act.
-    await target.close(drawer);
-    const actual = await button.opened();
+    await target.close();
+    const drawer = await target.drawer();
+    const actual = await drawer.opened();
     // Assert.
     expect(actual).toBeFalsy();
   });
