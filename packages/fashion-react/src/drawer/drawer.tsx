@@ -1,9 +1,8 @@
-import { Drawer } from '@mui/material';
-import { IZComponentHierarchy } from '@zthun/fashion-boutique';
+import { IZComponentHierarchy, ZDrawerElement } from '@zthun/fashion-boutique';
 import { ZSideAnchor, cssJoinDefined } from '@zthun/helpful-fn';
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useCallback, useEffect, useRef } from 'react';
 import { IZComponentStyle } from '../component/component-style.mjs';
-import { createStyleHook } from '../theme/styled';
+import { useWebComponent } from '../component/use-web-component.mjs';
 
 /**
  * Represents props for the drawer.
@@ -14,19 +13,6 @@ export interface IZDrawer extends IZComponentHierarchy<ReactNode>, IZComponentSt
 
   onClose?(): void;
 }
-
-const useDrawerStyles = createStyleHook(({ theme }) => {
-  const { surface } = theme;
-
-  return {
-    root: {
-      '.MuiDrawer-paper': {
-        backgroundColor: surface.main,
-        color: surface.contrast
-      }
-    }
-  };
-});
 
 /**
  * Represents a collapsible drawer.
@@ -39,17 +25,37 @@ const useDrawerStyles = createStyleHook(({ theme }) => {
  */
 export function ZDrawer(props: IZDrawer) {
   const { className, children, anchor, open, onClose } = props;
-  const { classes } = useDrawerStyles();
+  const drawer = useRef<ZDrawerElement>(null);
+
+  const onClosed = useCallback(() => {
+    onClose?.call(null);
+  }, [onClose]);
+
+  useWebComponent(ZDrawerElement);
+
+  useEffect(() => {
+    drawer.current?.removeEventListener('close', onClosed);
+    drawer.current?.addEventListener('close', onClosed);
+    return () => drawer.current?.removeEventListener('close', onClosed);
+  }, [drawer.current]);
+
+  useEffect(() => {
+    if (open) {
+      drawer.current?.showModal?.call(drawer.current);
+    } else {
+      drawer.current?.close?.call(drawer.current);
+    }
+  }, [drawer.current, open]);
 
   return (
-    <Drawer
-      className={cssJoinDefined('ZDrawer-root', className, classes.root)}
-      anchor={anchor}
-      open={open}
-      onClose={onClose}
+    <dialog
+      is='z-drawer'
+      // @ts-expect-error React 18 needs to use class for web components
+      class={cssJoinDefined(className)}
+      ref={drawer}
       data-anchor={anchor}
     >
       {children}
-    </Drawer>
+    </dialog>
   );
 }

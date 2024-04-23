@@ -22,7 +22,8 @@ When(
   'I click the drawer button on the drawer demo page',
   async function (this: ZFashionWorld<ZDrawerPageComponentModel>) {
     const { page } = this.parameters;
-    await (await page.drawerButton()).open();
+    const button = await page.drawerButton();
+    await button.click();
   }
 );
 
@@ -30,8 +31,9 @@ When(
   'I click the close button on the drawer on the drawer demo page',
   async function (this: ZFashionWorld<ZDrawerPageComponentModel>) {
     const { page } = this.parameters;
-    const drawer = await (await page.drawerButton()).open();
-    await page.close(drawer);
+    const drawer = await page.drawer();
+    await drawer.waitForOpen();
+    await page.close();
   }
 );
 
@@ -39,8 +41,8 @@ Then(
   'the drawer is opened on the {string} on the drawer demo page',
   async function (this: ZFashionWorld<ZDrawerPageComponentModel>, anchor: 'left' | 'right' | 'top' | 'bottom') {
     const { page } = this.parameters;
-    const btn = await page.drawerButton();
-    const drawer = await btn.drawer();
+    const drawer = await page.drawer();
+    await drawer.waitForOpen();
     const actual = await drawer.anchor();
     assert.equal(actual, anchor);
   }
@@ -48,6 +50,8 @@ Then(
 
 Then('the drawer is closed on the drawer demo page', async function (this: ZFashionWorld<ZDrawerPageComponentModel>) {
   const { page } = this.parameters;
-  const actual = await (await page.drawerButton()).opened();
+  const drawer = await page.drawer();
+  await drawer.waitForClose();
+  const actual = await drawer.opened();
   assert.equal(actual, false);
 });

@@ -1,19 +1,27 @@
-import { ZCircusBy } from '@zthun/cirque';
+// @vitest-environment happy-dom
+
+import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZDrawerButtonComponentModel } from '@zthun/fashion-circus';
+import { ZButtonComponentModel, ZDrawerComponentModel } from '@zthun/fashion-circus';
 import { ZHorizontalAnchor, ZSideAnchor, ZVerticalAnchor } from '@zthun/helpful-fn';
 import React, { ReactNode } from 'react';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { ZDrawerButton } from './drawer-button';
 
 describe('ZDrawer', () => {
   let children: ReactNode;
   let anchor: ZSideAnchor | undefined;
+  let _renderer: IZCircusSetup;
+  let _driver: IZCircusDriver;
 
-  async function createTestTarget() {
+  async function createTestTarget(): Promise<[ZButtonComponentModel, ZDrawerComponentModel]> {
     const element = <ZDrawerButton DrawerProps={{ anchor }}>{children}</ZDrawerButton>;
-    const driver = await new ZCircusSetupRenderer(element).setup();
-    return ZCircusBy.first(driver, ZDrawerButtonComponentModel);
+    _renderer = new ZCircusSetupRenderer(element);
+    _driver = await _renderer.setup();
+    return Promise.all([
+      ZCircusBy.first(_driver, ZButtonComponentModel),
+      ZCircusBy.first(_driver, ZDrawerComponentModel)
+    ]);
   }
 
   beforeEach(() => {
@@ -21,14 +29,17 @@ describe('ZDrawer', () => {
     children = 'Drawer Content';
   });
 
+  afterEach(async () => {
+    await _driver?.destroy?.call(_driver);
+    await _renderer?.destroy?.call(_renderer);
+  });
+
   it('should render the drawer content', async () => {
     // Arrange.
-    const target = await createTestTarget();
-    const drawer = await target.open();
+    const [button, drawer] = await createTestTarget();
+    await button.click();
     // Act.
-    const root = await drawer.root();
-    const actual = await root.text();
-    await target.close(drawer);
+    const actual = await drawer.driver.text();
     // Assert.
     expect(actual).toEqual(children);
   });
@@ -36,34 +47,24 @@ describe('ZDrawer', () => {
   describe('Open/Close', () => {
     it('should open the drawer', async () => {
       // Arrange.
-      const target = await createTestTarget();
-      const drawer = await target.open();
+      const [button, drawer] = await createTestTarget();
+      await button.click();
+      await drawer.waitForOpen();
       // Act.
-      const actual = await target.opened();
-      await target.close(drawer);
+      const actual = await drawer.opened();
       // Assert.
       expect(actual).toBeTruthy();
     });
 
-    it('should close the drawer when the user clicks on the backdrop.', async () => {
+    it('should close the drawer.', async () => {
       // Arrange.
-      const target = await createTestTarget();
+      const [button, drawer] = await createTestTarget();
+      await button.click();
+      await drawer.waitForOpen();
       // Act.
-      const drawer = await target.open();
-      await target.close(drawer);
-      const actual = await target.opened();
-      // Assert.
-      expect(actual).toBeFalsy();
-    });
-
-    it('should close the drawer when the user presses the escape key', async () => {
-      // Arrange.
-      const target = await createTestTarget();
-      await target.open();
-      // Act.
-      const drawer = await target.open();
-      await target.escape(drawer);
-      const actual = await target.opened();
+      await drawer.close();
+      await drawer.waitForClose();
+      const actual = await drawer.opened();
       // Assert.
       expect(actual).toBeFalsy();
     });
@@ -73,11 +74,9 @@ describe('ZDrawer', () => {
     async function shouldAnchor(expected: ZSideAnchor) {
       // Arrange.
       anchor = expected;
-      const target = await createTestTarget();
-      const drawer = await target.open();
+      const [, drawer] = await createTestTarget();
       // Act.
       const actual = await drawer.anchor();
-      await target.close(drawer);
       // Assert.
       expect(actual).toEqual(expected);
     }
