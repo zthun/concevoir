@@ -31,6 +31,7 @@ export * from './component/component-source.mjs';
 export * from './component/component-suffix.mjs';
 export * from './component/component-value.mjs';
 export * from './component/component-width.mjs';
+export * from './dialog/drawer-element.mjs';
 export * from './full-screen/full-screen-element.mjs';
 export * from './grid/grid-element.mjs';
 export * from './grid/grid-span-element.mjs';
