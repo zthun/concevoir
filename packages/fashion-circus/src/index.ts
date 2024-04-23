@@ -11,7 +11,6 @@ export * from './carousel/carousel.cm.mjs';
 export * from './chart/chart.cm.mjs';
 export * from './choice/choice-option.cm.mjs';
 export * from './choice/choice.cm.mjs';
-export * from './drawer/drawer-button.cm.mjs';
 export * from './drawer/drawer.cm.mjs';
 export * from './grid-view/grid-view.cm.mjs';
 export * from './icon/icon.cm.mjs';
