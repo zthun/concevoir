@@ -1,17 +1,15 @@
 import { IZComponentHierarchy, ZDrawerElement } from '@zthun/fashion-boutique';
 import { ZSideAnchor, cssJoinDefined } from '@zthun/helpful-fn';
-import React, { ReactNode, useCallback, useEffect, useRef } from 'react';
+import React, { ReactNode, useRef } from 'react';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { useWebComponent } from '../component/use-web-component.mjs';
+import { IZDialogProps, useDialog } from './use-dialog';
 
 /**
  * Represents props for the drawer.
  */
-export interface IZDrawer extends IZComponentHierarchy<ReactNode>, IZComponentStyle {
+export interface IZDrawer extends IZComponentHierarchy<ReactNode>, IZComponentStyle, IZDialogProps {
   anchor?: ZSideAnchor;
-  open: boolean;
-
-  onClose?(): void;
 }
 
 /**
@@ -24,28 +22,10 @@ export interface IZDrawer extends IZComponentHierarchy<ReactNode>, IZComponentSt
  *        The JSX to render the component.
  */
 export function ZDrawer(props: IZDrawer) {
-  const { className, children, anchor, open, onClose } = props;
+  const { className, children, anchor } = props;
   const drawer = useRef<ZDrawerElement>(null);
-
-  const onClosed = useCallback(() => {
-    onClose?.call(null);
-  }, [onClose]);
-
+  useDialog(drawer.current, props);
   useWebComponent(ZDrawerElement);
-
-  useEffect(() => {
-    drawer.current?.removeEventListener('close', onClosed);
-    drawer.current?.addEventListener('close', onClosed);
-    return () => drawer.current?.removeEventListener('close', onClosed);
-  }, [drawer.current]);
-
-  useEffect(() => {
-    if (open) {
-      drawer.current?.showModal?.call(drawer.current);
-    } else {
-      drawer.current?.close?.call(drawer.current);
-    }
-  }, [drawer.current, open]);
 
   return (
     <dialog
