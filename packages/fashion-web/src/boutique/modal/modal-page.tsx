@@ -3,7 +3,6 @@ import {
   ZBox,
   ZButton,
   ZCard,
-  ZGrid,
   ZH3,
   ZIconFontAwesome,
   ZModal,
@@ -18,23 +17,17 @@ import { ZFashionRouteModal } from '../../routes.mjs';
 import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
 import { useFashionState } from '../common/use-fashion-state.mjs';
 
-/**
- * Represents a demo for lists.
- *
- * @returns
- *    The JSX to render the list demo page.
- */
 export function ZModalPage() {
   const [open, setOpen] = useState(false);
-  const [header, setHeader] = useState(true);
-  const [footer, setFooter] = useState(true);
-  const [fullScreen, setFullScreen] = useState(false);
-  const [fashion, fashionName, setFashion] = useFashionState();
+  const [fullWidth, setFullWidth] = useState(false);
+  const [fullHeight, setFullHeight] = useState(false);
+  const [persistent, setPersistent] = useState(false);
+  const [, fashion, setFashion] = useFashionState();
 
-  const renderHeader = () => 'Modal Header';
+  const renderHeader = () => <ZH3 compact>Modal Header</ZH3>;
 
   const renderFooter = () => (
-    <ZStack orientation={ZOrientation.Horizontal} gap={ZSizeFixed.ExtraSmall}>
+    <ZStack orientation={ZOrientation.Horizontal} gap={ZSizeFixed.ExtraSmall} justifyContent='flex-end'>
       <ZButton
         fashion={ZFashionSeverity.Warning}
         avatar={<ZIconFontAwesome name='close' width={ZSizeFixed.ExtraSmall} />}
@@ -63,13 +56,13 @@ export function ZModalPage() {
         <ZH3>Description</ZH3>
 
         <ZParagraph>
-          Modals are for getting work done. These let you do specific isolated work without having to show all the
+          Dialogs are for getting work done. These let you do specific isolated work without having to show all the
           information on the main screen.
         </ZParagraph>
 
         <ZButton
           fashion={ZFashionSeverity.Success}
-          label='Open Modal'
+          label='Open Dialog'
           avatar={<ZIconFontAwesome name='comment-dots' width={ZSizeFixed.ExtraSmall} />}
           onClick={setOpen.bind(null, true)}
           name='open-modal'
@@ -77,10 +70,24 @@ export function ZModalPage() {
 
         <ZModal
           open={open}
-          renderHeader={header ? renderHeader : undefined}
-          renderFooter={footer ? renderFooter : undefined}
+          renderHeader={renderHeader}
+          renderFooter={renderFooter}
           onClose={setOpen.bind(null, false)}
-          width={fullScreen ? ZSizeVaried.Full : ZSizeVaried.Fit}
+          persistent={persistent}
+          width={{
+            xl: fullWidth ? ZSizeVaried.Full : ZSizeFixed.ExtraLarge,
+            lg: fullWidth ? ZSizeVaried.Full : ZSizeFixed.Large,
+            md: fullWidth ? ZSizeVaried.Full : ZSizeFixed.Medium,
+            sm: fullWidth ? ZSizeVaried.Full : ZSizeFixed.Small,
+            xs: fullWidth ? ZSizeVaried.Full : ZSizeFixed.ExtraSmall
+          }}
+          height={{
+            xl: fullHeight ? ZSizeVaried.Full : ZSizeFixed.ExtraLarge,
+            lg: fullHeight ? ZSizeVaried.Full : ZSizeFixed.Large,
+            md: fullHeight ? ZSizeVaried.Full : ZSizeFixed.Medium,
+            sm: fullHeight ? ZSizeVaried.Full : ZSizeFixed.Small,
+            xs: fullHeight ? ZSizeVaried.Full : ZSizeFixed.ExtraSmall
+          }}
           fashion={fashion}
           name='modal'
         >
@@ -92,14 +99,16 @@ export function ZModalPage() {
       <ZH3>Options</ZH3>
 
       <ZBox margin={{ bottom: ZSizeFixed.Small }}>
-        <ZGrid columns='1fr'>
-          <ZBooleanSwitch value={header} onValueChange={setHeader} label='Header' name='header' />
-          <ZBooleanSwitch value={footer} onValueChange={setFooter} label='Footer' name='footer' />
-          <ZBooleanSwitch value={fullScreen} onValueChange={setFullScreen} label='Full Screen' name='full-screen' />
-        </ZGrid>
+        <ZStack gap={ZSizeFixed.ExtraSmall} alignItems='start'>
+          <ZBooleanSwitch value={fullWidth} onValueChange={setFullWidth} label='Full Width' name='full-width' />
+          <ZBooleanSwitch value={fullHeight} onValueChange={setFullHeight} label='Full Height' name='full-height' />
+          <ZBooleanSwitch value={persistent} onValueChange={setPersistent} label='Persistent' name='persistent' />
+        </ZStack>
       </ZBox>
 
-      <ZChoiceDropDownFashion value={fashionName} onValueChange={setFashion} name='fashion' />
+      <ZStack gap={ZSizeFixed.ExtraSmall}>
+        <ZChoiceDropDownFashion value={fashion} onValueChange={setFashion} name='fashion' />
+      </ZStack>
     </ZCard>
   );
 }
