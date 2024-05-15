@@ -8,7 +8,7 @@ import {
   ZComponentRegister
 } from '@zthun/spellcraft';
 import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
-import { closeOnBackdropClick } from './close-on-backdrop-click';
+import { closeOnBackdropClick } from './dialog-events.mjs';
 
 @ZComponentRegister('z-drawer', { extend: 'dialog' })
 @ZComponentClass('ZDrawer-root')
