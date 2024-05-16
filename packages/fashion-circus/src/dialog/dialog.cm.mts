@@ -5,26 +5,29 @@ import {
   ZCircusKeyboardQwerty,
   ZCircusWaitOptionsBuilder
 } from '@zthun/cirque';
+import { ZHorizontalAnchor, ZSideAnchor } from '@zthun/helpful-fn';
 
 /**
- * Represents a component model for a modal dialog.
- *
- * Modals are a bit different in that the are located in the body of the driver.
+ * Represents a component model that manipulates an HTMLDialogElement.
  */
-export class ZModalComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZModal-root';
+export class ZDialogComponentModel extends ZCircusComponentModel {
+  public static readonly Selector = '.ZDialog-root';
 
   public async opened(): Promise<boolean> {
     const opened = await this.driver.attribute<string>('data-open', 'false');
     return opened === 'true';
   }
 
+  public async anchor(): Promise<ZSideAnchor> {
+    return this.driver.attribute<ZSideAnchor>('anchor', ZHorizontalAnchor.Left);
+  }
+
   public async header(): Promise<IZCircusDriver> {
-    return await this.driver.select('[slot="header"]');
+    return this.driver.select('[slot="header"]');
   }
 
   public async footer(): Promise<IZCircusDriver> {
-    return await this.driver.select('[slot="footer"]');
+    return this.driver.select('[slot="footer"]');
   }
 
   public async fashion(): Promise<string | null> {
@@ -37,18 +40,12 @@ export class ZModalComponentModel extends ZCircusComponentModel {
   }
 
   public async waitForOpen() {
-    const options = new ZCircusWaitOptionsBuilder()
-      .description('Waiting for a modal dialog to open')
-      .timeout(500)
-      .build();
+    const options = new ZCircusWaitOptionsBuilder().description('Waiting for a dialog to open').timeout(500).build();
     return this.driver.wait(() => this.opened(), options);
   }
 
   public async waitForClose() {
-    const options = new ZCircusWaitOptionsBuilder()
-      .description('Waiting for a modal dialog to close')
-      .timeout(500)
-      .build();
+    const options = new ZCircusWaitOptionsBuilder().description('Waiting for a dialog to close').timeout(500).build();
     return this.driver.wait(() => this.opened().then((open) => !open), options);
   }
 }
