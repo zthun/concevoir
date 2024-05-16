@@ -3,7 +3,7 @@ import {
   ZBooleanComponentModel,
   ZButtonComponentModel,
   ZChoiceComponentModel,
-  ZModalComponentModel
+  ZDialogComponentModel
 } from '@zthun/fashion-circus';
 
 export class ZModalPageComponentModel extends ZCircusComponentModel {
@@ -13,10 +13,10 @@ export class ZModalPageComponentModel extends ZCircusComponentModel {
     return ZCircusBy.first(this.driver, ZButtonComponentModel, 'open-modal');
   }
 
-  public async openModal(): Promise<ZModalComponentModel> {
+  public async openModal(): Promise<ZDialogComponentModel> {
     const button = await this.openButton();
     await button.click();
-    return ZCircusBy.first(this.driver, ZModalComponentModel, 'modal');
+    return ZCircusBy.first(this.driver, ZDialogComponentModel, 'modal');
   }
 
   public fashion(): Promise<ZChoiceComponentModel> {

@@ -1,5 +1,5 @@
 import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZButtonComponentModel, ZChoiceComponentModel, ZDrawerComponentModel } from '@zthun/fashion-circus';
+import { ZButtonComponentModel, ZChoiceComponentModel, ZDialogComponentModel } from '@zthun/fashion-circus';
 import { ZSideAnchor } from '@zthun/helpful-fn';
 
 /**
@@ -24,8 +24,8 @@ export class ZDrawerPageComponentModel extends ZCircusComponentModel {
    * @returns
    *      The current drawer.
    */
-  public drawer(): Promise<ZDrawerComponentModel> {
-    return ZCircusBy.first(this.driver, ZDrawerComponentModel);
+  public drawer(): Promise<ZDialogComponentModel> {
+    return ZCircusBy.first(this.driver, ZDialogComponentModel);
   }
 
   /**

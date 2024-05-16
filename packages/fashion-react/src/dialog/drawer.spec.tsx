@@ -2,7 +2,7 @@
 
 import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZButtonComponentModel, ZDrawerComponentModel } from '@zthun/fashion-circus';
+import { ZButtonComponentModel, ZDialogComponentModel } from '@zthun/fashion-circus';
 import { ZHorizontalAnchor, ZSideAnchor, ZVerticalAnchor } from '@zthun/helpful-fn';
 import React, { ReactNode } from 'react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
@@ -14,13 +14,13 @@ describe('ZDrawer', () => {
   let _renderer: IZCircusSetup;
   let _driver: IZCircusDriver;
 
-  async function createTestTarget(): Promise<[ZButtonComponentModel, ZDrawerComponentModel]> {
+  async function createTestTarget(): Promise<[ZButtonComponentModel, ZDialogComponentModel]> {
     const element = <ZDrawerButton DrawerProps={{ anchor }}>{children}</ZDrawerButton>;
     _renderer = new ZCircusSetupRenderer(element);
     _driver = await _renderer.setup();
     return Promise.all([
       ZCircusBy.first(_driver, ZButtonComponentModel),
-      ZCircusBy.first(_driver, ZDrawerComponentModel)
+      ZCircusBy.first(_driver, ZDialogComponentModel)
     ]);
   }
 
@@ -56,7 +56,6 @@ describe('ZDrawer', () => {
       expect(actual).toBeTruthy();
     });
 
-    /*
     it('should close the drawer.', async () => {
       // Arrange.
       const [button, drawer] = await createTestTarget();
@@ -69,7 +68,6 @@ describe('ZDrawer', () => {
       // Assert.
       expect(actual).toBeFalsy();
     });
-    */
   });
 
   describe('Anchor', () => {

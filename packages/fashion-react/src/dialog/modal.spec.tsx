@@ -2,7 +2,7 @@
 
 import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZModalComponentModel } from '@zthun/fashion-circus';
+import { ZDialogComponentModel } from '@zthun/fashion-circus';
 import { ZFashionSeverity } from '@zthun/fashion-theme';
 import React from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -21,7 +21,7 @@ describe('ZModal', () => {
 
     _renderer = new ZCircusSetupRenderer(element);
     _driver = await _renderer.setup();
-    return ZCircusBy.first(await _driver.body(), ZModalComponentModel);
+    return ZCircusBy.first(await _driver.body(), ZDialogComponentModel);
   };
 
   afterEach(async () => {
