@@ -24,6 +24,7 @@ import { ZFashionDetail } from '../component/component-fashion.mjs';
 import { IZComponentPop } from '../component/component-pop.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 import { closeOnBackdropClick, closeOnEscapeKey } from './dialog-events.mjs';
+import { ZPropertyLazyElement } from './property-lazy-element.mjs';
 
 @ZComponentRegister('z-modal')
 @ZComponentClass('ZModal-root')
@@ -62,27 +63,11 @@ export class ZModalElement extends HTMLElement implements IZComponentRender, IZC
   @ZPropertyDeviceHeight(ZSizeVaried.Fit)
   public height: Required<IZDeviceValueMap<ZSizeFixed | ZSizeVaried>>;
 
-  private get styleNode() {
-    let $style = this.shadowRoot!.querySelector('style');
+  @ZPropertyLazyElement('style')
+  private readonly styleNode: HTMLStyleElement;
 
-    if ($style == null) {
-      $style = document.createElement('style');
-      this.shadowRoot!.appendChild($style);
-    }
-
-    return $style;
-  }
-
-  private get dialogNode() {
-    let $dialog = this.shadowRoot!.querySelector('dialog');
-
-    if ($dialog == null) {
-      $dialog = document.createElement('dialog');
-      this.shadowRoot!.appendChild($dialog);
-    }
-
-    return $dialog;
-  }
+  @ZPropertyLazyElement('dialog')
+  private readonly dialogNode: HTMLDialogElement;
 
   public styles() {
     const device = new ZFashionDevice();
