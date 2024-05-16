@@ -1,9 +1,9 @@
+// vitest-environment happy-dom
+
 import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { ZButtonComponentModel } from '@zthun/fashion-circus';
-import { ZSizeVaried } from '@zthun/fashion-tailor';
 import { ZFashionName, ZFashionPriority } from '@zthun/fashion-theme';
-import { required } from '@zthun/helpful-fn';
 import { lowerCase } from 'lodash-es';
 import React from 'react';
 import { afterEach, describe, expect, it } from 'vitest';
@@ -27,72 +27,20 @@ describe('ZModalPage', () => {
     await _renderer?.destroy?.call(_renderer);
   });
 
-  describe('Header', () => {
-    const shouldShowHeader = async (expected: boolean) => {
+  describe('Open', () => {
+    it('should open the modal when the button is clicked', async () => {
       // Arrange.
       const target = await createTestTarget();
-      const header = await target.header();
-      await header.toggle(expected);
-      // Act.
+      const fw = await target.fullWidth();
+      const fh = await target.fullHeight();
+      await fw.toggle(true);
+      await fh.toggle(true);
       const modal = await target.openModal();
-      const actual = await modal.header();
-      await modal.escape();
-      // Assert.
-      expect(!!actual).toEqual(expected);
-    };
-
-    it('should not show if the switch is off', async () => {
-      await shouldShowHeader(false);
-    });
-
-    it('should show if the switch is on', async () => {
-      await shouldShowHeader(true);
-    });
-  });
-
-  describe('Footer', () => {
-    const shouldShowFooter = async (expected: boolean) => {
-      // Arrange.
-      const target = await createTestTarget();
-      const footer = await target.footer();
-      await footer.toggle(expected);
+      await modal.waitForOpen();
       // Act.
-      const modal = await target.openModal();
-      const actual = await modal.footer();
-      await modal.escape();
+      const actual = await modal.opened();
       // Assert.
-      expect(!!actual).toEqual(expected);
-    };
-
-    it('should not show if the switch is off', async () => {
-      await shouldShowFooter(false);
-    });
-
-    it('should show if the switch is on', async () => {
-      await shouldShowFooter(true);
-    });
-  });
-
-  describe('Full Screen', () => {
-    const shouldShowFullScreen = async (expected: ZSizeVaried) => {
-      // Arrange.
-      const target = await createTestTarget();
-      const fullScreen = await target.fullScreen();
-      await fullScreen.toggle(expected === ZSizeVaried.Full);
-      // Act.
-      const modal = await target.openModal();
-      const actual = await modal.width();
-      await modal.escape();
-      // Assert.
-      expect(actual).toEqual(expected);
-    };
-
-    it('should not show if the switch is off', async () => {
-      await shouldShowFullScreen(ZSizeVaried.Fit);
-    });
-
-    it('should show if the switch is on', async () => {
-      await shouldShowFullScreen(ZSizeVaried.Full);
+      expect(actual).toBeTruthy();
     });
   });
 
@@ -100,14 +48,15 @@ describe('ZModalPage', () => {
     const shouldCloseModal = async (name: 'cancel' | 'save') => {
       // Arrange.
       const target = await createTestTarget();
-      await (await target.footer()).toggle(true);
       const modal = await target.openModal();
-      const footer = await required(modal.footer());
+      const footer = await modal.footer();
       const button = await ZCircusBy.first(footer, ZButtonComponentModel, name);
       // Act.
       await button.click();
+      await modal.waitForClose();
+      const actual = await modal.opened();
       // Assert.
-      await target.driver.wait(() => target.opened().then((o) => !o));
+      expect(actual).toBeFalsy();
     };
 
     it('should be invoked with the cancel button', async () => {
@@ -116,6 +65,33 @@ describe('ZModalPage', () => {
 
     it('should be invoked with the save button', async () => {
       await shouldCloseModal('save');
+    });
+
+    it('should be invoked when the user clicks escape', async () => {
+      // Arrange.
+      const target = await createTestTarget();
+      const modal = await target.openModal();
+      // Act.
+      await modal.close();
+      await modal.waitForClose();
+      const actual = await modal.opened();
+      // Assert.
+      expect(actual).toBeFalsy();
+    });
+  });
+
+  describe('Persistent', () => {
+    it('should not close the dialog on escape', async () => {
+      // Arrange.
+      const target = await createTestTarget();
+      const persistent = await target.persistent();
+      await persistent.toggle(true);
+      const modal = await target.openModal();
+      // Act.
+      await modal.close();
+      const actual = await modal.opened();
+      // Assert.
+      expect(actual).toBeTruthy();
     });
   });
 
@@ -128,7 +104,7 @@ describe('ZModalPage', () => {
       await fashion.select(expected);
       const modal = await target.openModal();
       const actual = await modal.fashion();
-      await modal.escape();
+      await modal.close();
       // Assert.
       expect(lowerCase(actual!)).toEqual(expected);
     };

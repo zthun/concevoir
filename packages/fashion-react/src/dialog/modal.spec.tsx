@@ -1,44 +1,28 @@
+// @vitest-environment happy-dom
+
 import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
 import { ZModalComponentModel } from '@zthun/fashion-circus';
-import { ZSizeVaried } from '@zthun/fashion-tailor';
-import { ZFashionName, ZFashionSeverity } from '@zthun/fashion-theme';
+import { ZFashionSeverity } from '@zthun/fashion-theme';
 import React from 'react';
-import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { ZModal } from './modal';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { IZModal, ZModal } from './modal';
 
 describe('ZModal', () => {
-  let renderHeader: Mock | undefined;
-  let renderFooter: Mock | undefined;
-  let onClose: Mock | undefined;
-  let fashion: ZFashionName | undefined;
-  let width: ZSizeVaried | undefined;
   let _renderer: IZCircusSetup;
   let _driver: IZCircusDriver;
 
-  const createTestTarget = async () => {
+  const createTestTarget = async (props?: Partial<IZModal>) => {
     const element = (
-      <ZModal
-        open
-        renderHeader={renderHeader}
-        renderFooter={renderFooter}
-        width={width}
-        onClose={onClose}
-        fashion={fashion}
-      />
+      <ZModal open renderHeader={() => <div>Header</div>} renderFooter={() => <div>Footer</div>} {...props}>
+        Modal Content
+      </ZModal>
     );
+
     _renderer = new ZCircusSetupRenderer(element);
     _driver = await _renderer.setup();
     return ZCircusBy.first(await _driver.body(), ZModalComponentModel);
   };
-
-  beforeEach(() => {
-    fashion = undefined;
-    width = undefined;
-    renderHeader = undefined;
-    renderFooter = undefined;
-    onClose = undefined;
-  });
 
   afterEach(async () => {
     await _driver?.destroy?.call(_driver);
@@ -46,97 +30,56 @@ describe('ZModal', () => {
   });
 
   describe('Header', () => {
-    it('should render if set', async () => {
-      // Arrange.
-      renderHeader = vi.fn();
-      const target = await createTestTarget();
-      // Act.
-      const actual = await target.header();
-      // Assert.
-      expect(actual).toBeTruthy();
-    });
-
-    it('should not render if no render method is set', async () => {
+    it('should render the header', async () => {
       // Arrange.
       const target = await createTestTarget();
       // Act.
-      const actual = await target.header();
+      const header = await target.header();
+      const actual = await header.text();
       // Assert.
-      expect(actual).toBeFalsy();
+      expect(actual).toEqual('Header');
     });
   });
 
   describe('Footer', () => {
-    it('should render if set', async () => {
-      // Arrange.
-      renderFooter = vi.fn();
-      const target = await createTestTarget();
-      // Act.
-      const actual = await target.footer();
-      // Assert.
-      expect(actual).toBeTruthy();
-    });
-
-    it('should not render if no render method is set', async () => {
+    it('should render the footer', async () => {
       // Arrange.
       const target = await createTestTarget();
       // Act.
-      const actual = await target.footer();
+      const footer = await target.footer();
+      const actual = await footer.text();
       // Assert.
-      expect(actual).toBeFalsy();
-    });
-  });
-
-  describe('Width', () => {
-    it('should render full screen', async () => {
-      // Arrange.
-      width = ZSizeVaried.Full;
-      const target = await createTestTarget();
-      // Act.
-      const actual = await target.width();
-      // Assert.
-      expect(actual).toEqual(width);
-    });
-
-    it('should render auto sized', async () => {
-      // Arrange.
-      width = ZSizeVaried.Fit;
-      const target = await createTestTarget();
-      // Act.
-      const actual = await target.width();
-      // Assert.
-      expect(actual).toEqual(width);
-    });
-
-    it('should render auto sized by default', async () => {
-      // Arrange.
-      const target = await createTestTarget();
-      // Act.
-      const actual = await target.width();
-      // Assert.
-      expect(actual).toEqual(ZSizeVaried.Fit);
+      expect(actual).toEqual('Footer');
     });
   });
 
   describe('Close', () => {
-    beforeEach(() => {
-      onClose = vi.fn();
+    it('should be open when the modal open flag is true', async () => {
+      // Arrange.
+      const target = await createTestTarget({ open: true });
+      // Act.
+      await target.waitForOpen();
+      const actual = await target.opened();
+      // Assert.
+      expect(actual).toBeTruthy();
     });
 
-    it('should close the modal when the backdrop is clicked', async () => {
+    it('should be closed when the modal open flag is false', async () => {
       // Arrange.
-      const target = await createTestTarget();
+      const target = await createTestTarget({ open: false });
+      // Act.
+      await target.waitForClose();
+      const actual = await target.opened();
+      // Assert.
+      expect(actual).toBeFalsy();
+    });
+
+    it('should invoke the onClose when the close event happens', async () => {
+      // Arrange.
+      const onClose = vi.fn();
+      const target = await createTestTarget({ onClose, open: true });
       // Act.
       await target.close();
-      // Assert.
-      expect(onClose).toHaveBeenCalled();
-    });
-
-    it('should close the modal when the escape button is pressed', async () => {
-      // Arrange.
-      const target = await createTestTarget();
-      // Act.
-      await target.escape();
       // Assert.
       expect(onClose).toHaveBeenCalled();
     });
@@ -145,8 +88,8 @@ describe('ZModal', () => {
   describe('Fashion', () => {
     it('should set the fashion value', async () => {
       // Arrange.
-      fashion = ZFashionSeverity.Success;
-      const target = await createTestTarget();
+      const fashion = ZFashionSeverity.Success;
+      const target = await createTestTarget({ fashion });
       // Act.
       const actual = await target.fashion();
       // Assert.

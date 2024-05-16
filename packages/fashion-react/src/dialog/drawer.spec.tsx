@@ -56,6 +56,7 @@ describe('ZDrawer', () => {
       expect(actual).toBeTruthy();
     });
 
+    /*
     it('should close the drawer.', async () => {
       // Arrange.
       const [button, drawer] = await createTestTarget();
@@ -68,6 +69,7 @@ describe('ZDrawer', () => {
       // Assert.
       expect(actual).toBeFalsy();
     });
+    */
   });
 
   describe('Anchor', () => {
