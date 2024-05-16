@@ -27,7 +27,7 @@ import { closeOnBackdropClick, closeOnEscapeKey } from './dialog-events.mjs';
 import { ZPropertyLazyElement } from './property-lazy-element.mjs';
 
 @ZComponentRegister('z-modal')
-@ZComponentClass('ZModal-root')
+@ZComponentClass('ZDialog-root', 'ZDialog-modal')
 @ZComponentRenderOnEvent('change', { selector: ZDeviceElement.width() })
 @ZComponentRenderOnEvent('change', { selector: ZDeviceElement.height() })
 @ZComponentRenderOnAttributeChanged()
@@ -114,26 +114,26 @@ export class ZModalElement extends HTMLElement implements IZComponentRender, IZC
         opacity: 0;
       }
 
-      .ZModal-container {
+      .ZDialog-container {
         display: flex;
         flex-direction: column;
         height: 100%;
       }
 
-      .ZModal-header,
-      .ZModal-content,
-      .ZModal-footer {
+      .ZDialog-header,
+      .ZDialog-content,
+      .ZDialog-footer {
         flex-shrink: 0;
         flex-basis: 0;
         padding: ${py} ${px};
       }
 
-      .ZModal-header {
+      .ZDialog-header {
         background-color: ${detail.color('main')};
         color: ${detail.color('contrast')};
       }
 
-      .ZModal-content {
+      .ZDialog-content {
         flex-grow: 1;
         overflow: auto;
       }
@@ -186,14 +186,14 @@ export class ZModalElement extends HTMLElement implements IZComponentRender, IZC
 
   public template() {
     return html`
-      <div class="ZModal-container">
-        <div class="ZModal-header">
+      <div class="ZDialog-container">
+        <div class="ZDialog-header">
           <slot name="header"></slot>
         </div>
-        <div class="ZModal-content">
+        <div class="ZDialog-content">
           <slot></slot>
         </div>
-        <div class="ZModal-footer">
+        <div class="ZDialog-footer">
           <slot name="footer"></slot>
         </div>
       </div>
