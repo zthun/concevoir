@@ -1,6 +1,10 @@
-import { IZCircusDriver, ZCircusActBuilder, ZCircusComponentModel, ZCircusKeyboardQwerty } from '@zthun/cirque';
-import { ZSizeVaried } from '@zthun/fashion-tailor';
-import { firstDefined } from '@zthun/helpful-fn';
+import {
+  IZCircusDriver,
+  ZCircusActBuilder,
+  ZCircusComponentModel,
+  ZCircusKeyboardQwerty,
+  ZCircusWaitOptionsBuilder
+} from '@zthun/cirque';
 
 /**
  * Represents a component model for a modal dialog.
@@ -10,32 +14,41 @@ import { firstDefined } from '@zthun/helpful-fn';
 export class ZModalComponentModel extends ZCircusComponentModel {
   public static readonly Selector = '.ZModal-root';
 
-  public async header(): Promise<IZCircusDriver | null> {
-    const [header] = await this.driver.query('.ZModal-header');
-    return firstDefined(null, header);
+  public async opened(): Promise<boolean> {
+    const opened = await this.driver.attribute<string>('data-open', 'false');
+    return opened === 'true';
   }
 
-  public async footer(): Promise<IZCircusDriver | null> {
-    const [footer] = await this.driver.query('.ZModal-footer');
-    return firstDefined(null, footer);
+  public async header(): Promise<IZCircusDriver> {
+    return await this.driver.select('[slot="header"]');
   }
 
-  public async width(): Promise<ZSizeVaried> {
-    return this.driver.attribute('data-width', ZSizeVaried.Fit);
+  public async footer(): Promise<IZCircusDriver> {
+    return await this.driver.select('[slot="footer"]');
   }
 
   public async fashion(): Promise<string | null> {
-    return this.driver.attribute('data-fashion');
+    return this.driver.attribute('fashion');
   }
 
   public async close(): Promise<void> {
-    const backdrop = await (await this.driver.body()).select('.MuiModal-backdrop');
-    const act = new ZCircusActBuilder().click().build();
-    await backdrop.perform(act);
-  }
-
-  public async escape(): Promise<void> {
     const act = new ZCircusActBuilder().press(ZCircusKeyboardQwerty.escape).build();
     await this.driver.perform(act);
+  }
+
+  public async waitForOpen() {
+    const options = new ZCircusWaitOptionsBuilder()
+      .description('Waiting for a modal dialog to open')
+      .timeout(500)
+      .build();
+    return this.driver.wait(() => this.opened(), options);
+  }
+
+  public async waitForClose() {
+    const options = new ZCircusWaitOptionsBuilder()
+      .description('Waiting for a modal dialog to close')
+      .timeout(500)
+      .build();
+    return this.driver.wait(() => this.opened().then((open) => !open), options);
   }
 }
