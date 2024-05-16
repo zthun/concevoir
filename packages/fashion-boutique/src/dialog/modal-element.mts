@@ -23,9 +23,7 @@ import { ZDeviceElement, ZPropertyDeviceHeight, ZPropertyDeviceWidth } from '../
 import { ZFashionDetail } from '../component/component-fashion.mjs';
 import { IZComponentPop } from '../component/component-pop.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
-import { closeOnBackdropClick, closeOnEscapeKey, dispatchCloseEvent } from './dialog-events.mjs';
-
-export interface ZModalElement extends IZComponentRender {}
+import { closeOnBackdropClick, closeOnEscapeKey } from './dialog-events.mjs';
 
 @ZComponentRegister('z-modal')
 @ZComponentClass('ZModal-root')
@@ -49,7 +47,6 @@ export class ZModalElement extends HTMLElement implements IZComponentRender, IZC
     [ZSizeVaried.Fit]: undefined
   });
 
-  private _dispatchClose = dispatchCloseEvent.bind(this);
   private _closeOnBackdropClick = closeOnBackdropClick.bind(this);
   private _closeOnEscapeKey = closeOnEscapeKey.bind(this);
 
@@ -65,6 +62,28 @@ export class ZModalElement extends HTMLElement implements IZComponentRender, IZC
   @ZPropertyDeviceHeight(ZSizeVaried.Fit)
   public height: Required<IZDeviceValueMap<ZSizeFixed | ZSizeVaried>>;
 
+  private get styleNode() {
+    let $style = this.shadowRoot!.querySelector('style');
+
+    if ($style == null) {
+      $style = document.createElement('style');
+      this.shadowRoot!.appendChild($style);
+    }
+
+    return $style;
+  }
+
+  private get dialogNode() {
+    let $dialog = this.shadowRoot!.querySelector('dialog');
+
+    if ($dialog == null) {
+      $dialog = document.createElement('dialog');
+      this.shadowRoot!.appendChild($dialog);
+    }
+
+    return $dialog;
+  }
+
   public styles() {
     const device = new ZFashionDevice();
     const { fashion, height, width } = this;
@@ -72,6 +91,8 @@ export class ZModalElement extends HTMLElement implements IZComponentRender, IZC
     const surface = new ZFashionDetail(ZFashionArea.Surface);
     const px = ZFashionTailorElement.gapVar(ZSizeFixed.Medium);
     const py = ZFashionTailorElement.gapVar(ZSizeFixed.Small);
+
+    const marginFor = (x: ZSizeFixed | ZSizeVaried) => (x === ZSizeVaried.Full ? 0 : 'auto');
 
     return css`
       @keyframes fade {
@@ -88,10 +109,10 @@ export class ZModalElement extends HTMLElement implements IZComponentRender, IZC
         border: 0;
         color: ${surface.color('contrast')};
         height: ${ZModalElement.SizeChartHeight[height.xl]};
-        margin-bottom: ${height.xl === ZSizeVaried.Full ? 0 : 'auto'};
-        margin-left: ${width.xl === ZSizeVaried.Full ? 0 : 'auto'};
-        margin-right: ${width.xl === ZSizeVaried.Full ? 0 : 'auto'};
-        margin-top: ${height.xl === ZSizeVaried.Full ? 0 : 'auto'};
+        margin-bottom: ${marginFor(height.xl)};
+        margin-left: ${marginFor(width.xl)};
+        margin-right: ${marginFor(width.xl)};
+        margin-top: ${marginFor(height.xl)};
         max-height: 100%;
         max-width: 100%;
         padding: 0;
@@ -135,6 +156,10 @@ export class ZModalElement extends HTMLElement implements IZComponentRender, IZC
       ${device.break(ZSizeFixed.Large)} {
         dialog {
           height: ${ZModalElement.SizeChartHeight[height.lg]};
+          margin-bottom: ${marginFor(height.lg)};
+          margin-left: ${marginFor(width.lg)};
+          margin-right: ${marginFor(width.lg)};
+          margin-top: ${marginFor(height.lg)};
           width: ${ZModalElement.SizeChartWidth[width.lg]};
         }
       }
@@ -142,6 +167,10 @@ export class ZModalElement extends HTMLElement implements IZComponentRender, IZC
       ${device.break(ZSizeFixed.Medium)} {
         dialog {
           height: ${ZModalElement.SizeChartHeight[height.md]};
+          margin-bottom: ${marginFor(height.md)};
+          margin-left: ${marginFor(width.md)};
+          margin-right: ${marginFor(width.md)};
+          margin-top: ${marginFor(height.md)};
           width: ${ZModalElement.SizeChartWidth[width.md]};
         }
       }
@@ -149,6 +178,10 @@ export class ZModalElement extends HTMLElement implements IZComponentRender, IZC
       ${device.break(ZSizeFixed.Small)} {
         dialog {
           height: ${ZModalElement.SizeChartHeight[height.sm]};
+          margin-bottom: ${marginFor(height.sm)};
+          margin-left: ${marginFor(width.sm)};
+          margin-right: ${marginFor(width.sm)};
+          margin-top: ${marginFor(height.sm)};
           width: ${ZModalElement.SizeChartWidth[width.sm]};
         }
       }
@@ -156,6 +189,10 @@ export class ZModalElement extends HTMLElement implements IZComponentRender, IZC
       ${device.break(ZSizeFixed.ExtraSmall)} {
         dialog {
           height: ${ZModalElement.SizeChartHeight[height.xs]};
+          margin-bottom: ${marginFor(height.xs)};
+          margin-left: ${marginFor(width.xs)};
+          margin-right: ${marginFor(width.xs)};
+          margin-top: ${marginFor(height.xs)};
           width: ${ZModalElement.SizeChartWidth[width.xs]};
         }
       }
@@ -164,50 +201,46 @@ export class ZModalElement extends HTMLElement implements IZComponentRender, IZC
 
   public template() {
     return html`
-      <style>
-        ${this.styles()}
-      </style>
-      <dialog>
-        <div class="ZModal-container">
-          <div class="ZModal-header">
-            <slot name="header"></slot>
-          </div>
-          <div class="ZModal-content">
-            <slot></slot>
-          </div>
-          <div class="ZModal-footer">
-            <slot name="footer"></slot>
-          </div>
+      <div class="ZModal-container">
+        <div class="ZModal-header">
+          <slot name="header"></slot>
         </div>
-      </dialog>
+        <div class="ZModal-content">
+          <slot></slot>
+        </div>
+        <div class="ZModal-footer">
+          <slot name="footer"></slot>
+        </div>
+      </div>
     `;
   }
 
   public render(): void {
-    let dialog = this.shadowRoot!.querySelector('dialog');
-    dialog?.removeEventListener('cancel', this._dispatchClose);
-    dialog?.removeEventListener('keydown', this._closeOnEscapeKey);
-    dialog?.removeEventListener('click', this._closeOnBackdropClick);
+    const { dialogNode, styleNode } = this;
 
-    new ZNode(this.shadowRoot!).clear().template(this.template());
+    dialogNode.removeEventListener('keydown', this._closeOnEscapeKey);
+    dialogNode.removeEventListener('click', this._closeOnBackdropClick);
 
-    dialog = this.shadowRoot!.querySelector('dialog');
+    new ZNode(dialogNode).clear().template(this.template());
+    new ZNode(styleNode).clear().template(this.styles());
 
-    dialog?.addEventListener('cancel', this._dispatchClose);
-    dialog?.addEventListener('keydown', this._closeOnEscapeKey);
-    dialog?.addEventListener('click', this._closeOnBackdropClick);
+    dialogNode.addEventListener('keydown', this._closeOnEscapeKey);
+    dialogNode.addEventListener('click', this._closeOnBackdropClick);
   }
 
   public async open(): Promise<void> {
-    const dialog = this.shadowRoot?.querySelector<HTMLDialogElement>('dialog');
-    dialog?.showModal();
+    const { dialogNode } = this;
+    this.setAttribute('data-open', 'true');
+    dialogNode.showModal?.call(dialogNode);
+    dialogNode.focus();
   }
 
   public async close(val?: string): Promise<void> {
-    const dialog = this.shadowRoot?.querySelector<HTMLDialogElement>('dialog');
-    dialog?.classList.add('closing');
+    const { dialogNode } = this;
+    dialogNode.classList.add('closing');
     await sleep(200);
-    dialog?.close(val);
-    dialog?.classList.remove('closing');
+    dialogNode.close?.call(dialogNode, val);
+    dialogNode.classList.remove('closing');
+    this.removeAttribute('data-open');
   }
 }
