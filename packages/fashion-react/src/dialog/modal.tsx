@@ -8,7 +8,7 @@ import {
 } from '@zthun/fashion-boutique';
 import { ZDeviceBounds, ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { cssJoinDefined, firstTruthy } from '@zthun/helpful-fn';
-import React, { ReactNode, useEffect, useRef } from 'react';
+import React, { ReactNode, useCallback, useEffect, useRef } from 'react';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { useWebComponent } from '../component/use-web-component.mjs';
 import { IZDialogProps } from './use-dialog';
@@ -44,7 +44,7 @@ export function ZModal(props: IZModal) {
 
   useWebComponent(ZModalElement);
 
-  const onClosed = () => onClose?.call(null);
+  const onClosed = useCallback(() => onClose?.call(null), [onClose]);
 
   useEffect(() => {
     modal.current?.removeEventListener('close', onClosed);
