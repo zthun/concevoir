@@ -8,7 +8,7 @@ import {
 } from '@zthun/fashion-boutique';
 import { ZDeviceBounds, ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { cssJoinDefined, firstTruthy } from '@zthun/helpful-fn';
-import React, { ReactNode, useCallback, useEffect, useRef } from 'react';
+import React, { ReactNode, useEffect, useRef } from 'react';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { useWebComponent } from '../component/use-web-component.mjs';
 import { IZDialogProps } from './use-dialog';
@@ -44,21 +44,16 @@ export function ZModal(props: IZModal) {
 
   useWebComponent(ZModalElement);
 
-  const onClosed = useCallback(() => {
-    onClose?.call(null);
-  }, [onClose]);
+  const onClosed = () => onClose?.call(null);
 
   useEffect(() => {
-    modal.current?.removeEventListener('cancel', onClosed);
-    modal.current?.addEventListener('cancel', onClosed);
     modal.current?.removeEventListener('close', onClosed);
     modal.current?.addEventListener('close', onClosed);
 
     return () => {
-      modal.current?.removeEventListener('cancel', onClosed);
       modal.current?.removeEventListener('close', onClosed);
     };
-  }, [modal.current]);
+  }, [modal.current, onClosed]);
 
   useEffect(() => {
     if (open) {
@@ -75,7 +70,6 @@ export function ZModal(props: IZModal) {
       name={name}
       persistent={firstTruthy(undefined, persistent)}
       ref={modal}
-      fade={1000}
     >
       <z-device name='width' xl={wXl} lg={wLg} md={wMd} sm={wSm} xs={wXs} />
       <z-device name='height' xl={hXl} lg={hLg} md={hMd} sm={hSm} xs={hXs} />
