@@ -2,26 +2,40 @@
 
 import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
 import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZDialogComponentModel } from '@zthun/fashion-circus';
+import { ZButtonComponentModel, ZDialogComponentModel } from '@zthun/fashion-circus';
 import { ZFashionSeverity } from '@zthun/fashion-theme';
 import React from 'react';
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
+import { ZDialogButton } from './dialog-button';
 import { IZModal, ZModal } from './modal';
 
 describe('ZModal', () => {
   let _renderer: IZCircusSetup;
   let _driver: IZCircusDriver;
 
-  const createTestTarget = async (props?: Partial<IZModal>) => {
+  const createTestTarget = async (overrides?: Partial<IZModal>) => {
     const element = (
-      <ZModal open renderHeader={() => <div>Header</div>} renderFooter={() => <div>Footer</div>} {...props}>
-        Modal Content
-      </ZModal>
+      <ZDialogButton
+        renderDialog={(props: IZModal) => (
+          <ZModal
+            renderHeader={() => <div>Header</div>}
+            renderFooter={() => <div>Footer</div>}
+            {...props}
+            {...overrides}
+          >
+            Modal Content
+          </ZModal>
+        )}
+      />
     );
 
     _renderer = new ZCircusSetupRenderer(element);
     _driver = await _renderer.setup();
-    return ZCircusBy.first(await _driver.body(), ZDialogComponentModel);
+
+    return Promise.all([
+      ZCircusBy.first(_driver, ZButtonComponentModel),
+      ZCircusBy.first(_driver, ZDialogComponentModel)
+    ]);
   };
 
   afterEach(async () => {
@@ -32,9 +46,11 @@ describe('ZModal', () => {
   describe('Header', () => {
     it('should render the header', async () => {
       // Arrange.
-      const target = await createTestTarget();
+      const [button, modal] = await createTestTarget();
+      await button.click();
+      await modal.waitForOpen();
       // Act.
-      const header = await target.header();
+      const header = await modal.header();
       const actual = await header.text();
       // Assert.
       expect(actual).toEqual('Header');
@@ -44,45 +60,40 @@ describe('ZModal', () => {
   describe('Footer', () => {
     it('should render the footer', async () => {
       // Arrange.
-      const target = await createTestTarget();
+      const [button, modal] = await createTestTarget();
+      await button.click();
+      await modal.waitForOpen();
       // Act.
-      const footer = await target.footer();
+      const footer = await modal.footer();
       const actual = await footer.text();
       // Assert.
       expect(actual).toEqual('Footer');
     });
   });
 
-  describe('Close', () => {
-    it('should be open when the modal open flag is true', async () => {
+  describe('Open/Close', () => {
+    it('should be opened when the button is clicked', async () => {
       // Arrange.
-      const target = await createTestTarget({ open: true });
+      const [button, modal] = await createTestTarget();
+      await button.click();
+      await modal.waitForOpen();
       // Act.
-      await target.waitForOpen();
-      const actual = await target.opened();
+      const actual = await modal.opened();
       // Assert.
       expect(actual).toBeTruthy();
     });
 
-    it('should be closed when the modal open flag is false', async () => {
+    it('should be closed when the escape key is pressed', async () => {
       // Arrange.
-      const target = await createTestTarget({ open: false });
-      // Act.
-      await target.waitForClose();
-      const actual = await target.opened();
+      const [button, modal] = await createTestTarget();
+      await button.click();
+      await modal.waitForOpen();
+      // Act
+      await modal.close();
+      await modal.waitForClose();
+      const actual = await modal.opened();
       // Assert.
       expect(actual).toBeFalsy();
-    });
-
-    it('should invoke the onClose when the close event happens', async () => {
-      // Arrange.
-      const onClose = vi.fn();
-      const target = await createTestTarget({ onClose, open: true });
-      await target.waitForOpen();
-      // Act.
-      await target.close();
-      // Assert.
-      expect(onClose).toHaveBeenCalled();
     });
   });
 
@@ -90,9 +101,11 @@ describe('ZModal', () => {
     it('should set the fashion value', async () => {
       // Arrange.
       const fashion = ZFashionSeverity.Success;
-      const target = await createTestTarget({ fashion });
+      const [button, modal] = await createTestTarget({ fashion });
+      await button.click();
+      await modal.waitForOpen();
       // Act.
-      const actual = await target.fashion();
+      const actual = await modal.fashion();
       // Assert.
       expect(actual).toEqual(fashion);
     });

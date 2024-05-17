@@ -66,18 +66,6 @@ describe('ZModalPage', () => {
     it('should be invoked with the save button', async () => {
       await shouldCloseModal('save');
     });
-
-    it('should be invoked when the user clicks escape', async () => {
-      // Arrange.
-      const target = await createTestTarget();
-      const modal = await target.openModal();
-      // Act.
-      await modal.close();
-      await modal.waitForClose();
-      const actual = await modal.opened();
-      // Assert.
-      expect(actual).toBeFalsy();
-    });
   });
 
   describe('Persistent', () => {
