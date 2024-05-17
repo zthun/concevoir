@@ -1,25 +1,42 @@
-import { useCallback, useEffect } from 'react';
+import {
+  IZComponentClose,
+  IZComponentFashion,
+  IZComponentHierarchy,
+  IZComponentName,
+  IZComponentOpen
+} from '@zthun/fashion-boutique';
+import { ReactNode, useCallback, useEffect } from 'react';
+import { IZComponentStyle } from '../component/component-style.mjs';
 
-export interface IZDialogProps {
+export interface IZDialogProps
+  extends IZComponentFashion,
+    IZComponentHierarchy<ReactNode>,
+    IZComponentName,
+    IZComponentStyle {
   open: boolean;
+  persistent?: boolean;
+
   onClose?: () => void;
+  renderHeader?(): ReactNode;
+  renderFooter?(): ReactNode;
 }
-export function useDialog(current: HTMLDialogElement | null, props: IZDialogProps) {
+export function useDialog(current: (HTMLElement & IZComponentOpen & IZComponentClose) | null, props: IZDialogProps) {
   const { open, onClose } = props;
 
-  const onClosed = useCallback(() => {
-    onClose?.call(null);
-  }, [onClose]);
+  const onClosed = useCallback(() => onClose?.call(null), [onClose]);
 
   useEffect(() => {
     current?.removeEventListener('close', onClosed);
     current?.addEventListener('close', onClosed);
-    return () => current?.removeEventListener('close', onClosed);
-  }, [current]);
+
+    return () => {
+      current?.removeEventListener('close', onClosed);
+    };
+  }, [current, onClosed]);
 
   useEffect(() => {
     if (open) {
-      current?.showModal?.call(current);
+      current?.open?.call(current);
     } else {
       current?.close?.call(current);
     }

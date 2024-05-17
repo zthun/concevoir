@@ -1,17 +1,9 @@
-import {
-  IZComponentFashion,
-  IZComponentHeight,
-  IZComponentHierarchy,
-  IZComponentName,
-  IZComponentWidth,
-  ZDialogModalElement
-} from '@zthun/fashion-boutique';
+import { IZComponentHeight, IZComponentWidth, ZDialogModalElement } from '@zthun/fashion-boutique';
 import { ZDeviceBounds, ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { cssJoinDefined, firstTruthy } from '@zthun/helpful-fn';
-import React, { ReactNode, useCallback, useEffect, useRef } from 'react';
-import { IZComponentStyle } from '../component/component-style.mjs';
+import React, { useRef } from 'react';
 import { useWebComponent } from '../component/use-web-component.mjs';
-import { IZDialogProps } from './use-dialog';
+import { IZDialogProps, useDialog } from './use-dialog';
 
 declare global {
   namespace React.JSX {
@@ -22,46 +14,18 @@ declare global {
 }
 
 export interface IZModal
-  extends IZComponentHierarchy<ReactNode>,
-    IZComponentName,
-    IZDialogProps,
-    IZComponentStyle,
-    IZComponentFashion,
+  extends IZDialogProps,
     IZComponentWidth<ZSizeFixed | ZSizeVaried>,
-    IZComponentHeight<ZSizeFixed | ZSizeVaried> {
-  persistent?: boolean;
-
-  renderHeader?(): ReactNode;
-  renderFooter?(): ReactNode;
-}
+    IZComponentHeight<ZSizeFixed | ZSizeVaried> {}
 
 export function ZModal(props: IZModal) {
-  const { children, className, name, fashion, open, renderHeader, renderFooter, onClose, persistent, width, height } =
-    props;
+  const { children, className, name, fashion, renderHeader, renderFooter, persistent, width, height } = props;
   const modal = useRef<ZDialogModalElement>(null);
   const { xl: wXl, lg: wLg, md: wMd, sm: wSm, xs: wXs } = new ZDeviceBounds(width, ZSizeVaried.Fit).toDeviceMap();
   const { xl: hXl, lg: hLg, md: hMd, sm: hSm, xs: hXs } = new ZDeviceBounds(height, ZSizeVaried.Fit).toDeviceMap();
 
   useWebComponent(ZDialogModalElement);
-
-  const onClosed = useCallback(() => onClose?.call(null), [onClose]);
-
-  useEffect(() => {
-    modal.current?.removeEventListener('close', onClosed);
-    modal.current?.addEventListener('close', onClosed);
-
-    return () => {
-      modal.current?.removeEventListener('close', onClosed);
-    };
-  }, [modal.current, onClosed]);
-
-  useEffect(() => {
-    if (open) {
-      modal.current?.open?.call(modal.current);
-    } else {
-      modal.current?.close?.call(modal.current);
-    }
-  }, [modal.current, open]);
+  useDialog(modal.current, props);
 
   return (
     <z-dialog-modal
