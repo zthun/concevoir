@@ -13,22 +13,10 @@ declare global {
   }
 }
 
-/**
- * Represents props for the drawer.
- */
 export interface IZDrawer extends IZComponentHierarchy<ReactNode>, IZComponentStyle, IZDialogProps {
   anchor?: ZSideAnchor;
 }
 
-/**
- * Represents a collapsible drawer.
- *
- * @param props -
- *        The properties for this drawer.
- *
- * @returns
- *        The JSX to render the component.
- */
 export function ZDrawer(props: IZDrawer) {
   const { className, children, anchor, onClose, open } = props;
   const drawer = useRef<ZDialogDrawerElement>(null);
