@@ -1,4 +1,4 @@
-import { IZComponentHierarchy, ZDrawerElement } from '@zthun/fashion-boutique';
+import { IZComponentHierarchy, ZDialogDrawerElement } from '@zthun/fashion-boutique';
 import { ZSideAnchor, cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ReactNode, useCallback, useEffect, useRef } from 'react';
 import { IZComponentStyle } from '../component/component-style.mjs';
@@ -8,7 +8,7 @@ import { IZDialogProps } from './use-dialog';
 declare global {
   namespace React.JSX {
     interface IntrinsicElements {
-      ['z-drawer']: ZDrawerElement & any;
+      ['z-dialog-drawer']: ZDialogDrawerElement & any;
     }
   }
 }
@@ -31,8 +31,8 @@ export interface IZDrawer extends IZComponentHierarchy<ReactNode>, IZComponentSt
  */
 export function ZDrawer(props: IZDrawer) {
   const { className, children, anchor, onClose, open } = props;
-  const drawer = useRef<ZDrawerElement>(null);
-  useWebComponent(ZDrawerElement);
+  const drawer = useRef<ZDialogDrawerElement>(null);
+  useWebComponent(ZDialogDrawerElement);
 
   const onClosed = useCallback(() => onClose?.call(null), [onClose]);
 
@@ -54,8 +54,8 @@ export function ZDrawer(props: IZDrawer) {
   }, [drawer.current, open]);
 
   return (
-    <z-drawer class={cssJoinDefined(className)} ref={drawer} anchor={anchor}>
+    <z-dialog-drawer class={cssJoinDefined(className)} ref={drawer} anchor={anchor}>
       {children}
-    </z-drawer>
+    </z-dialog-drawer>
   );
 }

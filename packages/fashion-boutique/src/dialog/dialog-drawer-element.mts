@@ -15,12 +15,12 @@ import { IZComponentPop } from '../component/component-pop.mjs';
 import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
 import { closeOnBackdropClick, closeOnEscapeKey } from './dialog-events.mjs';
 
-@ZComponentRegister('z-drawer')
+@ZComponentRegister('z-dialog-drawer')
 @ZComponentClass('ZDialog-root', 'ZDialog-drawer')
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentShadow()
-export class ZDrawerElement extends HTMLElement implements IZComponentRender, IZComponentPop {
+export class ZDialogDrawerElement extends HTMLElement implements IZComponentRender, IZComponentPop {
   public static readonly observedAttributes = ['anchor'];
 
   private _closeOnBackdropClick = closeOnBackdropClick.bind(this);
