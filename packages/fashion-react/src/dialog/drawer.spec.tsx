@@ -6,7 +6,8 @@ import { ZButtonComponentModel, ZDialogComponentModel } from '@zthun/fashion-cir
 import { ZHorizontalAnchor, ZSideAnchor, ZVerticalAnchor } from '@zthun/helpful-fn';
 import React, { ReactNode } from 'react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { ZDrawerButton } from './drawer-button';
+import { ZDialogButton } from './dialog-button';
+import { IZDrawer, ZDrawer } from './drawer';
 
 describe('ZDrawer', () => {
   let children: ReactNode;
@@ -15,7 +16,15 @@ describe('ZDrawer', () => {
   let _driver: IZCircusDriver;
 
   async function createTestTarget(): Promise<[ZButtonComponentModel, ZDialogComponentModel]> {
-    const element = <ZDrawerButton DrawerProps={{ anchor }}>{children}</ZDrawerButton>;
+    const element = (
+      <ZDialogButton
+        renderDialog={(props: IZDrawer) => (
+          <ZDrawer anchor={anchor} {...props}>
+            Drawer Content
+          </ZDrawer>
+        )}
+      />
+    );
     _renderer = new ZCircusSetupRenderer(element);
     _driver = await _renderer.setup();
     return Promise.all([

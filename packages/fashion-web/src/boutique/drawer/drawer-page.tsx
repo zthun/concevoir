@@ -1,9 +1,11 @@
 import {
+  IZDrawer,
   ZBox,
   ZButton,
   ZCard,
   ZChoiceDropDown,
-  ZDrawerButton,
+  ZDialogButton,
+  ZDrawer,
   ZGrid,
   ZH3,
   ZIconFontAwesome,
@@ -55,17 +57,24 @@ export function ZDrawerPage() {
           know where specific pieces of information is.
         </ZParagraph>
 
-        <ZDrawerButton
-          ButtonProps={{ fashion: ZFashionPriority.Primary, outline: true, name: 'open-drawer' }}
-          DrawerProps={{ anchor }}
+        <ZDialogButton
+          ButtonProps={{
+            fashion: ZFashionPriority.Primary,
+            outline: true,
+            name: 'open-drawer',
+            label: <ZIconFontAwesome name='bars' width={ZSizeFixed.ExtraSmall} />
+          }}
           closeOnChange={[timestamp]}
-        >
-          <ZBox padding={new ZQuadrilateralBuilder(ZSizeFixed.Medium).build()}>
-            <ZH3>Drawer</ZH3>
-            <ZParagraph>You can put whatever you want in a drawer.</ZParagraph>
-            <ZButton label='Close Drawer' fashion={ZFashionSeverity.Success} onClick={now} name='close' />
-          </ZBox>
-        </ZDrawerButton>
+          renderDialog={(props: IZDrawer) => (
+            <ZDrawer anchor={anchor} {...props}>
+              <ZBox padding={new ZQuadrilateralBuilder(ZSizeFixed.Medium).build()}>
+                <ZH3>Drawer</ZH3>
+                <ZParagraph>You can put whatever you want in a drawer.</ZParagraph>
+                <ZButton label='Close Drawer' fashion={ZFashionSeverity.Success} onClick={now} name='close' />
+              </ZBox>
+            </ZDrawer>
+          )}
+        ></ZDialogButton>
       </ZBox>
 
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
