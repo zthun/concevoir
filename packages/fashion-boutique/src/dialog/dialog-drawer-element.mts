@@ -8,12 +8,12 @@ import {
   ZComponentRenderOnAttributeChanged,
   ZComponentRenderOnConnected,
   ZComponentShadow,
-  ZNode
+  ZNode,
+  ZPropertyLazyElement
 } from '@zthun/spellcraft';
 import { IZComponentPop } from '../component/component-pop.mjs';
 import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
 import { closeOnBackdropClick, closeOnEscapeKey } from './dialog-events.mjs';
-import { ZPropertyLazyElement } from './property-lazy-element.mjs';
 
 @ZComponentRegister('z-drawer')
 @ZComponentClass('ZDialog-root', 'ZDialog-drawer')

@@ -17,14 +17,14 @@ import {
   ZComponentRenderOnConnected,
   ZComponentRenderOnEvent,
   ZComponentShadow,
-  ZNode
+  ZNode,
+  ZPropertyLazyElement
 } from '@zthun/spellcraft';
 import { ZDeviceElement, ZPropertyDeviceHeight, ZPropertyDeviceWidth } from '../background/device-element.mjs';
 import { ZFashionDetail } from '../component/component-fashion.mjs';
 import { IZComponentPop } from '../component/component-pop.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 import { closeOnBackdropClick, closeOnEscapeKey } from './dialog-events.mjs';
-import { ZPropertyLazyElement } from './property-lazy-element.mjs';
 
 @ZComponentRegister('z-modal')
 @ZComponentClass('ZDialog-root', 'ZDialog-modal')

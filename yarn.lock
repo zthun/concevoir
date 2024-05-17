@@ -3315,7 +3315,7 @@ __metadata:
     "@zthun/fashion-typeface": "npm:^2.7.0"
     "@zthun/helpful-fn": "npm:^5.0.1"
     "@zthun/helpful-query": "npm:^5.0.1"
-    "@zthun/spellcraft": "npm:^2.8.4"
+    "@zthun/spellcraft": "npm:^2.9.0"
     "@zthun/trilean": "npm:^2.0.0"
     "@zthun/webigail-url": "npm:^2.4.0"
     csstype: "npm:^3.1.3"
@@ -3651,9 +3651,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/spellcraft@npm:^2.8.4":
-  version: 2.8.4
-  resolution: "@zthun/spellcraft@npm:2.8.4"
+"@zthun/spellcraft@npm:^2.9.0":
+  version: 2.9.0
+  resolution: "@zthun/spellcraft@npm:2.9.0"
   dependencies:
     "@zthun/helpful-fn": "npm:^5.0.1"
     "@zthun/trilean": "npm:^2.0.0"
@@ -3663,7 +3663,7 @@ __metadata:
   peerDependenciesMeta:
     "@zthun/trilean":
       optional: true
-  checksum: 10c0/04fa35b564bf1ca6944da58bdf17bb6b123da1dc51e5991596ed7a26de6e264f8b69d9cda0814e6db3156aa54bded1ef25dcd87b81a1714135aa1059a1f36261
+  checksum: 10c0/0eb083fc926b3adf177f789b7d55aef9291715fd05565711dfe72fac73099578d37cecea4d278d10df2ae5feb4af6ae5880c249d9925e882c44b71fd46bf461b
   languageName: node
   linkType: hard
 
