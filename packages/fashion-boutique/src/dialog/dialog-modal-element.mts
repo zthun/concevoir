@@ -26,14 +26,14 @@ import { IZComponentPop } from '../component/component-pop.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 import { closeOnBackdropClick, closeOnEscapeKey } from './dialog-events.mjs';
 
-@ZComponentRegister('z-modal')
+@ZComponentRegister('z-dialog-modal')
 @ZComponentClass('ZDialog-root', 'ZDialog-modal')
 @ZComponentRenderOnEvent('change', { selector: ZDeviceElement.width() })
 @ZComponentRenderOnEvent('change', { selector: ZDeviceElement.height() })
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentShadow()
-export class ZModalElement extends HTMLElement implements IZComponentRender, IZComponentPop {
+export class ZDialogModalElement extends HTMLElement implements IZComponentRender, IZComponentPop {
   public static readonly observedAttributes = Object.freeze(['fashion', 'persistent', 'fade']);
 
   public static readonly SizeChartWidth = Object.freeze({
@@ -93,7 +93,7 @@ export class ZModalElement extends HTMLElement implements IZComponentRender, IZC
         background-color: ${surface.color('main')};
         border: 0;
         color: ${surface.color('contrast')};
-        height: ${ZModalElement.SizeChartHeight[height.xl]};
+        height: ${ZDialogModalElement.SizeChartHeight[height.xl]};
         margin-bottom: ${marginFor(height.xl)};
         margin-left: ${marginFor(width.xl)};
         margin-right: ${marginFor(width.xl)};
@@ -103,7 +103,7 @@ export class ZModalElement extends HTMLElement implements IZComponentRender, IZC
         padding: 0;
         transition: opacity 200ms ease-out;
         box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.75);
-        width: ${ZModalElement.SizeChartWidth[width.xl]};
+        width: ${ZDialogModalElement.SizeChartWidth[width.xl]};
       }
 
       dialog[open] {
@@ -140,45 +140,45 @@ export class ZModalElement extends HTMLElement implements IZComponentRender, IZC
 
       ${device.break(ZSizeFixed.Large)} {
         dialog {
-          height: ${ZModalElement.SizeChartHeight[height.lg]};
+          height: ${ZDialogModalElement.SizeChartHeight[height.lg]};
           margin-bottom: ${marginFor(height.lg)};
           margin-left: ${marginFor(width.lg)};
           margin-right: ${marginFor(width.lg)};
           margin-top: ${marginFor(height.lg)};
-          width: ${ZModalElement.SizeChartWidth[width.lg]};
+          width: ${ZDialogModalElement.SizeChartWidth[width.lg]};
         }
       }
 
       ${device.break(ZSizeFixed.Medium)} {
         dialog {
-          height: ${ZModalElement.SizeChartHeight[height.md]};
+          height: ${ZDialogModalElement.SizeChartHeight[height.md]};
           margin-bottom: ${marginFor(height.md)};
           margin-left: ${marginFor(width.md)};
           margin-right: ${marginFor(width.md)};
           margin-top: ${marginFor(height.md)};
-          width: ${ZModalElement.SizeChartWidth[width.md]};
+          width: ${ZDialogModalElement.SizeChartWidth[width.md]};
         }
       }
 
       ${device.break(ZSizeFixed.Small)} {
         dialog {
-          height: ${ZModalElement.SizeChartHeight[height.sm]};
+          height: ${ZDialogModalElement.SizeChartHeight[height.sm]};
           margin-bottom: ${marginFor(height.sm)};
           margin-left: ${marginFor(width.sm)};
           margin-right: ${marginFor(width.sm)};
           margin-top: ${marginFor(height.sm)};
-          width: ${ZModalElement.SizeChartWidth[width.sm]};
+          width: ${ZDialogModalElement.SizeChartWidth[width.sm]};
         }
       }
 
       ${device.break(ZSizeFixed.ExtraSmall)} {
         dialog {
-          height: ${ZModalElement.SizeChartHeight[height.xs]};
+          height: ${ZDialogModalElement.SizeChartHeight[height.xs]};
           margin-bottom: ${marginFor(height.xs)};
           margin-left: ${marginFor(width.xs)};
           margin-right: ${marginFor(width.xs)};
           margin-top: ${marginFor(height.xs)};
-          width: ${ZModalElement.SizeChartWidth[width.xs]};
+          width: ${ZDialogModalElement.SizeChartWidth[width.xs]};
         }
       }
     `;

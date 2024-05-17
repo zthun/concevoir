@@ -4,7 +4,7 @@ import {
   IZComponentHierarchy,
   IZComponentName,
   IZComponentWidth,
-  ZModalElement
+  ZDialogModalElement
 } from '@zthun/fashion-boutique';
 import { ZDeviceBounds, ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { cssJoinDefined, firstTruthy } from '@zthun/helpful-fn';
@@ -16,7 +16,7 @@ import { IZDialogProps } from './use-dialog';
 declare global {
   namespace React.JSX {
     interface IntrinsicElements {
-      ['z-modal']: ZModalElement & any;
+      ['z-dialog-modal']: ZDialogModalElement & any;
     }
   }
 }
@@ -38,11 +38,11 @@ export interface IZModal
 export function ZModal(props: IZModal) {
   const { children, className, name, fashion, open, renderHeader, renderFooter, onClose, persistent, width, height } =
     props;
-  const modal = useRef<ZModalElement>(null);
+  const modal = useRef<ZDialogModalElement>(null);
   const { xl: wXl, lg: wLg, md: wMd, sm: wSm, xs: wXs } = new ZDeviceBounds(width, ZSizeVaried.Fit).toDeviceMap();
   const { xl: hXl, lg: hLg, md: hMd, sm: hSm, xs: hXs } = new ZDeviceBounds(height, ZSizeVaried.Fit).toDeviceMap();
 
-  useWebComponent(ZModalElement);
+  useWebComponent(ZDialogModalElement);
 
   const onClosed = useCallback(() => onClose?.call(null), [onClose]);
 
@@ -64,7 +64,7 @@ export function ZModal(props: IZModal) {
   }, [modal.current, open]);
 
   return (
-    <z-modal
+    <z-dialog-modal
       class={cssJoinDefined(className)}
       fashion={fashion}
       name={name}
@@ -76,6 +76,6 @@ export function ZModal(props: IZModal) {
       <div slot='header'>{renderHeader?.call(null)}</div>
       {children}
       {<div slot='footer'>{renderFooter?.call(null)}</div>}
-    </z-modal>
+    </z-dialog-modal>
   );
 }
