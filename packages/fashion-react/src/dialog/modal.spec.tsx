@@ -78,6 +78,7 @@ describe('ZModal', () => {
       // Arrange.
       const onClose = vi.fn();
       const target = await createTestTarget({ onClose, open: true });
+      await target.waitForOpen();
       // Act.
       await target.close();
       // Assert.
