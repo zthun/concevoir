@@ -1,5 +1,5 @@
 import { ZFashionArea, black } from '@zthun/fashion-theme';
-import { ZHorizontalAnchor, ZSideAnchor, ZVerticalAnchor, css, html, sleep } from '@zthun/helpful-fn';
+import { ZHorizontalAnchor, ZSideAnchor, ZVerticalAnchor, css } from '@zthun/helpful-fn';
 import {
   IZComponentRender,
   ZAttribute,
@@ -7,33 +7,21 @@ import {
   ZComponentRegister,
   ZComponentRenderOnAttributeChanged,
   ZComponentRenderOnConnected,
-  ZComponentShadow,
-  ZNode,
-  ZPropertyLazyElement
+  ZComponentShadow
 } from '@zthun/spellcraft';
-import { IZComponentPop } from '../component/component-pop.mjs';
 import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
-import { closeOnBackdropClick, closeOnEscapeKey } from './dialog-events.mjs';
+import { ZDialogElement } from './dialog-element.mjs';
 
 @ZComponentRegister('z-dialog-drawer')
 @ZComponentClass('ZDialog-root', 'ZDialog-drawer')
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentShadow()
-export class ZDialogDrawerElement extends HTMLElement implements IZComponentRender, IZComponentPop {
-  public static readonly observedAttributes = ['anchor'];
-
-  private _closeOnBackdropClick = closeOnBackdropClick.bind(this);
-  private _closeOnEscapeKey = closeOnEscapeKey.bind(this);
+export class ZDialogDrawerElement extends ZDialogElement implements IZComponentRender {
+  public static readonly observedAttributes = Object.freeze([...ZDialogElement.observedAttributes, 'anchor']);
 
   @ZAttribute({ fallback: ZHorizontalAnchor.Left })
   public anchor: ZSideAnchor;
-
-  @ZPropertyLazyElement('style')
-  private readonly styleNode: HTMLStyleElement;
-
-  @ZPropertyLazyElement('dialog')
-  private readonly dialogNode: HTMLDialogElement;
 
   public styles() {
     const { anchor } = this;
@@ -122,50 +110,5 @@ export class ZDialogDrawerElement extends HTMLElement implements IZComponentRend
         flex-grow: 1;
       }
     `;
-  }
-
-  public template() {
-    return html`
-      <div class="ZDialog-container">
-        <div class="ZDialog-header">
-          <slot name="header"></slot>
-        </div>
-        <div class="ZDialog-content">
-          <slot></slot>
-        </div>
-        <div class="ZDialog-footer">
-          <slot name="footer"></slot>
-        </div>
-      </div>
-    `;
-  }
-
-  public render(): void {
-    const { dialogNode, styleNode } = this;
-
-    dialogNode.removeEventListener('keydown', this._closeOnEscapeKey);
-    dialogNode.removeEventListener('click', this._closeOnBackdropClick);
-
-    new ZNode(dialogNode).clear().template(this.template());
-    new ZNode(styleNode).clear().template(this.styles());
-
-    dialogNode.addEventListener('keydown', this._closeOnEscapeKey);
-    dialogNode.addEventListener('click', this._closeOnBackdropClick);
-  }
-
-  public async open(): Promise<void> {
-    const { dialogNode } = this;
-    this.setAttribute('data-open', 'true');
-    dialogNode.showModal?.call(dialogNode);
-    dialogNode.focus();
-  }
-
-  public async close(val?: string): Promise<void> {
-    const { dialogNode } = this;
-    dialogNode.classList.add('closing');
-    await sleep(200);
-    dialogNode.close?.call(dialogNode, val);
-    dialogNode.classList.remove('closing');
-    this.removeAttribute('data-open');
   }
 }

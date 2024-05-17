@@ -6,25 +6,21 @@ import {
   createSizeChartFixedArithmetic,
   createSizeChartFixedCss
 } from '@zthun/fashion-tailor';
-import { ZFashionArea, ZFashionIntrinsic } from '@zthun/fashion-theme';
-import { css, html, sleep } from '@zthun/helpful-fn';
+import { ZFashionArea } from '@zthun/fashion-theme';
+import { css } from '@zthun/helpful-fn';
 import {
   IZComponentRender,
-  ZAttribute,
   ZComponentClass,
   ZComponentRegister,
   ZComponentRenderOnAttributeChanged,
   ZComponentRenderOnConnected,
   ZComponentRenderOnEvent,
-  ZComponentShadow,
-  ZNode,
-  ZPropertyLazyElement
+  ZComponentShadow
 } from '@zthun/spellcraft';
 import { ZDeviceElement, ZPropertyDeviceHeight, ZPropertyDeviceWidth } from '../background/device-element.mjs';
 import { ZFashionDetail } from '../component/component-fashion.mjs';
-import { IZComponentPop } from '../component/component-pop.mjs';
 import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
-import { closeOnBackdropClick, closeOnEscapeKey } from './dialog-events.mjs';
+import { ZDialogElement } from './dialog-element.mjs';
 
 @ZComponentRegister('z-dialog-modal')
 @ZComponentClass('ZDialog-root', 'ZDialog-modal')
@@ -33,9 +29,7 @@ import { closeOnBackdropClick, closeOnEscapeKey } from './dialog-events.mjs';
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentShadow()
-export class ZDialogModalElement extends HTMLElement implements IZComponentRender, IZComponentPop {
-  public static readonly observedAttributes = Object.freeze(['fashion', 'persistent', 'fade']);
-
+export class ZDialogModalElement extends ZDialogElement implements IZComponentRender {
   public static readonly SizeChartWidth = Object.freeze({
     ...createSizeChartFixedCss(createSizeChartFixedArithmetic(10, 20), 'rem'),
     [ZSizeVaried.Full]: 'auto',
@@ -48,26 +42,11 @@ export class ZDialogModalElement extends HTMLElement implements IZComponentRende
     [ZSizeVaried.Fit]: undefined
   });
 
-  private _closeOnBackdropClick = closeOnBackdropClick.bind(this);
-  private _closeOnEscapeKey = closeOnEscapeKey.bind(this);
-
-  @ZAttribute({ fallback: ZFashionIntrinsic.Transparent })
-  public fashion: string;
-
-  @ZAttribute({ type: 'boolean' })
-  public persistent: boolean;
-
   @ZPropertyDeviceWidth(ZSizeVaried.Fit)
   public width: Required<IZDeviceValueMap<ZSizeFixed | ZSizeVaried>>;
 
   @ZPropertyDeviceHeight(ZSizeVaried.Fit)
   public height: Required<IZDeviceValueMap<ZSizeFixed | ZSizeVaried>>;
-
-  @ZPropertyLazyElement('style')
-  private readonly styleNode: HTMLStyleElement;
-
-  @ZPropertyLazyElement('dialog')
-  private readonly dialogNode: HTMLDialogElement;
 
   public styles() {
     const device = new ZFashionDevice();
@@ -182,50 +161,5 @@ export class ZDialogModalElement extends HTMLElement implements IZComponentRende
         }
       }
     `;
-  }
-
-  public template() {
-    return html`
-      <div class="ZDialog-container">
-        <div class="ZDialog-header">
-          <slot name="header"></slot>
-        </div>
-        <div class="ZDialog-content">
-          <slot></slot>
-        </div>
-        <div class="ZDialog-footer">
-          <slot name="footer"></slot>
-        </div>
-      </div>
-    `;
-  }
-
-  public render(): void {
-    const { dialogNode, styleNode } = this;
-
-    dialogNode.removeEventListener('keydown', this._closeOnEscapeKey);
-    dialogNode.removeEventListener('click', this._closeOnBackdropClick);
-
-    new ZNode(dialogNode).clear().template(this.template());
-    new ZNode(styleNode).clear().template(this.styles());
-
-    dialogNode.addEventListener('keydown', this._closeOnEscapeKey);
-    dialogNode.addEventListener('click', this._closeOnBackdropClick);
-  }
-
-  public async open(): Promise<void> {
-    const { dialogNode } = this;
-    this.setAttribute('data-open', 'true');
-    dialogNode.showModal?.call(dialogNode);
-    dialogNode.focus();
-  }
-
-  public async close(val?: string): Promise<void> {
-    const { dialogNode } = this;
-    dialogNode.classList.add('closing');
-    await sleep(200);
-    dialogNode.close?.call(dialogNode, val);
-    dialogNode.classList.remove('closing');
-    this.removeAttribute('data-open');
   }
 }
