@@ -996,9 +996,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cucumber/cucumber@npm:^10.5.1":
-  version: 10.5.1
-  resolution: "@cucumber/cucumber@npm:10.5.1"
+"@cucumber/cucumber@npm:^10.7.0":
+  version: 10.7.0
+  resolution: "@cucumber/cucumber@npm:10.7.0"
   dependencies:
     "@cucumber/ci-environment": "npm:10.0.1"
     "@cucumber/cucumber-expressions": "npm:17.1.0"
@@ -1043,7 +1043,7 @@ __metadata:
     yup: "npm:1.2.0"
   bin:
     cucumber-js: bin/cucumber.js
-  checksum: 10c0/22e193d5830b6ece47681c5aa14ec89341a0b0cf1037e4c360e7aadaf2614f849b4da415593ce3a2f4c9898fd078b52cdae5c3d4d0e705913f543af8f8cb0820
+  checksum: 10c0/f9a4c8c0d4495ac19dc70d2e76c8b2b8c3a972374e88d185b2ae43a35d90eff34c9a43cbed1ce9067e2c73ac5e4b346914fbac01741c893e1c4e970f5d5e984a
   languageName: node
   linkType: hard
 
@@ -2787,10 +2787,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:*, @types/lodash@npm:^4.17.0":
+"@types/lodash@npm:*":
   version: 4.17.0
   resolution: "@types/lodash@npm:4.17.0"
   checksum: 10c0/4c5b41c9a6c41e2c05d08499e96f7940bcf194dcfa84356235b630da920c2a5e05f193618cea76006719bec61c76617dff02defa9d29934f9f6a76a49291bd8f
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:^4.17.4":
+  version: 4.17.4
+  resolution: "@types/lodash@npm:4.17.4"
+  checksum: 10c0/0124c64cb9fe7a0f78b6777955abd05ef0d97844d49118652eae45f8fa57bfb7f5a7a9bccc0b5a84c0a6dc09631042e4590cb665acb9d58dfd5e6543c75341ec
   languageName: node
   linkType: hard
 
@@ -2808,12 +2815,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.12.7":
+"@types/node@npm:*":
   version: 20.12.7
   resolution: "@types/node@npm:20.12.7"
   dependencies:
     undici-types: "npm:~5.26.4"
   checksum: 10c0/dce80d63a3b91892b321af823d624995c61e39c6a223cc0ac481a44d337640cc46931d33efb3beeed75f5c85c3bda1d97cef4c5cd4ec333caf5dee59cff6eca0
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^20.12.12":
+  version: 20.12.12
+  resolution: "@types/node@npm:20.12.12"
+  dependencies:
+    undici-types: "npm:~5.26.4"
+  checksum: 10c0/f374b763c744e8f16e4f38cf6e2c0eef31781ec9228c9e43a6f267880fea420fab0a238b59f10a7cb3444e49547c5e3785787e371fc242307310995b21988812
   languageName: node
   linkType: hard
 
@@ -3414,7 +3430,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@zthun/fashion-web@workspace:packages/fashion-web"
   dependencies:
-    "@cucumber/cucumber": "npm:^10.5.1"
+    "@cucumber/cucumber": "npm:^10.7.0"
     "@zthun/cirque": "npm:^6.1.0"
     "@zthun/cirque-du-react": "npm:^6.1.0"
     "@zthun/cirque-du-selenium": "npm:^6.1.0"
@@ -3449,11 +3465,11 @@ __metadata:
   dependencies:
     "@commitlint/cli": "npm:^19.3.0"
     "@commitlint/config-conventional": "npm:^19.2.2"
-    "@cucumber/cucumber": "npm:^10.5.1"
+    "@cucumber/cucumber": "npm:^10.7.0"
     "@types/jsdom": "npm:^21.1.6"
-    "@types/lodash": "npm:^4.17.0"
+    "@types/lodash": "npm:^4.17.4"
     "@types/lodash-es": "npm:^4.17.12"
-    "@types/node": "npm:^20.12.7"
+    "@types/node": "npm:^20.12.12"
     "@types/react-window": "npm:^1.8.8"
     "@vitest/coverage-istanbul": "npm:^1.6.0"
     "@zthun/lint-janitor": "npm:^16.1.0"
