@@ -18,7 +18,7 @@ export interface IZDrawer extends IZComponentHierarchy<ReactNode>, IZComponentSt
 }
 
 export function ZDrawer(props: IZDrawer) {
-  const { className, children, anchor, onClose, open } = props;
+  const { className, children, anchor, onClose, open, fashion, name, persistent, renderHeader, renderFooter } = props;
   const drawer = useRef<ZDialogDrawerElement>(null);
   useWebComponent(ZDialogDrawerElement);
 
@@ -42,8 +42,17 @@ export function ZDrawer(props: IZDrawer) {
   }, [drawer.current, open]);
 
   return (
-    <z-dialog-drawer class={cssJoinDefined(className)} ref={drawer} anchor={anchor}>
+    <z-dialog-drawer
+      class={cssJoinDefined(className)}
+      ref={drawer}
+      fashion={fashion}
+      name={name}
+      persistent={persistent}
+      anchor={anchor}
+    >
+      <div slot='header'>{renderHeader?.call(null)}</div>
       {children}
+      {<div slot='footer'>{renderFooter?.call(null)}</div>}
     </z-dialog-drawer>
   );
 }
