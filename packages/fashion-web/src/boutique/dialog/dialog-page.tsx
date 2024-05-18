@@ -1,6 +1,7 @@
 import {
   IZDrawer,
   IZModal,
+  IZPopup,
   ZBooleanSwitch,
   ZBox,
   ZButton,
@@ -13,6 +14,7 @@ import {
   ZIconFontAwesome,
   ZModal,
   ZParagraph,
+  ZPopup,
   ZStack
 } from '@zthun/fashion-react';
 import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
@@ -61,7 +63,7 @@ export function ZDialogPage() {
           know where specific pieces of information is.
         </ZParagraph>
 
-        <ZGrid gap={ZSizeFixed.Small} columns={{ xl: '1fr 1fr', xs: '1fr' }}>
+        <ZGrid gap={ZSizeFixed.Small} columns={{ xl: '1fr 1fr 1fr', sm: '1fr 1fr', xs: '1fr' }}>
           <ZDialogButton
             ButtonProps={{
               fashion: ZFashionPriority.Primary,
@@ -141,6 +143,33 @@ export function ZDialogPage() {
                 Modal content is always in the main body. You can put whatever you want in a modal, similar to how you
                 can put anything you want in any kind of popup body.
               </ZModal>
+            )}
+          />
+          <ZDialogButton
+            ButtonProps={{
+              fashion: ZFashionPriority.Secondary,
+              outline: true,
+              name: 'open-popup',
+              label: 'Open Popup',
+              avatar: <ZIconFontAwesome name='arrow-up' width={ZSizeFixed.ExtraSmall} />,
+              width: ZSizeVaried.Full
+            }}
+            closeOnChange={[timestamp]}
+            renderDialog={(props: IZPopup) => (
+              <ZPopup
+                {...props}
+                anchor={[ZVerticalAnchor.Top, ZHorizontalAnchor.Left]}
+                fashion={fashion}
+                name='drawer'
+                origin={[ZVerticalAnchor.Bottom, ZHorizontalAnchor.Left]}
+                persistent={persistent}
+                renderHeader={() => <ZH3 compact>Popup</ZH3>}
+                renderFooter={() => (
+                  <ZButton label='Close Popup' fashion={ZFashionSeverity.Success} onClick={now} name='close-popup' />
+                )}
+              >
+                <ZParagraph compact>You can put whatever you want in a popup.</ZParagraph>
+              </ZPopup>
             )}
           />
         </ZGrid>
