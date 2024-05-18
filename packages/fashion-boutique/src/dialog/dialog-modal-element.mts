@@ -56,6 +56,8 @@ export class ZDialogModalElement extends ZDialogElement implements IZComponentRe
     const px = ZFashionTailorElement.gapVar(ZSizeFixed.Medium);
     const py = ZFashionTailorElement.gapVar(ZSizeFixed.Small);
 
+    // https://github.com/capricorn86/happy-dom/issues/564
+    /* istanbul ignore next --@preserve */
     const marginFor = (x: ZSizeFixed | ZSizeVaried) => (x === ZSizeVaried.Full ? 0 : 'auto');
 
     return css`
