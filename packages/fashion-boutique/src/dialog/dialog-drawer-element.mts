@@ -1,3 +1,4 @@
+import { ZSizeFixed } from '@zthun/fashion-tailor';
 import { ZFashionArea, black } from '@zthun/fashion-theme';
 import { ZHorizontalAnchor, ZSideAnchor, ZVerticalAnchor, css } from '@zthun/helpful-fn';
 import {
@@ -9,7 +10,8 @@ import {
   ZComponentRenderOnConnected,
   ZComponentShadow
 } from '@zthun/spellcraft';
-import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
+import { ZFashionDetail } from '../component/component-fashion.mjs';
+import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
 import { ZDialogElement } from './dialog-element.mjs';
 
 @ZComponentRegister('z-dialog-drawer')
@@ -24,7 +26,10 @@ export class ZDialogDrawerElement extends ZDialogElement implements IZComponentR
   public anchor: ZSideAnchor;
 
   public styles() {
-    const { anchor } = this;
+    const { anchor, fashion } = this;
+    const detail = new ZFashionDetail(fashion);
+    const surface = new ZFashionDetail(ZFashionArea.Surface);
+
     let width: 'max-content' | '100%' = 'max-content';
     let height: 'max-content' | '100%' = '100%';
     let transformHide = 'translateX(-100%)';
@@ -65,19 +70,19 @@ export class ZDialogDrawerElement extends ZDialogElement implements IZComponentR
       }
 
       dialog {
-        background-color: ${ZFashionThemeElement.variable(ZFashionArea.Surface, 'main')};
+        background-color: ${surface.color('main')};
         border: 0;
-        color: ${ZFashionThemeElement.variable(ZFashionArea.Surface, 'contrast')};
+        color: ${surface.color('contrast')};
         height: ${height};
         margin-bottom: ${marginBottom};
         margin-left: ${marginLeft};
         margin-right: 0;
         margin-top: ${marginTop};
+        max-height: 100%;
+        max-width: 100%;
         padding: 0;
         transform: ${transformHide};
-        transition:
-          transform 200ms linear,
-          transform 200ms linear;
+        transition: transform 200ms linear;
         width: ${width};
       }
 
@@ -89,25 +94,29 @@ export class ZDialogDrawerElement extends ZDialogElement implements IZComponentR
       dialog[open] {
         animation: slide-in 200ms linear;
         transform: ${transformShow};
+        display: flex;
+        flex-direction: column;
       }
 
       dialog.closing {
         transform: ${transformHide};
       }
 
-      .ZDialog-container {
-        display: flex;
-        flex-direction: column;
+      .ZDialog-header,
+      .ZDialog-footer,
+      .ZDialog-content {
+        flex-basis: 0;
+        padding: ${ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall)};
       }
 
-      .ZDialog-header,
-      .ZDialog-footer {
-        flex-basis: 0;
-        flex-shrink: 1;
+      .ZDialog-header {
+        background-color: ${detail.color('main')};
+        color: ${detail.color('contrast')};
       }
 
       .ZDialog-content {
         flex-grow: 1;
+        overflow: auto;
       }
     `;
   }
