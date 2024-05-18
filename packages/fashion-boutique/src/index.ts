@@ -36,6 +36,7 @@ export * from './component/component-width.mjs';
 export * from './dialog/dialog-drawer-element.mjs';
 export * from './dialog/dialog-element.mjs';
 export * from './dialog/dialog-modal-element.mjs';
+export * from './dialog/dialog-popup-element.mjs';
 export * from './full-screen/full-screen-element.mjs';
 export * from './grid/grid-element.mjs';
 export * from './grid/grid-span-element.mjs';

@@ -28,10 +28,10 @@ export abstract class ZDialogElement
   public persistent: boolean;
 
   @ZPropertyLazyElement('style')
-  private readonly styleNode: HTMLStyleElement;
+  protected readonly styleNode: HTMLStyleElement;
 
   @ZPropertyLazyElement('dialog')
-  private readonly dialogNode: HTMLDialogElement;
+  protected readonly dialogNode: HTMLDialogElement;
 
   public abstract styles(): string;
 
