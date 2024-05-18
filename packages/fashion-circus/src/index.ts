@@ -24,8 +24,6 @@ export * from './list/list.cm.mjs';
 export * from './not-found/not-found.cm.mjs';
 export * from './number/number.cm.mjs';
 export * from './pagination/pagination.cm.mjs';
-export * from './popup/popup-button.cm.mjs';
-export * from './popup/popup.cm.mjs';
 export * from './stack/stack.cm.mjs';
 export * from './suspense/suspense.cm.mjs';
 export * from './text/text.cm.mjs';
