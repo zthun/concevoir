@@ -37,16 +37,14 @@ export abstract class ZDialogElement
 
   public template() {
     return html`
-      <div class="ZDialog-container">
-        <div class="ZDialog-header">
-          <slot name="header"></slot>
-        </div>
-        <div class="ZDialog-content">
-          <slot></slot>
-        </div>
-        <div class="ZDialog-footer">
-          <slot name="footer"></slot>
-        </div>
+      <div class="ZDialog-header">
+        <slot name="header"></slot>
+      </div>
+      <div class="ZDialog-content">
+        <slot></slot>
+      </div>
+      <div class="ZDialog-footer">
+        <slot name="footer"></slot>
       </div>
     `;
   }
