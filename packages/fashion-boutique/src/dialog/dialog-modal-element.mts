@@ -87,16 +87,12 @@ export class ZDialogModalElement extends ZDialogElement implements IZComponentRe
 
       dialog[open] {
         animation: fade 200ms ease-in;
+        display: flex;
+        flex-direction: column;
       }
 
       dialog.closing {
         opacity: 0;
-      }
-
-      .ZDialog-container {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
       }
 
       .ZDialog-header,
