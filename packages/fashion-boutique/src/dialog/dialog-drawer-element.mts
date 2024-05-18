@@ -106,7 +106,7 @@ export class ZDialogDrawerElement extends ZDialogElement implements IZComponentR
       .ZDialog-footer,
       .ZDialog-content {
         flex-basis: 0;
-        padding: ${ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall)};
+        padding: ${ZFashionTailorElement.gapVar(ZSizeFixed.Small)};
       }
 
       .ZDialog-header {
