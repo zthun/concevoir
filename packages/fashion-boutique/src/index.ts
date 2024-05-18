@@ -45,7 +45,6 @@ export * from './icon/icon-material-element.mjs';
 export * from './image-source/image-source-element.mjs';
 export * from './label/label-element.mjs';
 export * from './link/link-element.mjs';
-export * from './popup/popup-element.mjs';
 export * from './suspense/suspense-progress-element.mjs';
 export * from './suspense/suspense-rotate-element.mjs';
 export * from './svg/sad-face-element.mjs';
