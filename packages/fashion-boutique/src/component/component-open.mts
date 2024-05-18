@@ -1,3 +1,3 @@
-export interface IZComponentOpen {
-  open(): Promise<void>;
+export interface IZComponentOpen<TPayload = never> {
+  open(payload?: TPayload): Promise<void>;
 }
