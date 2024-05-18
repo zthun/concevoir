@@ -77,11 +77,11 @@ export const ZFashionRouteChoice = new ZRouteBuilder()
   .avatar('hand-pointer')
   .build();
 
-export const ZFashionRouteDrawer = new ZRouteBuilder()
-  .name('Drawer')
-  .path('drawer')
-  .description('Pop Out Navigation')
-  .avatar('inbox')
+export const ZFashionRouteDialog = new ZRouteBuilder()
+  .name('Dialog')
+  .path('dialog')
+  .description('Pop Content')
+  .avatar('window-maximize')
   .build();
 
 export const ZFashionRouteGridView = new ZRouteBuilder()
@@ -103,13 +103,6 @@ export const ZFashionRouteList = new ZRouteBuilder()
   .path('list')
   .description('Line Items')
   .avatar('list')
-  .build();
-
-export const ZFashionRouteModal = new ZRouteBuilder()
-  .name('Modal')
-  .path('modal')
-  .description('Window Container')
-  .avatar('window-maximize')
   .build();
 
 export const ZFashionRouteNumber = new ZRouteBuilder()
@@ -178,11 +171,10 @@ export const ZFashionRouteAllComponents = [
   ZFashionRouteCarousel,
   ZFashionRouteChart,
   ZFashionRouteChoice,
-  ZFashionRouteDrawer,
+  ZFashionRouteDialog,
   ZFashionRouteGridView,
   ZFashionRouteImage,
   ZFashionRouteList,
-  ZFashionRouteModal,
   ZFashionRouteNumber,
   ZFashionRoutePagination,
   ZFashionRoutePopup,

@@ -25,11 +25,10 @@ import { ZCardPage } from '../boutique/card/card-page';
 import { ZCarouselPage } from '../boutique/carousel/carousel-page';
 import { ZChartPage } from '../boutique/chart/chart-page';
 import { ZChoicePage } from '../boutique/choice/choice-page';
-import { ZDrawerPage } from '../boutique/drawer/drawer-page';
+import { ZDialogPage } from '../boutique/dialog/dialog-page';
 import { ZGridViewPage } from '../boutique/grid-view/grid-view-page';
 import { ZImagePage } from '../boutique/image/image-page';
 import { ZListPage } from '../boutique/list/list-page';
-import { ZModalPage } from '../boutique/modal/modal-page';
 import { ZNumberPage } from '../boutique/number/number-page';
 import { ZPaginationPage } from '../boutique/pagination/pagination-page';
 import { ZPopupPage } from '../boutique/popup/popup-page';
@@ -49,12 +48,11 @@ import {
   ZFashionRouteCarousel,
   ZFashionRouteChart,
   ZFashionRouteChoice,
-  ZFashionRouteDrawer,
+  ZFashionRouteDialog,
   ZFashionRouteGridView,
   ZFashionRouteHome,
   ZFashionRouteImage,
   ZFashionRouteList,
-  ZFashionRouteModal,
   ZFashionRouteNumber,
   ZFashionRoutePagination,
   ZFashionRoutePopup,
@@ -119,11 +117,10 @@ export function ZFashionApp() {
               <ZRoute path={ZFashionRouteCarousel.path} element={<ZCarouselPage />} />
               <ZRoute path={ZFashionRouteChart.path} element={<ZChartPage />} />
               <ZRoute path={ZFashionRouteChoice.path} element={<ZChoicePage />} />
-              <ZRoute path={ZFashionRouteDrawer.path} element={<ZDrawerPage />} />
+              <ZRoute path={ZFashionRouteDialog.path} element={<ZDialogPage />} />
               <ZRoute path={ZFashionRouteGridView.path} element={<ZGridViewPage />} />
               <ZRoute path={ZFashionRouteImage.path} element={<ZImagePage />} />
               <ZRoute path={ZFashionRouteList.path} element={<ZListPage />} />
-              <ZRoute path={ZFashionRouteModal.path} element={<ZModalPage />} />
               <ZRoute path={ZFashionRouteNumber.path} element={<ZNumberPage />} />
               <ZRoute path={ZFashionRoutePagination.path} element={<ZPaginationPage />} />
               <ZRoute path={ZFashionRoutePopup.path} element={<ZPopupPage />} />
