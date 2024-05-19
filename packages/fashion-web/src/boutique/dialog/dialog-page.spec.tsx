@@ -192,4 +192,35 @@ describe('ZDialogPage', () => {
       expect(actual).toEqual(expected);
     });
   });
+
+  describe('Popup', () => {
+    it('should open the popup', async () => {
+      // Arrange.
+      const target = await createTestTarget();
+      const button = await target.popupButton();
+      // Act.
+      await button.click();
+      const popup = await target.popup();
+      await popup.waitForOpen();
+      const actual = await popup.opened();
+      // Assert.
+      expect(actual).toBeTruthy();
+    });
+
+    it('should close the popup when the close button is clicked', async () => {
+      // Arrange.
+      const target = await createTestTarget();
+      const button = await target.popupButton();
+      await button.click();
+      const popup = await target.popup();
+      await popup.waitForOpen();
+      const cancelModal = await target.closePopup();
+      // Act.
+      await cancelModal.click();
+      await popup.waitForClose();
+      const actual = await popup.opened();
+      // Assert.
+      expect(actual).toBeFalsy();
+    });
+  });
 });

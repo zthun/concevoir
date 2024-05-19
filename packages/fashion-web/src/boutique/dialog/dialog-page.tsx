@@ -160,7 +160,7 @@ export function ZDialogPage() {
                 {...props}
                 anchor={[ZVerticalAnchor.Top, ZHorizontalAnchor.Left]}
                 fashion={fashion}
-                name='drawer'
+                name='popup'
                 origin={[ZVerticalAnchor.Bottom, ZHorizontalAnchor.Left]}
                 persistent={persistent}
                 renderHeader={() => <ZH3 compact>Popup</ZH3>}

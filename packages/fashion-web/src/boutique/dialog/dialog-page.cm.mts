@@ -17,12 +17,20 @@ export class ZDialogPageComponentModel extends ZCircusComponentModel {
     return ZCircusBy.first(this.driver, ZButtonComponentModel, 'open-modal');
   }
 
+  public popupButton(): Promise<ZButtonComponentModel> {
+    return ZCircusBy.first(this.driver, ZButtonComponentModel, 'open-popup');
+  }
+
   public drawer(): Promise<ZDialogComponentModel> {
     return ZCircusBy.first(this.driver, ZDialogComponentModel);
   }
 
   public modal(): Promise<ZDialogComponentModel> {
     return ZCircusBy.first(this.driver, ZDialogComponentModel, 'modal');
+  }
+
+  public popup(): Promise<ZDialogComponentModel> {
+    return ZCircusBy.first(this.driver, ZDialogComponentModel, 'popup');
   }
 
   public async closeDrawer(): Promise<ZButtonComponentModel> {
@@ -41,6 +49,12 @@ export class ZDialogPageComponentModel extends ZCircusComponentModel {
     const modal = await this.modal();
     const footer = await modal.footer();
     return ZCircusBy.first(footer, ZButtonComponentModel, 'save-modal');
+  }
+
+  public async closePopup(): Promise<ZButtonComponentModel> {
+    const popup = await this.popup();
+    const footer = await popup.footer();
+    return ZCircusBy.first(footer, ZButtonComponentModel, 'close-popup');
   }
 
   public fashion(): Promise<ZChoiceComponentModel> {
