@@ -1,39 +1,13 @@
 import { IZComponentPrefix, IZComponentSuffix } from '@zthun/fashion-boutique';
-import { ZSizeFixed } from '@zthun/fashion-tailor';
+import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ReactNode } from 'react';
 import { IZComponentStyle } from '../component/component-style.mjs';
-import { createStyleHook } from '../theme/styled';
+import { ZGrid } from '../grid/grid';
 
 export interface IZLineItem extends IZComponentStyle, IZComponentPrefix<ReactNode>, IZComponentSuffix<ReactNode> {
   body?: ReactNode;
 }
-
-const useLineItemStyles = createStyleHook(({ tailor }) => {
-  return {
-    root: {
-      display: 'flex',
-      flexWrap: 'nowrap',
-      alignItems: 'center',
-      width: '100%'
-    },
-
-    prefix: {
-      flexGrow: 0,
-      paddingRight: tailor.gap(ZSizeFixed.Small)
-    },
-
-    body: {
-      flexGrow: 1,
-      flexBasis: 0
-    },
-
-    suffix: {
-      flexGrow: 0,
-      paddingLeft: tailor.gap(ZSizeFixed.Small)
-    }
-  };
-});
 
 /**
  * Represents a simple flex 0-1-0 component.
@@ -47,13 +21,18 @@ const useLineItemStyles = createStyleHook(({ tailor }) => {
  */
 export function ZLineItem(props: IZLineItem) {
   const { className, prefix, body, suffix } = props;
-  const { classes } = useLineItemStyles();
 
   return (
-    <div className={cssJoinDefined('ZLineItem-root', className, classes.root)}>
-      <div className={cssJoinDefined('ZLineItem-prefix', classes.prefix)}>{prefix}</div>
-      <div className={cssJoinDefined('ZLineItem-body', classes.body)}>{body}</div>
-      <div className={cssJoinDefined('ZLineItem-suffix', classes.suffix)}>{suffix}</div>
-    </div>
+    <ZGrid
+      className={cssJoinDefined('ZLineItem-root', className)}
+      columns='auto 1fr auto'
+      align={{ items: 'center' }}
+      gap={ZSizeFixed.Small}
+      width={ZSizeVaried.Full}
+    >
+      <div className={cssJoinDefined('ZLineItem-prefix')}>{prefix}</div>
+      <div className={cssJoinDefined('ZLineItem-body')}>{body}</div>
+      <div className={cssJoinDefined('ZLineItem-suffix')}>{suffix}</div>
+    </ZGrid>
   );
 }
