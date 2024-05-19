@@ -3,7 +3,7 @@ import { ZDeviceBounds, ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
 import { cssJoinDefined, firstTruthy } from '@zthun/helpful-fn';
 import React, { useRef } from 'react';
 import { useWebComponent } from '../component/use-web-component.mjs';
-import { IZDialogProps, useDialog } from './use-dialog';
+import { IZDialog, useDialog } from './use-dialog';
 
 declare global {
   namespace React.JSX {
@@ -14,7 +14,7 @@ declare global {
 }
 
 export interface IZModal
-  extends IZDialogProps,
+  extends IZDialog,
     IZComponentWidth<ZSizeFixed | ZSizeVaried>,
     IZComponentHeight<ZSizeFixed | ZSizeVaried> {}
 

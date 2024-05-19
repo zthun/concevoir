@@ -44,6 +44,10 @@ export class ZDialogPopupElement extends ZDialogElement implements IZLifecycleCo
   @ZProperty()
   public attach?: Element | null;
 
+  public attachTo(value: Element | null | undefined) {
+    this.attach = value;
+  }
+
   private _calculatePosition = () => {
     const { dialogNode, attach, originX, originY, anchorX, anchorY } = this;
 

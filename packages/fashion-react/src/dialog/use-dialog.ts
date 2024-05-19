@@ -8,7 +8,7 @@ import {
 import { ReactNode, useCallback, useEffect } from 'react';
 import { IZComponentStyle } from '../component/component-style.mjs';
 
-export interface IZDialogProps
+export interface IZDialog
   extends IZComponentFashion,
     IZComponentHierarchy<ReactNode>,
     IZComponentName,
@@ -20,7 +20,7 @@ export interface IZDialogProps
   renderHeader?(): ReactNode;
   renderFooter?(): ReactNode;
 }
-export function useDialog(current: (HTMLElement & IZComponentOpen & IZComponentClose) | null, props: IZDialogProps) {
+export function useDialog(current: (HTMLElement & IZComponentOpen & IZComponentClose) | null, props: IZDialog) {
   const { open, onClose } = props;
 
   const onClosed = useCallback(() => onClose?.call(null), [onClose]);

@@ -3,7 +3,7 @@ import { ZSideAnchor, cssJoinDefined } from '@zthun/helpful-fn';
 import React, { ReactNode, useCallback, useEffect, useRef } from 'react';
 import { IZComponentStyle } from '../component/component-style.mjs';
 import { useWebComponent } from '../component/use-web-component.mjs';
-import { IZDialogProps } from './use-dialog';
+import { IZDialog } from './use-dialog';
 
 declare global {
   namespace React.JSX {
@@ -13,7 +13,7 @@ declare global {
   }
 }
 
-export interface IZDrawer extends IZComponentHierarchy<ReactNode>, IZComponentStyle, IZDialogProps {
+export interface IZDrawer extends IZComponentHierarchy<ReactNode>, IZComponentStyle, IZDialog {
   anchor?: ZSideAnchor;
 }
 

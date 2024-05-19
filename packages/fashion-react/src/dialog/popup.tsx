@@ -2,7 +2,7 @@ import { ZDialogPopupElement } from '@zthun/fashion-boutique';
 import { ZAnchor, ZHorizontalAnchor, ZVerticalAnchor, cssJoinDefined, firstTruthy } from '@zthun/helpful-fn';
 import React, { useEffect, useRef } from 'react';
 import { useWebComponent } from '../component/use-web-component.mjs';
-import { IZDialogProps, useDialog } from './use-dialog';
+import { IZDialog, useDialog } from './use-dialog';
 
 declare global {
   namespace React.JSX {
@@ -12,7 +12,7 @@ declare global {
   }
 }
 
-export interface IZPopup extends IZDialogProps {
+export interface IZPopup extends IZDialog {
   attach?: Element | null;
 
   onClose?(): void;
@@ -49,11 +49,7 @@ export function ZPopup(props: IZPopup) {
   useDialog(popper.current, props);
 
   useEffect(() => {
-    if (popper.current == null) {
-      return;
-    }
-
-    popper.current.attach = attach;
+    popper.current?.attachTo(attach);
   }, [popper.current, attach]);
 
   return (
