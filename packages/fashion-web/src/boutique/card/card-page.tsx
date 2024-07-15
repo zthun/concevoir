@@ -37,7 +37,7 @@ export function ZCardPage() {
 
         <ZParagraph>
           Cards allow for sectioned content and are very responsive and mobile friendly. Favor putting things in cards
-          to create desireable experiences for your users.
+          to create desirable experiences for your users.
         </ZParagraph>
 
         <ZGrid columns={{ xl: '1fr 1fr 1fr', md: '1fr' }} gap={ZSizeFixed.Small}>
