@@ -31,7 +31,7 @@
     "@zthun/cirque": "^6.1.1",
     "@zthun/fashion-tailor": "^2.7.0",
     "@zthun/fashion-theme": "^2.7.0",
-    "@zthun/helpful-fn": "^5.0.1",
+    "@zthun/helpful-fn": "^5.0.3",
     "@zthun/trilean": "^2.0.1",
     "csstype": "^3.1.3"
   },
