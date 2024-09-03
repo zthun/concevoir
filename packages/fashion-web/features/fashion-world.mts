@@ -1,15 +1,19 @@
-import { setDefaultTimeout, setWorldConstructor, World } from '@cucumber/cucumber';
+import {
+  setDefaultTimeout,
+  setWorldConstructor,
+  World,
+} from "@cucumber/cucumber";
 import {
   IZCircusDriver,
   IZCircusSetup,
   ZCircusBy,
   ZCircusComponentConstructor,
-  ZCircusComponentModel
-} from '@zthun/cirque';
-import { ZCircusSetupChrome } from '@zthun/cirque-du-selenium';
-import { sleep } from '@zthun/helpful-fn';
-import { ZUrlBuilder } from '@zthun/webigail-url';
-import { IZRoute } from '../src/route/route.mjs';
+  ZCircusComponentModel,
+} from "@zthun/cirque";
+import { ZCircusSetupChrome } from "@zthun/cirque-du-selenium";
+import { sleep } from "@zthun/helpful-fn";
+import { ZUrlBuilder } from "@zthun/webigail-url";
+import { IZRoute } from "../src/route/route.mjs";
 
 /**
  * Represents a modifiable set of parameters.
@@ -24,7 +28,9 @@ export interface IZFashionPage<T extends ZCircusComponentModel | never> {
 /**
  * The current world
  */
-export class ZFashionWorld<T extends ZCircusComponentModel | never = never> extends World<IZFashionPage<T>> {
+export class ZFashionWorld<
+  T extends ZCircusComponentModel | never = never,
+> extends World<IZFashionPage<T>> {
   private _browser: IZCircusSetup<IZCircusDriver> | null;
   private _driver: IZCircusDriver | null = null;
 
@@ -47,7 +53,9 @@ export class ZFashionWorld<T extends ZCircusComponentModel | never = never> exte
    * @returns
    *        A new component model of type T.
    */
-  public async create<T extends ZCircusComponentModel>(model: ZCircusComponentConstructor<T>): Promise<T> {
+  public async create<T extends ZCircusComponentModel>(
+    model: ZCircusComponentConstructor<T>,
+  ): Promise<T> {
     const driver = await this.open();
     return ZCircusBy.first(driver, model);
   }
@@ -65,9 +73,12 @@ export class ZFashionWorld<T extends ZCircusComponentModel | never = never> exte
       return this._driver;
     }
 
-    let hash = route.map((r) => (typeof r === 'string' ? r : r.path)).join('/');
-    hash = hash.startsWith('/') ? hash : `/${hash}`;
-    const url = new ZUrlBuilder().parse('http://localhost:5173').hash(hash).build();
+    let hash = route.map((r) => (typeof r === "string" ? r : r.path)).join("/");
+    hash = hash.startsWith("/") ? hash : `/${hash}`;
+    const url = new ZUrlBuilder()
+      .parse("http://localhost:5173")
+      .hash(hash)
+      .build();
     this._browser = new ZCircusSetupChrome(url);
     this._driver = await this._browser.setup();
     await sleep(500);

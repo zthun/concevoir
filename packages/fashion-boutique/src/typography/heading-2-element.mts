@@ -6,13 +6,15 @@ import {
   ZComponentRenderOnAttributeChanged,
   ZComponentRenderOnConnected,
   ZComponentRenderTemplate,
-  ZComponentShadow
-} from '@zthun/spellcraft';
-import { ZComponentTemplateTypography } from './component-template-typography.mjs';
+  ZComponentShadow,
+} from "@zthun/spellcraft";
+import { ZComponentTemplateTypography } from "./component-template-typography.mjs";
 
-export interface ZHeadingTwoElement extends IZComponentRender, IZComponentTemplate {}
+export interface ZHeadingTwoElement
+  extends IZComponentRender,
+    IZComponentTemplate {}
 
-@ZComponentRegister('z-h2', { extend: 'h2' })
+@ZComponentRegister("z-h2", { extend: "h2" })
 @ZComponentRenderOnConnected()
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderTemplate()
@@ -22,10 +24,14 @@ export interface ZHeadingTwoElement extends IZComponentRender, IZComponentTempla
     lg: 2.1,
     md: 2,
     sm: 1.9,
-    xs: 1.8
+    xs: 1.8,
   },
-  weight: 'bold'
+  weight: "bold",
 })
-@ZComponentClass('ZTypography-root', 'ZTypography-heading', 'ZTypography-heading-2')
+@ZComponentClass(
+  "ZTypography-root",
+  "ZTypography-heading",
+  "ZTypography-heading-2",
+)
 @ZComponentShadow()
 export class ZHeadingTwoElement extends HTMLHeadingElement {}

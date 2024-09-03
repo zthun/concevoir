@@ -1,6 +1,6 @@
-import { trim, uniq } from 'lodash-es';
-import { ZFontFamily } from '../font/font-family.mjs';
-import { IZFontDetect } from './font-detect.mjs';
+import { trim, uniq } from "lodash-es";
+import { ZFontFamily } from "../font/font-family.mjs";
+import { IZFontDetect } from "./font-detect.mjs";
 
 /**
  * A font detector that pulls from a font face set.
@@ -23,8 +23,12 @@ export class ZFontDetectFontFaceSet implements IZFontDetect {
     const whiteList = Object.values(ZFontFamily);
     const fonts = await this._fontFaceSet.ready;
 
-    const loadedFonts = [...fonts].map((f) => trim(f.family, '"') as ZFontFamily).filter((f) => whiteList.includes(f));
-    const loadableFonts = whiteList.filter((family) => fonts.check(`1rem "${family}"`));
+    const loadedFonts = [...fonts]
+      .map((f) => trim(f.family, '"') as ZFontFamily)
+      .filter((f) => whiteList.includes(f));
+    const loadableFonts = whiteList.filter((family) =>
+      fonts.check(`1rem "${family}"`),
+    );
     const allFonts = uniq([...loadedFonts, ...loadableFonts]);
     allFonts.sort();
 

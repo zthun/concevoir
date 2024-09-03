@@ -6,13 +6,15 @@ import {
   ZComponentRenderOnAttributeChanged,
   ZComponentRenderOnConnected,
   ZComponentRenderTemplate,
-  ZComponentShadow
-} from '@zthun/spellcraft';
-import { ZComponentTemplateTypography } from './component-template-typography.mjs';
+  ZComponentShadow,
+} from "@zthun/spellcraft";
+import { ZComponentTemplateTypography } from "./component-template-typography.mjs";
 
-export interface ZParagraphBodyElement extends IZComponentRender, IZComponentTemplate {}
+export interface ZParagraphBodyElement
+  extends IZComponentRender,
+    IZComponentTemplate {}
 
-@ZComponentRegister('z-paragraph-body', { extend: 'p' })
+@ZComponentRegister("z-paragraph-body", { extend: "p" })
 @ZComponentRenderOnConnected()
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderTemplate()
@@ -22,9 +24,13 @@ export interface ZParagraphBodyElement extends IZComponentRender, IZComponentTem
     lg: 0.98,
     md: 0.95,
     sm: 0.92,
-    xs: 0.9
-  }
+    xs: 0.9,
+  },
 })
-@ZComponentClass('ZTypography-root', 'ZTypography-paragraph', 'ZTypography-paragraph-body')
+@ZComponentClass(
+  "ZTypography-root",
+  "ZTypography-paragraph",
+  "ZTypography-paragraph-body",
+)
 @ZComponentShadow()
 export class ZParagraphBodyElement extends HTMLParagraphElement {}

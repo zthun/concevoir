@@ -1,13 +1,13 @@
 /* eslint-disable require-jsdoc */
-import { ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZListLineItemComponentModel } from '@zthun/fashion-circus';
-import React from 'react';
-import { describe, expect, it } from 'vitest';
-import { ZListPage } from './list-page';
-import { ZListPageComponentModel } from './list-page.cm.mjs';
+import { ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { ZListLineItemComponentModel } from "@zthun/fashion-circus";
+import React from "react";
+import { describe, expect, it } from "vitest";
+import { ZListPage } from "./list-page";
+import { ZListPageComponentModel } from "./list-page.cm.mjs";
 
-describe('ZListPage', () => {
+describe("ZListPage", () => {
   async function createTestTarget() {
     const element = <ZListPage />;
     const driver = await new ZCircusSetupRenderer(element).setup();
@@ -28,11 +28,11 @@ describe('ZListPage', () => {
     expect(actual).toEqual(current + 1);
   }
 
-  it('should show a success alert when the everything item is clicked', async () => {
-    await shouldIncrementCount('everything');
+  it("should show a success alert when the everything item is clicked", async () => {
+    await shouldIncrementCount("everything");
   });
 
-  it('should show a warning alert when the text-only item is clicked', async () => {
-    await shouldIncrementCount('text-only');
+  it("should show a warning alert when the text-only item is clicked", async () => {
+    await shouldIncrementCount("text-only");
   });
 });

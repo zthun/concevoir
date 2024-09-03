@@ -1,69 +1,69 @@
-import { IconButton, MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
-import { castArray, isArray } from 'lodash-es';
-import React, { ReactNode } from 'react';
-import { ZIconFontAwesome } from '../icon/icon-font-awesome';
-import { ZLabeled } from '../label/labeled';
-import { createStyleHook } from '../theme/styled';
-import { IZChoice, IZChoiceOption, useChoice } from './choice';
+import { IconButton, MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import { ZSizeFixed } from "@zthun/fashion-tailor";
+import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import { castArray, isArray } from "lodash-es";
+import React, { ReactNode } from "react";
+import { ZIconFontAwesome } from "../icon/icon-font-awesome";
+import { ZLabeled } from "../label/labeled";
+import { createStyleHook } from "../theme/styled";
+import { IZChoice, IZChoiceOption, useChoice } from "./choice";
 
 const useChoiceDropDownStyles = createStyleHook(({ theme, tailor }) => {
   return {
     root: {
-      '.MuiInputBase-root': {
+      ".MuiInputBase-root": {
         color: theme.surface.contrast,
-        backgroundColor: firstDefined(theme.surface.main, theme.surface.light)
+        backgroundColor: firstDefined(theme.surface.main, theme.surface.light),
       },
 
-      '.MuiSelect-icon': {
-        color: theme.surface.contrast
+      ".MuiSelect-icon": {
+        color: theme.surface.contrast,
       },
 
-      '.MuiSelect-select': {
-        padding: tailor.gap(ZSizeFixed.Small)
-      }
+      ".MuiSelect-select": {
+        padding: tailor.gap(ZSizeFixed.Small),
+      },
     },
 
     clear: {
-      'color': theme.surface.contrast,
-      'backgroundColor': firstDefined(theme.surface.main, theme.surface.light),
-      'fontSize': '1.2rem',
-      'padding': tailor.gap(ZSizeFixed.ExtraSmall),
-      'marginRight': `${tailor.gap(ZSizeFixed.Small)} !important`,
+      color: theme.surface.contrast,
+      backgroundColor: firstDefined(theme.surface.main, theme.surface.light),
+      fontSize: "1.2rem",
+      padding: tailor.gap(ZSizeFixed.ExtraSmall),
+      marginRight: `${tailor.gap(ZSizeFixed.Small)} !important`,
 
-      '&:hover': {
+      "&:hover": {
         color: theme.primary.contrast,
-        backgroundColor: theme.primary.main
-      }
+        backgroundColor: theme.primary.main,
+      },
     },
 
     chip: {
-      'display': 'inline-flex',
-      'flexWrap': 'wrap',
+      display: "inline-flex",
+      flexWrap: "wrap",
 
-      '.ZChoice-value': {
-        fontSize: '0.8125rem',
+      ".ZChoice-value": {
+        fontSize: "0.8125rem",
         backgroundColor: firstDefined(theme.surface.main, theme.surface.dark),
-        color: 'inherit',
-        borderRadius: '1rem',
+        color: "inherit",
+        borderRadius: "1rem",
         padding: `calc(${tailor.gap(ZSizeFixed.ExtraSmall)} * 0.5)`,
-        margin: 3
-      }
+        margin: 3,
+      },
     },
 
     toggler: {
-      '.ZChoice-toggler': {
-        padding: tailor.gap(ZSizeFixed.ExtraSmall)
-      }
+      ".ZChoice-toggler": {
+        padding: tailor.gap(ZSizeFixed.ExtraSmall),
+      },
     },
 
     popup: {
       ul: {
         color: theme.surface.contrast,
-        backgroundColor: firstDefined(theme.surface.main, theme.surface.light)
-      }
-    }
+        backgroundColor: firstDefined(theme.surface.main, theme.surface.light),
+      },
+    },
   };
 });
 
@@ -77,7 +77,16 @@ const useChoiceDropDownStyles = createStyleHook(({ theme, tailor }) => {
  *        The JSX to render the choice component.
  */
 export function ZChoiceDropDown<O, V>(props: IZChoice<O, V>) {
-  const { className, label, disabled, multiple, name, indelible, orientation, required } = props;
+  const {
+    className,
+    label,
+    disabled,
+    multiple,
+    name,
+    indelible,
+    orientation,
+    required,
+  } = props;
   const { choices, value, lookup, cast, render, setValue } = useChoice(props);
   const { classes } = useChoiceDropDownStyles();
 
@@ -91,7 +100,7 @@ export function ZChoiceDropDown<O, V>(props: IZChoice<O, V>) {
       const { key, value, option } = choice;
 
       return (
-        <MenuItem className='ZChoice-option' key={key} value={value as any}>
+        <MenuItem className="ZChoice-option" key={key} value={value as any}>
           {render(option)}
         </MenuItem>
       );
@@ -108,8 +117,15 @@ export function ZChoiceDropDown<O, V>(props: IZChoice<O, V>) {
     }
 
     return (
-      <IconButton className={cssJoinDefined('ZChoice-clear', classes.clear)} onClick={setValue.bind(null, [])}>
-        <ZIconFontAwesome name='xmark' width={ZSizeFixed.ExtraSmall} tooltip='Clear' />
+      <IconButton
+        className={cssJoinDefined("ZChoice-clear", classes.clear)}
+        onClick={setValue.bind(null, [])}
+      >
+        <ZIconFontAwesome
+          name="xmark"
+          width={ZSizeFixed.ExtraSmall}
+          tooltip="Clear"
+        />
       </IconButton>
     );
   }
@@ -118,10 +134,11 @@ export function ZChoiceDropDown<O, V>(props: IZChoice<O, V>) {
     const _renderSelected = (option: IZChoiceOption<O, V> | undefined) => {
       const key = option == null ? String(value) : option.key;
       const _value = option == null ? value : option.value;
-      const element: ReactNode = option == null ? String(value) : render(option.option);
+      const element: ReactNode =
+        option == null ? String(value) : render(option.option);
 
       return (
-        <div className='ZChoice-value' key={key} data-value={_value}>
+        <div className="ZChoice-value" key={key} data-value={_value}>
           {element}
         </div>
       );
@@ -129,8 +146,10 @@ export function ZChoiceDropDown<O, V>(props: IZChoice<O, V>) {
 
     if (isArray(value)) {
       return (
-        <div className={cssJoinDefined('ZChoice-chip-list', classes.chip)}>
-          {value.map((v) => lookup.get(v)).map((option) => _renderSelected(option))}
+        <div className={cssJoinDefined("ZChoice-chip-list", classes.chip)}>
+          {value
+            .map((v) => lookup.get(v))
+            .map((option) => _renderSelected(option))}
         </div>
       );
     }
@@ -141,19 +160,30 @@ export function ZChoiceDropDown<O, V>(props: IZChoice<O, V>) {
 
   return (
     <ZLabeled
-      className={cssJoinDefined('ZChoice-root', 'ZChoice-drop-down', className, classes.root)}
+      className={cssJoinDefined(
+        "ZChoice-root",
+        "ZChoice-drop-down",
+        className,
+        classes.root,
+      )}
       label={label}
-      LabelProps={{ required, className: 'ZChoice-label' }}
+      LabelProps={{ required, className: "ZChoice-label" }}
       name={name}
       orientation={orientation}
     >
       <Select
         className={cssJoinDefined(classes.toggler)}
-        classes={{ select: 'ZChoice-toggler' }}
+        classes={{ select: "ZChoice-toggler" }}
         disabled={disabled}
-        value={cast(value, '')}
+        value={cast(value, "")}
         multiple={multiple}
-        MenuProps={{ className: cssJoinDefined('ZChoice-options', 'ZChoice-options-popup', classes.popup) }}
+        MenuProps={{
+          className: cssJoinDefined(
+            "ZChoice-options",
+            "ZChoice-options-popup",
+            classes.popup,
+          ),
+        }}
         onChange={handleSelect}
         renderValue={renderSelectedItem}
         endAdornment={renderClear()}

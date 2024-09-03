@@ -1,4 +1,4 @@
-import { html } from '@zthun/helpful-fn';
+import { html } from "@zthun/helpful-fn";
 import {
   IZComponentRender,
   IZComponentTemplate,
@@ -6,17 +6,20 @@ import {
   ZComponentRegister,
   ZComponentRenderOnConnected,
   ZComponentRenderTemplate,
-  ZComponentShadow
-} from '@zthun/spellcraft';
+  ZComponentShadow,
+} from "@zthun/spellcraft";
 
 export interface ZSadFaceElement extends IZComponentRender {}
 
-@ZComponentRegister('z-sad-face')
+@ZComponentRegister("z-sad-face")
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
-@ZComponentClass('ZSadFace-root')
+@ZComponentClass("ZSadFace-root")
 @ZComponentShadow()
-export class ZSadFaceElement extends HTMLElement implements IZComponentTemplate {
+export class ZSadFaceElement
+  extends HTMLElement
+  implements IZComponentTemplate
+{
   public template() {
     return html`
       <style>
@@ -42,8 +45,14 @@ export class ZSadFaceElement extends HTMLElement implements IZComponentTemplate 
           class="b"
           d="M23,13.938a14.69,14.69,0,0,1-12.406,6.531c-5.542,0-6.563-1-9.142-2.529A7.66,7.66,0,0,0,8.656,23h6.688A7.656,7.656,0,0,0,23,15.344Z"
         />
-        <path class="c" d="M7.055,7.313A1.747,1.747,0,1,0,8.8,9.059,1.747,1.747,0,0,0,7.055,7.313Z" />
-        <path class="c" d="M16.958,7.313A1.747,1.747,0,1,0,18.7,9.059,1.747,1.747,0,0,0,16.958,7.313Z" />
+        <path
+          class="c"
+          d="M7.055,7.313A1.747,1.747,0,1,0,8.8,9.059,1.747,1.747,0,0,0,7.055,7.313Z"
+        />
+        <path
+          class="c"
+          d="M16.958,7.313A1.747,1.747,0,1,0,18.7,9.059,1.747,1.747,0,0,0,16.958,7.313Z"
+        />
         <path
           class="d"
           d="M8.42,13.921A4.184,4.184,0,0,0,7.054,11.38a4.185,4.185,0,0,0-1.365,2.541c-.111,1.476.937,1.762,1.365,1.762S8.531,15.4,8.42,13.921Z"

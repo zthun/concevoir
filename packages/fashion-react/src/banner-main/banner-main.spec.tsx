@@ -1,11 +1,11 @@
-import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZBannerMainComponentModel } from '@zthun/fashion-circus';
-import React, { ReactNode } from 'react';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { ZBannerMain } from './banner-main';
+import { IZCircusDriver, IZCircusSetup, ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { ZBannerMainComponentModel } from "@zthun/fashion-circus";
+import React, { ReactNode } from "react";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { ZBannerMain } from "./banner-main";
 
-describe('ZBannerMain', () => {
+describe("ZBannerMain", () => {
   let avatar: ReactNode | undefined;
   let prefix: ReactNode | undefined;
   let suffix: ReactNode | undefined;
@@ -29,7 +29,7 @@ describe('ZBannerMain', () => {
     avatar = undefined;
     prefix = undefined;
     suffix = undefined;
-    body = 'Content';
+    body = "Content";
   });
 
   afterEach(async () => {
@@ -37,9 +37,9 @@ describe('ZBannerMain', () => {
     await _renderer?.destroy?.call(_renderer);
   });
 
-  it('should render the prefix', async () => {
+  it("should render the prefix", async () => {
     // Arrange.
-    prefix = 'Prefix';
+    prefix = "Prefix";
     const target = await createTestTarget();
     // Act.
     const section = await target.prefix();
@@ -48,9 +48,9 @@ describe('ZBannerMain', () => {
     expect(actual).toEqual(prefix);
   });
 
-  it('should render the suffix', async () => {
+  it("should render the suffix", async () => {
     // Arrange.
-    suffix = 'Suffix';
+    suffix = "Suffix";
     const target = await createTestTarget();
     // Act.
     const section = await target.suffix();
@@ -59,9 +59,9 @@ describe('ZBannerMain', () => {
     expect(actual).toEqual(suffix);
   });
 
-  it('should render the avatar', async () => {
+  it("should render the avatar", async () => {
     // Arrange.
-    avatar = '<(^^)>';
+    avatar = "<(^^)>";
     const target = await createTestTarget();
     // Act.
     const section = await target.avatar();
@@ -70,7 +70,7 @@ describe('ZBannerMain', () => {
     expect(actual).toEqual(avatar);
   });
 
-  it('should render the content', async () => {
+  it("should render the content", async () => {
     // Arrange.
     const target = await createTestTarget();
     // Act.

@@ -1,10 +1,24 @@
-import { ZBox, ZCard, ZH3, ZH4, ZIconFontAwesome, ZParagraph, ZStack } from '@zthun/fashion-react';
-import { ZGapSize, ZSizeFixed, ZSizeVoid } from '@zthun/fashion-tailor';
-import { ZFashionArea, ZFashionContrast, ZFashionName, ZFashionPriority, ZFashionSeverity } from '@zthun/fashion-theme';
-import { ZOrientation, ZQuadrilateralBuilder } from '@zthun/helpful-fn';
-import { noop, startCase } from 'lodash-es';
-import React from 'react';
-import { ZFashionRouteTheme } from '../routes.mjs';
+import {
+  ZBox,
+  ZCard,
+  ZH3,
+  ZH4,
+  ZIconFontAwesome,
+  ZParagraph,
+  ZStack,
+} from "@zthun/fashion-react";
+import { ZGapSize, ZSizeFixed, ZSizeVoid } from "@zthun/fashion-tailor";
+import {
+  ZFashionArea,
+  ZFashionContrast,
+  ZFashionName,
+  ZFashionPriority,
+  ZFashionSeverity,
+} from "@zthun/fashion-theme";
+import { ZOrientation, ZQuadrilateralBuilder } from "@zthun/helpful-fn";
+import { noop, startCase } from "lodash-es";
+import React from "react";
+import { ZFashionRouteTheme } from "../routes.mjs";
 
 /**
  * Represents the theme page.
@@ -13,13 +27,22 @@ import { ZFashionRouteTheme } from '../routes.mjs';
  */
 export function ZThemePage() {
   const padding = new ZQuadrilateralBuilder(ZSizeFixed.Large).build();
-  const margin = new ZQuadrilateralBuilder<ZGapSize>(ZSizeVoid.None).bottom(ZSizeFixed.Medium).build();
+  const margin = new ZQuadrilateralBuilder<ZGapSize>(ZSizeVoid.None)
+    .bottom(ZSizeFixed.Medium)
+    .build();
   const edge = new ZQuadrilateralBuilder(ZSizeFixed.Large).build();
-  const trim = new ZQuadrilateralBuilder('solid').build();
+  const trim = new ZQuadrilateralBuilder("solid").build();
 
   const renderFashion = (fashion: ZFashionName) => (
-    <ZBox padding={padding} edge={edge} trim={trim} fashion={fashion} margin={margin} onClick={noop}>
-      <ZStack orientation={ZOrientation.Horizontal} justifyContent='center'>
+    <ZBox
+      padding={padding}
+      edge={edge}
+      trim={trim}
+      fashion={fashion}
+      margin={margin}
+      onClick={noop}
+    >
+      <ZStack orientation={ZOrientation.Horizontal} justifyContent="center">
         <ZH4 compact>{startCase(fashion)}</ZH4>
       </ZStack>
     </ZBox>
@@ -27,16 +50,22 @@ export function ZThemePage() {
 
   return (
     <ZCard
-      className='ZThemePage-root'
+      className="ZThemePage-root"
       heading={ZFashionRouteTheme.name}
       subHeading={ZFashionRouteTheme.description}
-      avatar={<ZIconFontAwesome name={ZFashionRouteTheme.avatar} width={ZSizeFixed.Medium} />}
+      avatar={
+        <ZIconFontAwesome
+          name={ZFashionRouteTheme.avatar}
+          width={ZSizeFixed.Medium}
+        />
+      }
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>
 
         <ZParagraph>
-          A fashion theme describes the different makeup of page colors that are used across common places in a website.
+          A fashion theme describes the different makeup of page colors that are
+          used across common places in a website.
         </ZParagraph>
 
         <ZH3>Priority</ZH3>

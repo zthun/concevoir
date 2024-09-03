@@ -1,11 +1,15 @@
-import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZBooleanComponentModel, ZChoiceComponentModel, ZSuspenseComponentModel } from '@zthun/fashion-circus';
+import { ZCircusBy, ZCircusComponentModel } from "@zthun/cirque";
+import {
+  ZBooleanComponentModel,
+  ZChoiceComponentModel,
+  ZSuspenseComponentModel,
+} from "@zthun/fashion-circus";
 
 /**
  * Represents the component model for the suspense page.
  */
 export class ZSuspensePageComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZSuspensePage-root';
+  public static readonly Selector = ".ZSuspensePage-root";
 
   /**
    * Gets the rotate loader on the page, or null if there is no suspense.
@@ -14,7 +18,7 @@ export class ZSuspensePageComponentModel extends ZCircusComponentModel {
    *        The current suspense loader.
    */
   public rotate(): Promise<ZSuspenseComponentModel> {
-    return ZCircusBy.first(this.driver, ZSuspenseComponentModel, 'rotate');
+    return ZCircusBy.first(this.driver, ZSuspenseComponentModel, "rotate");
   }
 
   /**
@@ -24,7 +28,7 @@ export class ZSuspensePageComponentModel extends ZCircusComponentModel {
    *        The progress loader.
    */
   public progress(): Promise<ZSuspenseComponentModel> {
-    return ZCircusBy.first(this.driver, ZSuspenseComponentModel, 'progress');
+    return ZCircusBy.first(this.driver, ZSuspenseComponentModel, "progress");
   }
 
   /**
@@ -34,7 +38,7 @@ export class ZSuspensePageComponentModel extends ZCircusComponentModel {
    *        The loading option.
    */
   public loading(): Promise<ZBooleanComponentModel> {
-    return ZCircusBy.first(this.driver, ZBooleanComponentModel, 'loading');
+    return ZCircusBy.first(this.driver, ZBooleanComponentModel, "loading");
   }
 
   /**
@@ -44,6 +48,6 @@ export class ZSuspensePageComponentModel extends ZCircusComponentModel {
    *        The fashion options.
    */
   public fashion(): Promise<ZChoiceComponentModel> {
-    return ZCircusBy.first(this.driver, ZChoiceComponentModel, 'fashion');
+    return ZCircusBy.first(this.driver, ZChoiceComponentModel, "fashion");
   }
 }

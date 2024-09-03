@@ -1,5 +1,9 @@
-import { IZDeviceValueMap, ZFashionDevice, ZSizeFixed } from '@zthun/fashion-tailor';
-import { html } from '@zthun/helpful-fn';
+import {
+  IZDeviceValueMap,
+  ZFashionDevice,
+  ZSizeFixed,
+} from "@zthun/fashion-tailor";
+import { html } from "@zthun/helpful-fn";
 import {
   IZComponentRender,
   IZComponentTemplate,
@@ -8,33 +12,47 @@ import {
   ZComponentRenderOnConnected,
   ZComponentRenderOnEvent,
   ZComponentRenderTemplate,
-  ZComponentShadow
-} from '@zthun/spellcraft';
-import { Property } from 'csstype';
-import { ZDeviceElement, ZPropertyDevice } from '../background/device-element.mjs';
+  ZComponentShadow,
+} from "@zthun/spellcraft";
+import { Property } from "csstype";
+import {
+  ZDeviceElement,
+  ZPropertyDevice,
+} from "../background/device-element.mjs";
 
 export interface ZGridSpanElement extends IZComponentRender {}
 
-@ZComponentRegister('z-grid-span')
-@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.selector('column-start') })
-@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.selector('column-end') })
-@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.selector('row-start') })
-@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.selector('row-end') })
+@ZComponentRegister("z-grid-span")
+@ZComponentRenderOnEvent("change", {
+  selector: ZDeviceElement.selector("column-start"),
+})
+@ZComponentRenderOnEvent("change", {
+  selector: ZDeviceElement.selector("column-end"),
+})
+@ZComponentRenderOnEvent("change", {
+  selector: ZDeviceElement.selector("row-start"),
+})
+@ZComponentRenderOnEvent("change", {
+  selector: ZDeviceElement.selector("row-end"),
+})
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
-@ZComponentClass('ZGridSpan-root')
+@ZComponentClass("ZGridSpan-root")
 @ZComponentShadow()
-export class ZGridSpanElement extends HTMLElement implements IZComponentTemplate {
-  @ZPropertyDevice('column-start', 'auto')
+export class ZGridSpanElement
+  extends HTMLElement
+  implements IZComponentTemplate
+{
+  @ZPropertyDevice("column-start", "auto")
   public columnStart: Required<IZDeviceValueMap<Property.GridColumnStart>>;
 
-  @ZPropertyDevice('column-end', 'auto')
+  @ZPropertyDevice("column-end", "auto")
   public columnEnd: Required<IZDeviceValueMap<Property.GridColumnEnd>>;
 
-  @ZPropertyDevice('row-start', 'auto')
+  @ZPropertyDevice("row-start", "auto")
   public rowStart: Required<IZDeviceValueMap<Property.GridRowStart>>;
 
-  @ZPropertyDevice('row-end', 'auto')
+  @ZPropertyDevice("row-end", "auto")
   public rowEnd: Required<IZDeviceValueMap<Property.GridRowEnd>>;
 
   public template() {

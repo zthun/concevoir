@@ -1,11 +1,11 @@
-import { IZCircusDriver, ZCircusComponentModel } from '@zthun/cirque';
-import { ZFashionArea } from '@zthun/fashion-theme';
+import { IZCircusDriver, ZCircusComponentModel } from "@zthun/cirque";
+import { ZFashionArea } from "@zthun/fashion-theme";
 
 /**
  * Represents a component model for a ZCard component.
  */
 export class ZCardComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZCard-root';
+  public static readonly Selector = ".ZCard-root";
 
   /**
    * Gets the fashion name of the card.
@@ -14,7 +14,7 @@ export class ZCardComponentModel extends ZCircusComponentModel {
    *        The fashion of the card.
    */
   public fashion(): Promise<string> {
-    return this.driver.attribute<string>('fashion', ZFashionArea.Surface);
+    return this.driver.attribute<string>("fashion", ZFashionArea.Surface);
   }
 
   /**
@@ -43,8 +43,8 @@ export class ZCardComponentModel extends ZCircusComponentModel {
    * Gets whether the card is in a loading state.
    */
   public async loading(): Promise<boolean> {
-    const content = await this.driver.attribute('loading');
-    return content !== 'false';
+    const content = await this.driver.attribute("loading");
+    return content !== "false";
   }
 
   /**

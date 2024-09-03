@@ -1,4 +1,4 @@
-import { DataType } from 'csstype';
+import { DataType } from "csstype";
 
 /**
  * Represents a supported color in CSS.

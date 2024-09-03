@@ -1,4 +1,4 @@
-import React, { ReactNode, useMemo } from 'react';
+import React, { ReactNode, useMemo } from "react";
 
 import {
   IZComponentAvatar,
@@ -9,11 +9,11 @@ import {
   IZComponentName,
   IZComponentWidth,
   ZButtonElement,
-  ZDeviceElement
-} from '@zthun/fashion-boutique';
-import { ZDeviceBounds, ZSizeVaried } from '@zthun/fashion-tailor';
-import { IZComponentStyle } from '../component/component-style.mjs';
-import { useWebComponent } from '../component/use-web-component.mjs';
+  ZDeviceElement,
+} from "@zthun/fashion-boutique";
+import { ZDeviceBounds, ZSizeVaried } from "@zthun/fashion-tailor";
+import { IZComponentStyle } from "../component/component-style.mjs";
+import { useWebComponent } from "../component/use-web-component.mjs";
 
 export interface IZButton
   extends IZComponentAvatar<ReactNode>,
@@ -54,10 +54,13 @@ export function ZButton(props: IZButton) {
     outline,
     tooltip,
     width,
-    onClick
+    onClick,
   } = props;
 
-  const $width = useMemo(() => new ZDeviceBounds(width, ZSizeVaried.Fit).toDeviceMap(), [width]);
+  const $width = useMemo(
+    () => new ZDeviceBounds(width, ZSizeVaried.Fit).toDeviceMap(),
+    [width],
+  );
   useWebComponent(ZButtonElement);
   useWebComponent(ZDeviceElement);
 
@@ -73,14 +76,27 @@ export function ZButton(props: IZButton) {
       disabled={disabled || undefined}
       name={name}
       title={tooltip}
-      is='z-button'
+      is="z-button"
       onClick={onClick}
     >
-      <z-device xl={$width.xl} lg={$width.lg} md={$width.md} sm={$width.sm} xs={$width.xs} name='width'></z-device>
-      <div className='ZButton-avatar' style={{ display: avatar ? 'block' : 'none' }}>
+      <z-device
+        xl={$width.xl}
+        lg={$width.lg}
+        md={$width.md}
+        sm={$width.sm}
+        xs={$width.xs}
+        name="width"
+      ></z-device>
+      <div
+        className="ZButton-avatar"
+        style={{ display: avatar ? "block" : "none" }}
+      >
         {avatar}
       </div>
-      <div className='ZButton-label' style={{ display: label ? 'block' : 'none' }}>
+      <div
+        className="ZButton-label"
+        style={{ display: label ? "block" : "none" }}
+      >
         {label}
       </div>
     </button>

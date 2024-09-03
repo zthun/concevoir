@@ -3,24 +3,28 @@ import {
   ZCircusBy,
   ZCircusComponentModel,
   ZCircusKeyboardQwerty,
-  ZCircusWaitOptionsBuilder
-} from '@zthun/cirque';
-import { firstDefined } from '@zthun/helpful-fn';
-import { findIndex } from 'lodash-es';
-import { ZLabelComponentModel } from '../label/label.cm.mjs';
-import { ZChoiceOptionComponentModel } from './choice-option.cm.mjs';
+  ZCircusWaitOptionsBuilder,
+} from "@zthun/cirque";
+import { firstDefined } from "@zthun/helpful-fn";
+import { findIndex } from "lodash-es";
+import { ZLabelComponentModel } from "../label/label.cm.mjs";
+import { ZChoiceOptionComponentModel } from "./choice-option.cm.mjs";
 
 /**
  * Represents a generic common implementation of a ZChoiceComponent model.
  */
 export class ZChoiceComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZChoice-root';
+  public static readonly Selector = ".ZChoice-root";
 
   /**
    * Gets the label for the choice.
    */
   public async label(): Promise<ZLabelComponentModel | null> {
-    const [label] = await ZCircusBy.all(this.driver, ZLabelComponentModel, '.ZChoice-label');
+    const [label] = await ZCircusBy.all(
+      this.driver,
+      ZLabelComponentModel,
+      ".ZChoice-label",
+    );
     return firstDefined(null, label);
   }
 
@@ -31,7 +35,7 @@ export class ZChoiceComponentModel extends ZCircusComponentModel {
    *        The list of selected items.
    */
   public async selected(): Promise<ZChoiceOptionComponentModel[]> {
-    const values = await this.driver.query('.ZChoice-value');
+    const values = await this.driver.query(".ZChoice-value");
     return Array.from(values).map((e) => new ZChoiceOptionComponentModel(e));
   }
 
@@ -43,7 +47,7 @@ export class ZChoiceComponentModel extends ZCircusComponentModel {
    */
   public async disabled(): Promise<boolean> {
     // Choices can currently render inputs or buttons.
-    const input = await this.driver.select('input,button');
+    const input = await this.driver.select("input,button");
     return input.disabled();
   }
 
@@ -55,7 +59,7 @@ export class ZChoiceComponentModel extends ZCircusComponentModel {
    *        options are always displayed.
    */
   public async closable() {
-    const alwaysOpen = await this.driver.classes(['ZChoice-always-open']);
+    const alwaysOpen = await this.driver.classes(["ZChoice-always-open"]);
     return alwaysOpen.length === 0;
   }
 
@@ -73,7 +77,7 @@ export class ZChoiceComponentModel extends ZCircusComponentModel {
     }
 
     const body = await this.driver.body();
-    return body.peek('.ZChoice-options-popup');
+    return body.peek(".ZChoice-options-popup");
   }
 
   /**
@@ -86,12 +90,14 @@ export class ZChoiceComponentModel extends ZCircusComponentModel {
     const opened = await this.opened();
 
     if (!opened) {
-      const toggler = await this.driver.select('.ZChoice-root .ZChoice-toggler');
+      const toggler = await this.driver.select(
+        ".ZChoice-root .ZChoice-toggler",
+      );
       const act = new ZCircusActBuilder().click().build();
       await toggler.perform(act);
       const waitOptions = new ZCircusWaitOptionsBuilder()
         .timeout(2500)
-        .description('Attempting to open the choice component')
+        .description("Attempting to open the choice component")
         .debounce(500)
         .build();
       await toggler.wait(() => this.opened(), waitOptions);
@@ -102,14 +108,14 @@ export class ZChoiceComponentModel extends ZCircusComponentModel {
     if (closable) {
       // The options should be on the body in a popup.
       const body = await this.driver.body();
-      const menu = await body.select('.ZChoice-options-popup');
-      const options = await menu.query('.ZChoice-option');
+      const menu = await body.select(".ZChoice-options-popup");
+      const options = await menu.query(".ZChoice-option");
       return options.map((e) => new ZChoiceOptionComponentModel(e));
     }
 
     // The options are contained in the component itself and we can just get them
     // directly.
-    const options = await this.driver.query('.ZChoice-option');
+    const options = await this.driver.query(".ZChoice-option");
     return options.map((e) => new ZChoiceOptionComponentModel(e));
   }
 
@@ -129,7 +135,9 @@ export class ZChoiceComponentModel extends ZCircusComponentModel {
       return;
     }
 
-    const act = new ZCircusActBuilder().press(ZCircusKeyboardQwerty.escape).build();
+    const act = new ZCircusActBuilder()
+      .press(ZCircusKeyboardQwerty.escape)
+      .build();
     await this.driver.perform(act);
     await this.driver.wait(() => this.opened().then((b) => !b));
   }
@@ -140,7 +148,9 @@ export class ZChoiceComponentModel extends ZCircusComponentModel {
    * @param option -
    *        The option to select.
    */
-  public async select(option: ZChoiceOptionComponentModel | string | number): Promise<void> {
+  public async select(
+    option: ZChoiceOptionComponentModel | string | number,
+  ): Promise<void> {
     const options = await this.open();
     const value = await (option instanceof ZChoiceOptionComponentModel
       ? option.value()
@@ -169,7 +179,7 @@ export class ZChoiceComponentModel extends ZCircusComponentModel {
    * A choice that does not support single click clears will do nothing.
    */
   public async clear(): Promise<void> {
-    const [cross] = await this.driver.query('.ZChoice-clear');
+    const [cross] = await this.driver.query(".ZChoice-clear");
 
     if (!cross) {
       return;

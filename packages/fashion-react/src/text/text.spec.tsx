@@ -1,16 +1,16 @@
-import { IZCircusKey, ZCircusBy, ZCircusKeyboardQwerty } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZTextComponentModel } from '@zthun/fashion-circus';
-import React, { ReactNode } from 'react';
-import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
-import { ZTextArea } from './text-area';
-import { ZTextInput, ZTextType } from './text-input';
-import { ZTextInputReveal } from './text-input-reveal';
+import { IZCircusKey, ZCircusBy, ZCircusKeyboardQwerty } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { ZTextComponentModel } from "@zthun/fashion-circus";
+import React, { ReactNode } from "react";
+import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
+import { ZTextArea } from "./text-area";
+import { ZTextInput, ZTextType } from "./text-input";
+import { ZTextInputReveal } from "./text-input-reveal";
 
 // cspell: disable-next-line
-const LOREM = 'Purus gravida quis blandit turpis cursus in hac habitasse.';
+const LOREM = "Purus gravida quis blandit turpis cursus in hac habitasse.";
 
-describe('ZText', () => {
+describe("ZText", () => {
   let prefix: ReactNode | undefined;
   let suffix: ReactNode | undefined;
   let disabled: boolean | undefined;
@@ -34,9 +34,11 @@ describe('ZText', () => {
     label = undefined;
   });
 
-  const shouldRenderTextValue = async (createTestTarget: () => Promise<ZTextComponentModel>) => {
+  const shouldRenderTextValue = async (
+    createTestTarget: () => Promise<ZTextComponentModel>,
+  ) => {
     // Arrange
-    value = 'My Value';
+    value = "My Value";
     const target = await createTestTarget();
     // Act
     const actual = await target.value();
@@ -44,7 +46,9 @@ describe('ZText', () => {
     expect(actual).toEqual(value);
   };
 
-  const shouldUpdateTextValue = async (createTestTarget: () => Promise<ZTextComponentModel>) => {
+  const shouldUpdateTextValue = async (
+    createTestTarget: () => Promise<ZTextComponentModel>,
+  ) => {
     // Arrange
     const target = await createTestTarget();
     // Act
@@ -60,7 +64,7 @@ describe('ZText', () => {
 
   const shouldRaiseOnValueChange = async (
     createTestTarget: () => Promise<ZTextComponentModel>,
-    commit?: IZCircusKey
+    commit?: IZCircusKey,
   ) => {
     // Arrange
     onValueChange = vi.fn();
@@ -73,19 +77,19 @@ describe('ZText', () => {
 
   const shouldNotRaiseOnValueChange = async (
     createTestTarget: () => Promise<ZTextComponentModel>,
-    commit = ZCircusKeyboardQwerty.altLeft
+    commit = ZCircusKeyboardQwerty.altLeft,
   ) => {
     // Arrange
     onValueChange = vi.fn();
     const target = await createTestTarget();
     // Act
-    await target.keyboard('No commit', commit);
+    await target.keyboard("No commit", commit);
     // Assert
     expect(onValueChange).not.toHaveBeenCalled();
   };
 
   const shouldNotRaiseOnValueChangeIfActualValueIsTheSame = async (
-    createTestTarget: () => Promise<ZTextComponentModel>
+    createTestTarget: () => Promise<ZTextComponentModel>,
   ) => {
     // Arrange
     onValueChange = vi.fn();
@@ -97,7 +101,9 @@ describe('ZText', () => {
     expect(onValueChange).not.toHaveBeenCalled();
   };
 
-  const shouldBeDisabled = async (createTestTarget: () => Promise<ZTextComponentModel>) => {
+  const shouldBeDisabled = async (
+    createTestTarget: () => Promise<ZTextComponentModel>,
+  ) => {
     // Arrange
     disabled = true;
     const target = await createTestTarget();
@@ -107,7 +113,9 @@ describe('ZText', () => {
     expect(actual).toBeTruthy();
   };
 
-  const shouldBeReadOnly = async (createTestTarget: () => Promise<ZTextComponentModel>) => {
+  const shouldBeReadOnly = async (
+    createTestTarget: () => Promise<ZTextComponentModel>,
+  ) => {
     // Arrange
     readOnly = true;
     const target = await createTestTarget();
@@ -117,7 +125,10 @@ describe('ZText', () => {
     expect(actual).toBeTruthy();
   };
 
-  const shouldBeMasked = async (expected: boolean, createTestTarget: () => Promise<ZTextComponentModel>) => {
+  const shouldBeMasked = async (
+    expected: boolean,
+    createTestTarget: () => Promise<ZTextComponentModel>,
+  ) => {
     // Arrange
     const target = await createTestTarget();
     // Act
@@ -126,9 +137,11 @@ describe('ZText', () => {
     expect(actual).toEqual(expected);
   };
 
-  const shouldBeRequired = async (createTestTarget: () => Promise<ZTextComponentModel>) => {
+  const shouldBeRequired = async (
+    createTestTarget: () => Promise<ZTextComponentModel>,
+  ) => {
     // Arrange
-    label = 'Required Text Component';
+    label = "Required Text Component";
     required = true;
     const target = await createTestTarget();
     // Act
@@ -137,9 +150,11 @@ describe('ZText', () => {
     expect(actual).toBeTruthy();
   };
 
-  const shouldRenderPrefix = async (createTestTarget: () => Promise<ZTextComponentModel>) => {
+  const shouldRenderPrefix = async (
+    createTestTarget: () => Promise<ZTextComponentModel>,
+  ) => {
     // Arrange
-    const expected = 'ZText-prefix-content';
+    const expected = "ZText-prefix-content";
     prefix = <div className={expected}>Prefix</div>;
     const target = await createTestTarget();
     // Act
@@ -148,9 +163,11 @@ describe('ZText', () => {
     expect(actual).toBeTruthy();
   };
 
-  const shouldRenderSuffix = async (createTestTarget: () => Promise<ZTextComponentModel>) => {
+  const shouldRenderSuffix = async (
+    createTestTarget: () => Promise<ZTextComponentModel>,
+  ) => {
     // Arrange
-    const expected = 'ZText-suffix-content';
+    const expected = "ZText-suffix-content";
     suffix = <div className={expected}>Suffix</div>;
     const target = await createTestTarget();
     // Act
@@ -159,7 +176,9 @@ describe('ZText', () => {
     expect(actual).toBeTruthy();
   };
 
-  const shouldRenderNoAdornments = async (createTestTarget: () => Promise<ZTextComponentModel>) => {
+  const shouldRenderNoAdornments = async (
+    createTestTarget: () => Promise<ZTextComponentModel>,
+  ) => {
     // Arrange
     prefix = null;
     suffix = null;
@@ -171,7 +190,7 @@ describe('ZText', () => {
     expect(_prefix || _suffix).toBeFalsy();
   };
 
-  describe('Input', () => {
+  describe("Input", () => {
     async function createTestTarget(type?: ZTextType) {
       const element = (
         <ZTextInput
@@ -190,63 +209,69 @@ describe('ZText', () => {
       return ZCircusBy.first(driver, ZTextComponentModel);
     }
 
-    it('should render the text value', async () => {
+    it("should render the text value", async () => {
       await shouldRenderTextValue(createTestTarget);
     });
 
-    it('should update the value when the user types', async () => {
+    it("should update the value when the user types", async () => {
       await shouldUpdateTextValue(createTestTarget);
     });
 
-    it('should raise the onValueChange event when the user types a value and commits with tab', async () => {
+    it("should raise the onValueChange event when the user types a value and commits with tab", async () => {
       await shouldRaiseOnValueChange(createTestTarget);
     });
 
-    it('should raise the onValueChange event when the user types a value and commits with enter', async () => {
-      await shouldRaiseOnValueChange(createTestTarget, ZCircusKeyboardQwerty.enter);
+    it("should raise the onValueChange event when the user types a value and commits with enter", async () => {
+      await shouldRaiseOnValueChange(
+        createTestTarget,
+        ZCircusKeyboardQwerty.enter,
+      );
     });
 
-    it('should not raise the onValueChange until the user commits the value', async () => {
+    it("should not raise the onValueChange until the user commits the value", async () => {
       await shouldNotRaiseOnValueChange(createTestTarget);
     });
 
-    it('should not raise the onValueChange if the user commits when the value is the same', async () => {
+    it("should not raise the onValueChange if the user commits when the value is the same", async () => {
       await shouldNotRaiseOnValueChangeIfActualValueIsTheSame(createTestTarget);
     });
 
-    it('should be disabled', async () => {
+    it("should be disabled", async () => {
       await shouldBeDisabled(createTestTarget);
     });
 
-    it('should be readOnly', async () => {
+    it("should be readOnly", async () => {
       await shouldBeReadOnly(createTestTarget);
     });
 
-    it('should be required', async () => {
+    it("should be required", async () => {
       await shouldBeRequired(createTestTarget);
     });
 
-    it('should render the prefix adornment', async () => {
+    it("should render the prefix adornment", async () => {
       await shouldRenderPrefix(createTestTarget);
     });
 
-    it('should render the suffix adornment', async () => {
+    it("should render the suffix adornment", async () => {
       await shouldRenderSuffix(createTestTarget);
     });
 
-    it('should render no adornments when not specified', async () => {
+    it("should render no adornments when not specified", async () => {
       await shouldRenderNoAdornments(createTestTarget);
     });
 
-    it('should have revealed text for a text type', async () => {
+    it("should have revealed text for a text type", async () => {
       await shouldBeMasked(false, createTestTarget.bind(null, ZTextType.Text));
     });
 
-    it('should have masked text for a password type', async () => {
-      await shouldBeMasked(true, createTestTarget.bind(null, ZTextType.Password));
+    it("should have masked text for a password type", async () => {
+      await shouldBeMasked(
+        true,
+        createTestTarget.bind(null, ZTextType.Password),
+      );
     });
 
-    it('should not be able to toggle revealed text', async () => {
+    it("should not be able to toggle revealed text", async () => {
       // Arrange.
       const target = await createTestTarget(ZTextType.Text);
       await target.reveal();
@@ -256,7 +281,7 @@ describe('ZText', () => {
       expect(actual).toBeFalsy();
     });
 
-    it('should not be able to toggle masked text', async () => {
+    it("should not be able to toggle masked text", async () => {
       // Arrange.
       const target = await createTestTarget(ZTextType.Password);
       await target.mask();
@@ -267,7 +292,7 @@ describe('ZText', () => {
     });
   });
 
-  describe('Reveal', () => {
+  describe("Reveal", () => {
     async function createTestTarget() {
       const element = (
         <ZTextInputReveal
@@ -285,55 +310,58 @@ describe('ZText', () => {
       return ZCircusBy.first(driver, ZTextComponentModel);
     }
 
-    it('should render the text value', async () => {
+    it("should render the text value", async () => {
       await shouldRenderTextValue(createTestTarget);
     });
 
-    it('should update the value as the user types', async () => {
+    it("should update the value as the user types", async () => {
       await shouldUpdateTextValue(createTestTarget);
     });
 
-    it('should raise the onValueChange event when the user types a value and commits with tab', async () => {
+    it("should raise the onValueChange event when the user types a value and commits with tab", async () => {
       await shouldRaiseOnValueChange(createTestTarget);
     });
 
-    it('should raise the onValueChange event when the user types a value and commits with enter', async () => {
-      await shouldRaiseOnValueChange(createTestTarget, ZCircusKeyboardQwerty.enter);
+    it("should raise the onValueChange event when the user types a value and commits with enter", async () => {
+      await shouldRaiseOnValueChange(
+        createTestTarget,
+        ZCircusKeyboardQwerty.enter,
+      );
     });
 
-    it('should not raise the onValueChange until the user commits the value', async () => {
+    it("should not raise the onValueChange until the user commits the value", async () => {
       await shouldNotRaiseOnValueChange(createTestTarget);
     });
 
-    it('should not raise the onValueChange if the user commits when the value is the same', async () => {
+    it("should not raise the onValueChange if the user commits when the value is the same", async () => {
       await shouldNotRaiseOnValueChangeIfActualValueIsTheSame(createTestTarget);
     });
 
-    it('should be disabled', async () => {
+    it("should be disabled", async () => {
       await shouldBeDisabled(createTestTarget);
     });
 
-    it('should be readOnly', async () => {
+    it("should be readOnly", async () => {
       await shouldBeReadOnly(createTestTarget);
     });
 
-    it('should be required', async () => {
+    it("should be required", async () => {
       await shouldBeRequired(createTestTarget);
     });
 
-    it('should start as masked', async () => {
+    it("should start as masked", async () => {
       await shouldBeMasked(true, createTestTarget);
     });
 
-    it('should render the prefix adornment', async () => {
+    it("should render the prefix adornment", async () => {
       await shouldRenderPrefix(createTestTarget);
     });
 
-    it('should render the suffix adornment', async () => {
+    it("should render the suffix adornment", async () => {
       await shouldRenderSuffix(createTestTarget);
     });
 
-    it('should toggle the text from masked to revealed', async () => {
+    it("should toggle the text from masked to revealed", async () => {
       // Arrange
       const target = await createTestTarget();
       await target.mask();
@@ -343,7 +371,7 @@ describe('ZText', () => {
       expect(actual).toBeTruthy();
     });
 
-    it('should toggle the text from revealed to masked', async () => {
+    it("should toggle the text from revealed to masked", async () => {
       // Arrange
       const target = await createTestTarget();
       await target.reveal();
@@ -354,7 +382,7 @@ describe('ZText', () => {
     });
   });
 
-  describe('Area', () => {
+  describe("Area", () => {
     async function createTestTarget() {
       const element = (
         <ZTextArea
@@ -373,66 +401,69 @@ describe('ZText', () => {
       return ZCircusBy.first(driver, ZTextComponentModel);
     }
 
-    it('should render the text value', async () => {
+    it("should render the text value", async () => {
       await shouldRenderTextValue(createTestTarget);
     });
 
-    it('should render a multi line text value', async () => {
+    it("should render a multi line text value", async () => {
       // Arrange
       const target = await createTestTarget();
       const paragraphs = [LOREM, LOREM, LOREM];
-      const expected = paragraphs.join('\n\n').concat('\n\n');
+      const expected = paragraphs.join("\n\n").concat("\n\n");
       // Act
       const actual = await target.essay(paragraphs);
       // Assert
       expect(actual).toEqual(expected);
     });
 
-    it('should raise the onValueChange event when the user types a value and commits with tab', async () => {
+    it("should raise the onValueChange event when the user types a value and commits with tab", async () => {
       await shouldRaiseOnValueChange(createTestTarget);
     });
 
-    it('should not raise the onValueChange event when the user types a value and commits with enter', async () => {
-      await shouldNotRaiseOnValueChange(createTestTarget, ZCircusKeyboardQwerty.enter);
+    it("should not raise the onValueChange event when the user types a value and commits with enter", async () => {
+      await shouldNotRaiseOnValueChange(
+        createTestTarget,
+        ZCircusKeyboardQwerty.enter,
+      );
     });
 
-    it('should not raise the onValueChange until the user commits the value', async () => {
+    it("should not raise the onValueChange until the user commits the value", async () => {
       await shouldNotRaiseOnValueChange(createTestTarget);
     });
 
-    it('should raise the onValueChange event when the user types a value', async () => {
+    it("should raise the onValueChange event when the user types a value", async () => {
       await shouldRaiseOnValueChange(createTestTarget);
     });
 
-    it('should not raise the onValueChange if the user commits when the value is the same', async () => {
+    it("should not raise the onValueChange if the user commits when the value is the same", async () => {
       await shouldNotRaiseOnValueChangeIfActualValueIsTheSame(createTestTarget);
     });
 
-    it('should be disabled', async () => {
+    it("should be disabled", async () => {
       await shouldBeDisabled(createTestTarget);
     });
 
-    it('should be readOnly', async () => {
+    it("should be readOnly", async () => {
       await shouldBeReadOnly(createTestTarget);
     });
 
-    it('should be required', async () => {
+    it("should be required", async () => {
       await shouldBeRequired(createTestTarget);
     });
 
-    it('should render the prefix adornment', async () => {
+    it("should render the prefix adornment", async () => {
       await shouldRenderPrefix(createTestTarget);
     });
 
-    it('should render the suffix adornment', async () => {
+    it("should render the suffix adornment", async () => {
       await shouldRenderSuffix(createTestTarget);
     });
 
-    it('should render no adornments when not specified', async () => {
+    it("should render no adornments when not specified", async () => {
       await shouldRenderNoAdornments(createTestTarget);
     });
 
-    it('should not have masked text', async () => {
+    it("should not have masked text", async () => {
       await shouldBeMasked(false, createTestTarget);
     });
   });

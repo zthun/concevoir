@@ -1,11 +1,11 @@
-import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import React from 'react';
-import { afterEach, describe, expect, it } from 'vitest';
-import { ZYouTubePage } from './you-tube-page';
-import { ZYouTubePageComponentModel } from './you-tube-page.cm.mjs';
+import { IZCircusDriver, IZCircusSetup, ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import React from "react";
+import { afterEach, describe, expect, it } from "vitest";
+import { ZYouTubePage } from "./you-tube-page";
+import { ZYouTubePageComponentModel } from "./you-tube-page.cm.mjs";
 
-describe('ZYouTubePage', () => {
+describe("ZYouTubePage", () => {
   let _renderer: IZCircusSetup<IZCircusDriver>;
   let _driver: IZCircusDriver;
 
@@ -21,7 +21,7 @@ describe('ZYouTubePage', () => {
     await _driver?.destroy?.call(_driver);
   });
 
-  it('should render the page', async () => {
+  it("should render the page", async () => {
     // Arrange.
     // Act.
     const target = await createTestTarget();

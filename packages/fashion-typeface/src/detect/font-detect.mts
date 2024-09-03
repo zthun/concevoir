@@ -1,4 +1,4 @@
-import { ZFontFamily } from '../font/font-family.mjs';
+import { ZFontFamily } from "../font/font-family.mjs";
 
 /**
  * Represents an object that can be used to detect if a font is available.

@@ -9,10 +9,10 @@ import {
   createSizeChartFixedCss,
   createSizeChartFixedGeometric,
   createSizeChartVariedCss,
-  createSizeChartVoidCss
-} from '@zthun/fashion-tailor';
-import { ZFashionIntrinsic } from '@zthun/fashion-theme';
-import { IZQuadrilateral, html } from '@zthun/helpful-fn';
+  createSizeChartVoidCss,
+} from "@zthun/fashion-tailor";
+import { ZFashionIntrinsic } from "@zthun/fashion-theme";
+import { IZQuadrilateral, html } from "@zthun/helpful-fn";
 import {
   IZComponentRender,
   IZComponentTemplate,
@@ -22,39 +22,50 @@ import {
   ZComponentRenderOnConnected,
   ZComponentRenderOnEvent,
   ZComponentRenderTemplate,
-  ZComponentShadow
-} from '@zthun/spellcraft';
-import { Property } from 'csstype';
-import { ZDeviceElement, ZPropertyDeviceWidth } from '../background/device-element.mjs';
+  ZComponentShadow,
+} from "@zthun/spellcraft";
+import { Property } from "csstype";
+import {
+  ZDeviceElement,
+  ZPropertyDeviceWidth,
+} from "../background/device-element.mjs";
 import {
   ZPropertyQuadrilateralEdge,
   ZPropertyQuadrilateralMargin,
   ZPropertyQuadrilateralPadding,
   ZPropertyQuadrilateralTrim,
-  ZQuadrilateralElement
-} from '../background/quadrilateral-element.mjs';
-import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
-import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
+  ZQuadrilateralElement,
+} from "../background/quadrilateral-element.mjs";
+import {
+  IZComponentFashion,
+  ZFashionDetail,
+} from "../component/component-fashion.mjs";
+import { ZFashionTailorElement } from "../theme/fashion-tailor-element.mjs";
 
 export interface ZBoxElement extends IZComponentRender {}
 
-@ZComponentRegister('z-box')
-@ZComponentRenderOnEvent('change', { selector: ZQuadrilateralElement.edge() })
-@ZComponentRenderOnEvent('change', { selector: ZQuadrilateralElement.margin() })
-@ZComponentRenderOnEvent('change', { selector: ZQuadrilateralElement.padding() })
-@ZComponentRenderOnEvent('change', { selector: ZQuadrilateralElement.trim() })
-@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.width() })
+@ZComponentRegister("z-box")
+@ZComponentRenderOnEvent("change", { selector: ZQuadrilateralElement.edge() })
+@ZComponentRenderOnEvent("change", { selector: ZQuadrilateralElement.margin() })
+@ZComponentRenderOnEvent("change", {
+  selector: ZQuadrilateralElement.padding(),
+})
+@ZComponentRenderOnEvent("change", { selector: ZQuadrilateralElement.trim() })
+@ZComponentRenderOnEvent("change", { selector: ZDeviceElement.width() })
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
 @ZComponentShadow()
-export class ZBoxElement extends HTMLElement implements IZComponentFashion, IZComponentTemplate {
-  public static readonly observedAttributes = ['tabIndex', 'fashion'];
+export class ZBoxElement
+  extends HTMLElement
+  implements IZComponentFashion, IZComponentTemplate
+{
+  public static readonly observedAttributes = ["tabIndex", "fashion"];
 
   public static readonly SizeChart = Object.freeze({
-    ...createSizeChartFixedCss(createSizeChartFixedGeometric(1.4, 18), 'rem'),
+    ...createSizeChartFixedCss(createSizeChartFixedGeometric(1.4, 18), "rem"),
     ...createSizeChartVariedCss(),
-    ...createSizeChartVoidCss()
+    ...createSizeChartVoidCss(),
   });
 
   @ZAttribute({ fallback: ZFashionIntrinsic.Inherit })
@@ -72,7 +83,7 @@ export class ZBoxElement extends HTMLElement implements IZComponentFashion, IZCo
   @ZPropertyQuadrilateralPadding(ZSizeVoid.None)
   public padding: IZQuadrilateral<ZGapSize>;
 
-  @ZPropertyQuadrilateralTrim('none')
+  @ZPropertyQuadrilateralTrim("none")
   public trim: IZQuadrilateral<Property.BorderStyle>;
 
   public template() {
@@ -85,22 +96,24 @@ export class ZBoxElement extends HTMLElement implements IZComponentFashion, IZCo
     return html`
       <style>
         :host {
-          background-color: ${detail.color('main')};
-          border: ${detail.color('border')};
+          background-color: ${detail.color("main")};
+          border: ${detail.color("border")};
 
           border-bottom-style: ${trim.bottom};
           border-left-style: ${trim.left};
           border-right-style: ${trim.right};
           border-top-style: ${trim.top};
 
-          border-bottom-width: ${ZFashionTailorElement.thicknessVar(edge.bottom)};
+          border-bottom-width: ${ZFashionTailorElement.thicknessVar(
+            edge.bottom,
+          )};
           border-left-width: ${ZFashionTailorElement.thicknessVar(edge.left)};
           border-right-width: ${ZFashionTailorElement.thicknessVar(edge.right)};
           border-top-width: ${ZFashionTailorElement.thicknessVar(edge?.top)};
 
           display: block;
-          color: ${detail.color('contrast')};
-          cursor: ${focusable ? 'pointer' : 'default'};
+          color: ${detail.color("contrast")};
+          cursor: ${focusable ? "pointer" : "default"};
 
           padding-bottom: ${ZFashionTailorElement.gapVar(padding.bottom)};
           padding-left: ${ZFashionTailorElement.gapVar(padding.left)};
@@ -116,15 +129,27 @@ export class ZBoxElement extends HTMLElement implements IZComponentFashion, IZCo
         }
 
         :host(:focus) {
-          background-color: ${focusable ? detail.color('focus.main') : detail.color('main')};
-          border-color: ${focusable ? detail.color('focus.border') : detail.color('border')};
-          color: ${focusable ? detail.color('focus.contrast') : detail.color('contrast')};
+          background-color: ${focusable
+            ? detail.color("focus.main")
+            : detail.color("main")};
+          border-color: ${focusable
+            ? detail.color("focus.border")
+            : detail.color("border")};
+          color: ${focusable
+            ? detail.color("focus.contrast")
+            : detail.color("contrast")};
         }
 
         :host(:hover) {
-          background-color: ${focusable ? detail.color('hover.main') : detail.color('main')};
-          border-color: ${focusable ? detail.color('hover.border') : detail.color('border')};
-          color: ${focusable ? detail.color('hover.contrast') : detail.color('contrast')};
+          background-color: ${focusable
+            ? detail.color("hover.main")
+            : detail.color("main")};
+          border-color: ${focusable
+            ? detail.color("hover.border")
+            : detail.color("border")};
+          color: ${focusable
+            ? detail.color("hover.contrast")
+            : detail.color("contrast")};
         }
 
         ${device.break(ZSizeFixed.Large)} {

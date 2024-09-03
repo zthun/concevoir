@@ -14,5 +14,11 @@
       "@zthun/fashion-circus": ["../fashion-circus/src/index"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "features/**/*.ts", "src/**/*.mts", "features/**/*.mts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "features/**/*.ts",
+    "src/**/*.mts",
+    "features/**/*.mts"
+  ]
 }

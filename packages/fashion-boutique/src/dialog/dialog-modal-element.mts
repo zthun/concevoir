@@ -4,10 +4,10 @@ import {
   ZSizeFixed,
   ZSizeVaried,
   createSizeChartFixedArithmetic,
-  createSizeChartFixedCss
-} from '@zthun/fashion-tailor';
-import { ZFashionArea } from '@zthun/fashion-theme';
-import { css } from '@zthun/helpful-fn';
+  createSizeChartFixedCss,
+} from "@zthun/fashion-tailor";
+import { ZFashionArea } from "@zthun/fashion-theme";
+import { css } from "@zthun/helpful-fn";
 import {
   IZComponentRender,
   ZComponentClass,
@@ -15,31 +15,38 @@ import {
   ZComponentRenderOnAttributeChanged,
   ZComponentRenderOnConnected,
   ZComponentRenderOnEvent,
-  ZComponentShadow
-} from '@zthun/spellcraft';
-import { ZDeviceElement, ZPropertyDeviceHeight, ZPropertyDeviceWidth } from '../background/device-element.mjs';
-import { ZFashionDetail } from '../component/component-fashion.mjs';
-import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
-import { ZDialogElement } from './dialog-element.mjs';
+  ZComponentShadow,
+} from "@zthun/spellcraft";
+import {
+  ZDeviceElement,
+  ZPropertyDeviceHeight,
+  ZPropertyDeviceWidth,
+} from "../background/device-element.mjs";
+import { ZFashionDetail } from "../component/component-fashion.mjs";
+import { ZFashionTailorElement } from "../theme/fashion-tailor-element.mjs";
+import { ZDialogElement } from "./dialog-element.mjs";
 
-@ZComponentRegister('z-dialog-modal')
-@ZComponentClass('ZDialog-root', 'ZDialog-modal')
-@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.width() })
-@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.height() })
+@ZComponentRegister("z-dialog-modal")
+@ZComponentClass("ZDialog-root", "ZDialog-modal")
+@ZComponentRenderOnEvent("change", { selector: ZDeviceElement.width() })
+@ZComponentRenderOnEvent("change", { selector: ZDeviceElement.height() })
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentShadow()
-export class ZDialogModalElement extends ZDialogElement implements IZComponentRender {
+export class ZDialogModalElement
+  extends ZDialogElement
+  implements IZComponentRender
+{
   public static readonly SizeChartWidth = Object.freeze({
-    ...createSizeChartFixedCss(createSizeChartFixedArithmetic(10, 20), 'rem'),
-    [ZSizeVaried.Full]: 'auto',
-    [ZSizeVaried.Fit]: undefined
+    ...createSizeChartFixedCss(createSizeChartFixedArithmetic(10, 20), "rem"),
+    [ZSizeVaried.Full]: "auto",
+    [ZSizeVaried.Fit]: undefined,
   });
 
   public static readonly SizeChartHeight = Object.freeze({
-    ...createSizeChartFixedCss(createSizeChartFixedArithmetic(3, 20), 'rem'),
-    [ZSizeVaried.Full]: 'auto',
-    [ZSizeVaried.Fit]: undefined
+    ...createSizeChartFixedCss(createSizeChartFixedArithmetic(3, 20), "rem"),
+    [ZSizeVaried.Full]: "auto",
+    [ZSizeVaried.Fit]: undefined,
   });
 
   @ZPropertyDeviceWidth(ZSizeVaried.Fit)
@@ -58,7 +65,8 @@ export class ZDialogModalElement extends ZDialogElement implements IZComponentRe
 
     // https://github.com/capricorn86/happy-dom/issues/564
     /* istanbul ignore next --@preserve */
-    const marginFor = (x: ZSizeFixed | ZSizeVaried) => (x === ZSizeVaried.Full ? 0 : 'auto');
+    const marginFor = (x: ZSizeFixed | ZSizeVaried) =>
+      x === ZSizeVaried.Full ? 0 : "auto";
 
     return css`
       @keyframes fade {
@@ -71,9 +79,9 @@ export class ZDialogModalElement extends ZDialogElement implements IZComponentRe
       }
 
       dialog {
-        background-color: ${surface.color('main')};
+        background-color: ${surface.color("main")};
         border: 0;
-        color: ${surface.color('contrast')};
+        color: ${surface.color("contrast")};
         height: ${ZDialogModalElement.SizeChartHeight[height.xl]};
         margin-bottom: ${marginFor(height.xl)};
         margin-left: ${marginFor(width.xl)};
@@ -106,8 +114,8 @@ export class ZDialogModalElement extends ZDialogElement implements IZComponentRe
       }
 
       .ZDialog-header {
-        background-color: ${detail.color('main')};
-        color: ${detail.color('contrast')};
+        background-color: ${detail.color("main")};
+        color: ${detail.color("contrast")};
       }
 
       .ZDialog-content {

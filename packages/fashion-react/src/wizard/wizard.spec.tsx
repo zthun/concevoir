@@ -1,11 +1,11 @@
-import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZWizardComponentModel } from '@zthun/fashion-circus';
-import React from 'react';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { ZWizard } from './wizard';
+import { IZCircusDriver, IZCircusSetup, ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { ZWizardComponentModel } from "@zthun/fashion-circus";
+import React from "react";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { ZWizard } from "./wizard";
 
-describe('ZWizard', () => {
+describe("ZWizard", () => {
   let page1Disabled: boolean | undefined;
   let lastPageDisabled: boolean | undefined;
   let _renderer: IZCircusSetup<IZCircusDriver>;
@@ -14,11 +14,11 @@ describe('ZWizard', () => {
   const createTestTarget = async () => {
     const element = (
       <ZWizard>
-        <div data-name='Page 1' data-next-disabled={page1Disabled}>
+        <div data-name="Page 1" data-next-disabled={page1Disabled}>
           Page 1
         </div>
-        <div data-name='Page 2'>Page 2</div>
-        <div data-name='Page 3' data-next-disabled={lastPageDisabled}>
+        <div data-name="Page 2">Page 2</div>
+        <div data-name="Page 3" data-next-disabled={lastPageDisabled}>
           Page 3
         </div>
       </ZWizard>
@@ -39,9 +39,9 @@ describe('ZWizard', () => {
     await _driver?.destroy?.call(_driver);
   });
 
-  describe('Navigation', () => {
-    describe('Next', () => {
-      it('should move to the next page', async () => {
+  describe("Navigation", () => {
+    describe("Next", () => {
+      it("should move to the next page", async () => {
         // Arrange.
         const target = await createTestTarget();
         const current = await target.page();
@@ -52,7 +52,7 @@ describe('ZWizard', () => {
         expect(actual).toEqual(current + 1);
       });
 
-      it('should be hidden on the last page', async () => {
+      it("should be hidden on the last page", async () => {
         // Arrange.
         const target = await createTestTarget();
         const next = await target.next();
@@ -64,7 +64,7 @@ describe('ZWizard', () => {
         expect(actual).toBeNull();
       });
 
-      it('should disable the next button if the data disabled flag is truthy', async () => {
+      it("should disable the next button if the data disabled flag is truthy", async () => {
         // Arrange.
         page1Disabled = true;
         const target = await createTestTarget();
@@ -76,8 +76,8 @@ describe('ZWizard', () => {
       });
     });
 
-    describe('Previous', () => {
-      it('should move to the previous page', async () => {
+    describe("Previous", () => {
+      it("should move to the previous page", async () => {
         // Arrange.
         const target = await createTestTarget();
         const next = await target.next();
@@ -92,7 +92,7 @@ describe('ZWizard', () => {
         expect(actual).toEqual(current - 1);
       });
 
-      it('should be disabled if the current page is the first page', async () => {
+      it("should be disabled if the current page is the first page", async () => {
         // Arrange.
         const target = await createTestTarget();
         const previous = await target.previous();
@@ -103,8 +103,8 @@ describe('ZWizard', () => {
       });
     });
 
-    describe('Finish', () => {
-      it('should be shown on the last page.', async () => {
+    describe("Finish", () => {
+      it("should be shown on the last page.", async () => {
         // Arrange.
         const target = await createTestTarget();
         const next = await target.next();
@@ -116,7 +116,7 @@ describe('ZWizard', () => {
         expect(actual).toBeTruthy();
       });
 
-      it('should be hidden before the last page.', async () => {
+      it("should be hidden before the last page.", async () => {
         // Arrange.
         const target = await createTestTarget();
         // Act.
@@ -125,7 +125,7 @@ describe('ZWizard', () => {
         expect(actual).toBeNull();
       });
 
-      it('should be disabled if the data next disabled flag is true', async () => {
+      it("should be disabled if the data next disabled flag is true", async () => {
         // Arrange.
         lastPageDisabled = true;
         const target = await createTestTarget();

@@ -1,5 +1,5 @@
-import { ZFontFamily } from './font-family.mjs';
-import { ZFontUnit } from './font-unit.mjs';
+import { ZFontFamily } from "./font-family.mjs";
+import { ZFontUnit } from "./font-unit.mjs";
 
 export interface IZFashionTypography {
   families: ZFontFamily[];
@@ -13,8 +13,8 @@ export class ZFashionTypographyBuilder {
   public constructor() {
     this._typography = {
       families: [ZFontFamily.Roboto, ZFontFamily.Arial],
-      unit: 'em',
-      size: 1
+      unit: "em",
+      size: 1,
     };
   }
 

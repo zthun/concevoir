@@ -1,13 +1,15 @@
-import { ZCircusComponentModel } from '@zthun/cirque';
-import { ZListItemComponentModel } from './list-item.cm.mjs';
+import { ZCircusComponentModel } from "@zthun/cirque";
+import { ZListItemComponentModel } from "./list-item.cm.mjs";
 
-export type ZListItemConstructor<T> = new (originator: ZListItemComponentModel) => T;
+export type ZListItemConstructor<T> = new (
+  originator: ZListItemComponentModel,
+) => T;
 
 /**
  * Represents a component model for a list.
  */
 export class ZListComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZList-root';
+  public static readonly Selector = ".ZList-root";
 
   /**
    * Finds all underlying items and returns them.
@@ -16,7 +18,9 @@ export class ZListComponentModel extends ZCircusComponentModel {
    *        All child items for this component model.
    */
   public async items(): Promise<ZListItemComponentModel[]> {
-    const candidates = await this.driver.query(ZListItemComponentModel.Selector);
+    const candidates = await this.driver.query(
+      ZListItemComponentModel.Selector,
+    );
     const items = candidates.map((c) => new ZListItemComponentModel(c));
     return Promise.resolve(items);
   }

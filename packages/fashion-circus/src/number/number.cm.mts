@@ -4,16 +4,16 @@ import {
   ZCircusActBuilder,
   ZCircusBy,
   ZCircusComponentModel,
-  ZCircusKeyboardQwerty
-} from '@zthun/cirque';
-import { firstDefined } from '@zthun/helpful-fn';
-import { ZLabelComponentModel } from '../label/label.cm.mjs';
+  ZCircusKeyboardQwerty,
+} from "@zthun/cirque";
+import { firstDefined } from "@zthun/helpful-fn";
+import { ZLabelComponentModel } from "../label/label.cm.mjs";
 
 /**
  * Represents the component model for a number component.
  */
 export class ZNumberComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZNumber-root';
+  public static readonly Selector = ".ZNumber-root";
 
   /**
    * Gets the underlying input.
@@ -23,7 +23,7 @@ export class ZNumberComponentModel extends ZCircusComponentModel {
    *        actual numeric form value.
    */
   private _input(): Promise<IZCircusDriver> {
-    return this.driver.select('input');
+    return this.driver.select("input");
   }
 
   /**
@@ -34,7 +34,7 @@ export class ZNumberComponentModel extends ZCircusComponentModel {
    */
   public async step(): Promise<number> {
     const input = await this._input();
-    return +firstDefined('1', await input.attribute('step'));
+    return +firstDefined("1", await input.attribute("step"));
   }
 
   /**
@@ -45,7 +45,7 @@ export class ZNumberComponentModel extends ZCircusComponentModel {
    */
   public async min(): Promise<number> {
     const input = await this._input();
-    return +firstDefined('0', await input.attribute('min'));
+    return +firstDefined("0", await input.attribute("min"));
   }
 
   /**
@@ -56,7 +56,7 @@ export class ZNumberComponentModel extends ZCircusComponentModel {
    */
   public async max(): Promise<number> {
     const input = await this._input();
-    return +firstDefined('100', await input.attribute('max'));
+    return +firstDefined("100", await input.attribute("max"));
   }
 
   /**
@@ -81,7 +81,11 @@ export class ZNumberComponentModel extends ZCircusComponentModel {
    *        the empty string if there is no label.
    */
   public async label(): Promise<ZLabelComponentModel | null> {
-    const [label] = await ZCircusBy.all(this.driver, ZLabelComponentModel, '.ZNumber-label');
+    const [label] = await ZCircusBy.all(
+      this.driver,
+      ZLabelComponentModel,
+      ".ZNumber-label",
+    );
     return firstDefined(null, label);
   }
 
@@ -103,8 +107,15 @@ export class ZNumberComponentModel extends ZCircusComponentModel {
    * @returns
    *        The input value.
    */
-  private async _spinClick(direction: 1 | -1, times: number, repeater: IZCircusKey): Promise<number | null> {
-    const query = direction > 0 ? '.ZNumber-spinner-increment' : '.ZNumber-spinner-decrement';
+  private async _spinClick(
+    direction: 1 | -1,
+    times: number,
+    repeater: IZCircusKey,
+  ): Promise<number | null> {
+    const query =
+      direction > 0
+        ? ".ZNumber-spinner-increment"
+        : ".ZNumber-spinner-decrement";
     const [spinner] = await this.driver.query(query);
 
     if (times > 0) {
@@ -129,10 +140,16 @@ export class ZNumberComponentModel extends ZCircusComponentModel {
    * @returns
    *        The input value.
    */
-  private async _spinPress(direction: 1 | -1, times: number): Promise<number | null> {
+  private async _spinPress(
+    direction: 1 | -1,
+    times: number,
+  ): Promise<number | null> {
     const input = await this._input();
 
-    const dir = direction > 0 ? ZCircusKeyboardQwerty.upArrow : ZCircusKeyboardQwerty.downArrow;
+    const dir =
+      direction > 0
+        ? ZCircusKeyboardQwerty.upArrow
+        : ZCircusKeyboardQwerty.downArrow;
 
     for (let i = 0; i < times; ++i) {
       await input.perform(new ZCircusActBuilder().click().press(dir).build());
@@ -156,7 +173,10 @@ export class ZNumberComponentModel extends ZCircusComponentModel {
    * @returns
    *        The value of the input.
    */
-  public increment(times = 1, repeater = ZCircusKeyboardQwerty.enter): Promise<number | null> {
+  public increment(
+    times = 1,
+    repeater = ZCircusKeyboardQwerty.enter,
+  ): Promise<number | null> {
     return this._spinClick(1, times, repeater);
   }
 
@@ -189,7 +209,10 @@ export class ZNumberComponentModel extends ZCircusComponentModel {
    * @returns
    *        The value of the input.
    */
-  public decrement(times = 1, repeater = ZCircusKeyboardQwerty.enter): Promise<number | null> {
+  public decrement(
+    times = 1,
+    repeater = ZCircusKeyboardQwerty.enter,
+  ): Promise<number | null> {
     return this._spinClick(-1, times, repeater);
   }
 
@@ -217,7 +240,13 @@ export class ZNumberComponentModel extends ZCircusComponentModel {
    */
   public async keyboard(value: string): Promise<number | null> {
     const input = await this._input();
-    await input.perform(new ZCircusActBuilder().click().type(value).press(ZCircusKeyboardQwerty.tab).build());
+    await input.perform(
+      new ZCircusActBuilder()
+        .click()
+        .type(value)
+        .press(ZCircusKeyboardQwerty.tab)
+        .build(),
+    );
     return this.value();
   }
 
@@ -226,7 +255,7 @@ export class ZNumberComponentModel extends ZCircusComponentModel {
    */
   public async clear(): Promise<void> {
     const input = await this._input();
-    const value = firstDefined('', await input.value());
+    const value = firstDefined("", await input.value());
     const deletes = value.length;
 
     let act = new ZCircusActBuilder().click();

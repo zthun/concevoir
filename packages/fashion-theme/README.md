@@ -1,6 +1,7 @@
 # Description
 
-The fashion-theme package includes objects that help with building color palettes and coordinations.
+The fashion-theme package includes objects that help with building color
+palettes and coordinations.
 
 ## Installation
 

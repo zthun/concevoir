@@ -5,24 +5,24 @@ import {
   ZSizeFixed,
   ZSizeVaried,
   ZSizeVoid,
-  ZThicknessSize
-} from '@zthun/fashion-tailor';
-import { css } from '@zthun/helpful-fn';
+  ZThicknessSize,
+} from "@zthun/fashion-tailor";
+import { css } from "@zthun/helpful-fn";
 import {
   IZComponentWithStyleElement,
   ZComponentRegister,
   ZComponentStyles,
   ZComponentStylesAddOnConnect,
   ZComponentStylesUpdateOnPropertyChange,
-  ZProperty
-} from '@zthun/spellcraft';
+  ZProperty,
+} from "@zthun/spellcraft";
 
 export interface ZFashionTailorElement extends IZComponentWithStyleElement {}
 
-@ZComponentRegister('z-fashion-tailor')
+@ZComponentRegister("z-fashion-tailor")
 @ZComponentStylesUpdateOnPropertyChange()
 @ZComponentStylesAddOnConnect()
-@ZComponentStyles({ id: 'ZFashionTailor-styles' })
+@ZComponentStyles({ id: "ZFashionTailor-styles" })
 export class ZFashionTailorElement extends HTMLElement {
   public static gapProp(size: ZGapSize | ZSizeVaried.Fit): string {
     return `--fashion-tailor-gap-${size}`;
@@ -46,21 +46,45 @@ export class ZFashionTailorElement extends HTMLElement {
   public styles() {
     return css`
       html {
-        ${ZFashionTailorElement.gapProp(ZSizeFixed.ExtraSmall)}: ${this.tailor.gap(ZSizeFixed.ExtraSmall)};
-        ${ZFashionTailorElement.gapProp(ZSizeFixed.Small)}: ${this.tailor.gap(ZSizeFixed.Small)};
-        ${ZFashionTailorElement.gapProp(ZSizeFixed.Medium)}: ${this.tailor.gap(ZSizeFixed.Medium)};
-        ${ZFashionTailorElement.gapProp(ZSizeFixed.Large)}: ${this.tailor.gap(ZSizeFixed.Large)};
-        ${ZFashionTailorElement.gapProp(ZSizeFixed.ExtraLarge)}: ${this.tailor.gap(ZSizeFixed.ExtraLarge)};
-        ${ZFashionTailorElement.gapProp(ZSizeVoid.None)}: ${this.tailor.gap(ZSizeVoid.None)};
+        ${ZFashionTailorElement.gapProp(
+          ZSizeFixed.ExtraSmall,
+        )}: ${this.tailor.gap(ZSizeFixed.ExtraSmall)};
+        ${ZFashionTailorElement.gapProp(ZSizeFixed.Small)}: ${this.tailor.gap(
+          ZSizeFixed.Small,
+        )};
+        ${ZFashionTailorElement.gapProp(ZSizeFixed.Medium)}: ${this.tailor.gap(
+          ZSizeFixed.Medium,
+        )};
+        ${ZFashionTailorElement.gapProp(ZSizeFixed.Large)}: ${this.tailor.gap(
+          ZSizeFixed.Large,
+        )};
+        ${ZFashionTailorElement.gapProp(
+          ZSizeFixed.ExtraLarge,
+        )}: ${this.tailor.gap(ZSizeFixed.ExtraLarge)};
+        ${ZFashionTailorElement.gapProp(ZSizeVoid.None)}: ${this.tailor.gap(
+          ZSizeVoid.None,
+        )};
         --fashion-tailor-gap-auto: auto;
         --fashion-tailor-gap-fit: auto;
 
-        ${ZFashionTailorElement.thicknessProp(ZSizeFixed.ExtraSmall)}: ${this.tailor.thickness(ZSizeFixed.ExtraSmall)};
-        ${ZFashionTailorElement.thicknessProp(ZSizeFixed.Small)}: ${this.tailor.thickness(ZSizeFixed.Small)};
-        ${ZFashionTailorElement.thicknessProp(ZSizeFixed.Medium)}: ${this.tailor.thickness(ZSizeFixed.Medium)};
-        ${ZFashionTailorElement.thicknessProp(ZSizeFixed.Large)}: ${this.tailor.thickness(ZSizeFixed.Large)};
-        ${ZFashionTailorElement.thicknessProp(ZSizeFixed.ExtraLarge)}: ${this.tailor.thickness(ZSizeFixed.ExtraLarge)};
-        ${ZFashionTailorElement.thicknessProp(ZSizeVoid.None)}: ${this.tailor.thickness(ZSizeVoid.None)};
+        ${ZFashionTailorElement.thicknessProp(
+          ZSizeFixed.ExtraSmall,
+        )}: ${this.tailor.thickness(ZSizeFixed.ExtraSmall)};
+        ${ZFashionTailorElement.thicknessProp(
+          ZSizeFixed.Small,
+        )}: ${this.tailor.thickness(ZSizeFixed.Small)};
+        ${ZFashionTailorElement.thicknessProp(
+          ZSizeFixed.Medium,
+        )}: ${this.tailor.thickness(ZSizeFixed.Medium)};
+        ${ZFashionTailorElement.thicknessProp(
+          ZSizeFixed.Large,
+        )}: ${this.tailor.thickness(ZSizeFixed.Large)};
+        ${ZFashionTailorElement.thicknessProp(
+          ZSizeFixed.ExtraLarge,
+        )}: ${this.tailor.thickness(ZSizeFixed.ExtraLarge)};
+        ${ZFashionTailorElement.thicknessProp(
+          ZSizeVoid.None,
+        )}: ${this.tailor.thickness(ZSizeVoid.None)};
 
         --fashion-tailor-full: 100%;
       }

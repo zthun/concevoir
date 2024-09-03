@@ -1,11 +1,11 @@
-import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZListComponentModel } from '@zthun/fashion-circus';
+import { ZCircusBy, ZCircusComponentModel } from "@zthun/cirque";
+import { ZListComponentModel } from "@zthun/fashion-circus";
 
 /**
  * The component model for the list page.
  */
 export class ZListPageComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZListPage-root';
+  public static readonly Selector = ".ZListPage-root";
 
   /**
    * Gets the total number of times line items have been clicked.
@@ -14,7 +14,7 @@ export class ZListPageComponentModel extends ZCircusComponentModel {
    *      The total number of times line items have been clicked.
    */
   public async count(): Promise<number> {
-    const element = await this.driver.select('.ZListPage-click-count');
+    const element = await this.driver.select(".ZListPage-click-count");
     const text = await element.text();
     return +text;
   }

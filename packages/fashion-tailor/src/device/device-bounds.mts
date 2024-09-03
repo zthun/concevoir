@@ -1,12 +1,16 @@
-import { ZSizeFixed } from '../fixed/size-fixed.mjs';
-import { IZDeviceValueMap, isDeviceValueMap } from './device-value-map.mjs';
+import { ZSizeFixed } from "../fixed/size-fixed.mjs";
+import { IZDeviceValueMap, isDeviceValueMap } from "./device-value-map.mjs";
 
-export type ZDeviceValue<T> = T | Partial<IZDeviceValueMap<T>> | null | undefined;
+export type ZDeviceValue<T> =
+  | T
+  | Partial<IZDeviceValueMap<T>>
+  | null
+  | undefined;
 
 export class ZDeviceBounds<T> {
   public constructor(
     private _val: ZDeviceValue<T>,
-    private _fallback: T
+    private _fallback: T,
   ) {}
 
   public calculate(device: ZSizeFixed): T | null | undefined {
@@ -39,7 +43,7 @@ export class ZDeviceBounds<T> {
       lg: this.lg(),
       md: this.md(),
       sm: this.sm(),
-      xs: this.xs()
+      xs: this.xs(),
     };
   }
 }
@@ -56,6 +60,9 @@ export class ZDeviceBounds<T> {
  *        Data as a fully populated {@link IZDeviceValueMap}.  Returns the fallback
  *        as a fully populated {@link IZDeviceValueMap} if data is null or undefined;
  */
-export function castDeviceMap<TData>(data: ZDeviceValue<TData>, fallback: TData): Required<IZDeviceValueMap<TData>> {
+export function castDeviceMap<TData>(
+  data: ZDeviceValue<TData>,
+  fallback: TData,
+): Required<IZDeviceValueMap<TData>> {
   return new ZDeviceBounds(data, fallback).toDeviceMap();
 }

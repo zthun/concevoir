@@ -6,11 +6,11 @@ import {
   ZParagraphBodyElement,
   ZParagraphCaptionElement,
   ZParagraphOverlineElement,
-  ZParagraphSubtitleElement
-} from '@zthun/fashion-boutique';
-import React, { ReactNode } from 'react';
-import { IZComponentStyle } from '../component/component-style.mjs';
-import { useWebComponent } from '../component/use-web-component.mjs';
+  ZParagraphSubtitleElement,
+} from "@zthun/fashion-boutique";
+import React, { ReactNode } from "react";
+import { IZComponentStyle } from "../component/component-style.mjs";
+import { useWebComponent } from "../component/use-web-component.mjs";
 
 export interface IZParagraphProps
   extends IZComponentHierarchy<ReactNode>,
@@ -25,7 +25,13 @@ export const ZParagraph = (props: IZParagraphProps) => {
 
   return (
     // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
-    <p class={className} is={'z-paragraph-body'} data-fashion={fashion} data-compact={compact} data-name={name}>
+    <p
+      class={className}
+      is={"z-paragraph-body"}
+      data-fashion={fashion}
+      data-compact={compact}
+      data-name={name}
+    >
       {children}
     </p>
   );
@@ -37,7 +43,13 @@ export const ZSubtitle = (props: IZParagraphProps) => {
 
   return (
     // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
-    <p class={className} is={'z-paragraph-subtitle'} data-fashion={fashion} data-compact={compact} data-name={name}>
+    <p
+      class={className}
+      is={"z-paragraph-subtitle"}
+      data-fashion={fashion}
+      data-compact={compact}
+      data-name={name}
+    >
       {children}
     </p>
   );
@@ -49,7 +61,13 @@ export const ZCaption = (props: IZParagraphProps) => {
 
   return (
     // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
-    <p class={className} is={'z-paragraph-caption'} data-fashion={fashion} data-compact={compact} data-name={name}>
+    <p
+      class={className}
+      is={"z-paragraph-caption"}
+      data-fashion={fashion}
+      data-compact={compact}
+      data-name={name}
+    >
       {children}
     </p>
   );
@@ -61,7 +79,13 @@ export const ZOverline = (props: IZParagraphProps) => {
 
   return (
     // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
-    <p class={className} is={'z-paragraph-overline'} data-fashion={fashion} data-compact={compact} data-name={name}>
+    <p
+      class={className}
+      is={"z-paragraph-overline"}
+      data-fashion={fashion}
+      data-compact={compact}
+      data-name={name}
+    >
       {children}
     </p>
   );

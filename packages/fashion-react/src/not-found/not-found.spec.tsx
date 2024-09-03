@@ -1,13 +1,13 @@
-import { ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZNotFoundComponentModel } from '@zthun/fashion-circus';
-import { createMemoryHistory, MemoryHistory } from 'history';
-import React from 'react';
-import { beforeEach, describe, expect, it } from 'vitest';
-import { ZTestRouter } from '../router/router-dom.mjs';
-import { ZNotFound } from './not-found';
+import { ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { ZNotFoundComponentModel } from "@zthun/fashion-circus";
+import { createMemoryHistory, MemoryHistory } from "history";
+import React from "react";
+import { beforeEach, describe, expect, it } from "vitest";
+import { ZTestRouter } from "../router/router-dom.mjs";
+import { ZNotFound } from "./not-found";
 
-describe('ZNotFound', () => {
+describe("ZNotFound", () => {
   let home: string | undefined;
   let history: MemoryHistory;
 
@@ -27,18 +27,18 @@ describe('ZNotFound', () => {
     home = undefined;
   });
 
-  it('should route to the root path', async () => {
+  it("should route to the root path", async () => {
     // Arrange.
     const target = await createTestTarget();
     // Act.
     await target.returnHome();
     // Assert.
-    expect(history.location.pathname).toEqual('/');
+    expect(history.location.pathname).toEqual("/");
   });
 
-  it('should route to the specified path', async () => {
+  it("should route to the specified path", async () => {
     // Arrange.
-    home = '/path/to/home';
+    home = "/path/to/home";
     const target = await createTestTarget();
     // Act.
     await target.returnHome();

@@ -1,11 +1,14 @@
-import { IZComponentHierarchy, ZFullScreenElement } from '@zthun/fashion-boutique';
-import React, { ReactNode } from 'react';
-import { useWebComponent } from '../component/use-web-component.mjs';
+import {
+  IZComponentHierarchy,
+  ZFullScreenElement,
+} from "@zthun/fashion-boutique";
+import React, { ReactNode } from "react";
+import { useWebComponent } from "../component/use-web-component.mjs";
 
 declare global {
   namespace React.JSX {
     interface IntrinsicElements {
-      ['z-full-screen']: ZFullScreenElement & any;
+      ["z-full-screen"]: ZFullScreenElement & any;
     }
   }
 }

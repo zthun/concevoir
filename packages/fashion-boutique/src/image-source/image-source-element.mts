@@ -7,9 +7,9 @@ import {
   createSizeChartFixedCss,
   createSizeChartFixedGeometric,
   createSizeChartVariedCss,
-  createSizeChartVoidCss
-} from '@zthun/fashion-tailor';
-import { html } from '@zthun/helpful-fn';
+  createSizeChartVoidCss,
+} from "@zthun/fashion-tailor";
+import { html } from "@zthun/helpful-fn";
 import {
   IZComponentRender,
   IZComponentTemplate,
@@ -20,28 +20,35 @@ import {
   ZComponentRenderOnConnected,
   ZComponentRenderOnEvent,
   ZComponentRenderTemplate,
-  ZComponentShadow
-} from '@zthun/spellcraft';
-import { ZDataUrlBuilder } from '@zthun/webigail-url';
-import { ZDeviceElement, ZPropertyDeviceHeight, ZPropertyDeviceWidth } from '../background/device-element.mjs';
+  ZComponentShadow,
+} from "@zthun/spellcraft";
+import { ZDataUrlBuilder } from "@zthun/webigail-url";
+import {
+  ZDeviceElement,
+  ZPropertyDeviceHeight,
+  ZPropertyDeviceWidth,
+} from "../background/device-element.mjs";
 
 export interface ZImageSourceElement extends IZComponentRender {}
 
-@ZComponentRegister('z-image-source')
-@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.height() })
-@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.width() })
+@ZComponentRegister("z-image-source")
+@ZComponentRenderOnEvent("change", { selector: ZDeviceElement.height() })
+@ZComponentRenderOnEvent("change", { selector: ZDeviceElement.width() })
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
-@ZComponentClass('ZImageSource-root')
+@ZComponentClass("ZImageSource-root")
 @ZComponentShadow()
-export class ZImageSourceElement extends HTMLElement implements IZComponentTemplate {
-  public static readonly observedAttributes = Object.freeze(['src', 'name']);
+export class ZImageSourceElement
+  extends HTMLElement
+  implements IZComponentTemplate
+{
+  public static readonly observedAttributes = Object.freeze(["src", "name"]);
 
   public static readonly SizeChart = {
-    ...createSizeChartFixedCss(createSizeChartFixedGeometric(2, 1), 'rem'),
+    ...createSizeChartFixedCss(createSizeChartFixedGeometric(2, 1), "rem"),
     ...createSizeChartVariedCss(),
-    ...createSizeChartVoidCss()
+    ...createSizeChartVoidCss(),
   };
 
   @ZAttribute()
@@ -50,8 +57,8 @@ export class ZImageSourceElement extends HTMLElement implements IZComponentTempl
   @ZAttribute()
   public src: string;
 
-  @ZAttribute({ name: 'data-kind', fallback: 'img' })
-  public kind: 'img' | 'svg' | 'empty';
+  @ZAttribute({ name: "data-kind", fallback: "img" })
+  public kind: "img" | "svg" | "empty";
 
   @ZPropertyDeviceWidth(ZSizeVaried.Fit)
   public width: Required<IZDeviceValueMap<ZSize>>;
@@ -64,18 +71,18 @@ export class ZImageSourceElement extends HTMLElement implements IZComponentTempl
     const device = new ZFashionDevice();
 
     let imageHtml = html`<img src="${src}" alt="${name}" />`;
-    this.kind = 'img';
+    this.kind = "img";
 
     if (!src) {
       imageHtml = html`<div></div>`;
-      this.kind = 'empty';
+      this.kind = "empty";
     }
 
-    if (src.startsWith('data:image/svg+xml')) {
+    if (src.startsWith("data:image/svg+xml")) {
       // SVG images can go into html directly.
       const info = new ZDataUrlBuilder().parse(src).info();
       imageHtml = info.buffer.toString();
-      this.kind = 'svg';
+      this.kind = "svg";
     }
 
     return html`

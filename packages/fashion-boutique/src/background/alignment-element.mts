@@ -1,4 +1,4 @@
-import { firstDefined } from '@zthun/helpful-fn';
+import { firstDefined } from "@zthun/helpful-fn";
 import {
   IZComponentDispatch,
   IZComponentRender,
@@ -10,9 +10,9 @@ import {
   ZComponentRenderOnConnected,
   ZComponentRenderTemplate,
   ZComponentShadow,
-  ZComponentTemplateNoDisplay
-} from '@zthun/spellcraft';
-import { Property } from 'csstype';
+  ZComponentTemplateNoDisplay,
+} from "@zthun/spellcraft";
+import { Property } from "csstype";
 
 export interface IZAlignment<TItems extends string, TContent extends string> {
   items?: TItems;
@@ -20,30 +20,38 @@ export interface IZAlignment<TItems extends string, TContent extends string> {
 }
 
 export type IZAlign = IZAlignment<Property.AlignItems, Property.AlignContent>;
-export type IZJustify = IZAlignment<Property.JustifyItems, Property.JustifyContent>;
+export type IZJustify = IZAlignment<
+  Property.JustifyItems,
+  Property.JustifyContent
+>;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export interface ZAlignmentElement<TItems extends string, TContent extends string>
-  extends IZComponentDispatch,
+export interface ZAlignmentElement<
+  TItems extends string,
+  TContent extends string,
+> extends IZComponentDispatch,
     IZComponentRender,
     IZComponentTemplate {}
 
-@ZComponentRegister('z-alignment')
+@ZComponentRegister("z-alignment")
 @ZComponentDispatchOnAttributeChanged()
-@ZComponentDispatch(new Event('change'))
+@ZComponentDispatch(new Event("change"))
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
 @ZComponentTemplateNoDisplay()
 @ZComponentShadow()
-export class ZAlignmentElement<TItems extends string, TContent extends string> extends HTMLElement {
-  public static readonly observedAttributes = ['items', 'content'];
+export class ZAlignmentElement<
+  TItems extends string,
+  TContent extends string,
+> extends HTMLElement {
+  public static readonly observedAttributes = ["items", "content"];
 
   public static selector(name: string) {
     return `:scope > z-alignment[name="${name}"]`;
   }
 
-  public static align = ZAlignmentElement.selector.bind(null, 'align');
-  public static justify = ZAlignmentElement.selector.bind(null, 'justify');
+  public static align = ZAlignmentElement.selector.bind(null, "align");
+  public static justify = ZAlignmentElement.selector.bind(null, "justify");
 
   public alignment(): IZAlignment<TItems, TContent> {
     const { items, content } = this;
@@ -60,13 +68,16 @@ export class ZAlignmentElement<TItems extends string, TContent extends string> e
   public content?: TContent;
 }
 
-export function ZPropertyAlignment<TItems extends string, TContent extends string, T extends HTMLElement>(
-  name: string
-) {
+export function ZPropertyAlignment<
+  TItems extends string,
+  TContent extends string,
+  T extends HTMLElement,
+>(name: string) {
   return function (target: T, propertyKey: string | symbol): void {
     function get(this: T) {
       const selector = ZAlignmentElement.selector(name);
-      const alignment = this.querySelector<ZAlignmentElement<TItems, TContent>>(selector);
+      const alignment =
+        this.querySelector<ZAlignmentElement<TItems, TContent>>(selector);
       return firstDefined({}, alignment?.alignment());
     }
 
@@ -75,9 +86,13 @@ export function ZPropertyAlignment<TItems extends string, TContent extends strin
 }
 
 export function ZPropertyAlignmentAlign<T extends HTMLElement>() {
-  return ZPropertyAlignment<Property.AlignItems, Property.AlignContent, T>('align');
+  return ZPropertyAlignment<Property.AlignItems, Property.AlignContent, T>(
+    "align",
+  );
 }
 
 export function ZPropertyAlignmentJustify<T extends HTMLElement>() {
-  return ZPropertyAlignment<Property.JustifyItems, Property.JustifyContent, T>('justify');
+  return ZPropertyAlignment<Property.JustifyItems, Property.JustifyContent, T>(
+    "justify",
+  );
 }

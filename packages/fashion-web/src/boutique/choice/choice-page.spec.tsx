@@ -1,12 +1,12 @@
-import { ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZChoiceComponentModel } from '@zthun/fashion-circus';
-import React from 'react';
-import { afterEach, describe, expect, it } from 'vitest';
-import { ZChoicePage } from './choice-page';
-import { ZChoicePageComponentModel } from './choice-page.cm.mjs';
+import { ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { ZChoiceComponentModel } from "@zthun/fashion-circus";
+import React from "react";
+import { afterEach, describe, expect, it } from "vitest";
+import { ZChoicePage } from "./choice-page";
+import { ZChoicePageComponentModel } from "./choice-page.cm.mjs";
 
-describe('ZChoicePage', () => {
+describe("ZChoicePage", () => {
   let _target: ZChoicePageComponentModel;
 
   async function createTestTarget() {
@@ -20,7 +20,9 @@ describe('ZChoicePage', () => {
     await _target.driver.destroy?.call(_target.driver);
   });
 
-  type ChoicePageFactory = (t: ZChoicePageComponentModel) => Promise<ZChoiceComponentModel>;
+  type ChoicePageFactory = (
+    t: ZChoicePageComponentModel,
+  ) => Promise<ZChoiceComponentModel>;
 
   async function shouldSelectTheValue(factory: ChoicePageFactory) {
     // Arrange.
@@ -99,74 +101,74 @@ describe('ZChoicePage', () => {
     expect(actual).toBeTruthy();
   }
 
-  describe('Drop Down', () => {
+  describe("Drop Down", () => {
     const factory = (t: ZChoicePageComponentModel) => t.dropdown();
 
-    it('should select the value', async () => {
+    it("should select the value", async () => {
       await shouldSelectTheValue(factory);
     });
 
-    it('should disable the choice', async () => {
+    it("should disable the choice", async () => {
       await shouldBeDisabled(factory);
     });
 
-    it('should allow multiple selections in the choice', async () => {
+    it("should allow multiple selections in the choice", async () => {
       await shouldAllowMultipleItems(factory);
     });
 
-    it('should be indelible', async () => {
+    it("should be indelible", async () => {
       await shouldBeIndelible(factory);
     });
 
-    it('should be required', async () => {
+    it("should be required", async () => {
       await shouldRenderARequiredLabel(factory);
     });
   });
 
-  describe('Auto complete', () => {
+  describe("Auto complete", () => {
     const factory = (t: ZChoicePageComponentModel) => t.autocomplete();
 
-    it('should select the value', async () => {
+    it("should select the value", async () => {
       await shouldSelectTheValue(factory);
     });
 
-    it('should disable the choice', async () => {
+    it("should disable the choice", async () => {
       await shouldBeDisabled(factory);
     });
 
-    it('should allow multiple selections in the choice', async () => {
+    it("should allow multiple selections in the choice", async () => {
       await shouldAllowMultipleItems(factory);
     });
 
-    it('should be indelible', async () => {
+    it("should be indelible", async () => {
       await shouldBeIndelible(factory);
     });
 
-    it('should be required', async () => {
+    it("should be required", async () => {
       await shouldRenderARequiredLabel(factory);
     });
   });
 
-  describe('Toggle', () => {
+  describe("Toggle", () => {
     const factory = (t: ZChoicePageComponentModel) => t.toggle();
 
-    it('should select the value', async () => {
+    it("should select the value", async () => {
       await shouldSelectTheValue(factory);
     });
 
-    it('should disable the choice', async () => {
+    it("should disable the choice", async () => {
       await shouldBeDisabled(factory);
     });
 
-    it('should allow multiple selections in the choice', async () => {
+    it("should allow multiple selections in the choice", async () => {
       await shouldAllowMultipleItems(factory);
     });
 
-    it('should be indelible', async () => {
+    it("should be indelible", async () => {
       await shouldBeIndelible(factory);
     });
 
-    it('should be required', async () => {
+    it("should be required", async () => {
       await shouldRenderARequiredLabel(factory);
     });
   });

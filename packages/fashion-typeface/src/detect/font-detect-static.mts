@@ -1,5 +1,5 @@
-import { ZFontFamily } from '../font/font-family.mjs';
-import { IZFontDetect } from './font-detect.mjs';
+import { ZFontFamily } from "../font/font-family.mjs";
+import { IZFontDetect } from "./font-detect.mjs";
 
 /**
  * A static font check which just compares against a static list of font families.

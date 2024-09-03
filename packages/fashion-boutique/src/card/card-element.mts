@@ -8,10 +8,10 @@ import {
   createSizeChartFixedCss,
   createSizeChartFixedGeometric,
   createSizeChartVariedCss,
-  createSizeChartVoidCss
-} from '@zthun/fashion-tailor';
-import { ZFashionArea } from '@zthun/fashion-theme';
-import { html } from '@zthun/helpful-fn';
+  createSizeChartVoidCss,
+} from "@zthun/fashion-tailor";
+import { ZFashionArea } from "@zthun/fashion-theme";
+import { html } from "@zthun/helpful-fn";
 import {
   IZComponentRender,
   IZComponentTemplate,
@@ -23,44 +23,48 @@ import {
   ZComponentRenderOnConnected,
   ZComponentRenderOnEvent,
   ZComponentRenderTemplate,
-  ZComponentShadow
-} from '@zthun/spellcraft';
-import { ZDeviceElement, ZPropertyDeviceHeight, ZPropertyDeviceWidth } from '../background/device-element.mjs';
-import { ZFashionDetail } from '../component/component-fashion.mjs';
-import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
-import { ZHeadingTwoElement } from '../typography/heading-2-element.mjs';
-import { ZParagraphCaptionElement } from '../typography/paragraph-caption-element.mjs';
+  ZComponentShadow,
+} from "@zthun/spellcraft";
+import {
+  ZDeviceElement,
+  ZPropertyDeviceHeight,
+  ZPropertyDeviceWidth,
+} from "../background/device-element.mjs";
+import { ZFashionDetail } from "../component/component-fashion.mjs";
+import { ZFashionTailorElement } from "../theme/fashion-tailor-element.mjs";
+import { ZHeadingTwoElement } from "../typography/heading-2-element.mjs";
+import { ZParagraphCaptionElement } from "../typography/paragraph-caption-element.mjs";
 
 export interface ZCardElement extends IZComponentRender {}
 
-@ZComponentRegister('z-card')
+@ZComponentRegister("z-card")
 @ZComponentDependencies([ZHeadingTwoElement, ZParagraphCaptionElement])
-@ZComponentClass('ZCard-root')
-@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.width() })
-@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.height() })
+@ZComponentClass("ZCard-root")
+@ZComponentRenderOnEvent("change", { selector: ZDeviceElement.width() })
+@ZComponentRenderOnEvent("change", { selector: ZDeviceElement.height() })
 @ZComponentRenderTemplate()
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentShadow()
 export class ZCardElement extends HTMLElement implements IZComponentTemplate {
-  public static readonly observedAttributes = ['fashion', 'loading'];
+  public static readonly observedAttributes = ["fashion", "loading"];
 
   public static readonly WidthChart = Object.freeze({
-    ...createSizeChartFixedCss(createSizeChartFixedGeometric(1.5, 10), 'rem'),
+    ...createSizeChartFixedCss(createSizeChartFixedGeometric(1.5, 10), "rem"),
     ...createSizeChartVariedCss(),
-    ...createSizeChartVoidCss()
+    ...createSizeChartVoidCss(),
   });
 
   public static readonly HeightChart = Object.freeze({
-    ...createSizeChartFixedCss(createSizeChartFixedArithmetic(5, 20), 'rem'),
+    ...createSizeChartFixedCss(createSizeChartFixedArithmetic(5, 20), "rem"),
     ...createSizeChartVariedCss(),
-    ...createSizeChartVoidCss()
+    ...createSizeChartVoidCss(),
   });
 
   @ZAttribute({ fallback: ZFashionArea.Surface })
   public fashion: string;
 
-  @ZAttribute({ type: 'boolean' })
+  @ZAttribute({ type: "boolean" })
   public loading: boolean;
 
   @ZPropertyDeviceHeight(ZSizeVaried.Fit)
@@ -90,9 +94,9 @@ export class ZCardElement extends HTMLElement implements IZComponentTemplate {
         }
 
         :host {
-          background-color: ${detail.color('main')};
+          background-color: ${detail.color("main")};
           box-shadow: 0 0.2rem 8pt #101010;
-          color: ${detail.color('contrast')};
+          color: ${detail.color("contrast")};
           display: flex;
           flex-direction: column;
           padding: ${ZFashionTailorElement.gapVar(ZSizeFixed.Small)};
@@ -100,9 +104,14 @@ export class ZCardElement extends HTMLElement implements IZComponentTemplate {
           min-height: ${ZCardElement.HeightChart[height.xl]};
         }
 
-        :host([loading='true']) {
+        :host([loading="true"]) {
           animation: ZCard-gradient 1.5s linear infinite;
-          background: linear-gradient(0, ${detail.color('main')}, ${detail.color('dark')}, ${detail.color('main')});
+          background: linear-gradient(
+            0,
+            ${detail.color("main")},
+            ${detail.color("dark")},
+            ${detail.color("main")}
+          );
           background-size: 100% 300%;
         }
 
@@ -136,8 +145,8 @@ export class ZCardElement extends HTMLElement implements IZComponentTemplate {
           min-height: 1rem;
 
           grid-template-areas:
-            'avatar heading'
-            'avatar subheading';
+            "avatar heading"
+            "avatar subheading";
         }
 
         .ZCard-body {
@@ -151,14 +160,14 @@ export class ZCardElement extends HTMLElement implements IZComponentTemplate {
           border-top: none;
         }
 
-        ::slotted([slot='heading']),
-        ::slotted([slot='subheading']) {
+        ::slotted([slot="heading"]),
+        ::slotted([slot="subheading"]) {
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
         }
 
-        ::slotted([slot='footer']) {
+        ::slotted([slot="footer"]) {
           margin-top: ${ZFashionTailorElement.gapVar(ZSizeFixed.Medium)};
         }
 
@@ -197,7 +206,11 @@ export class ZCardElement extends HTMLElement implements IZComponentTemplate {
         <h2 class="ZCard-heading" is="z-h2" data-compact="true">
           <slot name="heading"></slot>
         </h2>
-        <p class="ZCard-subheading" is="z-paragraph-caption" data-compact="true">
+        <p
+          class="ZCard-subheading"
+          is="z-paragraph-caption"
+          data-compact="true"
+        >
           <slot name="subheading"></slot>
         </p>
       </header>

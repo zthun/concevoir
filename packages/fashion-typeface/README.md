@@ -1,6 +1,7 @@
 # Description
 
-The fashion-typeface package includes objects that help with loading and viewing supported browser fonts.
+The fashion-typeface package includes objects that help with loading and viewing
+supported browser fonts.
 
 ## Installation
 

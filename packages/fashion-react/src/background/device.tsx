@@ -1,9 +1,9 @@
-import { ZDeviceElement } from '@zthun/fashion-boutique';
+import { ZDeviceElement } from "@zthun/fashion-boutique";
 
 declare global {
   namespace React.JSX {
     interface IntrinsicElements {
-      ['z-device']: ZDeviceElement<any> & any;
+      ["z-device"]: ZDeviceElement<any> & any;
     }
   }
 }

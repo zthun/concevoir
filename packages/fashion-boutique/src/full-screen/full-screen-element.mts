@@ -1,10 +1,15 @@
-import { css } from '@zthun/helpful-fn';
-import { IZComponentRender, ZComponentClass, ZComponentCss, ZComponentRegister } from '@zthun/spellcraft';
+import { css } from "@zthun/helpful-fn";
+import {
+  IZComponentRender,
+  ZComponentClass,
+  ZComponentCss,
+  ZComponentRegister,
+} from "@zthun/spellcraft";
 
 export interface ZFullScreenElement extends IZComponentRender {}
 
-@ZComponentRegister('z-full-screen')
-@ZComponentClass('ZFullScreen-root')
+@ZComponentRegister("z-full-screen")
+@ZComponentClass("ZFullScreen-root")
 @ZComponentCss(
   css`
     .ZFullScreen-root {
@@ -15,6 +20,6 @@ export interface ZFullScreenElement extends IZComponentRender {}
       width: 100vw;
     }
   `,
-  { id: 'ZFullScreen-styles' }
+  { id: "ZFullScreen-styles" },
 )
 export class ZFullScreenElement extends HTMLElement {}

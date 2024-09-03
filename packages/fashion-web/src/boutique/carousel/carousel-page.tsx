@@ -8,15 +8,15 @@ import {
   ZH3,
   ZIconFontAwesome,
   ZParagraph,
-  ZStack
-} from '@zthun/fashion-react';
-import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { ZBrands } from '@zthun/helpful-brands';
-import { ZOrientation } from '@zthun/helpful-fn';
-import { useStateAsArray } from '@zthun/helpful-react';
-import { identity, startCase } from 'lodash-es';
-import React, { ReactNode, useMemo, useState } from 'react';
-import { ZFashionRouteCarousel } from '../../routes.mjs';
+  ZStack,
+} from "@zthun/fashion-react";
+import { ZSizeFixed } from "@zthun/fashion-tailor";
+import { ZBrands } from "@zthun/helpful-brands";
+import { ZOrientation } from "@zthun/helpful-fn";
+import { useStateAsArray } from "@zthun/helpful-react";
+import { identity, startCase } from "lodash-es";
+import React, { ReactNode, useMemo, useState } from "react";
+import { ZFashionRouteCarousel } from "../../routes.mjs";
 
 /**
  * Represents a demo for carousels.
@@ -25,7 +25,9 @@ import { ZFashionRouteCarousel } from '../../routes.mjs';
  */
 export function ZCarouselPage() {
   const [index, setIndex] = useState(0);
-  const [orientation, setOrientation] = useStateAsArray(ZOrientation.Horizontal);
+  const [orientation, setOrientation] = useStateAsArray(
+    ZOrientation.Horizontal,
+  );
   const [_orientation] = orientation;
   const orientations = useMemo(() => Object.values(ZOrientation), []);
   const [count, setCount] = useStateAsArray(ZBrands.length);
@@ -40,8 +42,15 @@ export function ZCarouselPage() {
   );
 
   const renderBrand = (index: number) =>
-    renderBubble(<ZIconFontAwesome name={brands[index].id} family='brands' width={ZSizeFixed.Large} />);
-  const renderQuestion = () => renderBubble(<ZIconFontAwesome name='question' width={ZSizeFixed.Large} />);
+    renderBubble(
+      <ZIconFontAwesome
+        name={brands[index].id}
+        family="brands"
+        width={ZSizeFixed.Large}
+      />,
+    );
+  const renderQuestion = () =>
+    renderBubble(<ZIconFontAwesome name="question" width={ZSizeFixed.Large} />);
 
   const _setCount = (counts: number[]) => {
     setIndex(0);
@@ -50,15 +59,23 @@ export function ZCarouselPage() {
 
   return (
     <ZCard
-      className='ZCarouselPage-root'
+      className="ZCarouselPage-root"
       heading={ZFashionRouteCarousel.name}
       subHeading={ZFashionRouteCarousel.description}
-      avatar={<ZIconFontAwesome name={ZFashionRouteCarousel.avatar} width={ZSizeFixed.Medium} />}
+      avatar={
+        <ZIconFontAwesome
+          name={ZFashionRouteCarousel.avatar}
+          width={ZSizeFixed.Medium}
+        />
+      }
     >
       <ZBox padding={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>
 
-        <ZParagraph>A carousel component is great for compacting items in a rotating display of content.</ZParagraph>
+        <ZParagraph>
+          A carousel component is great for compacting items in a rotating
+          display of content.
+        </ZParagraph>
 
         <ZCarousel
           count={brands.length}
@@ -71,7 +88,7 @@ export function ZCarouselPage() {
 
         <ZBox margin={{ top: ZSizeFixed.Small }}>
           <span>Current Index: </span>
-          <span className='ZCarouselPage-index'>{index}</span>
+          <span className="ZCarouselPage-index">{index}</span>
         </ZBox>
       </ZBox>
 
@@ -83,20 +100,20 @@ export function ZCarouselPage() {
             value={count}
             onValueChange={_setCount}
             indelible
-            label='Count'
+            label="Count"
             renderOption={identity}
             identifier={identity}
-            name='count'
+            name="count"
           />
           <ZChoiceDropDown
             options={orientations}
             value={orientation}
             onValueChange={setOrientation}
             indelible
-            label='Orientation'
+            label="Orientation"
             renderOption={startCase}
             identifier={identity}
-            name='orientation'
+            name="orientation"
           />
         </ZStack>
       </ZBox>

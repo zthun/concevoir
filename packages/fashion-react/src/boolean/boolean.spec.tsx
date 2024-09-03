@@ -1,14 +1,20 @@
-import { IZCircusDriver, IZCircusKey, IZCircusSetup, ZCircusBy, ZCircusKeyboardQwerty } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZBooleanComponentModel } from '@zthun/fashion-circus';
-import { ZFashionPriority } from '@zthun/fashion-theme';
-import { ZTrilean, trilean } from '@zthun/trilean';
-import React, { ReactElement } from 'react';
-import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { ZBooleanCheckbox } from './boolean-checkbox';
-import { ZBooleanSwitch } from './boolean-switch';
+import {
+  IZCircusDriver,
+  IZCircusKey,
+  IZCircusSetup,
+  ZCircusBy,
+  ZCircusKeyboardQwerty,
+} from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { ZBooleanComponentModel } from "@zthun/fashion-circus";
+import { ZFashionPriority } from "@zthun/fashion-theme";
+import { ZTrilean, trilean } from "@zthun/trilean";
+import React, { ReactElement } from "react";
+import { Mock, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { ZBooleanCheckbox } from "./boolean-checkbox";
+import { ZBooleanSwitch } from "./boolean-switch";
 
-describe('ZBoolean', () => {
+describe("ZBoolean", () => {
   let disabled: boolean | undefined;
   let required: boolean | undefined;
   let fashion: string | undefined;
@@ -34,7 +40,10 @@ describe('ZBoolean', () => {
     await _renderer?.destroy?.call(_renderer);
   });
 
-  async function assertValue<T>(createTestTarget: () => Promise<ZBooleanComponentModel>, expected: T) {
+  async function assertValue<T>(
+    createTestTarget: () => Promise<ZBooleanComponentModel>,
+    expected: T,
+  ) {
     // Arrange.
     const target = await createTestTarget();
     // Act.
@@ -43,7 +52,10 @@ describe('ZBoolean', () => {
     expect(actual).toEqual(expected);
   }
 
-  async function assertDisabled(createTestTarget: () => Promise<ZBooleanComponentModel>, expected: boolean) {
+  async function assertDisabled(
+    createTestTarget: () => Promise<ZBooleanComponentModel>,
+    expected: boolean,
+  ) {
     // Arrange.
     disabled = expected;
     const target = await createTestTarget();
@@ -53,7 +65,9 @@ describe('ZBoolean', () => {
     expect(actual).toEqual(expected);
   }
 
-  async function assertFrozen(createTestTarget: () => Promise<ZBooleanComponentModel>) {
+  async function assertFrozen(
+    createTestTarget: () => Promise<ZBooleanComponentModel>,
+  ) {
     // Arrange.
     disabled = true;
     const target = await createTestTarget();
@@ -65,7 +79,10 @@ describe('ZBoolean', () => {
     expect(actual).toEqual(expected);
   }
 
-  async function assertRequired(createTestTarget: () => Promise<ZBooleanComponentModel>, expected: boolean) {
+  async function assertRequired(
+    createTestTarget: () => Promise<ZBooleanComponentModel>,
+    expected: boolean,
+  ) {
     // Arrange.
     required = expected;
     const target = await createTestTarget();
@@ -75,7 +92,10 @@ describe('ZBoolean', () => {
     expect(actual).toEqual(expected);
   }
 
-  async function assertRaisesOnValueChange(createTestTarget: () => Promise<ZBooleanComponentModel>, expected: boolean) {
+  async function assertRaisesOnValueChange(
+    createTestTarget: () => Promise<ZBooleanComponentModel>,
+    expected: boolean,
+  ) {
     // Arrange.
     onCheckChanged = vi.fn();
     const target = await createTestTarget();
@@ -88,7 +108,7 @@ describe('ZBoolean', () => {
   async function assertChangesState(
     createTestTarget: () => Promise<ZBooleanComponentModel>,
     expected: boolean,
-    start: boolean
+    start: boolean,
   ) {
     // Arrange.
     const target = await createTestTarget();
@@ -102,7 +122,7 @@ describe('ZBoolean', () => {
 
   async function assertChangesStateWithKeyboard(
     createTestTarget: () => Promise<ZBooleanComponentModel>,
-    key: IZCircusKey
+    key: IZCircusKey,
   ) {
     // Arrange.
     const target = await createTestTarget();
@@ -115,7 +135,9 @@ describe('ZBoolean', () => {
     expect(actual).toEqual(true);
   }
 
-  async function assertSetsFashion(createTestTarget: () => Promise<ZBooleanComponentModel>) {
+  async function assertSetsFashion(
+    createTestTarget: () => Promise<ZBooleanComponentModel>,
+  ) {
     // Arrange.
     fashion = ZFashionPriority.Secondary;
     const target = await createTestTarget();
@@ -125,7 +147,7 @@ describe('ZBoolean', () => {
     expect(actual).toEqual(fashion);
   }
 
-  describe('Checkbox', () => {
+  describe("Checkbox", () => {
     async function createTestTarget(value?: trilean) {
       const element = (
         <ZBooleanCheckbox
@@ -133,7 +155,7 @@ describe('ZBoolean', () => {
           onValueChange={onCheckChanged}
           disabled={disabled}
           required={required}
-          label='Checkbox'
+          label="Checkbox"
           fashion={fashion}
         />
       );
@@ -141,72 +163,84 @@ describe('ZBoolean', () => {
       return createComponentModel(element);
     }
 
-    it('can be enabled.', async () => {
+    it("can be enabled.", async () => {
       await assertDisabled(createTestTarget, false);
     });
 
-    it('can be disabled.', async () => {
+    it("can be disabled.", async () => {
       await assertDisabled(createTestTarget, true);
     });
 
-    it('should not change value if clicked while disabled', async () => {
+    it("should not change value if clicked while disabled", async () => {
       await assertFrozen(createTestTarget);
     });
 
-    it('can be optional.', async () => {
+    it("can be optional.", async () => {
       await assertRequired(createTestTarget, false);
     });
 
-    it('can be required.', async () => {
+    it("can be required.", async () => {
       await assertRequired(createTestTarget, true);
     });
 
-    it('should render a checked checkbox for true.', async () => {
+    it("should render a checked checkbox for true.", async () => {
       await assertValue(createTestTarget.bind(null, true), true);
     });
 
-    it('should render an unchecked checkbox for false.', async () => {
+    it("should render an unchecked checkbox for false.", async () => {
       await assertValue(createTestTarget.bind(null, false), false);
     });
 
-    it('should render an indeterminate state for indeterminate.', async () => {
-      await assertValue(createTestTarget.bind(null, ZTrilean.Indeterminate), ZTrilean.Indeterminate);
+    it("should render an indeterminate state for indeterminate.", async () => {
+      await assertValue(
+        createTestTarget.bind(null, ZTrilean.Indeterminate),
+        ZTrilean.Indeterminate,
+      );
     });
 
-    it('should raise onValueChange from true to false when clicked.', async () => {
+    it("should raise onValueChange from true to false when clicked.", async () => {
       await assertRaisesOnValueChange(createTestTarget.bind(null, true), false);
     });
 
-    it('should raise onValueChange from false to true when clicked.', async () => {
+    it("should raise onValueChange from false to true when clicked.", async () => {
       await assertRaisesOnValueChange(createTestTarget.bind(null, false), true);
     });
 
-    it('should raise onValueChange from indeterminate to true when clicked.', async () => {
-      await assertRaisesOnValueChange(createTestTarget.bind(null, ZTrilean.Indeterminate), true);
+    it("should raise onValueChange from indeterminate to true when clicked.", async () => {
+      await assertRaisesOnValueChange(
+        createTestTarget.bind(null, ZTrilean.Indeterminate),
+        true,
+      );
     });
 
-    it('should flip the state when using the space key on the keyboard', async () => {
-      await assertChangesStateWithKeyboard(createTestTarget, ZCircusKeyboardQwerty.space);
+    it("should flip the state when using the space key on the keyboard", async () => {
+      await assertChangesStateWithKeyboard(
+        createTestTarget,
+        ZCircusKeyboardQwerty.space,
+      );
     });
 
-    it('should flip the state when using the enter key on the keyboard', async () => {
-      await assertChangesStateWithKeyboard(createTestTarget, ZCircusKeyboardQwerty.enter);
+    it("should flip the state when using the enter key on the keyboard", async () => {
+      await assertChangesStateWithKeyboard(
+        createTestTarget,
+        ZCircusKeyboardQwerty.enter,
+      );
     });
 
-    it('should flip the state from true to false internally if no value is provided from the outside.', async () => {
+    it("should flip the state from true to false internally if no value is provided from the outside.", async () => {
       await assertChangesState(createTestTarget, true, false);
     });
 
-    it('should flip the state from false to true internally if no value is provided from the outside.', async () => {
+    it("should flip the state from false to true internally if no value is provided from the outside.", async () => {
       await assertChangesState(createTestTarget, false, true);
     });
 
-    it('should set the named fashion.', async () => {
+    it("should set the named fashion.", async () => {
       await assertSetsFashion(createTestTarget);
     });
   });
 
-  describe('Switch', () => {
+  describe("Switch", () => {
     async function createTestTarget(value?: boolean) {
       const element = (
         <ZBooleanSwitch
@@ -214,7 +248,7 @@ describe('ZBoolean', () => {
           onValueChange={onCheckChanged}
           disabled={disabled}
           required={required}
-          label='Switch'
+          label="Switch"
           fashion={fashion}
         />
       );
@@ -222,59 +256,65 @@ describe('ZBoolean', () => {
       return createComponentModel(element);
     }
 
-    it('can be enabled.', async () => {
+    it("can be enabled.", async () => {
       await assertDisabled(createTestTarget, false);
     });
 
-    it('can be disabled.', async () => {
+    it("can be disabled.", async () => {
       await assertDisabled(createTestTarget, true);
     });
 
-    it('should not change value if clicked while disabled', async () => {
+    it("should not change value if clicked while disabled", async () => {
       await assertFrozen(createTestTarget);
     });
 
-    it('can be optional.', async () => {
+    it("can be optional.", async () => {
       await assertRequired(createTestTarget, false);
     });
 
-    it('can be required.', async () => {
+    it("can be required.", async () => {
       await assertRequired(createTestTarget, true);
     });
 
-    it('should toggle the switch on for true.', async () => {
+    it("should toggle the switch on for true.", async () => {
       await assertValue(createTestTarget.bind(null, true), true);
     });
 
-    it('should toggle the switch off for false.', async () => {
+    it("should toggle the switch off for false.", async () => {
       await assertValue(createTestTarget.bind(null, false), false);
     });
 
-    it('should raise onValueChange from true to false when the truthy radio is clicked.', async () => {
+    it("should raise onValueChange from true to false when the truthy radio is clicked.", async () => {
       await assertRaisesOnValueChange(createTestTarget.bind(null, true), false);
     });
 
-    it('should raise onValueChange from false to true when the falsy radio is clicked.', async () => {
+    it("should raise onValueChange from false to true when the falsy radio is clicked.", async () => {
       await assertRaisesOnValueChange(createTestTarget.bind(null, false), true);
     });
 
-    it('should flip the state when using the space key on the keyboard', async () => {
-      await assertChangesStateWithKeyboard(createTestTarget, ZCircusKeyboardQwerty.space);
+    it("should flip the state when using the space key on the keyboard", async () => {
+      await assertChangesStateWithKeyboard(
+        createTestTarget,
+        ZCircusKeyboardQwerty.space,
+      );
     });
 
-    it('should flip the state when using the enter key on the keyboard', async () => {
-      await assertChangesStateWithKeyboard(createTestTarget, ZCircusKeyboardQwerty.enter);
+    it("should flip the state when using the enter key on the keyboard", async () => {
+      await assertChangesStateWithKeyboard(
+        createTestTarget,
+        ZCircusKeyboardQwerty.enter,
+      );
     });
 
-    it('should flip the state from true to false internally if no value is provided from the outside.', async () => {
+    it("should flip the state from true to false internally if no value is provided from the outside.", async () => {
       await assertChangesState(createTestTarget, true, false);
     });
 
-    it('should flip the state from false to true internally if no value is provided from the outside.', async () => {
+    it("should flip the state from false to true internally if no value is provided from the outside.", async () => {
       await assertChangesState(createTestTarget, false, true);
     });
 
-    it('should set the named fashion.', async () => {
+    it("should set the named fashion.", async () => {
       await assertSetsFashion(createTestTarget);
     });
   });

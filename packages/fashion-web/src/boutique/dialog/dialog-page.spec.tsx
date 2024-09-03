@@ -1,14 +1,18 @@
 // @vitest-environment happy-dom
-import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZFashionPriority } from '@zthun/fashion-theme';
-import { ZHorizontalAnchor, ZSideAnchor, ZVerticalAnchor } from '@zthun/helpful-fn';
-import React from 'react';
-import { afterEach, describe, expect, it } from 'vitest';
-import { ZDialogPage } from './dialog-page';
-import { ZDialogPageComponentModel } from './dialog-page.cm.mjs';
+import { IZCircusDriver, IZCircusSetup, ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { ZFashionPriority } from "@zthun/fashion-theme";
+import {
+  ZHorizontalAnchor,
+  ZSideAnchor,
+  ZVerticalAnchor,
+} from "@zthun/helpful-fn";
+import React from "react";
+import { afterEach, describe, expect, it } from "vitest";
+import { ZDialogPage } from "./dialog-page";
+import { ZDialogPageComponentModel } from "./dialog-page.cm.mjs";
 
-describe('ZDialogPage', () => {
+describe("ZDialogPage", () => {
   let _renderer: IZCircusSetup;
   let _driver: IZCircusDriver;
 
@@ -24,7 +28,7 @@ describe('ZDialogPage', () => {
     await _renderer?.destroy?.call(_renderer);
   });
 
-  describe('Drawer', () => {
+  describe("Drawer", () => {
     const shouldPositionDrawer = async (expected: ZSideAnchor) => {
       // Arrange.
       const target = await createTestTarget();
@@ -37,7 +41,7 @@ describe('ZDialogPage', () => {
       expect(actual).toEqual(expected);
     };
 
-    it('should open the drawer', async () => {
+    it("should open the drawer", async () => {
       // Arrange.
       const target = await createTestTarget();
       const button = await target.drawerButton();
@@ -50,7 +54,7 @@ describe('ZDialogPage', () => {
       expect(actual).toBeTruthy();
     });
 
-    it('should close the drawer', async () => {
+    it("should close the drawer", async () => {
       // Arrange.
       const target = await createTestTarget();
       const button = await target.drawerButton();
@@ -65,23 +69,23 @@ describe('ZDialogPage', () => {
       expect(actual).toBeFalsy();
     });
 
-    it('should position the drawer on the left', async () => {
+    it("should position the drawer on the left", async () => {
       await shouldPositionDrawer(ZHorizontalAnchor.Left);
     });
 
-    it('should position the drawer on the right', async () => {
+    it("should position the drawer on the right", async () => {
       await shouldPositionDrawer(ZHorizontalAnchor.Right);
     });
 
-    it('should position the drawer on the top', async () => {
+    it("should position the drawer on the top", async () => {
       await shouldPositionDrawer(ZVerticalAnchor.Top);
     });
 
-    it('should position the drawer on the bottom', async () => {
+    it("should position the drawer on the bottom", async () => {
       await shouldPositionDrawer(ZVerticalAnchor.Bottom);
     });
 
-    it('should keep the drawer open if the persistence switch is on', async () => {
+    it("should keep the drawer open if the persistence switch is on", async () => {
       // Arrange.
       const target = await createTestTarget();
       const persistent = await target.persistent();
@@ -96,7 +100,7 @@ describe('ZDialogPage', () => {
       expect(actual).toBeTruthy();
     });
 
-    it('should set the fashion', async () => {
+    it("should set the fashion", async () => {
       // Arrange.
       const expected = ZFashionPriority.Primary;
       const target = await createTestTarget();
@@ -112,8 +116,8 @@ describe('ZDialogPage', () => {
     });
   });
 
-  describe('Modal', () => {
-    it('should open the modal', async () => {
+  describe("Modal", () => {
+    it("should open the modal", async () => {
       // Arrange.
       const target = await createTestTarget();
       const button = await target.modalButton();
@@ -126,7 +130,7 @@ describe('ZDialogPage', () => {
       expect(actual).toBeTruthy();
     });
 
-    it('should close the modal when the cancel button is clicked', async () => {
+    it("should close the modal when the cancel button is clicked", async () => {
       // Arrange.
       const target = await createTestTarget();
       const button = await target.modalButton();
@@ -142,7 +146,7 @@ describe('ZDialogPage', () => {
       expect(actual).toBeFalsy();
     });
 
-    it('should close the modal when the save button is clicked', async () => {
+    it("should close the modal when the save button is clicked", async () => {
       // Arrange.
       const target = await createTestTarget();
       const fw = await target.fullWidth();
@@ -162,7 +166,7 @@ describe('ZDialogPage', () => {
       expect(actual).toBeFalsy();
     });
 
-    it('should keep the modal open if the persistence switch is on', async () => {
+    it("should keep the modal open if the persistence switch is on", async () => {
       // Arrange.
       const target = await createTestTarget();
       const persistent = await target.persistent();
@@ -177,7 +181,7 @@ describe('ZDialogPage', () => {
       expect(actual).toBeTruthy();
     });
 
-    it('should set the fashion', async () => {
+    it("should set the fashion", async () => {
       // Arrange.
       const expected = ZFashionPriority.Primary;
       const target = await createTestTarget();
@@ -193,8 +197,8 @@ describe('ZDialogPage', () => {
     });
   });
 
-  describe('Popup', () => {
-    it('should open the popup', async () => {
+  describe("Popup", () => {
+    it("should open the popup", async () => {
       // Arrange.
       const target = await createTestTarget();
       const button = await target.popupButton();
@@ -207,7 +211,7 @@ describe('ZDialogPage', () => {
       expect(actual).toBeTruthy();
     });
 
-    it('should close the popup when the close button is clicked', async () => {
+    it("should close the popup when the close button is clicked", async () => {
       // Arrange.
       const target = await createTestTarget();
       const button = await target.popupButton();

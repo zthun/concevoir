@@ -1,11 +1,15 @@
-import { IZCircusDriver, ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZFashionContrast } from '@zthun/fashion-theme';
+import {
+  IZCircusDriver,
+  ZCircusBy,
+  ZCircusComponentModel,
+} from "@zthun/cirque";
+import { ZFashionContrast } from "@zthun/fashion-theme";
 
 /**
  * Represents a component model for suspense.
  */
 export class ZSuspenseComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZSuspense-root';
+  public static readonly Selector = ".ZSuspense-root";
 
   /**
    * Gets the current fashion theme.
@@ -14,7 +18,7 @@ export class ZSuspenseComponentModel extends ZCircusComponentModel {
    *      The name of the fashion theme.
    */
   public fashion(): Promise<string> {
-    return this.driver.attribute('fashion', ZFashionContrast.Opposite);
+    return this.driver.attribute("fashion", ZFashionContrast.Opposite);
   }
 
   /**
@@ -24,8 +28,8 @@ export class ZSuspenseComponentModel extends ZCircusComponentModel {
    *        The current loading state.
    */
   public async loading(): Promise<boolean> {
-    const disabled = await this.driver.attribute<string>('disabled', 'false');
-    return disabled !== 'true';
+    const disabled = await this.driver.attribute<string>("disabled", "false");
+    return disabled !== "true";
   }
 
   /**
@@ -40,8 +44,15 @@ export class ZSuspenseComponentModel extends ZCircusComponentModel {
    *        True if there exists a suspense in the driver.  If the name
    *        is supplied, then a targeted suspense is checked.
    */
-  public static async loading(driver: IZCircusDriver, name?: string): Promise<boolean> {
-    const suspense = await ZCircusBy.optional(driver, ZSuspenseComponentModel, name);
+  public static async loading(
+    driver: IZCircusDriver,
+    name?: string,
+  ): Promise<boolean> {
+    const suspense = await ZCircusBy.optional(
+      driver,
+      ZSuspenseComponentModel,
+      name,
+    );
     return suspense == null ? Promise.resolve(false) : suspense.loading();
   }
 
@@ -53,7 +64,12 @@ export class ZSuspenseComponentModel extends ZCircusComponentModel {
    * @param name -
    *        The targeted name of the suspense object.
    */
-  public static async load(driver: IZCircusDriver, name?: string): Promise<void> {
-    await driver.wait(() => ZSuspenseComponentModel.loading(driver, name).then((c) => !c));
+  public static async load(
+    driver: IZCircusDriver,
+    name?: string,
+  ): Promise<void> {
+    await driver.wait(() =>
+      ZSuspenseComponentModel.loading(driver, name).then((c) => !c),
+    );
   }
 }

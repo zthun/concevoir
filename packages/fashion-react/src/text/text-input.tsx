@@ -1,9 +1,9 @@
-import { OutlinedInput } from '@mui/material';
-import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
-import React from 'react';
-import { ZLabeled } from '../label/labeled';
-import { createStyleHook } from '../theme/styled';
-import { IZText, useText, withEnterCommit } from './text';
+import { OutlinedInput } from "@mui/material";
+import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import React from "react";
+import { ZLabeled } from "../label/labeled";
+import { createStyleHook } from "../theme/styled";
+import { IZText, useText, withEnterCommit } from "./text";
 
 /**
  * Represents the type of text.
@@ -14,12 +14,12 @@ export enum ZTextType {
    *
    * This is the default.
    */
-  Text = 'text',
+  Text = "text",
 
   /**
    * Password text where the value is never displayed.
    */
-  Password = 'password'
+  Password = "password",
 }
 
 /**
@@ -35,8 +35,8 @@ export interface IZTextInput extends IZText<string> {
 const useTextInputStyles = createStyleHook(({ theme }) => ({
   input: {
     color: theme.surface.contrast,
-    backgroundColor: firstDefined(theme.surface.main, theme.surface.light)
-  }
+    backgroundColor: firstDefined(theme.surface.main, theme.surface.light),
+  },
 }));
 
 /**
@@ -49,23 +49,30 @@ const useTextInputStyles = createStyleHook(({ theme }) => ({
  *        The JSX to render the component.
  */
 export function ZTextInput(props: IZTextInput) {
-  const { className, type = ZTextType.Text, name, label, required, orientation } = props;
-  const InputProps = useText(props, '');
+  const {
+    className,
+    type = ZTextType.Text,
+    name,
+    label,
+    required,
+    orientation,
+  } = props;
+  const InputProps = useText(props, "");
   const handleKeyDown = withEnterCommit(props);
   const { classes } = useTextInputStyles();
 
   return (
     <ZLabeled
-      className={cssJoinDefined('ZText-root', className)}
+      className={cssJoinDefined("ZText-root", className)}
       label={label}
-      LabelProps={{ required, className: 'ZText-label' }}
+      LabelProps={{ required, className: "ZText-label" }}
       orientation={orientation}
       name={name}
     >
       <OutlinedInput
         {...InputProps}
         type={type}
-        className={cssJoinDefined('ZText-input', classes.input)}
+        className={cssJoinDefined("ZText-input", classes.input)}
         onKeyDown={handleKeyDown}
       />
     </ZLabeled>

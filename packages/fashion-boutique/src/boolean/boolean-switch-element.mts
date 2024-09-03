@@ -1,6 +1,6 @@
-import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { ZFashionArea, rgb } from '@zthun/fashion-theme';
-import { html, sleep } from '@zthun/helpful-fn';
+import { ZSizeFixed } from "@zthun/fashion-tailor";
+import { ZFashionArea, rgb } from "@zthun/fashion-theme";
+import { html, sleep } from "@zthun/helpful-fn";
 import {
   IZComponentRender,
   IZComponentTemplate,
@@ -11,22 +11,25 @@ import {
   ZComponentRenderOnAttributeChanged,
   ZComponentRenderOnConnected,
   ZComponentRenderTemplate,
-  ZComponentShadow
-} from '@zthun/spellcraft';
-import { ZFashionDetail } from '../component/component-fashion.mjs';
-import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
-import { ZBooleanElement } from './boolean-element.mjs';
+  ZComponentShadow,
+} from "@zthun/spellcraft";
+import { ZFashionDetail } from "../component/component-fashion.mjs";
+import { ZFashionTailorElement } from "../theme/fashion-tailor-element.mjs";
+import { ZBooleanElement } from "./boolean-element.mjs";
 
 export interface ZBooleanSwitchElement extends IZComponentRender {}
 
-@ZComponentRegister('z-boolean-switch')
+@ZComponentRegister("z-boolean-switch")
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
-@ZComponentClass('ZBoolean-root', 'ZBoolean-switch')
+@ZComponentClass("ZBoolean-root", "ZBoolean-switch")
 @ZComponentShadow()
-export class ZBooleanSwitchElement extends ZBooleanElement<boolean> implements IZComponentTemplate {
-  @ZAttribute({ type: 'boolean' })
+export class ZBooleanSwitchElement
+  extends ZBooleanElement<boolean>
+  implements IZComponentTemplate
+{
+  @ZAttribute({ type: "boolean" })
   public value: boolean;
 
   public template() {
@@ -39,7 +42,7 @@ export class ZBooleanSwitchElement extends ZBooleanElement<boolean> implements I
     const switchHeight = `1.25rem`;
     const sliderSize = `1.2rem`;
     const sliderSlide = `1rem`;
-    const tab = ZAttributes.stringify('tabindex', disabled ? undefined : 0);
+    const tab = ZAttributes.stringify("tabindex", disabled ? undefined : 0);
 
     return html`
       <style>
@@ -65,7 +68,7 @@ export class ZBooleanSwitchElement extends ZBooleanElement<boolean> implements I
 
         label {
           align-items: center;
-          cursor: ${disabled ? 'normal' : 'pointer'};
+          cursor: ${disabled ? "normal" : "pointer"};
           display: inline-flex;
           flex-wrap: nowrap;
           gap: ${ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall)};
@@ -75,21 +78,25 @@ export class ZBooleanSwitchElement extends ZBooleanElement<boolean> implements I
         label::after {
           color: ${rgb(220, 53, 69)};
           content: ${required ? '"*"' : '""'};
-          margin-left: calc(${ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall)} * -0.5);
+          margin-left: calc(
+            ${ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall)} * -0.5
+          );
           vertical-align: middle;
         }
 
         label:hover .slider {
-          background-color: ${_fashion.color('hover.main')};
+          background-color: ${_fashion.color("hover.main")};
         }
 
         .switch {
           align-items: center;
-          background-color: ${detail.color('main')};
+          background-color: ${detail.color("main")};
           border-radius: 1rem;
           display: flex;
           height: ${switchHeight};
-          padding: calc(${ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall)} / 2);
+          padding: calc(
+            ${ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall)} / 2
+          );
           width: 2.25rem;
         }
 
@@ -98,14 +105,14 @@ export class ZBooleanSwitchElement extends ZBooleanElement<boolean> implements I
         }
 
         .switch:focus .slider {
-          box-shadow: 0 0 0.16rem 0.25rem ${detail.color('focus.main')};
+          box-shadow: 0 0 0.16rem 0.25rem ${detail.color("focus.main")};
         }
 
         .slider {
           animation-duration: 0.1s;
           animation-iteration-count: 1;
           animation-timing-function: linear;
-          background-color: ${detail.color('dark')};
+          background-color: ${detail.color("dark")};
           border-radius: 50%;
           height: ${sliderSize};
           transform: translateX(${value ? sliderSlide : 0});
@@ -123,9 +130,9 @@ export class ZBooleanSwitchElement extends ZBooleanElement<boolean> implements I
 
   public async toggle() {
     const next = !this.value;
-    const slider = this.shadowRoot!.querySelector<HTMLElement>('.slider')!;
-    slider.style.animationName = `${next ? 'scroll-on' : 'scroll-off'}`;
-    slider.style.transform = `translateX(${next ? '1rem' : 0})`;
+    const slider = this.shadowRoot!.querySelector<HTMLElement>(".slider")!;
+    slider.style.animationName = `${next ? "scroll-on" : "scroll-off"}`;
+    slider.style.transform = `translateX(${next ? "1rem" : 0})`;
     await sleep(110);
     this.value = !this.value;
   }

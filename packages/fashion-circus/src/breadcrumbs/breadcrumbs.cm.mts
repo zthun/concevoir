@@ -1,11 +1,11 @@
-import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZBreadcrumbComponentModel } from './breadcrumb.cm.mjs';
+import { ZCircusBy, ZCircusComponentModel } from "@zthun/cirque";
+import { ZBreadcrumbComponentModel } from "./breadcrumb.cm.mjs";
 
 /**
  * Represents a component model a ZBreadcrumbs component.
  */
 export class ZBreadcrumbsComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZBreadcrumbs-root';
+  public static readonly Selector = ".ZBreadcrumbs-root";
 
   /**
    * Gets the breadcrumbs underneath the path structure.

@@ -3,20 +3,29 @@ import {
   IZComponentHierarchy,
   IZComponentName,
   IZComponentWidth,
-  ZBubbleElement
-} from '@zthun/fashion-boutique';
-import { ZDeviceBounds, ZGapSize, ZSizeFixed, ZSizeVoid } from '@zthun/fashion-tailor';
-import { ZQuadrilateralBuilder, cssJoinDefined, firstTruthy } from '@zthun/helpful-fn';
-import { useKeyboardActivate } from '@zthun/helpful-react';
-import { Property } from 'csstype';
-import React, { KeyboardEvent, MouseEvent, ReactNode } from 'react';
-import { IZComponentStyle } from '../component/component-style.mjs';
-import { useWebComponent } from '../component/use-web-component.mjs';
+  ZBubbleElement,
+} from "@zthun/fashion-boutique";
+import {
+  ZDeviceBounds,
+  ZGapSize,
+  ZSizeFixed,
+  ZSizeVoid,
+} from "@zthun/fashion-tailor";
+import {
+  ZQuadrilateralBuilder,
+  cssJoinDefined,
+  firstTruthy,
+} from "@zthun/helpful-fn";
+import { useKeyboardActivate } from "@zthun/helpful-react";
+import { Property } from "csstype";
+import React, { KeyboardEvent, MouseEvent, ReactNode } from "react";
+import { IZComponentStyle } from "../component/component-style.mjs";
+import { useWebComponent } from "../component/use-web-component.mjs";
 
 declare global {
   namespace React.JSX {
     interface IntrinsicElements {
-      ['z-bubble']: ZBubbleElement & any;
+      ["z-bubble"]: ZBubbleElement & any;
     }
   }
 }
@@ -35,10 +44,22 @@ export interface IZBubble
 }
 
 export function ZBubble(props: IZBubble) {
-  const { children, className, name, edge, fashion, padding, trim, width, onClick } = props;
+  const {
+    children,
+    className,
+    name,
+    edge,
+    fashion,
+    padding,
+    trim,
+    width,
+    onClick,
+  } = props;
   const { onKey, tabIndex } = useKeyboardActivate(onClick);
   const $width = new ZDeviceBounds(width, ZSizeFixed.Medium);
-  const $padding = new ZQuadrilateralBuilder<ZGapSize>(firstTruthy(ZSizeVoid.None, padding)).build();
+  const $padding = new ZQuadrilateralBuilder<ZGapSize>(
+    firstTruthy(ZSizeVoid.None, padding),
+  ).build();
   useWebComponent(ZBubbleElement);
 
   return (
@@ -53,9 +74,16 @@ export function ZBubble(props: IZBubble) {
       onKeyDown={onKey}
       tabIndex={tabIndex}
     >
-      <z-device name='width' xl={$width.xl()} lg={$width.lg()} md={$width.md()} sm={$width.sm()} xs={$width.xs()} />
+      <z-device
+        name="width"
+        xl={$width.xl()}
+        lg={$width.lg()}
+        md={$width.md()}
+        sm={$width.sm()}
+        xs={$width.xs()}
+      />
       <z-quadrilateral
-        name='padding'
+        name="padding"
         left={$padding.left}
         right={$padding.right}
         top={$padding.top}

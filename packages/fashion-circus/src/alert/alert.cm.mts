@@ -1,12 +1,12 @@
-import { IZCircusDriver, ZCircusComponentModel } from '@zthun/cirque';
-import { ZFashionPriority } from '@zthun/fashion-theme';
-import { firstDefined } from '@zthun/helpful-fn';
+import { IZCircusDriver, ZCircusComponentModel } from "@zthun/cirque";
+import { ZFashionPriority } from "@zthun/fashion-theme";
+import { firstDefined } from "@zthun/helpful-fn";
 
 /**
  * Represents the component model for the alert component.
  */
 export class ZAlertComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = 'z-alert';
+  public static readonly Selector = "z-alert";
 
   /**
    * Gets the alert message.
@@ -47,6 +47,6 @@ export class ZAlertComponentModel extends ZCircusComponentModel {
    *        The fashion for the alert.
    */
   public async fashion(): Promise<string> {
-    return this.driver.attribute('fashion', ZFashionPriority.Primary);
+    return this.driver.attribute("fashion", ZFashionPriority.Primary);
   }
 }

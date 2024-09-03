@@ -1,4 +1,4 @@
-import { ZCircusComponentModel } from '@zthun/cirque';
+import { ZCircusComponentModel } from "@zthun/cirque";
 
 /**
  * Represents a choice option or value in the Choice component model.
@@ -11,7 +11,7 @@ export class ZChoiceOptionComponentModel extends ZCircusComponentModel {
    *      The value for the option.
    */
   public value(): Promise<string | null> {
-    return this.driver.attribute('data-value');
+    return this.driver.attribute("data-value");
   }
 
   /**

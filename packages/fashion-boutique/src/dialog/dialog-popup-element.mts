@@ -1,13 +1,13 @@
-import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { ZFashionArea } from '@zthun/fashion-theme';
+import { ZSizeFixed } from "@zthun/fashion-tailor";
+import { ZFashionArea } from "@zthun/fashion-theme";
 import {
   ZHorizontalAnchor,
   ZQuadrilateralBuilder,
   ZRectangle,
   ZVerticalAnchor,
   css,
-  firstDefined
-} from '@zthun/helpful-fn';
+  firstDefined,
+} from "@zthun/helpful-fn";
 import {
   IZLifecycleConnected,
   IZLifecycleDisconnected,
@@ -17,18 +17,21 @@ import {
   ZComponentRenderOnAttributeChanged,
   ZComponentRenderOnConnected,
   ZComponentShadow,
-  ZProperty
-} from '@zthun/spellcraft';
-import { ZFashionDetail } from '../component/component-fashion.mjs';
-import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
-import { ZDialogElement } from './dialog-element.mjs';
+  ZProperty,
+} from "@zthun/spellcraft";
+import { ZFashionDetail } from "../component/component-fashion.mjs";
+import { ZFashionTailorElement } from "../theme/fashion-tailor-element.mjs";
+import { ZDialogElement } from "./dialog-element.mjs";
 
-@ZComponentRegister('z-dialog-popup')
-@ZComponentClass('ZDialog-root', 'ZDialog-popup')
+@ZComponentRegister("z-dialog-popup")
+@ZComponentClass("ZDialog-root", "ZDialog-popup")
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentShadow()
-export class ZDialogPopupElement extends ZDialogElement implements IZLifecycleConnected, IZLifecycleDisconnected {
+export class ZDialogPopupElement
+  extends ZDialogElement
+  implements IZLifecycleConnected, IZLifecycleDisconnected
+{
   @ZAttribute({ fallback: ZHorizontalAnchor.Left })
   public originX: ZHorizontalAnchor;
 
@@ -55,8 +58,12 @@ export class ZDialogPopupElement extends ZDialogElement implements IZLifecycleCo
     const tq = $attach.getBoundingClientRect();
     const cq = dialogNode.getBoundingClientRect();
 
-    const targetRectangle = new ZRectangle(new ZQuadrilateralBuilder(0).right(tq.width).bottom(tq.height).build());
-    const contentRectangle = new ZRectangle(new ZQuadrilateralBuilder(0).right(cq.width).bottom(cq.height).build());
+    const targetRectangle = new ZRectangle(
+      new ZQuadrilateralBuilder(0).right(tq.width).bottom(tq.height).build(),
+    );
+    const contentRectangle = new ZRectangle(
+      new ZQuadrilateralBuilder(0).right(cq.width).bottom(cq.height).build(),
+    );
 
     const { x: ax, y: ay } = targetRectangle.point([anchorY, anchorX]);
     const { x: ox, y: oy } = contentRectangle.point([originY, originX]);
@@ -76,12 +83,16 @@ export class ZDialogPopupElement extends ZDialogElement implements IZLifecycleCo
 
     return css`
       dialog {
-        background-color: ${component.color('main')};
-        border-color: ${component.color('border')};
-        border-radius: ${ZFashionTailorElement.thicknessVar(ZSizeFixed.ExtraLarge)};
+        background-color: ${component.color("main")};
+        border-color: ${component.color("border")};
+        border-radius: ${ZFashionTailorElement.thicknessVar(
+          ZSizeFixed.ExtraLarge,
+        )};
         border-style: solid;
-        border-width: ${ZFashionTailorElement.thicknessVar(ZSizeFixed.ExtraSmall)};
-        color: ${component.color('contrast')};
+        border-width: ${ZFashionTailorElement.thicknessVar(
+          ZSizeFixed.ExtraSmall,
+        )};
+        color: ${component.color("contrast")};
         padding: 0;
         margin: 0;
         z-index: 1000;
@@ -105,8 +116,8 @@ export class ZDialogPopupElement extends ZDialogElement implements IZLifecycleCo
       }
 
       .ZDialog-header {
-        background-color: ${detail.color('main')};
-        color: ${detail.color('contrast')};
+        background-color: ${detail.color("main")};
+        color: ${detail.color("contrast")};
       }
 
       .ZDialog-content {
@@ -121,12 +132,12 @@ export class ZDialogPopupElement extends ZDialogElement implements IZLifecycleCo
   }
 
   public connectedCallback(): void {
-    window.addEventListener('resize', this._calculatePosition);
-    window.addEventListener('scroll', this._calculatePosition);
+    window.addEventListener("resize", this._calculatePosition);
+    window.addEventListener("scroll", this._calculatePosition);
   }
 
   public disconnectedCallback(): void {
-    window.removeEventListener('resize', this._calculatePosition);
-    window.removeEventListener('scroll', this._calculatePosition);
+    window.removeEventListener("resize", this._calculatePosition);
+    window.removeEventListener("scroll", this._calculatePosition);
   }
 }

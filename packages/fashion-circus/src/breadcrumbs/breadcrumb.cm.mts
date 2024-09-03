@@ -1,10 +1,10 @@
-import { ZCircusActBuilder, ZCircusComponentModel } from '@zthun/cirque';
+import { ZCircusActBuilder, ZCircusComponentModel } from "@zthun/cirque";
 
 /**
  * Represents a component model a ZBreadcrumb component.
  */
 export class ZBreadcrumbComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZBreadcrumb-root';
+  public static readonly Selector = ".ZBreadcrumb-root";
 
   /**
    * Gets the hypertext reference (href).
@@ -13,7 +13,7 @@ export class ZBreadcrumbComponentModel extends ZCircusComponentModel {
    *        The hypertext reference.
    */
   public reference() {
-    return this.driver.attribute('href');
+    return this.driver.attribute("href");
   }
 
   /**
@@ -23,7 +23,7 @@ export class ZBreadcrumbComponentModel extends ZCircusComponentModel {
    *        The name of the breadcrumb.
    */
   public name() {
-    return this.driver.attribute('data-name');
+    return this.driver.attribute("data-name");
   }
 
   /**

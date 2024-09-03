@@ -7,14 +7,14 @@ import {
   ZH3,
   ZH4,
   ZIconFontAwesome,
-  ZParagraph
-} from '@zthun/fashion-react';
-import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { startCase } from 'lodash-es';
-import React, { useState } from 'react';
-import { ZFashionRouteAlert } from '../../routes.mjs';
-import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
-import { useFashionState } from '../common/use-fashion-state.mjs';
+  ZParagraph,
+} from "@zthun/fashion-react";
+import { ZSizeFixed } from "@zthun/fashion-tailor";
+import { startCase } from "lodash-es";
+import React, { useState } from "react";
+import { ZFashionRouteAlert } from "../../routes.mjs";
+import { ZChoiceDropDownFashion } from "../common/choice-drop-down-fashion";
+import { useFashionState } from "../common/use-fashion-state.mjs";
 
 /**
  * Represents a demo for booleans.
@@ -28,31 +28,46 @@ export function ZAlertPage() {
 
   return (
     <ZCard
-      className='ZAlertPage-root'
+      className="ZAlertPage-root"
       heading={ZFashionRouteAlert.name}
       subHeading={ZFashionRouteAlert.description}
-      avatar={<ZIconFontAwesome name={ZFashionRouteAlert.avatar} width={ZSizeFixed.Medium} />}
+      avatar={
+        <ZIconFontAwesome
+          name={ZFashionRouteAlert.avatar}
+          width={ZSizeFixed.Medium}
+        />
+      }
     >
       <ZH3>Description</ZH3>
 
       <ZParagraph>
-        Alerts are useful for notifying the user that something has happened. They are colorful boxes that describe
-        severity by their look alone.
+        Alerts are useful for notifying the user that something has happened.
+        They are colorful boxes that describe severity by their look alone.
       </ZParagraph>
 
       <ZParagraph>
-        Alerts are often used as toast messages. Under no circumstances will Zthunworks fashion support toast messages.
-        These type of feedback mechanisms discriminate against users that need time to read or process feedback and
-        often cause issues with interface layouts.
+        Alerts are often used as toast messages. Under no circumstances will
+        Zthunworks fashion support toast messages. These type of feedback
+        mechanisms discriminate against users that need time to read or process
+        feedback and often cause issues with interface layouts.
       </ZParagraph>
 
       <ZBox margin={{ bottom: ZSizeFixed.Medium }}>
         <ZAlert
           fashion={fashionName}
-          message='Alerts are great ways to notify users that something has happened.'
-          heading={heading && <ZH4 compact>{startCase(fashionName || 'alert')}</ZH4>}
-          name='alert'
-          avatar={avatar && <ZIconFontAwesome name='hat-cowboy-side' width={ZSizeFixed.Small} />}
+          message="Alerts are great ways to notify users that something has happened."
+          heading={
+            heading && <ZH4 compact>{startCase(fashionName || "alert")}</ZH4>
+          }
+          name="alert"
+          avatar={
+            avatar && (
+              <ZIconFontAwesome
+                name="hat-cowboy-side"
+                width={ZSizeFixed.Small}
+              />
+            )
+          }
         />
       </ZBox>
 
@@ -60,13 +75,27 @@ export function ZAlertPage() {
         <ZH3>Options</ZH3>
 
         <ZGrid>
-          <ZBooleanSwitch value={heading} onValueChange={setHeading} label='Header' name='header' />
-          <ZBooleanSwitch value={avatar} onValueChange={setAvatar} label='Avatar' name='avatar' />
+          <ZBooleanSwitch
+            value={heading}
+            onValueChange={setHeading}
+            label="Header"
+            name="header"
+          />
+          <ZBooleanSwitch
+            value={avatar}
+            onValueChange={setAvatar}
+            label="Avatar"
+            name="avatar"
+          />
         </ZGrid>
       </ZBox>
 
       <ZBox margin={{ bottom: ZSizeFixed.Medium }}>
-        <ZChoiceDropDownFashion value={fashionName} onValueChange={setFashion} name='fashion' />
+        <ZChoiceDropDownFashion
+          value={fashionName}
+          onValueChange={setFashion}
+          name="fashion"
+        />
       </ZBox>
     </ZCard>
   );

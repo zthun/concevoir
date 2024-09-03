@@ -1,11 +1,16 @@
-import { IZFashion, ZFashionBuilder, ZFashionName } from '../fashion/fashion.mjs';
+import {
+  IZFashion,
+  ZFashionBuilder,
+  ZFashionName,
+} from "../fashion/fashion.mjs";
 
 export type ZFashionRecord = Record<ZFashionName, IZFashion>;
 
 /**
  * Represents a general fashion design that includes the common types.
  */
-export interface IZFashionTheme<TCustom extends object = {}> extends ZFashionRecord {
+export interface IZFashionTheme<TCustom extends object = {}>
+  extends ZFashionRecord {
   /**
    * The name of the theme.
    */
@@ -27,29 +32,40 @@ export interface IZFashionTheme<TCustom extends object = {}> extends ZFashionRec
  * should have a generally good scheme for your fashion needs.
  */
 export class ZFashionThemeBuilder<TCustom extends object = {}> {
-  private _design: { -readonly [P in keyof IZFashionTheme<TCustom>]: IZFashionTheme<TCustom>[P] };
+  private _design: {
+    -readonly [P in keyof IZFashionTheme<TCustom>]: IZFashionTheme<TCustom>[P];
+  };
 
   /**
    * Initializes a new instance of this object.
    */
   public constructor() {
     this._design = {
-      name: 'light',
+      name: "light",
       primary: new ZFashionBuilder().namedPrimary().spectrum(0x1976d2).build(),
-      secondary: new ZFashionBuilder().namedSecondary().spectrum(0x9c27b0).build(),
+      secondary: new ZFashionBuilder()
+        .namedSecondary()
+        .spectrum(0x9c27b0)
+        .build(),
       success: new ZFashionBuilder().namedSuccess().spectrum(0x2e7d32).build(),
       warning: new ZFashionBuilder().namedWarning().spectrum(0xff9e42).build(),
       error: new ZFashionBuilder().namedError().spectrum(0xd32f2f).build(),
       info: new ZFashionBuilder().namedInfo().spectrum(0xb5e5ff).build(),
       body: new ZFashionBuilder().namedBody().spectrum(0xeeeeee).build(),
       surface: new ZFashionBuilder().namedSurface().spectrum(0xfafafa).build(),
-      component: new ZFashionBuilder().namedComponent().spectrum(0xdedede).build(),
+      component: new ZFashionBuilder()
+        .namedComponent()
+        .spectrum(0xdedede)
+        .build(),
       light: new ZFashionBuilder().namedLight().spectrum(0xfafafa).build(),
       dark: new ZFashionBuilder().namedDark().spectrum(0x212121).build(),
-      opposite: new ZFashionBuilder().namedOpposite().spectrum(0x212121).build(),
+      opposite: new ZFashionBuilder()
+        .namedOpposite()
+        .spectrum(0x212121)
+        .build(),
       transparent: new ZFashionBuilder().transparent().build(),
       inherit: new ZFashionBuilder().inherit().build(),
-      custom: {} as TCustom
+      custom: {} as TCustom,
     };
   }
 

@@ -1,4 +1,4 @@
-import { html } from '@zthun/helpful-fn';
+import { html } from "@zthun/helpful-fn";
 import {
   IZComponentRender,
   IZComponentTemplate,
@@ -8,23 +8,29 @@ import {
   ZComponentRenderOnAttributeChanged,
   ZComponentRenderOnConnected,
   ZComponentRenderTemplate,
-  ZComponentShadow
-} from '@zthun/spellcraft';
-import { ZUrlBuilder, ZYouTubeApi } from '@zthun/webigail-url';
+  ZComponentShadow,
+} from "@zthun/spellcraft";
+import { ZUrlBuilder, ZYouTubeApi } from "@zthun/webigail-url";
 
 export interface ZYouTubeVideoElement extends IZComponentRender {}
 
 // Note on the CSS - is isn't obvious why, but if you're seeing this, it's to force
 // a 16x9 aspect ratio.  See https://css-tricks.com/fluid-width-video/
 // for more information.
-@ZComponentRegister('z-you-tube-video')
+@ZComponentRegister("z-you-tube-video")
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
-@ZComponentClass('ZYouTubeVideo-root')
+@ZComponentClass("ZYouTubeVideo-root")
 @ZComponentShadow()
-export class ZYouTubeVideoElement extends HTMLElement implements IZComponentTemplate {
-  public static readonly observedAttributes = Object.freeze(['identity', 'name']);
+export class ZYouTubeVideoElement
+  extends HTMLElement
+  implements IZComponentTemplate
+{
+  public static readonly observedAttributes = Object.freeze([
+    "identity",
+    "name",
+  ]);
 
   @ZAttribute()
   public identity: string;
@@ -37,13 +43,13 @@ export class ZYouTubeVideoElement extends HTMLElement implements IZComponentTemp
     const src = new ZUrlBuilder().youTube(ZYouTubeApi.Embed, identity).build();
 
     const allow = [
-      'accelerometer',
-      'autoplay',
-      'clipboard-write',
-      'encrypted-media',
-      'gyroscope',
-      'picture-in-picture'
-    ].join(';');
+      "accelerometer",
+      "autoplay",
+      "clipboard-write",
+      "encrypted-media",
+      "gyroscope",
+      "picture-in-picture",
+    ].join(";");
 
     return html`
       <style>

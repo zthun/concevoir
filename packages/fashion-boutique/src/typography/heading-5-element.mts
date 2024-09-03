@@ -6,13 +6,15 @@ import {
   ZComponentRenderOnAttributeChanged,
   ZComponentRenderOnConnected,
   ZComponentRenderTemplate,
-  ZComponentShadow
-} from '@zthun/spellcraft';
-import { ZComponentTemplateTypography } from './component-template-typography.mjs';
+  ZComponentShadow,
+} from "@zthun/spellcraft";
+import { ZComponentTemplateTypography } from "./component-template-typography.mjs";
 
-export interface ZHeadingFiveElement extends IZComponentRender, IZComponentTemplate {}
+export interface ZHeadingFiveElement
+  extends IZComponentRender,
+    IZComponentTemplate {}
 
-@ZComponentRegister('z-h5', { extend: 'h5' })
+@ZComponentRegister("z-h5", { extend: "h5" })
 @ZComponentRenderOnConnected()
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderTemplate()
@@ -22,10 +24,14 @@ export interface ZHeadingFiveElement extends IZComponentRender, IZComponentTempl
     lg: 1.5,
     md: 1.4,
     sm: 1.3,
-    xs: 1.2
+    xs: 1.2,
   },
-  weight: 'bold'
+  weight: "bold",
 })
-@ZComponentClass('ZTypography-root', 'ZTypography-heading', 'ZTypography-heading-5')
+@ZComponentClass(
+  "ZTypography-root",
+  "ZTypography-heading",
+  "ZTypography-heading-5",
+)
 @ZComponentShadow()
 export class ZHeadingFiveElement extends HTMLHeadingElement {}

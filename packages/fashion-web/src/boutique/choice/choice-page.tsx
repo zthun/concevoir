@@ -10,12 +10,12 @@ import {
   ZH3,
   ZIconFontAwesome,
   ZLineItem,
-  ZParagraph
-} from '@zthun/fashion-react';
-import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { IZBrand, ZBrands } from '@zthun/helpful-brands';
-import React, { useMemo, useState } from 'react';
-import { ZFashionRouteChoice } from '../../routes.mjs';
+  ZParagraph,
+} from "@zthun/fashion-react";
+import { ZSizeFixed } from "@zthun/fashion-tailor";
+import { IZBrand, ZBrands } from "@zthun/helpful-brands";
+import React, { useMemo, useState } from "react";
+import { ZFashionRouteChoice } from "../../routes.mjs";
 
 /**
  * Represents the tutorial for how to get started.
@@ -33,43 +33,59 @@ export function ZChoicePage() {
 
   function renderSelected() {
     return values.map((s) => (
-      <li key={s} className='ZChoicePage-value'>
+      <li key={s} className="ZChoicePage-value">
         {s}
       </li>
     ));
   }
 
-  const renderBrandAvatar = (h: IZBrand) => <ZIconFontAwesome family='brands' name={h.id} width={ZSizeFixed.Small} />;
+  const renderBrandAvatar = (h: IZBrand) => (
+    <ZIconFontAwesome family="brands" name={h.id} width={ZSizeFixed.Small} />
+  );
   const getBrandId = (h: IZBrand) => h.id;
   const renderBrandDisplay = (h: IZBrand) => h.name;
 
   const renderBrand = (h: IZBrand) => (
-    <ZLineItem className='ZChoicePage-hero' prefix={renderBrandAvatar(h)} body={renderBrandDisplay(h)} />
+    <ZLineItem
+      className="ZChoicePage-hero"
+      prefix={renderBrandAvatar(h)}
+      body={renderBrandDisplay(h)}
+    />
   );
 
   return (
     <ZCard
-      className='ZChoicePage-root'
+      className="ZChoicePage-root"
       heading={ZFashionRouteChoice.name}
       subHeading={ZFashionRouteChoice.description}
-      avatar={<ZIconFontAwesome name={ZFashionRouteChoice.avatar} width={ZSizeFixed.Medium} />}
+      avatar={
+        <ZIconFontAwesome
+          name={ZFashionRouteChoice.avatar}
+          width={ZSizeFixed.Medium}
+        />
+      }
     >
       <ZBox padding={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>
 
         <ZBox padding={{ bottom: ZSizeFixed.Large }}>
           <ZParagraph compact>
-            Choices help the user with valid values. When the user has to pick between a list of multiple choice
-            options, then a choice component is appropriate. There are multiple variations of making choices, but all of
-            them have the same premise. Given a list of possible values to choose from, you can select one or more
-            values.
+            Choices help the user with valid values. When the user has to pick
+            between a list of multiple choice options, then a choice component
+            is appropriate. There are multiple variations of making choices, but
+            all of them have the same premise. Given a list of possible values
+            to choose from, you can select one or more values.
           </ZParagraph>
         </ZBox>
 
-        <ZGrid align={{ items: 'center' }} columns={{ xl: '1fr 1fr', sm: '1fr' }} gap={ZSizeFixed.Large}>
+        <ZGrid
+          align={{ items: "center" }}
+          columns={{ xl: "1fr 1fr", sm: "1fr" }}
+          gap={ZSizeFixed.Large}
+        >
           <ZChoiceDropDown
             disabled={disabled}
-            label='Drop Down'
+            label="Drop Down"
             indelible={indelible}
             multiple={multiple}
             required={required}
@@ -79,12 +95,12 @@ export function ZChoicePage() {
             onValueChange={setValues}
             options={allBrands}
             renderOption={renderBrand}
-            name='dropdown'
+            name="dropdown"
           />
 
           <ZChoiceAutocomplete
             disabled={disabled}
-            label='Autocomplete'
+            label="Autocomplete"
             indelible={indelible}
             multiple={multiple}
             required={required}
@@ -94,12 +110,12 @@ export function ZChoicePage() {
             onValueChange={setValues}
             options={allBrands}
             renderOption={renderBrand}
-            name='autocomplete'
+            name="autocomplete"
           />
 
           <ZChoiceToggle
             disabled={disabled}
-            label='Toggle'
+            label="Toggle"
             indelible={indelible}
             multiple={multiple}
             required={required}
@@ -109,7 +125,7 @@ export function ZChoicePage() {
             onValueChange={setValues}
             options={someBrands}
             renderOption={renderBrandAvatar}
-            name='toggle'
+            name="toggle"
           />
         </ZGrid>
 
@@ -123,10 +139,30 @@ export function ZChoicePage() {
         <ZH3>Options</ZH3>
 
         <ZGrid gap={ZSizeFixed.Small}>
-          <ZBooleanSwitch value={disabled} onValueChange={setDisabled} label='Disabled' name='disabled' />
-          <ZBooleanSwitch value={multiple} onValueChange={setMultiple} label='Multiple' name='multiple' />
-          <ZBooleanSwitch value={indelible} onValueChange={setIndelible} label='Indelible' name='indelible' />
-          <ZBooleanSwitch value={required} onValueChange={setRequired} label='Required' name='required' />
+          <ZBooleanSwitch
+            value={disabled}
+            onValueChange={setDisabled}
+            label="Disabled"
+            name="disabled"
+          />
+          <ZBooleanSwitch
+            value={multiple}
+            onValueChange={setMultiple}
+            label="Multiple"
+            name="multiple"
+          />
+          <ZBooleanSwitch
+            value={indelible}
+            onValueChange={setIndelible}
+            label="Indelible"
+            name="indelible"
+          />
+          <ZBooleanSwitch
+            value={required}
+            onValueChange={setRequired}
+            label="Required"
+            name="required"
+          />
         </ZGrid>
       </ZBox>
     </ZCard>

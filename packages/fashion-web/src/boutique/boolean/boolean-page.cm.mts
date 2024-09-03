@@ -1,11 +1,15 @@
-import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZBooleanComponentModel, ZButtonComponentModel, ZChoiceComponentModel } from '@zthun/fashion-circus';
+import { ZCircusBy, ZCircusComponentModel } from "@zthun/cirque";
+import {
+  ZBooleanComponentModel,
+  ZButtonComponentModel,
+  ZChoiceComponentModel,
+} from "@zthun/fashion-circus";
 
 /**
  * Represents a component model for the boolean page.
  */
 export class ZBooleanPageComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZBooleanPage-root';
+  public static readonly Selector = ".ZBooleanPage-root";
 
   /**
    * Gets the main checkbox demo component.
@@ -14,7 +18,7 @@ export class ZBooleanPageComponentModel extends ZCircusComponentModel {
    *      The main checkbox demo component.
    */
   public checkbox(): Promise<ZBooleanComponentModel> {
-    return ZCircusBy.first(this.driver, ZBooleanComponentModel, 'checkbox');
+    return ZCircusBy.first(this.driver, ZBooleanComponentModel, "checkbox");
   }
 
   /**
@@ -24,7 +28,7 @@ export class ZBooleanPageComponentModel extends ZCircusComponentModel {
    *      The main switch demo component.
    */
   public switch(): Promise<ZBooleanComponentModel> {
-    return ZCircusBy.first(this.driver, ZBooleanComponentModel, 'switch');
+    return ZCircusBy.first(this.driver, ZBooleanComponentModel, "switch");
   }
 
   /**
@@ -34,7 +38,7 @@ export class ZBooleanPageComponentModel extends ZCircusComponentModel {
    *        The option switch to disable the boolean demos.
    */
   public disabled(): Promise<ZBooleanComponentModel> {
-    return ZCircusBy.first(this.driver, ZBooleanComponentModel, 'disabled');
+    return ZCircusBy.first(this.driver, ZBooleanComponentModel, "disabled");
   }
 
   /**
@@ -44,7 +48,7 @@ export class ZBooleanPageComponentModel extends ZCircusComponentModel {
    *        The option switch to make the booleans required.
    */
   public required(): Promise<ZBooleanComponentModel> {
-    return ZCircusBy.first(this.driver, ZBooleanComponentModel, 'required');
+    return ZCircusBy.first(this.driver, ZBooleanComponentModel, "required");
   }
 
   /**
@@ -54,7 +58,7 @@ export class ZBooleanPageComponentModel extends ZCircusComponentModel {
    *        The fashion drop down.
    */
   public async fashion(): Promise<ZChoiceComponentModel> {
-    return ZCircusBy.first(this.driver, ZChoiceComponentModel, 'fashion');
+    return ZCircusBy.first(this.driver, ZChoiceComponentModel, "fashion");
   }
 
   /**
@@ -64,7 +68,7 @@ export class ZBooleanPageComponentModel extends ZCircusComponentModel {
    *        The button to toggle off all demo booleans.
    */
   public off(): Promise<ZButtonComponentModel> {
-    return ZCircusBy.first(this.driver, ZButtonComponentModel, 'off');
+    return ZCircusBy.first(this.driver, ZButtonComponentModel, "off");
   }
 
   /**
@@ -74,7 +78,7 @@ export class ZBooleanPageComponentModel extends ZCircusComponentModel {
    *        The button to toggle on all demo booleans.
    */
   public on(): Promise<ZButtonComponentModel> {
-    return ZCircusBy.first(this.driver, ZButtonComponentModel, 'on');
+    return ZCircusBy.first(this.driver, ZButtonComponentModel, "on");
   }
 
   /**
@@ -85,7 +89,7 @@ export class ZBooleanPageComponentModel extends ZCircusComponentModel {
    *        The button to toggle all booleans to the indeterminate state.
    */
   public indeterminate(): Promise<ZButtonComponentModel> {
-    return ZCircusBy.first(this.driver, ZButtonComponentModel, 'indeterminate');
+    return ZCircusBy.first(this.driver, ZButtonComponentModel, "indeterminate");
   }
 
   /**
@@ -95,8 +99,8 @@ export class ZBooleanPageComponentModel extends ZCircusComponentModel {
    *        The current value state.
    */
   public async value(): Promise<boolean> {
-    const label = await this.driver.select('.ZBooleanPage-value');
+    const label = await this.driver.select(".ZBooleanPage-value");
     const text = await label.text();
-    return text === 'true';
+    return text === "true";
   }
 }

@@ -1,4 +1,4 @@
-import { ZSizeChartVoid, ZSizeVoid } from './size-void.mjs';
+import { ZSizeChartVoid, ZSizeVoid } from "./size-void.mjs";
 
 /**
  * Creates a void chart for css.
@@ -12,6 +12,6 @@ import { ZSizeChartVoid, ZSizeVoid } from './size-void.mjs';
  */
 export function createSizeChartVoidCss(): ZSizeChartVoid<string> {
   return {
-    [ZSizeVoid.None]: '0'
+    [ZSizeVoid.None]: "0",
   };
 }

@@ -1,12 +1,12 @@
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZSizeFixed, ZSizeVaried, ZSizeVoid } from '@zthun/fashion-tailor';
-import { Property } from 'csstype';
-import React from 'react';
-import { beforeEach, describe, expect, it } from 'vitest';
-import { ZGrid } from './grid';
-import { ZGridSpan } from './grid-span';
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { ZSizeFixed, ZSizeVaried, ZSizeVoid } from "@zthun/fashion-tailor";
+import { Property } from "csstype";
+import React from "react";
+import { beforeEach, describe, expect, it } from "vitest";
+import { ZGrid } from "./grid";
+import { ZGridSpan } from "./grid-span";
 
-describe('ZGrid', () => {
+describe("ZGrid", () => {
   let gap: ZSizeFixed | ZSizeVoid | undefined;
   let height: ZSizeVaried | undefined;
   let xl: Property.GridTemplateColumns | undefined;
@@ -19,7 +19,7 @@ describe('ZGrid', () => {
 
   async function createTestTarget() {
     const element = (
-      <ZGrid className='ZTestGrid-root' height={height} gap={gap} columns={xl}>
+      <ZGrid className="ZTestGrid-root" height={height} gap={gap} columns={xl}>
         <ZGridSpan />
       </ZGrid>
     );
@@ -27,7 +27,7 @@ describe('ZGrid', () => {
     return driver;
   }
 
-  it('should render with a gap', async () => {
+  it("should render with a gap", async () => {
     // Arrange.
     gap = ZSizeFixed.Medium;
     height = ZSizeVaried.Full;
@@ -37,7 +37,7 @@ describe('ZGrid', () => {
     expect(target).toBeTruthy();
   });
 
-  it('should render without a gap', async () => {
+  it("should render without a gap", async () => {
     // Arrange.
     // Act.
     const target = await createTestTarget();
@@ -45,9 +45,9 @@ describe('ZGrid', () => {
     expect(target).toBeTruthy();
   });
 
-  it('should render with responsive columns', async () => {
+  it("should render with responsive columns", async () => {
     // Arrange.
-    xl = 'auto auto auto auto auto';
+    xl = "auto auto auto auto auto";
     // Act.
     const target = await createTestTarget();
     // Assert.

@@ -1,5 +1,5 @@
-import { ZFashionPriority } from '@zthun/fashion-theme';
-import { css } from '@zthun/helpful-fn';
+import { ZFashionPriority } from "@zthun/fashion-theme";
+import { css } from "@zthun/helpful-fn";
 import {
   IZComponentStyles,
   IZComponentWithStyleElement,
@@ -9,22 +9,25 @@ import {
   ZComponentRegister,
   ZComponentStyles,
   ZComponentStylesAddOnConnect,
-  ZComponentStylesUpdateOnAttributeChange
-} from '@zthun/spellcraft';
-import { ZFashionDetail } from '../component/component-fashion.mjs';
+  ZComponentStylesUpdateOnAttributeChange,
+} from "@zthun/spellcraft";
+import { ZFashionDetail } from "../component/component-fashion.mjs";
 
 export interface ZLinkElement extends IZComponentWithStyleElement {}
 
-@ZComponentRegister('z-link', { extend: 'a' })
-@ZComponentClass('ZLink-root')
+@ZComponentRegister("z-link", { extend: "a" })
+@ZComponentClass("ZLink-root")
 @ZComponentStylesUpdateOnAttributeChange()
 @ZComponentStylesAddOnConnect()
 @ZComponentGenerateId()
-@ZComponentStyles({ prefix: 'z-link' })
-export class ZLinkElement extends HTMLAnchorElement implements IZComponentStyles {
-  public static readonly observedAttributes = ['data-fashion'];
+@ZComponentStyles({ prefix: "z-link" })
+export class ZLinkElement
+  extends HTMLAnchorElement
+  implements IZComponentStyles
+{
+  public static readonly observedAttributes = ["data-fashion"];
 
-  @ZAttribute({ name: 'data-fashion', fallback: ZFashionPriority.Primary })
+  @ZAttribute({ name: "data-fashion", fallback: ZFashionPriority.Primary })
   public fashion: string;
 
   public styles(): string {
@@ -33,23 +36,23 @@ export class ZLinkElement extends HTMLAnchorElement implements IZComponentStyles
 
     return css`
       #${id} {
-        color: ${detail.color('main')};
+        color: ${detail.color("main")};
       }
 
       #${id}:hover {
-        color: ${detail.color('hover.main')};
+        color: ${detail.color("hover.main")};
       }
 
       #${id}:focus {
-        color: ${detail.color('focus.main')};
+        color: ${detail.color("focus.main")};
       }
 
       #${id}:active {
-        color: ${detail.color('active.main')};
+        color: ${detail.color("active.main")};
       }
 
       #${id}:visited {
-        color: ${detail.color('dark')};
+        color: ${detail.color("dark")};
       }
     `;
   }

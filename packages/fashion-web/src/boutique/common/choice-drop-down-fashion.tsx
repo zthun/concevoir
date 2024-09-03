@@ -1,12 +1,20 @@
-import { IZComponentName, IZComponentValue } from '@zthun/fashion-boutique';
-import { ZChoiceDropDown } from '@zthun/fashion-react';
-import { ZFashionArea, ZFashionContrast, ZFashionName, ZFashionPriority, ZFashionSeverity } from '@zthun/fashion-theme';
-import { setFirst } from '@zthun/helpful-fn';
-import { useAmbassadorState } from '@zthun/helpful-react';
-import { identity, startCase } from 'lodash-es';
-import React, { useMemo } from 'react';
+import { IZComponentName, IZComponentValue } from "@zthun/fashion-boutique";
+import { ZChoiceDropDown } from "@zthun/fashion-react";
+import {
+  ZFashionArea,
+  ZFashionContrast,
+  ZFashionName,
+  ZFashionPriority,
+  ZFashionSeverity,
+} from "@zthun/fashion-theme";
+import { setFirst } from "@zthun/helpful-fn";
+import { useAmbassadorState } from "@zthun/helpful-react";
+import { identity, startCase } from "lodash-es";
+import React, { useMemo } from "react";
 
-export interface IZChoiceDropDownFashion extends IZComponentValue<ZFashionName>, IZComponentName {}
+export interface IZChoiceDropDownFashion
+  extends IZComponentValue<ZFashionName>,
+    IZComponentName {}
 
 /**
  * A drop down that allows the user to select a fashion from the theme.
@@ -26,12 +34,12 @@ export function ZChoiceDropDownFashion(props: IZChoiceDropDownFashion) {
     ...Object.values(ZFashionPriority),
     ...Object.values(ZFashionSeverity),
     ...Object.values(ZFashionArea),
-    ...Object.values(ZFashionContrast)
+    ...Object.values(ZFashionContrast),
   ];
 
   return (
     <ZChoiceDropDown
-      label='Fashion'
+      label="Fashion"
       value={fashion}
       onValueChange={_setFashion}
       options={designs}

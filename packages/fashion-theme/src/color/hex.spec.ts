@@ -1,10 +1,10 @@
-import { describe, expect, it } from 'vitest';
-import { hex } from './hex.mjs';
+import { describe, expect, it } from "vitest";
+import { hex } from "./hex.mjs";
 
-describe('Hex', () => {
-  it('should return the hex value', () => {
+describe("Hex", () => {
+  it("should return the hex value", () => {
     // Arrange.
-    const expected = 'rgba(239, 239, 239, 1)';
+    const expected = "rgba(239, 239, 239, 1)";
     // Act.
     const actual = hex(0xefefef);
     // Assert.

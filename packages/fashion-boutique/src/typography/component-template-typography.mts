@@ -1,11 +1,20 @@
-import { IZDeviceValueMap, ZDeviceBounds, ZFashionDevice, ZSizeFixed } from '@zthun/fashion-tailor';
-import { ZFashionIntrinsic } from '@zthun/fashion-theme';
-import { firstTruthy, html } from '@zthun/helpful-fn';
-import { IZComponentTemplate, ZAttribute, ZComponentConstructor } from '@zthun/spellcraft';
-import { Property } from 'csstype';
-import { ZFashionDetail } from '../component/component-fashion.mjs';
-import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
-import { ZFashionTypographyElement } from '../theme/fashion-typography-element.mjs';
+import {
+  IZDeviceValueMap,
+  ZDeviceBounds,
+  ZFashionDevice,
+  ZSizeFixed,
+} from "@zthun/fashion-tailor";
+import { ZFashionIntrinsic } from "@zthun/fashion-theme";
+import { firstTruthy, html } from "@zthun/helpful-fn";
+import {
+  IZComponentTemplate,
+  ZAttribute,
+  ZComponentConstructor,
+} from "@zthun/spellcraft";
+import { Property } from "csstype";
+import { ZFashionDetail } from "../component/component-fashion.mjs";
+import { ZFashionTailorElement } from "../theme/fashion-tailor-element.mjs";
+import { ZFashionTypographyElement } from "../theme/fashion-typography-element.mjs";
 
 export type ZHtmlTypographyElement = HTMLParagraphElement | HTMLHeadingElement;
 
@@ -15,21 +24,26 @@ export interface IZTypographyOptions {
   weight?: Property.FontWeight;
 }
 
-export function ZComponentTemplateTypography<TElement extends ZHtmlTypographyElement>(options?: IZTypographyOptions) {
+export function ZComponentTemplateTypography<
+  TElement extends ZHtmlTypographyElement,
+>(options?: IZTypographyOptions) {
   const scale = firstTruthy({ xl: 1 }, options?.scale);
   const _scale = new ZDeviceBounds(scale, 1);
-  const transform = firstTruthy('none', options?.transform);
-  const weight = firstTruthy('normal', options?.weight);
+  const transform = firstTruthy("none", options?.transform);
+  const weight = firstTruthy("normal", options?.weight);
 
   return (target: ZComponentConstructor<TElement>): any => {
     // @ts-expect-error See https://github.com/microsoft/TypeScript/issues/37142
     class _Typography extends target implements IZComponentTemplate {
-      public static readonly observedAttributes = ['data-compact', 'data-fashion'];
+      public static readonly observedAttributes = [
+        "data-compact",
+        "data-fashion",
+      ];
 
-      @ZAttribute({ name: 'data-compact', type: 'boolean' })
+      @ZAttribute({ name: "data-compact", type: "boolean" })
       public compact: boolean;
 
-      @ZAttribute({ name: 'data-fashion', fallback: ZFashionIntrinsic.Inherit })
+      @ZAttribute({ name: "data-fashion", fallback: ZFashionIntrinsic.Inherit })
       public fashion: string;
 
       public template() {
@@ -42,12 +56,14 @@ export function ZComponentTemplateTypography<TElement extends ZHtmlTypographyEle
         return html`
           <style>
             :host {
-              color: ${detail.color('main')};
+              color: ${detail.color("main")};
               font-family: ${ff};
               font-weight: ${weight};
               font-decoration: italic;
               margin: 0;
-              margin-bottom: ${compact ? 0 : ZFashionTailorElement.gapVar(ZSizeFixed.Small)};
+              margin-bottom: ${compact
+                ? 0
+                : ZFashionTailorElement.gapVar(ZSizeFixed.Small)};
               text-transform: ${transform};
 
               font-size: calc(${fs} * ${_scale.xl()});

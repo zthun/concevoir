@@ -1,11 +1,11 @@
-import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZChartPageProgressComponentModel } from './chart-page-progress.cm.mjs';
+import { ZCircusBy, ZCircusComponentModel } from "@zthun/cirque";
+import { ZChartPageProgressComponentModel } from "./chart-page-progress.cm.mjs";
 
 /**
  * Represents the component model for the drawer page.
  */
 export class ZChartPageComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZChartPage-root';
+  public static readonly Selector = ".ZChartPage-root";
 
   /**
    * Gets the progress chart box.

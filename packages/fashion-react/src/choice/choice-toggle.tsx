@@ -1,45 +1,54 @@
-import { ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material';
-import { ZOrientation, cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
-import React from 'react';
-import { ZLabeled } from '../label/labeled';
-import { ZStack } from '../stack/stack';
-import { createStyleHook } from '../theme/styled';
-import { IZChoice, IZChoiceOption, useChoice } from './choice';
+import { ToggleButton, ToggleButtonGroup, Tooltip } from "@mui/material";
+import { ZOrientation, cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import React from "react";
+import { ZLabeled } from "../label/labeled";
+import { ZStack } from "../stack/stack";
+import { createStyleHook } from "../theme/styled";
+import { IZChoice, IZChoiceOption, useChoice } from "./choice";
 
 const useToggleStyles = createStyleHook(({ theme }) => ({
   toggle: {
-    'color': theme.surface.contrast,
-    'backgroundColor': firstDefined(theme.surface.main, theme.surface.light),
+    color: theme.surface.contrast,
+    backgroundColor: firstDefined(theme.surface.main, theme.surface.light),
 
-    '&:hover': {
+    "&:hover": {
       backgroundColor: theme.primary.light,
-      color: theme.primary.contrast
+      color: theme.primary.contrast,
     },
 
-    '&.ZChoice-value': {
-      'backgroundColor': theme.primary.main,
-      'color': theme.primary.contrast,
+    "&.ZChoice-value": {
+      backgroundColor: theme.primary.main,
+      color: theme.primary.contrast,
 
-      '&:hover': {
+      "&:hover": {
         backgroundColor: theme.primary.dark,
-        color: theme.primary.contrast
-      }
+        color: theme.primary.contrast,
+      },
     },
 
-    '&.ZChoice-clear': {
-      '&:hover': {
+    "&.ZChoice-clear": {
+      "&:hover": {
         backgroundColor: theme.error.main,
-        color: theme.error.contrast
-      }
-    }
-  }
+        color: theme.error.contrast,
+      },
+    },
+  },
 }));
 
 /**
  * Represents a type of choice component that switches between a toggled button group.
  */
 export function ZChoiceToggle<O, V>(props: IZChoice<O, V>) {
-  const { className, label, disabled, multiple, name, indelible, orientation, required } = props;
+  const {
+    className,
+    label,
+    disabled,
+    multiple,
+    name,
+    indelible,
+    orientation,
+    required,
+  } = props;
   const { choices, value, display, render, setValue } = useChoice(props);
   const { classes } = useToggleStyles();
 
@@ -72,7 +81,7 @@ export function ZChoiceToggle<O, V>(props: IZChoice<O, V>) {
 
     return (
       <ToggleButton
-        className={cssJoinDefined('ZChoice-clear', classes.toggle)}
+        className={cssJoinDefined("ZChoice-clear", classes.toggle)}
         onClick={setValue.bind(null, [])}
         value={[]}
       >
@@ -86,7 +95,10 @@ export function ZChoiceToggle<O, V>(props: IZChoice<O, V>) {
     const _display = display(choice.option);
     const selected = isValueSelected(choice.value, value);
 
-    const className = cssJoinDefined('ZChoice-option', classes.toggle, ['ZChoice-value', selected]);
+    const className = cssJoinDefined("ZChoice-option", classes.toggle, [
+      "ZChoice-value",
+      selected,
+    ]);
 
     return (
       <ToggleButton
@@ -107,14 +119,23 @@ export function ZChoiceToggle<O, V>(props: IZChoice<O, V>) {
 
   return (
     <ZLabeled
-      className={cssJoinDefined('ZChoice-root', 'ZChoice-toggle', 'ZChoice-always-open', className)}
+      className={cssJoinDefined(
+        "ZChoice-root",
+        "ZChoice-toggle",
+        "ZChoice-always-open",
+        className,
+      )}
       label={label}
-      LabelProps={{ required, className: 'ZChoice-label' }}
+      LabelProps={{ required, className: "ZChoice-label" }}
       name={name}
       orientation={orientation}
     >
       <ZStack orientation={ZOrientation.Horizontal}>
-        <ToggleButtonGroup disabled={disabled} exclusive={!multiple} className='ZChoice-options'>
+        <ToggleButtonGroup
+          disabled={disabled}
+          exclusive={!multiple}
+          className="ZChoice-options"
+        >
           {choices.map(renderChoice)}
           {renderClear()}
         </ToggleButtonGroup>

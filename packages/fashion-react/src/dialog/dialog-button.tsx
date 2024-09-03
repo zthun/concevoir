@@ -1,11 +1,11 @@
-import { cssJoinDefined } from '@zthun/helpful-fn';
-import React, { ReactNode, useEffect, useState } from 'react';
-import { IZButton, ZButton } from '../button/button';
-import { IZComponentStyle } from '../component/component-style.mjs';
-import { IZDialog } from './use-dialog';
+import { cssJoinDefined } from "@zthun/helpful-fn";
+import React, { ReactNode, useEffect, useState } from "react";
+import { IZButton, ZButton } from "../button/button";
+import { IZComponentStyle } from "../component/component-style.mjs";
+import { IZDialog } from "./use-dialog";
 
 export interface IZDialogButton extends IZComponentStyle {
-  ButtonProps?: Omit<IZButton, 'onClick'>;
+  ButtonProps?: Omit<IZButton, "onClick">;
 
   closeOnChange?: any[];
 
@@ -21,8 +21,12 @@ export function ZDialogButton(props: IZDialogButton) {
   }, closeOnChange || []);
 
   return (
-    <div className={cssJoinDefined('ZDialogButton-root', className)}>
-      <ZButton label='Open' {...ButtonProps} onClick={setOpen.bind(null, true)} />
+    <div className={cssJoinDefined("ZDialogButton-root", className)}>
+      <ZButton
+        label="Open"
+        {...ButtonProps}
+        onClick={setOpen.bind(null, true)}
+      />
       {renderDialog({ open: !!open, onClose: setOpen.bind(null, false) })}
     </div>
   );

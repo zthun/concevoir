@@ -1,25 +1,34 @@
-import { IZFashionTypography, ZFashionTypographyBuilder } from '@zthun/fashion-typeface';
-import { css } from '@zthun/helpful-fn';
+import {
+  IZFashionTypography,
+  ZFashionTypographyBuilder,
+} from "@zthun/fashion-typeface";
+import { css } from "@zthun/helpful-fn";
 import {
   IZComponentStyles,
   IZComponentWithStyleElement,
   ZComponentRegister,
   ZComponentStyles,
   ZComponentStylesAddOnConnect,
-  ZProperty
-} from '@zthun/spellcraft';
+  ZProperty,
+} from "@zthun/spellcraft";
 
-export interface ZFashionTypographyElement extends IZComponentWithStyleElement {}
+export interface ZFashionTypographyElement
+  extends IZComponentWithStyleElement {}
 
-@ZComponentRegister('z-fashion-typography')
+@ZComponentRegister("z-fashion-typography")
 @ZComponentStylesAddOnConnect()
-@ZComponentStyles({ id: 'ZFashionTypography-styles' })
-export class ZFashionTypographyElement extends HTMLElement implements IZComponentStyles {
-  public static readonly defaultTypography = new ZFashionTypographyBuilder().build();
+@ZComponentStyles({ id: "ZFashionTypography-styles" })
+export class ZFashionTypographyElement
+  extends HTMLElement
+  implements IZComponentStyles
+{
+  public static readonly defaultTypography =
+    new ZFashionTypographyBuilder().build();
   public static readonly defaultFontSize = `${ZFashionTypographyElement.defaultTypography.size}${ZFashionTypographyElement.defaultTypography.unit}`;
 
-  public static readonly PropertyFontSize = '--fashion-typography-font-size';
-  public static readonly PropertyFontFamily = '--fashion-typography-font-family';
+  public static readonly PropertyFontSize = "--fashion-typography-font-size";
+  public static readonly PropertyFontFamily =
+    "--fashion-typography-font-family";
 
   public static readonly VariableFontSize = `var(${ZFashionTypographyElement.PropertyFontSize}, ${ZFashionTypographyElement.defaultFontSize})`;
   public static readonly VariableFontFamily = `var(${ZFashionTypographyElement.PropertyFontFamily}, ${ZFashionTypographyElement.defaultTypography.families})`;
@@ -34,7 +43,7 @@ export class ZFashionTypographyElement extends HTMLElement implements IZComponen
   public styles() {
     const { typography } = this;
     const { size, unit } = typography;
-    const family = `${typography.families.join(',')}`;
+    const family = `${typography.families.join(",")}`;
     const fontSize = `${size}${unit}`;
 
     return css`

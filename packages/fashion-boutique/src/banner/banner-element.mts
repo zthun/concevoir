@@ -5,10 +5,10 @@ import {
   ZSizeVaried,
   createSizeChartFixedArithmetic,
   createSizeChartFixedCss,
-  createSizeChartVariedCss
-} from '@zthun/fashion-tailor';
-import { ZFashionPriority } from '@zthun/fashion-theme';
-import { html } from '@zthun/helpful-fn';
+  createSizeChartVariedCss,
+} from "@zthun/fashion-tailor";
+import { ZFashionPriority } from "@zthun/fashion-theme";
+import { html } from "@zthun/helpful-fn";
 import {
   IZComponentRender,
   IZComponentTemplate,
@@ -18,24 +18,35 @@ import {
   ZComponentRenderOnConnected,
   ZComponentRenderOnEvent,
   ZComponentRenderTemplate,
-  ZComponentShadow
-} from '@zthun/spellcraft';
-import { ZDeviceElement, ZPropertyDeviceHeight } from '../background/device-element.mjs';
-import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
+  ZComponentShadow,
+} from "@zthun/spellcraft";
+import {
+  ZDeviceElement,
+  ZPropertyDeviceHeight,
+} from "../background/device-element.mjs";
+import {
+  IZComponentFashion,
+  ZFashionDetail,
+} from "../component/component-fashion.mjs";
 
 export interface ZBannerElement extends IZComponentRender {}
 
-@ZComponentRegister('z-banner')
-@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.selector('height') })
+@ZComponentRegister("z-banner")
+@ZComponentRenderOnEvent("change", {
+  selector: ZDeviceElement.selector("height"),
+})
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
 @ZComponentShadow()
-export class ZBannerElement extends HTMLElement implements IZComponentFashion, IZComponentTemplate {
-  public static readonly observedAttributes = ['fashion'];
+export class ZBannerElement
+  extends HTMLElement
+  implements IZComponentFashion, IZComponentTemplate
+{
+  public static readonly observedAttributes = ["fashion"];
   public static readonly SizeChart = Object.freeze({
-    ...createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), 'rem'),
-    ...createSizeChartVariedCss()
+    ...createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), "rem"),
+    ...createSizeChartVariedCss(),
   });
 
   @ZAttribute({ fallback: ZFashionPriority.Primary })
@@ -52,9 +63,9 @@ export class ZBannerElement extends HTMLElement implements IZComponentFashion, I
     return html`
       <style>
         :host {
-          background: ${detail.color('main')};
+          background: ${detail.color("main")};
           box-sizing: border-box;
-          color: ${detail.color('contrast')};
+          color: ${detail.color("contrast")};
           display: block;
           position: sticky;
           width: 100%;

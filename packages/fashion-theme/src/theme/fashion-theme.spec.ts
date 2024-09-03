@@ -1,111 +1,129 @@
-import { beforeEach, describe, expect, it } from 'vitest';
-import { white } from '../color/rgb.mjs';
-import { IZFashion, ZFashionBuilder } from '../fashion/fashion.mjs';
-import { createDarkTheme } from './dark.mjs';
-import { ZFashionThemeBuilder } from './fashion-theme.mjs';
-import { createLightTheme } from './light.mjs';
+import { beforeEach, describe, expect, it } from "vitest";
+import { white } from "../color/rgb.mjs";
+import { IZFashion, ZFashionBuilder } from "../fashion/fashion.mjs";
+import { createDarkTheme } from "./dark.mjs";
+import { ZFashionThemeBuilder } from "./fashion-theme.mjs";
+import { createLightTheme } from "./light.mjs";
 
-describe('ZFashionDesignBuilder', () => {
+describe("ZFashionDesignBuilder", () => {
   function createTestTarget() {
     return new ZFashionThemeBuilder();
   }
 
-  describe('Construction', () => {
-    it('should create the light theme', () => {
+  describe("Construction", () => {
+    it("should create the light theme", () => {
       expect(createLightTheme()).toBeTruthy();
     });
 
-    it('should create the dark theme', () => {
+    it("should create the dark theme", () => {
       expect(createDarkTheme()).toBeTruthy();
     });
   });
 
-  describe('Name', () => {
-    it('should set the name', () => {
-      const expected = 'Test';
+  describe("Name", () => {
+    it("should set the name", () => {
+      const expected = "Test";
       expect(createTestTarget().name(expected).build().name).toEqual(expected);
     });
   });
 
-  describe('Priority', () => {
-    it('should set primary', () => {
+  describe("Priority", () => {
+    it("should set primary", () => {
       const expected = new ZFashionBuilder().build();
-      expect(createTestTarget().primary(expected).build().primary).toEqual(expected);
+      expect(createTestTarget().primary(expected).build().primary).toEqual(
+        expected,
+      );
     });
 
-    it('should set secondary', () => {
+    it("should set secondary", () => {
       const expected = new ZFashionBuilder().build();
-      expect(createTestTarget().secondary(expected).build().secondary).toEqual(expected);
+      expect(createTestTarget().secondary(expected).build().secondary).toEqual(
+        expected,
+      );
     });
   });
 
-  describe('Severity', () => {
-    it('should set success', () => {
+  describe("Severity", () => {
+    it("should set success", () => {
       const expected = new ZFashionBuilder().build();
-      expect(createTestTarget().success(expected).build().success).toEqual(expected);
+      expect(createTestTarget().success(expected).build().success).toEqual(
+        expected,
+      );
     });
 
-    it('should set warning', () => {
+    it("should set warning", () => {
       const expected = new ZFashionBuilder().build();
-      expect(createTestTarget().warning(expected).build().warning).toEqual(expected);
+      expect(createTestTarget().warning(expected).build().warning).toEqual(
+        expected,
+      );
     });
 
-    it('should set error', () => {
+    it("should set error", () => {
       const expected = new ZFashionBuilder().build();
-      expect(createTestTarget().error(expected).build().error).toEqual(expected);
+      expect(createTestTarget().error(expected).build().error).toEqual(
+        expected,
+      );
     });
 
-    it('should set info', () => {
+    it("should set info", () => {
       const expected = new ZFashionBuilder().build();
       expect(createTestTarget().info(expected).build().info).toEqual(expected);
     });
   });
 
-  describe('Space', () => {
-    it('should set body', () => {
+  describe("Space", () => {
+    it("should set body", () => {
       const expected = new ZFashionBuilder().build();
       expect(createTestTarget().body(expected).build().body).toEqual(expected);
     });
 
-    it('should set surface', () => {
+    it("should set surface", () => {
       const expected = new ZFashionBuilder().build();
-      expect(createTestTarget().surface(expected).build().surface).toEqual(expected);
+      expect(createTestTarget().surface(expected).build().surface).toEqual(
+        expected,
+      );
     });
 
-    it('should set component', () => {
+    it("should set component", () => {
       const expected = new ZFashionBuilder().build();
-      expect(createTestTarget().component(expected).build().component).toEqual(expected);
+      expect(createTestTarget().component(expected).build().component).toEqual(
+        expected,
+      );
     });
   });
 
-  describe('Contrast', () => {
-    it('should set light', () => {
+  describe("Contrast", () => {
+    it("should set light", () => {
       const expected = new ZFashionBuilder().build();
-      expect(createTestTarget().light(expected).build().light).toEqual(expected);
+      expect(createTestTarget().light(expected).build().light).toEqual(
+        expected,
+      );
     });
 
-    it('should set dark', () => {
+    it("should set dark", () => {
       const expected = new ZFashionBuilder().build();
       expect(createTestTarget().dark(expected).build().dark).toEqual(expected);
     });
 
-    it('should set opposite', () => {
+    it("should set opposite", () => {
       const expected = new ZFashionBuilder().build();
-      expect(createTestTarget().opposite(expected).build().opposite).toEqual(expected);
+      expect(createTestTarget().opposite(expected).build().opposite).toEqual(
+        expected,
+      );
     });
   });
 
-  describe('Custom', () => {
+  describe("Custom", () => {
     let custom: { c1: IZFashion; c2: IZFashion };
 
     beforeEach(() => {
       custom = {
         c1: new ZFashionBuilder().build(),
-        c2: new ZFashionBuilder().build()
+        c2: new ZFashionBuilder().build(),
       };
     });
 
-    it('should set custom', () => {
+    it("should set custom", () => {
       // Arrange.
       const target = createTestTarget();
       // Act.
@@ -116,8 +134,8 @@ describe('ZFashionDesignBuilder', () => {
     });
   });
 
-  describe('Copy', () => {
-    it('should copy another design', () => {
+  describe("Copy", () => {
+    it("should copy another design", () => {
       const primary = new ZFashionBuilder().contrast(white()).build();
       const expected = createTestTarget().primary(primary).build();
       const actual = createTestTarget().copy(expected).build();

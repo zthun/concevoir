@@ -1,6 +1,6 @@
-import { ZColor, brighten, contrast } from '../color/color.mjs';
-import { hex } from '../color/hex.mjs';
-import { black, transparent, white } from '../color/rgb.mjs';
+import { ZColor, brighten, contrast } from "../color/color.mjs";
+import { hex } from "../color/hex.mjs";
+import { black, transparent, white } from "../color/rgb.mjs";
 
 /**
  * Priority fashions.
@@ -9,11 +9,11 @@ export enum ZFashionPriority {
   /**
    * Primary fashion.  Main color of your site.
    */
-  Primary = 'primary',
+  Primary = "primary",
   /**
    * Secondary fashion.
    */
-  Secondary = 'secondary'
+  Secondary = "secondary",
 }
 
 /**
@@ -25,19 +25,19 @@ export enum ZFashionSeverity {
   /**
    * Greens.
    */
-  Success = 'success',
+  Success = "success",
   /**
    * Oranges.
    */
-  Warning = 'warning',
+  Warning = "warning",
   /**
    * Reds.
    */
-  Error = 'error',
+  Error = "error",
   /**
    * Blues.
    */
-  Info = 'info'
+  Info = "info",
 }
 
 /**
@@ -47,15 +47,15 @@ export enum ZFashionArea {
   /**
    * Site body background.
    */
-  Body = 'body',
+  Body = "body",
   /**
    * Card or modal surface on top of the body.
    */
-  Surface = 'surface',
+  Surface = "surface",
   /**
    * Default button component style.
    */
-  Component = 'component'
+  Component = "component",
 }
 
 /**
@@ -67,20 +67,20 @@ export enum ZFashionContrast {
    *
    * Usually black.
    */
-  Dark = 'dark',
+  Dark = "dark",
   /**
    * Light.
    *
    * Usually white.
    */
-  Light = 'light',
+  Light = "light",
   /**
    * A theme that contrasts the core them.
    *
    * If the core them is dark, this should be light.
    * Likewise, if the core theme is light, this should be dark.
    */
-  Opposite = 'opposite'
+  Opposite = "opposite",
 }
 
 /**
@@ -91,15 +91,20 @@ export enum ZFashionIntrinsic {
   /**
    * Fashion for transparency.
    */
-  Transparent = 'transparent',
+  Transparent = "transparent",
 
   /**
    * Fashion for inherit.
    */
-  Inherit = 'inherit'
+  Inherit = "inherit",
 }
 
-export type ZFashionName = ZFashionPriority | ZFashionSeverity | ZFashionArea | ZFashionContrast | ZFashionIntrinsic;
+export type ZFashionName =
+  | ZFashionPriority
+  | ZFashionSeverity
+  | ZFashionArea
+  | ZFashionContrast
+  | ZFashionIntrinsic;
 
 /**
  * Overrides for a fashion.
@@ -168,20 +173,20 @@ export interface IZFashion {
  * A path to a scoped color value in a fashion block.
  */
 export type ZFashionScope =
-  | 'main'
-  | 'light'
-  | 'dark'
-  | 'border'
-  | 'contrast'
-  | 'hover.main'
-  | 'hover.contrast'
-  | 'hover.border'
-  | 'focus.main'
-  | 'focus.contrast'
-  | 'focus.border'
-  | 'active.main'
-  | 'active.contrast'
-  | 'active.border';
+  | "main"
+  | "light"
+  | "dark"
+  | "border"
+  | "contrast"
+  | "hover.main"
+  | "hover.contrast"
+  | "hover.border"
+  | "focus.main"
+  | "focus.contrast"
+  | "focus.border"
+  | "active.main"
+  | "active.contrast"
+  | "active.border";
 
 /**
  * Represents a builder for a complementary fashion objects.
@@ -202,7 +207,7 @@ export class ZFashionBuilder {
       focus: {},
       hover: {},
       main: white(),
-      name: 'default'
+      name: "default",
     };
   }
 
@@ -323,7 +328,9 @@ export class ZFashionBuilder {
    *        This object.
    */
   public transparent() {
-    return this.name(ZFashionIntrinsic.Transparent).main(transparent()).contrast('inherit');
+    return this.name(ZFashionIntrinsic.Transparent)
+      .main(transparent())
+      .contrast("inherit");
   }
 
   /**
@@ -333,7 +340,9 @@ export class ZFashionBuilder {
    *        This object.
    */
   public inherit() {
-    return this.name(ZFashionIntrinsic.Inherit).main('inherit').contrast('inherit');
+    return this.name(ZFashionIntrinsic.Inherit)
+      .main("inherit")
+      .contrast("inherit");
   }
 
   /**
@@ -357,22 +366,26 @@ export class ZFashionBuilder {
 
     const whiteMainContrast = contrast(color, w);
     const blackMainContrast = contrast(color, b);
-    const higherMainContrast = whiteMainContrast >= blackMainContrast ? white() : black();
+    const higherMainContrast =
+      whiteMainContrast >= blackMainContrast ? white() : black();
 
     const lighter = brighten(color, Math.floor(amount / 2));
     const whiteLighterContrast = contrast(lighter, w);
     const blackLighterContrast = contrast(lighter, b);
-    const higherLighterContrast = whiteLighterContrast >= blackLighterContrast ? white() : black();
+    const higherLighterContrast =
+      whiteLighterContrast >= blackLighterContrast ? white() : black();
 
     const light = brighten(color, amount);
     const whiteLightContrast = contrast(light, w);
     const blackLightContrast = contrast(light, b);
-    const higherLightContrast = whiteLightContrast >= blackLightContrast ? white() : black();
+    const higherLightContrast =
+      whiteLightContrast >= blackLightContrast ? white() : black();
 
     const dark = brighten(color, -amount);
     const whiteDarkContrast = contrast(dark, w);
     const blackDarkContrast = contrast(dark, b);
-    const higherDarkContrast = whiteDarkContrast >= blackDarkContrast ? white() : black();
+    const higherDarkContrast =
+      whiteDarkContrast >= blackDarkContrast ? white() : black();
 
     const mainColor = hex(color);
     const lighterColor = hex(lighter);
@@ -386,17 +399,17 @@ export class ZFashionBuilder {
       .active({
         contrast: higherLighterContrast,
         main: lighterColor,
-        border: lightColor
+        border: lightColor,
       })
       .focus({
         contrast: higherLightContrast,
         main: lightColor,
-        border: darkColor
+        border: darkColor,
       })
       .hover({
         contrast: higherDarkContrast,
         main: darkColor,
-        border: lightColor
+        border: lightColor,
       })
       .border(darkColor);
   }

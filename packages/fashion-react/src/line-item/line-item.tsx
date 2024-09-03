@@ -1,11 +1,14 @@
-import { IZComponentPrefix, IZComponentSuffix } from '@zthun/fashion-boutique';
-import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
-import { cssJoinDefined } from '@zthun/helpful-fn';
-import React, { ReactNode } from 'react';
-import { IZComponentStyle } from '../component/component-style.mjs';
-import { ZGrid } from '../grid/grid';
+import { IZComponentPrefix, IZComponentSuffix } from "@zthun/fashion-boutique";
+import { ZSizeFixed, ZSizeVaried } from "@zthun/fashion-tailor";
+import { cssJoinDefined } from "@zthun/helpful-fn";
+import React, { ReactNode } from "react";
+import { IZComponentStyle } from "../component/component-style.mjs";
+import { ZGrid } from "../grid/grid";
 
-export interface IZLineItem extends IZComponentStyle, IZComponentPrefix<ReactNode>, IZComponentSuffix<ReactNode> {
+export interface IZLineItem
+  extends IZComponentStyle,
+    IZComponentPrefix<ReactNode>,
+    IZComponentSuffix<ReactNode> {
   body?: ReactNode;
 }
 
@@ -24,15 +27,15 @@ export function ZLineItem(props: IZLineItem) {
 
   return (
     <ZGrid
-      className={cssJoinDefined('ZLineItem-root', className)}
-      columns='auto 1fr auto'
-      align={{ items: 'center' }}
+      className={cssJoinDefined("ZLineItem-root", className)}
+      columns="auto 1fr auto"
+      align={{ items: "center" }}
       gap={ZSizeFixed.Small}
       width={ZSizeVaried.Full}
     >
-      <div className={cssJoinDefined('ZLineItem-prefix')}>{prefix}</div>
-      <div className={cssJoinDefined('ZLineItem-body')}>{body}</div>
-      <div className={cssJoinDefined('ZLineItem-suffix')}>{suffix}</div>
+      <div className={cssJoinDefined("ZLineItem-prefix")}>{prefix}</div>
+      <div className={cssJoinDefined("ZLineItem-body")}>{body}</div>
+      <div className={cssJoinDefined("ZLineItem-suffix")}>{suffix}</div>
     </ZGrid>
   );
 }

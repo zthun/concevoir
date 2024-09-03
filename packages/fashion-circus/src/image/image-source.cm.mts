@@ -1,10 +1,10 @@
-import { ZCircusComponentModel } from '@zthun/cirque';
+import { ZCircusComponentModel } from "@zthun/cirque";
 
 /**
  * Represents the component model for an image source.
  */
 export class ZImageSourceComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZImageSource-root';
+  public static readonly Selector = ".ZImageSource-root";
 
   /**
    * Gets the image name.
@@ -13,7 +13,7 @@ export class ZImageSourceComponentModel extends ZCircusComponentModel {
    *        The name of the image.
    */
   public name(): Promise<string | null> {
-    return this.driver.attribute('name');
+    return this.driver.attribute("name");
   }
 
   /**
@@ -22,8 +22,8 @@ export class ZImageSourceComponentModel extends ZCircusComponentModel {
    * @returns
    *        The kind of image detected.
    */
-  public kind(): Promise<'img' | 'svg' | 'empty'> {
-    return this.driver.attribute('data-kind', 'img');
+  public kind(): Promise<"img" | "svg" | "empty"> {
+    return this.driver.attribute("data-kind", "img");
   }
 
   /**
@@ -33,7 +33,7 @@ export class ZImageSourceComponentModel extends ZCircusComponentModel {
    *        True if the underlying image source is an svg.
    */
   public async svg(): Promise<boolean> {
-    return (await this.kind()) === 'svg';
+    return (await this.kind()) === "svg";
   }
 
   /**
@@ -43,7 +43,7 @@ export class ZImageSourceComponentModel extends ZCircusComponentModel {
    *        True if the underlying image source is an img.
    */
   public async img(): Promise<boolean> {
-    return (await this.kind()) === 'img';
+    return (await this.kind()) === "img";
   }
 
   /**
@@ -53,6 +53,6 @@ export class ZImageSourceComponentModel extends ZCircusComponentModel {
    *        True if the underlying image is empty.
    */
   public async empty(): Promise<boolean> {
-    return (await this.kind()) === 'empty';
+    return (await this.kind()) === "empty";
   }
 }

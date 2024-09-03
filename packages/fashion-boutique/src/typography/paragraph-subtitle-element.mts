@@ -6,13 +6,15 @@ import {
   ZComponentRenderOnAttributeChanged,
   ZComponentRenderOnConnected,
   ZComponentRenderTemplate,
-  ZComponentShadow
-} from '@zthun/spellcraft';
-import { ZComponentTemplateTypography } from './component-template-typography.mjs';
+  ZComponentShadow,
+} from "@zthun/spellcraft";
+import { ZComponentTemplateTypography } from "./component-template-typography.mjs";
 
-export interface ZParagraphSubtitleElement extends IZComponentRender, IZComponentTemplate {}
+export interface ZParagraphSubtitleElement
+  extends IZComponentRender,
+    IZComponentTemplate {}
 
-@ZComponentRegister('z-paragraph-subtitle', { extend: 'p' })
+@ZComponentRegister("z-paragraph-subtitle", { extend: "p" })
 @ZComponentRenderOnConnected()
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderTemplate()
@@ -22,10 +24,14 @@ export interface ZParagraphSubtitleElement extends IZComponentRender, IZComponen
     lg: 0.98,
     md: 0.95,
     sm: 0.92,
-    xs: 0.9
+    xs: 0.9,
   },
-  transform: 'uppercase'
+  transform: "uppercase",
 })
-@ZComponentClass('ZTypography-root', 'ZTypography-paragraph', 'ZTypography-paragraph-subtitle')
+@ZComponentClass(
+  "ZTypography-root",
+  "ZTypography-paragraph",
+  "ZTypography-paragraph-subtitle",
+)
 @ZComponentShadow()
 export class ZParagraphSubtitleElement extends HTMLParagraphElement {}

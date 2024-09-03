@@ -1,10 +1,10 @@
-import { ZCircusActBuilder, ZCircusComponentModel } from '@zthun/cirque';
+import { ZCircusActBuilder, ZCircusComponentModel } from "@zthun/cirque";
 
 /**
  * Represents a component model for a ZLink component.
  */
 export class ZLinkComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZLink-root';
+  public static readonly Selector = ".ZLink-root";
 
   /**
    * Gets the link hypertext reference (href).
@@ -13,7 +13,7 @@ export class ZLinkComponentModel extends ZCircusComponentModel {
    *        The hypertext reference.
    */
   public reference() {
-    return this.driver.attribute('href');
+    return this.driver.attribute("href");
   }
 
   /**
@@ -23,7 +23,7 @@ export class ZLinkComponentModel extends ZCircusComponentModel {
    *        The name of the link.
    */
   public name() {
-    return this.driver.attribute('data-name');
+    return this.driver.attribute("data-name");
   }
 
   /**

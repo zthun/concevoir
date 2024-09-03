@@ -1,12 +1,12 @@
-import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { ZFashionSeverity } from '@zthun/fashion-theme';
-import { cssJoinDefined } from '@zthun/helpful-fn';
-import React, { useState } from 'react';
-import { ZButton } from '../button/button';
-import { ZGrid } from '../grid/grid';
-import { ZIconFontAwesome } from '../icon/icon-font-awesome';
-import { IZText } from './text';
-import { ZTextInput, ZTextType } from './text-input';
+import { ZSizeFixed } from "@zthun/fashion-tailor";
+import { ZFashionSeverity } from "@zthun/fashion-theme";
+import { cssJoinDefined } from "@zthun/helpful-fn";
+import React, { useState } from "react";
+import { ZButton } from "../button/button";
+import { ZGrid } from "../grid/grid";
+import { ZIconFontAwesome } from "../icon/icon-font-awesome";
+import { IZText } from "./text";
+import { ZTextInput, ZTextType } from "./text-input";
 
 /**
  * Represents a password based input text component that can reveal the password.
@@ -22,18 +22,22 @@ export function ZTextInputReveal(props: IZText) {
   const [revealed, setRevealed] = useState(false);
   const type = revealed ? ZTextType.Text : ZTextType.Password;
   const visible = revealed ? (
-    <ZIconFontAwesome name='eye' width={ZSizeFixed.ExtraSmall} />
+    <ZIconFontAwesome name="eye" width={ZSizeFixed.ExtraSmall} />
   ) : (
-    <ZIconFontAwesome name='eye-slash' width={ZSizeFixed.ExtraSmall} />
+    <ZIconFontAwesome name="eye-slash" width={ZSizeFixed.ExtraSmall} />
   );
 
   const fashion = revealed ? ZFashionSeverity.Error : ZFashionSeverity.Success;
 
   const adornment = (
-    <ZGrid columns='auto auto' align={{ items: 'center' }} gap={ZSizeFixed.Small}>
+    <ZGrid
+      columns="auto auto"
+      align={{ items: "center" }}
+      gap={ZSizeFixed.Small}
+    >
       {suffix}
       <ZButton
-        className='ZText-revealer'
+        className="ZText-revealer"
         borderless
         label={visible}
         fashion={fashion}
@@ -43,6 +47,11 @@ export function ZTextInputReveal(props: IZText) {
   );
 
   return (
-    <ZTextInput {...props} className={cssJoinDefined('ZText-input-reveal', className)} type={type} suffix={adornment} />
+    <ZTextInput
+      {...props}
+      className={cssJoinDefined("ZText-input-reveal", className)}
+      type={type}
+      suffix={adornment}
+    />
   );
 }

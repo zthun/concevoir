@@ -1,16 +1,23 @@
-import { IZComponentName, IZComponentValue } from '@zthun/fashion-boutique';
-import { ZChoiceDropDown } from '@zthun/fashion-react';
-import { ZSize, ZSizeFixed, ZSizeVaried, ZSizeVoid } from '@zthun/fashion-tailor';
-import { setFirst } from '@zthun/helpful-fn';
-import { useAmbassadorState } from '@zthun/helpful-react';
-import { identity, startCase } from 'lodash-es';
-import React, { ReactNode, useMemo } from 'react';
+import { IZComponentName, IZComponentValue } from "@zthun/fashion-boutique";
+import { ZChoiceDropDown } from "@zthun/fashion-react";
+import {
+  ZSize,
+  ZSizeFixed,
+  ZSizeVaried,
+  ZSizeVoid,
+} from "@zthun/fashion-tailor";
+import { setFirst } from "@zthun/helpful-fn";
+import { useAmbassadorState } from "@zthun/helpful-react";
+import { identity, startCase } from "lodash-es";
+import React, { ReactNode, useMemo } from "react";
 
 export const ZFixedSizes = Object.values(ZSizeFixed);
 export const ZVariedSizes = Object.values(ZSizeVaried);
 export const ZVoidSizes = Object.values(ZSizeVoid);
 
-export interface IZChoiceDropDownSize<TSize> extends IZComponentValue<TSize>, IZComponentName {
+export interface IZChoiceDropDownSize<TSize>
+  extends IZComponentValue<TSize>,
+    IZComponentName {
   label: ReactNode;
   sizes: TSize[];
 }
@@ -24,7 +31,9 @@ export interface IZChoiceDropDownSize<TSize> extends IZComponentValue<TSize>, IZ
  * @returns
  *        The jsx to render the component.
  */
-export function ZChoiceDropDownSize<TSize = ZSize>(props: IZChoiceDropDownSize<TSize>) {
+export function ZChoiceDropDownSize<TSize = ZSize>(
+  props: IZChoiceDropDownSize<TSize>,
+) {
   const { value, onValueChange, name, sizes, label } = props;
   const [_value, _setValue] = useAmbassadorState(value, onValueChange);
   const size = useMemo(() => (_value ? [_value] : undefined), [_value]);

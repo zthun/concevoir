@@ -1,11 +1,15 @@
-import { ZCircusKeyboardQwerty } from '@zthun/cirque';
-import { ZFashionPriority } from '@zthun/fashion-theme';
-import { sleep } from '@zthun/helpful-fn';
-import { IZLifecycleConnected, IZLifecycleDisconnected, ZAttribute } from '@zthun/spellcraft';
-import { IZComponentDisabled } from '../component/component-disabled.mjs';
-import { IZComponentFashion } from '../component/component-fashion.mjs';
-import { IZComponentName } from '../component/component-name.mjs';
-import { IZComponentRequired } from '../component/component-required.mjs';
+import { ZCircusKeyboardQwerty } from "@zthun/cirque";
+import { ZFashionPriority } from "@zthun/fashion-theme";
+import { sleep } from "@zthun/helpful-fn";
+import {
+  IZLifecycleConnected,
+  IZLifecycleDisconnected,
+  ZAttribute,
+} from "@zthun/spellcraft";
+import { IZComponentDisabled } from "../component/component-disabled.mjs";
+import { IZComponentFashion } from "../component/component-fashion.mjs";
+import { IZComponentName } from "../component/component-name.mjs";
+import { IZComponentRequired } from "../component/component-required.mjs";
 
 export abstract class ZBooleanElement<T>
   extends HTMLElement
@@ -17,12 +21,18 @@ export abstract class ZBooleanElement<T>
     IZLifecycleConnected,
     IZLifecycleDisconnected
 {
-  public static readonly observedAttributes = ['fashion', 'value', 'disabled', 'required', 'value'];
+  public static readonly observedAttributes = [
+    "fashion",
+    "value",
+    "disabled",
+    "required",
+    "value",
+  ];
 
-  @ZAttribute({ type: 'boolean' })
+  @ZAttribute({ type: "boolean" })
   public required: boolean;
 
-  @ZAttribute({ type: 'boolean' })
+  @ZAttribute({ type: "boolean" })
   public disabled: boolean;
 
   @ZAttribute({ fallback: ZFashionPriority.Primary })
@@ -34,7 +44,10 @@ export abstract class ZBooleanElement<T>
   public abstract value: T;
 
   private _handleKeyDown = async (e: KeyboardEvent) => {
-    if (e.key !== ZCircusKeyboardQwerty.enter.lower && e.key !== ZCircusKeyboardQwerty.space.lower) {
+    if (
+      e.key !== ZCircusKeyboardQwerty.enter.lower &&
+      e.key !== ZCircusKeyboardQwerty.space.lower
+    ) {
       return;
     }
 
@@ -50,7 +63,7 @@ export abstract class ZBooleanElement<T>
     }
 
     await this.toggle();
-    this.dispatchEvent(new Event('change', { composed: true, bubbles: true }));
+    this.dispatchEvent(new Event("change", { composed: true, bubbles: true }));
     await sleep();
     this.shadowRoot?.querySelector<HTMLElement>('[role="checkbox"]')?.focus();
   };
@@ -58,12 +71,12 @@ export abstract class ZBooleanElement<T>
   public abstract toggle(): Promise<void>;
 
   public connectedCallback(): void {
-    this.addEventListener('click', this._handleClick);
-    this.addEventListener('keydown', this._handleKeyDown);
+    this.addEventListener("click", this._handleClick);
+    this.addEventListener("keydown", this._handleKeyDown);
   }
 
   public disconnectedCallback(): void {
-    this.removeEventListener('click', this._handleClick);
-    this.removeEventListener('keydown', this._handleKeyDown);
+    this.removeEventListener("click", this._handleClick);
+    this.removeEventListener("keydown", this._handleKeyDown);
   }
 }

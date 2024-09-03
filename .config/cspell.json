@@ -14,6 +14,7 @@
     "conventionalcommits",
     "csstype",
     "DOCKERHUB",
+    "htmlhint",
     "npmrc",
     "progressbar",
     "Roboto",
@@ -28,5 +29,11 @@
     "zthun",
     "zthunworks"
   ],
-  "dictionaries": ["typescript", "node", "npm", "fonts", "en_US"]
+  "dictionaries": [
+    "typescript",
+    "node",
+    "npm",
+    "fonts",
+    "en_US"
+  ]
 }

@@ -5,9 +5,9 @@ import {
   ZSizeFixed,
   ZSizeVaried,
   ZSizeVoid,
-  createSizeChartVariedCss
-} from '@zthun/fashion-tailor';
-import { firstTruthy, html } from '@zthun/helpful-fn';
+  createSizeChartVariedCss,
+} from "@zthun/fashion-tailor";
+import { firstTruthy, html } from "@zthun/helpful-fn";
 import {
   IZComponentRender,
   IZComponentTemplate,
@@ -18,40 +18,42 @@ import {
   ZComponentRenderOnConnected,
   ZComponentRenderOnEvent,
   ZComponentRenderTemplate,
-  ZComponentShadow
-} from '@zthun/spellcraft';
-import { Property } from 'csstype';
+  ZComponentShadow,
+} from "@zthun/spellcraft";
+import { Property } from "csstype";
 import {
   IZAlign,
   IZJustify,
   ZAlignmentElement,
   ZPropertyAlignmentAlign,
-  ZPropertyAlignmentJustify
-} from '../background/alignment-element.mjs';
+  ZPropertyAlignmentJustify,
+} from "../background/alignment-element.mjs";
 import {
   ZDeviceElement,
   ZPropertyDevice,
   ZPropertyDeviceHeight,
-  ZPropertyDeviceWidth
-} from '../background/device-element.mjs';
-import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
+  ZPropertyDeviceWidth,
+} from "../background/device-element.mjs";
+import { ZFashionTailorElement } from "../theme/fashion-tailor-element.mjs";
 
 export interface ZGridElement extends IZComponentRender {}
 
-@ZComponentRegister('z-grid')
-@ZComponentRenderOnEvent('change', { selector: ZAlignmentElement.align() })
-@ZComponentRenderOnEvent('change', { selector: ZAlignmentElement.justify() })
-@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.selector('columns') })
-@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.width() })
-@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.height() })
+@ZComponentRegister("z-grid")
+@ZComponentRenderOnEvent("change", { selector: ZAlignmentElement.align() })
+@ZComponentRenderOnEvent("change", { selector: ZAlignmentElement.justify() })
+@ZComponentRenderOnEvent("change", {
+  selector: ZDeviceElement.selector("columns"),
+})
+@ZComponentRenderOnEvent("change", { selector: ZDeviceElement.width() })
+@ZComponentRenderOnEvent("change", { selector: ZDeviceElement.height() })
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
-@ZComponentClass('ZGrid-root')
+@ZComponentClass("ZGrid-root")
 @ZComponentShadow()
 export class ZGridElement extends HTMLElement implements IZComponentTemplate {
   public static readonly SizeChart = Object.freeze(createSizeChartVariedCss());
-  public static readonly observedAttributes = ['rows', 'gap'];
+  public static readonly observedAttributes = ["rows", "gap"];
 
   @ZAttribute()
   public rows?: Property.GridTemplateRows;
@@ -59,7 +61,7 @@ export class ZGridElement extends HTMLElement implements IZComponentTemplate {
   @ZAttribute()
   public gap?: ZGapSize;
 
-  @ZPropertyDevice('columns', 'none')
+  @ZPropertyDevice("columns", "none")
   public columns: Required<IZDeviceValueMap<Property.GridTemplateColumns>>;
 
   @ZPropertyDeviceWidth(ZSizeVaried.Fit)
@@ -81,13 +83,15 @@ export class ZGridElement extends HTMLElement implements IZComponentTemplate {
     return html`
       <style>
         :host {
-          align-content: ${firstTruthy('normal', align?.content)};
-          align-items: ${firstTruthy('stretch', align?.items)};
+          align-content: ${firstTruthy("normal", align?.content)};
+          align-items: ${firstTruthy("stretch", align?.items)};
           display: grid;
-          gap: ${ZFashionTailorElement.gapVar(firstTruthy(ZSizeVoid.None, gap))};
-          grid-template-rows: ${firstTruthy('auto', rows)};
-          justify-content: ${firstTruthy('normal', justify?.content)};
-          justify-items: ${firstTruthy('stretch', justify?.items)};
+          gap: ${ZFashionTailorElement.gapVar(
+            firstTruthy(ZSizeVoid.None, gap),
+          )};
+          grid-template-rows: ${firstTruthy("auto", rows)};
+          justify-content: ${firstTruthy("normal", justify?.content)};
+          justify-items: ${firstTruthy("stretch", justify?.items)};
 
           grid-template-columns: ${columns.xl};
           height: ${ZGridElement.SizeChart[height.xl]};

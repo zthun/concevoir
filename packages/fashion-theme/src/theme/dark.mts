@@ -1,5 +1,5 @@
-import { ZFashionBuilder } from '../fashion/fashion.mjs';
-import { ZFashionThemeBuilder } from './fashion-theme.mjs';
+import { ZFashionBuilder } from "../fashion/fashion.mjs";
+import { ZFashionThemeBuilder } from "./fashion-theme.mjs";
 
 function createPrimary() {
   return new ZFashionBuilder().namedPrimary().spectrum(0x90caf9).build();
@@ -51,7 +51,7 @@ function createOpposite() {
 
 export function createDarkTheme() {
   return new ZFashionThemeBuilder()
-    .name('dark')
+    .name("dark")
     .primary(createPrimary())
     .secondary(createSecondary())
     .success(createSuccess())

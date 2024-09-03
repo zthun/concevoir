@@ -1,10 +1,15 @@
-import { css } from '@zthun/helpful-fn';
-import { IZComponentRender, ZComponentClass, ZComponentCss, ZComponentRegister } from '@zthun/spellcraft';
+import { css } from "@zthun/helpful-fn";
+import {
+  IZComponentRender,
+  ZComponentClass,
+  ZComponentCss,
+  ZComponentRegister,
+} from "@zthun/spellcraft";
 
 export interface ZBreadcrumbsElement extends IZComponentRender {}
 
-@ZComponentRegister('z-breadcrumbs', { extend: 'nav' })
-@ZComponentClass('ZBreadcrumbs-root')
+@ZComponentRegister("z-breadcrumbs", { extend: "nav" })
+@ZComponentClass("ZBreadcrumbs-root")
 @ZComponentCss(
   css`
     .ZBreadcrumbs-root {
@@ -13,6 +18,6 @@ export interface ZBreadcrumbsElement extends IZComponentRender {}
       position: relative;
     }
   `,
-  { id: 'ZBreadcrumbs-styles' }
+  { id: "ZBreadcrumbs-styles" },
 )
 export class ZBreadcrumbsElement extends HTMLElement {}

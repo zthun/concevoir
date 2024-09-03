@@ -1,6 +1,6 @@
-import { ZFashionScope } from '@zthun/fashion-theme';
-import { castArray } from 'lodash-es';
-import { ZFashionThemeElement } from '../theme/fashion-theme-element.mjs';
+import { ZFashionScope } from "@zthun/fashion-theme";
+import { castArray } from "lodash-es";
+import { ZFashionThemeElement } from "../theme/fashion-theme-element.mjs";
 
 /**
  * Represents a component that contains color.

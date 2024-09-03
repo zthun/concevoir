@@ -1,14 +1,14 @@
-import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZTestRouter } from '@zthun/fashion-react';
-import { MemoryHistory, createMemoryHistory } from 'history';
-import React from 'react';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { ZFashionRouteBoutique } from '../../routes.mjs';
-import { ZWizardPage } from './wizard-page';
-import { ZWizardPageComponentModel } from './wizard-page.cm.mjs';
+import { IZCircusDriver, IZCircusSetup, ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { ZTestRouter } from "@zthun/fashion-react";
+import { MemoryHistory, createMemoryHistory } from "history";
+import React from "react";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { ZFashionRouteBoutique } from "../../routes.mjs";
+import { ZWizardPage } from "./wizard-page";
+import { ZWizardPageComponentModel } from "./wizard-page.cm.mjs";
 
-describe('ZWizardPage', () => {
+describe("ZWizardPage", () => {
   let history: MemoryHistory;
   let _renderer: IZCircusSetup<IZCircusDriver>;
   let _driver: IZCircusDriver;
@@ -33,7 +33,7 @@ describe('ZWizardPage', () => {
     await _driver?.destroy?.call(_driver);
   });
 
-  it('should disable the finish button while the user has not checked the understand switch', async () => {
+  it("should disable the finish button while the user has not checked the understand switch", async () => {
     // Arrange.
     const target = await createTestTarget();
     const next = await (await target.wizard()).next();
@@ -46,7 +46,7 @@ describe('ZWizardPage', () => {
     expect(actual).toBeTruthy();
   });
 
-  it('should enable the finish button when the user has checked the understand switch', async () => {
+  it("should enable the finish button when the user has checked the understand switch", async () => {
     // Arrange.
     const target = await createTestTarget();
     const next = await (await target.wizard()).next();
@@ -61,7 +61,7 @@ describe('ZWizardPage', () => {
     expect(actual).toBeFalsy();
   });
 
-  it('should navigate back to the boutique page when the user finishes the wizard', async () => {
+  it("should navigate back to the boutique page when the user finishes the wizard", async () => {
     // Arrange.
     const target = await createTestTarget();
     const next = await (await target.wizard()).next();

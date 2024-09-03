@@ -1,13 +1,19 @@
-import { ZDialogPopupElement } from '@zthun/fashion-boutique';
-import { ZAnchor, ZHorizontalAnchor, ZVerticalAnchor, cssJoinDefined, firstTruthy } from '@zthun/helpful-fn';
-import React, { useEffect, useRef } from 'react';
-import { useWebComponent } from '../component/use-web-component.mjs';
-import { IZDialog, useDialog } from './use-dialog';
+import { ZDialogPopupElement } from "@zthun/fashion-boutique";
+import {
+  ZAnchor,
+  ZHorizontalAnchor,
+  ZVerticalAnchor,
+  cssJoinDefined,
+  firstTruthy,
+} from "@zthun/helpful-fn";
+import React, { useEffect, useRef } from "react";
+import { useWebComponent } from "../component/use-web-component.mjs";
+import { IZDialog, useDialog } from "./use-dialog";
 
 declare global {
   namespace React.JSX {
     interface IntrinsicElements {
-      ['z-dialog-popup']: ZDialogPopupElement & any;
+      ["z-dialog-popup"]: ZDialogPopupElement & any;
     }
   }
 }
@@ -41,7 +47,7 @@ export function ZPopup(props: IZPopup) {
     anchor = [ZVerticalAnchor.Bottom, ZHorizontalAnchor.Left],
     origin = [ZVerticalAnchor.Top, ZHorizontalAnchor.Left],
     renderHeader,
-    renderFooter
+    renderFooter,
   } = props;
   const popper = useRef<ZDialogPopupElement>(null);
 
@@ -64,9 +70,9 @@ export function ZPopup(props: IZPopup) {
       anchor-y={firstTruthy(undefined, anchor[0])}
       ref={popper}
     >
-      <div slot='header'>{renderHeader?.call(null)}</div>
+      <div slot="header">{renderHeader?.call(null)}</div>
       {children}
-      {<div slot='footer'>{renderFooter?.call(null)}</div>}
+      {<div slot="footer">{renderFooter?.call(null)}</div>}
     </z-dialog-popup>
   );
 }

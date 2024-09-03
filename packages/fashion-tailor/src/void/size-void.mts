@@ -7,7 +7,7 @@ export enum ZSizeVoid {
    *
    * Basically 0.
    */
-  None = 'none'
+  None = "none",
 }
 
 /**

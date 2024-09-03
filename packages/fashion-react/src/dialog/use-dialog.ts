@@ -3,10 +3,10 @@ import {
   IZComponentFashion,
   IZComponentHierarchy,
   IZComponentName,
-  IZComponentOpen
-} from '@zthun/fashion-boutique';
-import { ReactNode, useCallback, useEffect } from 'react';
-import { IZComponentStyle } from '../component/component-style.mjs';
+  IZComponentOpen,
+} from "@zthun/fashion-boutique";
+import { ReactNode, useCallback, useEffect } from "react";
+import { IZComponentStyle } from "../component/component-style.mjs";
 
 export interface IZDialog
   extends IZComponentFashion,
@@ -20,17 +20,20 @@ export interface IZDialog
   renderHeader?(): ReactNode;
   renderFooter?(): ReactNode;
 }
-export function useDialog(current: (HTMLElement & IZComponentOpen & IZComponentClose) | null, props: IZDialog) {
+export function useDialog(
+  current: (HTMLElement & IZComponentOpen & IZComponentClose) | null,
+  props: IZDialog,
+) {
   const { open, onClose } = props;
 
   const onClosed = useCallback(() => onClose?.call(null), [onClose]);
 
   useEffect(() => {
-    current?.removeEventListener('close', onClosed);
-    current?.addEventListener('close', onClosed);
+    current?.removeEventListener("close", onClosed);
+    current?.addEventListener("close", onClosed);
 
     return () => {
-      current?.removeEventListener('close', onClosed);
+      current?.removeEventListener("close", onClosed);
     };
   }, [current, onClosed]);
 

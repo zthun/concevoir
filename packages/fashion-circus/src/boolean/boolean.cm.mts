@@ -1,12 +1,16 @@
-import { IZCircusKey, ZCircusActBuilder, ZCircusComponentModel } from '@zthun/cirque';
-import { sleep } from '@zthun/helpful-fn';
-import { ZTrilean, trilean } from '@zthun/trilean';
+import {
+  IZCircusKey,
+  ZCircusActBuilder,
+  ZCircusComponentModel,
+} from "@zthun/cirque";
+import { sleep } from "@zthun/helpful-fn";
+import { ZTrilean, trilean } from "@zthun/trilean";
 
 /**
  * Represents a react component model for the ZBoolean component.
  */
 export class ZBooleanComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZBoolean-root';
+  public static readonly Selector = ".ZBoolean-root";
 
   /**
    * Gets whether this boolean is disabled.
@@ -16,8 +20,8 @@ export class ZBooleanComponentModel extends ZCircusComponentModel {
    *        false otherwise.
    */
   public async disabled(): Promise<boolean> {
-    const attr = await this.driver.attribute<string>('disabled', 'false');
-    return attr !== 'false';
+    const attr = await this.driver.attribute<string>("disabled", "false");
+    return attr !== "false";
   }
 
   /**
@@ -27,8 +31,8 @@ export class ZBooleanComponentModel extends ZCircusComponentModel {
    *        True if the component is required.
    */
   public async required(): Promise<boolean> {
-    const attr = await this.driver.attribute('required', 'false');
-    return attr !== 'false';
+    const attr = await this.driver.attribute("required", "false");
+    return attr !== "false";
   }
 
   /**
@@ -38,7 +42,7 @@ export class ZBooleanComponentModel extends ZCircusComponentModel {
    *        The fashion name.
    */
   public fashion(): Promise<string | null> {
-    return this.driver.attribute('fashion');
+    return this.driver.attribute("fashion");
   }
 
   /**
@@ -48,7 +52,7 @@ export class ZBooleanComponentModel extends ZCircusComponentModel {
    *        The check state value or null if indeterminate.
    */
   public async value(): Promise<trilean> {
-    const attr = await this.driver.attribute<string>('value');
+    const attr = await this.driver.attribute<string>("value");
     return ZTrilean.convert(attr);
   }
 

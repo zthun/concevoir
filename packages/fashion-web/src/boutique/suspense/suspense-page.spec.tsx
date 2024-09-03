@@ -1,12 +1,12 @@
-import { ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZFashionContrast, ZFashionThemeBuilder } from '@zthun/fashion-theme';
-import React from 'react';
-import { describe, expect, it } from 'vitest';
-import { ZSuspensePage } from './suspense-page';
-import { ZSuspensePageComponentModel } from './suspense-page.cm.mjs';
+import { ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { ZFashionContrast, ZFashionThemeBuilder } from "@zthun/fashion-theme";
+import React from "react";
+import { describe, expect, it } from "vitest";
+import { ZSuspensePage } from "./suspense-page";
+import { ZSuspensePageComponentModel } from "./suspense-page.cm.mjs";
 
-describe('ZSuspensePage', () => {
+describe("ZSuspensePage", () => {
   const theme = new ZFashionThemeBuilder().build();
 
   async function createTestTarget() {
@@ -15,7 +15,9 @@ describe('ZSuspensePage', () => {
     return ZCircusBy.first(driver, ZSuspensePageComponentModel);
   }
 
-  async function assertDisplaysTheSuspenseWhenTheLoadingOptionIs(expected: boolean) {
+  async function assertDisplaysTheSuspenseWhenTheLoadingOptionIs(
+    expected: boolean,
+  ) {
     // Arrange.
     const target = await createTestTarget();
     const loading = await target.loading();
@@ -42,18 +44,18 @@ describe('ZSuspensePage', () => {
     expect(progress).toEqual(expected);
   }
 
-  describe('Display', () => {
-    it('should show the suspense when the loading option is checked.', async () => {
+  describe("Display", () => {
+    it("should show the suspense when the loading option is checked.", async () => {
       await assertDisplaysTheSuspenseWhenTheLoadingOptionIs(true);
     });
 
-    it('should hide the suspense when the loading option is unchecked.', async () => {
+    it("should hide the suspense when the loading option is unchecked.", async () => {
       await assertDisplaysTheSuspenseWhenTheLoadingOptionIs(false);
     });
   });
 
-  describe('Fashion', () => {
-    it('should default the fashion to opposite.', async () => {
+  describe("Fashion", () => {
+    it("should default the fashion to opposite.", async () => {
       // Arrange
       const target = await createTestTarget();
       const expected = ZFashionContrast.Opposite;
@@ -65,11 +67,11 @@ describe('ZSuspensePage', () => {
       expect(progress).toEqual(expected);
     });
 
-    it('should set the fashion to primary.', async () => {
+    it("should set the fashion to primary.", async () => {
       await assertSetsFashion(theme.primary.name!);
     });
 
-    it('should set the fashion to secondary.', async () => {
+    it("should set the fashion to secondary.", async () => {
       await assertSetsFashion(theme.secondary.name!);
     });
   });

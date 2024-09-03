@@ -1,14 +1,16 @@
-import { ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZNumberComponentModel } from '@zthun/fashion-circus';
-import React from 'react';
-import { describe, expect, it } from 'vitest';
-import { ZNumberPage } from './number-page';
-import { ZNumberPageComponentModel } from './number-page.cm.mjs';
+import { ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { ZNumberComponentModel } from "@zthun/fashion-circus";
+import React from "react";
+import { describe, expect, it } from "vitest";
+import { ZNumberPage } from "./number-page";
+import { ZNumberPageComponentModel } from "./number-page.cm.mjs";
 
-type NumberInputFactory = (t: ZNumberPageComponentModel) => Promise<ZNumberComponentModel>;
+type NumberInputFactory = (
+  t: ZNumberPageComponentModel,
+) => Promise<ZNumberComponentModel>;
 
-describe('ZNumberPage', () => {
+describe("ZNumberPage", () => {
   async function createTestTarget() {
     const element = <ZNumberPage />;
     const driver = await new ZCircusSetupRenderer(element).setup();
@@ -40,14 +42,14 @@ describe('ZNumberPage', () => {
     expect(actual).toBeNull();
   }
 
-  describe('Spinner', () => {
+  describe("Spinner", () => {
     const factory: NumberInputFactory = (t) => t.spinner();
 
-    it('should update the value', async () => {
+    it("should update the value", async () => {
       await shouldUpdateTheValue(factory);
     });
 
-    it('should clear the value', async () => {
+    it("should clear the value", async () => {
       await shouldClearTheValue(factory);
     });
   });

@@ -1,14 +1,16 @@
-import { IZCircusDriver } from '@zthun/cirque';
-import { ZSuspenseComponentModel } from '@zthun/fashion-circus';
-import { ZSuspenseRotate } from './suspense-rotate';
+import { IZCircusDriver } from "@zthun/cirque";
+import { ZSuspenseComponentModel } from "@zthun/fashion-circus";
+import { ZSuspenseRotate } from "./suspense-rotate";
 
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import React from 'react';
-import { describe, expect, it } from 'vitest';
-import { ZSuspenseProgress } from './suspense-progress';
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import React from "react";
+import { describe, expect, it } from "vitest";
+import { ZSuspenseProgress } from "./suspense-progress";
 
-describe('ZSuspense', () => {
-  async function shouldDisplayWhenThereIsSuspense(createTestTarget: () => Promise<IZCircusDriver>) {
+describe("ZSuspense", () => {
+  async function shouldDisplayWhenThereIsSuspense(
+    createTestTarget: () => Promise<IZCircusDriver>,
+  ) {
     // Arrange.
     const target = await createTestTarget();
     // Act.
@@ -17,7 +19,9 @@ describe('ZSuspense', () => {
     expect(actual).toBeTruthy();
   }
 
-  async function shouldHideWhenThereIsNoSuspense(createTestTarget: (loading: boolean) => Promise<IZCircusDriver>) {
+  async function shouldHideWhenThereIsNoSuspense(
+    createTestTarget: (loading: boolean) => Promise<IZCircusDriver>,
+  ) {
     // Arrange.
     const target = await createTestTarget(false);
     // Act.
@@ -26,9 +30,14 @@ describe('ZSuspense', () => {
     expect(actual).toBeFalsy();
   }
 
-  async function shouldWaitToLoad(createTestTarget: (loading: boolean, name: string) => Promise<IZCircusDriver>) {
+  async function shouldWaitToLoad(
+    createTestTarget: (
+      loading: boolean,
+      name: string,
+    ) => Promise<IZCircusDriver>,
+  ) {
     // Arrange.
-    const name = 'test-suspense';
+    const name = "test-suspense";
     const target = await createTestTarget(false, name);
     // Act.
     await ZSuspenseComponentModel.load(target, name);
@@ -37,7 +46,7 @@ describe('ZSuspense', () => {
     expect(actual).toBeFalsy();
   }
 
-  describe('Rotate', () => {
+  describe("Rotate", () => {
     function createTestTarget(loading?: boolean) {
       const element = <ZSuspenseRotate loading={loading} />;
       return new ZCircusSetupRenderer(element).setup();
@@ -55,20 +64,20 @@ describe('ZSuspense', () => {
       return new ZCircusSetupRenderer(element).setup();
     }
 
-    it('should display when the suspense is loading', async () => {
+    it("should display when the suspense is loading", async () => {
       await shouldDisplayWhenThereIsSuspense(createTestTarget);
     });
 
-    it('should hide when the suspense is not loading', async () => {
+    it("should hide when the suspense is not loading", async () => {
       await shouldHideWhenThereIsNoSuspense(createTestTarget);
     });
 
-    it('should wait for load', async () => {
+    it("should wait for load", async () => {
       await shouldWaitToLoad(createNamedTargets);
     });
   });
 
-  describe('Progress', () => {
+  describe("Progress", () => {
     function createTestTarget(loading?: boolean) {
       const element = <ZSuspenseProgress loading={loading} />;
       return new ZCircusSetupRenderer(element).setup();
@@ -86,15 +95,15 @@ describe('ZSuspense', () => {
       return new ZCircusSetupRenderer(element).setup();
     }
 
-    it('should display when the suspense is loading', async () => {
+    it("should display when the suspense is loading", async () => {
       await shouldDisplayWhenThereIsSuspense(createTestTarget);
     });
 
-    it('should hide when the suspense is not loading', async () => {
+    it("should hide when the suspense is not loading", async () => {
       await shouldHideWhenThereIsNoSuspense(createTestTarget);
     });
 
-    it('should wait for load', async () => {
+    it("should wait for load", async () => {
       await shouldWaitToLoad(createNamedTargets);
     });
   });

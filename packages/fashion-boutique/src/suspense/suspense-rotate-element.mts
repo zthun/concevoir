@@ -3,10 +3,10 @@ import {
   ZFashionDevice,
   ZSizeFixed,
   createSizeChartFixedArithmetic,
-  createSizeChartFixedCss
-} from '@zthun/fashion-tailor';
-import { ZFashionContrast } from '@zthun/fashion-theme';
-import { html } from '@zthun/helpful-fn';
+  createSizeChartFixedCss,
+} from "@zthun/fashion-tailor";
+import { ZFashionContrast } from "@zthun/fashion-theme";
+import { html } from "@zthun/helpful-fn";
 import {
   IZComponentRender,
   IZComponentTemplate,
@@ -17,32 +17,41 @@ import {
   ZComponentRenderOnConnected,
   ZComponentRenderOnEvent,
   ZComponentRenderTemplate,
-  ZComponentShadow
-} from '@zthun/spellcraft';
-import { ZDeviceElement, ZPropertyDeviceWidth } from '../background/device-element.mjs';
-import { IZComponentDisabled } from '../component/component-disabled.mjs';
-import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
+  ZComponentShadow,
+} from "@zthun/spellcraft";
+import {
+  ZDeviceElement,
+  ZPropertyDeviceWidth,
+} from "../background/device-element.mjs";
+import { IZComponentDisabled } from "../component/component-disabled.mjs";
+import {
+  IZComponentFashion,
+  ZFashionDetail,
+} from "../component/component-fashion.mjs";
 
 export interface ZSuspenseRotateElement extends IZComponentRender {}
 
-@ZComponentRegister('z-suspense-rotate')
-@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.width() })
+@ZComponentRegister("z-suspense-rotate")
+@ZComponentRenderOnEvent("change", { selector: ZDeviceElement.width() })
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
-@ZComponentClass('ZSuspense-root', 'ZSuspense-rotate')
+@ZComponentClass("ZSuspense-root", "ZSuspense-rotate")
 @ZComponentShadow()
 export class ZSuspenseRotateElement
   extends HTMLElement
   implements IZComponentFashion, IZComponentDisabled, IZComponentTemplate
 {
-  public static readonly SizeChart = createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), 'rem');
-  public static readonly observedAttributes = ['fashion', 'disabled'];
+  public static readonly SizeChart = createSizeChartFixedCss(
+    createSizeChartFixedArithmetic(1, 1),
+    "rem",
+  );
+  public static readonly observedAttributes = ["fashion", "disabled"];
 
   @ZAttribute({ fallback: ZFashionContrast.Opposite })
   public fashion: string;
 
-  @ZAttribute({ type: 'boolean' })
+  @ZAttribute({ type: "boolean" })
   public disabled?: boolean;
 
   @ZPropertyDeviceWidth(ZSizeFixed.ExtraSmall)
@@ -66,15 +75,15 @@ export class ZSuspenseRotateElement
         }
 
         :host {
-          display: ${disabled ? 'none' : 'block'};
+          display: ${disabled ? "none" : "block"};
         }
 
         .ZSuspense-rotate-circle {
           animation: rotating 1s ease-in-out infinite;
-          border-color: ${detail.color('border')};
+          border-color: ${detail.color("border")};
           border-radius: 50%;
           border-style: dashed;
-          box-shadow: 0 0 0.25rem ${detail.color('main')};
+          box-shadow: 0 0 0.25rem ${detail.color("main")};
           height: ${ZSuspenseRotateElement.SizeChart[width.xl]};
           width: ${ZSuspenseRotateElement.SizeChart[width.xl]};
         }

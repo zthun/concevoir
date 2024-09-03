@@ -1,9 +1,12 @@
-import { ZBreadcrumbElement, ZBreadcrumbsElement } from '@zthun/fashion-boutique';
-import { cssJoinDefined } from '@zthun/helpful-fn';
-import React, { useMemo } from 'react';
-import { useWebComponent } from '../component/use-web-component.mjs';
-import { useLocation } from '../router/router-dom.mjs';
-import { IZBreadcrumbs } from './breadcrumbs.mjs';
+import {
+  ZBreadcrumbElement,
+  ZBreadcrumbsElement,
+} from "@zthun/fashion-boutique";
+import { cssJoinDefined } from "@zthun/helpful-fn";
+import React, { useMemo } from "react";
+import { useWebComponent } from "../component/use-web-component.mjs";
+import { useLocation } from "../router/router-dom.mjs";
+import { IZBreadcrumbs } from "./breadcrumbs.mjs";
 
 /**
  * Represents the properties for the BreadcrumbsLocation component.
@@ -42,18 +45,19 @@ export function ZBreadcrumbsLocation(props: IZBreadcrumbsLocation) {
   useWebComponent(ZBreadcrumbsElement);
 
   const sections = useMemo(() => {
-    const all = location.pathname.split('/').filter((p) => !!p.trim());
-    const _home = home ? { name: home.name, path: home.path || '/' } : undefined;
+    const all = location.pathname.split("/").filter((p) => !!p.trim());
+    const _home = home
+      ? { name: home.name, path: home.path || "/" }
+      : undefined;
     const _sections: { name: string; path: string }[] = [];
 
     for (let i = 0; i < all.length; ++i) {
-      const previous = _sections[i - 1]?.path || '';
+      const previous = _sections[i - 1]?.path || "";
       const name = all[i];
       const subPath = `${previous}/${name}`;
       _sections.push({ name, path: subPath });
     }
 
-    _home ? [_home, ..._sections] : _sections;
     return _home ? [_home, ..._sections] : _sections;
   }, [location, home]);
 
@@ -62,7 +66,13 @@ export function ZBreadcrumbsLocation(props: IZBreadcrumbsLocation) {
     const href = `#${path}`;
 
     return (
-      <a is='z-breadcrumb' key={path} href={href} data-name={path} onClick={() => onClick?.call(null, href)}>
+      <a
+        is="z-breadcrumb"
+        key={path}
+        href={href}
+        data-name={path}
+        onClick={() => onClick?.call(null, href)}
+      >
         {name}
       </a>
     );
@@ -71,8 +81,8 @@ export function ZBreadcrumbsLocation(props: IZBreadcrumbsLocation) {
   return (
     <nav
       // @ts-expect-error web components need to use class instead of className
-      class={cssJoinDefined('ZBreadcrumbs-location', className)}
-      is='z-breadcrumbs'
+      class={cssJoinDefined("ZBreadcrumbs-location", className)}
+      is="z-breadcrumbs"
       data-name={name}
     >
       {sections.map(renderSection)}

@@ -1,8 +1,17 @@
-import { ZSizeFixed } from '@zthun/fashion-tailor';
+import { ZSizeFixed } from "@zthun/fashion-tailor";
 
-import { ZBox, ZCaption, ZCard, ZGrid, ZH3, ZIconFontAwesome, ZNumberInput, ZParagraph } from '@zthun/fashion-react';
-import React, { useState } from 'react';
-import { ZFashionRouteNumber } from '../../routes.mjs';
+import {
+  ZBox,
+  ZCaption,
+  ZCard,
+  ZGrid,
+  ZH3,
+  ZIconFontAwesome,
+  ZNumberInput,
+  ZParagraph,
+} from "@zthun/fashion-react";
+import React, { useState } from "react";
+import { ZFashionRouteNumber } from "../../routes.mjs";
 
 /**
  * Represents a demo for number inputs.
@@ -15,36 +24,46 @@ export function ZNumberPage() {
 
   return (
     <ZCard
-      className='ZNumberPage-root'
+      className="ZNumberPage-root"
       heading={ZFashionRouteNumber.name}
       subHeading={ZFashionRouteNumber.description}
-      avatar={<ZIconFontAwesome name={ZFashionRouteNumber.avatar} width={ZSizeFixed.Medium} />}
+      avatar={
+        <ZIconFontAwesome
+          name={ZFashionRouteNumber.avatar}
+          width={ZSizeFixed.Medium}
+        />
+      }
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>
 
         <ZParagraph>
-          Often times, you will need to get a number from the user. Rather than trying to parse the number yourself,
-          using a number component is much more efficient. Using number components will allow the user to enter what
-          they want without needing to worry about numeric validations and you can let the JavaScript engine do the
-          parsing for you.
+          Often times, you will need to get a number from the user. Rather than
+          trying to parse the number yourself, using a number component is much
+          more efficient. Using number components will allow the user to enter
+          what they want without needing to worry about numeric validations and
+          you can let the JavaScript engine do the parsing for you.
         </ZParagraph>
 
-        <ZBox margin={{ top: ZSizeFixed.ExtraLarge, bottom: ZSizeFixed.ExtraLarge }}>
-          <ZGrid columns={{ xl: '1fr 3fr', md: '1fr 2fr', sm: '1fr 1fr', xs: '1fr' }}>
+        <ZBox
+          margin={{ top: ZSizeFixed.ExtraLarge, bottom: ZSizeFixed.ExtraLarge }}
+        >
+          <ZGrid
+            columns={{ xl: "1fr 3fr", md: "1fr 2fr", sm: "1fr 1fr", xs: "1fr" }}
+          >
             <ZNumberInput
               step={1}
               min={-Infinity}
               max={Infinity}
-              label='Input'
+              label="Input"
               value={value}
               onValueChange={setValue}
-              name='spinner'
+              name="spinner"
             />
           </ZGrid>
         </ZBox>
 
-        <ZCaption className='ZNumberPage-value'>Value: {value}</ZCaption>
+        <ZCaption className="ZNumberPage-value">Value: {value}</ZCaption>
       </ZBox>
     </ZCard>
   );

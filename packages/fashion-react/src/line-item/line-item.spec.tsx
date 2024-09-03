@@ -1,11 +1,11 @@
-import { ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZLineItemComponentModel } from '@zthun/fashion-circus';
-import React, { ReactNode } from 'react';
-import { beforeEach, describe, expect, it } from 'vitest';
-import { ZLineItem } from './line-item';
+import { ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { ZLineItemComponentModel } from "@zthun/fashion-circus";
+import React, { ReactNode } from "react";
+import { beforeEach, describe, expect, it } from "vitest";
+import { ZLineItem } from "./line-item";
 
-describe('ZLineItem', () => {
+describe("ZLineItem", () => {
   let prefix: ReactNode | undefined;
   let body: ReactNode | undefined;
   let suffix: ReactNode | undefined;
@@ -22,10 +22,10 @@ describe('ZLineItem', () => {
     return ZCircusBy.first(driver, ZLineItemComponentModel);
   }
 
-  describe('Prefix', () => {
-    it('should render as a static node', async () => {
+  describe("Prefix", () => {
+    it("should render as a static node", async () => {
       // Arrange.
-      prefix = 'Prefix';
+      prefix = "Prefix";
       const target = await createTestTarget();
       // Act.
       const actual = await (await target.prefix()).text();
@@ -33,7 +33,7 @@ describe('ZLineItem', () => {
       expect(actual).toEqual(prefix);
     });
 
-    it('should render an empty block', async () => {
+    it("should render an empty block", async () => {
       // Arrange.
       const target = await createTestTarget();
       // Act.
@@ -43,10 +43,10 @@ describe('ZLineItem', () => {
     });
   });
 
-  describe('Body', () => {
-    it('should render as a static node', async () => {
+  describe("Body", () => {
+    it("should render as a static node", async () => {
       // Arrange.
-      body = 'Body';
+      body = "Body";
       const target = await createTestTarget();
       // Act.
       const actual = await (await target.body()).text();
@@ -54,7 +54,7 @@ describe('ZLineItem', () => {
       expect(actual).toEqual(body);
     });
 
-    it('should render an empty block', async () => {
+    it("should render an empty block", async () => {
       // Arrange.
       const target = await createTestTarget();
       // Act.
@@ -64,10 +64,10 @@ describe('ZLineItem', () => {
     });
   });
 
-  describe('Suffix', () => {
-    it('should render as a static node', async () => {
+  describe("Suffix", () => {
+    it("should render as a static node", async () => {
       // Arrange.
-      suffix = 'Suffix';
+      suffix = "Suffix";
       const target = await createTestTarget();
       // Act.
       const actual = await (await target.suffix()).text();
@@ -75,7 +75,7 @@ describe('ZLineItem', () => {
       expect(actual).toEqual(suffix);
     });
 
-    it('should render an empty block', async () => {
+    it("should render an empty block", async () => {
       // Arrange.
       const target = await createTestTarget();
       // Act.

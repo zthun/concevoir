@@ -1,10 +1,10 @@
-import { ZCircusActBuilder, ZCircusComponentModel } from '@zthun/cirque';
+import { ZCircusActBuilder, ZCircusComponentModel } from "@zthun/cirque";
 
 /**
  * Represents the component model for a button element.
  */
 export class ZButtonComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZButton-root';
+  public static readonly Selector = ".ZButton-root";
 
   /**
    * Returns the name of the button.
@@ -13,7 +13,7 @@ export class ZButtonComponentModel extends ZCircusComponentModel {
    *        The button name if it has one.  Null otherwise.
    */
   public name(): Promise<string | null> {
-    return this.driver.attribute('name');
+    return this.driver.attribute("name");
   }
 
   /**
@@ -23,8 +23,8 @@ export class ZButtonComponentModel extends ZCircusComponentModel {
    *        True if the button is in the loading state.  False otherwise.
    */
   public async loading(): Promise<boolean> {
-    const c = await this.driver.attribute('data-loading');
-    return c === 'true';
+    const c = await this.driver.attribute("data-loading");
+    return c === "true";
   }
 
   /**
@@ -44,8 +44,8 @@ export class ZButtonComponentModel extends ZCircusComponentModel {
    *        True if the button is outlined.  False otherwise.
    */
   public async outlined(): Promise<boolean> {
-    const c = await this.driver.attribute('data-outline');
-    return c === 'true';
+    const c = await this.driver.attribute("data-outline");
+    return c === "true";
   }
 
   /**
@@ -55,8 +55,8 @@ export class ZButtonComponentModel extends ZCircusComponentModel {
    *        True if the button is compact. False otherwise.
    */
   public async compact(): Promise<boolean> {
-    const c = await this.driver.attribute('data-compact');
-    return c === 'true';
+    const c = await this.driver.attribute("data-compact");
+    return c === "true";
   }
 
   /**
@@ -66,8 +66,8 @@ export class ZButtonComponentModel extends ZCircusComponentModel {
    *        True if the button is borderless.  False otherwise.
    */
   public async borderless(): Promise<boolean> {
-    const c = await this.driver.attribute('data-borderless');
-    return c === 'true';
+    const c = await this.driver.attribute("data-borderless");
+    return c === "true";
   }
 
   /**
@@ -88,7 +88,7 @@ export class ZButtonComponentModel extends ZCircusComponentModel {
    *        Null if there is no fashion assigned.
    */
   public fashion(): Promise<string | null> {
-    return this.driver.attribute('data-fashion');
+    return this.driver.attribute("data-fashion");
   }
 
   /**

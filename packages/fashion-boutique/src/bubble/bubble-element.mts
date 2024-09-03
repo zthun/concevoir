@@ -8,10 +8,10 @@ import {
   ZThicknessSize,
   createSizeChartFixedCss,
   createSizeChartFixedGeometric,
-  createSizeChartVariedCss
-} from '@zthun/fashion-tailor';
-import { ZFashionArea } from '@zthun/fashion-theme';
-import { IZQuadrilateral, html } from '@zthun/helpful-fn';
+  createSizeChartVariedCss,
+} from "@zthun/fashion-tailor";
+import { ZFashionArea } from "@zthun/fashion-theme";
+import { IZQuadrilateral, html } from "@zthun/helpful-fn";
 import {
   IZComponentRender,
   IZComponentTemplate,
@@ -22,39 +22,52 @@ import {
   ZComponentRenderOnConnected,
   ZComponentRenderOnEvent,
   ZComponentRenderTemplate,
-  ZComponentShadow
-} from '@zthun/spellcraft';
-import { Property } from 'csstype';
-import { ZDeviceElement, ZPropertyDeviceWidth } from '../background/device-element.mjs';
-import { ZPropertyQuadrilateralPadding, ZQuadrilateralElement } from '../background/quadrilateral-element.mjs';
-import { ZFashionDetail } from '../component/component-fashion.mjs';
-import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
+  ZComponentShadow,
+} from "@zthun/spellcraft";
+import { Property } from "csstype";
+import {
+  ZDeviceElement,
+  ZPropertyDeviceWidth,
+} from "../background/device-element.mjs";
+import {
+  ZPropertyQuadrilateralPadding,
+  ZQuadrilateralElement,
+} from "../background/quadrilateral-element.mjs";
+import { ZFashionDetail } from "../component/component-fashion.mjs";
+import { ZFashionTailorElement } from "../theme/fashion-tailor-element.mjs";
 
 export interface ZBubbleElement extends IZComponentRender {}
 
-@ZComponentRegister('z-bubble')
-@ZComponentClass('ZBubble-root')
-@ZComponentRenderOnEvent('change', { selector: ZQuadrilateralElement.padding() })
-@ZComponentRenderOnEvent('change', { selector: ZDeviceElement.width() })
+@ZComponentRegister("z-bubble")
+@ZComponentClass("ZBubble-root")
+@ZComponentRenderOnEvent("change", {
+  selector: ZQuadrilateralElement.padding(),
+})
+@ZComponentRenderOnEvent("change", { selector: ZDeviceElement.width() })
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
 @ZComponentShadow()
 export class ZBubbleElement extends HTMLElement implements IZComponentTemplate {
-  public static readonly observedAttributes = Object.freeze(['active', 'edge', 'fashion', 'trim']);
+  public static readonly observedAttributes = Object.freeze([
+    "active",
+    "edge",
+    "fashion",
+    "trim",
+  ]);
 
   public static readonly SizeChart = {
-    ...createSizeChartFixedCss(createSizeChartFixedGeometric(2, 1), 'rem'),
-    ...createSizeChartVariedCss()
+    ...createSizeChartFixedCss(createSizeChartFixedGeometric(2, 1), "rem"),
+    ...createSizeChartVariedCss(),
   };
 
-  @ZAttribute({ type: 'boolean', fallback: false })
+  @ZAttribute({ type: "boolean", fallback: false })
   public active: boolean;
 
   @ZAttribute({ fallback: ZSizeVoid.None })
   public edge: ZThicknessSize;
 
-  @ZAttribute({ fallback: 'solid' })
+  @ZAttribute({ fallback: "solid" })
   public trim: Property.BorderStyle;
 
   @ZAttribute({ fallback: ZFashionArea.Component })
@@ -77,10 +90,10 @@ export class ZBubbleElement extends HTMLElement implements IZComponentTemplate {
         :host {
           align-content: center;
           align-items: center;
-          background: ${detail.color('main')};
-          color: ${detail.color('contrast')};
-          cursor: ${active ? 'pointer' : 'default'};
-          border: ${thickness} ${trim} ${detail.color('border')};
+          background: ${detail.color("main")};
+          color: ${detail.color("contrast")};
+          cursor: ${active ? "pointer" : "default"};
+          border: ${thickness} ${trim} ${detail.color("border")};
           border-radius: 50%;
           clip-path: circle();
           display: flex;
@@ -95,16 +108,28 @@ export class ZBubbleElement extends HTMLElement implements IZComponentTemplate {
         }
 
         :host(:focus) {
-          background: ${active ? detail.color('focus.main') : detail.color('main')};
-          border-color: ${active ? detail.color('focus.border') : detail.color('border')};
-          color: ${active ? detail.color('focus.contrast') : detail.color('contrast')};
-          outline: 'none';
+          background: ${active
+            ? detail.color("focus.main")
+            : detail.color("main")};
+          border-color: ${active
+            ? detail.color("focus.border")
+            : detail.color("border")};
+          color: ${active
+            ? detail.color("focus.contrast")
+            : detail.color("contrast")};
+          outline: "none";
         }
 
         :host(:hover) {
-          background: ${active ? detail.color('hover.main') : detail.color('main')};
-          border-color: ${active ? detail.color('hover.border') : detail.color('border')};
-          color: ${active ? detail.color('hover.contrast') : detail.color('contrast')};
+          background: ${active
+            ? detail.color("hover.main")
+            : detail.color("main")};
+          border-color: ${active
+            ? detail.color("hover.border")
+            : detail.color("border")};
+          color: ${active
+            ? detail.color("hover.contrast")
+            : detail.color("contrast")};
         }
 
         ${device.break(ZSizeFixed.Large)} {

@@ -3,18 +3,18 @@ import {
   IZComponentName,
   IZComponentSource,
   IZComponentWidth,
-  ZImageSourceElement
-} from '@zthun/fashion-boutique';
-import { ZDeviceBounds, ZSizeVaried } from '@zthun/fashion-tailor';
-import { cssJoinDefined } from '@zthun/helpful-fn';
-import React from 'react';
-import { IZComponentStyle } from '../component/component-style.mjs';
-import { useWebComponent } from '../component/use-web-component.mjs';
+  ZImageSourceElement,
+} from "@zthun/fashion-boutique";
+import { ZDeviceBounds, ZSizeVaried } from "@zthun/fashion-tailor";
+import { cssJoinDefined } from "@zthun/helpful-fn";
+import React from "react";
+import { IZComponentStyle } from "../component/component-style.mjs";
+import { useWebComponent } from "../component/use-web-component.mjs";
 
 declare global {
   namespace React.JSX {
     interface IntrinsicElements {
-      ['z-image-source']: ZImageSourceElement & any;
+      ["z-image-source"]: ZImageSourceElement & any;
     }
   }
 }
@@ -44,8 +44,22 @@ export function ZImageSource(props: IZImageSource) {
 
   return (
     <z-image-source class={cssJoinDefined(className)} name={name} src={src}>
-      <z-device name='width' xl={w.xl()} lg={w.lg()} md={w.md()} sm={w.sm()} xs={w.xs()} />
-      <z-device name='height' xl={h.xl()} lg={h.lg()} md={h.md()} sm={h.sm()} xs={h.xs()} />
+      <z-device
+        name="width"
+        xl={w.xl()}
+        lg={w.lg()}
+        md={w.md()}
+        sm={w.sm()}
+        xs={w.xs()}
+      />
+      <z-device
+        name="height"
+        xl={h.xl()}
+        lg={h.lg()}
+        md={h.md()}
+        sm={h.sm()}
+        xs={h.xs()}
+      />
     </z-image-source>
   );
 }

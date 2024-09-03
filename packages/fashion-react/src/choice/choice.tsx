@@ -4,13 +4,13 @@ import {
   IZComponentName,
   IZComponentOrientation,
   IZComponentRequired,
-  IZComponentValue
-} from '@zthun/fashion-boutique';
-import { createGuid } from '@zthun/helpful-fn';
-import { useAmbassadorState } from '@zthun/helpful-react';
-import { first } from 'lodash-es';
-import { ReactNode, useMemo } from 'react';
-import { IZComponentStyle } from '../component/component-style.mjs';
+  IZComponentValue,
+} from "@zthun/fashion-boutique";
+import { createGuid } from "@zthun/helpful-fn";
+import { useAmbassadorState } from "@zthun/helpful-react";
+import { first } from "lodash-es";
+import { ReactNode, useMemo } from "react";
+import { IZComponentStyle } from "../component/component-style.mjs";
 
 export interface IZChoiceOption<O, V> {
   key: string;
@@ -55,8 +55,18 @@ export interface IZChoiceApi<O, V> {
  * @returns
  *        The API to render a choice component.
  */
-export function useChoice<O = any, V = O>(props: IZChoice<O, V>): IZChoiceApi<O, V> {
-  const { value, onValueChange, options, identifier, display = _display, multiple, renderOption = display } = props;
+export function useChoice<O = any, V = O>(
+  props: IZChoice<O, V>,
+): IZChoiceApi<O, V> {
+  const {
+    value,
+    onValueChange,
+    options,
+    identifier,
+    display = _display,
+    multiple,
+    renderOption = display,
+  } = props;
 
   const [_value, _setValue] = useAmbassadorState(value, onValueChange);
   const [choices, lookup] = useMemo(_choices, [options, identifier]);
@@ -68,11 +78,14 @@ export function useChoice<O = any, V = O>(props: IZChoice<O, V>): IZChoiceApi<O,
    *        A tuple with the first being the options list and the second being
    *        a lookup table to map keys to options.
    */
-  function _choices(): [IZChoiceOption<O, V>[], Map<O | V | string, IZChoiceOption<O, V>>] {
+  function _choices(): [
+    IZChoiceOption<O, V>[],
+    Map<O | V | string, IZChoiceOption<O, V>>,
+  ] {
     const optionList = options.map<IZChoiceOption<O, V>>((op) => ({
       key: createGuid(),
       value: identifier(op),
-      option: op
+      option: op,
     }));
 
     const lookup = new Map<O | V | string, IZChoiceOption<O, V>>();
@@ -126,6 +139,6 @@ export function useChoice<O = any, V = O>(props: IZChoice<O, V>): IZChoiceApi<O,
     cast,
     display,
     render: renderOption,
-    setValue: _setValue
+    setValue: _setValue,
   };
 }

@@ -1,13 +1,22 @@
-import { IZComponentFashion, IZComponentLabel, IZComponentName, ZLinkElement } from '@zthun/fashion-boutique';
-import { cssJoinDefined } from '@zthun/helpful-fn';
-import React, { ReactNode } from 'react';
-import { IZComponentStyle } from '../component/component-style.mjs';
-import { useWebComponent } from '../component/use-web-component.mjs';
+import {
+  IZComponentFashion,
+  IZComponentLabel,
+  IZComponentName,
+  ZLinkElement,
+} from "@zthun/fashion-boutique";
+import { cssJoinDefined } from "@zthun/helpful-fn";
+import React, { ReactNode } from "react";
+import { IZComponentStyle } from "../component/component-style.mjs";
+import { useWebComponent } from "../component/use-web-component.mjs";
 
 /**
  * Represents a link component (anchor tag).
  */
-export interface IZLink extends IZComponentStyle, IZComponentName, IZComponentLabel<ReactNode>, IZComponentFashion {
+export interface IZLink
+  extends IZComponentStyle,
+    IZComponentName,
+    IZComponentLabel<ReactNode>,
+    IZComponentFashion {
   /**
    * The link url.
    */
@@ -41,7 +50,7 @@ export function ZLink(props: IZLink) {
       // @ts-expect-error directives require class instead of className
       class={cssJoinDefined(className)}
       href={href}
-      is='z-link'
+      is="z-link"
       data-fashion={fashion}
       data-name={name}
       onClick={() => onClick?.call(this, href)}

@@ -1,9 +1,9 @@
-import { ZAlignmentElement } from '@zthun/fashion-boutique';
+import { ZAlignmentElement } from "@zthun/fashion-boutique";
 
 declare global {
   namespace React.JSX {
     interface IntrinsicElements {
-      ['z-alignment']: ZAlignmentElement<string, string> & any;
+      ["z-alignment"]: ZAlignmentElement<string, string> & any;
     }
   }
 }

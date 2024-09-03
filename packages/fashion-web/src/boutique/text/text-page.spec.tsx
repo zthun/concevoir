@@ -1,26 +1,37 @@
-import { IZCircusKey, ZCircusBy, ZCircusKeyboardQwerty } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZBooleanComponentModel, ZTextComponentModel } from '@zthun/fashion-circus';
-import React from 'react';
-import { describe, expect, it } from 'vitest';
-import { ZTextPage } from './text-page';
-import { ZTextPageComponentModel } from './text-page.cm.mjs';
+import { IZCircusKey, ZCircusBy, ZCircusKeyboardQwerty } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import {
+  ZBooleanComponentModel,
+  ZTextComponentModel,
+} from "@zthun/fashion-circus";
+import React from "react";
+import { describe, expect, it } from "vitest";
+import { ZTextPage } from "./text-page";
+import { ZTextPageComponentModel } from "./text-page.cm.mjs";
 
 // cspell: disable-next-line
-const LOREM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+const LOREM = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
 
-type TextInputFactory = (t: ZTextPageComponentModel) => Promise<ZTextComponentModel>;
-type SwitchFactory = (t: ZTextPageComponentModel) => Promise<ZBooleanComponentModel>;
+type TextInputFactory = (
+  t: ZTextPageComponentModel,
+) => Promise<ZTextComponentModel>;
+type SwitchFactory = (
+  t: ZTextPageComponentModel,
+) => Promise<ZBooleanComponentModel>;
 type ValueFactory = (t: ZTextComponentModel) => Promise<boolean>;
 
-describe('ZTextPage', () => {
+describe("ZTextPage", () => {
   async function createTestTarget() {
     const element = <ZTextPage />;
     const driver = await new ZCircusSetupRenderer(element).setup();
     return ZCircusBy.first(driver, ZTextPageComponentModel);
   }
 
-  async function shouldSetTheValue(expected: string, factory: TextInputFactory, commit?: IZCircusKey) {
+  async function shouldSetTheValue(
+    expected: string,
+    factory: TextInputFactory,
+    commit?: IZCircusKey,
+  ) {
     // Arrange.
     const target = await createTestTarget();
     // Act.
@@ -31,7 +42,12 @@ describe('ZTextPage', () => {
     expect(actual).toEqual(expected);
   }
 
-  async function _shouldBe(option: SwitchFactory, value: ValueFactory, expected: boolean, factory: TextInputFactory) {
+  async function _shouldBe(
+    option: SwitchFactory,
+    value: ValueFactory,
+    expected: boolean,
+    factory: TextInputFactory,
+  ) {
     // Arrange
     const target = await createTestTarget();
     const toggler = await option(target);
@@ -47,19 +63,19 @@ describe('ZTextPage', () => {
   const shouldBeDisabled = _shouldBe.bind(
     null,
     (t) => t.disabled(),
-    (c) => c.disabled()
+    (c) => c.disabled(),
   );
 
   const shouldBeReadOnly = _shouldBe.bind(
     null,
     (t) => t.readOnly(),
-    (c) => c.readOnly()
+    (c) => c.readOnly(),
   );
 
   const shouldBeRequired = _shouldBe.bind(
     null,
     (t) => t.required(),
-    (c) => c.label().then((l) => l?.required())
+    (c) => c.label().then((l) => l?.required()),
   );
 
   async function shouldHaveAdornments(factory: TextInputFactory) {
@@ -90,170 +106,170 @@ describe('ZTextPage', () => {
     expect(actual).toBeFalsy();
   }
 
-  describe('Basic Text Input', () => {
+  describe("Basic Text Input", () => {
     const factory: TextInputFactory = (t) => t.text();
 
-    it('should set the value', async () => {
+    it("should set the value", async () => {
       await shouldSetTheValue(LOREM, factory);
     });
 
-    it('should set the value on the enter key', async () => {
+    it("should set the value on the enter key", async () => {
       await shouldSetTheValue(LOREM, factory, ZCircusKeyboardQwerty.enter);
     });
 
-    it('should be disabled when the disabled option is checked', async () => {
+    it("should be disabled when the disabled option is checked", async () => {
       await shouldBeDisabled(true, factory);
     });
 
-    it('should not be disabled when the disabled option is unchecked', async () => {
+    it("should not be disabled when the disabled option is unchecked", async () => {
       await shouldBeDisabled(false, factory);
     });
 
-    it('should be readOnly when the read only option is checked', async () => {
+    it("should be readOnly when the read only option is checked", async () => {
       await shouldBeReadOnly(true, factory);
     });
 
-    it('should not be readOnly when the read only option is unchecked', async () => {
+    it("should not be readOnly when the read only option is unchecked", async () => {
       await shouldBeReadOnly(false, factory);
     });
 
-    it('should be required when the required option is checked', async () => {
+    it("should be required when the required option is checked", async () => {
       await shouldBeRequired(true, factory);
     });
 
-    it('should not be required when the required option is unchecked', async () => {
+    it("should not be required when the required option is unchecked", async () => {
       await shouldBeRequired(false, factory);
     });
 
-    it('should have adornments when the adornments option is checked', async () => {
+    it("should have adornments when the adornments option is checked", async () => {
       await shouldHaveAdornments(factory);
     });
 
-    it('should not have adornments when the adornments option is checked', async () => {
+    it("should not have adornments when the adornments option is checked", async () => {
       await shouldNotHaveAdornments(factory);
     });
   });
 
-  describe('Password', () => {
+  describe("Password", () => {
     const factory: TextInputFactory = (t) => t.password();
 
-    it('should set the value', async () => {
+    it("should set the value", async () => {
       await shouldSetTheValue(LOREM, factory);
     });
 
-    it('should set the value on the enter key', async () => {
+    it("should set the value on the enter key", async () => {
       await shouldSetTheValue(LOREM, factory, ZCircusKeyboardQwerty.enter);
     });
 
-    it('should be disabled when the disabled option is checked', async () => {
+    it("should be disabled when the disabled option is checked", async () => {
       await shouldBeDisabled(true, factory);
     });
 
-    it('should not be disabled when the disabled option is unchecked', async () => {
+    it("should not be disabled when the disabled option is unchecked", async () => {
       await shouldBeDisabled(false, factory);
     });
 
-    it('should be readOnly when the read only option is checked', async () => {
+    it("should be readOnly when the read only option is checked", async () => {
       await shouldBeReadOnly(true, factory);
     });
 
-    it('should not be readOnly when the read only option is unchecked', async () => {
+    it("should not be readOnly when the read only option is unchecked", async () => {
       await shouldBeReadOnly(false, factory);
     });
 
-    it('should be required when the required option is checked', async () => {
+    it("should be required when the required option is checked", async () => {
       await shouldBeRequired(true, factory);
     });
 
-    it('should not be required when the required option is unchecked', async () => {
+    it("should not be required when the required option is unchecked", async () => {
       await shouldBeRequired(false, factory);
     });
 
-    it('should have adornments when the adornments option is checked', async () => {
+    it("should have adornments when the adornments option is checked", async () => {
       await shouldHaveAdornments(factory);
     });
 
-    it('should not have adornments when the adornments option is checked', async () => {
+    it("should not have adornments when the adornments option is checked", async () => {
       await shouldNotHaveAdornments(factory);
     });
   });
 
-  describe('Reveal', () => {
+  describe("Reveal", () => {
     const factory: TextInputFactory = (t) => t.reveal();
 
-    it('should set the value', async () => {
+    it("should set the value", async () => {
       await shouldSetTheValue(LOREM, factory);
     });
 
-    it('should set the value on the enter key', async () => {
+    it("should set the value on the enter key", async () => {
       await shouldSetTheValue(LOREM, factory, ZCircusKeyboardQwerty.enter);
     });
 
-    it('should be disabled when the disabled option is checked', async () => {
+    it("should be disabled when the disabled option is checked", async () => {
       await shouldBeDisabled(true, factory);
     });
 
-    it('should not be disabled when the disabled option is unchecked', async () => {
+    it("should not be disabled when the disabled option is unchecked", async () => {
       await shouldBeDisabled(false, factory);
     });
 
-    it('should be readOnly when the read only option is checked', async () => {
+    it("should be readOnly when the read only option is checked", async () => {
       await shouldBeReadOnly(true, factory);
     });
 
-    it('should not be readOnly when the read only option is unchecked', async () => {
+    it("should not be readOnly when the read only option is unchecked", async () => {
       await shouldBeReadOnly(false, factory);
     });
 
-    it('should be required when the required option is checked', async () => {
+    it("should be required when the required option is checked", async () => {
       await shouldBeRequired(true, factory);
     });
 
-    it('should not be required when the required option is unchecked', async () => {
+    it("should not be required when the required option is unchecked", async () => {
       await shouldBeRequired(false, factory);
     });
 
-    it('should have adornments when the adornments option is checked', async () => {
+    it("should have adornments when the adornments option is checked", async () => {
       await shouldHaveAdornments(factory);
     });
   });
 
-  describe('Text Area', () => {
+  describe("Text Area", () => {
     const factory: TextInputFactory = (t) => t.area();
 
-    it('should set the value', async () => {
+    it("should set the value", async () => {
       await shouldSetTheValue(LOREM, factory);
     });
 
-    it('should be disabled when the disabled option is checked', async () => {
+    it("should be disabled when the disabled option is checked", async () => {
       await shouldBeDisabled(true, factory);
     });
 
-    it('should not be disabled when the disabled option is unchecked', async () => {
+    it("should not be disabled when the disabled option is unchecked", async () => {
       await shouldBeDisabled(false, factory);
     });
 
-    it('should be readOnly when the read only option is checked', async () => {
+    it("should be readOnly when the read only option is checked", async () => {
       await shouldBeReadOnly(true, factory);
     });
 
-    it('should not be readOnly when the read only option is unchecked', async () => {
+    it("should not be readOnly when the read only option is unchecked", async () => {
       await shouldBeReadOnly(false, factory);
     });
 
-    it('should be required when the required option is checked', async () => {
+    it("should be required when the required option is checked", async () => {
       await shouldBeRequired(true, factory);
     });
 
-    it('should not be required when the required option is unchecked', async () => {
+    it("should not be required when the required option is unchecked", async () => {
       await shouldBeRequired(false, factory);
     });
 
-    it('should have adornments when the adornments option is checked', async () => {
+    it("should have adornments when the adornments option is checked", async () => {
       await shouldHaveAdornments(factory);
     });
 
-    it('should not have adornments when the adornments option is checked', async () => {
+    it("should not have adornments when the adornments option is checked", async () => {
       await shouldNotHaveAdornments(factory);
     });
   });

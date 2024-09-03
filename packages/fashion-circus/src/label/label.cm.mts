@@ -1,10 +1,10 @@
-import { ZCircusComponentModel } from '@zthun/cirque';
+import { ZCircusComponentModel } from "@zthun/cirque";
 
 /**
  * Represents the component model for the label.
  */
 export class ZLabelComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZLabel-root';
+  public static readonly Selector = ".ZLabel-root";
 
   /**
    * Gets the text value of the label.
@@ -23,7 +23,7 @@ export class ZLabelComponentModel extends ZCircusComponentModel {
    *        True if the label will display the required star.
    */
   public async required(): Promise<boolean> {
-    const _required = await this.driver.attribute('data-required');
-    return _required === 'true';
+    const _required = await this.driver.attribute("data-required");
+    return _required === "true";
   }
 }

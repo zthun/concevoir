@@ -1,8 +1,12 @@
-import { useFashion } from '@zthun/fashion-react';
-import { IZFashion, ZFashionName } from '@zthun/fashion-theme';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useFashion } from "@zthun/fashion-react";
+import { IZFashion, ZFashionName } from "@zthun/fashion-theme";
+import { Dispatch, SetStateAction, useState } from "react";
 
-export type FashionState = [IZFashion | undefined, ZFashionName | undefined, Dispatch<SetStateAction<ZFashionName>>];
+export type FashionState = [
+  IZFashion | undefined,
+  ZFashionName | undefined,
+  Dispatch<SetStateAction<ZFashionName>>,
+];
 
 export function useFashionState(initial?: ZFashionName): FashionState {
   const [name, setName] = useState<ZFashionName | undefined>(initial);

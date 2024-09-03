@@ -3,21 +3,34 @@ import {
   ZFashionDevice,
   ZSizeFixed,
   createSizeChartFixedCss,
-  createSizeChartFixedGeometric
-} from '@zthun/fashion-tailor';
-import { ZFashionIntrinsic } from '@zthun/fashion-theme';
-import { css } from '@zthun/helpful-fn';
-import { IZComponentStyles, ZAttribute, ZComponentConstructor } from '@zthun/spellcraft';
-import { ZPropertyDeviceWidth } from '../background/device-element.mjs';
-import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
-import { IZComponentName } from '../component/component-name.mjs';
+  createSizeChartFixedGeometric,
+} from "@zthun/fashion-tailor";
+import { ZFashionIntrinsic } from "@zthun/fashion-theme";
+import { css } from "@zthun/helpful-fn";
+import {
+  IZComponentStyles,
+  ZAttribute,
+  ZComponentConstructor,
+} from "@zthun/spellcraft";
+import { ZPropertyDeviceWidth } from "../background/device-element.mjs";
+import {
+  IZComponentFashion,
+  ZFashionDetail,
+} from "../component/component-fashion.mjs";
+import { IZComponentName } from "../component/component-name.mjs";
 
 export function ZComponentIcon<T extends HTMLElement>(fallback: string) {
-  const SizeChart = createSizeChartFixedCss(createSizeChartFixedGeometric(2, 1), 'rem');
+  const SizeChart = createSizeChartFixedCss(
+    createSizeChartFixedGeometric(2, 1),
+    "rem",
+  );
 
   return function (target: ZComponentConstructor<T>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
-    class _ZIcon extends target implements IZComponentStyles, IZComponentName, IZComponentFashion {
+    class _ZIcon
+      extends target
+      implements IZComponentStyles, IZComponentName, IZComponentFashion
+    {
       @ZAttribute({ fallback })
       public name: string;
 
@@ -34,7 +47,7 @@ export function ZComponentIcon<T extends HTMLElement>(fallback: string) {
 
         return css`
           #${id}.ZIcon-font, #${id} .ZIcon-font {
-            color: ${detail.color('main')};
+            color: ${detail.color("main")};
             font-size: ${SizeChart[width.xl]};
           }
 

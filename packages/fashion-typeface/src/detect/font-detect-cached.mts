@@ -1,5 +1,5 @@
-import { ZFontFamily } from '../font/font-family.mjs';
-import { IZFontDetect } from './font-detect.mjs';
+import { ZFontFamily } from "../font/font-family.mjs";
+import { IZFontDetect } from "./font-detect.mjs";
 
 /**
  * A font detect implementation that caches the font list as soon as it is accessed.

@@ -1,10 +1,10 @@
-import { ZCircusActBuilder, ZCircusComponentModel } from '@zthun/cirque';
+import { ZCircusActBuilder, ZCircusComponentModel } from "@zthun/cirque";
 
 /**
  * The component model for a box component.
  */
 export class ZBoxComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = 'z-box';
+  public static readonly Selector = "z-box";
 
   /**
    * Clicks the box.

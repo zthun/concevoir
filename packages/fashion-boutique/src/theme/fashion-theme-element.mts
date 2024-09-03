@@ -1,6 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-declaration-merging */
 
-import { IZFashion, IZFashionTheme, ZFashionName, ZFashionScope, ZFashionThemeBuilder } from '@zthun/fashion-theme';
+import {
+  IZFashion,
+  IZFashionTheme,
+  ZFashionName,
+  ZFashionScope,
+  ZFashionThemeBuilder,
+} from "@zthun/fashion-theme";
 import {
   IZComponentRender,
   ZComponentClass,
@@ -8,33 +14,39 @@ import {
   ZComponentRenderOnConnected,
   ZComponentRenderOnPropertyChanged,
   ZNode,
-  ZProperty
-} from '@zthun/spellcraft';
-import { kebabCase } from 'lodash-es';
-import { ZFashionElement } from './fashion-element.mjs';
+  ZProperty,
+} from "@zthun/spellcraft";
+import { kebabCase } from "lodash-es";
+import { ZFashionElement } from "./fashion-element.mjs";
 
 export interface ZFashionThemeElement extends IZComponentRender {}
 
-@ZComponentRegister('z-fashion-theme')
-@ZComponentClass('ZFashionTheme-styles')
+@ZComponentRegister("z-fashion-theme")
+@ZComponentClass("ZFashionTheme-styles")
 @ZComponentRenderOnPropertyChanged()
 @ZComponentRenderOnConnected()
-export class ZFashionThemeElement extends HTMLElement implements IZComponentRender {
+export class ZFashionThemeElement
+  extends HTMLElement
+  implements IZComponentRender
+{
   public static property<TCustomNames extends string = ZFashionName>(
     name: ZFashionName | TCustomNames,
-    scope: ZFashionScope
+    scope: ZFashionScope,
   ) {
     return `--fashion-${kebabCase(name)}-${kebabCase(scope)}`;
   }
 
   public static variable<TCustomNames extends string = ZFashionName>(
     name: ZFashionName | TCustomNames,
-    scope: ZFashionScope
+    scope: ZFashionScope,
   ) {
     return `var(${ZFashionThemeElement.property(name, scope)})`;
   }
 
-  @ZProperty({ initial: new ZFashionThemeBuilder().build(), attribute: (v) => v?.name })
+  @ZProperty({
+    initial: new ZFashionThemeBuilder().build(),
+    attribute: (v) => v?.name,
+  })
   public theme: IZFashionTheme;
 
   public applyTheme(theme: IZFashionTheme): void {

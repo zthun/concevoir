@@ -1,12 +1,12 @@
-import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZNumberComponentModel } from '@zthun/fashion-circus';
-import { trim } from 'lodash-es';
+import { ZCircusBy, ZCircusComponentModel } from "@zthun/cirque";
+import { ZNumberComponentModel } from "@zthun/fashion-circus";
+import { trim } from "lodash-es";
 
 /**
  * Represents the component model for the number page.
  */
 export class ZNumberPageComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZNumberPage-root';
+  public static readonly Selector = ".ZNumberPage-root";
 
   /**
    * Gets the current page detected value.
@@ -15,9 +15,9 @@ export class ZNumberPageComponentModel extends ZCircusComponentModel {
    *        The current page value.
    */
   public async value(): Promise<number | null> {
-    const element = await this.driver.select('.ZNumberPage-value');
+    const element = await this.driver.select(".ZNumberPage-value");
     const text = await element.text();
-    const trimmed = trim(text.replace('Value:', ''));
+    const trimmed = trim(text.replace("Value:", ""));
     return trimmed ? +trimmed : null;
   }
 
@@ -28,6 +28,6 @@ export class ZNumberPageComponentModel extends ZCircusComponentModel {
    *        The spinner component.
    */
   public spinner(): Promise<ZNumberComponentModel> {
-    return ZCircusBy.first(this.driver, ZNumberComponentModel, 'spinner');
+    return ZCircusBy.first(this.driver, ZNumberComponentModel, "spinner");
   }
 }

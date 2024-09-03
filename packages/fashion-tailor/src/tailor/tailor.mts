@@ -1,10 +1,10 @@
-import { set } from 'lodash-es';
-import { createSizeChartFixedArithmetic } from '../fixed/size-chart-fixed-arithmetic.mjs';
-import { createSizeChartFixedCss } from '../fixed/size-chart-fixed-css.mjs';
-import { createSizeChartFixedFibonacci } from '../fixed/size-chart-fixed-fibonacci.mjs';
-import { ZSizeChartFixed, ZSizeFixed } from '../fixed/size-fixed.mjs';
-import { createSizeChartVoidCss } from '../void/size-chart-void-css.mjs';
-import { ZSizeChartVoid, ZSizeVoid } from '../void/size-void.mjs';
+import { set } from "lodash-es";
+import { createSizeChartFixedArithmetic } from "../fixed/size-chart-fixed-arithmetic.mjs";
+import { createSizeChartFixedCss } from "../fixed/size-chart-fixed-css.mjs";
+import { createSizeChartFixedFibonacci } from "../fixed/size-chart-fixed-fibonacci.mjs";
+import { ZSizeChartFixed, ZSizeFixed } from "../fixed/size-fixed.mjs";
+import { createSizeChartVoidCss } from "../void/size-chart-void-css.mjs";
+import { ZSizeChartVoid, ZSizeVoid } from "../void/size-void.mjs";
 
 /**
  * Represents a tailor that calculates dimensions based on t-shirt sizes.
@@ -40,27 +40,33 @@ export interface IZFashionTailor {
 
 export class ZFashionTailor {
   private _gaps: ZSizeChartFixed<string> & ZSizeChartVoid<string> = {
-    ...createSizeChartFixedCss(createSizeChartFixedFibonacci(0.5, 1), 'rem'),
-    ...createSizeChartVoidCss()
+    ...createSizeChartFixedCss(createSizeChartFixedFibonacci(0.5, 1), "rem"),
+    ...createSizeChartVoidCss(),
   };
 
   private _thickness: ZSizeChartFixed<string> & ZSizeChartVoid<string> = {
-    ...createSizeChartFixedCss(createSizeChartFixedArithmetic(0.0625, 0.0625), 'rem'),
-    ...createSizeChartVoidCss()
+    ...createSizeChartFixedCss(
+      createSizeChartFixedArithmetic(0.0625, 0.0625),
+      "rem",
+    ),
+    ...createSizeChartVoidCss(),
   };
 
-  private _sizeChart(path: keyof ZFashionTailor, chart: ZSizeChartFixed<string>) {
+  private _sizeChart(
+    path: keyof ZFashionTailor,
+    chart: ZSizeChartFixed<string>,
+  ) {
     const _chart = {
       ...chart,
-      ...createSizeChartVoidCss()
+      ...createSizeChartVoidCss(),
     };
     const updated = new ZFashionTailor();
     set(updated, path, _chart);
     return updated;
   }
 
-  public gapsChart = this._sizeChart.bind(this, '_gaps');
-  public thicknessChart = this._sizeChart.bind(this, '_thickness');
+  public gapsChart = this._sizeChart.bind(this, "_gaps");
+  public thicknessChart = this._sizeChart.bind(this, "_thickness");
 
   gap(size: ZSizeFixed | ZSizeVoid = ZSizeFixed.Medium): string {
     return this._gaps[size];

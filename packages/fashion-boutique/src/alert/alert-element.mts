@@ -1,6 +1,6 @@
-import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { ZFashionPriority } from '@zthun/fashion-theme';
-import { html } from '@zthun/helpful-fn';
+import { ZSizeFixed } from "@zthun/fashion-tailor";
+import { ZFashionPriority } from "@zthun/fashion-theme";
+import { html } from "@zthun/helpful-fn";
 import {
   IZComponentRender,
   IZComponentTemplate,
@@ -9,21 +9,27 @@ import {
   ZComponentRenderOnAttributeChanged,
   ZComponentRenderOnConnected,
   ZComponentRenderTemplate,
-  ZComponentShadow
-} from '@zthun/spellcraft';
-import { IZComponentFashion, ZFashionDetail } from '../component/component-fashion.mjs';
-import { IZComponentName } from '../component/component-name.mjs';
-import { ZFashionTailorElement } from '../theme/fashion-tailor-element.mjs';
+  ZComponentShadow,
+} from "@zthun/spellcraft";
+import {
+  IZComponentFashion,
+  ZFashionDetail,
+} from "../component/component-fashion.mjs";
+import { IZComponentName } from "../component/component-name.mjs";
+import { ZFashionTailorElement } from "../theme/fashion-tailor-element.mjs";
 
 export interface ZAlertElement extends IZComponentRender {}
 
-@ZComponentRegister('z-alert')
+@ZComponentRegister("z-alert")
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentRenderTemplate()
 @ZComponentShadow()
-export class ZAlertElement extends HTMLElement implements IZComponentFashion, IZComponentName, IZComponentTemplate {
-  public static readonly observedAttributes = ['fashion'];
+export class ZAlertElement
+  extends HTMLElement
+  implements IZComponentFashion, IZComponentName, IZComponentTemplate
+{
+  public static readonly observedAttributes = ["fashion"];
 
   @ZAttribute()
   public name?: string;
@@ -37,7 +43,7 @@ export class ZAlertElement extends HTMLElement implements IZComponentFashion, IZ
     const detail = new ZFashionDetail(fashion);
 
     const boxWidth = ZFashionTailorElement.thicknessVar(ZSizeFixed.ExtraSmall);
-    const boxShadow = detail.color('border');
+    const boxShadow = detail.color("border");
     const padX = ZFashionTailorElement.gapVar(ZSizeFixed.Small);
     const padY = ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall);
 
@@ -45,17 +51,19 @@ export class ZAlertElement extends HTMLElement implements IZComponentFashion, IZ
       <style>
         :host {
           align-items: center;
-          background: ${detail.color('main')};
-          border-color: ${detail.color('border')};
-          border-radius: ${ZFashionTailorElement.thicknessVar(ZSizeFixed.Medium)};
+          background: ${detail.color("main")};
+          border-color: ${detail.color("border")};
+          border-radius: ${ZFashionTailorElement.thicknessVar(
+            ZSizeFixed.Medium,
+          )};
           border-style: double;
           box-shadow: 0 0 0 ${boxWidth} ${boxShadow};
-          color: ${detail.color('contrast')};
+          color: ${detail.color("contrast")};
           display: grid;
           grid-template-columns: auto auto 1fr;
           grid-template-areas:
-            'avatar heading .'
-            'avatar message .';
+            "avatar heading ."
+            "avatar message .";
           padding: ${padX} ${padY};
         }
 
@@ -66,7 +74,9 @@ export class ZAlertElement extends HTMLElement implements IZComponentFashion, IZ
 
         .ZAlert-heading {
           grid-area: heading;
-          margin-bottom: calc(${ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall)} / 2);
+          margin-bottom: calc(
+            ${ZFashionTailorElement.gapVar(ZSizeFixed.ExtraSmall)} / 2
+          );
         }
 
         .ZAlert-message {

@@ -1,12 +1,12 @@
-import { ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZButtonComponentModel } from '@zthun/fashion-circus';
-import { ZFashionPriority } from '@zthun/fashion-theme';
-import React, { ReactNode } from 'react';
-import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
-import { ZButton } from './button';
+import { ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { ZButtonComponentModel } from "@zthun/fashion-circus";
+import { ZFashionPriority } from "@zthun/fashion-theme";
+import React, { ReactNode } from "react";
+import { beforeEach, describe, expect, it, Mock, vi } from "vitest";
+import { ZButton } from "./button";
 
-describe('ZButton', () => {
+describe("ZButton", () => {
   let avatar: ReactNode | undefined;
   let label: ReactNode | undefined;
   let loading: boolean | undefined;
@@ -49,10 +49,10 @@ describe('ZButton', () => {
     onClick = undefined;
   });
 
-  describe('Content', () => {
-    it('should render the button content', async () => {
+  describe("Content", () => {
+    it("should render the button content", async () => {
       // Arrange
-      label = 'Test Button';
+      label = "Test Button";
       const target = await createTestTarget();
       // Act
       const actual = await target.text();
@@ -60,9 +60,9 @@ describe('ZButton', () => {
       expect(actual).toEqual(label);
     });
 
-    it('should name the button', async () => {
+    it("should name the button", async () => {
       // Arrange.
-      name = 'button-name';
+      name = "button-name";
       const target = await createTestTarget();
       // Act.
       const actual = await target.name();
@@ -71,12 +71,12 @@ describe('ZButton', () => {
     });
   });
 
-  describe('Click', () => {
+  describe("Click", () => {
     beforeEach(() => {
       onClick = vi.fn();
     });
 
-    it('should raise the onClick event when the button is clicked.', async () => {
+    it("should raise the onClick event when the button is clicked.", async () => {
       // Arrange.
       const target = await createTestTarget();
       // Act.
@@ -86,8 +86,11 @@ describe('ZButton', () => {
     });
   });
 
-  describe('Disabled', () => {
-    async function assertDisabled(expected: boolean, _disabled: boolean | undefined) {
+  describe("Disabled", () => {
+    async function assertDisabled(
+      expected: boolean,
+      _disabled: boolean | undefined,
+    ) {
       // Arrange
       disabled = _disabled;
       const target = await createTestTarget();
@@ -97,21 +100,24 @@ describe('ZButton', () => {
       expect(actual).toEqual(expected);
     }
 
-    it('should disable the button when the disabled flag is true.', async () => {
+    it("should disable the button when the disabled flag is true.", async () => {
       await assertDisabled(true, true);
     });
 
-    it('should enable the button when the disabled flag is false.', async () => {
+    it("should enable the button when the disabled flag is false.", async () => {
       await assertDisabled(false, false);
     });
 
-    it('should enable the button when the disabled flag is undefined.', async () => {
+    it("should enable the button when the disabled flag is undefined.", async () => {
       await assertDisabled(false, undefined);
     });
   });
 
-  describe('Loading', () => {
-    async function assertIsLoading(expected: boolean, _loading: boolean | undefined) {
+  describe("Loading", () => {
+    async function assertIsLoading(
+      expected: boolean,
+      _loading: boolean | undefined,
+    ) {
       // Arrange
       loading = _loading;
       const target = await createTestTarget();
@@ -121,19 +127,19 @@ describe('ZButton', () => {
       expect(!!actual).toEqual(expected);
     }
 
-    it('should render the loader when true.', async () => {
+    it("should render the loader when true.", async () => {
       await assertIsLoading(true, true);
     });
 
-    it('should not render loader when false.', async () => {
+    it("should not render loader when false.", async () => {
       await assertIsLoading(false, false);
     });
 
-    it('should not render the loader when undefined.', async () => {
+    it("should not render the loader when undefined.", async () => {
       await assertIsLoading(false, undefined);
     });
 
-    it('should reject if the button never stops loading.', async () => {
+    it("should reject if the button never stops loading.", async () => {
       // Arrange
       loading = true;
       const target = await createTestTarget();
@@ -142,7 +148,7 @@ describe('ZButton', () => {
       await expect(target.load()).rejects.toBeTruthy();
     });
 
-    it('should continue if the button completes loading.', async () => {
+    it("should continue if the button completes loading.", async () => {
       // Arrange
       loading = false;
       const target = await createTestTarget();
@@ -152,7 +158,7 @@ describe('ZButton', () => {
     });
   });
 
-  describe('Borderless', () => {
+  describe("Borderless", () => {
     async function assertBorderless(expected: boolean, _borderless: boolean) {
       // Arrange
       borderless = _borderless;
@@ -163,16 +169,16 @@ describe('ZButton', () => {
       expect(!!actual).toEqual(expected);
     }
 
-    it('should keep the border if the borderless flag is false.', async () => {
+    it("should keep the border if the borderless flag is false.", async () => {
       await assertBorderless(false, false);
     });
 
-    it('should keep the border if the borderless flag is true.', async () => {
+    it("should keep the border if the borderless flag is true.", async () => {
       await assertBorderless(true, true);
     });
   });
 
-  describe('Compact', () => {
+  describe("Compact", () => {
     async function assertCompact(expected: boolean, _compact: boolean) {
       // Arrange
       compact = _compact;
@@ -183,17 +189,20 @@ describe('ZButton', () => {
       expect(!!actual).toEqual(expected);
     }
 
-    it('should keep the button fat if the compact flag is false.', async () => {
+    it("should keep the button fat if the compact flag is false.", async () => {
       await assertCompact(false, false);
     });
 
-    it('should make the button skinny if the compact flag is true.', async () => {
+    it("should make the button skinny if the compact flag is true.", async () => {
       await assertCompact(true, true);
     });
   });
 
-  describe('Outline', () => {
-    async function assertOutline(expected: boolean, _outline: boolean | undefined) {
+  describe("Outline", () => {
+    async function assertOutline(
+      expected: boolean,
+      _outline: boolean | undefined,
+    ) {
       // Arrange
       outline = _outline;
       const target = await createTestTarget();
@@ -203,25 +212,25 @@ describe('ZButton', () => {
       expect(!!actual).toEqual(expected);
     }
 
-    it('should outline the button if the outline flag is true.', async () => {
+    it("should outline the button if the outline flag is true.", async () => {
       await assertOutline(true, true);
     });
 
-    it('should contain the button if the outline flag is false.', async () => {
+    it("should contain the button if the outline flag is false.", async () => {
       await assertOutline(false, false);
     });
 
-    it('should contain the button if the outline flag is undefined.', async () => {
+    it("should contain the button if the outline flag is undefined.", async () => {
       await assertOutline(false, undefined);
     });
   });
 
-  describe('Fashion', () => {
+  describe("Fashion", () => {
     beforeEach(() => {
       fashion = ZFashionPriority.Primary;
     });
 
-    it('should set the fashion', async () => {
+    it("should set the fashion", async () => {
       // Arrange.
       const target = await createTestTarget();
       // Act.
