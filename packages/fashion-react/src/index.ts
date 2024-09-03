@@ -50,7 +50,6 @@ export * from './list/list-line-item';
 export * from './not-found/not-found';
 export * from './number/number-input';
 export * from './number/number.mjs';
-export * from './pagination/pagination';
 export * from './router/router-dom.mjs';
 export * from './stack/stack';
 export * from './suspense/suspense-progress';
