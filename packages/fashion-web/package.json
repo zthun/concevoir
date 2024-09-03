@@ -21,7 +21,7 @@
     "dist/**"
   ],
   "devDependencies": {
-    "@cucumber/cucumber": "^10.8.0",
+    "@cucumber/cucumber": "^10.9.0",
     "@zthun/cirque": "^7.0.1",
     "@zthun/cirque-du-react": "^7.0.2",
     "@zthun/cirque-du-selenium": "^7.0.1",
