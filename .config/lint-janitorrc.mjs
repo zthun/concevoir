@@ -10,7 +10,7 @@ const generated = [
 ];
 const partialGenerated = ['cspell.json', 'lerna.json'];
 
-const esFiles = ['*.js', '*.ts', 'packages/**/src/**/*.ts', 'packages/**/src/**/*.tsx'];
+const esFiles = ['*.cjs', '*.ts', 'packages/**/src/**/*.ts', 'packages/**/src/**/*.tsx'];
 const htmlFiles = ['packages/**/*.html'];
 const markdownFiles = ['*.md', 'packages/**/*.md'];
 const jsonFiles = ['*.json', 'packages/**/*.json'];
@@ -26,7 +26,7 @@ const yamlFilesExclude = generated;
 const prettyFilesExclude = generated.concat(partialGenerated);
 const spellingFilesExclude = generated.concat(partialGenerated);
 
-module.exports = {
+export default {
   esFiles,
   esFilesExclude,
   htmlFiles,
