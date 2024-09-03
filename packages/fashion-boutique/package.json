@@ -28,10 +28,10 @@
     "dist/**"
   ],
   "dependencies": {
-    "@emotion/react": "^11.11.3",
-    "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.15.0",
-    "@mui/system": "^5.15.0",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^5.16.7",
+    "@mui/system": "^5.16.7",
     "@zthun/cirque": "^7.0.1",
     "@zthun/fashion-tailor": "^2.7.0",
     "@zthun/fashion-theme": "^2.7.0",
@@ -44,7 +44,7 @@
     "history": "^5.3.0",
     "lodash-es": "^4.17.21",
     "react-router-dom": "^6.26.1",
-    "tss-react": "^4.9.4"
+    "tss-react": "^4.9.12"
   },
   "devDependencies": {
     "@zthun/cirque-du-react": "^7.0.2",
