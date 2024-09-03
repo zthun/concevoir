@@ -26,8 +26,8 @@ export const ZH1 = (props: IZHeadingProps) => {
   useWebComponent(ZHeadingOneElement);
 
   return (
-    // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
     <h1
+      // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
       class={className}
       is="z-h1"
       data-fashion={fashion}
@@ -44,8 +44,8 @@ export const ZH2 = (props: IZHeadingProps) => {
   useWebComponent(ZHeadingTwoElement);
 
   return (
-    // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
     <h2
+      // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
       class={className}
       is="z-h2"
       data-fashion={fashion}
@@ -62,8 +62,8 @@ export const ZH3 = (props: IZHeadingProps) => {
   useWebComponent(ZHeadingThreeElement);
 
   return (
-    // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
     <h3
+      // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
       class={className}
       is="z-h3"
       data-fashion={fashion}
@@ -80,8 +80,8 @@ export const ZH4 = (props: IZHeadingProps) => {
   useWebComponent(ZHeadingFourElement);
 
   return (
-    // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
     <h4
+      // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
       class={className}
       is="z-h4"
       data-fashion={fashion}
@@ -98,8 +98,8 @@ export const ZH5 = (props: IZHeadingProps) => {
   useWebComponent(ZHeadingFiveElement);
 
   return (
-    // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
     <h5
+      // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
       class={className}
       is="z-h5"
       data-fashion={fashion}
@@ -116,8 +116,8 @@ export const ZH6 = (props: IZHeadingProps) => {
   useWebComponent(ZHeadingSixElement);
 
   return (
-    // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
     <h6
+      // @ts-expect-error - Web Component in react 18 using is directly translates className to lower case classname instead of class.
       class={className}
       is="z-h6"
       data-fashion={fashion}
