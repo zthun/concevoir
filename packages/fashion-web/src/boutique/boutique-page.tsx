@@ -25,7 +25,7 @@ import {
  *        The JSX to render the page.
  */
 export function ZBoutiquePage() {
-  const { secondary, body } = useFashionTheme();
+  const { body } = useFashionTheme();
   const navigate = useNavigate();
 
   const renderComponent = (route: IZRoute) => (
@@ -34,7 +34,6 @@ export function ZBoutiquePage() {
       key={route.path}
       padding={ZSizeFixed.Medium}
       fashion={body}
-      hover={secondary}
       border={{ width: ZSizeFixed.ExtraSmall }}
       onClick={() => navigate(route.path)}
     >
