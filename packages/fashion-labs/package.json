@@ -32,15 +32,15 @@
     "@zthun/fashion-boutique": "^2.7.0",
     "@zthun/fashion-tailor": "^2.7.0",
     "@zthun/fashion-theme": "^2.7.0",
-    "@zthun/helpful-fn": "^3.2.0",
-    "@zthun/helpful-query": "^3.2.0",
-    "@zthun/helpful-react": "^3.2.1",
+    "@zthun/helpful-fn": "^6.0.0",
+    "@zthun/helpful-query": "^6.0.0",
+    "@zthun/helpful-react": "^6.0.0",
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
-    "@zthun/cirque-du-react": "^5.0.3",
-    "vite": "^5.0.12",
-    "vitest": "^1.2.2"
+    "@zthun/cirque-du-react": "^7.0.2",
+    "vite": "^5.4.2",
+    "vitest": "^2.0.5"
   },
   "peerDependencies": {
     "react": "^18.1.0",
