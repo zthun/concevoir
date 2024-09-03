@@ -12,6 +12,7 @@
     "strictNullChecks": true,
     "strictBindCallApply": true,
     "skipLibCheck": true,
+    "noEmit": true,
     "jsx": "react",
     "target": "es5",
     "module": "ESNext"
