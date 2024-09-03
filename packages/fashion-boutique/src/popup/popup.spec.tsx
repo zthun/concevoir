@@ -1,19 +1,25 @@
-import { IZCircusDriver, ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZHorizontalAnchor, ZVerticalAnchor } from '@zthun/helpful-fn';
-import React from 'react';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { ZPopupButton } from './popup-button';
-import { ZPopupButtonComponentModel } from './popup-button.cm.mjs';
+import { IZCircusDriver, IZCircusSetup, ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { ZHorizontalAnchor, ZVerticalAnchor } from "@zthun/helpful-fn";
+import React from "react";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { ZPopupButton } from "./popup-button";
+import { ZPopupButtonComponentModel } from "./popup-button.cm.mjs";
 
-describe('ZPopup', () => {
+describe("ZPopup", () => {
   let attachOrigin: [ZVerticalAnchor, ZHorizontalAnchor] | undefined;
   let popupOrigin: [ZVerticalAnchor, ZHorizontalAnchor] | undefined;
+  let _setup: IZCircusSetup;
   let _driver: IZCircusDriver;
 
   async function createTestTarget() {
-    const element = <ZPopupButton PopupProps={{ attachOrigin, popupOrigin }}>Content</ZPopupButton>;
-    _driver = await new ZCircusSetupRenderer(element).setup();
+    const element = (
+      <ZPopupButton PopupProps={{ attachOrigin, popupOrigin }}>
+        Content
+      </ZPopupButton>
+    );
+    _setup = new ZCircusSetupRenderer(element);
+    _driver = await _setup.setup();
     return ZCircusBy.first(_driver, ZPopupButtonComponentModel);
   }
 
@@ -24,10 +30,11 @@ describe('ZPopup', () => {
 
   afterEach(async () => {
     await _driver?.destroy?.call(_driver);
+    await _setup?.destroy?.call(_setup);
   });
 
-  describe('Open', () => {
-    it('should open the popup when clicked', async () => {
+  describe("Open", () => {
+    it("should open the popup when clicked", async () => {
       // Arrange.
       const target = await createTestTarget();
       // Act.
@@ -36,7 +43,7 @@ describe('ZPopup', () => {
       expect(actual).toBeTruthy();
     });
 
-    it('should open over the element', async () => {
+    it("should open over the element", async () => {
       // Arrange
       attachOrigin = [ZVerticalAnchor.Top, ZHorizontalAnchor.Left];
       popupOrigin = [ZVerticalAnchor.Bottom, ZHorizontalAnchor.Left];
@@ -48,8 +55,8 @@ describe('ZPopup', () => {
     });
   });
 
-  describe('Close', () => {
-    it('should close the popup when clicking on the backdrop', async () => {
+  describe("Close", () => {
+    it("should close the popup when clicking on the backdrop", async () => {
       // Arrange.
       attachOrigin = [ZVerticalAnchor.Middle, ZHorizontalAnchor.Left];
       popupOrigin = [ZVerticalAnchor.Middle, ZHorizontalAnchor.Left];
@@ -62,7 +69,7 @@ describe('ZPopup', () => {
       expect(actual).toBeFalsy();
     });
 
-    it('should close the popup when pressing the escape key', async () => {
+    it("should close the popup when pressing the escape key", async () => {
       // Arrange.
       const target = await createTestTarget();
       const popup = await target.open();
@@ -74,15 +81,15 @@ describe('ZPopup', () => {
     });
   });
 
-  describe('Content', () => {
-    it('should render the content', async () => {
+  describe("Content", () => {
+    it("should render the content", async () => {
       // Arrange.
       const target = await createTestTarget();
       const popup = await target.open();
       // Act.
       const actual = await (await popup.content()).text();
       // Assert.
-      expect(actual).toEqual('Content');
+      expect(actual).toEqual("Content");
     });
   });
 });

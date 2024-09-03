@@ -1,30 +1,33 @@
-import { IZCircusDriver, ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZButtonComponentModel } from '@zthun/fashion-boutique';
-import { ZSizeVaried } from '@zthun/fashion-tailor';
-import { ZFashionName, ZFashionPriority } from '@zthun/fashion-theme';
-import { required } from '@zthun/helpful-fn';
-import { lowerCase } from 'lodash-es';
-import React from 'react';
-import { afterEach, describe, expect, it } from 'vitest';
-import { ZModalPage } from './modal-page';
-import { ZModalPageComponentModel } from './modal-page.cm.mjs';
+import { IZCircusDriver, IZCircusSetup, ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { ZButtonComponentModel } from "@zthun/fashion-boutique";
+import { ZSizeVaried } from "@zthun/fashion-tailor";
+import { ZFashionName, ZFashionPriority } from "@zthun/fashion-theme";
+import { required } from "@zthun/helpful-fn";
+import { lowerCase } from "lodash-es";
+import React from "react";
+import { afterEach, describe, expect, it } from "vitest";
+import { ZModalPage } from "./modal-page";
+import { ZModalPageComponentModel } from "./modal-page.cm.mjs";
 
-describe('ZModalPage', () => {
+describe("ZModalPage", () => {
+  let _setup: IZCircusSetup;
   let _driver: IZCircusDriver;
 
   const createTestTarget = async () => {
     const element = <ZModalPage />;
 
-    _driver = await new ZCircusSetupRenderer(element).setup();
+    _setup = new ZCircusSetupRenderer(element);
+    _driver = await _setup.setup();
     return ZCircusBy.first(_driver, ZModalPageComponentModel);
   };
 
   afterEach(async () => {
     await _driver?.destroy?.call(_driver);
+    await _setup?.destroy?.call(_setup);
   });
 
-  describe('Header', () => {
+  describe("Header", () => {
     const shouldShowHeader = async (expected: boolean) => {
       // Arrange.
       const target = await createTestTarget();
@@ -38,16 +41,16 @@ describe('ZModalPage', () => {
       expect(!!actual).toEqual(expected);
     };
 
-    it('should not show if the switch is off', async () => {
+    it("should not show if the switch is off", async () => {
       await shouldShowHeader(false);
     });
 
-    it('should show if the switch is on', async () => {
+    it("should show if the switch is on", async () => {
       await shouldShowHeader(true);
     });
   });
 
-  describe('Footer', () => {
+  describe("Footer", () => {
     const shouldShowFooter = async (expected: boolean) => {
       // Arrange.
       const target = await createTestTarget();
@@ -61,16 +64,16 @@ describe('ZModalPage', () => {
       expect(!!actual).toEqual(expected);
     };
 
-    it('should not show if the switch is off', async () => {
+    it("should not show if the switch is off", async () => {
       await shouldShowFooter(false);
     });
 
-    it('should show if the switch is on', async () => {
+    it("should show if the switch is on", async () => {
       await shouldShowFooter(true);
     });
   });
 
-  describe('Full Screen', () => {
+  describe("Full Screen", () => {
     const shouldShowFullScreen = async (expected: ZSizeVaried) => {
       // Arrange.
       const target = await createTestTarget();
@@ -84,17 +87,17 @@ describe('ZModalPage', () => {
       expect(actual).toEqual(expected);
     };
 
-    it('should not show if the switch is off', async () => {
+    it("should not show if the switch is off", async () => {
       await shouldShowFullScreen(ZSizeVaried.Fit);
     });
 
-    it('should show if the switch is on', async () => {
+    it("should show if the switch is on", async () => {
       await shouldShowFullScreen(ZSizeVaried.Full);
     });
   });
 
-  describe('Close', () => {
-    const shouldCloseModal = async (name: 'cancel' | 'save') => {
+  describe("Close", () => {
+    const shouldCloseModal = async (name: "cancel" | "save") => {
       // Arrange.
       const target = await createTestTarget();
       await (await target.footer()).toggle(true);
@@ -107,16 +110,16 @@ describe('ZModalPage', () => {
       await target.driver.wait(() => target.opened().then((o) => !o));
     };
 
-    it('should be invoked with the cancel button', async () => {
-      await shouldCloseModal('cancel');
+    it("should be invoked with the cancel button", async () => {
+      await shouldCloseModal("cancel");
     });
 
-    it('should be invoked with the save button', async () => {
-      await shouldCloseModal('save');
+    it("should be invoked with the save button", async () => {
+      await shouldCloseModal("save");
     });
   });
 
-  describe('Fashion', () => {
+  describe("Fashion", () => {
     const shouldSetFashion = async (expected: ZFashionName) => {
       // Arrange.
       const target = await createTestTarget();
@@ -130,11 +133,11 @@ describe('ZModalPage', () => {
       expect(lowerCase(actual!)).toEqual(expected);
     };
 
-    it('should set the fashion to primary', async () => {
+    it("should set the fashion to primary", async () => {
       await shouldSetFashion(ZFashionPriority.Primary);
     });
 
-    it('should set the fashion to secondary', async () => {
+    it("should set the fashion to secondary", async () => {
       await shouldSetFashion(ZFashionPriority.Secondary);
     });
   });
