@@ -1,14 +1,14 @@
-import { IZCircusDriver, IZCircusSetup, ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { identity, noop, range } from 'lodash-es';
-import React, { ReactNode } from 'react';
-import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { ZChoiceAutocomplete } from './choice-autocomplete';
-import { ZChoiceDropDown } from './choice-drop-down';
-import { ZChoiceToggle } from './choice-toggle';
-import { ZChoiceComponentModel } from './choice.cm.mjs';
+import { IZCircusDriver, IZCircusSetup, ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { identity, noop, range } from "lodash-es";
+import React, { ReactNode } from "react";
+import { Mock, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { ZChoiceAutocomplete } from "./choice-autocomplete";
+import { ZChoiceDropDown } from "./choice-drop-down";
+import { ZChoiceToggle } from "./choice-toggle";
+import { ZChoiceComponentModel } from "./choice.cm.mjs";
 
-describe('ZChoice', () => {
+describe("ZChoice", () => {
   let options: any[];
   let identifier: (op: any) => any;
 
@@ -37,7 +37,7 @@ describe('ZChoice', () => {
     renderOption = undefined;
 
     identifier = identity;
-    options = ['One', 'Two', 'Three', 'Four', 'Five'];
+    options = ["One", "Two", "Three", "Four", "Five"];
   });
 
   afterEach(async () => {
@@ -45,7 +45,9 @@ describe('ZChoice', () => {
     await _driver?.destroy?.call(_driver);
   });
 
-  async function shouldRenderAllOptionsWhenOpened(createTestTarget: () => Promise<ZChoiceComponentModel>) {
+  async function shouldRenderAllOptionsWhenOpened(
+    createTestTarget: () => Promise<ZChoiceComponentModel>,
+  ) {
     // Arrange.
     const target = await createTestTarget();
     // Act.
@@ -55,9 +57,11 @@ describe('ZChoice', () => {
     expect(actual).toEqual(options);
   }
 
-  async function shouldRenderCustomOptionDisplay(createTestTarget: () => Promise<ZChoiceComponentModel>) {
+  async function shouldRenderCustomOptionDisplay(
+    createTestTarget: () => Promise<ZChoiceComponentModel>,
+  ) {
     // Arrange.
-    const expected = 'EXPECTED: ';
+    const expected = "EXPECTED: ";
     renderOption = (op) => `${expected}${op}`;
     const target = await createTestTarget();
     // Act.
@@ -68,7 +72,9 @@ describe('ZChoice', () => {
     expect(actual).toBeTruthy();
   }
 
-  async function shouldRenderDisabled(createTestTarget: () => Promise<ZChoiceComponentModel>) {
+  async function shouldRenderDisabled(
+    createTestTarget: () => Promise<ZChoiceComponentModel>,
+  ) {
     // Arrange.
     disabled = true;
     const target = await createTestTarget();
@@ -78,7 +84,9 @@ describe('ZChoice', () => {
     expect(actual).toBeTruthy();
   }
 
-  async function shouldSelectByIdentifier(createTestTarget: () => Promise<ZChoiceComponentModel>) {
+  async function shouldSelectByIdentifier(
+    createTestTarget: () => Promise<ZChoiceComponentModel>,
+  ) {
     // Arrange.
     options = range(1, 5).map((id) => ({ id, name: `${id}` }));
     identifier = (op) => op.id;
@@ -93,7 +101,9 @@ describe('ZChoice', () => {
     expect(actual).toEqual(expected.name);
   }
 
-  async function shouldSelectByTheEntireObject(createTestTarget: () => Promise<ZChoiceComponentModel>) {
+  async function shouldSelectByTheEntireObject(
+    createTestTarget: () => Promise<ZChoiceComponentModel>,
+  ) {
     // Arrange.
     const [, , expected] = options;
     selected = [expected];
@@ -105,7 +115,9 @@ describe('ZChoice', () => {
     expect(actual).toEqual(expected);
   }
 
-  async function shouldNotBeAbleToClearIfTheChoiceIsIndelible(createTestTarget: () => Promise<ZChoiceComponentModel>) {
+  async function shouldNotBeAbleToClearIfTheChoiceIsIndelible(
+    createTestTarget: () => Promise<ZChoiceComponentModel>,
+  ) {
     // Arrange.
     indelible = true;
     multiple = true;
@@ -118,7 +130,9 @@ describe('ZChoice', () => {
     expect(onValueChange).not.toHaveBeenCalled();
   }
 
-  async function shouldClearTheSelection(createTestTarget: () => Promise<ZChoiceComponentModel>) {
+  async function shouldClearTheSelection(
+    createTestTarget: () => Promise<ZChoiceComponentModel>,
+  ) {
     // Arrange.
     selected = options;
     onValueChange = vi.fn();
@@ -129,7 +143,9 @@ describe('ZChoice', () => {
     expect(onValueChange).toHaveBeenCalledWith([]);
   }
 
-  async function shouldChangeSelectionToSingleIfMultipleOff(createTestTarget: () => Promise<ZChoiceComponentModel>) {
+  async function shouldChangeSelectionToSingleIfMultipleOff(
+    createTestTarget: () => Promise<ZChoiceComponentModel>,
+  ) {
     // Arrange.
     selected = undefined;
     onValueChange = undefined;
@@ -146,7 +162,9 @@ describe('ZChoice', () => {
     expect(actual).toEqual(expected);
   }
 
-  async function shouldAppendSelectionIfMultipleOn(createTestTarget: () => Promise<ZChoiceComponentModel>) {
+  async function shouldAppendSelectionIfMultipleOn(
+    createTestTarget: () => Promise<ZChoiceComponentModel>,
+  ) {
     // Arrange.
     selected = undefined;
     onValueChange = undefined;
@@ -163,21 +181,25 @@ describe('ZChoice', () => {
     expect(actual).toEqual(expected);
   }
 
-  async function shouldSelectNothingIfOptionIsUnavailable(createTestTarget: () => Promise<ZChoiceComponentModel>) {
+  async function shouldSelectNothingIfOptionIsUnavailable(
+    createTestTarget: () => Promise<ZChoiceComponentModel>,
+  ) {
     // Arrange.
     selected = undefined;
     onValueChange = undefined;
     const target = await createTestTarget();
     // Act.
-    await target.select('not-an-option');
+    await target.select("not-an-option");
     const actual = await target.selected();
     // Assert.
     expect(actual).toEqual([]);
   }
 
-  async function shouldRenderARequiredLabel(createTestTarget: () => Promise<ZChoiceComponentModel>) {
+  async function shouldRenderARequiredLabel(
+    createTestTarget: () => Promise<ZChoiceComponentModel>,
+  ) {
     // Arrange.
-    label = 'Choice Test';
+    label = "Choice Test";
     required = true;
     const target = await createTestTarget();
     // Act.
@@ -186,7 +208,9 @@ describe('ZChoice', () => {
     expect(actual).toBeTruthy();
   }
 
-  async function shouldNotRenderALabelIfNoneProvided(createTestTarget: () => Promise<ZChoiceComponentModel>) {
+  async function shouldNotRenderALabelIfNoneProvided(
+    createTestTarget: () => Promise<ZChoiceComponentModel>,
+  ) {
     // Arrange.
     label = undefined;
     const target = await createTestTarget();
@@ -196,7 +220,7 @@ describe('ZChoice', () => {
     expect(actual).toBeNull();
   }
 
-  describe('DropDown', () => {
+  describe("DropDown", () => {
     async function createTestTarget() {
       const element = (
         <ZChoiceDropDown
@@ -219,58 +243,58 @@ describe('ZChoice', () => {
       return await ZCircusBy.first(_driver, ZChoiceComponentModel);
     }
 
-    it('should render all options when opened', async () => {
+    it("should render all options when opened", async () => {
       await shouldRenderAllOptionsWhenOpened(createTestTarget);
     });
 
-    it('should render a custom display for an option', async () => {
+    it("should render a custom display for an option", async () => {
       await shouldRenderCustomOptionDisplay(createTestTarget);
     });
 
-    it('should select by an identifier', async () => {
+    it("should select by an identifier", async () => {
       await shouldSelectByIdentifier(createTestTarget);
     });
 
-    it('should select by the entire object', async () => {
+    it("should select by the entire object", async () => {
       await shouldSelectByTheEntireObject(createTestTarget);
     });
 
-    it('should not be able to clear if the choice is indelible', async () => {
+    it("should not be able to clear if the choice is indelible", async () => {
       await shouldNotBeAbleToClearIfTheChoiceIsIndelible(createTestTarget);
     });
 
-    it('should clear the selection', async () => {
+    it("should clear the selection", async () => {
       await shouldClearTheSelection(createTestTarget);
     });
 
-    it('should change the selection to a single item if multiple is off', async () => {
+    it("should change the selection to a single item if multiple is off", async () => {
       await shouldChangeSelectionToSingleIfMultipleOff(createTestTarget);
     });
 
-    it('should append selections if multiple is turned on', async () => {
+    it("should append selections if multiple is turned on", async () => {
       await shouldAppendSelectionIfMultipleOn(createTestTarget);
     });
 
-    it('should not render a label if none is provided', async () => {
+    it("should not render a label if none is provided", async () => {
       await shouldNotRenderALabelIfNoneProvided(createTestTarget);
     });
 
-    it('should render a required label', async () => {
+    it("should render a required label", async () => {
       await shouldRenderARequiredLabel(createTestTarget);
     });
 
-    it('should disable if disabled is true', async () => {
+    it("should disable if disabled is true", async () => {
       await shouldRenderDisabled(createTestTarget);
     });
 
-    it('should not select anything if the selected option is not available', async () => {
+    it("should not select anything if the selected option is not available", async () => {
       await shouldSelectNothingIfOptionIsUnavailable(createTestTarget);
     });
 
-    it('should select the raw value if there is no option for the value', async () => {
+    it("should select the raw value if there is no option for the value", async () => {
       // Arrange.
-      const expected = 'not-a-value';
-      const warn = vi.spyOn(console, 'warn');
+      const expected = "not-a-value";
+      const warn = vi.spyOn(console, "warn");
       warn.mockImplementation(noop);
       selected = [expected];
       const target = await createTestTarget();
@@ -283,7 +307,7 @@ describe('ZChoice', () => {
     });
   });
 
-  describe('Autocomplete', () => {
+  describe("Autocomplete", () => {
     async function createTestTarget() {
       const element = (
         <ZChoiceAutocomplete
@@ -306,52 +330,52 @@ describe('ZChoice', () => {
       return await ZCircusBy.first(_driver, ZChoiceComponentModel);
     }
 
-    it('should render all options when opened', async () => {
+    it("should render all options when opened", async () => {
       await shouldRenderAllOptionsWhenOpened(createTestTarget);
     });
 
-    it('should select by an identifier', async () => {
+    it("should select by an identifier", async () => {
       await shouldSelectByIdentifier(createTestTarget);
     });
 
-    it('should select by the entire object', async () => {
+    it("should select by the entire object", async () => {
       await shouldSelectByTheEntireObject(createTestTarget);
     });
 
-    it('should not be able to clear if the choice is indelible', async () => {
+    it("should not be able to clear if the choice is indelible", async () => {
       await shouldNotBeAbleToClearIfTheChoiceIsIndelible(createTestTarget);
     });
 
-    it('should disable if disabled is true', async () => {
+    it("should disable if disabled is true", async () => {
       await shouldRenderDisabled(createTestTarget);
     });
 
-    it('should clear the selection', async () => {
+    it("should clear the selection", async () => {
       await shouldClearTheSelection(createTestTarget);
     });
 
-    it('should change the selection to a single item if multiple is off', async () => {
+    it("should change the selection to a single item if multiple is off", async () => {
       await shouldChangeSelectionToSingleIfMultipleOff(createTestTarget);
     });
 
-    it('should append selections if multiple is turned on', async () => {
+    it("should append selections if multiple is turned on", async () => {
       await shouldAppendSelectionIfMultipleOn(createTestTarget);
     });
 
-    it('should not render a label if none is provided', async () => {
+    it("should not render a label if none is provided", async () => {
       await shouldNotRenderALabelIfNoneProvided(createTestTarget);
     });
 
-    it('should render a required label', async () => {
+    it("should render a required label", async () => {
       await shouldRenderARequiredLabel(createTestTarget);
     });
 
-    it('should not select anything if the selected option is not available', async () => {
+    it("should not select anything if the selected option is not available", async () => {
       await shouldSelectNothingIfOptionIsUnavailable(createTestTarget);
     });
   });
 
-  describe('Toggle', () => {
+  describe("Toggle", () => {
     async function createTestTarget() {
       const element = (
         <ZChoiceToggle
@@ -374,51 +398,51 @@ describe('ZChoice', () => {
       return await ZCircusBy.first(_driver, ZChoiceComponentModel);
     }
 
-    it('should render all options when opened', async () => {
+    it("should render all options when opened", async () => {
       await shouldRenderAllOptionsWhenOpened(createTestTarget);
     });
 
-    it('should render a custom display for an option', async () => {
+    it("should render a custom display for an option", async () => {
       await shouldRenderCustomOptionDisplay(createTestTarget);
     });
 
-    it('should select by an identifier', async () => {
+    it("should select by an identifier", async () => {
       await shouldSelectByIdentifier(createTestTarget);
     });
 
-    it('should select by the entire object', async () => {
+    it("should select by the entire object", async () => {
       await shouldSelectByTheEntireObject(createTestTarget);
     });
 
-    it('should change the selection to a single item if multiple is off', async () => {
+    it("should change the selection to a single item if multiple is off", async () => {
       await shouldChangeSelectionToSingleIfMultipleOff(createTestTarget);
     });
 
-    it('should append selections if multiple is turned on', async () => {
+    it("should append selections if multiple is turned on", async () => {
       await shouldAppendSelectionIfMultipleOn(createTestTarget);
     });
 
-    it('should disable if disabled is true', async () => {
+    it("should disable if disabled is true", async () => {
       await shouldRenderDisabled(createTestTarget);
     });
 
-    it('should not render a label if none is provided', async () => {
+    it("should not render a label if none is provided", async () => {
       await shouldNotRenderALabelIfNoneProvided(createTestTarget);
     });
 
-    it('should render a required label', async () => {
+    it("should render a required label", async () => {
       await shouldRenderARequiredLabel(createTestTarget);
     });
 
-    it('should not select anything if the selected option is not available', async () => {
+    it("should not select anything if the selected option is not available", async () => {
       await shouldSelectNothingIfOptionIsUnavailable(createTestTarget);
     });
 
-    it('should clear the selection', async () => {
+    it("should clear the selection", async () => {
       await shouldClearTheSelection(createTestTarget);
     });
 
-    it('should remove the selection when clicked again', async () => {
+    it("should remove the selection when clicked again", async () => {
       // Arrange.
       const [, value] = options;
       const target = await createTestTarget();
@@ -430,7 +454,7 @@ describe('ZChoice', () => {
       expect(actual.length).toEqual(0);
     });
 
-    it('should not remove the selection when the indelible flag is on and the mode is singular', async () => {
+    it("should not remove the selection when the indelible flag is on and the mode is singular", async () => {
       // Arrange.
       multiple = false;
       indelible = true;

@@ -1,13 +1,16 @@
-import { ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZBooleanComponentModel, ZButtonComponentModel } from '@zthun/fashion-boutique';
-import { IZFashion, ZFashionThemeBuilder } from '@zthun/fashion-theme';
-import React from 'react';
-import { describe, expect, it } from 'vitest';
-import { ZBooleanPage } from './boolean-page';
-import { ZBooleanPageComponentModel } from './boolean-page.cm.mjs';
+import { ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import {
+  ZBooleanComponentModel,
+  ZButtonComponentModel,
+} from "@zthun/fashion-boutique";
+import { IZFashion, ZFashionThemeBuilder } from "@zthun/fashion-theme";
+import React from "react";
+import { describe, expect, it } from "vitest";
+import { ZBooleanPage } from "./boolean-page";
+import { ZBooleanPageComponentModel } from "./boolean-page.cm.mjs";
 
-describe('ZBooleanPage', () => {
+describe("ZBooleanPage", () => {
   const theme = new ZFashionThemeBuilder().build();
 
   async function createTestTarget() {
@@ -19,8 +22,12 @@ describe('ZBooleanPage', () => {
 
   async function shouldToggleToValue(
     expected: boolean,
-    togglerButton: (t: ZBooleanPageComponentModel) => Promise<ZButtonComponentModel>,
-    factoryDemo: (t: ZBooleanPageComponentModel) => Promise<ZBooleanComponentModel>
+    togglerButton: (
+      t: ZBooleanPageComponentModel,
+    ) => Promise<ZButtonComponentModel>,
+    factoryDemo: (
+      t: ZBooleanPageComponentModel,
+    ) => Promise<ZBooleanComponentModel>,
   ) {
     // Arrange.
     const target = await createTestTarget();
@@ -38,7 +45,9 @@ describe('ZBooleanPage', () => {
 
   async function shouldDisable(
     expected: boolean,
-    factoryDemo: (t: ZBooleanPageComponentModel) => Promise<ZBooleanComponentModel>
+    factoryDemo: (
+      t: ZBooleanPageComponentModel,
+    ) => Promise<ZBooleanComponentModel>,
   ) {
     // Arrange.
     const target = await createTestTarget();
@@ -54,7 +63,9 @@ describe('ZBooleanPage', () => {
 
   async function shouldRequire(
     expected: boolean,
-    factoryDemo: (t: ZBooleanPageComponentModel) => Promise<ZBooleanComponentModel>
+    factoryDemo: (
+      t: ZBooleanPageComponentModel,
+    ) => Promise<ZBooleanComponentModel>,
   ) {
     // Arrange.
     const target = await createTestTarget();
@@ -70,7 +81,9 @@ describe('ZBooleanPage', () => {
 
   async function assertSetsFashion(
     expected: IZFashion,
-    factoryDemo: (t: ZBooleanPageComponentModel) => Promise<ZBooleanComponentModel>
+    factoryDemo: (
+      t: ZBooleanPageComponentModel,
+    ) => Promise<ZBooleanComponentModel>,
   ) {
     // Arrange
     const target = await createTestTarget();
@@ -84,129 +97,129 @@ describe('ZBooleanPage', () => {
     expect(actual).toEqual(name);
   }
 
-  describe('Checkbox', () => {
-    it('should set the value to checked when clicked in an off state', async () => {
+  describe("Checkbox", () => {
+    it("should set the value to checked when clicked in an off state", async () => {
       await shouldToggleToValue(
         true,
         (t) => t.off(),
-        (t) => t.checkbox()
+        (t) => t.checkbox(),
       );
     });
 
-    it('should set the value to unchecked when clicked in an on state', async () => {
+    it("should set the value to unchecked when clicked in an on state", async () => {
       await shouldToggleToValue(
         false,
         (t) => t.on(),
-        (t) => t.checkbox()
+        (t) => t.checkbox(),
       );
     });
 
-    it('should set the value to checked when clicked in an indeterminate state', async () => {
+    it("should set the value to checked when clicked in an indeterminate state", async () => {
       await shouldToggleToValue(
         true,
         (t) => t.indeterminate(),
-        (t) => t.checkbox()
+        (t) => t.checkbox(),
       );
     });
 
-    it('should mark the boolean required when the required switch is on', async () => {
+    it("should mark the boolean required when the required switch is on", async () => {
       await shouldRequire(true, (t) => t.checkbox());
     });
 
-    it('should mark the boolean optional when the required switch is off', async () => {
+    it("should mark the boolean optional when the required switch is off", async () => {
       await shouldRequire(false, (t) => t.checkbox());
     });
 
-    it('should disable the boolean when the disabled switch is on', async () => {
+    it("should disable the boolean when the disabled switch is on", async () => {
       await shouldDisable(true, (t) => t.checkbox());
     });
 
-    it('should enable the boolean when the disabled switch is off', async () => {
+    it("should enable the boolean when the disabled switch is off", async () => {
       await shouldDisable(false, (t) => t.checkbox());
     });
 
-    describe('Fashion', () => {
-      it('should update to Primary.', async () => {
+    describe("Fashion", () => {
+      it("should update to Primary.", async () => {
         await assertSetsFashion(theme.primary, (t) => t.checkbox());
       });
 
-      it('should update to Secondary.', async () => {
+      it("should update to Secondary.", async () => {
         await assertSetsFashion(theme.secondary, (t) => t.checkbox());
       });
 
-      it('should update to Success.', async () => {
+      it("should update to Success.", async () => {
         await assertSetsFashion(theme.success, (t) => t.checkbox());
       });
 
-      it('should update to Warning.', async () => {
+      it("should update to Warning.", async () => {
         await assertSetsFashion(theme.warning, (t) => t.checkbox());
       });
 
-      it('should update to Error.', async () => {
+      it("should update to Error.", async () => {
         await assertSetsFashion(theme.error, (t) => t.checkbox());
       });
 
-      it('should update to Info.', async () => {
+      it("should update to Info.", async () => {
         await assertSetsFashion(theme.info, (t) => t.checkbox());
       });
     });
   });
 
-  describe('Switch', () => {
-    it('should set the value to checked when clicked in an off state', async () => {
+  describe("Switch", () => {
+    it("should set the value to checked when clicked in an off state", async () => {
       await shouldToggleToValue(
         true,
         (t) => t.off(),
-        (t) => t.switch()
+        (t) => t.switch(),
       );
     });
 
-    it('should set the value to unchecked when clicked in an on state', async () => {
+    it("should set the value to unchecked when clicked in an on state", async () => {
       await shouldToggleToValue(
         false,
         (t) => t.on(),
-        (t) => t.switch()
+        (t) => t.switch(),
       );
     });
 
-    it('should mark the boolean required when the required switch is on', async () => {
+    it("should mark the boolean required when the required switch is on", async () => {
       await shouldRequire(true, (t) => t.checkbox());
     });
 
-    it('should mark the boolean optional when the required switch is off', async () => {
+    it("should mark the boolean optional when the required switch is off", async () => {
       await shouldRequire(false, (t) => t.checkbox());
     });
 
-    it('should disable the boolean when the disabled switch is on', async () => {
+    it("should disable the boolean when the disabled switch is on", async () => {
       await shouldDisable(true, (t) => t.switch());
     });
 
-    it('should enable the boolean when the disabled switch is off', async () => {
+    it("should enable the boolean when the disabled switch is off", async () => {
       await shouldDisable(false, (t) => t.switch());
     });
 
-    describe('Fashion', () => {
-      it('should update to Primary.', async () => {
+    describe("Fashion", () => {
+      it("should update to Primary.", async () => {
         await assertSetsFashion(theme.primary, (t) => t.switch());
       });
 
-      it('should update to Secondary.', async () => {
+      it("should update to Secondary.", async () => {
         await assertSetsFashion(theme.secondary, (t) => t.switch());
       });
 
-      it('should update to Success.', async () => {
+      it("should update to Success.", async () => {
         await assertSetsFashion(theme.success, (t) => t.switch());
       });
 
-      it('should update to Warning.', async () => {
+      it("should update to Warning.", async () => {
         await assertSetsFashion(theme.warning, (t) => t.switch());
       });
 
-      it('should update to Error.', async () => {
+      it("should update to Error.", async () => {
         await assertSetsFashion(theme.error, (t) => t.switch());
       });
 
-      it('should update to Info.', async () => {
+      it("should update to Info.", async () => {
         await assertSetsFashion(theme.info, (t) => t.switch());
       });
     });

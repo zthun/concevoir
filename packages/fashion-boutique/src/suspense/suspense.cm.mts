@@ -1,11 +1,15 @@
-import { IZCircusDriver, ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZSize, ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
+import {
+  IZCircusDriver,
+  ZCircusBy,
+  ZCircusComponentModel,
+} from "@zthun/cirque";
+import { ZSize, ZSizeFixed, ZSizeVaried } from "@zthun/fashion-tailor";
 
 /**
  * Represents a component model for suspense.
  */
 export class ZSuspenseComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZSuspense-root';
+  public static readonly Selector = ".ZSuspense-root";
 
   /**
    * Gets the size of the suspense.
@@ -14,7 +18,7 @@ export class ZSuspenseComponentModel extends ZCircusComponentModel {
    *        The size height of the suspense.
    */
   public width(): Promise<ZSize> {
-    return this.driver.attribute('data-width', ZSizeFixed.ExtraSmall);
+    return this.driver.attribute("data-width", ZSizeFixed.ExtraSmall);
   }
 
   /**
@@ -24,7 +28,7 @@ export class ZSuspenseComponentModel extends ZCircusComponentModel {
    *      The size height of the suspense.
    */
   public height(): Promise<ZSize> {
-    return this.driver.attribute('data-height', ZSizeVaried.Fit);
+    return this.driver.attribute("data-height", ZSizeVaried.Fit);
   }
 
   /**
@@ -34,7 +38,7 @@ export class ZSuspenseComponentModel extends ZCircusComponentModel {
    *      The name of the fashion theme.
    */
   public fashion(): Promise<string> {
-    return this.driver.attribute('data-fashion', 'Inherit');
+    return this.driver.attribute("data-fashion", "Inherit");
   }
 
   /**
@@ -49,8 +53,15 @@ export class ZSuspenseComponentModel extends ZCircusComponentModel {
    *        True if there exists a suspense in the driver.  If the name
    *        is supplied, then a targeted suspense is checked.
    */
-  public static async loading(driver: IZCircusDriver, name?: string): Promise<boolean> {
-    const suspense = await ZCircusBy.optional(driver, ZSuspenseComponentModel, name);
+  public static async loading(
+    driver: IZCircusDriver,
+    name?: string,
+  ): Promise<boolean> {
+    const suspense = await ZCircusBy.optional(
+      driver,
+      ZSuspenseComponentModel,
+      name,
+    );
     return suspense != null;
   }
 
@@ -62,7 +73,12 @@ export class ZSuspenseComponentModel extends ZCircusComponentModel {
    * @param name -
    *        The targeted name of the suspense object.
    */
-  public static async load(driver: IZCircusDriver, name?: string): Promise<void> {
-    await driver.wait(() => ZSuspenseComponentModel.loading(driver, name).then((c) => !c));
+  public static async load(
+    driver: IZCircusDriver,
+    name?: string,
+  ): Promise<void> {
+    await driver.wait(() =>
+      ZSuspenseComponentModel.loading(driver, name).then((c) => !c),
+    );
   }
 }

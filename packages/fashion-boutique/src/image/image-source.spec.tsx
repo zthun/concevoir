@@ -1,12 +1,16 @@
-import { ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZDataUrlBuilder, ZMimeTypeImage, ZUrlBuilder } from '@zthun/webigail-url';
-import React from 'react';
-import { beforeEach, describe, expect, it } from 'vitest';
-import { ZImageSource } from './image-source';
-import { ZImageSourceComponentModel } from './image-source.cm.mjs';
+import { ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import {
+  ZDataUrlBuilder,
+  ZMimeTypeImage,
+  ZUrlBuilder,
+} from "@zthun/webigail-url";
+import React from "react";
+import { beforeEach, describe, expect, it } from "vitest";
+import { ZImageSource } from "./image-source";
+import { ZImageSourceComponentModel } from "./image-source.cm.mjs";
 
-describe('ZImageSource', () => {
+describe("ZImageSource", () => {
   let src: string | undefined;
   let name: string | undefined;
   let svg: string;
@@ -27,7 +31,7 @@ describe('ZImageSource', () => {
 
   async function shouldRenderNameAttribute() {
     // Arrange
-    name = 'test-image';
+    name = "test-image";
     const target = await createTestTarget();
     // Act.
     const actual = await target.name();
@@ -35,12 +39,12 @@ describe('ZImageSource', () => {
     expect(actual).toEqual(name);
   }
 
-  describe('Empty', () => {
+  describe("Empty", () => {
     beforeEach(() => {
       src = undefined;
     });
 
-    it('renders an empty div.', async () => {
+    it("renders an empty div.", async () => {
       // Arrange
       const target = await createTestTarget();
       // Act
@@ -49,17 +53,21 @@ describe('ZImageSource', () => {
       expect(actual).toBeTruthy();
     });
 
-    it('renders the name property', async () => {
+    it("renders the name property", async () => {
       await shouldRenderNameAttribute();
     });
   });
 
-  describe('SVG', () => {
+  describe("SVG", () => {
     beforeEach(() => {
-      src = new ZDataUrlBuilder().encode('base64').buffer(svg).mimeType(ZMimeTypeImage.SVG).build();
+      src = new ZDataUrlBuilder()
+        .encode("base64")
+        .buffer(svg)
+        .mimeType(ZMimeTypeImage.SVG)
+        .build();
     });
 
-    it('should render the app icon as a raw svg if it exists.', async () => {
+    it("should render the app icon as a raw svg if it exists.", async () => {
       // Arrange
       const target = await createTestTarget();
       // Act
@@ -68,17 +76,17 @@ describe('ZImageSource', () => {
       expect(actual).toBeTruthy();
     });
 
-    it('renders the name property', async () => {
+    it("renders the name property", async () => {
       await shouldRenderNameAttribute();
     });
   });
 
-  describe('IMG', () => {
+  describe("IMG", () => {
     beforeEach(() => {
       src = new ZUrlBuilder().gravatar().build();
     });
 
-    it('should render the app icon as a raster image if the url is not a svg data url.', async () => {
+    it("should render the app icon as a raster image if the url is not a svg data url.", async () => {
       // Arrange
       const target = await createTestTarget();
       // Act
@@ -87,7 +95,7 @@ describe('ZImageSource', () => {
       expect(actual).toBeTruthy();
     });
 
-    it('renders the name property', async () => {
+    it("renders the name property", async () => {
       await shouldRenderNameAttribute();
     });
   });

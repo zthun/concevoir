@@ -1,9 +1,9 @@
-import { Drawer } from '@mui/material';
-import { ZSideAnchor, cssJoinDefined } from '@zthun/helpful-fn';
-import React from 'react';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
-import { IZComponentStyle } from '../component/component-style.mjs';
-import { createStyleHook } from '../theme/styled';
+import { Drawer } from "@mui/material";
+import { ZSideAnchor, cssJoinDefined } from "@zthun/helpful-fn";
+import React from "react";
+import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
+import { IZComponentStyle } from "../component/component-style.mjs";
+import { createStyleHook } from "../theme/styled";
 
 /**
  * Represents props for the drawer.
@@ -20,11 +20,11 @@ const useDrawerStyles = createStyleHook(({ theme }) => {
 
   return {
     root: {
-      '.MuiDrawer-paper': {
+      ".MuiDrawer-paper": {
         backgroundColor: surface.main,
-        color: surface.contrast
-      }
-    }
+        color: surface.contrast,
+      },
+    },
   };
 });
 
@@ -43,7 +43,7 @@ export function ZDrawer(props: IZDrawer) {
 
   return (
     <Drawer
-      className={cssJoinDefined('ZDrawer-root', className, classes.root)}
+      className={cssJoinDefined("ZDrawer-root", className, classes.root)}
       anchor={anchor}
       open={open}
       onClose={onClose}

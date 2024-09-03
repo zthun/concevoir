@@ -1,12 +1,12 @@
-import { ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZFashionThemeBuilder } from '@zthun/fashion-theme';
-import React from 'react';
-import { describe, expect, it } from 'vitest';
-import { ZTypographyPage } from './typography-page';
-import { ZTypographyPageComponentModel } from './typography-page.cm.mjs';
+import { ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { ZFashionThemeBuilder } from "@zthun/fashion-theme";
+import React from "react";
+import { describe, expect, it } from "vitest";
+import { ZTypographyPage } from "./typography-page";
+import { ZTypographyPageComponentModel } from "./typography-page.cm.mjs";
 
-describe('ZTypographyPage', () => {
+describe("ZTypographyPage", () => {
   const theme = new ZFashionThemeBuilder().build();
 
   async function createTestTarget() {
@@ -26,36 +26,36 @@ describe('ZTypographyPage', () => {
     expect(actual).toEqual(expected);
   }
 
-  describe('Fashion', () => {
-    it('should set the fashion to Primary', async () => {
+  describe("Fashion", () => {
+    it("should set the fashion to Primary", async () => {
       await shouldSetFashion(theme.primary.name!);
     });
 
-    it('should set the fashion to Secondary', async () => {
+    it("should set the fashion to Secondary", async () => {
       await shouldSetFashion(theme.secondary.name!);
     });
 
-    it('should set the fashion to Success', async () => {
+    it("should set the fashion to Success", async () => {
       await shouldSetFashion(theme.success.name!);
     });
 
-    it('should set the fashion to Warning', async () => {
+    it("should set the fashion to Warning", async () => {
       await shouldSetFashion(theme.warning.name!);
     });
 
-    it('should set the fashion to Error', async () => {
+    it("should set the fashion to Error", async () => {
       await shouldSetFashion(theme.error.name!);
     });
 
-    it('should set the fashion to Info', async () => {
+    it("should set the fashion to Info", async () => {
       await shouldSetFashion(theme.info.name!);
     });
 
-    it('should set the fashion to Surface', async () => {
+    it("should set the fashion to Surface", async () => {
       await shouldSetFashion(theme.surface.name!);
     });
 
-    it('should set the fashion to Body', async () => {
+    it("should set the fashion to Body", async () => {
       await shouldSetFashion(theme.body.name!);
     });
   });

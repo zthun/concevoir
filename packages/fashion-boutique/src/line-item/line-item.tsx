@@ -1,9 +1,9 @@
-import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { cssJoinDefined } from '@zthun/helpful-fn';
-import React, { ReactNode } from 'react';
-import { IZComponentAdornment } from '../component/component-adornment.mjs';
-import { IZComponentStyle } from '../component/component-style.mjs';
-import { createStyleHook } from '../theme/styled';
+import { ZSizeFixed } from "@zthun/fashion-tailor";
+import { cssJoinDefined } from "@zthun/helpful-fn";
+import React, { ReactNode } from "react";
+import { IZComponentAdornment } from "../component/component-adornment.mjs";
+import { IZComponentStyle } from "../component/component-style.mjs";
+import { createStyleHook } from "../theme/styled";
 
 export interface IZLineItem extends IZComponentStyle, IZComponentAdornment {
   body?: ReactNode;
@@ -12,26 +12,26 @@ export interface IZLineItem extends IZComponentStyle, IZComponentAdornment {
 const useLineItemStyles = createStyleHook(({ tailor }) => {
   return {
     root: {
-      display: 'flex',
-      flexWrap: 'nowrap',
-      alignItems: 'center',
-      width: '100%'
+      display: "flex",
+      flexWrap: "nowrap",
+      alignItems: "center",
+      width: "100%",
     },
 
     prefix: {
       flexGrow: 0,
-      paddingRight: tailor.gap(ZSizeFixed.Small)
+      paddingRight: tailor.gap(ZSizeFixed.Small),
     },
 
     body: {
       flexGrow: 1,
-      flexBasis: 0
+      flexBasis: 0,
     },
 
     suffix: {
       flexGrow: 0,
-      paddingLeft: tailor.gap(ZSizeFixed.Small)
-    }
+      paddingLeft: tailor.gap(ZSizeFixed.Small),
+    },
   };
 });
 
@@ -50,10 +50,16 @@ export function ZLineItem(props: IZLineItem) {
   const { classes } = useLineItemStyles();
 
   return (
-    <div className={cssJoinDefined('ZLineItem-root', className, classes.root)}>
-      <div className={cssJoinDefined('ZLineItem-prefix', classes.prefix)}>{prefix}</div>
-      <div className={cssJoinDefined('ZLineItem-body', classes.body)}>{body}</div>
-      <div className={cssJoinDefined('ZLineItem-suffix', classes.suffix)}>{suffix}</div>
+    <div className={cssJoinDefined("ZLineItem-root", className, classes.root)}>
+      <div className={cssJoinDefined("ZLineItem-prefix", classes.prefix)}>
+        {prefix}
+      </div>
+      <div className={cssJoinDefined("ZLineItem-body", classes.body)}>
+        {body}
+      </div>
+      <div className={cssJoinDefined("ZLineItem-suffix", classes.suffix)}>
+        {suffix}
+      </div>
     </div>
   );
 }

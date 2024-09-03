@@ -1,10 +1,10 @@
-import { ZCircusActBuilder, ZCircusComponentModel } from '@zthun/cirque';
+import { ZCircusActBuilder, ZCircusComponentModel } from "@zthun/cirque";
 
 /**
  * The component model for font based icons.
  */
 export class ZIconComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZIcon-root';
+  public static readonly Selector = ".ZIcon-root";
 
   /**
    * The icon name.
@@ -13,7 +13,7 @@ export class ZIconComponentModel extends ZCircusComponentModel {
    *        The name of the icon.
    */
   public name(): Promise<string> {
-    return this.driver.attribute<string>('data-name', '');
+    return this.driver.attribute<string>("data-name", "");
   }
 
   /**
@@ -23,7 +23,7 @@ export class ZIconComponentModel extends ZCircusComponentModel {
    *        The icon vendor.
    */
   public vendor(): Promise<string> {
-    return this.driver.attribute<string>('data-vendor', 'unknown');
+    return this.driver.attribute<string>("data-vendor", "unknown");
   }
 
   /**

@@ -1,10 +1,10 @@
-import { ZSizeVaried } from '@zthun/fashion-tailor';
-import { cssJoinDefined } from '@zthun/helpful-fn';
-import React from 'react';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
-import { IZComponentStyle } from '../component/component-style.mjs';
-import { IZGrid, ZGrid } from './grid';
-import { ZGridSpan } from './grid-span';
+import { ZSizeVaried } from "@zthun/fashion-tailor";
+import { cssJoinDefined } from "@zthun/helpful-fn";
+import React from "react";
+import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
+import { IZComponentStyle } from "../component/component-style.mjs";
+import { IZGrid, ZGrid } from "./grid";
+import { ZGridSpan } from "./grid-span";
 
 export type ZNewspaperColumn = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 export type ZNewspaperRange = [ZNewspaperColumn, ZNewspaperColumn];
@@ -12,19 +12,19 @@ export type ZNewspaperRange = [ZNewspaperColumn, ZNewspaperColumn];
 export interface IZNewspaper extends IZComponentStyle, IZComponentHierarchy {
   GridProps?: Omit<
     IZGrid,
-    | 'columns'
-    | 'columnsLg'
-    | 'columnsMd'
-    | 'columnsSm'
-    | 'columnsXs'
-    | 'children'
-    | 'className'
-    | 'name'
-    | 'width'
-    | 'widthLg'
-    | 'widthMd'
-    | 'widthSm'
-    | 'widthXs'
+    | "columns"
+    | "columnsLg"
+    | "columnsMd"
+    | "columnsSm"
+    | "columnsXs"
+    | "children"
+    | "className"
+    | "name"
+    | "width"
+    | "widthLg"
+    | "widthMd"
+    | "widthSm"
+    | "widthXs"
   >;
   range?: ZNewspaperRange;
   rangeLg?: ZNewspaperRange;
@@ -42,7 +42,7 @@ export function ZNewspaper(props: IZNewspaper) {
     rangeMd = rangeLg,
     rangeSm = rangeMd,
     rangeXs = rangeSm,
-    children
+    children,
   } = props;
   const [start, end] = range;
   const [startLg, endLg] = rangeLg;
@@ -53,8 +53,8 @@ export function ZNewspaper(props: IZNewspaper) {
   return (
     <ZGrid
       {...GridProps}
-      className={cssJoinDefined('ZNewspaper-root', className)}
-      columns='1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr'
+      className={cssJoinDefined("ZNewspaper-root", className)}
+      columns="1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr"
       width={ZSizeVaried.Full}
     >
       <ZGridSpan

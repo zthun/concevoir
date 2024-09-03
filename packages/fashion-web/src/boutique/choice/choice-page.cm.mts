@@ -1,11 +1,14 @@
-import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZBooleanComponentModel, ZChoiceComponentModel } from '@zthun/fashion-boutique';
+import { ZCircusBy, ZCircusComponentModel } from "@zthun/cirque";
+import {
+  ZBooleanComponentModel,
+  ZChoiceComponentModel,
+} from "@zthun/fashion-boutique";
 
 /**
  * Represents the component model for the choice page demo.
  */
 export class ZChoicePageComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZChoicePage-root';
+  public static readonly Selector = ".ZChoicePage-root";
 
   /**
    * Gets the current value list.
@@ -14,7 +17,7 @@ export class ZChoicePageComponentModel extends ZCircusComponentModel {
    *        The current value list.
    */
   public async value(): Promise<string[]> {
-    const list = await this.driver.query('.ZChoicePage-value');
+    const list = await this.driver.query(".ZChoicePage-value");
     const values = await Promise.all(list.map((l) => l.text()));
     return values;
   }
@@ -26,7 +29,7 @@ export class ZChoicePageComponentModel extends ZCircusComponentModel {
    *        The drop down choice component.
    */
   public dropdown(): Promise<ZChoiceComponentModel> {
-    return ZCircusBy.first(this.driver, ZChoiceComponentModel, 'dropdown');
+    return ZCircusBy.first(this.driver, ZChoiceComponentModel, "dropdown");
   }
 
   /**
@@ -36,7 +39,7 @@ export class ZChoicePageComponentModel extends ZCircusComponentModel {
    *        The auto complete choice component.
    */
   public autocomplete(): Promise<ZChoiceComponentModel> {
-    return ZCircusBy.first(this.driver, ZChoiceComponentModel, 'autocomplete');
+    return ZCircusBy.first(this.driver, ZChoiceComponentModel, "autocomplete");
   }
 
   /**
@@ -46,7 +49,7 @@ export class ZChoicePageComponentModel extends ZCircusComponentModel {
    *        The toggle choice component.
    */
   public toggle(): Promise<ZChoiceComponentModel> {
-    return ZCircusBy.first(this.driver, ZChoiceComponentModel, 'toggle');
+    return ZCircusBy.first(this.driver, ZChoiceComponentModel, "toggle");
   }
 
   /**
@@ -56,7 +59,7 @@ export class ZChoicePageComponentModel extends ZCircusComponentModel {
    *      The boolean option to disable the drop downs.
    */
   public disabled(): Promise<ZBooleanComponentModel> {
-    return ZCircusBy.first(this.driver, ZBooleanComponentModel, 'disabled');
+    return ZCircusBy.first(this.driver, ZBooleanComponentModel, "disabled");
   }
 
   /**
@@ -66,7 +69,7 @@ export class ZChoicePageComponentModel extends ZCircusComponentModel {
    *      The boolean option to select multiple options the drop downs.
    */
   public multiple(): Promise<ZBooleanComponentModel> {
-    return ZCircusBy.first(this.driver, ZBooleanComponentModel, 'multiple');
+    return ZCircusBy.first(this.driver, ZBooleanComponentModel, "multiple");
   }
 
   /**
@@ -76,7 +79,7 @@ export class ZChoicePageComponentModel extends ZCircusComponentModel {
    *      The boolean option to remove clear support the drop downs.
    */
   public indelible(): Promise<ZBooleanComponentModel> {
-    return ZCircusBy.first(this.driver, ZBooleanComponentModel, 'indelible');
+    return ZCircusBy.first(this.driver, ZBooleanComponentModel, "indelible");
   }
 
   /**
@@ -86,6 +89,6 @@ export class ZChoicePageComponentModel extends ZCircusComponentModel {
    *        The boolean option to make the labels required.
    */
   public required(): Promise<ZBooleanComponentModel> {
-    return ZCircusBy.first(this.driver, ZBooleanComponentModel, 'required');
+    return ZCircusBy.first(this.driver, ZBooleanComponentModel, "required");
   }
 }

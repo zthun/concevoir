@@ -1,13 +1,13 @@
-import { ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { createMemoryHistory } from 'history';
-import React from 'react';
-import { describe, expect, it } from 'vitest';
-import { ZTestRouter } from '../router/router-dom.mjs';
-import { ZBreadcrumbsOutlet } from './breadcrumbs-outlet';
-import { ZBreadcrumbsOutletComponentModel } from './breadcrumbs-outlet.cm.mjs';
+import { ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { createMemoryHistory } from "history";
+import React from "react";
+import { describe, expect, it } from "vitest";
+import { ZTestRouter } from "../router/router-dom.mjs";
+import { ZBreadcrumbsOutlet } from "./breadcrumbs-outlet";
+import { ZBreadcrumbsOutletComponentModel } from "./breadcrumbs-outlet.cm.mjs";
 
-describe('ZBreadcrumbsOutlet', () => {
+describe("ZBreadcrumbsOutlet", () => {
   async function createTestTarget() {
     const history = createMemoryHistory();
     const element = (
@@ -20,7 +20,7 @@ describe('ZBreadcrumbsOutlet', () => {
     return ZCircusBy.first(driver, ZBreadcrumbsOutletComponentModel);
   }
 
-  it('should render the breadcrumbs', async () => {
+  it("should render the breadcrumbs", async () => {
     // Arrange.
     const target = await createTestTarget();
     // Act.

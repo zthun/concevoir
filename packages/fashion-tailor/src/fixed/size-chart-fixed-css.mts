@@ -1,4 +1,4 @@
-import { ZSizeChartFixed, ZSizeFixed } from './size-fixed.mjs';
+import { ZSizeChartFixed, ZSizeFixed } from "./size-fixed.mjs";
 
 /**
  * Creates a size chart that is meant to convert from a ZStaticSize object to a css size given units.
@@ -13,13 +13,13 @@ import { ZSizeChartFixed, ZSizeFixed } from './size-fixed.mjs';
  */
 export function createSizeChartFixedCss(
   sizes: ZSizeChartFixed<number>,
-  unit: 'rem' | 'px' | 'em'
+  unit: "rem" | "px" | "em",
 ): ZSizeChartFixed<string> {
   return {
     [ZSizeFixed.ExtraSmall]: `${sizes.xs}${unit}`,
     [ZSizeFixed.Small]: `${sizes.sm}${unit}`,
     [ZSizeFixed.Medium]: `${sizes.md}${unit}`,
     [ZSizeFixed.Large]: `${sizes.lg}${unit}`,
-    [ZSizeFixed.ExtraLarge]: `${sizes.xl}${unit}`
+    [ZSizeFixed.ExtraLarge]: `${sizes.xl}${unit}`,
   };
 }

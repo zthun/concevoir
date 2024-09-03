@@ -1,12 +1,12 @@
-import { ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
-import React from 'react';
-import { Mock, describe, expect, it, vi } from 'vitest';
-import { ZBox } from './box';
-import { ZBoxComponentModel } from './box.cm.mjs';
+import { ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { ZSizeFixed, ZSizeVaried } from "@zthun/fashion-tailor";
+import React from "react";
+import { Mock, describe, expect, it, vi } from "vitest";
+import { ZBox } from "./box";
+import { ZBoxComponentModel } from "./box.cm.mjs";
 
-describe('ZBox', () => {
+describe("ZBox", () => {
   let onClick: Mock | undefined;
 
   async function createTestTarget() {
@@ -21,7 +21,7 @@ describe('ZBox', () => {
     return ZCircusBy.first(driver, ZBoxComponentModel);
   }
 
-  it('should render the component', async () => {
+  it("should render the component", async () => {
     // Arrange.
     // Act.
     const target = await createTestTarget();
@@ -29,7 +29,7 @@ describe('ZBox', () => {
     expect(target).toBeTruthy();
   });
 
-  it('should raise the onClick event when the layout is clicked', async () => {
+  it("should raise the onClick event when the layout is clicked", async () => {
     // Arrange.
     onClick = vi.fn();
     const target = await createTestTarget();

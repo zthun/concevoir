@@ -1,12 +1,12 @@
-import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZButtonComponentModel } from '../button/button.cm.mjs';
-import { ZPopupComponentModel } from './popup.cm.mjs';
+import { ZCircusBy, ZCircusComponentModel } from "@zthun/cirque";
+import { ZButtonComponentModel } from "../button/button.cm.mjs";
+import { ZPopupComponentModel } from "./popup.cm.mjs";
 
 /**
  * Represents a component model for the popup button.
  */
 export class ZPopupButtonComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZPopupButton-root';
+  public static readonly Selector = ".ZPopupButton-root";
 
   /**
    * Retrieves the underlying button component.

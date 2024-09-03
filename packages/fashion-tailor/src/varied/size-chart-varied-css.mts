@@ -1,4 +1,4 @@
-import { ZSizeChartVaried, ZSizeVaried } from './size-varied.mjs';
+import { ZSizeChartVaried, ZSizeVaried } from "./size-varied.mjs";
 
 /**
  * Constructs a scale size chart for css usage.
@@ -9,7 +9,7 @@ import { ZSizeChartVaried, ZSizeVaried } from './size-varied.mjs';
  */
 export function createSizeChartVariedCss(): ZSizeChartVaried<string> {
   return {
-    [ZSizeVaried.Fit]: 'auto',
-    [ZSizeVaried.Full]: '100%'
+    [ZSizeVaried.Fit]: "auto",
+    [ZSizeVaried.Full]: "100%",
   };
 }

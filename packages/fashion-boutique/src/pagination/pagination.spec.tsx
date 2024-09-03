@@ -1,12 +1,12 @@
-import { IZCircusDriver, ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZOrientation } from '@zthun/helpful-fn';
-import React from 'react';
-import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { ZPagination } from './pagination';
-import { ZPaginationComponentModel } from './pagination.cm.mjs';
+import { IZCircusDriver, ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { ZOrientation } from "@zthun/helpful-fn";
+import React from "react";
+import { Mock, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { ZPagination } from "./pagination";
+import { ZPaginationComponentModel } from "./pagination.cm.mjs";
 
-describe('ZPagination', () => {
+describe("ZPagination", () => {
   let pages: number | undefined;
   let value: number | undefined;
   let onValueChange: Mock | undefined;
@@ -14,7 +14,14 @@ describe('ZPagination', () => {
   let _driver: IZCircusDriver;
 
   async function createTestTarget() {
-    const element = <ZPagination pages={pages} value={value} onValueChange={onValueChange} orientation={orientation} />;
+    const element = (
+      <ZPagination
+        pages={pages}
+        value={value}
+        onValueChange={onValueChange}
+        orientation={orientation}
+      />
+    );
     _driver = await new ZCircusSetupRenderer(element).setup();
     return ZCircusBy.first(_driver, ZPaginationComponentModel);
   }
@@ -30,8 +37,8 @@ describe('ZPagination', () => {
     await _driver?.destroy?.call(_driver);
   });
 
-  describe('Defaults', () => {
-    it('should always have 1 page.', async () => {
+  describe("Defaults", () => {
+    it("should always have 1 page.", async () => {
       // Arrange
       const target = await createTestTarget();
       // Act.
@@ -41,7 +48,7 @@ describe('ZPagination', () => {
     });
   });
 
-  describe('Jump', () => {
+  describe("Jump", () => {
     beforeEach(() => {
       pages = 5;
     });
@@ -49,7 +56,7 @@ describe('ZPagination', () => {
     async function shouldJumpToPage(
       expected: number,
       start: number,
-      jumpFn: (t: ZPaginationComponentModel) => Promise<number | null>
+      jumpFn: (t: ZPaginationComponentModel) => Promise<number | null>,
     ) {
       // Arrange.
       value = start;
@@ -61,12 +68,12 @@ describe('ZPagination', () => {
       expect(onValueChange).toHaveBeenCalledWith(expected);
     }
 
-    describe('Jump', () => {
-      it('should navigate.', async () => {
+    describe("Jump", () => {
+      it("should navigate.", async () => {
         await shouldJumpToPage(3, 1, (t) => t.jump(3));
       });
 
-      it('should remain on the page if the jump cannot be made.', async () => {
+      it("should remain on the page if the jump cannot be made.", async () => {
         // Arrange.
         pages = 100;
         const target = await createTestTarget();
@@ -78,16 +85,16 @@ describe('ZPagination', () => {
       });
     });
 
-    describe('Next', () => {
+    describe("Next", () => {
       beforeEach(() => {
         orientation = ZOrientation.Vertical;
       });
 
-      it('should navigate.', async () => {
+      it("should navigate.", async () => {
         await shouldJumpToPage(2, 1, (t) => t.next());
       });
 
-      it('should remain on the page if it is already on the last page.', async () => {
+      it("should remain on the page if it is already on the last page.", async () => {
         // Arrange.
         const target = await createTestTarget();
         // Act.
@@ -99,16 +106,16 @@ describe('ZPagination', () => {
       });
     });
 
-    describe('Previous', () => {
+    describe("Previous", () => {
       beforeEach(() => {
         orientation = ZOrientation.Horizontal;
       });
 
-      it('should navigate.', async () => {
+      it("should navigate.", async () => {
         await shouldJumpToPage(1, 2, (t) => t.prev());
       });
 
-      it('should remain on the first page if already on the first page.', async () => {
+      it("should remain on the first page if already on the first page.", async () => {
         // Arrange.
         const target = await createTestTarget();
         // Act.

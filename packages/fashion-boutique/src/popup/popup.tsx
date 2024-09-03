@@ -1,8 +1,12 @@
-import { Popover } from '@mui/material';
-import { ZHorizontalAnchor, ZVerticalAnchor, cssJoinDefined } from '@zthun/helpful-fn';
-import React from 'react';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
-import { IZComponentStyle } from '../component/component-style.mjs';
+import { Popover } from "@mui/material";
+import {
+  ZHorizontalAnchor,
+  ZVerticalAnchor,
+  cssJoinDefined,
+} from "@zthun/helpful-fn";
+import React from "react";
+import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
+import { IZComponentStyle } from "../component/component-style.mjs";
 
 /**
  * Represents props for a popup component.
@@ -54,27 +58,30 @@ export function ZPopup(props: IZPopup) {
     attach,
     attachOrigin = [ZVerticalAnchor.Bottom, ZHorizontalAnchor.Left],
     popupOrigin = [ZVerticalAnchor.Top, ZHorizontalAnchor.Left],
-    onClose
+    onClose,
   } = props;
   const [attachVertical, attachHorizontal] = attachOrigin;
   const [popupVertical, popupHorizontal] = popupOrigin;
 
-  const _attachVertical: 'center' | 'top' | 'bottom' =
-    attachVertical === ZVerticalAnchor.Middle ? 'center' : attachVertical;
+  const _attachVertical: "center" | "top" | "bottom" =
+    attachVertical === ZVerticalAnchor.Middle ? "center" : attachVertical;
 
-  const _popupVertical: 'center' | 'top' | 'bottom' =
-    popupVertical === ZVerticalAnchor.Middle ? 'center' : popupVertical;
+  const _popupVertical: "center" | "top" | "bottom" =
+    popupVertical === ZVerticalAnchor.Middle ? "center" : popupVertical;
 
   return (
     <Popover
-      className={cssJoinDefined('ZPopup-root', className)}
+      className={cssJoinDefined("ZPopup-root", className)}
       anchorEl={attach}
       open={!!attach}
       onClose={onClose}
       anchorOrigin={{ vertical: _attachVertical, horizontal: attachHorizontal }}
-      transformOrigin={{ vertical: _popupVertical, horizontal: popupHorizontal }}
+      transformOrigin={{
+        vertical: _popupVertical,
+        horizontal: popupHorizontal,
+      }}
     >
-      <div className='ZPopup-content'>{children}</div>
+      <div className="ZPopup-content">{children}</div>
     </Popover>
   );
 }

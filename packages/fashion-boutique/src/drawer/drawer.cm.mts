@@ -1,11 +1,16 @@
-import { IZCircusDriver, ZCircusActBuilder, ZCircusComponentModel, ZCircusKeyboardQwerty } from '@zthun/cirque';
-import { ZHorizontalAnchor, ZSideAnchor } from '@zthun/helpful-fn';
+import {
+  IZCircusDriver,
+  ZCircusActBuilder,
+  ZCircusComponentModel,
+  ZCircusKeyboardQwerty,
+} from "@zthun/cirque";
+import { ZHorizontalAnchor, ZSideAnchor } from "@zthun/helpful-fn";
 
 /**
  * Represents the component model for a drawer.
  */
 export class ZDrawerComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZDrawer-root';
+  public static readonly Selector = ".ZDrawer-root";
 
   /**
    * Gets the paper element for an opened drawer.
@@ -14,7 +19,7 @@ export class ZDrawerComponentModel extends ZCircusComponentModel {
    *        The root element for where the drawer is opened.
    */
   public root(): Promise<IZCircusDriver> {
-    return this.driver.select('.MuiDrawer-paper');
+    return this.driver.select(".MuiDrawer-paper");
   }
 
   /**
@@ -24,7 +29,7 @@ export class ZDrawerComponentModel extends ZCircusComponentModel {
    *      A element for the backdrop.
    */
   public backdrop(): Promise<IZCircusDriver> {
-    return this.driver.select('.MuiBackdrop-root');
+    return this.driver.select(".MuiBackdrop-root");
   }
 
   /**
@@ -49,7 +54,9 @@ export class ZDrawerComponentModel extends ZCircusComponentModel {
    *        A promise that resolves once the escape key is clicked.
    */
   public async escape() {
-    const act = new ZCircusActBuilder().press(ZCircusKeyboardQwerty.escape).build();
+    const act = new ZCircusActBuilder()
+      .press(ZCircusKeyboardQwerty.escape)
+      .build();
     return this.driver.perform(act);
   }
 
@@ -60,6 +67,9 @@ export class ZDrawerComponentModel extends ZCircusComponentModel {
    *    The state anchor for the drawer.
    */
   public async anchor(): Promise<ZSideAnchor> {
-    return await this.driver.attribute<ZSideAnchor>('data-anchor', ZHorizontalAnchor.Left);
+    return await this.driver.attribute<ZSideAnchor>(
+      "data-anchor",
+      ZHorizontalAnchor.Left,
+    );
   }
 }

@@ -1,12 +1,17 @@
-import { createSizeChartVariedCss, ZSizeFixed, ZSizeVaried, ZSizeVoid } from '@zthun/fashion-tailor';
-import { cssJoinDefined } from '@zthun/helpful-fn';
-import { Property } from 'csstype';
-import React from 'react';
-import { IZComponentHeight } from '../component/component-height.mjs';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
-import { IZComponentStyle } from '../component/component-style.mjs';
-import { IZComponentWidth } from '../component/component-width.mjs';
-import { createStyleHook } from '../theme/styled';
+import {
+  createSizeChartVariedCss,
+  ZSizeFixed,
+  ZSizeVaried,
+  ZSizeVoid,
+} from "@zthun/fashion-tailor";
+import { cssJoinDefined } from "@zthun/helpful-fn";
+import { Property } from "csstype";
+import React from "react";
+import { IZComponentHeight } from "../component/component-height.mjs";
+import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
+import { IZComponentStyle } from "../component/component-style.mjs";
+import { IZComponentWidth } from "../component/component-width.mjs";
+import { createStyleHook } from "../theme/styled";
 
 export interface IZGrid
   extends IZComponentStyle,
@@ -50,7 +55,7 @@ const useGridStyles = createStyleHook(({ tailor, device }, props: IZGrid) => {
     heightLg = height,
     heightMd = heightLg,
     heightSm = heightMd,
-    heightXs = heightSm
+    heightXs = heightSm,
   } = props;
 
   const dimensions = {
@@ -61,39 +66,39 @@ const useGridStyles = createStyleHook(({ tailor, device }, props: IZGrid) => {
     [device.break(ZSizeFixed.Large)]: {
       gridTemplateColumns: columnsLg,
       height: GridDimensionChart[heightLg],
-      width: GridDimensionChart[widthLg]
+      width: GridDimensionChart[widthLg],
     },
 
     [device.break(ZSizeFixed.Medium)]: {
       gridTemplateColumns: columnsMd,
       height: GridDimensionChart[heightMd],
-      width: GridDimensionChart[widthMd]
+      width: GridDimensionChart[widthMd],
     },
 
     [device.break(ZSizeFixed.Small)]: {
       gridTemplateColumns: columnsSm,
       height: GridDimensionChart[heightSm],
-      width: GridDimensionChart[widthSm]
+      width: GridDimensionChart[widthSm],
     },
 
     [device.break(ZSizeFixed.ExtraSmall)]: {
       gridTemplateColumns: columnsXs,
       height: GridDimensionChart[heightXs],
-      width: GridDimensionChart[widthXs]
-    }
+      width: GridDimensionChart[widthXs],
+    },
   };
 
   return {
     grid: {
       ...dimensions,
-      display: 'grid',
+      display: "grid",
       gridTemplateRows: rows,
       gap: tailor.gap(gap),
       alignItems,
       justifyItems,
       alignContent,
-      justifyContent
-    }
+      justifyContent,
+    },
   };
 });
 
@@ -109,5 +114,9 @@ const useGridStyles = createStyleHook(({ tailor, device }, props: IZGrid) => {
 export function ZGrid(props: IZGrid) {
   const { className, children } = props;
   const { classes } = useGridStyles(props);
-  return <div className={cssJoinDefined('ZGrid-root', className, classes.grid)}>{children}</div>;
+  return (
+    <div className={cssJoinDefined("ZGrid-root", className, classes.grid)}>
+      {children}
+    </div>
+  );
 }

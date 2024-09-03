@@ -1,4 +1,4 @@
-import { ZSizeChartFixed, ZSizeFixed } from './size-fixed.mjs';
+import { ZSizeChartFixed, ZSizeFixed } from "./size-fixed.mjs";
 
 /**
  * Creates a static chart that creates an arithmetic sequence
@@ -14,7 +14,10 @@ import { ZSizeChartFixed, ZSizeFixed } from './size-fixed.mjs';
  * @returns
  *        The size chart which sequences the arithmetic sequence from xs to xl incremented by increment.
  */
-export function createSizeChartFixedArithmetic(increment: number, xs: number): ZSizeChartFixed<number> {
+export function createSizeChartFixedArithmetic(
+  increment: number,
+  xs: number,
+): ZSizeChartFixed<number> {
   const sm = xs + increment;
   const md = sm + increment;
   const lg = md + increment;
@@ -25,6 +28,6 @@ export function createSizeChartFixedArithmetic(increment: number, xs: number): Z
     [ZSizeFixed.Small]: sm,
     [ZSizeFixed.Medium]: md,
     [ZSizeFixed.Large]: lg,
-    [ZSizeFixed.ExtraLarge]: xl
+    [ZSizeFixed.ExtraLarge]: xl,
   };
 }

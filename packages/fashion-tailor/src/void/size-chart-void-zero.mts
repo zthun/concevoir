@@ -1,4 +1,4 @@
-import { ZSizeChartVoid, ZSizeVoid } from './size-void.mjs';
+import { ZSizeChartVoid, ZSizeVoid } from "./size-void.mjs";
 
 /**
  * Creates a void size that evaluates the none to numeric 0.
@@ -8,6 +8,6 @@ import { ZSizeChartVoid, ZSizeVoid } from './size-void.mjs';
  */
 export function createSizeChartVoidZero(): ZSizeChartVoid<number> {
   return {
-    [ZSizeVoid.None]: 0
+    [ZSizeVoid.None]: 0,
   };
 }

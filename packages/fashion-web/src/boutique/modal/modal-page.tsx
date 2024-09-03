@@ -9,14 +9,14 @@ import {
   ZModal,
   ZParagraph,
   ZStack,
-  useFashionTheme
-} from '@zthun/fashion-boutique';
-import { ZSizeFixed, ZSizeVaried } from '@zthun/fashion-tailor';
-import { ZOrientation } from '@zthun/helpful-fn';
-import React, { useState } from 'react';
-import { ZFashionRouteModal } from '../../routes.mjs';
-import { ZChoiceDropDownFashion } from '../common/choice-drop-down-fashion';
-import { useFashionState } from '../common/use-fashion-state.mjs';
+  useFashionTheme,
+} from "@zthun/fashion-boutique";
+import { ZSizeFixed, ZSizeVaried } from "@zthun/fashion-tailor";
+import { ZOrientation } from "@zthun/helpful-fn";
+import React, { useState } from "react";
+import { ZFashionRouteModal } from "../../routes.mjs";
+import { ZChoiceDropDownFashion } from "../common/choice-drop-down-fashion";
+import { useFashionState } from "../common/use-fashion-state.mjs";
 
 /**
  * Represents a demo for lists.
@@ -33,48 +33,60 @@ export function ZModalPage() {
 
   const { success, warning } = useFashionTheme();
 
-  const renderHeader = () => 'Modal Header';
+  const renderHeader = () => "Modal Header";
 
   const renderFooter = () => (
     <ZStack orientation={ZOrientation.Horizontal} gap={ZSizeFixed.ExtraSmall}>
       <ZButton
         fashion={warning}
-        avatar={<ZIconFontAwesome name='close' width={ZSizeFixed.ExtraSmall} />}
-        label='Cancel'
+        avatar={<ZIconFontAwesome name="close" width={ZSizeFixed.ExtraSmall} />}
+        label="Cancel"
         onClick={setOpen.bind(null, false)}
-        name='cancel'
+        name="cancel"
       />
       <ZButton
         fashion={success}
-        avatar={<ZIconFontAwesome name='floppy-disk' width={ZSizeFixed.ExtraSmall} />}
-        label='Save'
+        avatar={
+          <ZIconFontAwesome name="floppy-disk" width={ZSizeFixed.ExtraSmall} />
+        }
+        label="Save"
         onClick={setOpen.bind(null, false)}
-        name='save'
+        name="save"
       />
     </ZStack>
   );
 
   return (
     <ZCard
-      className='ZModalPage-root'
+      className="ZModalPage-root"
       heading={ZFashionRouteModal.name}
       subHeading={ZFashionRouteModal.description}
-      avatar={<ZIconFontAwesome name={ZFashionRouteModal.avatar} width={ZSizeFixed.Medium} />}
+      avatar={
+        <ZIconFontAwesome
+          name={ZFashionRouteModal.avatar}
+          width={ZSizeFixed.Medium}
+        />
+      }
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>
 
         <ZParagraph>
-          Modals are for getting work done. These let you do specific isolated work without having to show all the
-          information on the main screen.
+          Modals are for getting work done. These let you do specific isolated
+          work without having to show all the information on the main screen.
         </ZParagraph>
 
         <ZButton
           fashion={success}
-          label='Open Modal'
-          avatar={<ZIconFontAwesome name='comment-dots' width={ZSizeFixed.ExtraSmall} />}
+          label="Open Modal"
+          avatar={
+            <ZIconFontAwesome
+              name="comment-dots"
+              width={ZSizeFixed.ExtraSmall}
+            />
+          }
           onClick={setOpen.bind(null, true)}
-          name='open-modal'
+          name="open-modal"
         />
 
         <ZModal
@@ -84,24 +96,44 @@ export function ZModalPage() {
           onClose={setOpen.bind(null, false)}
           width={fullScreen ? ZSizeVaried.Full : ZSizeVaried.Fit}
           fashion={fashion}
-          name='modal'
+          name="modal"
         >
-          Modal content is always in the main body. You can put whatever you want in a modal, similar to how you can put
-          anything you want in any kind of popup body.
+          Modal content is always in the main body. You can put whatever you
+          want in a modal, similar to how you can put anything you want in any
+          kind of popup body.
         </ZModal>
       </ZBox>
 
       <ZH3>Options</ZH3>
 
       <ZBox margin={{ bottom: ZSizeFixed.Small }}>
-        <ZGrid columns='1fr'>
-          <ZBooleanSwitch value={header} onValueChange={setHeader} label='Header' name='header' />
-          <ZBooleanSwitch value={footer} onValueChange={setFooter} label='Footer' name='footer' />
-          <ZBooleanSwitch value={fullScreen} onValueChange={setFullScreen} label='Full Screen' name='full-screen' />
+        <ZGrid columns="1fr">
+          <ZBooleanSwitch
+            value={header}
+            onValueChange={setHeader}
+            label="Header"
+            name="header"
+          />
+          <ZBooleanSwitch
+            value={footer}
+            onValueChange={setFooter}
+            label="Footer"
+            name="footer"
+          />
+          <ZBooleanSwitch
+            value={fullScreen}
+            onValueChange={setFullScreen}
+            label="Full Screen"
+            name="full-screen"
+          />
         </ZGrid>
       </ZBox>
 
-      <ZChoiceDropDownFashion value={fashionName} onValueChange={setFashion} name='fashion' />
+      <ZChoiceDropDownFashion
+        value={fashionName}
+        onValueChange={setFashion}
+        name="fashion"
+      />
     </ZCard>
   );
 }

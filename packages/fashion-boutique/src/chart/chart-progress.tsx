@@ -1,39 +1,47 @@
-import { LinearProgress } from '@mui/material';
-import { ZSizeFixed, createSizeChartFixedArithmetic, createSizeChartFixedCss } from '@zthun/fashion-tailor';
-import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
-import React, { useMemo } from 'react';
-import { IZComponentHeight } from '../component/component-height.mjs';
-import { ZGrid } from '../grid/grid';
-import { ZLabeled } from '../label/labeled';
-import { createStyleHook } from '../theme/styled';
-import { IZChart } from './chart.mjs';
-import { IZDataPoint } from './data-point.mjs';
+import { LinearProgress } from "@mui/material";
+import {
+  ZSizeFixed,
+  createSizeChartFixedArithmetic,
+  createSizeChartFixedCss,
+} from "@zthun/fashion-tailor";
+import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import React, { useMemo } from "react";
+import { IZComponentHeight } from "../component/component-height.mjs";
+import { ZGrid } from "../grid/grid";
+import { ZLabeled } from "../label/labeled";
+import { createStyleHook } from "../theme/styled";
+import { IZChart } from "./chart.mjs";
+import { IZDataPoint } from "./data-point.mjs";
 
 const progressHeightChart = {
-  ...createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), 'rem')
+  ...createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), "rem"),
 };
 
-export interface IZChartProgress extends IZChart<IZDataPoint>, IZComponentHeight<ZSizeFixed> {}
+export interface IZChartProgress
+  extends IZChart<IZDataPoint>,
+    IZComponentHeight<ZSizeFixed> {}
 
-const useChartProgressStyles = createStyleHook(({ theme, tailor }, props: IZChartProgress) => {
-  const { height = ZSizeFixed.Medium, points } = props;
-  const { primary, transparent } = theme;
-  const { fashion = primary } = points;
+const useChartProgressStyles = createStyleHook(
+  ({ theme, tailor }, props: IZChartProgress) => {
+    const { height = ZSizeFixed.Medium, points } = props;
+    const { primary, transparent } = theme;
+    const { fashion = primary } = points;
 
-  const border = firstDefined(fashion.main, fashion.dark);
+    const border = firstDefined(fashion.main, fashion.dark);
 
-  return {
-    bar: {
-      'height': progressHeightChart[height],
-      'backgroundColor': transparent.main,
-      'border': `${tailor.thickness()} solid ${border}`,
+    return {
+      bar: {
+        height: progressHeightChart[height],
+        backgroundColor: transparent.main,
+        border: `${tailor.thickness()} solid ${border}`,
 
-      '.MuiLinearProgress-bar': {
-        backgroundColor: fashion.main
-      }
-    }
-  };
-});
+        ".MuiLinearProgress-bar": {
+          backgroundColor: fashion.main,
+        },
+      },
+    };
+  },
+);
 
 export function ZChartProgress(props: IZChartProgress) {
   const { points, name } = props;
@@ -47,12 +55,15 @@ export function ZChartProgress(props: IZChartProgress) {
   const _label = useMemo(() => `${label} (${_x} / ${_y})`, [label, _x, _y]);
 
   return (
-    <div className={cssJoinDefined('ZChart-root', 'ZChart-progress')} data-name={name}>
+    <div
+      className={cssJoinDefined("ZChart-root", "ZChart-progress")}
+      data-name={name}
+    >
       <ZLabeled label={_label}>
-        <ZGrid columns='1fr auto' gap={ZSizeFixed.Small} alignItems='center'>
+        <ZGrid columns="1fr auto" gap={ZSizeFixed.Small} alignItems="center">
           <LinearProgress
-            className={cssJoinDefined('ZChart-point', classes.bar)}
-            variant='determinate'
+            className={cssJoinDefined("ZChart-point", classes.bar)}
+            variant="determinate"
             value={_per}
             data-x={_x}
             data-y={_y}

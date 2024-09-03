@@ -3,16 +3,16 @@ import {
   ZCircusActBuilder,
   ZCircusBy,
   ZCircusComponentModel,
-  ZCircusKeyboardQwerty
-} from '@zthun/cirque';
-import { firstDefined } from '@zthun/helpful-fn';
-import { ZLabelComponentModel } from '../label/label.cm.mjs';
+  ZCircusKeyboardQwerty,
+} from "@zthun/cirque";
+import { firstDefined } from "@zthun/helpful-fn";
+import { ZLabelComponentModel } from "../label/label.cm.mjs";
 
 /**
  * Represents the component model for a ZText component.
  */
 export class ZTextComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZText-root';
+  public static readonly Selector = ".ZText-root";
 
   /**
    * Gets the underlying input.
@@ -22,9 +22,9 @@ export class ZTextComponentModel extends ZCircusComponentModel {
    */
   private async _input(): Promise<IZCircusDriver> {
     try {
-      return await this.driver.select('input');
+      return await this.driver.select("input");
     } catch {
-      return await this.driver.select('textarea');
+      return await this.driver.select("textarea");
     }
   }
 
@@ -37,7 +37,7 @@ export class ZTextComponentModel extends ZCircusComponentModel {
    *        toggling text masking.
    */
   private async _revealer(): Promise<IZCircusDriver | null> {
-    const [revealer] = await this.driver.query('.ZText-revealer');
+    const [revealer] = await this.driver.query(".ZText-revealer");
     return firstDefined(null, revealer);
   }
 
@@ -69,7 +69,11 @@ export class ZTextComponentModel extends ZCircusComponentModel {
    *        The label for the text component or null if no such label exists.
    */
   public async label(): Promise<ZLabelComponentModel | null> {
-    const [label] = await ZCircusBy.all(this.driver, ZLabelComponentModel, '.ZText-label');
+    const [label] = await ZCircusBy.all(
+      this.driver,
+      ZLabelComponentModel,
+      ".ZText-label",
+    );
     return firstDefined(null, label);
   }
 
@@ -82,7 +86,7 @@ export class ZTextComponentModel extends ZCircusComponentModel {
    */
   public async masked(): Promise<boolean> {
     const input = await this._input();
-    return (await input.attribute('type')) === 'password';
+    return (await input.attribute("type")) === "password";
   }
 
   /**
@@ -94,7 +98,7 @@ export class ZTextComponentModel extends ZCircusComponentModel {
    */
   public async readOnly(): Promise<boolean> {
     const input = await this._input();
-    return (await input.attribute('readOnly')) != null;
+    return (await input.attribute("readOnly")) != null;
   }
 
   /**
@@ -110,8 +114,15 @@ export class ZTextComponentModel extends ZCircusComponentModel {
    * @returns
    *        The updated value.
    */
-  public async keyboard(text: string, commit = ZCircusKeyboardQwerty.tab): Promise<string | null> {
-    const act = new ZCircusActBuilder().click().type(text).press(commit).build();
+  public async keyboard(
+    text: string,
+    commit = ZCircusKeyboardQwerty.tab,
+  ): Promise<string | null> {
+    const act = new ZCircusActBuilder()
+      .click()
+      .type(text)
+      .press(commit)
+      .build();
     const input = await this._input();
     await input.perform(act);
     return this.value();
@@ -128,7 +139,9 @@ export class ZTextComponentModel extends ZCircusComponentModel {
    * @returns
    *        The updated value.
    */
-  public async clear(commit = ZCircusKeyboardQwerty.tab): Promise<string | null> {
+  public async clear(
+    commit = ZCircusKeyboardQwerty.tab,
+  ): Promise<string | null> {
     const value = await this.value();
     const act = new ZCircusActBuilder()
       .click()
@@ -162,7 +175,10 @@ export class ZTextComponentModel extends ZCircusComponentModel {
     let builder = new ZCircusActBuilder().click();
 
     paragraphs.forEach((paragraph) => {
-      builder = builder.type(paragraph).press(ZCircusKeyboardQwerty.enter).press(ZCircusKeyboardQwerty.enter);
+      builder = builder
+        .type(paragraph)
+        .press(ZCircusKeyboardQwerty.enter)
+        .press(ZCircusKeyboardQwerty.enter);
     });
 
     builder = builder.press(ZCircusKeyboardQwerty.tab);
@@ -248,7 +264,9 @@ export class ZTextComponentModel extends ZCircusComponentModel {
    * @returns
    *        The adornment container or null if no such container exists.
    */
-  private async _adornment(which: 'start' | 'end'): Promise<IZCircusDriver | null> {
+  private async _adornment(
+    which: "start" | "end",
+  ): Promise<IZCircusDriver | null> {
     const query = `.ZText-adornment-${which}`;
     const [adornment] = await this.driver.query(query);
     return adornment || null;
@@ -261,7 +279,10 @@ export class ZTextComponentModel extends ZCircusComponentModel {
    *        The prefix adornment container or undefined if there is no
    *        such adornment.
    */
-  public prefix: () => Promise<IZCircusDriver | null> = this._adornment.bind(this, 'start');
+  public prefix: () => Promise<IZCircusDriver | null> = this._adornment.bind(
+    this,
+    "start",
+  );
 
   /**
    * Gets the suffix adornment container.
@@ -270,5 +291,8 @@ export class ZTextComponentModel extends ZCircusComponentModel {
    *        The suffix adornment container or undefined if there is no
    *        such adornment.
    */
-  public suffix: () => Promise<IZCircusDriver | null> = this._adornment.bind(this, 'end');
+  public suffix: () => Promise<IZCircusDriver | null> = this._adornment.bind(
+    this,
+    "end",
+  );
 }

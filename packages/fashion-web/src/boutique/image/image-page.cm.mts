@@ -1,5 +1,5 @@
-import { ZCircusComponentModel } from '@zthun/cirque';
+import { ZCircusComponentModel } from "@zthun/cirque";
 
 export class ZImagePageComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZImagePage-root';
+  public static readonly Selector = ".ZImagePage-root";
 }

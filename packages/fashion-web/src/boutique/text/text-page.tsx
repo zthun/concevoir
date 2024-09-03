@@ -10,11 +10,11 @@ import {
   ZTextArea,
   ZTextInput,
   ZTextInputReveal,
-  ZTextType
-} from '@zthun/fashion-boutique';
-import { ZSizeFixed } from '@zthun/fashion-tailor';
-import React, { useState } from 'react';
-import { ZFashionRouteText } from '../../routes.mjs';
+  ZTextType,
+} from "@zthun/fashion-boutique";
+import { ZSizeFixed } from "@zthun/fashion-tailor";
+import React, { useState } from "react";
+import { ZFashionRouteText } from "../../routes.mjs";
 
 /**
  * Represents a demo for text.
@@ -27,37 +27,50 @@ export function ZTextPage() {
   const [readOnly, setReadOnly] = useState(false);
   const [required, setRequired] = useState(false);
   const [adornments, setAdornments] = useState(false);
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
 
-  const flag = <ZIconFontAwesome name='flag' width={ZSizeFixed.ExtraSmall} />;
-  const search = <ZIconFontAwesome name='magnifying-glass' width={ZSizeFixed.ExtraSmall} />;
+  const flag = <ZIconFontAwesome name="flag" width={ZSizeFixed.ExtraSmall} />;
+  const search = (
+    <ZIconFontAwesome name="magnifying-glass" width={ZSizeFixed.ExtraSmall} />
+  );
 
   return (
     <ZCard
-      className='ZTextPage-root'
+      className="ZTextPage-root"
       heading={ZFashionRouteText.name}
       subHeading={ZFashionRouteText.description}
-      avatar={<ZIconFontAwesome name={ZFashionRouteText.avatar} width={ZSizeFixed.Medium} />}
+      avatar={
+        <ZIconFontAwesome
+          name={ZFashionRouteText.avatar}
+          width={ZSizeFixed.Medium}
+        />
+      }
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>
 
         <ZParagraph>
-          This is the most basic of inputs. You just enter in some text and the value is held. Most user input is done
-          by reading and parsing strings under the hood.
+          This is the most basic of inputs. You just enter in some text and the
+          value is held. Most user input is done by reading and parsing strings
+          under the hood.
         </ZParagraph>
 
         <ZBox margin={{ bottom: ZSizeFixed.Medium }}>
-          <ZGrid alignItems='center' columns='1fr 1fr 1fr' columnsSm='1fr' gap={ZSizeFixed.Medium}>
+          <ZGrid
+            alignItems="center"
+            columns="1fr 1fr 1fr"
+            columnsSm="1fr"
+            gap={ZSizeFixed.Medium}
+          >
             <ZTextInput
               disabled={disabled}
               readOnly={readOnly}
               value={value}
               required={required}
-              name='text'
-              placeholder='Text'
+              name="text"
+              placeholder="Text"
               onValueChange={setValue}
-              label='Text'
+              label="Text"
               prefix={adornments ? flag : null}
               suffix={adornments ? search : null}
             />
@@ -66,10 +79,10 @@ export function ZTextPage() {
               readOnly={readOnly}
               value={value}
               required={required}
-              name='password'
-              placeholder='Password'
+              name="password"
+              placeholder="Password"
               onValueChange={setValue}
-              label='Password'
+              label="Password"
               type={ZTextType.Password}
               prefix={adornments ? flag : null}
               suffix={adornments ? search : null}
@@ -79,10 +92,10 @@ export function ZTextPage() {
               readOnly={readOnly}
               value={value}
               required={required}
-              name='reveal'
-              placeholder='Reveal Password'
+              name="reveal"
+              placeholder="Reveal Password"
               onValueChange={setValue}
-              label='Reveal'
+              label="Reveal"
               prefix={adornments ? flag : null}
               suffix={adornments ? search : null}
             />
@@ -95,16 +108,16 @@ export function ZTextPage() {
             readOnly={readOnly}
             value={value}
             required={required}
-            name='area'
-            placeholder='Text Area'
+            name="area"
+            placeholder="Text Area"
             onValueChange={setValue}
-            label='Area'
+            label="Area"
             prefix={adornments ? flag : null}
             suffix={adornments ? search : null}
           />
         </ZBox>
 
-        <ZCaption className='ZTextPage-value' compact>
+        <ZCaption className="ZTextPage-value" compact>
           Value: {JSON.stringify(value)}
         </ZCaption>
       </ZBox>
@@ -113,10 +126,30 @@ export function ZTextPage() {
         <ZH3>Options</ZH3>
 
         <ZGrid gap={ZSizeFixed.Medium}>
-          <ZBooleanSwitch value={disabled} onValueChange={setDisabled} label='Disabled' name='disabled' />
-          <ZBooleanSwitch value={readOnly} onValueChange={setReadOnly} label='ReadOnly' name='read-only' />
-          <ZBooleanSwitch value={required} onValueChange={setRequired} label='Required' name='required' />
-          <ZBooleanSwitch value={adornments} onValueChange={setAdornments} label='Adornments' name='adornments' />
+          <ZBooleanSwitch
+            value={disabled}
+            onValueChange={setDisabled}
+            label="Disabled"
+            name="disabled"
+          />
+          <ZBooleanSwitch
+            value={readOnly}
+            onValueChange={setReadOnly}
+            label="ReadOnly"
+            name="read-only"
+          />
+          <ZBooleanSwitch
+            value={required}
+            onValueChange={setRequired}
+            label="Required"
+            name="required"
+          />
+          <ZBooleanSwitch
+            value={adornments}
+            onValueChange={setAdornments}
+            label="Adornments"
+            name="adornments"
+          />
         </ZGrid>
       </ZBox>
     </ZCard>

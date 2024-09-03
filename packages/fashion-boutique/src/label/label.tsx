@@ -1,25 +1,28 @@
-import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { cssJoinDefined } from '@zthun/helpful-fn';
-import React from 'react';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
-import { IZComponentRequired } from '../component/component-required.mjs';
-import { IZComponentStyle } from '../component/component-style.mjs';
-import { createStyleHook } from '../theme/styled';
+import { ZSizeFixed } from "@zthun/fashion-tailor";
+import { cssJoinDefined } from "@zthun/helpful-fn";
+import React from "react";
+import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
+import { IZComponentRequired } from "../component/component-required.mjs";
+import { IZComponentStyle } from "../component/component-style.mjs";
+import { createStyleHook } from "../theme/styled";
 
 const useLabelStyles = createStyleHook(({ theme, tailor }) => ({
   root: {
-    'display': 'block',
-    'fontWeight': 'bold',
+    display: "block",
+    fontWeight: "bold",
 
     '&[data-required="true"]::after': {
       content: '"*"',
       color: theme.error.main,
-      marginLeft: tailor.thickness(ZSizeFixed.Medium)
-    }
-  }
+      marginLeft: tailor.thickness(ZSizeFixed.Medium),
+    },
+  },
 }));
 
-export interface IZLabel extends IZComponentHierarchy, IZComponentStyle, IZComponentRequired {
+export interface IZLabel
+  extends IZComponentHierarchy,
+    IZComponentStyle,
+    IZComponentRequired {
   htmlFor?: string;
 }
 
@@ -29,7 +32,7 @@ export function ZLabel(props: IZLabel) {
 
   return (
     <label
-      className={cssJoinDefined('ZLabel-root', className, classes.root)}
+      className={cssJoinDefined("ZLabel-root", className, classes.root)}
       htmlFor={htmlFor}
       data-required={required}
     >

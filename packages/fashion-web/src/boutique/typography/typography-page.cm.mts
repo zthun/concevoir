@@ -1,11 +1,14 @@
-import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZChoiceComponentModel, ZTextColorComponentModel } from '@zthun/fashion-boutique';
+import { ZCircusBy, ZCircusComponentModel } from "@zthun/cirque";
+import {
+  ZChoiceComponentModel,
+  ZTextColorComponentModel,
+} from "@zthun/fashion-boutique";
 
 /**
  * Represents the component model for the typography page.
  */
 export class ZTypographyPageComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZTypographyPage-root';
+  public static readonly Selector = ".ZTypographyPage-root";
 
   /**
    * Gets information about the current text color.
@@ -14,7 +17,7 @@ export class ZTypographyPageComponentModel extends ZCircusComponentModel {
    *        The current text color.
    */
   public color(): Promise<ZTextColorComponentModel> {
-    return ZCircusBy.first(this.driver, ZTextColorComponentModel, 'color');
+    return ZCircusBy.first(this.driver, ZTextColorComponentModel, "color");
   }
 
   /**
@@ -24,6 +27,6 @@ export class ZTypographyPageComponentModel extends ZCircusComponentModel {
    *        The fashion drop down.
    */
   public fashion(): Promise<ZChoiceComponentModel> {
-    return ZCircusBy.first(this.driver, ZChoiceComponentModel, 'fashion');
+    return ZCircusBy.first(this.driver, ZChoiceComponentModel, "fashion");
   }
 }

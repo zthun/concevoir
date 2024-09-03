@@ -1,10 +1,10 @@
-import { Breadcrumbs } from '@mui/material';
-import { cssJoinDefined } from '@zthun/helpful-fn';
-import React, { useMemo } from 'react';
-import { ZLink } from '../link/link';
-import { useLocation } from '../router/router-dom.mjs';
-import { createStyleHook } from '../theme/styled';
-import { IZBreadcrumbs } from './breadcrumbs.mjs';
+import { Breadcrumbs } from "@mui/material";
+import { cssJoinDefined } from "@zthun/helpful-fn";
+import React, { useMemo } from "react";
+import { ZLink } from "../link/link";
+import { useLocation } from "../router/router-dom.mjs";
+import { createStyleHook } from "../theme/styled";
+import { IZBreadcrumbs } from "./breadcrumbs.mjs";
 
 /**
  * Represents the properties for the BreadcrumbsLocation component.
@@ -24,8 +24,8 @@ export interface IZBreadcrumbsLocation extends IZBreadcrumbs {
 
 const useBreadcrumbsStyles = createStyleHook(({ theme }) => ({
   root: {
-    color: theme.body.contrast
-  }
+    color: theme.body.contrast,
+  },
 }));
 
 /**
@@ -46,25 +46,26 @@ export function ZBreadcrumbsLocation(props: IZBreadcrumbsLocation) {
   const { className, name, home, onClick } = props;
   const location = useLocation();
   const sections = useMemo(() => {
-    const all = location.pathname.split('/').filter((p) => !!p.trim());
-    const _home = home ? { name: home.name, path: home.path || '/' } : undefined;
+    const all = location.pathname.split("/").filter((p) => !!p.trim());
+    const _home = home
+      ? { name: home.name, path: home.path || "/" }
+      : undefined;
     const _sections: { name: string; path: string }[] = [];
 
     for (let i = 0; i < all.length; ++i) {
-      const previous = _sections[i - 1]?.path || '';
+      const previous = _sections[i - 1]?.path || "";
       const name = all[i];
       const subPath = `${previous}/${name}`;
       _sections.push({ name, path: subPath });
     }
 
-    _home ? [_home, ..._sections] : _sections;
     return _home ? [_home, ..._sections] : _sections;
   }, [location, home]);
   const { classes } = useBreadcrumbsStyles();
 
   const renderSection = (s: { name: string; path: string }) => (
     <ZLink
-      className='ZBreadcrumbs-item'
+      className="ZBreadcrumbs-item"
       key={s.path}
       href={`#${s.path}`}
       name={s.path}
@@ -75,7 +76,12 @@ export function ZBreadcrumbsLocation(props: IZBreadcrumbsLocation) {
 
   return (
     <Breadcrumbs
-      className={cssJoinDefined('ZBreadcrumbs-root', 'ZBreadcrumbs-location', classes.root, className)}
+      className={cssJoinDefined(
+        "ZBreadcrumbs-root",
+        "ZBreadcrumbs-location",
+        classes.root,
+        className,
+      )}
       data-name={name}
     >
       {sections.map(renderSection)}

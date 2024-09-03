@@ -1,9 +1,9 @@
-import { cssJoinDefined } from '@zthun/helpful-fn';
-import React, { useState } from 'react';
-import { IZButton, ZButton } from '../button/button';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
-import { IZComponentStyle } from '../component/component-style.mjs';
-import { IZPopup, ZPopup } from './popup';
+import { cssJoinDefined } from "@zthun/helpful-fn";
+import React, { useState } from "react";
+import { IZButton, ZButton } from "../button/button";
+import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
+import { IZComponentStyle } from "../component/component-style.mjs";
+import { IZPopup, ZPopup } from "./popup";
 
 /**
  * Represents properties for a pop button component.
@@ -12,11 +12,11 @@ export interface IZPopupButton extends IZComponentHierarchy, IZComponentStyle {
   /**
    * The properties for the underlying button component.
    */
-  ButtonProps?: Omit<IZButton, 'onClick'>;
+  ButtonProps?: Omit<IZButton, "onClick">;
   /**
    * The properties for the underlying popup component
    */
-  PopupProps?: Omit<IZPopup, 'attach' | 'children'>;
+  PopupProps?: Omit<IZPopup, "attach" | "children">;
 }
 
 /**
@@ -33,9 +33,13 @@ export function ZPopupButton(props: IZPopupButton) {
   const [attach, setAttach] = useState<Element | null>(null);
 
   return (
-    <div className={cssJoinDefined('ZPopupButton-root', className)}>
+    <div className={cssJoinDefined("ZPopupButton-root", className)}>
       <ZButton {...ButtonProps} onClick={(e) => setAttach(e.currentTarget)} />
-      <ZPopup {...PopupProps} attach={attach} onClose={setAttach.bind(null, null)}>
+      <ZPopup
+        {...PopupProps}
+        attach={attach}
+        onClose={setAttach.bind(null, null)}
+      >
         {children}
       </ZPopup>
     </div>

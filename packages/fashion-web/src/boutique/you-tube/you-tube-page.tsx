@@ -1,8 +1,15 @@
 // cspell:disable
-import { ZCard, ZH3, ZIconFontAwesome, ZNewspaper, ZParagraph, ZYouTubeVideo } from '@zthun/fashion-boutique';
-import { ZSizeFixed } from '@zthun/fashion-tailor';
-import React from 'react';
-import { ZFashionRouteYouTube } from '../../routes.mjs';
+import {
+  ZCard,
+  ZH3,
+  ZIconFontAwesome,
+  ZNewspaper,
+  ZParagraph,
+  ZYouTubeVideo,
+} from "@zthun/fashion-boutique";
+import { ZSizeFixed } from "@zthun/fashion-tailor";
+import React from "react";
+import { ZFashionRouteYouTube } from "../../routes.mjs";
 
 /**
  * Represents a demo for typography.
@@ -12,7 +19,7 @@ import { ZFashionRouteYouTube } from '../../routes.mjs';
 export function ZYouTubePage() {
   return (
     <ZCard
-      className='ZYouTubePage-root'
+      className="ZYouTubePage-root"
       heading={ZFashionRouteYouTube.name}
       subHeading={ZFashionRouteYouTube.description}
       avatar={
@@ -27,8 +34,14 @@ export function ZYouTubePage() {
 
       <ZParagraph>Embed YouTube videos into your site.</ZParagraph>
 
-      <ZNewspaper range={[5, 8]} rangeLg={[4, 9]} rangeMd={[3, 10]} rangeSm={[2, 11]} rangeXs={[1, 12]}>
-        <ZYouTubeVideo identity='ahCwqrYpIuM' />
+      <ZNewspaper
+        range={[5, 8]}
+        rangeLg={[4, 9]}
+        rangeMd={[3, 10]}
+        rangeSm={[2, 11]}
+        rangeXs={[1, 12]}
+      >
+        <ZYouTubeVideo identity="ahCwqrYpIuM" />
       </ZNewspaper>
     </ZCard>
   );

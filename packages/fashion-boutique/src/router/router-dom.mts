@@ -7,8 +7,8 @@ import {
   Routes,
   useLocation as _useLocation,
   useNavigate as _useNavigate,
-  useParams as _useParams
-} from 'react-router-dom';
+  useParams as _useParams,
+} from "react-router-dom";
 
 export const ZRouter = HashRouter;
 export const ZTestRouter = Router;

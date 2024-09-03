@@ -1,5 +1,5 @@
-import { transparent } from '../color/rgb.mjs';
-import { IZFashion, ZFashionBuilder } from '../fashion/fashion.mjs';
+import { transparent } from "../color/rgb.mjs";
+import { IZFashion, ZFashionBuilder } from "../fashion/fashion.mjs";
 
 /**
  * Priority fashions.
@@ -8,11 +8,11 @@ export enum ZFashionPriority {
   /**
    * Primary fashion.  Main color of your site.
    */
-  Primary = 'primary',
+  Primary = "primary",
   /**
    * Secondary fashion.
    */
-  Secondary = 'secondary'
+  Secondary = "secondary",
 }
 
 /**
@@ -24,19 +24,19 @@ export enum ZFashionSeverity {
   /**
    * Greens.
    */
-  Success = 'success',
+  Success = "success",
   /**
    * Oranges.
    */
-  Warning = 'warning',
+  Warning = "warning",
   /**
    * Reds.
    */
-  Error = 'error',
+  Error = "error",
   /**
    * Blues.
    */
-  Info = 'info'
+  Info = "info",
 }
 
 /**
@@ -46,15 +46,15 @@ export enum ZFashionArea {
   /**
    * Site body background.
    */
-  Body = 'body',
+  Body = "body",
   /**
    * Card or modal surface on top of the body.
    */
-  Surface = 'surface',
+  Surface = "surface",
   /**
    * Default button component style.
    */
-  Component = 'component'
+  Component = "component",
 }
 
 /**
@@ -66,29 +66,34 @@ export enum ZFashionContrast {
    *
    * Usually black.
    */
-  Dark = 'dark',
+  Dark = "dark",
   /**
    * Light.
    *
    * Usually white.
    */
-  Light = 'light',
+  Light = "light",
   /**
    * A theme that contrasts the core them.
    *
    * If the core them is dark, this should be light.
    * Likewise, if the core theme is light, this should be dark.
    */
-  Opposite = 'opposite'
+  Opposite = "opposite",
 }
 
-export type ZFashionName = ZFashionPriority | ZFashionSeverity | ZFashionArea | ZFashionContrast;
+export type ZFashionName =
+  | ZFashionPriority
+  | ZFashionSeverity
+  | ZFashionArea
+  | ZFashionContrast;
 export type ZFashionRecord = Record<ZFashionName, IZFashion>;
 
 /**
  * Represents a general fashion design that includes the common types.
  */
-export interface IZFashionTheme<TCustom extends object = {}> extends ZFashionRecord {
+export interface IZFashionTheme<TCustom extends object = {}>
+  extends ZFashionRecord {
   /**
    * The optional name of the design.
    */
@@ -120,29 +125,48 @@ export interface IZFashionTheme<TCustom extends object = {}> extends ZFashionRec
  * should have a generally good scheme for your fashion needs.
  */
 export class ZFashionThemeBuilder<TCustom extends object = {}> {
-  private _design: { -readonly [P in keyof IZFashionTheme<TCustom>]: IZFashionTheme<TCustom>[P] };
+  private _design: {
+    -readonly [P in keyof IZFashionTheme<TCustom>]: IZFashionTheme<TCustom>[P];
+  };
 
   /**
    * Initializes a new instance of this object.
    */
   public constructor() {
     this._design = {
-      name: 'Light',
-      primary: new ZFashionBuilder().name('Primary').spectrum(0x1976d2).build(),
-      secondary: new ZFashionBuilder().name('Secondary').spectrum(0x9c27b0).build(),
-      success: new ZFashionBuilder().name('Success').spectrum(0x2e7d32).build(),
-      warning: new ZFashionBuilder().name('Warning').spectrum(0xff9e42).build(),
-      error: new ZFashionBuilder().name('Error').spectrum(0xd32f2f).build(),
-      info: new ZFashionBuilder().name('Info').spectrum(0xb5e5ff).build(),
-      body: new ZFashionBuilder().name('Body').spectrum(0xeeeeee).build(),
-      surface: new ZFashionBuilder().name('Surface').spectrum(0xfafafa).build(),
-      component: new ZFashionBuilder().name('Component').spectrum(0xdedede).build(),
-      light: new ZFashionBuilder().name('Light').spectrum(0xfafafa).build(),
-      dark: new ZFashionBuilder().name('Dark').spectrum(0x212121).build(),
-      opposite: new ZFashionBuilder().name('Opposite').spectrum(0x212121).build(),
-      transparent: new ZFashionBuilder().name('Transparent').main(transparent()).contrast('inherit').build(),
-      inherit: new ZFashionBuilder().name('Inherit').main('inherit').contrast('inherit').build(),
-      custom: {} as TCustom
+      name: "Light",
+      primary: new ZFashionBuilder().name("Primary").spectrum(0x1976d2).build(),
+      secondary: new ZFashionBuilder()
+        .name("Secondary")
+        .spectrum(0x9c27b0)
+        .build(),
+      success: new ZFashionBuilder().name("Success").spectrum(0x2e7d32).build(),
+      warning: new ZFashionBuilder().name("Warning").spectrum(0xff9e42).build(),
+      error: new ZFashionBuilder().name("Error").spectrum(0xd32f2f).build(),
+      info: new ZFashionBuilder().name("Info").spectrum(0xb5e5ff).build(),
+      body: new ZFashionBuilder().name("Body").spectrum(0xeeeeee).build(),
+      surface: new ZFashionBuilder().name("Surface").spectrum(0xfafafa).build(),
+      component: new ZFashionBuilder()
+        .name("Component")
+        .spectrum(0xdedede)
+        .build(),
+      light: new ZFashionBuilder().name("Light").spectrum(0xfafafa).build(),
+      dark: new ZFashionBuilder().name("Dark").spectrum(0x212121).build(),
+      opposite: new ZFashionBuilder()
+        .name("Opposite")
+        .spectrum(0x212121)
+        .build(),
+      transparent: new ZFashionBuilder()
+        .name("Transparent")
+        .main(transparent())
+        .contrast("inherit")
+        .build(),
+      inherit: new ZFashionBuilder()
+        .name("Inherit")
+        .main("inherit")
+        .contrast("inherit")
+        .build(),
+      custom: {} as TCustom,
     };
   }
 

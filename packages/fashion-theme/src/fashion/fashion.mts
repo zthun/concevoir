@@ -1,6 +1,6 @@
-import { ZColor, brighten, contrast } from '../color/color.mjs';
-import { hex } from '../color/hex.mjs';
-import { black, white } from '../color/rgb.mjs';
+import { ZColor, brighten, contrast } from "../color/color.mjs";
+import { hex } from "../color/hex.mjs";
+import { black, white } from "../color/rgb.mjs";
 
 /**
  * Overrides for a fashion.
@@ -77,7 +77,7 @@ export class ZFashionBuilder {
       main: white(),
       contrast: black(),
       hover: {},
-      focus: {}
+      focus: {},
     };
   }
 
@@ -125,11 +125,11 @@ export class ZFashionBuilder {
       .contrast(higherContrast)
       .focus({
         main: light,
-        border: dark
+        border: dark,
       })
       .hover({
         main: dark,
-        border: light
+        border: light,
       })
       .border(dark);
   }

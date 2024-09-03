@@ -1,22 +1,22 @@
-import { ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { ZFashionName, ZFashionPriority } from '@zthun/fashion-theme';
-import { startCase } from 'lodash-es';
-import React from 'react';
-import { describe, expect, it } from 'vitest';
-import { ZBubblePage } from './bubble-page';
-import { ZBubblePageComponentModel } from './bubble-page.cm.mjs';
+import { ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { ZSizeFixed } from "@zthun/fashion-tailor";
+import { ZFashionName, ZFashionPriority } from "@zthun/fashion-theme";
+import { startCase } from "lodash-es";
+import React from "react";
+import { describe, expect, it } from "vitest";
+import { ZBubblePage } from "./bubble-page";
+import { ZBubblePageComponentModel } from "./bubble-page.cm.mjs";
 
-describe('ZBubblePage', () => {
+describe("ZBubblePage", () => {
   const createTestTarget = async () => {
     const element = <ZBubblePage />;
     const driver = await new ZCircusSetupRenderer(element).setup();
     return ZCircusBy.first(driver, ZBubblePageComponentModel);
   };
 
-  describe('Click', () => {
-    it('should turn off the click state', async () => {
+  describe("Click", () => {
+    it("should turn off the click state", async () => {
       // Arrange.
       const target = await createTestTarget();
       const clickable = await target.clickable();
@@ -30,7 +30,7 @@ describe('ZBubblePage', () => {
       expect(actual).toEqual(expected);
     });
 
-    it('should increment the click count', async () => {
+    it("should increment the click count", async () => {
       // Arrange.
       const target = await createTestTarget();
       const clickable = await target.clickable();
@@ -45,7 +45,7 @@ describe('ZBubblePage', () => {
     });
   });
 
-  describe('Size', () => {
+  describe("Size", () => {
     const shouldSetBorderSize = async (expected: ZSizeFixed) => {
       // Arrange.
       const target = await createTestTarget();
@@ -58,16 +58,16 @@ describe('ZBubblePage', () => {
       expect(actual).toEqual(expected);
     };
 
-    it('should set the border width to small', async () => {
+    it("should set the border width to small", async () => {
       await shouldSetBorderSize(ZSizeFixed.Small);
     });
 
-    it('should set the border with to large', async () => {
+    it("should set the border with to large", async () => {
       await shouldSetBorderSize(ZSizeFixed.Large);
     });
   });
 
-  describe('Fashion', () => {
+  describe("Fashion", () => {
     const shouldSetFashion = async (expected: ZFashionName) => {
       // Arrange.
       const _expected = startCase(expected);
@@ -80,11 +80,11 @@ describe('ZBubblePage', () => {
       // Assert.
       expect(actual).toEqual(_expected);
     };
-    it('should set the fashion to primary', async () => {
+    it("should set the fashion to primary", async () => {
       await shouldSetFashion(ZFashionPriority.Primary);
     });
 
-    it('should set the fashion to secondary', async () => {
+    it("should set the fashion to secondary", async () => {
       await shouldSetFashion(ZFashionPriority.Secondary);
     });
   });

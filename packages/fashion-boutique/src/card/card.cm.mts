@@ -1,11 +1,11 @@
-import { IZCircusDriver, ZCircusComponentModel } from '@zthun/cirque';
-import { ZSuspenseComponentModel } from '../suspense/suspense.cm.mjs';
+import { IZCircusDriver, ZCircusComponentModel } from "@zthun/cirque";
+import { ZSuspenseComponentModel } from "../suspense/suspense.cm.mjs";
 
 /**
  * Represents a component model for a ZCard component.
  */
 export class ZCardComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZCard-root';
+  public static readonly Selector = ".ZCard-root";
 
   /**
    * Gets the fashion name of the card.
@@ -14,7 +14,7 @@ export class ZCardComponentModel extends ZCircusComponentModel {
    *        The fashion of the card.
    */
   public fashion(): Promise<string> {
-    return this.driver.attribute('data-fashion', 'Surface');
+    return this.driver.attribute("data-fashion", "Surface");
   }
 
   /**
@@ -24,7 +24,7 @@ export class ZCardComponentModel extends ZCircusComponentModel {
    *        The text content of the heading.
    */
   public async heading(): Promise<string> {
-    const heading = await this.driver.select('.ZCard-header-heading');
+    const heading = await this.driver.select(".ZCard-header-heading");
     return heading.text();
   }
 
@@ -35,7 +35,7 @@ export class ZCardComponentModel extends ZCircusComponentModel {
    *        The text content of the sub heading.
    */
   public async subHeading(): Promise<string> {
-    const subHeading = await this.driver.select('.ZCard-header-subheading');
+    const subHeading = await this.driver.select(".ZCard-header-subheading");
     return subHeading.text();
   }
 
@@ -44,7 +44,7 @@ export class ZCardComponentModel extends ZCircusComponentModel {
    */
   public async loading(): Promise<boolean> {
     const content = await this.content();
-    return ZSuspenseComponentModel.loading(content, 'card-loading');
+    return ZSuspenseComponentModel.loading(content, "card-loading");
   }
 
   /**
@@ -54,7 +54,7 @@ export class ZCardComponentModel extends ZCircusComponentModel {
    *        The driver to query the content area of the card.
    */
   public content(): Promise<IZCircusDriver> {
-    return this.driver.select('.ZCard-content');
+    return this.driver.select(".ZCard-content");
   }
 
   /**
@@ -65,7 +65,7 @@ export class ZCardComponentModel extends ZCircusComponentModel {
    *        Returns null if there is no footer.
    */
   public async footer(): Promise<IZCircusDriver | null> {
-    const [footer] = await this.driver.query('.ZCard-footer');
+    const [footer] = await this.driver.query(".ZCard-footer");
     return footer || null;
   }
 }

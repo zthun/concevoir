@@ -1,9 +1,9 @@
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import React from 'react';
-import { beforeEach, describe, expect, it } from 'vitest';
-import { ZNewspaper, ZNewspaperRange } from './newspaper';
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import React from "react";
+import { beforeEach, describe, expect, it } from "vitest";
+import { ZNewspaper, ZNewspaperRange } from "./newspaper";
 
-describe('ZNewspaper', () => {
+describe("ZNewspaper", () => {
   let xl: ZNewspaperRange | undefined;
   let lg: ZNewspaperRange | undefined;
   let md: ZNewspaperRange | undefined;
@@ -20,7 +20,14 @@ describe('ZNewspaper', () => {
 
   async function createTestTarget() {
     const element = (
-      <ZNewspaper className='ZTestNewspaper-root' range={xl} rangeLg={lg} rangeMd={md} rangeSm={sm} rangeXs={xs}>
+      <ZNewspaper
+        className="ZTestNewspaper-root"
+        range={xl}
+        rangeLg={lg}
+        rangeMd={md}
+        rangeSm={sm}
+        rangeXs={xs}
+      >
         12 Column Content
       </ZNewspaper>
     );
@@ -28,7 +35,7 @@ describe('ZNewspaper', () => {
     return driver;
   }
 
-  it('should render will full ranges', async () => {
+  it("should render will full ranges", async () => {
     // Arrange.
     // Act.
     const target = await createTestTarget();
@@ -36,7 +43,7 @@ describe('ZNewspaper', () => {
     expect(target).toBeTruthy();
   });
 
-  it('should render with responsive ranges', async () => {
+  it("should render with responsive ranges", async () => {
     // Arrange.
     xl = [5, 8];
     lg = [4, 9];

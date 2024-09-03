@@ -1,11 +1,11 @@
-import { IZCircusDriver, ZCircusComponentModel } from '@zthun/cirque';
-import { firstDefined } from '@zthun/helpful-fn';
+import { IZCircusDriver, ZCircusComponentModel } from "@zthun/cirque";
+import { firstDefined } from "@zthun/helpful-fn";
 
 /**
  * Represents the component model for the alert component.
  */
 export class ZAlertComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZAlert-root';
+  public static readonly Selector = ".ZAlert-root";
 
   /**
    * Gets the alert message.
@@ -15,7 +15,7 @@ export class ZAlertComponentModel extends ZCircusComponentModel {
    *        The message container.
    */
   public async message(): Promise<IZCircusDriver> {
-    return await this.driver.select('.ZAlert-message');
+    return await this.driver.select(".ZAlert-message");
   }
 
   /**
@@ -25,7 +25,7 @@ export class ZAlertComponentModel extends ZCircusComponentModel {
    *        The heading container if one exists.
    */
   public async heading(): Promise<IZCircusDriver | null> {
-    const [heading] = await this.driver.query('.ZAlert-heading');
+    const [heading] = await this.driver.query(".ZAlert-heading");
     return firstDefined(null, heading);
   }
 
@@ -36,7 +36,7 @@ export class ZAlertComponentModel extends ZCircusComponentModel {
    *        The avatar container, if one exists.
    */
   public async avatar(): Promise<IZCircusDriver | null> {
-    const [avatar] = await this.driver.query('.ZAlert-avatar');
+    const [avatar] = await this.driver.query(".ZAlert-avatar");
     return firstDefined(null, avatar);
   }
 
@@ -47,6 +47,6 @@ export class ZAlertComponentModel extends ZCircusComponentModel {
    *        The fashion for the alert.
    */
   public async fashion(): Promise<string> {
-    return this.driver.attribute('data-fashion', '');
+    return this.driver.attribute("data-fashion", "");
   }
 }

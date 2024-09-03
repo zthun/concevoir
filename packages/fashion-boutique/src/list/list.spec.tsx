@@ -1,16 +1,16 @@
-import { ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { required } from '@zthun/helpful-fn';
-import React, { ReactNode } from 'react';
-import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
-import { ZList } from './list';
-import { ZListDivider } from './list-divider';
-import { ZListGroup } from './list-group';
-import { ZListLineItem } from './list-line-item';
-import { ZListLineItemComponentModel } from './list-line-item.cm.mjs';
-import { ZListComponentModel } from './list.cm.mjs';
+import { ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { required } from "@zthun/helpful-fn";
+import React, { ReactNode } from "react";
+import { beforeEach, describe, expect, it, Mock, vi } from "vitest";
+import { ZList } from "./list";
+import { ZListDivider } from "./list-divider";
+import { ZListGroup } from "./list-group";
+import { ZListLineItem } from "./list-line-item";
+import { ZListLineItemComponentModel } from "./list-line-item.cm.mjs";
+import { ZListComponentModel } from "./list.cm.mjs";
 
-describe('ZList', () => {
+describe("ZList", () => {
   let heading: ReactNode | undefined;
   let subHeading: ReactNode | undefined;
   let onClick: Mock | undefined;
@@ -18,10 +18,19 @@ describe('ZList', () => {
   async function createTestTarget() {
     const element = (
       <ZList>
-        <ZListGroup heading='Group' name='group'></ZListGroup>
-        <ZListLineItem name='clickable' onClick={onClick} heading='Clickable' subHeading='Clicking raises an event' />
-        <ZListDivider name='divider' />
-        <ZListLineItem name='no-click' heading={heading} subHeading={subHeading} />
+        <ZListGroup heading="Group" name="group"></ZListGroup>
+        <ZListLineItem
+          name="clickable"
+          onClick={onClick}
+          heading="Clickable"
+          subHeading="Clicking raises an event"
+        />
+        <ZListDivider name="divider" />
+        <ZListLineItem
+          name="no-click"
+          heading={heading}
+          subHeading={subHeading}
+        />
       </ZList>
     );
 
@@ -35,7 +44,7 @@ describe('ZList', () => {
     onClick = undefined;
   });
 
-  it('should render all items', async () => {
+  it("should render all items", async () => {
     // Arrange.
     const target = await createTestTarget();
     // Act.
@@ -44,19 +53,19 @@ describe('ZList', () => {
     expect(actual.length).toEqual(4);
   });
 
-  it('should not render an item that does not exist', async () => {
+  it("should not render an item that does not exist", async () => {
     // Arrange.
     const target = await createTestTarget();
     // Act.
-    const actual = await target.item('missing');
+    const actual = await target.item("missing");
     // Assert.
     expect(actual).toBeFalsy();
   });
 
-  describe('Line Items', () => {
-    it('should retrieve the correct item.', async () => {
+  describe("Line Items", () => {
+    it("should retrieve the correct item.", async () => {
       // Arrange.
-      const expected = 'clickable';
+      const expected = "clickable";
       const target = await createTestTarget();
       const item = await required(target.item(expected));
       // Act.
@@ -65,10 +74,10 @@ describe('ZList', () => {
       expect(actual).toEqual(expected);
     });
 
-    it('should render the line item without being able to click on it.', async () => {
+    it("should render the line item without being able to click on it.", async () => {
       // Arrange.
       const target = await createTestTarget();
-      const item = await required(target.item('no-click'));
+      const item = await required(target.item("no-click"));
       const lineItem = new ZListLineItemComponentModel(item);
       // Act.
       const actual = await lineItem.clickable();
@@ -78,11 +87,11 @@ describe('ZList', () => {
       expect(actual).toBeFalsy();
     });
 
-    it('should raise the onClick event of a line item if onClick is set.', async () => {
+    it("should raise the onClick event of a line item if onClick is set.", async () => {
       // Arrange.
       onClick = vi.fn();
       const target = await createTestTarget();
-      const item = await required(target.item('clickable'));
+      const item = await required(target.item("clickable"));
       const lineItem = new ZListLineItemComponentModel(item);
       // Act.
       const actual = await lineItem.clickable();
@@ -92,11 +101,11 @@ describe('ZList', () => {
       expect(onClick).toHaveBeenCalled();
     });
 
-    it('should render the heading.', async () => {
+    it("should render the heading.", async () => {
       // Arrange.
-      heading = 'Test Heading';
+      heading = "Test Heading";
       const target = await createTestTarget();
-      const item = await required(target.item('no-click'));
+      const item = await required(target.item("no-click"));
       const lineItem = new ZListLineItemComponentModel(item);
       // Act.
       const actual = await lineItem.heading();
@@ -104,22 +113,22 @@ describe('ZList', () => {
       expect(actual).toEqual(heading);
     });
 
-    it('should render an empty heading if not set.', async () => {
+    it("should render an empty heading if not set.", async () => {
       // Arrange.
       const target = await createTestTarget();
-      const item = await required(target.item('no-click'));
+      const item = await required(target.item("no-click"));
       const lineItem = new ZListLineItemComponentModel(item);
       // Act.
       const actual = await lineItem.heading();
       // Assert.
-      expect(actual).toEqual('');
+      expect(actual).toEqual("");
     });
 
-    it('should render the sub heading.', async () => {
+    it("should render the sub heading.", async () => {
       // Arrange.
-      subHeading = 'Test Sub Heading';
+      subHeading = "Test Sub Heading";
       const target = await createTestTarget();
-      const item = await required(target.item('no-click'));
+      const item = await required(target.item("no-click"));
       const lineItem = new ZListLineItemComponentModel(item);
       // Act.
       const actual = await lineItem.subHeading();
@@ -127,15 +136,15 @@ describe('ZList', () => {
       expect(actual).toEqual(subHeading);
     });
 
-    it('should render an empty sub heading if not set.', async () => {
+    it("should render an empty sub heading if not set.", async () => {
       // Arrange.
       const target = await createTestTarget();
-      const item = await required(target.item('no-click'));
+      const item = await required(target.item("no-click"));
       const lineItem = new ZListLineItemComponentModel(item);
       // Act.
       const actual = await lineItem.subHeading();
       // Assert.
-      expect(actual).toEqual('');
+      expect(actual).toEqual("");
     });
   });
 });

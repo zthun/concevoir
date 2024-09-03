@@ -1,12 +1,12 @@
-import { ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZFashionThemeBuilder } from '@zthun/fashion-theme';
-import React from 'react';
-import { describe, expect, it } from 'vitest';
-import { ZCardPage } from './card-page';
-import { ZCardPageComponentModel } from './card-page.cm.mjs';
+import { ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { ZFashionThemeBuilder } from "@zthun/fashion-theme";
+import React from "react";
+import { describe, expect, it } from "vitest";
+import { ZCardPage } from "./card-page";
+import { ZCardPageComponentModel } from "./card-page.cm.mjs";
 
-describe('CardPage', () => {
+describe("CardPage", () => {
   const theme = new ZFashionThemeBuilder().build();
 
   async function createTestTarget() {
@@ -15,8 +15,8 @@ describe('CardPage', () => {
     return ZCircusBy.first(driver, ZCardPageComponentModel);
   }
 
-  describe('Card', () => {
-    it('should render the basic card', async () => {
+  describe("Card", () => {
+    it("should render the basic card", async () => {
       // Arrange.
       const target = await createTestTarget();
       // Act.
@@ -26,8 +26,8 @@ describe('CardPage', () => {
     });
   });
 
-  describe('Image', () => {
-    it('should render the card', async () => {
+  describe("Image", () => {
+    it("should render the card", async () => {
       // Arrange.
       const target = await createTestTarget();
       // Act.
@@ -37,8 +37,8 @@ describe('CardPage', () => {
     });
   });
 
-  describe('Loading', () => {
-    it('should be loading', async () => {
+  describe("Loading", () => {
+    it("should be loading", async () => {
       // Arrange.
       const target = await createTestTarget();
       // Act.
@@ -49,7 +49,7 @@ describe('CardPage', () => {
     });
   });
 
-  describe('Fashion', () => {
+  describe("Fashion", () => {
     async function shouldSetFashion(expected: string) {
       // Arrange.
       const target = await createTestTarget();
@@ -68,43 +68,43 @@ describe('CardPage', () => {
       expect(loadingFashion).toEqual(expected);
     }
 
-    it('should set the color to Primary', async () => {
+    it("should set the color to Primary", async () => {
       await shouldSetFashion(theme.primary.name!);
     });
 
-    it('should set the color to Secondary', async () => {
+    it("should set the color to Secondary", async () => {
       await shouldSetFashion(theme.secondary.name!);
     });
 
-    it('should set the color to Success', async () => {
+    it("should set the color to Success", async () => {
       await shouldSetFashion(theme.success.name!);
     });
 
-    it('should set the color to Warning', async () => {
+    it("should set the color to Warning", async () => {
       await shouldSetFashion(theme.warning.name!);
     });
 
-    it('should set the color to Error', async () => {
+    it("should set the color to Error", async () => {
       await shouldSetFashion(theme.error.name!);
     });
 
-    it('should set the color to Info', async () => {
+    it("should set the color to Info", async () => {
       await shouldSetFashion(theme.info.name!);
     });
 
-    it('should set the color to Light', async () => {
+    it("should set the color to Light", async () => {
       await shouldSetFashion(theme.light.name!);
     });
 
-    it('should set the color to Dark', async () => {
+    it("should set the color to Dark", async () => {
       await shouldSetFashion(theme.dark.name!);
     });
 
-    it('should set the color to Body', async () => {
+    it("should set the color to Body", async () => {
       await shouldSetFashion(theme.body.name!);
     });
 
-    it('should set the color to surface', async () => {
+    it("should set the color to surface", async () => {
       await shouldSetFashion(theme.surface.name!);
     });
   });

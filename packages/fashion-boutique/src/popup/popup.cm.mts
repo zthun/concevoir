@@ -1,10 +1,15 @@
-import { IZCircusDriver, ZCircusActBuilder, ZCircusComponentModel, ZCircusKeyboardQwerty } from '@zthun/cirque';
+import {
+  IZCircusDriver,
+  ZCircusActBuilder,
+  ZCircusComponentModel,
+  ZCircusKeyboardQwerty,
+} from "@zthun/cirque";
 
 /**
  * Represents the component model for a popup.
  */
 export class ZPopupComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZPopup-root';
+  public static readonly Selector = ".ZPopup-root";
 
   /**
    * Gets the content driver of the popup.
@@ -13,7 +18,7 @@ export class ZPopupComponentModel extends ZCircusComponentModel {
    *        The popup content.
    */
   public content(): Promise<IZCircusDriver> {
-    return this.driver.select('.ZPopup-content');
+    return this.driver.select(".ZPopup-content");
   }
 
   /**
@@ -23,7 +28,7 @@ export class ZPopupComponentModel extends ZCircusComponentModel {
    *        The popup backdrop.
    */
   public async backdrop() {
-    return this.driver.select('.MuiBackdrop-root');
+    return this.driver.select(".MuiBackdrop-root");
   }
 
   /**
@@ -46,6 +51,8 @@ export class ZPopupComponentModel extends ZCircusComponentModel {
    *        has been performed.
    */
   public async escape() {
-    await this.driver.perform(new ZCircusActBuilder().press(ZCircusKeyboardQwerty.escape).build());
+    await this.driver.perform(
+      new ZCircusActBuilder().press(ZCircusKeyboardQwerty.escape).build(),
+    );
   }
 }

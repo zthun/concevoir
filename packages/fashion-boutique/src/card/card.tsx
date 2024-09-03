@@ -1,4 +1,4 @@
-import { Card, CardActions, CardContent, CardHeader } from '@mui/material';
+import { Card, CardActions, CardContent, CardHeader } from "@mui/material";
 import {
   ZSizeFixed,
   ZSizeVaried,
@@ -6,24 +6,24 @@ import {
   createSizeChartFixedCss,
   createSizeChartFixedGeometric,
   createSizeChartVariedCss,
-  createSizeChartVoidCss
-} from '@zthun/fashion-tailor';
-import { cssJoinDefined } from '@zthun/helpful-fn';
-import { pickBy, startsWith } from 'lodash-es';
-import React, { ReactNode } from 'react';
-import { IZComponentAvatar } from '../component/component-avatar.mjs';
-import { IZComponentFashion } from '../component/component-fashion.mjs';
-import { IZComponentHeading } from '../component/component-heading.mjs';
-import { IZComponentHeight } from '../component/component-height.mjs';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
-import { IZComponentLoading } from '../component/component-loading.mjs';
-import { IZComponentName } from '../component/component-name.mjs';
-import { IZComponentStyle } from '../component/component-style.mjs';
-import { IZComponentWidth } from '../component/component-width.mjs';
-import { ZSuspenseProgress } from '../suspense/suspense-progress';
-import { useFashionTheme } from '../theme/fashion.mjs';
-import { createStyleHook } from '../theme/styled';
-import { ZCaption, ZH2 } from '../typography/typography';
+  createSizeChartVoidCss,
+} from "@zthun/fashion-tailor";
+import { cssJoinDefined } from "@zthun/helpful-fn";
+import { pickBy, startsWith } from "lodash-es";
+import React, { ReactNode } from "react";
+import { IZComponentAvatar } from "../component/component-avatar.mjs";
+import { IZComponentFashion } from "../component/component-fashion.mjs";
+import { IZComponentHeading } from "../component/component-heading.mjs";
+import { IZComponentHeight } from "../component/component-height.mjs";
+import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
+import { IZComponentLoading } from "../component/component-loading.mjs";
+import { IZComponentName } from "../component/component-name.mjs";
+import { IZComponentStyle } from "../component/component-style.mjs";
+import { IZComponentWidth } from "../component/component-width.mjs";
+import { ZSuspenseProgress } from "../suspense/suspense-progress";
+import { useFashionTheme } from "../theme/fashion.mjs";
+import { createStyleHook } from "../theme/styled";
+import { ZCaption, ZH2 } from "../typography/typography";
 
 export interface IZCard
   extends IZComponentHeading,
@@ -39,15 +39,15 @@ export interface IZCard
 }
 
 const CardWidthChart = {
-  ...createSizeChartFixedCss(createSizeChartFixedGeometric(1.5, 10), 'rem'),
+  ...createSizeChartFixedCss(createSizeChartFixedGeometric(1.5, 10), "rem"),
   ...createSizeChartVariedCss(),
-  ...createSizeChartVoidCss()
+  ...createSizeChartVoidCss(),
 };
 
 const CardHeightChart = {
-  ...createSizeChartFixedCss(createSizeChartFixedArithmetic(5, 20), 'rem'),
+  ...createSizeChartFixedCss(createSizeChartFixedArithmetic(5, 20), "rem"),
   ...createSizeChartVariedCss(),
-  ...createSizeChartVoidCss()
+  ...createSizeChartVoidCss(),
 };
 
 const useCardStyles = createStyleHook(({ theme, device }, props: IZCard) => {
@@ -62,7 +62,7 @@ const useCardStyles = createStyleHook(({ theme, device }, props: IZCard) => {
     heightMd = heightLg,
     heightSm = heightMd,
     heightXs = heightSm,
-    fashion = theme.surface
+    fashion = theme.surface,
   } = props;
 
   const maxWidth = {
@@ -71,54 +71,54 @@ const useCardStyles = createStyleHook(({ theme, device }, props: IZCard) => {
 
     [device.break(ZSizeFixed.Large)]: {
       maxWidth: CardWidthChart[widthLg],
-      minHeight: CardHeightChart[heightLg]
+      minHeight: CardHeightChart[heightLg],
     },
 
     [device.break(ZSizeFixed.Medium)]: {
       maxWidth: CardWidthChart[widthMd],
-      minHeight: CardHeightChart[heightMd]
+      minHeight: CardHeightChart[heightMd],
     },
 
     [device.break(ZSizeFixed.Small)]: {
       maxWidth: CardWidthChart[widthSm],
-      minHeight: CardHeightChart[heightSm]
+      minHeight: CardHeightChart[heightSm],
     },
 
     [device.break(ZSizeFixed.ExtraSmall)]: {
       maxWidth: CardWidthChart[widthXs],
-      minHeight: CardHeightChart[heightXs]
-    }
+      minHeight: CardHeightChart[heightXs],
+    },
   };
 
   return {
     root: {
       ...maxWidth,
-      'position': 'relative',
-      'backgroundColor': fashion.main,
-      'color': fashion.contrast,
-      'display': 'flex',
-      'flexDirection': 'column',
+      position: "relative",
+      backgroundColor: fashion.main,
+      color: fashion.contrast,
+      display: "flex",
+      flexDirection: "column",
 
-      '.MuiCardHeader-content': {
-        flex: '1 1 0px',
-        overflow: 'hidden'
+      ".MuiCardHeader-content": {
+        flex: "1 1 0px",
+        overflow: "hidden",
       },
 
-      '.MuiCardHeader-subheader': {
+      ".MuiCardHeader-subheader": {
         color: fashion.contrast,
-        opacity: 0.9
-      }
+        opacity: 0.9,
+      },
     },
 
     content: {
-      flexGrow: 1
+      flexGrow: 1,
     },
 
     title: {
-      overflow: 'hidden',
-      whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis'
-    }
+      overflow: "hidden",
+      whiteSpace: "nowrap",
+      textOverflow: "ellipsis",
+    },
   };
 });
 
@@ -133,20 +133,33 @@ const useCardStyles = createStyleHook(({ theme, device }, props: IZCard) => {
  */
 export function ZCard(props: IZCard) {
   const { surface } = useFashionTheme();
-  const { avatar, className, children, footer, heading, subHeading, loading, fashion = surface, name } = props;
+  const {
+    avatar,
+    className,
+    children,
+    footer,
+    heading,
+    subHeading,
+    loading,
+    fashion = surface,
+    name,
+  } = props;
   const { classes } = useCardStyles(props);
 
   const renderHeader = () => (
     <CardHeader
-      className='ZCard-header'
+      className="ZCard-header"
       avatar={avatar}
       title={
-        <ZH2 className={cssJoinDefined('ZCard-header-heading', classes.title)} compact>
+        <ZH2
+          className={cssJoinDefined("ZCard-header-heading", classes.title)}
+          compact
+        >
           {heading}
         </ZH2>
       }
       subheader={
-        <ZCaption className='ZCard-header-subheading' compact>
+        <ZCaption className="ZCard-header-subheading" compact>
           {subHeading}
         </ZCaption>
       }
@@ -155,23 +168,30 @@ export function ZCard(props: IZCard) {
 
   const renderContent = () => {
     const renderLoading = () => (
-      <ZSuspenseProgress className='ZCard-loading' name='card-loading' height={ZSizeFixed.Medium} />
+      <ZSuspenseProgress
+        className="ZCard-loading"
+        name="card-loading"
+        height={ZSizeFixed.Medium}
+      />
     );
 
     return (
-      <CardContent className={cssJoinDefined('ZCard-content', classes.content)}>
+      <CardContent className={cssJoinDefined("ZCard-content", classes.content)}>
         {loading ? renderLoading() : children}
       </CardContent>
     );
   };
 
-  const renderFooter = () => (footer ? <CardActions className='ZCard-footer'>{footer}</CardActions> : null);
+  const renderFooter = () =>
+    footer ? (
+      <CardActions className="ZCard-footer">{footer}</CardActions>
+    ) : null;
 
   return (
     <Card
-      className={cssJoinDefined('ZCard-root', className, classes.root)}
+      className={cssJoinDefined("ZCard-root", className, classes.root)}
       elevation={5}
-      {...pickBy(props, (_, k) => startsWith(k, 'data-'))}
+      {...pickBy(props, (_, k) => startsWith(k, "data-"))}
       data-name={name}
       data-fashion={fashion.name}
     >

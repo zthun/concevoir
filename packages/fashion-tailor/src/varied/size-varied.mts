@@ -5,12 +5,12 @@ export enum ZSizeVaried {
   /**
    * Fit to whatever is inside the box.
    */
-  Fit = 'fit',
+  Fit = "fit",
 
   /**
    * Size to take up the space in the area for which the context exists.
    */
-  Full = 'full'
+  Full = "full",
 }
 
 /**

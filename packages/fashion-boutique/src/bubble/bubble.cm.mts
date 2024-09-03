@@ -1,8 +1,8 @@
-import { ZCircusActBuilder, ZCircusComponentModel } from '@zthun/cirque';
-import { ZSizeFixed, ZSizeVoid } from '@zthun/fashion-tailor';
+import { ZCircusActBuilder, ZCircusComponentModel } from "@zthun/cirque";
+import { ZSizeFixed, ZSizeVoid } from "@zthun/fashion-tailor";
 
 export class ZBubbleComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZBubble-root';
+  public static readonly Selector = ".ZBubble-root";
 
   public async click() {
     const act = new ZCircusActBuilder().click().build();
@@ -10,10 +10,10 @@ export class ZBubbleComponentModel extends ZCircusComponentModel {
   }
 
   public borderSize(): Promise<ZSizeFixed | ZSizeVoid> {
-    return this.driver.attribute('data-border-size', ZSizeVoid.None);
+    return this.driver.attribute("data-border-size", ZSizeVoid.None);
   }
 
   public fashion(): Promise<string> {
-    return this.driver.attribute('data-fashion', '');
+    return this.driver.attribute("data-fashion", "");
   }
 }

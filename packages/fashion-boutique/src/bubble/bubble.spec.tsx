@@ -1,19 +1,19 @@
-import { ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import React from 'react';
-import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
-import { ZIconFontAwesome } from '../icon/icon-font-awesome';
-import { ZIconComponentModel } from '../icon/icon.cm.mjs';
-import { ZBubble } from './bubble';
-import { ZBubbleComponentModel } from './bubble.cm.mjs';
+import { ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import React from "react";
+import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
+import { ZIconFontAwesome } from "../icon/icon-font-awesome";
+import { ZIconComponentModel } from "../icon/icon.cm.mjs";
+import { ZBubble } from "./bubble";
+import { ZBubbleComponentModel } from "./bubble.cm.mjs";
 
-describe('ZBubble', () => {
+describe("ZBubble", () => {
   let onClick: Mock | undefined;
 
   const createTestTarget = async () => {
     const element = (
       <ZBubble onClick={onClick}>
-        <ZIconFontAwesome name='save' />
+        <ZIconFontAwesome name="save" />
       </ZBubble>
     );
 
@@ -25,7 +25,7 @@ describe('ZBubble', () => {
     onClick = undefined;
   });
 
-  it('should render the content', async () => {
+  it("should render the content", async () => {
     // Arrange.
     const target = await createTestTarget();
     // Act.
@@ -34,8 +34,8 @@ describe('ZBubble', () => {
     expect(actual).toBeTruthy();
   });
 
-  describe('Click', () => {
-    it('should raise the onClick event', async () => {
+  describe("Click", () => {
+    it("should raise the onClick event", async () => {
       // Arrange.
       onClick = vi.fn();
       const target = await createTestTarget();

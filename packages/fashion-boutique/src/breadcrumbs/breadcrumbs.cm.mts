@@ -1,11 +1,11 @@
-import { ZCircusComponentModel } from '@zthun/cirque';
-import { ZLinkComponentModel } from '../link/link.cm.mjs';
+import { ZCircusComponentModel } from "@zthun/cirque";
+import { ZLinkComponentModel } from "../link/link.cm.mjs";
 
 /**
  * Represents a component model a ZBreadcrumbs component.
  */
 export class ZBreadcrumbsComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZBreadcrumbs-root';
+  public static readonly Selector = ".ZBreadcrumbs-root";
 
   /**
    * Gets the breadcrumbs underneath the path structure.
@@ -14,7 +14,9 @@ export class ZBreadcrumbsComponentModel extends ZCircusComponentModel {
    *        The list of breadcrumb items.
    */
   public async items(): Promise<ZLinkComponentModel[]> {
-    return (await this.driver.query('.ZBreadcrumbs-item')).map((item) => new ZLinkComponentModel(item));
+    return (await this.driver.query(".ZBreadcrumbs-item")).map(
+      (item) => new ZLinkComponentModel(item),
+    );
   }
 
   /**
@@ -28,7 +30,9 @@ export class ZBreadcrumbsComponentModel extends ZCircusComponentModel {
    *        no such breadcrumb is found.
    */
   public async item(name: string): Promise<ZLinkComponentModel | null> {
-    const [item] = await this.driver.query(`.ZBreadcrumbs-item[data-name="${name}"]`);
+    const [item] = await this.driver.query(
+      `.ZBreadcrumbs-item[data-name="${name}"]`,
+    );
     return item ? new ZLinkComponentModel(item) : null;
   }
 }

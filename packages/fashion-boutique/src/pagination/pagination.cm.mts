@@ -1,10 +1,10 @@
-import { ZCircusActBuilder, ZCircusComponentModel } from '@zthun/cirque';
+import { ZCircusActBuilder, ZCircusComponentModel } from "@zthun/cirque";
 
 /**
  * Represents the component model for the pagination component.
  */
 export class ZPaginationComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZPagination-root';
+  public static readonly Selector = ".ZPagination-root";
 
   /**
    * Gets the current selected page.
@@ -13,7 +13,9 @@ export class ZPaginationComponentModel extends ZCircusComponentModel {
    *        The current page.  Returns null if no such page is selected.
    */
   public async value(): Promise<number | null> {
-    const button = await this.driver.select('.MuiPaginationItem-page.Mui-selected');
+    const button = await this.driver.select(
+      ".MuiPaginationItem-page.Mui-selected",
+    );
     const page = await button.text();
     return +page;
   }
@@ -22,7 +24,7 @@ export class ZPaginationComponentModel extends ZCircusComponentModel {
    * Returns the total number of pages that can be jumped.
    */
   public async count(): Promise<number> {
-    const items = await this.driver.query('.MuiPaginationItem-page');
+    const items = await this.driver.query(".MuiPaginationItem-page");
     return items.length;
   }
 
@@ -64,7 +66,7 @@ export class ZPaginationComponentModel extends ZCircusComponentModel {
    *        navigation.
    */
   public next() {
-    return this._goToPage('Go to next page');
+    return this._goToPage("Go to next page");
   }
 
   /**
@@ -75,6 +77,6 @@ export class ZPaginationComponentModel extends ZCircusComponentModel {
    *        navigation.
    */
   public prev() {
-    return this._goToPage('Go to previous page');
+    return this._goToPage("Go to previous page");
   }
 }

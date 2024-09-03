@@ -1,15 +1,18 @@
-import { Link } from '@mui/material';
-import { cssJoinDefined } from '@zthun/helpful-fn';
-import { noop } from 'lodash-es';
-import React from 'react';
-import { IZComponentLabel } from '../component/component-label.mjs';
-import { IZComponentName } from '../component/component-name.mjs';
-import { IZComponentStyle } from '../component/component-style.mjs';
+import { Link } from "@mui/material";
+import { cssJoinDefined } from "@zthun/helpful-fn";
+import { noop } from "lodash-es";
+import React from "react";
+import { IZComponentLabel } from "../component/component-label.mjs";
+import { IZComponentName } from "../component/component-name.mjs";
+import { IZComponentStyle } from "../component/component-style.mjs";
 
 /**
  * Represents a link component (anchor tag).
  */
-export interface IZLink extends IZComponentStyle, IZComponentName, IZComponentLabel {
+export interface IZLink
+  extends IZComponentStyle,
+    IZComponentName,
+    IZComponentLabel {
   /**
    * The link url.
    */
@@ -42,7 +45,12 @@ export function ZLink(props: IZLink) {
   };
 
   return (
-    <Link className={cssJoinDefined('ZLink-root', className)} href={href} data-name={name} onClick={handleClick}>
+    <Link
+      className={cssJoinDefined("ZLink-root", className)}
+      href={href}
+      data-name={name}
+      onClick={handleClick}
+    >
       {label}
     </Link>
   );

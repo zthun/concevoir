@@ -1,10 +1,10 @@
-import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { cssJoinDefined } from '@zthun/helpful-fn';
-import { Property } from 'csstype';
-import React from 'react';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
-import { IZComponentStyle } from '../component/component-style.mjs';
-import { createStyleHook } from '../theme/styled';
+import { ZSizeFixed } from "@zthun/fashion-tailor";
+import { cssJoinDefined } from "@zthun/helpful-fn";
+import { Property } from "csstype";
+import React from "react";
+import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
+import { IZComponentStyle } from "../component/component-style.mjs";
+import { createStyleHook } from "../theme/styled";
 
 export interface IZGridSpan extends IZComponentHierarchy, IZComponentStyle {
   columnStart?: Property.GridColumnStart;
@@ -56,7 +56,7 @@ const useGridSpanStyles = createStyleHook(({ device }, props: IZGridSpan) => {
     rowEndLg = rowEnd,
     rowEndMd = rowEndLg,
     rowEndSm = rowEndMd,
-    rowEndXs = rowEndSm
+    rowEndXs = rowEndSm,
   } = props;
 
   return {
@@ -70,30 +70,30 @@ const useGridSpanStyles = createStyleHook(({ device }, props: IZGridSpan) => {
         gridColumnStart: columnStartLg,
         gridColumnEnd: columnEndLg,
         gridRowStart: rowStartLg,
-        gridRowEnd: rowEndLg
+        gridRowEnd: rowEndLg,
       },
 
       [device.break(ZSizeFixed.Medium)]: {
         gridColumnStart: columnStartMd,
         gridColumnEnd: columnEndMd,
         gridRowStart: rowStartMd,
-        gridRowEnd: rowEndMd
+        gridRowEnd: rowEndMd,
       },
 
       [device.break(ZSizeFixed.Small)]: {
         gridColumnStart: columnStartSm,
         gridColumnEnd: columnEndSm,
         gridRowStart: rowStartSm,
-        gridRowEnd: rowEndSm
+        gridRowEnd: rowEndSm,
       },
 
       [device.break(ZSizeFixed.ExtraSmall)]: {
         gridColumnStart: columnStartXs,
         gridColumnEnd: columnEndXs,
         gridRowStart: rowStartXs,
-        gridRowEnd: rowEndXs
-      }
-    }
+        gridRowEnd: rowEndXs,
+      },
+    },
   };
 });
 
@@ -101,5 +101,9 @@ export function ZGridSpan(props: IZGridSpan) {
   const { className, children } = props;
   const { classes } = useGridSpanStyles(props);
 
-  return <div className={cssJoinDefined('ZGridSpan-root', className, classes.root)}>{children}</div>;
+  return (
+    <div className={cssJoinDefined("ZGridSpan-root", className, classes.root)}>
+      {children}
+    </div>
+  );
 }

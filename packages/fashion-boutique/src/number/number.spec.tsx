@@ -1,11 +1,11 @@
-import { ZCircusBy, ZCircusKeyboardQwerty } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import React, { ReactNode } from 'react';
-import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
-import { ZNumberInput } from './number-input';
-import { ZNumberComponentModel } from './number.cm.mjs';
+import { ZCircusBy, ZCircusKeyboardQwerty } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import React, { ReactNode } from "react";
+import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
+import { ZNumberInput } from "./number-input";
+import { ZNumberComponentModel } from "./number.cm.mjs";
 
-describe('ZNumber', () => {
+describe("ZNumber", () => {
   let min: number | undefined;
   let max: number | undefined;
   let step: number | undefined;
@@ -24,9 +24,11 @@ describe('ZNumber', () => {
     onValueChange = undefined;
   });
 
-  async function shouldRenderLabelIfSet(createTestTarget: () => Promise<ZNumberComponentModel>) {
+  async function shouldRenderLabelIfSet(
+    createTestTarget: () => Promise<ZNumberComponentModel>,
+  ) {
     // Arrange.
-    label = 'Test Label';
+    label = "Test Label";
     const target = await createTestTarget();
     // Act.
     const actual = await (await target.label())?.text();
@@ -34,7 +36,9 @@ describe('ZNumber', () => {
     expect(actual).toEqual(label);
   }
 
-  async function shouldNotRenderLabelIfFalsy(createTestTarget: () => Promise<ZNumberComponentModel>) {
+  async function shouldNotRenderLabelIfFalsy(
+    createTestTarget: () => Promise<ZNumberComponentModel>,
+  ) {
     // Arrange.
     const target = await createTestTarget();
     // Act.
@@ -43,7 +47,9 @@ describe('ZNumber', () => {
     expect(actual).toBeFalsy();
   }
 
-  async function shouldSetTheMinValue(createTestTarget: () => Promise<ZNumberComponentModel>) {
+  async function shouldSetTheMinValue(
+    createTestTarget: () => Promise<ZNumberComponentModel>,
+  ) {
     // Arrange.
     min = 2;
     const target = await createTestTarget();
@@ -53,7 +59,9 @@ describe('ZNumber', () => {
     expect(actual).toEqual(min);
   }
 
-  async function shouldSetTheMaxValue(createTestTarget: () => Promise<ZNumberComponentModel>) {
+  async function shouldSetTheMaxValue(
+    createTestTarget: () => Promise<ZNumberComponentModel>,
+  ) {
     // Arrange.
     max = 50;
     const target = await createTestTarget();
@@ -63,7 +71,9 @@ describe('ZNumber', () => {
     expect(actual).toEqual(max);
   }
 
-  async function shouldUpdateToMaxWhenGoingOneBeyond(createTestTarget: () => Promise<ZNumberComponentModel>) {
+  async function shouldUpdateToMaxWhenGoingOneBeyond(
+    createTestTarget: () => Promise<ZNumberComponentModel>,
+  ) {
     // Arrange.
     max = 10;
     const target = await createTestTarget();
@@ -75,7 +85,9 @@ describe('ZNumber', () => {
     expect(actual).toEqual(max);
   }
 
-  async function shouldUpdateToMinWhenGoingOneBefore(createTestTarget: () => Promise<ZNumberComponentModel>) {
+  async function shouldUpdateToMinWhenGoingOneBefore(
+    createTestTarget: () => Promise<ZNumberComponentModel>,
+  ) {
     // Arrange.
     min = -5;
     const target = await createTestTarget();
@@ -89,7 +101,9 @@ describe('ZNumber', () => {
     expect(actual).toEqual(min);
   }
 
-  async function shouldSetTheStepValue(createTestTarget: () => Promise<ZNumberComponentModel>) {
+  async function shouldSetTheStepValue(
+    createTestTarget: () => Promise<ZNumberComponentModel>,
+  ) {
     // Arrange.
     step = 2;
     const target = await createTestTarget();
@@ -99,7 +113,9 @@ describe('ZNumber', () => {
     expect(actual).toEqual(step);
   }
 
-  async function shouldIncrementByStep(createTestTarget: () => Promise<ZNumberComponentModel>) {
+  async function shouldIncrementByStep(
+    createTestTarget: () => Promise<ZNumberComponentModel>,
+  ) {
     // Arrange.
     step = 5;
     min = 2;
@@ -113,7 +129,9 @@ describe('ZNumber', () => {
     expect(actual).toEqual(expected);
   }
 
-  async function shouldSetTheControlledValue(createTestTarget: () => Promise<ZNumberComponentModel>) {
+  async function shouldSetTheControlledValue(
+    createTestTarget: () => Promise<ZNumberComponentModel>,
+  ) {
     // Arrange.
     value = 24;
     const target = await createTestTarget();
@@ -123,7 +141,9 @@ describe('ZNumber', () => {
     expect(actual).toEqual(value);
   }
 
-  async function shouldRaiseOnValueChange(createTestTarget: () => Promise<ZNumberComponentModel>) {
+  async function shouldRaiseOnValueChange(
+    createTestTarget: () => Promise<ZNumberComponentModel>,
+  ) {
     // Arrange.
     min = 5;
     onValueChange = vi.fn();
@@ -137,9 +157,11 @@ describe('ZNumber', () => {
     expect(onValueChange).toHaveBeenCalledWith(expected);
   }
 
-  async function shouldMarkAsRequired(createTestTarget: () => Promise<ZNumberComponentModel>) {
+  async function shouldMarkAsRequired(
+    createTestTarget: () => Promise<ZNumberComponentModel>,
+  ) {
     // Arrange.
-    label = 'Test Number';
+    label = "Test Number";
     required = true;
     const target = await createTestTarget();
     // Act.
@@ -148,7 +170,7 @@ describe('ZNumber', () => {
     expect(actual).toBeTruthy();
   }
 
-  describe('Input', () => {
+  describe("Input", () => {
     async function createTestTarget() {
       const element = (
         <ZNumberInput
@@ -166,8 +188,8 @@ describe('ZNumber', () => {
       return ZCircusBy.first(driver, ZNumberComponentModel);
     }
 
-    describe('Value', () => {
-      it('should default to null.', async () => {
+    describe("Value", () => {
+      it("should default to null.", async () => {
         // Arrange.
         const target = await createTestTarget();
         // Act.
@@ -176,15 +198,15 @@ describe('ZNumber', () => {
         expect(actual).toBeNull();
       });
 
-      it('should set the controlled value.', async () => {
+      it("should set the controlled value.", async () => {
         await shouldSetTheControlledValue(createTestTarget);
       });
 
-      it('should raise the onValueChange when the number changes.', async () => {
+      it("should raise the onValueChange when the number changes.", async () => {
         await shouldRaiseOnValueChange(createTestTarget);
       });
 
-      it('should receive the typed number.', async () => {
+      it("should receive the typed number.", async () => {
         // Arrange.
         const expected = 42;
         const target = await createTestTarget();
@@ -194,30 +216,30 @@ describe('ZNumber', () => {
         expect(actual).toEqual(expected);
       });
 
-      it('should receive NaN for invalid keyboard inputs.', async () => {
+      it("should receive NaN for invalid keyboard inputs.", async () => {
         // Arrange.
         const target = await createTestTarget();
         // Act.
-        const actual = await target.keyboard('Not-a-number');
+        const actual = await target.keyboard("Not-a-number");
         // Assert.
         expect(actual).toBeNaN();
       });
 
-      it('should recover from NaN to 0 when incrementing.', async () => {
+      it("should recover from NaN to 0 when incrementing.", async () => {
         // Arrange.
         const expected = 0;
         const target = await createTestTarget();
-        await target.keyboard('Not-a-number');
+        await target.keyboard("Not-a-number");
         // Act.
         const actual = await target.up();
         // Assert.
         expect(actual).toEqual(expected + 1);
       });
 
-      it('should set null for the value if all text is deleted.', async () => {
+      it("should set null for the value if all text is deleted.", async () => {
         // Arrange.
         const target = await createTestTarget();
-        await target.keyboard('2');
+        await target.keyboard("2");
         // Act.
         await target.clear();
         const actual = await target.value();
@@ -226,48 +248,48 @@ describe('ZNumber', () => {
       });
     });
 
-    describe('Label', () => {
-      it('should render the label if set.', async () => {
+    describe("Label", () => {
+      it("should render the label if set.", async () => {
         await shouldRenderLabelIfSet(createTestTarget);
       });
 
-      it('should not render the label if falsy.', async () => {
+      it("should not render the label if falsy.", async () => {
         await shouldNotRenderLabelIfFalsy(createTestTarget);
       });
 
-      it('should be marked as required when required is true.', async () => {
+      it("should be marked as required when required is true.", async () => {
         await shouldMarkAsRequired(createTestTarget);
       });
     });
 
-    describe('Range', () => {
-      it('should set the min value.', async () => {
+    describe("Range", () => {
+      it("should set the min value.", async () => {
         await shouldSetTheMinValue(createTestTarget);
       });
 
-      it('should set the max value.', async () => {
+      it("should set the max value.", async () => {
         await shouldSetTheMaxValue(createTestTarget);
       });
 
-      it('should update to the maximum value when attempting to go one beyond the max.', async () => {
+      it("should update to the maximum value when attempting to go one beyond the max.", async () => {
         await shouldUpdateToMaxWhenGoingOneBeyond(createTestTarget);
       });
 
-      it('should update to the min value when attempting to go one beyond the min.', async () => {
+      it("should update to the min value when attempting to go one beyond the min.", async () => {
         await shouldUpdateToMinWhenGoingOneBefore(createTestTarget);
       });
     });
 
-    describe('Step', () => {
-      it('should set the step value.', async () => {
+    describe("Step", () => {
+      it("should set the step value.", async () => {
         await shouldSetTheStepValue(createTestTarget);
       });
 
-      it('should increment step the appropriate value.', async () => {
+      it("should increment step the appropriate value.", async () => {
         await shouldIncrementByStep(createTestTarget);
       });
 
-      it('should increment when hitting the up arrow key.', async () => {
+      it("should increment when hitting the up arrow key.", async () => {
         // Arrange.
         min = 0;
         const expected = min + 1;
@@ -279,7 +301,7 @@ describe('ZNumber', () => {
         expect(actual).toEqual(expected);
       });
 
-      it('should increment when hitting the up arrow key.', async () => {
+      it("should increment when hitting the up arrow key.", async () => {
         // Arrange.
         min = 0;
         max = 5;

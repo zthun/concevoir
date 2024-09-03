@@ -1,43 +1,47 @@
-import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
+import { ZCircusBy, ZCircusComponentModel } from "@zthun/cirque";
 import {
   ZBooleanComponentModel,
   ZButtonComponentModel,
   ZChoiceComponentModel,
-  ZModalComponentModel
-} from '@zthun/fashion-boutique';
+  ZModalComponentModel,
+} from "@zthun/fashion-boutique";
 
 export class ZModalPageComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZModalPage-root';
+  public static readonly Selector = ".ZModalPage-root";
 
   public async opened(): Promise<boolean> {
     const body = await this.driver.body();
-    const modal = await ZCircusBy.optional(body, ZModalComponentModel, 'modal');
+    const modal = await ZCircusBy.optional(body, ZModalComponentModel, "modal");
     return modal != null;
   }
 
   public openButton(): Promise<ZButtonComponentModel> {
-    return ZCircusBy.first(this.driver, ZButtonComponentModel, 'open-modal');
+    return ZCircusBy.first(this.driver, ZButtonComponentModel, "open-modal");
   }
 
   public async openModal(): Promise<ZModalComponentModel> {
     const button = await this.openButton();
     await button.click();
-    return ZCircusBy.first(await this.driver.body(), ZModalComponentModel, 'modal');
+    return ZCircusBy.first(
+      await this.driver.body(),
+      ZModalComponentModel,
+      "modal",
+    );
   }
 
   public fashion(): Promise<ZChoiceComponentModel> {
-    return ZCircusBy.first(this.driver, ZChoiceComponentModel, 'fashion');
+    return ZCircusBy.first(this.driver, ZChoiceComponentModel, "fashion");
   }
 
   public header(): Promise<ZBooleanComponentModel> {
-    return ZCircusBy.first(this.driver, ZBooleanComponentModel, 'header');
+    return ZCircusBy.first(this.driver, ZBooleanComponentModel, "header");
   }
 
   public footer(): Promise<ZBooleanComponentModel> {
-    return ZCircusBy.first(this.driver, ZBooleanComponentModel, 'footer');
+    return ZCircusBy.first(this.driver, ZBooleanComponentModel, "footer");
   }
 
   public fullScreen(): Promise<ZBooleanComponentModel> {
-    return ZCircusBy.first(this.driver, ZBooleanComponentModel, 'full-screen');
+    return ZCircusBy.first(this.driver, ZBooleanComponentModel, "full-screen");
   }
 }

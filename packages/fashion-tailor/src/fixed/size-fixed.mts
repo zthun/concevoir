@@ -12,23 +12,23 @@ export enum ZSizeFixed {
   /**
    * Extra small (xs)
    */
-  ExtraSmall = 'xs',
+  ExtraSmall = "xs",
   /**
    * Small (sm)
    */
-  Small = 'sm',
+  Small = "sm",
   /**
    * Medium (md)
    */
-  Medium = 'md',
+  Medium = "md",
   /**
    * Large (lg)
    */
-  Large = 'lg',
+  Large = "lg",
   /**
    * Extra Large (xl)
    */
-  ExtraLarge = 'xl'
+  ExtraLarge = "xl",
 }
 
 /**

@@ -1,10 +1,14 @@
-import { IZCircusDriver, ZCircusActBuilder, ZCircusComponentModel } from '@zthun/cirque';
+import {
+  IZCircusDriver,
+  ZCircusActBuilder,
+  ZCircusComponentModel,
+} from "@zthun/cirque";
 
 /**
  * Represents a react component model for the ZBoolean component.
  */
 export class ZBooleanComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZBoolean-root';
+  public static readonly Selector = ".ZBoolean-root";
 
   /**
    * Gets the underlying input element.
@@ -34,7 +38,7 @@ export class ZBooleanComponentModel extends ZCircusComponentModel {
    *        True if the component is required.
    */
   public async required(): Promise<boolean> {
-    return this.driver.peek('.MuiFormControlLabel-asterisk');
+    return this.driver.peek(".MuiFormControlLabel-asterisk");
   }
 
   /**
@@ -44,7 +48,7 @@ export class ZBooleanComponentModel extends ZCircusComponentModel {
    *        The fashion name.
    */
   public fashion(): Promise<string | null> {
-    return this.driver.attribute('data-fashion');
+    return this.driver.attribute("data-fashion");
   }
 
   /**
@@ -55,8 +59,8 @@ export class ZBooleanComponentModel extends ZCircusComponentModel {
    */
   public async value(): Promise<boolean | null> {
     const input = await this._input();
-    const indeterminate = await input.attribute('data-indeterminate');
-    return indeterminate === 'true' ? null : input.selected();
+    const indeterminate = await input.attribute("data-indeterminate");
+    return indeterminate === "true" ? null : input.selected();
   }
 
   /**

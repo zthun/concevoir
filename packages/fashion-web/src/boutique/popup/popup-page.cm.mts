@@ -1,11 +1,11 @@
-import { ZCircusBy, ZCircusComponentModel } from '@zthun/cirque';
-import { ZPopupButtonComponentModel } from '@zthun/fashion-boutique';
+import { ZCircusBy, ZCircusComponentModel } from "@zthun/cirque";
+import { ZPopupButtonComponentModel } from "@zthun/fashion-boutique";
 
 /**
  * Represents a component model for the popup page.
  */
 export class ZPopupPageComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZPopupPage-root';
+  public static readonly Selector = ".ZPopupPage-root";
 
   /**
    * Gets the popup button toggler.

@@ -1,16 +1,16 @@
-import React from 'react';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
-import { createStyleHook } from '../theme/styled';
+import React from "react";
+import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
+import { createStyleHook } from "../theme/styled";
 
 const useFullScreenStyles = createStyleHook(({ tailor }) => ({
   screen: {
     padding: tailor.gap(),
-    position: 'absolute',
+    position: "absolute",
     left: 0,
     right: 0,
     top: 0,
-    bottom: 0
-  }
+    bottom: 0,
+  },
 }));
 
 export function ZFullScreen(props: IZComponentHierarchy) {

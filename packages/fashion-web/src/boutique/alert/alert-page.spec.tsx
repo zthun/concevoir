@@ -1,13 +1,17 @@
-import { ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { ZFashionName, ZFashionPriority, ZFashionSeverity } from '@zthun/fashion-theme';
-import { lowerCase } from 'lodash-es';
-import React from 'react';
-import { describe, expect, it } from 'vitest';
-import { ZAlertPage } from './alert-page';
-import { ZAlertPageComponentModel } from './alert-page.cm.mjs';
+import { ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import {
+  ZFashionName,
+  ZFashionPriority,
+  ZFashionSeverity,
+} from "@zthun/fashion-theme";
+import { lowerCase } from "lodash-es";
+import React from "react";
+import { describe, expect, it } from "vitest";
+import { ZAlertPage } from "./alert-page";
+import { ZAlertPageComponentModel } from "./alert-page.cm.mjs";
 
-describe('ZBooleanPage', () => {
+describe("ZBooleanPage", () => {
   async function createTestTarget() {
     const element = <ZAlertPage />;
 
@@ -15,8 +19,8 @@ describe('ZBooleanPage', () => {
     return ZCircusBy.first(driver, ZAlertPageComponentModel);
   }
 
-  describe('Message', () => {
-    it('should render the message.', async () => {
+  describe("Message", () => {
+    it("should render the message.", async () => {
       // Arrange.
       const target = await createTestTarget();
       // Act.
@@ -27,8 +31,8 @@ describe('ZBooleanPage', () => {
     });
   });
 
-  describe('Header', () => {
-    it('should render when the toggle is on', async () => {
+  describe("Header", () => {
+    it("should render when the toggle is on", async () => {
       // Arrange.
       const target = await createTestTarget();
       const header = await target.header();
@@ -40,7 +44,7 @@ describe('ZBooleanPage', () => {
       expect(actual).toBeTruthy();
     });
 
-    it('should not render when the toggle is off', async () => {
+    it("should not render when the toggle is off", async () => {
       // Arrange.
       const target = await createTestTarget();
       const header = await target.header();
@@ -53,8 +57,8 @@ describe('ZBooleanPage', () => {
     });
   });
 
-  describe('Avatar', () => {
-    it('should render when the toggle is on', async () => {
+  describe("Avatar", () => {
+    it("should render when the toggle is on", async () => {
       // Arrange.
       const target = await createTestTarget();
       const avatar = await target.avatar();
@@ -66,7 +70,7 @@ describe('ZBooleanPage', () => {
       expect(actual).toBeTruthy();
     });
 
-    it('should not render when the toggle is off', async () => {
+    it("should not render when the toggle is off", async () => {
       // Arrange.
       const target = await createTestTarget();
       const avatar = await target.avatar();
@@ -79,7 +83,7 @@ describe('ZBooleanPage', () => {
     });
   });
 
-  describe('Fashion', () => {
+  describe("Fashion", () => {
     const shouldUpdateFashionTo = async (expected: ZFashionName) => {
       // Arrange.
       const target = await createTestTarget();
@@ -92,7 +96,9 @@ describe('ZBooleanPage', () => {
       expect(lowerCase(actual)).toEqual(expected);
     };
 
-    it('should update the fashion to secondary', () => shouldUpdateFashionTo(ZFashionPriority.Secondary));
-    it('should update the fashion to success', async () => shouldUpdateFashionTo(ZFashionSeverity.Success));
+    it("should update the fashion to secondary", () =>
+      shouldUpdateFashionTo(ZFashionPriority.Secondary));
+    it("should update the fashion to success", async () =>
+      shouldUpdateFashionTo(ZFashionSeverity.Success));
   });
 });

@@ -1,17 +1,26 @@
-import { Stack } from '@mui/material';
-import { createSizeChartFixedArithmetic, createSizeChartVoidZero, ZSizeFixed, ZSizeVoid } from '@zthun/fashion-tailor';
-import { cssJoinDefined, firstDefined, ZOrientation } from '@zthun/helpful-fn';
-import { Property } from 'csstype';
-import React from 'react';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
-import { IZComponentName } from '../component/component-name.mjs';
-import { IZComponentOrientation } from '../component/component-orientation.mjs';
-import { IZComponentStyle } from '../component/component-style.mjs';
+import { Stack } from "@mui/material";
+import {
+  createSizeChartFixedArithmetic,
+  createSizeChartVoidZero,
+  ZSizeFixed,
+  ZSizeVoid,
+} from "@zthun/fashion-tailor";
+import { cssJoinDefined, firstDefined, ZOrientation } from "@zthun/helpful-fn";
+import { Property } from "csstype";
+import React from "react";
+import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
+import { IZComponentName } from "../component/component-name.mjs";
+import { IZComponentOrientation } from "../component/component-orientation.mjs";
+import { IZComponentStyle } from "../component/component-style.mjs";
 
 /**
  * Represents a stack component.
  */
-interface IZStack extends IZComponentHierarchy, IZComponentStyle, IZComponentName, IZComponentOrientation {
+interface IZStack
+  extends IZComponentHierarchy,
+    IZComponentStyle,
+    IZComponentName,
+    IZComponentOrientation {
   alignItems?: Property.AlignItems;
   gap?: ZSizeFixed | ZSizeVoid;
   justifyContent?: Property.JustifyContent;
@@ -20,22 +29,31 @@ interface IZStack extends IZComponentHierarchy, IZComponentStyle, IZComponentNam
 
 const GapChart = {
   ...createSizeChartFixedArithmetic(1, 1),
-  ...createSizeChartVoidZero()
+  ...createSizeChartVoidZero(),
 };
 
 export function ZStack(props: IZStack) {
-  const { className, alignItems, justifyContent, gap, name, orientation, children, inline } = props;
+  const {
+    className,
+    alignItems,
+    justifyContent,
+    gap,
+    name,
+    orientation,
+    children,
+    inline,
+  } = props;
   const _gap = firstDefined(ZSizeVoid.None, gap);
-  const direction = orientation === ZOrientation.Horizontal ? 'row' : 'column';
+  const direction = orientation === ZOrientation.Horizontal ? "row" : "column";
   const spacing = GapChart[_gap];
 
   return (
     <Stack
-      className={cssJoinDefined('ZStack-root', className)}
+      className={cssJoinDefined("ZStack-root", className)}
       alignItems={alignItems}
       justifyContent={justifyContent}
       spacing={spacing}
-      sx={{ display: inline ? 'inline-flex' : 'flex' }}
+      sx={{ display: inline ? "inline-flex" : "flex" }}
       direction={direction}
       data-orientation={orientation}
       data-name={name}

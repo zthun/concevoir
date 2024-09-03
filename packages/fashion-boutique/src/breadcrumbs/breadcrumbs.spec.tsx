@@ -1,14 +1,14 @@
-import { ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { createMemoryHistory, MemoryHistory } from 'history';
-import React from 'react';
-import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
-import { ZTestRouter } from '../router/router-dom.mjs';
-import { ZBreadcrumbsLocation } from './breadcrumbs-location';
-import { ZBreadcrumbsComponentModel } from './breadcrumbs.cm.mjs';
+import { ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { createMemoryHistory, MemoryHistory } from "history";
+import React from "react";
+import { beforeEach, describe, expect, it, Mock, vi } from "vitest";
+import { ZTestRouter } from "../router/router-dom.mjs";
+import { ZBreadcrumbsLocation } from "./breadcrumbs-location";
+import { ZBreadcrumbsComponentModel } from "./breadcrumbs.cm.mjs";
 
-describe('ZBreadcrumbs', () => {
-  describe('Location', () => {
+describe("ZBreadcrumbs", () => {
+  describe("Location", () => {
     let path: string;
     let onClick: Mock | undefined;
     let home: { name: string; path?: string } | undefined;
@@ -26,25 +26,25 @@ describe('ZBreadcrumbs', () => {
     }
 
     beforeEach(() => {
-      path = '/path/to/resource';
+      path = "/path/to/resource";
       history = createMemoryHistory({ initialEntries: [path] });
       home = undefined;
     });
 
-    it('should render each path separated by slash', async () => {
+    it("should render each path separated by slash", async () => {
       // Arrange.
       const target = await createTestTarget();
       // Act.
       const items = await target.items();
       const labels = await Promise.all(items.map((item) => item.label()));
-      const actual = `/${labels.join('/')}`;
+      const actual = `/${labels.join("/")}`;
       // Assert.
       expect(actual).toEqual(path);
     });
 
-    it('should retrieve a breadcrumb by name', async () => {
+    it("should retrieve a breadcrumb by name", async () => {
       // Arrange.
-      const expected = '/path/to';
+      const expected = "/path/to";
       const target = await createTestTarget();
       // Act.
       const actual = await (await target.item(expected))?.name();
@@ -52,48 +52,48 @@ describe('ZBreadcrumbs', () => {
       expect(actual).toEqual(expected);
     });
 
-    it('should return null if the breadcrumb cannot be found', async () => {
+    it("should return null if the breadcrumb cannot be found", async () => {
       // Arrange.
       const target = await createTestTarget();
       // Act.
-      const actual = await target.item('/path/not/found');
+      const actual = await target.item("/path/not/found");
       // Assert.
       expect(actual).toBeNull();
     });
 
-    it('should raise the onClick event with the breadcrumb clicked href', async () => {
+    it("should raise the onClick event with the breadcrumb clicked href", async () => {
       // Arrange.
       onClick = vi.fn();
       const target = await createTestTarget();
       // Act.
-      const link = await target.item('/path/to');
+      const link = await target.item("/path/to");
       const expected = await link?.reference();
       await link?.click();
       // Assert.
       expect(onClick).toHaveBeenCalledWith(expected);
     });
 
-    describe('Home', () => {
+    describe("Home", () => {
       beforeEach(() => {
-        home = { name: 'Home' };
+        home = { name: "Home" };
       });
 
-      it('should render the named home path if provided', async () => {
+      it("should render the named home path if provided", async () => {
         // Arrange.
         const target = await createTestTarget();
         // Act.
-        const link = await target.item('/');
+        const link = await target.item("/");
         const actual = await link?.label();
         // Assert.
         expect(actual).toEqual(home!.name);
       });
 
-      it('should raise the onClick event to the home path when clicked', async () => {
+      it("should raise the onClick event to the home path when clicked", async () => {
         // Arrange.
         onClick = vi.fn();
-        home!.path = '/home';
+        home!.path = "/home";
         const target = await createTestTarget();
-        const link = await target.item('/home');
+        const link = await target.item("/home");
         // Act.
         const expected = await link?.reference();
         await link?.click();

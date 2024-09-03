@@ -1,13 +1,13 @@
-import { ZCircusBy } from '@zthun/cirque';
-import { ZCircusSetupRenderer } from '@zthun/cirque-du-react';
-import { IZFashion, ZFashionBuilder } from '@zthun/fashion-theme';
-import React, { ReactElement } from 'react';
-import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
-import { ZBooleanCheckbox } from './boolean-checkbox';
-import { ZBooleanSwitch } from './boolean-switch';
-import { ZBooleanComponentModel } from './boolean.cm.mjs';
+import { ZCircusBy } from "@zthun/cirque";
+import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { IZFashion, ZFashionBuilder } from "@zthun/fashion-theme";
+import React, { ReactElement } from "react";
+import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
+import { ZBooleanCheckbox } from "./boolean-checkbox";
+import { ZBooleanSwitch } from "./boolean-switch";
+import { ZBooleanComponentModel } from "./boolean.cm.mjs";
 
-describe('ZBoolean', () => {
+describe("ZBoolean", () => {
   let disabled: boolean | undefined;
   let required: boolean | undefined;
   let fashion: IZFashion | undefined;
@@ -25,7 +25,10 @@ describe('ZBoolean', () => {
     onCheckChanged = undefined;
   });
 
-  async function assertValue<T>(createTestTarget: () => Promise<ZBooleanComponentModel>, expected: T) {
+  async function assertValue<T>(
+    createTestTarget: () => Promise<ZBooleanComponentModel>,
+    expected: T,
+  ) {
     // Arrange.
     const target = await createTestTarget();
     // Act.
@@ -34,7 +37,10 @@ describe('ZBoolean', () => {
     expect(actual).toEqual(expected);
   }
 
-  async function assertDisabled(createTestTarget: () => Promise<ZBooleanComponentModel>, expected: boolean) {
+  async function assertDisabled(
+    createTestTarget: () => Promise<ZBooleanComponentModel>,
+    expected: boolean,
+  ) {
     // Arrange.
     disabled = expected;
     const target = await createTestTarget();
@@ -44,7 +50,10 @@ describe('ZBoolean', () => {
     expect(actual).toEqual(expected);
   }
 
-  async function assertRequired(createTestTarget: () => Promise<ZBooleanComponentModel>, expected: boolean) {
+  async function assertRequired(
+    createTestTarget: () => Promise<ZBooleanComponentModel>,
+    expected: boolean,
+  ) {
     // Arrange.
     required = expected;
     const target = await createTestTarget();
@@ -54,7 +63,10 @@ describe('ZBoolean', () => {
     expect(actual).toEqual(expected);
   }
 
-  async function assertRaisesOnValueChange(createTestTarget: () => Promise<ZBooleanComponentModel>, expected: boolean) {
+  async function assertRaisesOnValueChange(
+    createTestTarget: () => Promise<ZBooleanComponentModel>,
+    expected: boolean,
+  ) {
     // Arrange.
     onCheckChanged = vi.fn();
     const target = await createTestTarget();
@@ -67,7 +79,7 @@ describe('ZBoolean', () => {
   async function assertChangesState(
     createTestTarget: () => Promise<ZBooleanComponentModel>,
     expected: boolean,
-    start: boolean
+    start: boolean,
   ) {
     // Arrange.
     const target = await createTestTarget();
@@ -79,9 +91,11 @@ describe('ZBoolean', () => {
     expect(actual).toEqual(expected);
   }
 
-  async function assertSetsFashion(createTestTarget: () => Promise<ZBooleanComponentModel>) {
+  async function assertSetsFashion(
+    createTestTarget: () => Promise<ZBooleanComponentModel>,
+  ) {
     // Arrange.
-    fashion = new ZFashionBuilder().name('TestFashion').build();
+    fashion = new ZFashionBuilder().name("TestFashion").build();
     const target = await createTestTarget();
     // Act.
     const actual = await target.fashion();
@@ -89,7 +103,7 @@ describe('ZBoolean', () => {
     expect(actual).toEqual(fashion.name);
   }
 
-  describe('Checkbox', () => {
+  describe("Checkbox", () => {
     async function createTestTarget(value?: boolean | null) {
       const element = (
         <ZBooleanCheckbox
@@ -97,7 +111,7 @@ describe('ZBoolean', () => {
           onValueChange={onCheckChanged}
           disabled={disabled}
           required={required}
-          label='Checkbox'
+          label="Checkbox"
           fashion={fashion}
         />
       );
@@ -105,60 +119,60 @@ describe('ZBoolean', () => {
       return createComponentModel(element);
     }
 
-    it('can be enabled.', async () => {
+    it("can be enabled.", async () => {
       assertDisabled(createTestTarget, false);
     });
 
-    it('can be disabled.', async () => {
+    it("can be disabled.", async () => {
       await assertDisabled(createTestTarget, true);
     });
 
-    it('can be optional.', async () => {
+    it("can be optional.", async () => {
       assertRequired(createTestTarget, false);
     });
 
-    it('can be required.', async () => {
+    it("can be required.", async () => {
       await assertRequired(createTestTarget, true);
     });
 
-    it('should render a checked checkbox for true.', async () => {
+    it("should render a checked checkbox for true.", async () => {
       await assertValue(createTestTarget.bind(null, true), true);
     });
 
-    it('should render an unchecked checkbox for false.', async () => {
+    it("should render an unchecked checkbox for false.", async () => {
       await assertValue(createTestTarget.bind(null, false), false);
     });
 
-    it('should render an indeterminate state for null.', async () => {
+    it("should render an indeterminate state for null.", async () => {
       await assertValue(createTestTarget.bind(null, null), null);
     });
 
-    it('should raise onValueChange from true to false when clicked.', async () => {
+    it("should raise onValueChange from true to false when clicked.", async () => {
       await assertRaisesOnValueChange(createTestTarget.bind(null, true), false);
     });
 
-    it('should raise onValueChange from false to true when clicked.', async () => {
+    it("should raise onValueChange from false to true when clicked.", async () => {
       await assertRaisesOnValueChange(createTestTarget.bind(null, false), true);
     });
 
-    it('should raise onValueChange from indeterminate to true when clicked.', async () => {
+    it("should raise onValueChange from indeterminate to true when clicked.", async () => {
       await assertRaisesOnValueChange(createTestTarget.bind(null, null), true);
     });
 
-    it('should flip the state from true to false internally if no value is provided from the outside.', async () => {
+    it("should flip the state from true to false internally if no value is provided from the outside.", async () => {
       await assertChangesState(createTestTarget, true, false);
     });
 
-    it('should flip the state from false to true internally if no value is provided from the outside.', async () => {
+    it("should flip the state from false to true internally if no value is provided from the outside.", async () => {
       await assertChangesState(createTestTarget, false, true);
     });
 
-    it('should set the named fashion.', async () => {
+    it("should set the named fashion.", async () => {
       await assertSetsFashion(createTestTarget);
     });
   });
 
-  describe('Switch', () => {
+  describe("Switch", () => {
     async function createTestTarget(value?: boolean) {
       const element = (
         <ZBooleanSwitch
@@ -166,7 +180,7 @@ describe('ZBoolean', () => {
           onValueChange={onCheckChanged}
           disabled={disabled}
           required={required}
-          label='Switch'
+          label="Switch"
           fashion={fashion}
         />
       );
@@ -174,47 +188,47 @@ describe('ZBoolean', () => {
       return createComponentModel(element);
     }
 
-    it('can be enabled.', async () => {
+    it("can be enabled.", async () => {
       assertDisabled(createTestTarget, false);
     });
 
-    it('can be disabled.', async () => {
+    it("can be disabled.", async () => {
       await assertDisabled(createTestTarget, true);
     });
 
-    it('can be optional.', async () => {
+    it("can be optional.", async () => {
       assertRequired(createTestTarget, false);
     });
 
-    it('can be required.', async () => {
+    it("can be required.", async () => {
       await assertRequired(createTestTarget, true);
     });
 
-    it('should toggle the switch on for true.', async () => {
+    it("should toggle the switch on for true.", async () => {
       await assertValue(createTestTarget.bind(null, true), true);
     });
 
-    it('should toggle the switch off for false.', async () => {
+    it("should toggle the switch off for false.", async () => {
       await assertValue(createTestTarget.bind(null, false), false);
     });
 
-    it('should raise onValueChange from true to false when the truthy radio is clicked.', async () => {
+    it("should raise onValueChange from true to false when the truthy radio is clicked.", async () => {
       await assertRaisesOnValueChange(createTestTarget.bind(null, true), false);
     });
 
-    it('should raise onValueChange from false to true when the falsy radio is clicked.', async () => {
+    it("should raise onValueChange from false to true when the falsy radio is clicked.", async () => {
       await assertRaisesOnValueChange(createTestTarget.bind(null, false), true);
     });
 
-    it('should flip the state from true to false internally if no value is provided from the outside.', async () => {
+    it("should flip the state from true to false internally if no value is provided from the outside.", async () => {
       await assertChangesState(createTestTarget, true, false);
     });
 
-    it('should flip the state from false to true internally if no value is provided from the outside.', async () => {
+    it("should flip the state from false to true internally if no value is provided from the outside.", async () => {
       await assertChangesState(createTestTarget, false, true);
     });
 
-    it('should set the named fashion.', async () => {
+    it("should set the named fashion.", async () => {
       await assertSetsFashion(createTestTarget);
     });
   });

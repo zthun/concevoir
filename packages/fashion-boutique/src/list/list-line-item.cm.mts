@@ -1,5 +1,5 @@
-import { IZCircusDriver, ZCircusActBuilder } from '@zthun/cirque';
-import { ZListItemComponentModel } from './list-item.cm.mjs';
+import { IZCircusDriver, ZCircusActBuilder } from "@zthun/cirque";
+import { ZListItemComponentModel } from "./list-item.cm.mjs";
 
 /**
  * Represents a component model for a line item.
@@ -8,7 +8,7 @@ export class ZListLineItemComponentModel {
   /**
    * The class that will be on the element for this item.
    */
-  public static readonly ClassName = 'ZListLineItem-root';
+  public static readonly ClassName = "ZListLineItem-root";
 
   /**
    * Initializes a new instance of this object.
@@ -26,7 +26,7 @@ export class ZListLineItemComponentModel {
    *        the element is not clickable.
    */
   private async _button(): Promise<IZCircusDriver | null> {
-    const [button] = await this.item.driver.query('.ZListLineItem-button');
+    const [button] = await this.item.driver.query(".ZListLineItem-button");
     return button || null;
   }
 
@@ -63,8 +63,10 @@ export class ZListLineItemComponentModel {
    *        The heading of the line item.
    */
   public async heading(): Promise<string> {
-    const [text] = await this.item.driver.query('.ZListLineItem-text .MuiListItemText-primary');
-    return text?.text() || '';
+    const [text] = await this.item.driver.query(
+      ".ZListLineItem-text .MuiListItemText-primary",
+    );
+    return text?.text() || "";
   }
 
   /**
@@ -75,7 +77,9 @@ export class ZListLineItemComponentModel {
    *        does not exist.
    */
   public async subHeading(): Promise<string> {
-    const [description] = await this.item.driver.query('.ZListLineItem-text .MuiListItemText-secondary');
-    return description?.text() || '';
+    const [description] = await this.item.driver.query(
+      ".ZListLineItem-text .MuiListItemText-secondary",
+    );
+    return description?.text() || "";
   }
 }

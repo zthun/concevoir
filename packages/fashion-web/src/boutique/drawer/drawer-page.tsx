@@ -8,13 +8,18 @@ import {
   ZGrid,
   ZH3,
   ZIconFontAwesome,
-  ZParagraph
-} from '@zthun/fashion-boutique';
-import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { setFirst, ZHorizontalAnchor, ZSideAnchor, ZVerticalAnchor } from '@zthun/helpful-fn';
-import { identity, startCase } from 'lodash-es';
-import React, { useState } from 'react';
-import { ZFashionRouteDrawer } from '../../routes.mjs';
+  ZParagraph,
+} from "@zthun/fashion-boutique";
+import { ZSizeFixed } from "@zthun/fashion-tailor";
+import {
+  setFirst,
+  ZHorizontalAnchor,
+  ZSideAnchor,
+  ZVerticalAnchor,
+} from "@zthun/helpful-fn";
+import { identity, startCase } from "lodash-es";
+import React, { useState } from "react";
+import { ZFashionRouteDrawer } from "../../routes.mjs";
 
 /**
  * Represents a demo for drawers.
@@ -29,31 +34,38 @@ export function ZDrawerPage() {
     ZHorizontalAnchor.Left,
     ZHorizontalAnchor.Right,
     ZVerticalAnchor.Top,
-    ZVerticalAnchor.Bottom
+    ZVerticalAnchor.Bottom,
   ];
 
   const now = () => setTimestamp(new Date().getTime());
 
   return (
     <ZCard
-      className='ZDrawerPage-root'
+      className="ZDrawerPage-root"
       heading={ZFashionRouteDrawer.name}
       subHeading={ZFashionRouteDrawer.description}
-      avatar={<ZIconFontAwesome name={ZFashionRouteDrawer.avatar} width={ZSizeFixed.Medium} />}
+      avatar={
+        <ZIconFontAwesome
+          name={ZFashionRouteDrawer.avatar}
+          width={ZSizeFixed.Medium}
+        />
+      }
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>
 
         <ZParagraph>
-          Drawers are a neat way to save real estate on a page. Most users will not need to see everything all at once
-          and only need to navigate or view specific pieces of data when they need it. Thus, a drawer can easily be used
-          to handle this information.
+          Drawers are a neat way to save real estate on a page. Most users will
+          not need to see everything all at once and only need to navigate or
+          view specific pieces of data when they need it. Thus, a drawer can
+          easily be used to handle this information.
         </ZParagraph>
 
         <ZParagraph>
-          However, be careful. You do not want to hide too much of your interface behind a drawer because it begins to
-          turn into mystery meat features, where the user will not be able to figure out how to navigate your site, or
-          know where specific pieces of information is.
+          However, be careful. You do not want to hide too much of your
+          interface behind a drawer because it begins to turn into mystery meat
+          features, where the user will not be able to figure out how to
+          navigate your site, or know where specific pieces of information is.
         </ZParagraph>
 
         <ZDrawerButton
@@ -64,7 +76,12 @@ export function ZDrawerPage() {
           <ZBox padding={ZSizeFixed.Medium}>
             <ZH3>Drawer</ZH3>
             <ZParagraph>You can put whatever you want in a drawer.</ZParagraph>
-            <ZButton label='Close Drawer' fashion={success} onClick={now} name='close' />
+            <ZButton
+              label="Close Drawer"
+              fashion={success}
+              onClick={now}
+              name="close"
+            />
           </ZBox>
         </ZDrawerButton>
       </ZBox>
@@ -75,13 +92,17 @@ export function ZDrawerPage() {
         <ZGrid gap={ZSizeFixed.Medium}>
           <ZChoiceDropDown
             value={[anchor]}
-            onValueChange={setFirst.bind(null, setAnchor, ZHorizontalAnchor.Left)}
+            onValueChange={setFirst.bind(
+              null,
+              setAnchor,
+              ZHorizontalAnchor.Left,
+            )}
             options={anchors}
-            label='Anchor'
+            label="Anchor"
             identifier={identity}
             renderOption={startCase}
             indelible
-            name='anchor'
+            name="anchor"
           />
         </ZGrid>
       </ZBox>

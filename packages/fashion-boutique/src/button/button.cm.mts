@@ -1,11 +1,11 @@
-import { ZCircusActBuilder, ZCircusComponentModel } from '@zthun/cirque';
-import { ZSuspenseComponentModel } from '../suspense/suspense.cm.mjs';
+import { ZCircusActBuilder, ZCircusComponentModel } from "@zthun/cirque";
+import { ZSuspenseComponentModel } from "../suspense/suspense.cm.mjs";
 
 /**
  * Represents the component model for a button element.
  */
 export class ZButtonComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZButton-root';
+  public static readonly Selector = ".ZButton-root";
 
   /**
    * Returns the name of the button.
@@ -14,7 +14,7 @@ export class ZButtonComponentModel extends ZCircusComponentModel {
    *        The button name if it has one.  Null otherwise.
    */
   public name(): Promise<string | null> {
-    return this.driver.attribute('name');
+    return this.driver.attribute("name");
   }
 
   /**
@@ -44,7 +44,7 @@ export class ZButtonComponentModel extends ZCircusComponentModel {
    *        True if the button is outlined.  False otherwise.
    */
   public async outlined(): Promise<boolean> {
-    const c = await this.driver.classes(['ZButton-outline']);
+    const c = await this.driver.classes(["ZButton-outline"]);
     return !!c.length;
   }
 
@@ -55,8 +55,8 @@ export class ZButtonComponentModel extends ZCircusComponentModel {
    *        True if the button is compact. False otherwise.
    */
   public async compact(): Promise<boolean> {
-    const c = await this.driver.attribute('data-compact');
-    return c === 'true';
+    const c = await this.driver.attribute("data-compact");
+    return c === "true";
   }
 
   /**
@@ -66,7 +66,7 @@ export class ZButtonComponentModel extends ZCircusComponentModel {
    *        True if the button is borderless.  False otherwise.
    */
   public async borderless(): Promise<boolean> {
-    const c = await this.driver.classes(['ZButton-borderless']);
+    const c = await this.driver.classes(["ZButton-borderless"]);
     return !!c.length;
   }
 
@@ -77,7 +77,7 @@ export class ZButtonComponentModel extends ZCircusComponentModel {
    *        The button content text, if any.
    */
   public async text(): Promise<string> {
-    const content = await this.driver.select('.ZButton-content');
+    const content = await this.driver.select(".ZButton-content");
     return content.text();
   }
 
@@ -89,7 +89,7 @@ export class ZButtonComponentModel extends ZCircusComponentModel {
    *        Null if there is no fashion assigned.
    */
   public fashion(): Promise<string | null> {
-    return this.driver.attribute('data-fashion');
+    return this.driver.attribute("data-fashion");
   }
 
   /**

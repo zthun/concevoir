@@ -1,18 +1,18 @@
-import { AppBar } from '@mui/material';
+import { AppBar } from "@mui/material";
 import {
   createSizeChartFixedArithmetic,
   createSizeChartFixedCss,
   createSizeChartVariedCss,
   ZSizeFixed,
-  ZSizeVaried
-} from '@zthun/fashion-tailor';
-import { cssJoinDefined, firstDefined } from '@zthun/helpful-fn';
-import React from 'react';
-import { IZComponentFashion } from '../component/component-fashion.mjs';
-import { IZComponentHeight } from '../component/component-height.mjs';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
-import { IZComponentStyle } from '../component/component-style.mjs';
-import { createStyleHook } from '../theme/styled';
+  ZSizeVaried,
+} from "@zthun/fashion-tailor";
+import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import React from "react";
+import { IZComponentFashion } from "../component/component-fashion.mjs";
+import { IZComponentHeight } from "../component/component-height.mjs";
+import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
+import { IZComponentStyle } from "../component/component-style.mjs";
+import { createStyleHook } from "../theme/styled";
 
 /**
  * Properties for the banner bar.
@@ -20,14 +20,14 @@ import { createStyleHook } from '../theme/styled';
 export interface IZBanner
   extends IZComponentHierarchy,
     IZComponentFashion,
-    Pick<IZComponentHeight<ZSizeFixed | ZSizeVaried.Fit>, 'height'>,
+    Pick<IZComponentHeight<ZSizeFixed | ZSizeVaried.Fit>, "height">,
     IZComponentStyle {
-  position?: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative';
+  position?: "fixed" | "absolute" | "sticky" | "static" | "relative";
 }
 
 const heightChart = {
-  ...createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), 'rem'),
-  ...createSizeChartVariedCss()
+  ...createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), "rem"),
+  ...createSizeChartVariedCss(),
 };
 
 const useBannerStyles = createStyleHook(({ theme }, props: IZBanner) => {
@@ -42,8 +42,8 @@ const useBannerStyles = createStyleHook(({ theme }, props: IZBanner) => {
     banner: {
       backgroundColor: _fashion.main,
       color: _fashion.contrast,
-      height: __height
-    }
+      height: __height,
+    },
   };
 });
 
@@ -55,7 +55,10 @@ export function ZBanner(props: IZBanner) {
   const { classes } = useBannerStyles(props);
 
   return (
-    <AppBar className={cssJoinDefined('ZBanner-root', className, classes.banner)} position={position}>
+    <AppBar
+      className={cssJoinDefined("ZBanner-root", className, classes.banner)}
+      position={position}
+    >
       {children}
     </AppBar>
   );

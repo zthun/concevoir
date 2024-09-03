@@ -1,4 +1,4 @@
-import { ZSizeChartFixed, ZSizeFixed } from './size-fixed.mjs';
+import { ZSizeChartFixed, ZSizeFixed } from "./size-fixed.mjs";
 
 /**
  * Creates a size chart that conforms to a geometric sequence.
@@ -11,7 +11,10 @@ import { ZSizeChartFixed, ZSizeFixed } from './size-fixed.mjs';
  * @returns
  *        The fixed size chart that set the geometric sequence.
  */
-export function createSizeChartFixedGeometric(ratio: number, xs: number): ZSizeChartFixed<number> {
+export function createSizeChartFixedGeometric(
+  ratio: number,
+  xs: number,
+): ZSizeChartFixed<number> {
   const sm = xs * ratio;
   const md = sm * ratio;
   const lg = md * ratio;
@@ -22,6 +25,6 @@ export function createSizeChartFixedGeometric(ratio: number, xs: number): ZSizeC
     [ZSizeFixed.Small]: sm,
     [ZSizeFixed.Medium]: md,
     [ZSizeFixed.Large]: lg,
-    [ZSizeFixed.ExtraLarge]: xl
+    [ZSizeFixed.ExtraLarge]: xl,
   };
 }

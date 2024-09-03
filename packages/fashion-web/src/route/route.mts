@@ -29,7 +29,7 @@ export interface IZRoute {
   /**
    * Font family if the avatar represents a known font.
    */
-  family?: 'brands' | 'classic' | 'sharp';
+  family?: "brands" | "classic" | "sharp";
 }
 
 /**
@@ -43,7 +43,7 @@ export class ZRouteBuilder {
    */
   public constructor() {
     this._route = {
-      path: ''
+      path: "",
     };
   }
 
@@ -112,7 +112,7 @@ export class ZRouteBuilder {
    * @returns
    *        This object.
    */
-  public family(family: 'brands' | 'classic' | 'sharp'): this {
+  public family(family: "brands" | "classic" | "sharp"): this {
     this._route.family = family;
     return this;
   }

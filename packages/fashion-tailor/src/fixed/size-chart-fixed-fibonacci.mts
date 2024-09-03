@@ -1,4 +1,4 @@
-import { ZSizeChartFixed, ZSizeFixed } from './size-fixed.mjs';
+import { ZSizeChartFixed, ZSizeFixed } from "./size-fixed.mjs";
 
 /**
  * Constructs a static chart that increments each t-shirt size by a fibonacci number.
@@ -13,7 +13,10 @@ import { ZSizeChartFixed, ZSizeFixed } from './size-fixed.mjs';
  * @returns
  *        A static size chart that defines the scale numbers as fibonacci.
  */
-export function createSizeChartFixedFibonacci(xs = 1, sm = 2): ZSizeChartFixed<number> {
+export function createSizeChartFixedFibonacci(
+  xs = 1,
+  sm = 2,
+): ZSizeChartFixed<number> {
   const md = xs + sm;
   const lg = sm + md;
   const xl = md + lg;
@@ -23,6 +26,6 @@ export function createSizeChartFixedFibonacci(xs = 1, sm = 2): ZSizeChartFixed<n
     [ZSizeFixed.Small]: sm,
     [ZSizeFixed.Medium]: md,
     [ZSizeFixed.Large]: lg,
-    [ZSizeFixed.ExtraLarge]: xl
+    [ZSizeFixed.ExtraLarge]: xl,
   };
 }

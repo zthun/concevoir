@@ -1,5 +1,5 @@
-import { IZComponentName } from '../component/component-name.mjs';
-import { IZComponentStyle } from '../component/component-style.mjs';
+import { IZComponentName } from "../component/component-name.mjs";
+import { IZComponentStyle } from "../component/component-style.mjs";
 
 /**
  * Represents a component that renders breadcrumbs.

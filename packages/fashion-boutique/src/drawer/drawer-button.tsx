@@ -1,18 +1,18 @@
-import { ZSizeFixed } from '@zthun/fashion-tailor';
-import { cssJoinDefined } from '@zthun/helpful-fn';
-import React, { ReactNode, useEffect, useState } from 'react';
-import { IZButton, ZButton } from '../button/button';
-import { IZComponentHierarchy } from '../component/component-hierarchy.mjs';
-import { IZComponentStyle } from '../component/component-style.mjs';
-import { ZIconFontAwesome } from '../icon/icon-font-awesome';
-import { IZDrawer, ZDrawer } from './drawer';
+import { ZSizeFixed } from "@zthun/fashion-tailor";
+import { cssJoinDefined } from "@zthun/helpful-fn";
+import React, { ReactNode, useEffect, useState } from "react";
+import { IZButton, ZButton } from "../button/button";
+import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
+import { IZComponentStyle } from "../component/component-style.mjs";
+import { ZIconFontAwesome } from "../icon/icon-font-awesome";
+import { IZDrawer, ZDrawer } from "./drawer";
 
 /**
  * The props for the drawer button.
  */
 export interface IZDrawerButton extends IZComponentHierarchy, IZComponentStyle {
-  ButtonProps?: Omit<IZButton, 'onClick' | 'avatar' | 'label'>;
-  DrawerProps?: Omit<IZDrawer, 'open' | 'onClose' | 'children'>;
+  ButtonProps?: Omit<IZButton, "onClick" | "avatar" | "label">;
+  DrawerProps?: Omit<IZDrawer, "open" | "onClose" | "children">;
 
   closeOnChange?: any[];
   icon?: ReactNode;
@@ -36,10 +36,10 @@ export function ZDrawerButton(props: IZDrawerButton) {
     ButtonProps,
     DrawerProps,
     children,
-    icon = <ZIconFontAwesome name='bars' width={ZSizeFixed.ExtraSmall} />
+    icon = <ZIconFontAwesome name="bars" width={ZSizeFixed.ExtraSmall} />,
   } = props;
   const [open, setOpen] = useState(false);
-  const _className = cssJoinDefined('ZDrawerButton-root', className);
+  const _className = cssJoinDefined("ZDrawerButton-root", className);
 
   useEffect(() => {
     setOpen(false);
@@ -47,8 +47,17 @@ export function ZDrawerButton(props: IZDrawerButton) {
 
   return (
     <div className={_className}>
-      <ZButton {...ButtonProps} label={icon} avatar={null} onClick={setOpen.bind(null, true)} />
-      <ZDrawer {...DrawerProps} open={!!open} onClose={setOpen.bind(null, false)}>
+      <ZButton
+        {...ButtonProps}
+        label={icon}
+        avatar={null}
+        onClick={setOpen.bind(null, true)}
+      />
+      <ZDrawer
+        {...DrawerProps}
+        open={!!open}
+        onClose={setOpen.bind(null, false)}
+      >
         {children}
       </ZDrawer>
     </div>

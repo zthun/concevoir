@@ -1,4 +1,4 @@
-import { ZColor } from './color.mjs';
+import { ZColor } from "./color.mjs";
 
 /**
  * Constructs a color from the hue-saturation-light model.

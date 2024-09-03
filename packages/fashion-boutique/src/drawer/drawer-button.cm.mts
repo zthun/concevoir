@@ -1,12 +1,16 @@
-import { ZCircusBy, ZCircusComponentModel, ZCircusWaitOptionsBuilder } from '@zthun/cirque';
-import { ZButtonComponentModel } from '../button/button.cm.mjs';
-import { ZDrawerComponentModel } from './drawer.cm.mjs';
+import {
+  ZCircusBy,
+  ZCircusComponentModel,
+  ZCircusWaitOptionsBuilder,
+} from "@zthun/cirque";
+import { ZButtonComponentModel } from "../button/button.cm.mjs";
+import { ZDrawerComponentModel } from "./drawer.cm.mjs";
 
 /**
  * Represents the component model for a drawer button component.
  */
 export class ZDrawerButtonComponentModel extends ZCircusComponentModel {
-  public static readonly Selector = '.ZDrawerButton-root';
+  public static readonly Selector = ".ZDrawerButton-root";
 
   /**
    * Gets the inner button.
@@ -55,7 +59,10 @@ export class ZDrawerButtonComponentModel extends ZCircusComponentModel {
 
     const button = await this._button();
     await button.click();
-    const options = new ZCircusWaitOptionsBuilder().description('Opening the drawer').debounce(1000).build();
+    const options = new ZCircusWaitOptionsBuilder()
+      .description("Opening the drawer")
+      .debounce(1000)
+      .build();
     await this.driver.wait(() => this.opened(), options);
     return this.drawer();
   }
