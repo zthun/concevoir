@@ -27,16 +27,16 @@ const useChartProgressStyles = createStyleHook(
     const { primary, transparent } = theme;
     const { fashion = primary } = points;
 
-    const border = firstDefined(fashion.main, fashion.dark);
+    const border = firstDefined(fashion.idle.main, fashion.idle.border);
 
     return {
       bar: {
         height: progressHeightChart[height],
-        backgroundColor: transparent.main,
+        backgroundColor: transparent.idle.main,
         border: `${tailor.thickness()} solid ${border}`,
 
         ".MuiLinearProgress-bar": {
-          backgroundColor: fashion.main,
+          backgroundColor: fashion.idle.main,
         },
       },
     };

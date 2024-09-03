@@ -7,7 +7,6 @@ import {
   ZSizeVaried,
   ZSizeVoid,
 } from "@zthun/fashion-tailor";
-import { IZFashion, transparent, ZColor } from "@zthun/fashion-theme";
 import {
   cssJoinDefined,
   firstDefined,
@@ -45,9 +44,6 @@ export interface IZBox
     IZComponentFashion {
   border?: IZBorderProps;
 
-  focus?: IZFashion;
-  hover?: IZFashion;
-
   padding?: ZDimensionProps<ZSizeFixed | ZSizeVoid>;
   margin?: ZDimensionProps<ZSizeFixed | ZSizeVaried.Fit | ZSizeVoid>;
 
@@ -56,162 +52,143 @@ export interface IZBox
   onClick?: MouseEventHandler;
 }
 
-const useBoxStyles = createStyleHook(
-  ({ theme, tailor, device }, props: IZBox) => {
-    const {
-      padding,
-      margin,
-      border,
-      width = ZSizeVaried.Fit,
-      widthLg = width,
-      widthMd = widthLg,
-      widthSm = widthMd,
-      widthXs = widthSm,
-      fashion,
-      focus,
-      hover,
-      justification,
-      onClick,
-    } = props;
+const useBoxStyles = createStyleHook(({ tailor, device }, props: IZBox) => {
+  const {
+    padding,
+    margin,
+    border,
+    width = ZSizeVaried.Fit,
+    widthLg = width,
+    widthMd = widthLg,
+    widthSm = widthMd,
+    widthXs = widthSm,
+    fashion,
+    justification,
+    onClick,
+  } = props;
 
-    const _border = {
-      width: firstDefined(ZSizeVoid.None, border?.width),
-      style: firstDefined("solid", border?.style),
-      fashion: firstDefined(transparent(), fashion?.border),
-      focus: firstDefined(transparent(), focus?.border, fashion?.border),
-      hover: firstDefined(transparent(), hover?.border, fashion?.border),
-    };
+  const asPadding = (pad: ZSizeFixed | ZSizeVoid | object) => {
+    const size = typeof pad === "object" ? ZSizeVoid.None : pad;
+    return tailor.gap(size);
+  };
 
-    const _background = {
-      fashion: firstDefined(theme.transparent, fashion),
-      focus: firstDefined(theme.transparent, focus, fashion),
-      hover: firstDefined(theme.transparent, hover, fashion),
-    };
+  const asMargin = (
+    margin: ZSizeFixed | ZSizeVoid | ZSizeVaried.Fit | object,
+  ) => {
+    if (typeof margin === "object") {
+      return tailor.gap(ZSizeVoid.None);
+    }
 
-    const __border = (color: ZColor) =>
-      `${tailor.thickness(_border.width)} ${_border.style} ${color}`;
+    if (margin === ZSizeVaried.Fit) {
+      return "auto";
+    }
 
-    const asPadding = (pad: ZSizeFixed | ZSizeVoid | object) => {
-      const size = typeof pad === "object" ? ZSizeVoid.None : pad;
-      return tailor.gap(size);
-    };
+    return tailor.gap(margin);
+  };
 
-    const asMargin = (
-      margin: ZSizeFixed | ZSizeVoid | ZSizeVaried.Fit | object,
-    ) => {
-      if (typeof margin === "object") {
-        return tailor.gap(ZSizeVoid.None);
-      }
+  const dimensions = {
+    maxWidth: BoxSizeChart[width],
 
-      if (margin === ZSizeVaried.Fit) {
-        return "auto";
-      }
+    [device.break(ZSizeFixed.Large)]: {
+      maxWidth: BoxSizeChart[widthLg],
+    },
 
-      return tailor.gap(margin);
-    };
+    [device.break(ZSizeFixed.Medium)]: {
+      maxWidth: BoxSizeChart[widthMd],
+    },
 
-    const dimensions = {
-      maxWidth: BoxSizeChart[width],
+    [device.break(ZSizeFixed.Small)]: {
+      maxWidth: BoxSizeChart[widthSm],
+    },
 
-      [device.break(ZSizeFixed.Large)]: {
-        maxWidth: BoxSizeChart[widthLg],
+    [device.break(ZSizeFixed.ExtraSmall)]: {
+      maxWidth: BoxSizeChart[widthXs],
+    },
+  };
+
+  const pLeft = firstDefined(
+    ZSizeVoid.None,
+    get(padding, "left"),
+    get(padding, "x"),
+    padding,
+  );
+  const pRight = firstDefined(
+    ZSizeVoid.None,
+    get(padding, "right"),
+    get(padding, "x"),
+    padding,
+  );
+  const pTop = firstDefined(
+    ZSizeVoid.None,
+    get(padding, "top"),
+    get(padding, "y"),
+    padding,
+  );
+  const pBottom = firstDefined(
+    ZSizeVoid.None,
+    get(padding, "bottom"),
+    get(padding, "y"),
+    padding,
+  );
+
+  const mLeft = firstDefined(
+    ZSizeVoid.None,
+    get(margin, "left"),
+    get(margin, "x"),
+    margin,
+  );
+  const mRight = firstDefined(
+    ZSizeVoid.None,
+    get(margin, "right"),
+    get(margin, "x"),
+    margin,
+  );
+  const mTop = firstDefined(
+    ZSizeVoid.None,
+    get(margin, "top"),
+    get(margin, "y"),
+    margin,
+  );
+  const mBottom = firstDefined(
+    ZSizeVoid.None,
+    get(margin, "bottom"),
+    get(margin, "y"),
+    margin,
+  );
+
+  return {
+    root: {
+      ...dimensions,
+      cursor: onClick ? "pointer" : "default",
+      borderWidth: border?.width,
+      borderStyle: border?.style,
+      borderColor: fashion?.idle.border,
+      backgroundColor: fashion?.idle.main,
+      color: fashion?.idle.contrast,
+
+      "&:focus": {
+        borderColor: firstDefined(fashion?.idle.border, fashion?.focus?.border),
+        backgroundColor: firstDefined(fashion?.idle.main, fashion?.focus?.main),
+        color: firstDefined(fashion?.idle.contrast, fashion?.focus?.contrast),
       },
 
-      [device.break(ZSizeFixed.Medium)]: {
-        maxWidth: BoxSizeChart[widthMd],
+      "&:hover": {
+        borderColor: firstDefined(fashion?.idle.border, fashion?.hover?.border),
+        backgroundColor: firstDefined(fashion?.idle.main, fashion?.hover?.main),
+        color: firstDefined(fashion?.idle.contrast, fashion?.hover?.contrast),
       },
-
-      [device.break(ZSizeFixed.Small)]: {
-        maxWidth: BoxSizeChart[widthSm],
-      },
-
-      [device.break(ZSizeFixed.ExtraSmall)]: {
-        maxWidth: BoxSizeChart[widthXs],
-      },
-    };
-
-    const pLeft = firstDefined(
-      ZSizeVoid.None,
-      get(padding, "left"),
-      get(padding, "x"),
-      padding,
-    );
-    const pRight = firstDefined(
-      ZSizeVoid.None,
-      get(padding, "right"),
-      get(padding, "x"),
-      padding,
-    );
-    const pTop = firstDefined(
-      ZSizeVoid.None,
-      get(padding, "top"),
-      get(padding, "y"),
-      padding,
-    );
-    const pBottom = firstDefined(
-      ZSizeVoid.None,
-      get(padding, "bottom"),
-      get(padding, "y"),
-      padding,
-    );
-
-    const mLeft = firstDefined(
-      ZSizeVoid.None,
-      get(margin, "left"),
-      get(margin, "x"),
-      margin,
-    );
-    const mRight = firstDefined(
-      ZSizeVoid.None,
-      get(margin, "right"),
-      get(margin, "x"),
-      margin,
-    );
-    const mTop = firstDefined(
-      ZSizeVoid.None,
-      get(margin, "top"),
-      get(margin, "y"),
-      margin,
-    );
-    const mBottom = firstDefined(
-      ZSizeVoid.None,
-      get(margin, "bottom"),
-      get(margin, "y"),
-      margin,
-    );
-
-    return {
-      root: {
-        ...dimensions,
-        cursor: onClick ? "pointer" : "default",
-        border: __border(_border.fashion),
-        backgroundColor: _background.fashion.main,
-        color: _background.fashion.contrast,
-
-        "&:focus": {
-          border: __border(_border.focus),
-          backgroundColor: _background.focus.main,
-          color: _background.focus.contrast,
-        },
-
-        "&:hover": {
-          border: __border(_border.hover),
-          backgroundColor: _background.hover.main,
-          color: _background.hover.contrast,
-        },
-        paddingLeft: asPadding(pLeft),
-        paddingRight: asPadding(pRight),
-        paddingTop: asPadding(pTop),
-        paddingBottom: asPadding(pBottom),
-        marginLeft: asMargin(mLeft),
-        marginRight: asMargin(mRight),
-        marginTop: asMargin(mTop),
-        marginBottom: asMargin(mBottom),
-        textAlign: justification,
-      },
-    };
-  },
-);
+      paddingLeft: asPadding(pLeft),
+      paddingRight: asPadding(pRight),
+      paddingTop: asPadding(pTop),
+      paddingBottom: asPadding(pBottom),
+      marginLeft: asMargin(mLeft),
+      marginRight: asMargin(mRight),
+      marginTop: asMargin(mTop),
+      marginBottom: asMargin(mBottom),
+      textAlign: justification,
+    },
+  };
+});
 
 /**
  * Just a box.

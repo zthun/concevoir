@@ -48,9 +48,9 @@ export const useButtonStyles = createStyleHook(
       compact,
     } = props;
 
-    const text = fashion.contrast;
-    const main = fashion.main;
-    const border = firstDefined(fashion.main, fashion.border);
+    const text = fashion.idle.contrast;
+    const main = fashion.idle.main;
+    const border = firstDefined(fashion.idle.main, fashion.idle.border);
     const minWidth = compact ? 0 : undefined;
 
     const borderless = {
@@ -75,8 +75,8 @@ export const useButtonStyles = createStyleHook(
         minWidth: minWidth,
 
         "&:hover": {
-          outline: `${tailor.thickness()} solid ${firstDefined(fashion.main, fashion.hover.border)}`,
-          backgroundColor: firstDefined(fashion.main, fashion.hover.main),
+          outline: `${tailor.thickness()} solid ${firstDefined(fashion.idle.main, fashion.hover?.border)}`,
+          backgroundColor: firstDefined(fashion.idle.main, fashion.hover?.main),
         },
 
         "&:disabled": {

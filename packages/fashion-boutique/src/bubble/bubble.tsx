@@ -48,10 +48,10 @@ const useBubbleStyles = createStyleHook(
       root: {
         alignContent: "center",
         alignItems: "center",
-        background: fashion.main,
-        color: fashion.contrast,
+        background: fashion.idle.main,
+        color: fashion.idle.contrast,
         cursor,
-        border: `${tailor.thickness(border)} solid ${fashion.border}`,
+        border: `${tailor.thickness(border)} solid ${fashion.idle.border}`,
         borderRadius: "50%",
         clipPath: `circle()`,
         display: "flex",
@@ -63,26 +63,26 @@ const useBubbleStyles = createStyleHook(
 
         "&:focus": {
           background: onClick
-            ? firstDefined(fashion.main, fashion.focus.main)
+            ? firstDefined(fashion.idle.main, fashion.focus?.main)
             : undefined,
           borderColor: onClick
-            ? firstDefined(fashion.border, fashion.focus.border)
+            ? firstDefined(fashion.idle.border, fashion.focus?.border)
             : undefined,
           color: onClick
-            ? firstDefined(fashion.contrast, fashion.focus.contrast)
+            ? firstDefined(fashion.idle.contrast, fashion.focus?.contrast)
             : undefined,
           outline: "none",
         },
 
         "&:hover": {
           color: onClick
-            ? firstDefined(fashion.contrast, fashion.hover.contrast)
+            ? firstDefined(fashion.idle.contrast, fashion.hover?.contrast)
             : undefined,
           background: onClick
-            ? firstDefined(fashion.main, fashion.hover.main)
+            ? firstDefined(fashion.idle.main, fashion.hover?.main)
             : undefined,
           borderColor: onClick
-            ? firstDefined(fashion.border, fashion.hover.border)
+            ? firstDefined(fashion.idle.border, fashion.hover?.border)
             : undefined,
         },
       },

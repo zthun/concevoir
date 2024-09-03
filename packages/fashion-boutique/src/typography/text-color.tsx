@@ -15,7 +15,7 @@ export interface IZTextColor
 
 const useTextColorStyles = createStyleHook((_, props: IZTextColor) => {
   const { fashion } = props;
-  const color = firstDefined("inherit", fashion?.main);
+  const color = firstDefined("inherit", fashion?.idle.main);
   return { text: { color } };
 });
 

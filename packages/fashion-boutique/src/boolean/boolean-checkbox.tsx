@@ -9,14 +9,14 @@ import { IZBoolean } from "./boolean";
 const useBooleanCheckboxStyles = createStyleHook(
   ({ theme }, props: IZBoolean<boolean | null>) => {
     const { fashion = theme.primary } = props;
-    const svg = { color: fashion.main };
+    const svg = { color: fashion.idle.main };
 
     return {
       root: {
         whiteSpace: "nowrap",
 
         ".MuiFormControlLabel-asterisk": {
-          color: theme.error.main,
+          color: theme.error.idle.main,
         },
       },
       checkbox: {

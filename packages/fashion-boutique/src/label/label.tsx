@@ -13,7 +13,7 @@ const useLabelStyles = createStyleHook(({ theme, tailor }) => ({
 
     '&[data-required="true"]::after': {
       content: '"*"',
-      color: theme.error.main,
+      color: theme.error.idle.main,
       marginLeft: tailor.thickness(ZSizeFixed.Medium),
     },
   },

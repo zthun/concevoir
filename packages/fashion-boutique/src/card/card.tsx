@@ -94,8 +94,8 @@ const useCardStyles = createStyleHook(({ theme, device }, props: IZCard) => {
     root: {
       ...maxWidth,
       position: "relative",
-      backgroundColor: fashion.main,
-      color: fashion.contrast,
+      backgroundColor: fashion.idle.main,
+      color: fashion.idle.contrast,
       display: "flex",
       flexDirection: "column",
 
@@ -105,7 +105,7 @@ const useCardStyles = createStyleHook(({ theme, device }, props: IZCard) => {
       },
 
       ".MuiCardHeader-subheader": {
-        color: fashion.contrast,
+        color: fashion.idle.contrast,
         opacity: 0.9,
       },
     },

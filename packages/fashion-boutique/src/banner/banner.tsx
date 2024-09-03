@@ -40,8 +40,8 @@ const useBannerStyles = createStyleHook(({ theme }, props: IZBanner) => {
 
   return {
     banner: {
-      backgroundColor: _fashion.main,
-      color: _fashion.contrast,
+      backgroundColor: _fashion.idle.main,
+      color: _fashion.idle.contrast,
       height: __height,
     },
   };

@@ -5,7 +5,7 @@ import {
   IZFashionTailor,
   ZSizeFixed,
 } from "@zthun/fashion-tailor";
-import { IZFashion, IZFashionTheme } from "@zthun/fashion-theme";
+import { IZFashion, IZFashionTheme, black, white } from "@zthun/fashion-theme";
 import { firstDefined } from "@zthun/helpful-fn";
 import React, { useMemo } from "react";
 import {
@@ -32,10 +32,14 @@ function useBoutiqueTheme() {
   mui.components = firstDefined({}, mui.components);
 
   const setFashion = (palette: PaletteColor, coordination: IZFashion) => {
-    palette.main = coordination.main;
-    palette.contrastText = coordination.contrast;
-    palette.dark = firstDefined(coordination.main, coordination.dark);
-    palette.light = firstDefined(coordination.main, coordination.light);
+    palette.main = firstDefined(white(), coordination.idle.main);
+    palette.contrastText = firstDefined(black(), coordination.idle.contrast);
+    palette.dark = firstDefined(
+      black(),
+      coordination.idle.main,
+      coordination.idle.border,
+    );
+    palette.light = firstDefined(white(), coordination.idle.contrast);
   };
 
   // Palette
@@ -169,8 +173,8 @@ function useGlobalStyles() {
   return useMemo<CSSInterpolation>(
     () => ({
       body: {
-        backgroundColor: body.main,
-        color: body.contrast,
+        backgroundColor: body.idle.main,
+        color: body.idle.contrast,
         margin: 0,
         position: "relative",
         height: "100vh",

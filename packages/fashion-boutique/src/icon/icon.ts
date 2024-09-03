@@ -3,7 +3,6 @@ import {
   createSizeChartFixedCss,
   createSizeChartFixedGeometric,
 } from "@zthun/fashion-tailor";
-import { firstDefined } from "@zthun/helpful-fn";
 import { KeyboardEvent, MouseEvent, ReactNode, useEffect } from "react";
 import { IZComponentFashion } from "../component/component-fashion.mjs";
 import { IZComponentName } from "../component/component-name.mjs";
@@ -61,13 +60,11 @@ export const useIconStyles = createStyleHook(
     return {
       root: {
         ...fontSize,
-        color: fashion?.main,
+        color: fashion?.idle.main,
         cursor: onClick ? "pointer" : "inherit",
 
         "&:hover": {
-          color: onClick
-            ? firstDefined(primary.main, fashion?.dark)
-            : undefined,
+          color: onClick ? primary.idle.main : undefined,
         },
       },
     };

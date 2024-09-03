@@ -1,6 +1,6 @@
 import { ZCircusBy } from "@zthun/cirque";
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
-import { black, IZFashion, white, ZFashionBuilder } from "@zthun/fashion-theme";
+import { IZFashion, ZFashionBuilder } from "@zthun/fashion-theme";
 import React, { ReactNode } from "react";
 import { beforeEach, describe, expect, it, Mock, vi } from "vitest";
 import { ZButton } from "./button";
@@ -227,11 +227,7 @@ describe("ZButton", () => {
 
   describe("Fashion", () => {
     beforeEach(() => {
-      fashion = new ZFashionBuilder()
-        .name("Test Fashion")
-        .main(black())
-        .contrast(white())
-        .build();
+      fashion = new ZFashionBuilder().name("Test Fashion").build();
     });
 
     it("should set the fashion", async () => {

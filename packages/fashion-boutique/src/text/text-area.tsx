@@ -3,7 +3,7 @@ import {
   ZSizeFixed,
   createSizeChartFixedArithmetic,
 } from "@zthun/fashion-tailor";
-import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import { cssJoinDefined } from "@zthun/helpful-fn";
 import React from "react";
 import { IZComponentHeight } from "../component/component-height.mjs";
 import { ZLabeled } from "../label/labeled";
@@ -18,8 +18,8 @@ const TextAreaRows = createSizeChartFixedArithmetic(2, 2);
 
 const useTextAreaStyles = createStyleHook(({ theme }) => ({
   input: {
-    color: theme.surface.contrast,
-    backgroundColor: firstDefined(theme.surface.main, theme.surface.light),
+    color: theme.surface.idle.contrast,
+    backgroundColor: theme.surface.idle.main,
   },
 }));
 

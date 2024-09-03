@@ -1,6 +1,6 @@
 import { IconButton, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
-import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import { cssJoinDefined } from "@zthun/helpful-fn";
 import { castArray, isArray } from "lodash-es";
 import React, { ReactNode } from "react";
 import { ZIconFontAwesome } from "../icon/icon-font-awesome";
@@ -12,12 +12,12 @@ const useChoiceDropDownStyles = createStyleHook(({ theme, tailor }) => {
   return {
     root: {
       ".MuiInputBase-root": {
-        color: theme.surface.contrast,
-        backgroundColor: firstDefined(theme.surface.main, theme.surface.light),
+        color: theme.surface.idle.contrast,
+        backgroundColor: theme.surface.idle.main,
       },
 
       ".MuiSelect-icon": {
-        color: theme.surface.contrast,
+        color: theme.surface.idle.contrast,
       },
 
       ".MuiSelect-select": {
@@ -26,15 +26,15 @@ const useChoiceDropDownStyles = createStyleHook(({ theme, tailor }) => {
     },
 
     clear: {
-      color: theme.surface.contrast,
-      backgroundColor: firstDefined(theme.surface.main, theme.surface.light),
+      color: theme.surface.idle.contrast,
+      backgroundColor: theme.surface.idle.main,
       fontSize: "1.2rem",
       padding: tailor.gap(ZSizeFixed.ExtraSmall),
       marginRight: `${tailor.gap(ZSizeFixed.Small)} !important`,
 
       "&:hover": {
-        color: theme.primary.contrast,
-        backgroundColor: theme.primary.main,
+        color: theme.primary.idle.contrast,
+        backgroundColor: theme.primary.idle.main,
       },
     },
 
@@ -44,7 +44,7 @@ const useChoiceDropDownStyles = createStyleHook(({ theme, tailor }) => {
 
       ".ZChoice-value": {
         fontSize: "0.8125rem",
-        backgroundColor: firstDefined(theme.surface.main, theme.surface.dark),
+        backgroundColor: theme.surface.idle.main,
         color: "inherit",
         borderRadius: "1rem",
         padding: `calc(${tailor.gap(ZSizeFixed.ExtraSmall)} * 0.5)`,
@@ -60,8 +60,8 @@ const useChoiceDropDownStyles = createStyleHook(({ theme, tailor }) => {
 
     popup: {
       ul: {
-        color: theme.surface.contrast,
-        backgroundColor: firstDefined(theme.surface.main, theme.surface.light),
+        color: theme.surface.idle.contrast,
+        backgroundColor: theme.surface.idle.main,
       },
     },
   };

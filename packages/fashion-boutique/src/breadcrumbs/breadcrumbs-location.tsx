@@ -24,7 +24,7 @@ export interface IZBreadcrumbsLocation extends IZBreadcrumbs {
 
 const useBreadcrumbsStyles = createStyleHook(({ theme }) => ({
   root: {
-    color: theme.body.contrast,
+    color: theme.body.idle.contrast,
   },
 }));
 

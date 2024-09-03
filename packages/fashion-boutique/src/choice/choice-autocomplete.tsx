@@ -4,7 +4,7 @@ import {
   TextField,
 } from "@mui/material";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
-import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import { cssJoinDefined } from "@zthun/helpful-fn";
 import { castArray, first } from "lodash-es";
 import React, { HTMLAttributes, SyntheticEvent } from "react";
 import { ZLabeled } from "../label/labeled";
@@ -15,8 +15,8 @@ const useChoiceAutocompleteStyles = createStyleHook(({ theme, tailor }) => {
   return {
     root: {
       ".MuiInputBase-root": {
-        color: theme.surface.contrast,
-        backgroundColor: firstDefined(theme.surface.main, theme.surface.light),
+        color: theme.surface.idle.contrast,
+        backgroundColor: theme.surface.idle.main,
       },
 
       ".MuiSelect-select": {
@@ -24,27 +24,27 @@ const useChoiceAutocompleteStyles = createStyleHook(({ theme, tailor }) => {
       },
 
       ".MuiChip-root": {
-        color: theme.surface.contrast,
-        backgroundColor: firstDefined(theme.surface.main, theme.surface.dark),
+        color: theme.surface.idle.contrast,
+        backgroundColor: theme.surface.idle.main,
 
         ".MuiChip-deleteIcon": {
-          color: theme.surface.contrast,
+          color: theme.surface.idle.contrast,
 
           "&:hover": {
-            color: theme.primary.main,
+            color: theme.primary.idle.main,
           },
         },
       },
     },
 
     clear: {
-      color: theme.surface.contrast,
-      backgroundColor: firstDefined(theme.surface.main, theme.surface.light),
+      color: theme.surface.idle.contrast,
+      backgroundColor: theme.surface.idle.main,
       padding: tailor.gap(ZSizeFixed.ExtraSmall),
 
       "&:hover": {
-        color: theme.primary.contrast,
-        backgroundColor: theme.primary.main,
+        color: theme.primary.idle.contrast,
+        backgroundColor: theme.primary.idle.main,
       },
     },
 
@@ -54,13 +54,13 @@ const useChoiceAutocompleteStyles = createStyleHook(({ theme, tailor }) => {
 
     popup: {
       ul: {
-        color: theme.surface.contrast,
-        backgroundColor: firstDefined(theme.surface.main, theme.surface.light),
+        color: theme.surface.idle.contrast,
+        backgroundColor: theme.surface.idle.main,
       },
     },
 
     toggler: {
-      color: theme.surface.contrast,
+      color: theme.surface.idle.contrast,
     },
   };
 });

@@ -1,7 +1,7 @@
 import { OutlinedInput } from "@mui/material";
 import { ZCircusKeyboardQwerty } from "@zthun/cirque";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
-import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import { cssJoinDefined } from "@zthun/helpful-fn";
 import { useAmbassadorState } from "@zthun/helpful-react";
 import React, { KeyboardEvent } from "react";
 import { ZIconFontAwesome } from "../icon/icon-font-awesome";
@@ -13,8 +13,8 @@ import { IZNumber } from "./number";
 export const useNumberInputStyles = createStyleHook(({ theme }) => {
   return {
     input: {
-      color: theme.surface.contrast,
-      backgroundColor: firstDefined(theme.surface.main, theme.surface.light),
+      color: theme.surface.idle.contrast,
+      backgroundColor: theme.surface.idle.main,
     },
     spinner: {
       display: "flex",

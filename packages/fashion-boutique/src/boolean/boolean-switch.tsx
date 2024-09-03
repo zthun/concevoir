@@ -9,21 +9,21 @@ import { IZBoolean } from "./boolean";
 const useBooleanSwitchStyles = createStyleHook(
   ({ theme }, props: IZBoolean<boolean>) => {
     const { fashion = theme.primary, value } = props;
-    const track = value ? fashion.main : undefined;
+    const track = value ? fashion.idle.main : undefined;
 
     return {
       root: {
         whiteSpace: "nowrap",
 
         ".MuiFormControlLabel-asterisk": {
-          color: theme.error.main,
+          color: theme.error.idle.main,
         },
       },
 
       switch: {
         ".Mui-checked": {
           ".MuiSwitch-thumb ": {
-            color: fashion.main,
+            color: fashion.idle.main,
           },
         },
         ".MuiSwitch-track": {

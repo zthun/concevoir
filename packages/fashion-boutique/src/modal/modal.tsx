@@ -37,8 +37,8 @@ const useModalStyles = createStyleHook(({ theme, tailor }, props: IZModal) => {
   return {
     root: {
       ".MuiDialog-paper": {
-        backgroundColor: surface.main,
-        color: surface.contrast,
+        backgroundColor: surface.idle.main,
+        color: surface.idle.contrast,
       },
 
       ".MuiModal-backdrop": {
@@ -47,8 +47,8 @@ const useModalStyles = createStyleHook(({ theme, tailor }, props: IZModal) => {
     },
 
     header: {
-      backgroundColor: fashion.main,
-      color: fashion.contrast,
+      backgroundColor: fashion.idle.main,
+      color: fashion.idle.contrast,
       marginBottom: tailor.gap(ZSizeFixed.Small),
     },
   };

@@ -21,8 +21,8 @@ const useDrawerStyles = createStyleHook(({ theme }) => {
   return {
     root: {
       ".MuiDrawer-paper": {
-        backgroundColor: surface.main,
-        color: surface.contrast,
+        backgroundColor: surface.idle.main,
+        color: surface.idle.contrast,
       },
     },
   };

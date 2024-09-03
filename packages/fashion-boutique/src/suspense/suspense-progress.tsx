@@ -19,7 +19,7 @@ const useSuspenseProgressStyles = createStyleHook(
   (_, props: IZSuspense<ZSizeVaried.Full, ZSizeFixed>) => {
     const { height = ZSizeFixed.ExtraSmall, fashion } = props;
     const _height = SuspenseProgressSizeChart[height];
-    const color = firstDefined("inherit", fashion?.main);
+    const color = firstDefined("inherit", fashion?.idle.main);
 
     return {
       root: {

@@ -1,5 +1,5 @@
 import { Pagination } from "@mui/material";
-import { ZOrientation, cssJoinDefined } from "@zthun/helpful-fn";
+import { ZOrientation, cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
 import { useAmbassadorState } from "@zthun/helpful-react";
 import React from "react";
 import { IZComponentDisabled } from "../component/component-disabled.mjs";
@@ -36,14 +36,17 @@ const usePaginationStyles = createStyleHook(
           flexDirection,
         },
         ".MuiPaginationItem-root": {
-          color: fashion.contrast,
+          color: fashion.idle.contrast,
 
           "&.Mui-selected": {
-            backgroundColor: fashion.main,
+            backgroundColor: fashion.idle.main,
           },
 
           "&:hover": {
-            backgroundColor: fashion.light,
+            backgroundColor: firstDefined(
+              fashion.hover?.main,
+              fashion.idle.main,
+            ),
           },
         },
       },

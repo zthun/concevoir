@@ -18,7 +18,7 @@ const SuspenseRotateSizeChart = createSizeChartFixedCss(
 const useSuspenseRotateStyles = createStyleHook((_, props: IZSuspense) => {
   const { fashion } = props;
 
-  const color = firstDefined("inherit", fashion?.main);
+  const color = firstDefined("inherit", fashion?.idle.main);
   return {
     root: { color },
   };
