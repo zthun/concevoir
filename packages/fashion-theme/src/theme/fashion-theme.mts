@@ -1,4 +1,3 @@
-import { transparent } from "../color/rgb.mjs";
 import { IZFashion, ZFashionBuilder } from "../fashion/fashion.mjs";
 
 /**
@@ -158,14 +157,9 @@ export class ZFashionThemeBuilder<TCustom extends object = {}> {
         .build(),
       transparent: new ZFashionBuilder()
         .name("Transparent")
-        .main(transparent())
-        .contrast("inherit")
+        .transparent()
         .build(),
-      inherit: new ZFashionBuilder()
-        .name("Inherit")
-        .main("inherit")
-        .contrast("inherit")
-        .build(),
+      inherit: new ZFashionBuilder().name("Inherit").inherit().build(),
       custom: {} as TCustom,
     };
   }

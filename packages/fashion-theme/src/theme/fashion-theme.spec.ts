@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { white } from "../color/rgb.mjs";
+import { black, white } from "../color/rgb.mjs";
+import { ZFashionStateBuilder } from "../fashion/fashion-state.mjs";
 import { IZFashion, ZFashionBuilder } from "../fashion/fashion.mjs";
 import { createDarkTheme } from "./dark.mjs";
 import { ZFashionThemeBuilder } from "./fashion-theme.mjs";
@@ -136,7 +137,15 @@ describe("ZFashionDesignBuilder", () => {
 
   describe("Copy", () => {
     it("should copy another design", () => {
-      const primary = new ZFashionBuilder().contrast(white()).build();
+      const primary = new ZFashionBuilder()
+        .idle(
+          new ZFashionStateBuilder()
+            .main(black())
+            .contrast(white())
+            .border(white())
+            .build(),
+        )
+        .build();
       const expected = createTestTarget().primary(primary).build();
       const actual = createTestTarget().copy(expected).build();
       expect(actual).toEqual(expected);

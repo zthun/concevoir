@@ -1,15 +1,7 @@
-import { ZColor, brighten, contrast } from "../color/color.mjs";
+import { brighten, contrast } from "../color/color.mjs";
 import { hex } from "../color/hex.mjs";
 import { black, white } from "../color/rgb.mjs";
-
-/**
- * Overrides for a fashion.
- */
-export interface IZFashionOverrides {
-  main?: ZColor;
-  contrast?: ZColor;
-  border?: ZColor;
-}
+import { IZFashionState, ZFashionStateBuilder } from "./fashion-state.mjs";
 
 /**
  * Represents a set of colors that create a coordinated fashion grouping.
@@ -21,43 +13,29 @@ export interface IZFashion {
   readonly name?: string;
 
   /**
-   * The main fashion color.
+   * Idle state.
    */
-  readonly main: ZColor;
+  readonly idle: IZFashionState;
 
   /**
-   * A lighter version of main.
+   * Color overrides for when a component is hovered.
    */
-  readonly light?: ZColor;
+  readonly hover?: Partial<IZFashionState>;
 
   /**
-   * A darker version of main.
+   * Color overrides for when a component is focused.
    */
-  readonly dark?: ZColor;
+  readonly focus?: Partial<IZFashionState>;
 
   /**
-   * Appropriate border color.
+   * Color overrides for when a component is active.
    */
-  readonly border?: ZColor;
+  readonly active?: Partial<IZFashionState>;
 
   /**
-   * The color that contrasts the main.
-   *
-   * Note that it is not a requirement for this to
-   * contract the light and dark fashions.  This
-   * only applies to the main fashion.
+   * Color overrides for when a component is visited.
    */
-  readonly contrast: ZColor;
-
-  /**
-   * The color overrides for when a component is hovered.
-   */
-  readonly hover: IZFashionOverrides;
-
-  /**
-   * The color overrides for when a component is focused.
-   */
-  readonly focus: IZFashionOverrides;
+  readonly visited?: Partial<IZFashionState>;
 }
 
 /**
@@ -74,10 +52,10 @@ export class ZFashionBuilder {
    */
   public constructor() {
     this._fashion = {
-      main: white(),
-      contrast: black(),
-      hover: {},
-      focus: {},
+      idle: {
+        main: white(),
+        contrast: black(),
+      },
     };
   }
 
@@ -96,7 +74,22 @@ export class ZFashionBuilder {
   }
 
   /**
-   * Sets the light, main, and dark.
+   * Removes everything but idle main and contrast, and the fashion name.
+   *
+   * @returns
+   *        This object.
+   */
+  public clear() {
+    delete this._fashion.active;
+    delete this._fashion.focus;
+    delete this._fashion.hover;
+    delete this._fashion.visited;
+    delete this._fashion.idle.border;
+    return this;
+  }
+
+  /**
+   * Sets the idle, hover, and focus states.
    *
    * If you only have the main color, this will auto
    * lighten and darken your main color by a given amount.
@@ -111,133 +104,112 @@ export class ZFashionBuilder {
    *        The amount to lighten and darken.
    */
   public spectrum(color: number, amount = 77) {
-    const whiteContrast = contrast(color, 0xffffff);
-    const blackContrast = contrast(color, 0x000000);
-    const higherContrast = whiteContrast >= blackContrast ? white() : black();
+    const createState = (_color: number) => {
+      const whiteContrast = contrast(_color, 0xffffff);
+      const blackContrast = contrast(_color, 0x000000);
 
-    const main = hex(color);
-    const light = hex(brighten(color, amount));
-    const dark = hex(brighten(color, -amount));
+      return new ZFashionStateBuilder()
+        .main(hex(_color))
+        .contrast(whiteContrast >= blackContrast ? white() : black())
+        .border(hex(brighten(_color, -amount)))
+        .build();
+    };
 
-    return this.main(main)
-      .dark(dark)
-      .light(light)
-      .contrast(higherContrast)
-      .focus({
-        main: light,
-        border: dark,
-      })
-      .hover({
-        main: dark,
-        border: light,
-      })
-      .border(dark);
+    return this.idle(createState(color))
+      .focus(createState(brighten(color, -amount)))
+      .hover(createState(brighten(color, amount)))
+      .active(createState(brighten(color, amount * 1.15)))
+      .visited(createState(brighten(color, -amount * 1.15)));
   }
 
   /**
-   * Sets the main color.
+   * Sets the idle state.
    *
-   * @param color -
-   *        The main color.
+   * @param state -
+   *        The fashion overrides.
    *
    * @returns
    *        This object.
    */
-  public main(color: ZColor): this {
-    this._fashion.main = color;
+  public idle(state: IZFashionState): this {
+    this._fashion.idle = { ...state };
     return this;
   }
 
   /**
-   * Sets the main color.
+   * Sets the focus state.
    *
-   * @param color -
-   *        The contrast color.
+   * @param state -
+   *        The fashion overrides.
    *
    * @returns
    *        This object.
    */
-  public contrast(color: ZColor): this {
-    this._fashion.contrast = color;
+  public focus(state: IZFashionState): this {
+    this._fashion.focus = { ...state };
     return this;
   }
 
   /**
-   * Sets the darker version of the main color.
+   * Sets the hover state.
    *
-   * @param color -
-   *        The dark color.
+   * @param state -
+   *        The fashion overrides.
    *
    * @returns
    *        This object.
    */
-  public dark(color: ZColor): this {
-    this._fashion.dark = color;
+  public hover(state: IZFashionState): this {
+    this._fashion.hover = { ...state };
     return this;
   }
 
   /**
-   * Sets the light version of the main color.
+   * Sets the active state.
    *
-   * @param color -
-   *        The light color.
+   * @param state -
+   *        The fashion overrides.
    *
    * @returns
    *        This object.
    */
-  public light(color: ZColor): this {
-    this._fashion.light = color;
+  public active(state: IZFashionState): this {
+    this._fashion.active = { ...state };
     return this;
   }
 
   /**
-   * Sets an appropriate border for the main color.
+   * Sets the visited state.
    *
-   * @param color -
-   *        The border color.
+   * @param state -
+   *        The fashion overrides.
+   *
+   * @returns
+   *        This object.
+   */
+  public visited(state: IZFashionState): this {
+    this._fashion.visited = { ...state };
+    return this;
+  }
+
+  /**
+   * Builds the transparent fashion.
    *
    * @returns -
    *        This object.
    */
-  public border(color: ZColor): this {
-    this._fashion.border = color;
-    return this;
+  public transparent(): this {
+    return this.clear().idle(new ZFashionStateBuilder().transparent().build());
   }
 
   /**
-   * Sets the focus fashion.
+   * Builds the inherit fashion.
    *
-   * @param focus -
-   *        The fashion overrides.
-   *
-   * @returns
+   * @returns -
    *        This object.
    */
-  public focus(focus: IZFashionOverrides): this {
-    this._fashion.focus = { ...this._fashion.focus, ...focus };
-    return this;
-  }
-
-  /**
-   * Sets the hover fashion.
-   *
-   * @param hover -
-   *        The fashion overrides.
-   *
-   * @returns
-   *        This object.
-   */
-  public hover(hover: IZFashionOverrides): this {
-    this._fashion.hover = { ...this._fashion.hover, ...hover };
-    return this;
-  }
-
-  /**
-   * Swaps the main and contrast.
-   */
-  public swap() {
-    const t = this._fashion.contrast;
-    return this.contrast(this._fashion.main).main(t);
+  public inherit(): this {
+    return this.clear().idle(new ZFashionStateBuilder().inherit().build());
   }
 
   /**
