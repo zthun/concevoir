@@ -1,8 +1,7 @@
-import { register } from 'node:module';
-import { pathToFileURL } from 'node:url';
-register('ts-node/esm', pathToFileURL('./'));
+import { register } from "tsx/esm/api";
+register();
 
 export default {
-  import: ['packages/**/features/**/*.mts'],
-  paths: ['packages/**/features/**/*.feature']
+  import: ["packages/**/features/**/*.mts"],
+  paths: ["packages/**/features/**/*.feature"],
 };
