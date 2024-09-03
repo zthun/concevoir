@@ -1,6 +1,6 @@
 {
   "name": "@zthun/fashion-boutique",
-  "version": "2.7.0",
+  "version": "2.7.1",
   "description": "A UI library for react components that are very fashionable.",
   "type": "module",
   "main": "dist/index.cjs",
@@ -33,8 +33,8 @@
     "@mui/material": "^6.0.1",
     "@mui/system": "^6.0.1",
     "@zthun/cirque": "^7.0.1",
-    "@zthun/fashion-tailor": "^2.7.0",
-    "@zthun/fashion-theme": "^2.7.0",
+    "@zthun/fashion-tailor": "^2.7.1",
+    "@zthun/fashion-theme": "^2.7.1",
     "@zthun/helpful-fn": "^6.0.0",
     "@zthun/helpful-query": "^6.0.0",
     "@zthun/helpful-react": "^6.0.0",
