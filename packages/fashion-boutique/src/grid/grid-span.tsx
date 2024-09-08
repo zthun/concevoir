@@ -1,107 +1,76 @@
-import { ZSizeFixed } from "@zthun/fashion-tailor";
+import { css } from "@emotion/css";
+import { ZDeviceValue, ZDeviceValues, ZSizeFixed } from "@zthun/fashion-tailor";
 import { cssJoinDefined } from "@zthun/helpful-fn";
 import { Property } from "csstype";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
-import { createStyleHook } from "../theme/styled";
+import { useFashionDevice } from "../theme/fashion.mjs";
 
 export interface IZGridSpan extends IZComponentHierarchy, IZComponentStyle {
-  columnStart?: Property.GridColumnStart;
-  columnStartLg?: Property.GridColumnStart;
-  columnStartMd?: Property.GridColumnStart;
-  columnStartSm?: Property.GridColumnStart;
-  columnStartXs?: Property.GridColumnStart;
-
-  columnEnd?: Property.GridColumnEnd;
-  columnEndLg?: Property.GridColumnEnd;
-  columnEndMd?: Property.GridColumnEnd;
-  columnEndSm?: Property.GridColumnEnd;
-  columnEndXs?: Property.GridColumnEnd;
-
-  rowStart?: Property.GridRowStart;
-  rowStartLg?: Property.GridRowStart;
-  rowStartMd?: Property.GridRowStart;
-  rowStartSm?: Property.GridRowStart;
-  rowStartXs?: Property.GridRowStart;
-
-  rowEnd?: Property.GridRowEnd;
-  rowEndLg?: Property.GridRowEnd;
-  rowEndMd?: Property.GridRowEnd;
-  rowEndSm?: Property.GridRowEnd;
-  rowEndXs?: Property.GridRowEnd;
+  columnStart?: ZDeviceValue<Property.GridColumnStart>;
+  columnEnd?: ZDeviceValue<Property.GridColumnEnd>;
+  rowStart?: ZDeviceValue<Property.GridRowStart>;
+  rowEnd?: ZDeviceValue<Property.GridRowEnd>;
 }
 
-const useGridSpanStyles = createStyleHook(({ device }, props: IZGridSpan) => {
-  const {
-    columnStart,
-    columnStartLg = columnStart,
-    columnStartMd = columnStartLg,
-    columnStartSm = columnStartMd,
-    columnStartXs = columnStartSm,
-
-    columnEnd,
-    columnEndLg = columnEnd,
-    columnEndMd = columnEndLg,
-    columnEndSm = columnEndMd,
-    columnEndXs = columnEndSm,
-
-    rowStart,
-    rowStartLg = rowStart,
-    rowStartMd = rowStartLg,
-    rowStartSm = rowStartMd,
-    rowStartXs = rowStartSm,
-
-    rowEnd,
-    rowEndLg = rowEnd,
-    rowEndMd = rowEndLg,
-    rowEndSm = rowEndMd,
-    rowEndXs = rowEndSm,
-  } = props;
-
-  return {
-    root: {
-      gridColumnStart: columnStart,
-      gridColumnEnd: columnEnd,
-      gridRowStart: rowStart,
-      gridRowEnd: rowEnd,
-
-      [device.break(ZSizeFixed.Large)]: {
-        gridColumnStart: columnStartLg,
-        gridColumnEnd: columnEndLg,
-        gridRowStart: rowStartLg,
-        gridRowEnd: rowEndLg,
-      },
-
-      [device.break(ZSizeFixed.Medium)]: {
-        gridColumnStart: columnStartMd,
-        gridColumnEnd: columnEndMd,
-        gridRowStart: rowStartMd,
-        gridRowEnd: rowEndMd,
-      },
-
-      [device.break(ZSizeFixed.Small)]: {
-        gridColumnStart: columnStartSm,
-        gridColumnEnd: columnEndSm,
-        gridRowStart: rowStartSm,
-        gridRowEnd: rowEndSm,
-      },
-
-      [device.break(ZSizeFixed.ExtraSmall)]: {
-        gridColumnStart: columnStartXs,
-        gridColumnEnd: columnEndXs,
-        gridRowStart: rowStartXs,
-        gridRowEnd: rowEndXs,
-      },
-    },
-  };
-});
-
 export function ZGridSpan(props: IZGridSpan) {
+  const device = useFashionDevice();
+
   const { className, children } = props;
-  const { classes } = useGridSpanStyles(props);
+  const { columnStart, columnEnd, rowStart, rowEnd } = props;
+
+  const _columnStart = new ZDeviceValues(columnStart, undefined);
+  const _columnEnd = new ZDeviceValues(columnEnd, undefined);
+  const _rowStart = new ZDeviceValues(rowStart, undefined);
+  const _rowEnd = new ZDeviceValues(rowEnd, undefined);
+
+  const _className = css`
+    &.ZGridSpan-root {
+      grid-column-start: ${_columnStart.xl};
+      grid-column-end: ${_columnEnd.xl};
+      grid-row-start: ${_rowStart.xl};
+      grid-row-end: ${_rowEnd.xl};
+    }
+
+    ${device.break(ZSizeFixed.Large)} {
+      &.ZGridSpan-root {
+        grid-column-start: ${_columnStart.lg};
+        grid-column-end: ${_columnEnd.lg};
+        grid-row-start: ${_rowStart.lg};
+        grid-row-end: ${_rowEnd.lg};
+      }
+    }
+
+    ${device.break(ZSizeFixed.Medium)} {
+      &.ZGridSpan-root {
+        grid-column-start: ${_columnStart.md};
+        grid-column-end: ${_columnEnd.md};
+        grid-row-start: ${_rowStart.md};
+        grid-row-end: ${_rowEnd.md};
+      }
+    }
+
+    ${device.break(ZSizeFixed.Small)} {
+      &.ZGridSpan-root {
+        grid-column-start: ${_columnStart.sm};
+        grid-column-end: ${_columnEnd.sm};
+        grid-row-start: ${_rowStart.sm};
+        grid-row-end: ${_rowEnd.sm};
+      }
+    }
+
+    ${device.break(ZSizeFixed.ExtraSmall)} {
+      &.ZGridSpan-root {
+        grid-column-start: ${_columnStart.xs};
+        grid-column-end: ${_columnEnd.xs};
+        grid-row-start: ${_rowStart.xs};
+        grid-row-end: ${_rowEnd.xs};
+      }
+    }
+  `;
 
   return (
-    <div className={cssJoinDefined("ZGridSpan-root", className, classes.root)}>
+    <div className={cssJoinDefined("ZGridSpan-root", className, _className)}>
       {children}
     </div>
   );

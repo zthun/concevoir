@@ -1,4 +1,8 @@
-import { ZSizeVaried } from "@zthun/fashion-tailor";
+import {
+  ZDeviceValue,
+  ZDeviceValues,
+  ZSizeVaried,
+} from "@zthun/fashion-tailor";
 import { cssJoinDefined } from "@zthun/helpful-fn";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
@@ -13,29 +17,19 @@ export interface IZNewspaper extends IZComponentStyle, IZComponentHierarchy {
     IZGrid,
     "columns" | "children" | "className" | "name" | "width" | "height"
   >;
-  range?: ZNewspaperRange;
-  rangeLg?: ZNewspaperRange;
-  rangeMd?: ZNewspaperRange;
-  rangeSm?: ZNewspaperRange;
-  rangeXs?: ZNewspaperRange;
+  range?: ZDeviceValue<ZNewspaperRange>;
 }
 
 export function ZNewspaper(props: IZNewspaper) {
-  const {
-    GridProps,
-    className,
-    range = [1, 12],
-    rangeLg = range,
-    rangeMd = rangeLg,
-    rangeSm = rangeMd,
-    rangeXs = rangeSm,
-    children,
-  } = props;
-  const [start, end] = range;
-  const [startLg, endLg] = rangeLg;
-  const [startMd, endMd] = rangeMd;
-  const [startSm, endSm] = rangeSm;
-  const [startXs, endXs] = rangeXs;
+  const { GridProps, className, range, children } = props;
+
+  const _range = new ZDeviceValues(range, [1, 12]);
+
+  const [sXl, eXl] = _range.xl;
+  const [sLg, eLg] = _range.lg;
+  const [sMd, eMd] = _range.md;
+  const [sSm, eSm] = _range.sm;
+  const [sXs, eXs] = _range.xs;
 
   return (
     <ZGrid
@@ -45,16 +39,20 @@ export function ZNewspaper(props: IZNewspaper) {
       width={ZSizeVaried.Full}
     >
       <ZGridSpan
-        columnStart={start}
-        columnStartLg={startLg}
-        columnStartMd={startMd}
-        columnStartSm={startSm}
-        columnStartXs={startXs}
-        columnEnd={end + 1}
-        columnEndLg={endLg + 1}
-        columnEndMd={endMd + 1}
-        columnEndSm={endSm + 1}
-        columnEndXs={endXs + 1}
+        columnStart={{
+          xl: sXl,
+          lg: sLg,
+          md: sMd,
+          sm: sSm,
+          xs: sXs,
+        }}
+        columnEnd={{
+          xl: eXl + 1,
+          lg: eLg + 1,
+          md: eMd + 1,
+          sm: eSm + 1,
+          xs: eXs + 1,
+        }}
       >
         {children}
       </ZGridSpan>
