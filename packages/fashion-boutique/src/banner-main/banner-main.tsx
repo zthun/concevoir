@@ -1,5 +1,4 @@
 import { ZSizeFixed } from "@zthun/fashion-tailor";
-import React from "react";
 import { ZBanner } from "../banner/banner";
 import { ZBox } from "../box/box";
 import { IZComponentAdornment } from "../component/component-adornment.mjs";
@@ -23,11 +22,7 @@ export function ZBannerMain(props: IZBannerMain) {
 
   return (
     <ZStyled className="ZBannerMain-root">
-      <ZBanner
-        className="ZBannerMain-header"
-        position="sticky"
-        fashion={primary}
-      >
+      <ZBanner className="ZBannerMain-header" fashion={primary}>
         <ZBox padding={{ x: ZSizeFixed.Medium, y: ZSizeFixed.ExtraSmall }}>
           <ZGrid
             columns="auto auto 1fr auto"
