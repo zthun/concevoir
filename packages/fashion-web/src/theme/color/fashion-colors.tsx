@@ -8,7 +8,7 @@ import {
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { ZFashionBuilder } from "@zthun/fashion-theme";
 import { ZOrientation, cssJoinDefined } from "@zthun/helpful-fn";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 
 export interface IZFashionColors extends Required<IZComponentFashion> {}
 
@@ -23,7 +23,7 @@ export function ZFashionColors(props: IZFashionColors) {
     <ZBox
       className={cssJoinDefined("ZFashionColors-root")}
       fashion={boxFashion}
-      border={{ width: ZSizeFixed.Small }}
+      border={{ width: ZSizeFixed.ExtraLarge, style: "solid" }}
       padding={ZSizeFixed.Large}
       data-name={fashion.name}
       data-fashion={fashion.name}
