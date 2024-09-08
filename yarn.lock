@@ -1924,7 +1924,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/material@npm:^6.0.2":
+"@mui/material@npm:^6.0.1, @mui/material@npm:^6.0.2":
   version: 6.0.2
   resolution: "@mui/material@npm:6.0.2"
   dependencies:
@@ -3481,8 +3481,8 @@ __metadata:
     "@mui/system": "npm:^6.0.2"
     "@zthun/cirque": "npm:^7.0.3"
     "@zthun/cirque-du-react": "npm:^7.0.3"
-    "@zthun/fashion-tailor": "npm:^2.7.0"
-    "@zthun/fashion-theme": "npm:^2.7.0"
+    "@zthun/fashion-tailor": "npm:^2.7.1"
+    "@zthun/fashion-theme": "npm:^2.7.1"
     "@zthun/helpful-brands": "npm:^6.1.0"
     "@zthun/helpful-fn": "npm:^6.1.0"
     "@zthun/helpful-query": "npm:^6.1.0"
@@ -3501,6 +3501,25 @@ __metadata:
     react-dom: ^18.1.0
   languageName: unknown
   linkType: soft
+
+"@zthun/fashion-labs@npm:^2.7.1":
+  version: 2.7.1
+  resolution: "@zthun/fashion-labs@npm:2.7.1"
+  dependencies:
+    "@mui/material": "npm:^6.0.1"
+    "@zthun/fashion-boutique": "npm:^2.7.1"
+    "@zthun/fashion-tailor": "npm:^2.7.1"
+    "@zthun/fashion-theme": "npm:^2.7.1"
+    "@zthun/helpful-fn": "npm:^6.0.0"
+    "@zthun/helpful-query": "npm:^6.0.0"
+    "@zthun/helpful-react": "npm:^6.0.0"
+    lodash-es: "npm:^4.17.21"
+  peerDependencies:
+    react: ^18.1.0
+    react-dom: ^18.1.0
+  checksum: 8b3ba7b82019555096a2539e7a7a042bf5eb2c1de56c7680b985e3ce647559e8bb22ee41f4cb8a7d7047c70f0fedb1bdba59efc7a2708ddbb5520ff24806361c
+  languageName: node
+  linkType: hard
 
 "@zthun/fashion-tailor@npm:^2.7.1, @zthun/fashion-tailor@workspace:packages/fashion-tailor":
   version: 0.0.0-use.local
@@ -3533,9 +3552,10 @@ __metadata:
     "@zthun/cirque": "npm:^7.0.3"
     "@zthun/cirque-du-react": "npm:^7.0.3"
     "@zthun/cirque-du-selenium": "npm:^7.0.3"
-    "@zthun/fashion-boutique": "npm:^2.7.0"
-    "@zthun/fashion-tailor": "npm:^2.7.0"
-    "@zthun/fashion-theme": "npm:^2.7.0"
+    "@zthun/fashion-boutique": "npm:^2.7.1"
+    "@zthun/fashion-labs": "npm:^2.7.1"
+    "@zthun/fashion-tailor": "npm:^2.7.1"
+    "@zthun/fashion-theme": "npm:^2.7.1"
     "@zthun/helpful-brands": "npm:^6.1.0"
     "@zthun/helpful-fn": "npm:^6.1.0"
     "@zthun/helpful-query": "npm:^6.1.0"
@@ -3593,7 +3613,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/helpful-fn@npm:^6.1.0":
+"@zthun/helpful-fn@npm:^6.0.0, @zthun/helpful-fn@npm:^6.1.0":
   version: 6.1.0
   resolution: "@zthun/helpful-fn@npm:6.1.0"
   dependencies:
@@ -3602,7 +3622,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/helpful-query@npm:^6.1.0":
+"@zthun/helpful-query@npm:^6.0.0, @zthun/helpful-query@npm:^6.1.0":
   version: 6.1.0
   resolution: "@zthun/helpful-query@npm:6.1.0"
   dependencies:
@@ -3612,7 +3632,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/helpful-react@npm:^6.1.0":
+"@zthun/helpful-react@npm:^6.0.0, @zthun/helpful-react@npm:^6.1.0":
   version: 6.1.0
   resolution: "@zthun/helpful-react@npm:6.1.0"
   dependencies:
