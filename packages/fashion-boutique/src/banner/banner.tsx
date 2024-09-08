@@ -7,7 +7,6 @@ import {
   ZSizeVaried,
 } from "@zthun/fashion-tailor";
 import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
-import React from "react";
 import { IZComponentFashion } from "../component/component-fashion.mjs";
 import { IZComponentHeight } from "../component/component-height.mjs";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
@@ -47,9 +46,6 @@ const useBannerStyles = createStyleHook(({ theme }, props: IZBanner) => {
   };
 });
 
-/**
- * A colorful bar in a specific location.
- */
 export function ZBanner(props: IZBanner) {
   const { children, className, position } = props;
   const { classes } = useBannerStyles(props);
