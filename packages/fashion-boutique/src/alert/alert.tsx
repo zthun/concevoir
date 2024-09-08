@@ -1,6 +1,7 @@
 import { css } from "@emotion/css";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
-import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import { ZColorPicker } from "@zthun/fashion-theme";
+import { cssJoinDefined } from "@zthun/helpful-fn";
 import { ReactNode } from "react";
 import { IZComponentAvatar } from "../component/component-avatar.mjs";
 import { IZComponentFashion } from "../component/component-fashion.mjs";
@@ -23,8 +24,8 @@ const useAlertStyles = (props: IZAlert) => {
   const tailor = useFashionTailor();
   const { primary } = theme;
   const { fashion = primary } = props;
+  const picker = new ZColorPicker(fashion);
 
-  const border = firstDefined(fashion.idle.main, fashion.idle.border);
   const boxWidth = tailor.thickness(ZSizeFixed.ExtraSmall);
   const px = tailor.gap(ZSizeFixed.Small);
   const py = tailor.gap(ZSizeFixed.ExtraSmall);
@@ -32,12 +33,12 @@ const useAlertStyles = (props: IZAlert) => {
   return css`
     &.ZAlert-root {
       align-items: center;
-      background: ${fashion.idle.main};
-      border-color: ${border};
+      background: ${picker.idle.main};
+      border-color: ${picker.idle.border};
       border-radius: 0.25rem;
       border-style: double;
-      box-shadow: 0 0 0 ${boxWidth} ${border};
-      color: ${fashion.idle.contrast};
+      box-shadow: 0 0 0 ${boxWidth} ${picker.idle.border};
+      color: ${picker.idle.contrast};
       display: grid;
       grid-template-columns: auto auto 1fr;
       grid-template-areas:
