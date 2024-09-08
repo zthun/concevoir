@@ -26,7 +26,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.4.1",
     "@commitlint/config-conventional": "^19.4.1",
-    "@cucumber/cucumber": "^10.9.0",
+    "@cucumber/cucumber": "^11.0.0",
     "@types/jsdom": "^21.1.7",
     "@types/lodash": "^4.17.7",
     "@types/lodash-es": "^4.17.12",
