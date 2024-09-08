@@ -13,8 +13,8 @@ export interface IZSuspense<
   TWidth extends ZSize = ZSizeFixed,
   THeight extends ZSize = ZSizeVaried.Fit,
 > extends IZComponentStyle,
-    Pick<IZComponentWidth<TWidth>, "width">,
-    IZComponentHeight<THeight>,
+    IZComponentWidth<TWidth, TWidth>,
+    IZComponentHeight<THeight, THeight>,
     IZComponentLoading,
     IZComponentFashion,
     IZComponentName {}
