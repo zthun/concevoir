@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.0](https://github.com/zthun/fashion/compare/v2.7.1...v3.0.0) (2024-09-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* fashion labs is no longer supported
+
+### Features
+
+* fashion labs is no longer supported ([2444ced](https://github.com/zthun/fashion/commit/2444ced77ca028d16c9e70a4aacc26893266dc95))
+
+
+
 ## [2.7.1](https://github.com/zthun/fashion/compare/v2.7.0...v2.7.1) (2024-09-03)
 
 **Note:** Version bump only for package @zthun/fashion-web

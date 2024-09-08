@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.0](https://github.com/zthun/fashion/compare/v2.7.1...v3.0.0) (2024-09-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* the main, contrast and border for the fashion is now housed in the idle state
+
+### Features
+
+* color picker picks color states with fallback support ([2ae67e1](https://github.com/zthun/fashion/commit/2ae67e139123d22871bc902d9d08d1b70ca79d44))
+* the main, contrast and border for the fashion is now housed in the idle state ([e669af6](https://github.com/zthun/fashion/commit/e669af6432752a7fedee39d4966bd14309aa9ee8))
+
+
+
 ## [2.7.1](https://github.com/zthun/fashion/compare/v2.7.0...v2.7.1) (2024-09-03)
 
 **Note:** Version bump only for package @zthun/fashion-theme

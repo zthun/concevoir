@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.0](https://github.com/zthun/fashion/compare/v2.7.1...v3.0.0) (2024-09-08)
+
+
+### Features
+
+* added size alias's for gap, thickness and rounding ([e94fa48](https://github.com/zthun/fashion/commit/e94fa48e88d054e321168c0f2efa86e16b5ad89c))
+* device value supports fallback values ([cc7e780](https://github.com/zthun/fashion/commit/cc7e7801719e3208c896ffff40537576cd86e797))
+* device-value allows you to set a value or device based values ([565f689](https://github.com/zthun/fashion/commit/565f689cd7c70a999bb569fbd77e4fd01f56ff67))
+
+
+
 ## [2.7.1](https://github.com/zthun/fashion/compare/v2.7.0...v2.7.1) (2024-09-03)
 
 **Note:** Version bump only for package @zthun/fashion-tailor

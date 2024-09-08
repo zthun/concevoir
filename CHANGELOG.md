@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.0](https://github.com/zthun/fashion/compare/v2.7.1...v3.0.0) (2024-09-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* grid span and newspaper now use device value for properties
+* component width now uses DeviceValue
+* component height now has one property of ZDeviceValue
+* fashion labs is no longer supported
+* the main, contrast and border for the fashion is now housed in the idle state
+
+### Features
+
+* added size alias's for gap, thickness and rounding ([e94fa48](https://github.com/zthun/fashion/commit/e94fa48e88d054e321168c0f2efa86e16b5ad89c))
+* color picker picks color states with fallback support ([2ae67e1](https://github.com/zthun/fashion/commit/2ae67e139123d22871bc902d9d08d1b70ca79d44))
+* component height now has one property of ZDeviceValue ([ba2caa0](https://github.com/zthun/fashion/commit/ba2caa00a3e0c1706e05da066a4317564d6c8609))
+* component width now uses DeviceValue ([484be6b](https://github.com/zthun/fashion/commit/484be6bcfebf6bdff305805beae83c22ed3926be))
+* device value supports fallback values ([cc7e780](https://github.com/zthun/fashion/commit/cc7e7801719e3208c896ffff40537576cd86e797))
+* device-value allows you to set a value or device based values ([565f689](https://github.com/zthun/fashion/commit/565f689cd7c70a999bb569fbd77e4fd01f56ff67))
+* fashion labs is no longer supported ([2444ced](https://github.com/zthun/fashion/commit/2444ced77ca028d16c9e70a4aacc26893266dc95))
+* the main, contrast and border for the fashion is now housed in the idle state ([e669af6](https://github.com/zthun/fashion/commit/e669af6432752a7fedee39d4966bd14309aa9ee8))
+
+
+### Code Refactoring
+
+* grid span and newspaper now use device value for properties ([7f1aada](https://github.com/zthun/fashion/commit/7f1aadaa094a28d2d987cda808e22e418750ae83))
+
+
+
 ## [2.7.1](https://github.com/zthun/fashion/compare/v2.7.0...v2.7.1) (2024-09-03)
 
 **Note:** Version bump only for package @zthun/fashion

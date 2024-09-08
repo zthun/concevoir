@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.0](https://github.com/zthun/fashion/compare/v2.7.1...v3.0.0) (2024-09-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* grid span and newspaper now use device value for properties
+* component width now uses DeviceValue
+* component height now has one property of ZDeviceValue
+
+### Features
+
+* component height now has one property of ZDeviceValue ([ba2caa0](https://github.com/zthun/fashion/commit/ba2caa00a3e0c1706e05da066a4317564d6c8609))
+* component width now uses DeviceValue ([484be6b](https://github.com/zthun/fashion/commit/484be6bcfebf6bdff305805beae83c22ed3926be))
+
+
+### Code Refactoring
+
+* grid span and newspaper now use device value for properties ([7f1aada](https://github.com/zthun/fashion/commit/7f1aadaa094a28d2d987cda808e22e418750ae83))
+
+
+
 ## [2.7.1](https://github.com/zthun/fashion/compare/v2.7.0...v2.7.1) (2024-09-03)
 
 **Note:** Version bump only for package @zthun/fashion-boutique
