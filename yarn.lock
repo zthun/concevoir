@@ -3390,51 +3390,51 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/cirque-du-dom@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "@zthun/cirque-du-dom@npm:7.0.1"
+"@zthun/cirque-du-dom@npm:^7.0.3":
+  version: 7.0.3
+  resolution: "@zthun/cirque-du-dom@npm:7.0.3"
   dependencies:
     "@testing-library/dom": "npm:^10.4.0"
     "@testing-library/user-event": "npm:^14.5.2"
-    "@zthun/cirque": "npm:^7.0.1"
+    "@zthun/cirque": "npm:^7.0.3"
     lodash-es: "npm:^4.17.21"
   peerDependencies:
     react: ^18.2.0
     react-dom: ^18.2.0
-  checksum: fdd96101230e7e5aaf45d2c996dc34be48e33691351b2cc53ed6819393eb490cad495ee0bcea1f8e92a24c44eeb9244d0179cbbc39586cb913069f5ec8cc0ff0
+  checksum: 701e5e29b5c97c2dd4ddcf093a85640ac00470cd164df5d0b2af8219e6da13b8a3cc320f551b213361ad78aae42a9956c6501c8ee82072aa34e877fab8f2b3b9
   languageName: node
   linkType: hard
 
-"@zthun/cirque-du-react@npm:^7.0.2":
-  version: 7.0.2
-  resolution: "@zthun/cirque-du-react@npm:7.0.2"
+"@zthun/cirque-du-react@npm:^7.0.3":
+  version: 7.0.3
+  resolution: "@zthun/cirque-du-react@npm:7.0.3"
   dependencies:
     "@testing-library/dom": "npm:^10.4.0"
     "@testing-library/react": "npm:^16.0.1"
-    "@zthun/cirque": "npm:^7.0.1"
-    "@zthun/cirque-du-dom": "npm:^7.0.1"
+    "@zthun/cirque": "npm:^7.0.3"
+    "@zthun/cirque-du-dom": "npm:^7.0.3"
   peerDependencies:
     react: ^18.2.0
     react-dom: ^18.2.0
-  checksum: 3281dc2a8665e17610cd5f7258c98633f41f52e13e463b1a970b37facfb3111bdc0f45ac3e854b348e335dd20699bb98c73dfaff3d678aebab9fdd2a85464303
+  checksum: f1248d44e65b4c307608eb16f023269e523390e88b63cdf0981d7244f421d56c3b3435aabb08a18aea670c120cd2488e59430a5ce27ea355d3d83240c7ebc617
   languageName: node
   linkType: hard
 
-"@zthun/cirque-du-selenium@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "@zthun/cirque-du-selenium@npm:7.0.1"
+"@zthun/cirque-du-selenium@npm:^7.0.3":
+  version: 7.0.3
+  resolution: "@zthun/cirque-du-selenium@npm:7.0.3"
   dependencies:
-    "@zthun/cirque": "npm:^7.0.1"
+    "@zthun/cirque": "npm:^7.0.3"
     lodash-es: "npm:^4.17.21"
     selenium-webdriver: "npm:^4.24.0"
-  checksum: de0dae6a8da20acd1a3e8722a0d54b465c6c52da72cc336c86b3dce38c35969228e6f9e50ef0014ad17c8888ee85d72d359a634c0985b3edd1b4580715145071
+  checksum: e1cf460e97a667c4d698b5ebff48cfc4f023ae998a23579191e343eb82e9d9ff295f5f7209f7ba6d411e61b4aa46bfb988f5dee04ba2c7d4a686e24d4bd729cf
   languageName: node
   linkType: hard
 
-"@zthun/cirque@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "@zthun/cirque@npm:7.0.1"
-  checksum: 91ffafca832a9540da101aede613ccc2fde42d754abf5224a255b9e010728d918d29998c83039e4420b89ffa6ee28b59538b174a500385ef08d3c2ecc6bbfc54
+"@zthun/cirque@npm:^7.0.3":
+  version: 7.0.3
+  resolution: "@zthun/cirque@npm:7.0.3"
+  checksum: ce2aff04bb40153a8b3ec8ce9282eaffb29402f501f6d328da50b024be6b278d52b31ec0d102bc20700b7a0bd2b3a417e342f9daf460132736b8df8b15fba9ee
   languageName: node
   linkType: hard
 
@@ -3479,8 +3479,8 @@ __metadata:
     "@emotion/styled": "npm:^11.13.0"
     "@mui/material": "npm:^6.0.2"
     "@mui/system": "npm:^6.0.2"
-    "@zthun/cirque": "npm:^7.0.1"
-    "@zthun/cirque-du-react": "npm:^7.0.2"
+    "@zthun/cirque": "npm:^7.0.3"
+    "@zthun/cirque-du-react": "npm:^7.0.3"
     "@zthun/fashion-tailor": "npm:^2.7.0"
     "@zthun/fashion-theme": "npm:^2.7.0"
     "@zthun/helpful-brands": "npm:^6.1.0"
@@ -3530,9 +3530,9 @@ __metadata:
   resolution: "@zthun/fashion-web@workspace:packages/fashion-web"
   dependencies:
     "@cucumber/cucumber": "npm:^11.0.0"
-    "@zthun/cirque": "npm:^7.0.1"
-    "@zthun/cirque-du-react": "npm:^7.0.2"
-    "@zthun/cirque-du-selenium": "npm:^7.0.1"
+    "@zthun/cirque": "npm:^7.0.3"
+    "@zthun/cirque-du-react": "npm:^7.0.3"
+    "@zthun/cirque-du-selenium": "npm:^7.0.3"
     "@zthun/fashion-boutique": "npm:^2.7.0"
     "@zthun/fashion-tailor": "npm:^2.7.0"
     "@zthun/fashion-theme": "npm:^2.7.0"
