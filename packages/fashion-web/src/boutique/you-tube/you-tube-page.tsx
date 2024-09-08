@@ -34,11 +34,13 @@ export function ZYouTubePage() {
       <ZParagraph>Embed YouTube videos into your site.</ZParagraph>
 
       <ZNewspaper
-        range={[5, 8]}
-        rangeLg={[4, 9]}
-        rangeMd={[3, 10]}
-        rangeSm={[2, 11]}
-        rangeXs={[1, 12]}
+        range={{
+          xl: [5, 8],
+          lg: [4, 9],
+          md: [3, 10],
+          sm: [2, 11],
+          xs: [1, 12],
+        }}
       >
         <ZYouTubeVideo identity="ahCwqrYpIuM" />
       </ZNewspaper>
