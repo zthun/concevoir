@@ -1,12 +1,12 @@
 import {
   createSizeChartVariedCss,
+  ZDeviceValues,
   ZSizeFixed,
   ZSizeVaried,
   ZSizeVoid,
 } from "@zthun/fashion-tailor";
 import { cssJoinDefined } from "@zthun/helpful-fn";
 import { Property } from "csstype";
-import React from "react";
 import { IZComponentHeight } from "../component/component-height.mjs";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
@@ -47,44 +47,39 @@ const useGridStyles = createStyleHook(({ tailor, device }, props: IZGrid) => {
     columnsXs = columnsSm,
     rows,
     width = ZSizeVaried.Fit,
-    widthLg = width,
-    widthMd = widthLg,
-    widthSm = widthMd,
-    widthXs = widthSm,
     height = ZSizeVaried.Fit,
-    heightLg = height,
-    heightMd = heightLg,
-    heightSm = heightMd,
-    heightXs = heightSm,
   } = props;
+
+  const _width = new ZDeviceValues(width);
+  const _height = new ZDeviceValues(height);
 
   const dimensions = {
     gridTemplateColumns: columns,
-    height: GridDimensionChart[height],
-    width: GridDimensionChart[width],
+    height: GridDimensionChart[_height.xl],
+    width: GridDimensionChart[_width.xl],
 
     [device.break(ZSizeFixed.Large)]: {
       gridTemplateColumns: columnsLg,
-      height: GridDimensionChart[heightLg],
-      width: GridDimensionChart[widthLg],
+      height: GridDimensionChart[_height.lg],
+      width: GridDimensionChart[_width.lg],
     },
 
     [device.break(ZSizeFixed.Medium)]: {
       gridTemplateColumns: columnsMd,
-      height: GridDimensionChart[heightMd],
-      width: GridDimensionChart[widthMd],
+      height: GridDimensionChart[_height.md],
+      width: GridDimensionChart[_width.md],
     },
 
     [device.break(ZSizeFixed.Small)]: {
       gridTemplateColumns: columnsSm,
-      height: GridDimensionChart[heightSm],
-      width: GridDimensionChart[widthSm],
+      height: GridDimensionChart[_height.sm],
+      width: GridDimensionChart[_width.sm],
     },
 
     [device.break(ZSizeFixed.ExtraSmall)]: {
       gridTemplateColumns: columnsXs,
-      height: GridDimensionChart[heightXs],
-      width: GridDimensionChart[widthXs],
+      height: GridDimensionChart[_height.xs],
+      width: GridDimensionChart[_width.xs],
     },
   };
 

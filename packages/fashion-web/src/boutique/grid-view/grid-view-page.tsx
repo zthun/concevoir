@@ -17,7 +17,7 @@ import {
   ZDataSourceStatic,
   ZDataSourceStaticOptionsBuilder,
 } from "@zthun/helpful-query";
-import React, { useState } from "react";
+import { useState } from "react";
 import { ZFashionRouteGridView } from "../../routes.mjs";
 
 const ZBrandDataSourceOptions = new ZDataSourceStaticOptionsBuilder()
@@ -53,8 +53,7 @@ export function ZGridViewPage() {
         <ZIconFontAwesome
           family="brands"
           name={item.id}
-          width={ZSizeFixed.Large}
-          widthXs={ZSizeFixed.Medium}
+          width={{ xl: ZSizeFixed.Large, xs: ZSizeFixed.Medium }}
         />
       </ZStack>
     </ZCard>

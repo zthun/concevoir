@@ -54,36 +54,34 @@ const CardHeightChart = {
 const useCardStyles = createStyleHook(({ theme, device }, props: IZCard) => {
   const {
     width = ZSizeVaried.Fit,
-    widthLg = width,
-    widthMd = widthLg,
-    widthSm = widthMd,
-    widthXs = widthSm,
     height = ZSizeVaried.Fit,
     fashion = theme.surface,
   } = props;
+
+  const _width = new ZDeviceValues(width);
   const _height = new ZDeviceValues(height);
 
   const maxWidth = {
-    maxWidth: CardWidthChart[width],
+    maxWidth: CardWidthChart[_width.xl],
     minHeight: CardHeightChart[_height.xl],
 
     [device.break(ZSizeFixed.Large)]: {
-      maxWidth: CardWidthChart[widthLg],
+      maxWidth: CardWidthChart[_width.lg],
       minHeight: CardHeightChart[_height.lg],
     },
 
     [device.break(ZSizeFixed.Medium)]: {
-      maxWidth: CardWidthChart[widthMd],
+      maxWidth: CardWidthChart[_width.md],
       minHeight: CardHeightChart[_height.md],
     },
 
     [device.break(ZSizeFixed.Small)]: {
-      maxWidth: CardWidthChart[widthSm],
+      maxWidth: CardWidthChart[_width.sm],
       minHeight: CardHeightChart[_height.sm],
     },
 
     [device.break(ZSizeFixed.ExtraSmall)]: {
-      maxWidth: CardWidthChart[widthXs],
+      maxWidth: CardWidthChart[_width.xs],
       minHeight: CardHeightChart[_height.xs],
     },
   };

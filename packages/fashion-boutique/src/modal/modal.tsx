@@ -7,7 +7,7 @@ import {
 import { ZSizeFixed, ZSizeVaried } from "@zthun/fashion-tailor";
 import { rgb } from "@zthun/fashion-theme";
 import { cssJoinDefined } from "@zthun/helpful-fn";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { IZComponentFashion } from "../component/component-fashion.mjs";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentName } from "../component/component-name.mjs";
@@ -21,7 +21,7 @@ export interface IZModal
     IZComponentName,
     IZComponentStyle,
     IZComponentFashion,
-    Pick<IZComponentWidth<ZSizeVaried>, "width"> {
+    IZComponentWidth<ZSizeVaried, ZSizeVaried> {
   open: boolean;
 
   renderHeader?(): ReactNode;

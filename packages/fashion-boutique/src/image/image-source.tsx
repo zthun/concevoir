@@ -3,12 +3,12 @@ import {
   createSizeChartFixedGeometric,
   createSizeChartVariedCss,
   createSizeChartVoidCss,
+  ZDeviceValues,
   ZSizeFixed,
   ZSizeVaried,
 } from "@zthun/fashion-tailor";
 import { cssJoinDefined } from "@zthun/helpful-fn";
 import { ZDataUrlBuilder } from "@zthun/webigail-url";
-import React from "react";
 import { IZComponentHeight } from "../component/component-height.mjs";
 import { IZComponentName } from "../component/component-name.mjs";
 import { IZComponentSource } from "../component/component-source.mjs";
@@ -31,41 +31,33 @@ const ImageSizeChart = {
 
 const useImageSourceStyles = createStyleHook(
   ({ device }, props: IZImageSource) => {
-    const {
-      height = ZSizeVaried.Fit,
-      heightLg = height,
-      heightMd = heightLg,
-      heightSm = heightMd,
-      heightXs = heightSm,
-      width = ZSizeVaried.Fit,
-      widthLg = width,
-      widthMd = widthLg,
-      widthSm = widthMd,
-      widthXs = widthSm,
-    } = props;
+    const { height = ZSizeVaried.Fit, width = ZSizeVaried.Fit } = props;
+
+    const _height = new ZDeviceValues(height);
+    const _width = new ZDeviceValues(width);
 
     const dimensions = {
-      width: ImageSizeChart[width],
-      height: ImageSizeChart[height],
+      width: ImageSizeChart[_width.xl],
+      height: ImageSizeChart[_height.xl],
 
       [device.break(ZSizeFixed.Large)]: {
-        width: ImageSizeChart[widthLg],
-        height: ImageSizeChart[heightLg],
+        width: ImageSizeChart[_width.lg],
+        height: ImageSizeChart[_height.lg],
       },
 
       [device.break(ZSizeFixed.Medium)]: {
-        width: ImageSizeChart[widthMd],
-        height: ImageSizeChart[heightMd],
+        width: ImageSizeChart[_width.md],
+        height: ImageSizeChart[_height.md],
       },
 
       [device.break(ZSizeFixed.Small)]: {
-        width: ImageSizeChart[widthSm],
-        height: ImageSizeChart[heightSm],
+        width: ImageSizeChart[_width.sm],
+        height: ImageSizeChart[_height.sm],
       },
 
       [device.break(ZSizeFixed.ExtraSmall)]: {
-        width: ImageSizeChart[widthXs],
-        height: ImageSizeChart[heightXs],
+        width: ImageSizeChart[_width.xs],
+        height: ImageSizeChart[_height.xs],
       },
     };
 

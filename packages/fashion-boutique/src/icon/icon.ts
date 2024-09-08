@@ -1,4 +1,5 @@
 import {
+  ZDeviceValues,
   ZSizeFixed,
   createSizeChartFixedCss,
   createSizeChartFixedGeometric,
@@ -27,33 +28,26 @@ const IconSizeChart = createSizeChartFixedCss(
 export const useIconStyles = createStyleHook(
   ({ theme, device }, props: IZIcon) => {
     const { primary } = theme;
-    const {
-      width = ZSizeFixed.Small,
-      widthLg = width,
-      widthMd = widthLg,
-      widthSm = widthMd,
-      widthXs = widthSm,
-      fashion,
-      onClick,
-    } = props;
+    const { width = ZSizeFixed.Small, fashion, onClick } = props;
+    const _width = new ZDeviceValues(width);
 
     const fontSize = {
-      fontSize: `${IconSizeChart[width]} !important`,
+      fontSize: `${IconSizeChart[_width.xl]} !important`,
 
       [device.break(ZSizeFixed.Large)]: {
-        fontSize: `${IconSizeChart[widthLg]} !important`,
+        fontSize: `${IconSizeChart[_width.lg]} !important`,
       },
 
       [device.break(ZSizeFixed.Medium)]: {
-        fontSize: `${IconSizeChart[widthMd]} !important`,
+        fontSize: `${IconSizeChart[_width.md]} !important`,
       },
 
       [device.break(ZSizeFixed.Small)]: {
-        fontSize: `${IconSizeChart[widthSm]} !important`,
+        fontSize: `${IconSizeChart[_width.sm]} !important`,
       },
 
       [device.break(ZSizeFixed.ExtraSmall)]: {
-        fontSize: `${IconSizeChart[widthXs]} !important`,
+        fontSize: `${IconSizeChart[_width.xs]} !important`,
       },
     };
 
