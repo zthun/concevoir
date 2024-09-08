@@ -15,7 +15,8 @@ export interface IZFashion {
   /**
    * Idle state.
    */
-  readonly idle: IZFashionState;
+  readonly idle: IZFashionState &
+    Required<Pick<IZFashionState, "main" | "contrast">>;
 
   /**
    * Color overrides for when a component is hovered.
@@ -125,6 +126,9 @@ export class ZFashionBuilder {
   /**
    * Sets the idle state.
    *
+   * Note that main and contrast will be fully held and, if not set in
+   * the state, will be ignored.
+   *
    * @param state -
    *        The fashion overrides.
    *
@@ -132,7 +136,7 @@ export class ZFashionBuilder {
    *        This object.
    */
   public idle(state: IZFashionState): this {
-    this._fashion.idle = { ...state };
+    this._fashion.idle = Object.assign({}, this._fashion.idle, state);
     return this;
   }
 
