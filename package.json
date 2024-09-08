@@ -20,7 +20,7 @@
     "e2e": "cucumber-js",
     "lint": "lint-janitor",
     "build": "lerna run build",
-    "make": "yarn clean && yarn lint && yarn test && yarn build",
+    "make": "yarn clean && yarn check && yarn lint && yarn test && yarn build",
     "prepare": "husky"
   },
   "devDependencies": {
