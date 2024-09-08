@@ -62,13 +62,13 @@ const useBoxStyles = createStyleHook(
       padding,
       margin,
       border,
-      width = ZSizeVaried.Fit,
+      width,
       fashion = transparent,
       justification,
       onClick,
     } = props;
 
-    const _width = new ZDeviceValues(width);
+    const _width = new ZDeviceValues(width, ZSizeVaried.Fit);
     const _fashion = new ZColorPicker(fashion);
 
     const asPadding = (pad: ZSizeFixed | ZSizeVoid | object) => {

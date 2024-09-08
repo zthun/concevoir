@@ -52,14 +52,10 @@ const CardHeightChart = {
 };
 
 const useCardStyles = createStyleHook(({ theme, device }, props: IZCard) => {
-  const {
-    width = ZSizeVaried.Fit,
-    height = ZSizeVaried.Fit,
-    fashion = theme.surface,
-  } = props;
+  const { width, height, fashion = theme.surface } = props;
 
-  const _width = new ZDeviceValues(width);
-  const _height = new ZDeviceValues(height);
+  const _width = new ZDeviceValues(width, ZSizeVaried.Fit);
+  const _height = new ZDeviceValues(height, ZSizeVaried.Fit);
 
   const maxWidth = {
     maxWidth: CardWidthChart[_width.xl],

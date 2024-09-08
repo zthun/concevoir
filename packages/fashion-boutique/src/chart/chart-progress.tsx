@@ -24,10 +24,10 @@ export interface IZChartProgress
 
 const useChartProgressStyles = createStyleHook(
   ({ theme, tailor }, props: IZChartProgress) => {
-    const { height = ZSizeFixed.Medium, points } = props;
+    const { height, points } = props;
     const { primary, transparent } = theme;
     const { fashion = primary } = points;
-    const _height = new ZDeviceValues(height);
+    const _height = new ZDeviceValues(height, ZSizeFixed.Medium);
 
     const border = firstDefined(fashion.idle.main, fashion.idle.border);
 

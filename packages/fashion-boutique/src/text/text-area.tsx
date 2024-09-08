@@ -31,16 +31,9 @@ const useTextAreaStyles = createStyleHook(({ theme }) => ({
  *        The JSX to render this component.
  */
 export function ZTextArea(props: IZTextArea) {
-  const {
-    className,
-    name,
-    required,
-    height = ZSizeFixed.Medium,
-    label,
-    orientation,
-  } = props;
+  const { className, name, required, height, label, orientation } = props;
   const InputProps = useText(props, "");
-  const _height = new ZDeviceValues(height);
+  const _height = new ZDeviceValues(height, ZSizeFixed.Medium);
   const rows = TextAreaRows[_height.xl];
   const { classes } = useTextAreaStyles();
 

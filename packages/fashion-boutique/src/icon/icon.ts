@@ -29,7 +29,7 @@ export const useIconStyles = createStyleHook(
   ({ theme, device }, props: IZIcon) => {
     const { primary } = theme;
     const { width = ZSizeFixed.Small, fashion, onClick } = props;
-    const _width = new ZDeviceValues(width);
+    const _width = new ZDeviceValues(width, ZSizeFixed.Small);
 
     const fontSize = {
       fontSize: `${IconSizeChart[_width.xl]} !important`,

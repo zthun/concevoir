@@ -31,10 +31,10 @@ const ImageSizeChart = {
 
 const useImageSourceStyles = createStyleHook(
   ({ device }, props: IZImageSource) => {
-    const { height = ZSizeVaried.Fit, width = ZSizeVaried.Fit } = props;
+    const { height, width } = props;
 
-    const _height = new ZDeviceValues(height);
-    const _width = new ZDeviceValues(width);
+    const _height = new ZDeviceValues(height, ZSizeVaried.Fit);
+    const _width = new ZDeviceValues(width, ZSizeVaried.Fit);
 
     const dimensions = {
       width: ImageSizeChart[_width.xl],
