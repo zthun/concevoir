@@ -51,25 +51,25 @@ const useBannerStyles = (props: IZBanner) => {
     }
 
     ${device.break(ZSizeFixed.Large)} {
-      :host {
+      &.ZBanner-root {
         height: ${HeightChart[_height.lg]};
       }
     }
 
     ${device.break(ZSizeFixed.Medium)} {
-      :host {
+      &.ZBanner-root {
         height: ${HeightChart[_height.md]};
       }
     }
 
     ${device.break(ZSizeFixed.Small)} {
-      :host {
+      &.ZBanner-root {
         height: ${HeightChart[_height.sm]};
       }
     }
 
     ${device.break(ZSizeFixed.ExtraSmall)} {
-      :host {
+      &.ZBanner-root {
         height: ${HeightChart[_height.xs]};
       }
     }
