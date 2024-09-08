@@ -26,7 +26,7 @@ export function ZBannerMain(props: IZBannerMain) {
         <ZBox padding={{ x: ZSizeFixed.Medium, y: ZSizeFixed.ExtraSmall }}>
           <ZGrid
             columns="auto auto 1fr auto"
-            alignItems="center"
+            align={{ items: "center" }}
             gap={ZSizeFixed.Small}
           >
             <div className="ZBannerMain-avatar">{avatar}</div>

@@ -79,9 +79,8 @@ export function ZChoicePage() {
         </ZBox>
 
         <ZGrid
-          alignItems="center"
-          columns="1fr 1fr"
-          columnsSm="1fr"
+          align={{ items: "center" }}
+          columns={{ xl: "1fr 1fr", sm: "1fr" }}
           gap={ZSizeFixed.Large}
         >
           <ZChoiceDropDown

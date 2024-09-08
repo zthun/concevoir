@@ -1,7 +1,10 @@
+import { css } from "@emotion/css";
 import {
   createSizeChartVariedCss,
+  ZDeviceValue,
   ZDeviceValues,
   ZSizeFixed,
+  ZSizeGap,
   ZSizeVaried,
   ZSizeVoid,
 } from "@zthun/fashion-tailor";
@@ -11,91 +14,24 @@ import { IZComponentHeight } from "../component/component-height.mjs";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 import { IZComponentWidth } from "../component/component-width.mjs";
-import { createStyleHook } from "../theme/styled";
+import { useFashionDevice, useFashionTailor } from "../theme/fashion.mjs";
 
 export interface IZGrid
   extends IZComponentStyle,
     IZComponentHierarchy,
     IZComponentHeight<ZSizeVaried>,
     IZComponentWidth<ZSizeVaried> {
-  alignItems?: Property.AlignItems;
-  justifyItems?: Property.JustifyItems;
-  alignContent?: Property.AlignContent;
-  justifyContent?: Property.JustifyContent;
-  gap?: ZSizeFixed | ZSizeVoid;
-  columns?: Property.GridTemplateColumns;
-  columnsLg?: Property.GridTemplateColumns;
-  columnsMd?: Property.GridTemplateColumns;
-  columnsSm?: Property.GridTemplateColumns;
-  columnsXs?: Property.GridTemplateColumns;
+  align?: { items?: Property.AlignItems; content?: Property.AlignContent };
+  justify?: {
+    items?: Property.JustifyItems;
+    content?: Property.JustifyContent;
+  };
+  gap?: ZDeviceValue<ZSizeGap>;
+  columns?: ZDeviceValue<Property.GridTemplateColumns>;
   rows?: Property.GridTemplateRows;
 }
 
-const GridDimensionChart = createSizeChartVariedCss();
-
-const useGridStyles = createStyleHook(({ tailor, device }, props: IZGrid) => {
-  const {
-    alignItems,
-    justifyItems,
-    alignContent,
-    justifyContent,
-    gap = ZSizeVoid.None,
-    columns,
-    columnsLg = columns,
-    columnsMd = columnsLg,
-    columnsSm = columnsMd,
-    columnsXs = columnsSm,
-    rows,
-    width = ZSizeVaried.Fit,
-    height = ZSizeVaried.Fit,
-  } = props;
-
-  const _width = new ZDeviceValues(width);
-  const _height = new ZDeviceValues(height);
-
-  const dimensions = {
-    gridTemplateColumns: columns,
-    height: GridDimensionChart[_height.xl],
-    width: GridDimensionChart[_width.xl],
-
-    [device.break(ZSizeFixed.Large)]: {
-      gridTemplateColumns: columnsLg,
-      height: GridDimensionChart[_height.lg],
-      width: GridDimensionChart[_width.lg],
-    },
-
-    [device.break(ZSizeFixed.Medium)]: {
-      gridTemplateColumns: columnsMd,
-      height: GridDimensionChart[_height.md],
-      width: GridDimensionChart[_width.md],
-    },
-
-    [device.break(ZSizeFixed.Small)]: {
-      gridTemplateColumns: columnsSm,
-      height: GridDimensionChart[_height.sm],
-      width: GridDimensionChart[_width.sm],
-    },
-
-    [device.break(ZSizeFixed.ExtraSmall)]: {
-      gridTemplateColumns: columnsXs,
-      height: GridDimensionChart[_height.xs],
-      width: GridDimensionChart[_width.xs],
-    },
-  };
-
-  return {
-    grid: {
-      ...dimensions,
-      display: "grid",
-      gridTemplateRows: rows,
-      gap: tailor.gap(gap),
-      alignItems,
-      justifyItems,
-      alignContent,
-      justifyContent,
-    },
-  };
-});
+const DimensionChart = createSizeChartVariedCss();
 
 /**
  * Represents a layout that lines up items using CSS Grid.
@@ -107,10 +43,79 @@ const useGridStyles = createStyleHook(({ tailor, device }, props: IZGrid) => {
  *        The JSX used to render this layout.
  */
 export function ZGrid(props: IZGrid) {
-  const { className, children } = props;
-  const { classes } = useGridStyles(props);
+  const tailor = useFashionTailor();
+  const device = useFashionDevice();
+  const {
+    align,
+    className,
+    children,
+    columns,
+    gap,
+    justify,
+    rows,
+    width,
+    height,
+  } = props;
+
+  const _width = new ZDeviceValues(width, ZSizeVaried.Fit);
+  const _height = new ZDeviceValues(height, ZSizeVaried.Fit);
+  const _columns = new ZDeviceValues(columns, undefined);
+  const _gap = new ZDeviceValues(gap, ZSizeVoid.None);
+
+  const _className = css`
+    &.ZGrid-root {
+      align-content: ${align?.content};
+      align-items: ${align?.items};
+      display: grid;
+      grid-template-rows: ${rows};
+      justify-content: ${justify?.content};
+      justify-items: ${justify?.items};
+
+      gap: ${tailor.gap(_gap.xl)};
+      grid-template-columns: ${_columns.xl};
+      height: ${DimensionChart[_height.xl]};
+      width: ${DimensionChart[_width.xl]};
+    }
+
+    ${device.break(ZSizeFixed.Large)} {
+      &.ZGrid-root {
+        gap: ${tailor.gap(_gap.lg)};
+        grid-template-columns: ${_columns.lg};
+        height: ${DimensionChart[_height.lg]};
+        width: ${DimensionChart[_width.lg]};
+      }
+    }
+
+    ${device.break(ZSizeFixed.Medium)} {
+      &.ZGrid-root {
+        gap: ${tailor.gap(_gap.md)};
+        grid-template-columns: ${_columns.md};
+        height: ${DimensionChart[_height.md]};
+        width: ${DimensionChart[_width.md]};
+      }
+    }
+
+    ${device.break(ZSizeFixed.Small)} {
+      &.ZGrid-root {
+        gap: ${tailor.gap(_gap.sm)};
+        grid-template-columns: ${_columns.sm};
+        height: ${DimensionChart[_height.sm]};
+        width: ${DimensionChart[_width.sm]};
+      }
+    }
+
+    ${device.break(ZSizeFixed.ExtraSmall)} {
+      &.ZGrid-root {
+        gap: ${tailor.gap(_gap.xs)};
+        grid-template-columns: ${_columns.xs};
+        height: ${DimensionChart[_height.xs]};
+        width: ${DimensionChart[_width.xs]};
+      }
+    }
+  `;
+
   return (
-    <div className={cssJoinDefined("ZGrid-root", className, classes.grid)}>
+    <div className={cssJoinDefined("ZGrid-root", className, _className)}>
       {children}
     </div>
   );

@@ -31,7 +31,11 @@ export function ZTextInputReveal(props: IZText) {
   const fashion = revealed ? error : success;
 
   const adornment = (
-    <ZGrid columns="auto auto" alignItems="center" gap={ZSizeFixed.Small}>
+    <ZGrid
+      columns="auto auto"
+      align={{ items: "center" }}
+      gap={ZSizeFixed.Small}
+    >
       {suffix}
       <ZButton
         className="ZText-revealer"

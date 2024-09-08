@@ -52,9 +52,7 @@ export function ZThemePage() {
 
         <ZBox margin={{ bottom: ZSizeFixed.Medium }}>
           <ZGrid
-            columns="1fr 1fr 1fr"
-            columnsLg="1fr 1fr"
-            columnsMd="1fr"
+            columns={{ xl: "1fr 1fr 1fr", lg: "1fr 1fr", md: "1fr" }}
             gap={ZSizeFixed.Medium}
           >
             <ZFashionColors fashion={primary} />

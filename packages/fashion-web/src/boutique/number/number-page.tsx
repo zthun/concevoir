@@ -49,10 +49,7 @@ export function ZNumberPage() {
           margin={{ top: ZSizeFixed.ExtraLarge, bottom: ZSizeFixed.ExtraLarge }}
         >
           <ZGrid
-            columns="1fr 3fr"
-            columnsMd="1fr 2fr"
-            columnsSm="1fr 1fr"
-            columnsXs="1fr"
+            columns={{ xl: "1fr 3fr", md: "1fr 2fr", sm: "1fr 1fr", xs: "1fr" }}
           >
             <ZNumberInput
               step={1}

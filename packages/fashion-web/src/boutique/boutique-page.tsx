@@ -67,10 +67,12 @@ export function ZBoutiquePage() {
       }
     >
       <ZGrid
-        columns="1fr 1fr 1fr 1fr"
-        columnsLg="1fr 1fr 1fr"
-        columnsMd="1fr 1fr"
-        columnsSm="1fr"
+        columns={{
+          xl: "1fr 1fr 1fr 1fr",
+          lg: "1fr 1fr 1fr",
+          md: "1fr 1fr",
+          sm: "1fr",
+        }}
         gap={ZSizeFixed.Medium}
       >
         {ZFashionRouteAllComponents.map(renderComponent)}

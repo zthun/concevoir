@@ -12,7 +12,7 @@ describe("ZGrid", () => {
   let sm: Property.GridTemplateColumns | undefined;
   let md: Property.GridTemplateColumns | undefined;
   let lg: Property.GridTemplateColumns | undefined;
-  let xl: Property.GridTemplateColumns | undefined;
+  let xl: Property.GridTemplateColumns;
 
   beforeEach(() => {
     gap = undefined;
@@ -22,7 +22,7 @@ describe("ZGrid", () => {
     sm = undefined;
     md = undefined;
     lg = undefined;
-    xl = undefined;
+    xl = "1fr";
   });
 
   async function createTestTarget() {
@@ -31,11 +31,7 @@ describe("ZGrid", () => {
         className="ZTestGrid-root"
         height={height}
         gap={gap}
-        columns={xl}
-        columnsLg={lg}
-        columnsMd={md}
-        columnsSm={sm}
-        columnsXs={xs}
+        columns={{ xl, lg, md, sm, xs }}
       >
         <ZGridSpan />
       </ZGrid>

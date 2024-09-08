@@ -52,7 +52,7 @@ export function ZBooleanPage() {
 
         <ZBox margin={{ bottom: ZSizeFixed.Medium }}>
           <ZGrid
-            alignItems="center"
+            align={{ items: "center" }}
             columns="auto auto 1fr"
             gap={ZSizeFixed.ExtraSmall}
           >
@@ -113,7 +113,10 @@ export function ZBooleanPage() {
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Operations</ZH3>
 
-        <ZGrid columns="auto auto auto" columnsXs="auto" gap={ZSizeFixed.Small}>
+        <ZGrid
+          columns={{ xl: "auto auto auto", xs: "auto" }}
+          gap={ZSizeFixed.Small}
+        >
           <ZButton
             fashion={success}
             onClick={setValue.bind(null, true)}

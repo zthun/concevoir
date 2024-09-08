@@ -72,8 +72,8 @@ export function ZWizardPage() {
 
         <ZGrid
           columns="auto auto auto auto auto"
-          alignItems="center"
-          justifyContent="center"
+          align={{ items: "center" }}
+          justify={{ content: "center" }}
           gap={ZSizeFixed.Medium}
         >
           <ZBubble width={ZSizeFixed.Large} fashion={info}>

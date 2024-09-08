@@ -11,19 +11,7 @@ export type ZNewspaperRange = [ZNewspaperColumn, ZNewspaperColumn];
 export interface IZNewspaper extends IZComponentStyle, IZComponentHierarchy {
   GridProps?: Omit<
     IZGrid,
-    | "columns"
-    | "columnsLg"
-    | "columnsMd"
-    | "columnsSm"
-    | "columnsXs"
-    | "children"
-    | "className"
-    | "name"
-    | "width"
-    | "widthLg"
-    | "widthMd"
-    | "widthSm"
-    | "widthXs"
+    "columns" | "children" | "className" | "name" | "width" | "height"
   >;
   range?: ZNewspaperRange;
   rangeLg?: ZNewspaperRange;
