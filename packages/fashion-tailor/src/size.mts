@@ -3,6 +3,19 @@ import { ZSizeVaried } from "./varied/size-varied.mjs";
 import { ZSizeVoid } from "./void/size-void.mjs";
 
 /**
+ * A sizing object that can be a fixed size or none.
+ */
+export type ZSizeGap = ZSizeFixed | ZSizeVoid;
+/**
+ * Same as {@link ZSizeGap} but aliased for semantics.
+ */
+export type ZSizeThickness = ZSizeFixed | ZSizeVoid;
+/**
+ * Same as {@link ZSizeGap} but aliased for semantics.
+ */
+export type ZSizeRounding = ZSizeFixed | ZSizeVoid;
+
+/**
  * A sizing object that can be one any of the valid enum sizes.
  */
 export type ZSize = ZSizeFixed | ZSizeVaried | ZSizeVoid;
