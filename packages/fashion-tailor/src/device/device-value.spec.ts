@@ -2,13 +2,15 @@ import { describe, expect, it } from "vitest";
 import { ZDeviceValue, ZDeviceValues } from "./device-value.mjs";
 
 describe("Device Value", () => {
+  const fallback = "fallback";
+
   const shouldReturnValue = (
     expected: string,
-    value: ZDeviceValue<string>,
+    value: ZDeviceValue<string> | undefined | null,
     breakpoint: (t: ZDeviceValues<string>) => string,
   ) => {
     // Arrange.
-    const target = new ZDeviceValues(value);
+    const target = new ZDeviceValues(value, fallback);
 
     // Act.
     const actual = breakpoint(target);
@@ -18,6 +20,10 @@ describe("Device Value", () => {
   };
 
   describe("Raw Value", () => {
+    it("should return the fallback value for undefined", () => {
+      shouldReturnValue(fallback, undefined, (b) => b.xl);
+    });
+
     it("should return the value for xl", () => {
       shouldReturnValue("all", "all", (b) => b.xl);
     });

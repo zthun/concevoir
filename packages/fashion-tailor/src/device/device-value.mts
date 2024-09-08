@@ -29,9 +29,9 @@ export interface IZDeviceValues<T> {
 export type ZDeviceValue<T> = T | IZDeviceValues<T>;
 
 export function isDeviceValues<T>(
-  value: ZDeviceValue<T>,
+  value: ZDeviceValue<T> | null | undefined,
 ): value is IZDeviceValues<T> {
-  return Object.prototype.hasOwnProperty.call(value, "xl");
+  return value != null && Object.prototype.hasOwnProperty.call(value, "xl");
 }
 
 export class ZDeviceValues<T> implements Required<Readonly<IZDeviceValues<T>>> {
@@ -41,7 +41,7 @@ export class ZDeviceValues<T> implements Required<Readonly<IZDeviceValues<T>>> {
   public readonly sm: T;
   public readonly xs: T;
 
-  public constructor(value: ZDeviceValue<T>) {
+  public constructor(value: ZDeviceValue<T> | undefined | null, fallback: T) {
     if (isDeviceValues(value)) {
       this.xl = value.xl;
       this.lg = firstDefined(this.xl, value.lg);
@@ -49,11 +49,11 @@ export class ZDeviceValues<T> implements Required<Readonly<IZDeviceValues<T>>> {
       this.sm = firstDefined(this.md, value.sm);
       this.xs = firstDefined(this.sm, value.xs);
     } else {
-      this.xl = value;
-      this.lg = value;
-      this.md = value;
-      this.sm = value;
-      this.xs = value;
+      this.xl = firstDefined(fallback, value);
+      this.lg = firstDefined(fallback, value);
+      this.md = firstDefined(fallback, value);
+      this.sm = firstDefined(fallback, value);
+      this.xs = firstDefined(fallback, value);
     }
   }
 }
