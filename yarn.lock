@@ -3506,6 +3506,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@zthun/fashion-tailor@workspace:packages/fashion-tailor"
   dependencies:
+    "@zthun/helpful-fn": "npm:^6.1.0"
     lodash-es: "npm:^4.17.21"
     vite: "npm:^5.4.3"
     vitest: "npm:^2.0.5"
