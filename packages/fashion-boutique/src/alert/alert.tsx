@@ -26,7 +26,6 @@ const useAlertStyles = (props: IZAlert) => {
 
   const border = firstDefined(fashion.idle.main, fashion.idle.border);
   const boxWidth = tailor.thickness(ZSizeFixed.ExtraSmall);
-  const boxShadow = fashion.idle.border;
   const px = tailor.gap(ZSizeFixed.Small);
   const py = tailor.gap(ZSizeFixed.ExtraSmall);
 
@@ -34,10 +33,10 @@ const useAlertStyles = (props: IZAlert) => {
     &.ZAlert-root {
       align-items: center;
       background: ${fashion.idle.main};
-      border-color: ${fashion.idle.border};
+      border-color: ${border};
       border-radius: 0.25rem;
       border-style: double;
-      box-shadow: 0 0 0 ${boxWidth} ${boxShadow};
+      box-shadow: 0 0 0 ${boxWidth} ${border};
       color: ${fashion.idle.contrast};
       display: grid;
       grid-template-columns: auto auto 1fr;
