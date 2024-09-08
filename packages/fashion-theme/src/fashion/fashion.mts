@@ -20,22 +20,22 @@ export interface IZFashion {
   /**
    * Color overrides for when a component is hovered.
    */
-  readonly hover?: Partial<IZFashionState>;
+  readonly hover?: IZFashionState;
 
   /**
    * Color overrides for when a component is focused.
    */
-  readonly focus?: Partial<IZFashionState>;
+  readonly focus?: IZFashionState;
 
   /**
    * Color overrides for when a component is active.
    */
-  readonly active?: Partial<IZFashionState>;
+  readonly active?: IZFashionState;
 
   /**
    * Color overrides for when a component is visited.
    */
-  readonly visited?: Partial<IZFashionState>;
+  readonly visited?: IZFashionState;
 }
 
 /**
