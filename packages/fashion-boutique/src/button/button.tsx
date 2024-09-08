@@ -29,7 +29,7 @@ export interface IZButton
     IZComponentStyle,
     IZComponentName,
     IZComponentFashion<IZFashion>,
-    Pick<IZComponentWidth<ZSizeVaried>, "width"> {
+    IZComponentWidth<ZSizeVaried, ZSizeVaried> {
   borderless?: boolean;
   compact?: boolean;
   outline?: boolean;
