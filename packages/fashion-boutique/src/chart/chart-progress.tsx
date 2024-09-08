@@ -1,11 +1,12 @@
 import { LinearProgress } from "@mui/material";
 import {
+  ZDeviceValues,
   ZSizeFixed,
   createSizeChartFixedArithmetic,
   createSizeChartFixedCss,
 } from "@zthun/fashion-tailor";
 import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { IZComponentHeight } from "../component/component-height.mjs";
 import { ZGrid } from "../grid/grid";
 import { ZLabeled } from "../label/labeled";
@@ -26,12 +27,13 @@ const useChartProgressStyles = createStyleHook(
     const { height = ZSizeFixed.Medium, points } = props;
     const { primary, transparent } = theme;
     const { fashion = primary } = points;
+    const _height = new ZDeviceValues(height);
 
     const border = firstDefined(fashion.idle.main, fashion.idle.border);
 
     return {
       bar: {
-        height: progressHeightChart[height],
+        height: progressHeightChart[_height.xl],
         backgroundColor: transparent.idle.main,
         border: `${tailor.thickness()} solid ${border}`,
 

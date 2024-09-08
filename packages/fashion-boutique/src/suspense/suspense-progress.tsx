@@ -2,11 +2,11 @@ import { LinearProgress } from "@mui/material";
 import {
   createSizeChartFixedArithmetic,
   createSizeChartFixedCss,
+  ZDeviceValues,
   ZSizeFixed,
   ZSizeVaried,
 } from "@zthun/fashion-tailor";
 import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
-import React from "react";
 import { createStyleHook } from "../theme/styled";
 import { IZSuspense } from "./suspense.mjs";
 
@@ -18,12 +18,12 @@ const SuspenseProgressSizeChart = createSizeChartFixedCss(
 const useSuspenseProgressStyles = createStyleHook(
   (_, props: IZSuspense<ZSizeVaried.Full, ZSizeFixed>) => {
     const { height = ZSizeFixed.ExtraSmall, fashion } = props;
-    const _height = SuspenseProgressSizeChart[height];
+    const _height = new ZDeviceValues(height);
     const color = firstDefined("inherit", fashion?.idle.main);
 
     return {
       root: {
-        height: _height,
+        height: SuspenseProgressSizeChart[_height.xl],
         color,
       },
     };

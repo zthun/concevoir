@@ -11,7 +11,7 @@ import {
   useAmbassadorState,
   useMoreViewState,
 } from "@zthun/helpful-react";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { ZAlert } from "../alert/alert";
 import { IZButton, ZButton } from "../button/button";
 import { IZComponentDataSource } from "../component/component-data-source.mjs";

@@ -1,61 +1,88 @@
-import { AppBar } from "@mui/material";
+import { css } from "@emotion/css";
 import {
   createSizeChartFixedArithmetic,
   createSizeChartFixedCss,
   createSizeChartVariedCss,
+  ZDeviceValues,
   ZSizeFixed,
   ZSizeVaried,
 } from "@zthun/fashion-tailor";
-import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import { ZColorPicker } from "@zthun/fashion-theme";
+import { cssJoinDefined } from "@zthun/helpful-fn";
 import { IZComponentFashion } from "../component/component-fashion.mjs";
 import { IZComponentHeight } from "../component/component-height.mjs";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
-import { createStyleHook } from "../theme/styled";
+import { useFashionDevice, useFashionTheme } from "../theme/fashion.mjs";
 
-/**
- * Properties for the banner bar.
- */
 export interface IZBanner
   extends IZComponentHierarchy,
     IZComponentFashion,
-    Pick<IZComponentHeight<ZSizeFixed | ZSizeVaried.Fit>, "height">,
-    IZComponentStyle {
-  position?: "fixed" | "absolute" | "sticky" | "static" | "relative";
-}
+    IZComponentHeight<ZSizeFixed | ZSizeVaried.Fit>,
+    IZComponentStyle {}
 
-const heightChart = {
+const HeightChart = {
   ...createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), "rem"),
   ...createSizeChartVariedCss(),
 };
 
-const useBannerStyles = createStyleHook(({ theme }, props: IZBanner) => {
-  const { primary } = theme;
-  const { fashion, height } = props;
+const useBannerStyles = (props: IZBanner) => {
+  const { primary } = useFashionTheme();
+  const device = useFashionDevice();
+  const { fashion = primary, height = ZSizeVaried.Fit } = props;
+  const picker = new ZColorPicker(fashion);
+  const _height = new ZDeviceValues(height);
 
-  const _height = firstDefined(ZSizeVaried.Fit, height);
-  const __height = heightChart[_height];
-  const _fashion = firstDefined(primary, fashion);
+  return css`
+    &.ZBanner-root {
+      background: ${picker.idle.main};
+      box-sizing: border-box;
+      color: ${picker.idle.contrast};
+      display: block;
+      position: sticky;
+      width: 100%;
+      z-index: 1100;
 
-  return {
-    banner: {
-      backgroundColor: _fashion.idle.main,
-      color: _fashion.idle.contrast,
-      height: __height,
-    },
-  };
-});
+      left: auto;
+      right: 0;
+      top: 0;
+
+      height: ${HeightChart[_height.xl]};
+    }
+
+    ${device.break(ZSizeFixed.Large)} {
+      :host {
+        height: ${HeightChart[_height.lg]};
+      }
+    }
+
+    ${device.break(ZSizeFixed.Medium)} {
+      :host {
+        height: ${HeightChart[_height.md]};
+      }
+    }
+
+    ${device.break(ZSizeFixed.Small)} {
+      :host {
+        height: ${HeightChart[_height.sm]};
+      }
+    }
+
+    ${device.break(ZSizeFixed.ExtraSmall)} {
+      :host {
+        height: ${HeightChart[_height.xs]};
+      }
+    }
+  `;
+};
 
 export function ZBanner(props: IZBanner) {
-  const { children, className, position } = props;
-  const { classes } = useBannerStyles(props);
+  const { children, className } = props;
+  const _className = useBannerStyles(props);
 
   return (
-    <AppBar
-      className={cssJoinDefined("ZBanner-root", className, classes.banner)}
-      position={position}
-    >
+    <div className={cssJoinDefined("ZBanner-root", className, _className)}>
       {children}
-    </AppBar>
+    </div>
   );
 }

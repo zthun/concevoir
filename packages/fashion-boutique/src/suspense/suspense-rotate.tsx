@@ -6,7 +6,6 @@ import {
   ZSizeVaried,
 } from "@zthun/fashion-tailor";
 import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
-import React from "react";
 import { createStyleHook } from "../theme/styled";
 import { IZSuspense } from "./suspense.mjs";
 

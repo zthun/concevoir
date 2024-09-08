@@ -1,5 +1,6 @@
 import { Card, CardActions, CardContent, CardHeader } from "@mui/material";
 import {
+  ZDeviceValues,
   ZSizeFixed,
   ZSizeVaried,
   createSizeChartFixedArithmetic,
@@ -10,7 +11,7 @@ import {
 } from "@zthun/fashion-tailor";
 import { cssJoinDefined } from "@zthun/helpful-fn";
 import { pickBy, startsWith } from "lodash-es";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { IZComponentAvatar } from "../component/component-avatar.mjs";
 import { IZComponentFashion } from "../component/component-fashion.mjs";
 import { IZComponentHeading } from "../component/component-heading.mjs";
@@ -58,35 +59,32 @@ const useCardStyles = createStyleHook(({ theme, device }, props: IZCard) => {
     widthSm = widthMd,
     widthXs = widthSm,
     height = ZSizeVaried.Fit,
-    heightLg = height,
-    heightMd = heightLg,
-    heightSm = heightMd,
-    heightXs = heightSm,
     fashion = theme.surface,
   } = props;
+  const _height = new ZDeviceValues(height);
 
   const maxWidth = {
     maxWidth: CardWidthChart[width],
-    minHeight: CardHeightChart[height],
+    minHeight: CardHeightChart[_height.xl],
 
     [device.break(ZSizeFixed.Large)]: {
       maxWidth: CardWidthChart[widthLg],
-      minHeight: CardHeightChart[heightLg],
+      minHeight: CardHeightChart[_height.lg],
     },
 
     [device.break(ZSizeFixed.Medium)]: {
       maxWidth: CardWidthChart[widthMd],
-      minHeight: CardHeightChart[heightMd],
+      minHeight: CardHeightChart[_height.md],
     },
 
     [device.break(ZSizeFixed.Small)]: {
       maxWidth: CardWidthChart[widthSm],
-      minHeight: CardHeightChart[heightSm],
+      minHeight: CardHeightChart[_height.sm],
     },
 
     [device.break(ZSizeFixed.ExtraSmall)]: {
       maxWidth: CardWidthChart[widthXs],
-      minHeight: CardHeightChart[heightXs],
+      minHeight: CardHeightChart[_height.xs],
     },
   };
 

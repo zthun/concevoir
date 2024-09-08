@@ -1,18 +1,16 @@
 import { OutlinedInput } from "@mui/material";
 import {
+  ZDeviceValues,
   ZSizeFixed,
   createSizeChartFixedArithmetic,
 } from "@zthun/fashion-tailor";
 import { cssJoinDefined } from "@zthun/helpful-fn";
-import React from "react";
 import { IZComponentHeight } from "../component/component-height.mjs";
 import { ZLabeled } from "../label/labeled";
 import { createStyleHook } from "../theme/styled";
 import { IZText, useText } from "./text";
 
-export interface IZTextArea
-  extends IZText,
-    Pick<IZComponentHeight<ZSizeFixed>, "height"> {}
+export interface IZTextArea extends IZText, IZComponentHeight<ZSizeFixed> {}
 
 const TextAreaRows = createSizeChartFixedArithmetic(2, 2);
 
@@ -42,7 +40,8 @@ export function ZTextArea(props: IZTextArea) {
     orientation,
   } = props;
   const InputProps = useText(props, "");
-  const rows = TextAreaRows[height];
+  const _height = new ZDeviceValues(height);
+  const rows = TextAreaRows[_height.xl];
   const { classes } = useTextAreaStyles();
 
   return (
