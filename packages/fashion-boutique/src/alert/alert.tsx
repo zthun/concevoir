@@ -19,18 +19,26 @@ export interface IZAlert
   message?: ReactNode;
 }
 
-const useAlertStyles = (props: IZAlert) => {
+export function ZAlert(props: IZAlert) {
   const theme = useFashionTheme();
   const tailor = useFashionTailor();
-  const { primary } = theme;
-  const { fashion = primary } = props;
-  const picker = new ZColorPicker(fashion);
 
+  const { primary } = theme;
+  const {
+    heading,
+    name,
+    className,
+    avatar,
+    message,
+    fashion = primary,
+  } = props;
+
+  const picker = new ZColorPicker(fashion);
   const boxWidth = tailor.thickness(ZSizeFixed.ExtraSmall);
   const px = tailor.gap(ZSizeFixed.Small);
   const py = tailor.gap(ZSizeFixed.ExtraSmall);
 
-  return css`
+  const _className = css`
     &.ZAlert-root {
       align-items: center;
       background: ${picker.idle.main};
@@ -42,10 +50,8 @@ const useAlertStyles = (props: IZAlert) => {
       display: grid;
       grid-template-columns: auto auto 1fr;
       grid-template-areas:
-        "avatar heading    ."
-        "avatar subheading ."
-        "avatar message    ."
-        "avatar footing    .";
+        "avatar heading ."
+        "avatar message .";
       padding: ${px} ${py};
     }
 
@@ -62,26 +68,7 @@ const useAlertStyles = (props: IZAlert) => {
     .ZAlert-message {
       grid-area: message;
     }
-
-    .ZAlert-footing {
-      grid-area: footing;
-      margin-top: ${tailor.gap(ZSizeFixed.Small)};
-    }
   `;
-};
-
-export function ZAlert(props: IZAlert) {
-  const { primary } = useFashionTheme();
-  const {
-    heading,
-    name,
-    className,
-    avatar,
-    message,
-    fashion = primary,
-  } = props;
-
-  const _className = useAlertStyles(props);
 
   return (
     <div
