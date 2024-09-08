@@ -16,7 +16,6 @@ import {
   ZTextColor,
 } from "@zthun/fashion-boutique";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
-import React from "react";
 import { ZFashionRouteTypography } from "../../routes.mjs";
 import { ZChoiceDropDownFashion } from "../common/choice-drop-down-fashion";
 import { useFashionState } from "../common/use-fashion-state.mjs";

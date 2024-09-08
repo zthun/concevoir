@@ -14,7 +14,7 @@ import {
 } from "@zthun/fashion-boutique";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { IZBrand, ZBrands } from "@zthun/helpful-brands";
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { ZFashionRouteChoice } from "../../routes.mjs";
 
 /**

@@ -12,7 +12,7 @@ import {
 import { setFirst } from "@zthun/helpful-fn";
 import { useAmbassadorState } from "@zthun/helpful-react";
 import { identity, startCase } from "lodash-es";
-import React, { ReactNode, useMemo } from "react";
+import { ReactNode, useMemo } from "react";
 
 export const ZFixedSizes = Object.values(ZSizeFixed);
 export const ZVariedSizes = Object.values(ZSizeVaried);

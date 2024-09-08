@@ -1,4 +1,3 @@
-import React from "react";
 import { createStyleHook } from "../theme/styled";
 
 const useSadFaceStyle = createStyleHook(() => {

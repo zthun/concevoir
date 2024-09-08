@@ -1,7 +1,6 @@
 import { ZCircusBy } from "@zthun/cirque";
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
 import { ZFashionThemeBuilder } from "@zthun/fashion-theme";
-import React from "react";
 import { describe, expect, it } from "vitest";
 import { ZCardPage } from "./card-page";
 import { ZCardPageComponentModel } from "./card-page.cm.mjs";

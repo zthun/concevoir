@@ -4,7 +4,6 @@ import {
   ZVerticalAnchor,
   cssJoinDefined,
 } from "@zthun/helpful-fn";
-import React from "react";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 

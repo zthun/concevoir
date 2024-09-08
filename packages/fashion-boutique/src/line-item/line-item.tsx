@@ -1,6 +1,6 @@
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { cssJoinDefined } from "@zthun/helpful-fn";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { IZComponentAdornment } from "../component/component-adornment.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 import { createStyleHook } from "../theme/styled";

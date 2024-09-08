@@ -5,7 +5,6 @@ import {
   ZSideAnchor,
   ZVerticalAnchor,
 } from "@zthun/helpful-fn";
-import React from "react";
 import { describe, expect, it } from "vitest";
 import { ZDrawerPage } from "./drawer-page";
 import { ZDrawerPageComponentModel } from "./drawer-page.cm.mjs";

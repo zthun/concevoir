@@ -5,7 +5,6 @@ import {
   ListItemText,
 } from "@mui/material";
 import { cssJoinDefined } from "@zthun/helpful-fn";
-import React from "react";
 import { IZComponentAdornment } from "../component/component-adornment.mjs";
 import { IZComponentDisabled } from "../component/component-disabled.mjs";
 import { IZComponentHeading } from "../component/component-heading.mjs";

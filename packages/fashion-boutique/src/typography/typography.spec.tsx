@@ -1,5 +1,4 @@
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
-import React from "react";
 import { describe, expect, it } from "vitest";
 import {
   IZTypographyProps,

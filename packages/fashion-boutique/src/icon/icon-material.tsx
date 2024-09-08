@@ -1,7 +1,6 @@
 import { Tooltip } from "@mui/material";
 import { cssJoinDefined } from "@zthun/helpful-fn";
 import { useKeyboardActivate } from "@zthun/helpful-react";
-import React from "react";
 import { IZIcon, useIconProvider, useIconStyles } from "./icon";
 
 export const ZIconMaterialProvider =

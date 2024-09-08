@@ -8,7 +8,6 @@ import {
   useFashionTheme,
 } from "@zthun/fashion-boutique";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
-import React from "react";
 import { ZFashionRouteTheme } from "../routes.mjs";
 import { ZFashionColors } from "./color/fashion-colors";
 

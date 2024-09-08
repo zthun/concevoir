@@ -1,6 +1,6 @@
 import { ZCircusBy } from "@zthun/cirque";
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { beforeEach, describe, expect, it } from "vitest";
 import { ZCard } from "./card";
 import { ZCardComponentModel } from "./card.cm.mjs";

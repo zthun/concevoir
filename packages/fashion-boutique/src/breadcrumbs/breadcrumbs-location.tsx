@@ -1,6 +1,6 @@
 import { Breadcrumbs } from "@mui/material";
 import { cssJoinDefined } from "@zthun/helpful-fn";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { ZLink } from "../link/link";
 import { useLocation } from "../router/router-dom.mjs";
 import { createStyleHook } from "../theme/styled";

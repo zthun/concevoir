@@ -11,7 +11,6 @@ import {
 } from "@zthun/fashion-boutique";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { cssJoinDefined } from "@zthun/helpful-fn";
-import React from "react";
 import { IZRoute } from "../route/route.mjs";
 import {
   ZFashionRouteAllComponents,

@@ -6,7 +6,7 @@ import {
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { cssJoinDefined } from "@zthun/helpful-fn";
 import { castArray, first } from "lodash-es";
-import React, { HTMLAttributes, SyntheticEvent } from "react";
+import { HTMLAttributes, SyntheticEvent } from "react";
 import { ZLabeled } from "../label/labeled";
 import { createStyleHook } from "../theme/styled";
 import { IZChoice, IZChoiceOption, useChoice } from "./choice";

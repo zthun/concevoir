@@ -2,7 +2,6 @@ import { IZCircusDriver, IZCircusSetup, ZCircusBy } from "@zthun/cirque";
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
 import { ZSizeVaried } from "@zthun/fashion-tailor";
 import { IZFashion, ZFashionBuilder } from "@zthun/fashion-theme";
-import React from "react";
 import { Mock, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { ZModal } from "./modal";
 import { ZModalComponentModel } from "./modal.cm.mjs";

@@ -13,7 +13,7 @@ import {
 } from "@zthun/fashion-boutique";
 import { ZSizeFixed, ZSizeVaried } from "@zthun/fashion-tailor";
 import { ZOrientation } from "@zthun/helpful-fn";
-import React, { useState } from "react";
+import { useState } from "react";
 import { ZFashionRouteModal } from "../../routes.mjs";
 import { ZChoiceDropDownFashion } from "../common/choice-drop-down-fashion";
 import { useFashionState } from "../common/use-fashion-state.mjs";

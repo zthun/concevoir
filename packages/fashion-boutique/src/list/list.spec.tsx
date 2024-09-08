@@ -1,7 +1,7 @@
 import { ZCircusBy } from "@zthun/cirque";
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
 import { required } from "@zthun/helpful-fn";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { beforeEach, describe, expect, it, Mock, vi } from "vitest";
 import { ZList } from "./list";
 import { ZListDivider } from "./list-divider";

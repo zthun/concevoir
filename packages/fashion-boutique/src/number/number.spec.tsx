@@ -1,6 +1,6 @@
 import { ZCircusBy, ZCircusKeyboardQwerty } from "@zthun/cirque";
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
 import { ZNumberInput } from "./number-input";
 import { ZNumberComponentModel } from "./number.cm.mjs";

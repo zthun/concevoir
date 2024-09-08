@@ -1,7 +1,6 @@
 import { ZCircusBy } from "@zthun/cirque";
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
 import { ZFashionThemeBuilder } from "@zthun/fashion-theme";
-import React from "react";
 import { describe, expect, it } from "vitest";
 import { ZTypographyPage } from "./typography-page";
 import { ZTypographyPageComponentModel } from "./typography-page.cm.mjs";

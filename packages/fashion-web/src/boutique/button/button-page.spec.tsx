@@ -2,7 +2,6 @@ import { ZCircusBy } from "@zthun/cirque";
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
 import { ZButtonComponentModel } from "@zthun/fashion-boutique";
 import { IZFashion, ZFashionThemeBuilder } from "@zthun/fashion-theme";
-import React from "react";
 import { describe, expect, it } from "vitest";
 import { ZButtonPage } from "./button-page";
 import { ZButtonPageComponentModel } from "./button-page.cm.mjs";

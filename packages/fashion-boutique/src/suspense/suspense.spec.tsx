@@ -4,7 +4,6 @@ import { ZSuspenseComponentModel } from "./suspense.cm.mjs";
 
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
-import React from "react";
 import { describe, expect, it } from "vitest";
 import { ZSuspenseProgress } from "./suspense-progress";
 

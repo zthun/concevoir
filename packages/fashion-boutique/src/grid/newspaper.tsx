@@ -1,6 +1,5 @@
 import { ZSizeVaried } from "@zthun/fashion-tailor";
 import { cssJoinDefined } from "@zthun/helpful-fn";
-import React from "react";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 import { IZGrid, ZGrid } from "./grid";

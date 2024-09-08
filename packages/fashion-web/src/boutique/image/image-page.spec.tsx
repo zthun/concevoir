@@ -1,7 +1,6 @@
 /* eslint-disable require-jsdoc */
 import { ZCircusBy } from "@zthun/cirque";
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
-import React from "react";
 import { describe, expect, it } from "vitest";
 import { ZImagePage } from "./image-page";
 import { ZImagePageComponentModel } from "./image-page.cm.mjs";

@@ -5,7 +5,6 @@ import {
   ZButtonComponentModel,
 } from "@zthun/fashion-boutique";
 import { IZFashion, ZFashionThemeBuilder } from "@zthun/fashion-theme";
-import React from "react";
 import { describe, expect, it } from "vitest";
 import { ZBooleanPage } from "./boolean-page";
 import { ZBooleanPageComponentModel } from "./boolean-page.cm.mjs";

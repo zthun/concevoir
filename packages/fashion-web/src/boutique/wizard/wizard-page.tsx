@@ -16,7 +16,7 @@ import {
 } from "@zthun/fashion-boutique";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { ZOrientation } from "@zthun/helpful-fn";
-import React, { useState } from "react";
+import { useState } from "react";
 import { ZFashionRouteBoutique, ZFashionRouteWizard } from "../../routes.mjs";
 
 export function ZWizardPage() {

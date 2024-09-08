@@ -18,7 +18,7 @@ import {
   ZVerticalAnchor,
 } from "@zthun/helpful-fn";
 import { identity, startCase } from "lodash-es";
-import React, { useState } from "react";
+import { useState } from "react";
 import { ZFashionRouteDrawer } from "../../routes.mjs";
 
 /**

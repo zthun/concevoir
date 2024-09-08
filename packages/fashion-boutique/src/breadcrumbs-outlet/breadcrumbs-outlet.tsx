@@ -1,6 +1,5 @@
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { cssJoinDefined } from "@zthun/helpful-fn";
-import React from "react";
 import { ZBox } from "../box/box";
 import {
   IZBreadcrumbsLocation,

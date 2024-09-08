@@ -10,7 +10,7 @@ import {
   ZNumberInput,
   ZParagraph,
 } from "@zthun/fashion-boutique";
-import React, { useState } from "react";
+import { useState } from "react";
 import { ZFashionRouteNumber } from "../../routes.mjs";
 
 /**

@@ -1,7 +1,6 @@
 import { IZCircusDriver, IZCircusSetup, ZCircusBy } from "@zthun/cirque";
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
 import { ZHorizontalAnchor, ZVerticalAnchor } from "@zthun/helpful-fn";
-import React from "react";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { ZPopupButton } from "./popup-button";
 import { ZPopupButtonComponentModel } from "./popup-button.cm.mjs";

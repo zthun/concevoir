@@ -1,7 +1,7 @@
 import { FormControlLabel, Switch } from "@mui/material";
 import { cssJoinDefined } from "@zthun/helpful-fn";
 import { useAmbassadorState } from "@zthun/helpful-react";
-import React, { ChangeEvent } from "react";
+import { ChangeEvent } from "react";
 import { useFashionTheme } from "../theme/fashion.mjs";
 import { createStyleHook } from "../theme/styled";
 import { IZBoolean } from "./boolean";

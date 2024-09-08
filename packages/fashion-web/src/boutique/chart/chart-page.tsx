@@ -7,7 +7,6 @@ import {
   ZParagraph,
 } from "@zthun/fashion-boutique";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
-import React from "react";
 import { ZFashionRouteChart } from "../../routes.mjs";
 import { ZChartPageProgress } from "./chart-page-progress";
 

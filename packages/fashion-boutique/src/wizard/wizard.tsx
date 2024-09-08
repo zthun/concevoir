@@ -2,7 +2,7 @@ import { ZSizeFixed, ZSizeVaried } from "@zthun/fashion-tailor";
 import { ZOrientation, cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
 import { useAmbassadorState } from "@zthun/helpful-react";
 import { castArray } from "lodash-es";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { IZButton, ZButton } from "../button/button";
 import { IZCard, ZCard } from "../card/card";
 import { IZComponentName } from "../component/component-name.mjs";

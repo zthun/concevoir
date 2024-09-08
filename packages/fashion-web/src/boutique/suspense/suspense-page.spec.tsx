@@ -2,7 +2,6 @@ import { ZCircusBy } from "@zthun/cirque";
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { ZFashionThemeBuilder } from "@zthun/fashion-theme";
-import React from "react";
 import { describe, expect, it } from "vitest";
 import { ZSuspensePage } from "./suspense-page";
 import { ZSuspensePageComponentModel } from "./suspense-page.cm.mjs";

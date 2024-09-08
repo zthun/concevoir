@@ -1,7 +1,6 @@
 import { Pagination } from "@mui/material";
 import { ZOrientation, cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
 import { useAmbassadorState } from "@zthun/helpful-react";
-import React from "react";
 import { IZComponentDisabled } from "../component/component-disabled.mjs";
 import { IZComponentFashion } from "../component/component-fashion.mjs";
 import { IZComponentOrientation } from "../component/component-orientation.mjs";

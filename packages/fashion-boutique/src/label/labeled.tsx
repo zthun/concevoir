@@ -1,6 +1,5 @@
 import { ZSizeFixed, ZSizeVoid } from "@zthun/fashion-tailor";
 import { ZOrientation, cssJoinDefined } from "@zthun/helpful-fn";
-import React from "react";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentLabel } from "../component/component-label.mjs";
 import { IZComponentName } from "../component/component-name.mjs";

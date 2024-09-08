@@ -1,7 +1,6 @@
 import { ZCircusBy } from "@zthun/cirque";
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
 import { ZFashionBuilder } from "@zthun/fashion-theme";
-import React from "react";
 import { beforeEach, describe, expect, it } from "vitest";
 import { ZChartProgress } from "./chart-progress";
 import { ZChartComponentModel } from "./chart.cm.mjs";

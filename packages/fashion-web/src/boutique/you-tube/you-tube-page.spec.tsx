@@ -1,6 +1,5 @@
 import { IZCircusDriver, IZCircusSetup, ZCircusBy } from "@zthun/cirque";
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
-import React from "react";
 import { afterEach, describe, expect, it } from "vitest";
 import { ZYouTubePage } from "./you-tube-page";
 import { ZYouTubePageComponentModel } from "./you-tube-page.cm.mjs";

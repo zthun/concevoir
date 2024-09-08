@@ -1,5 +1,4 @@
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
-import React from "react";
 import { beforeEach, describe, expect, it } from "vitest";
 import { ZNewspaper, ZNewspaperRange } from "./newspaper";
 

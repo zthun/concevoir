@@ -1,6 +1,5 @@
 import { OutlinedInput } from "@mui/material";
 import { cssJoinDefined } from "@zthun/helpful-fn";
-import React from "react";
 import { ZLabeled } from "../label/labeled";
 import { createStyleHook } from "../theme/styled";
 import { IZText, useText, withEnterCommit } from "./text";

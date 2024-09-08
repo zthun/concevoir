@@ -1,7 +1,6 @@
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
 import { ZSizeFixed, ZSizeVaried, ZSizeVoid } from "@zthun/fashion-tailor";
 import { Property } from "csstype";
-import React from "react";
 import { beforeEach, describe, expect, it } from "vitest";
 import { ZGrid } from "./grid";
 import { ZGridSpan } from "./grid-span";

@@ -12,7 +12,7 @@ import {
   ZParagraph,
 } from "@zthun/fashion-boutique";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
-import React, { useState } from "react";
+import { useState } from "react";
 import { ZFashionRouteList } from "../../routes.mjs";
 
 /**

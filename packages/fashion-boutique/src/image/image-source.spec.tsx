@@ -5,7 +5,6 @@ import {
   ZMimeTypeImage,
   ZUrlBuilder,
 } from "@zthun/webigail-url";
-import React from "react";
 import { beforeEach, describe, expect, it } from "vitest";
 import { ZImageSource } from "./image-source";
 import { ZImageSourceComponentModel } from "./image-source.cm.mjs";

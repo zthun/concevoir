@@ -1,6 +1,5 @@
 import { IZCircusDriver, ZCircusBy } from "@zthun/cirque";
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
-import React from "react";
 import { Mock, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   ZIconFontAwesome,

@@ -1,7 +1,6 @@
 import { ZCircusBy } from "@zthun/cirque";
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
 import { ZNumberComponentModel } from "@zthun/fashion-boutique";
-import React from "react";
 import { describe, expect, it } from "vitest";
 import { ZNumberPage } from "./number-page";
 import { ZNumberPageComponentModel } from "./number-page.cm.mjs";

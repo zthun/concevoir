@@ -1,7 +1,7 @@
 import { ZCircusBy } from "@zthun/cirque";
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
 import { IZFashion, ZFashionBuilder } from "@zthun/fashion-theme";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { beforeEach, describe, expect, it, Mock, vi } from "vitest";
 import { ZButton } from "./button";
 import { ZButtonComponentModel } from "./button.cm.mjs";

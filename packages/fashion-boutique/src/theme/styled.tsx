@@ -7,7 +7,7 @@ import {
 } from "@zthun/fashion-tailor";
 import { IZFashion, IZFashionTheme, black, white } from "@zthun/fashion-theme";
 import { firstDefined } from "@zthun/helpful-fn";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import {
   CSSInterpolation,
   CSSObject,

@@ -9,7 +9,7 @@ import {
 } from "@zthun/fashion-boutique";
 import { ZSizeFixed, ZSizeVaried } from "@zthun/fashion-tailor";
 import { ZUrlBuilder } from "@zthun/webigail-url";
-import React, { useState } from "react";
+import { useState } from "react";
 import { ZFashionRouteImage } from "../../routes.mjs";
 import { ZChoiceDropDownSize } from "../common/choice-drop-down-size";
 

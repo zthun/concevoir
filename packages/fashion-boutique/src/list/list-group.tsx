@@ -1,6 +1,5 @@
 import { ListSubheader } from "@mui/material";
 import { cssJoinDefined } from "@zthun/helpful-fn";
-import React from "react";
 import { IZComponentHeading } from "../component/component-heading.mjs";
 import { IZListItem } from "./list-item.mjs";
 

@@ -4,7 +4,6 @@ import {
   getHttpCodeDescription,
   getHttpCodeName,
 } from "@zthun/webigail-http";
-import React from "react";
 import { ZButton } from "../button/button";
 import { ZCard } from "../card/card";
 import { ZFullScreen } from "../full-screen/full-screen";

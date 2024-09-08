@@ -1,7 +1,6 @@
 import { ZCircusBy } from "@zthun/cirque";
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
 import { ZOrientation } from "@zthun/helpful-fn";
-import React from "react";
 import { describe, expect, it } from "vitest";
 import { ZCarouselPage } from "./carousel-page";
 import { ZCarouselPageComponentModel } from "./carousel-page.cm.mjs";

@@ -4,7 +4,6 @@ import {
   ZBooleanComponentModel,
   ZTextComponentModel,
 } from "@zthun/fashion-boutique";
-import React from "react";
 import { describe, expect, it } from "vitest";
 import { ZTextPage } from "./text-page";
 import { ZTextPageComponentModel } from "./text-page.cm.mjs";

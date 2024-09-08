@@ -13,7 +13,7 @@ import {
 import { setFirst } from "@zthun/helpful-fn";
 import { useAmbassadorState } from "@zthun/helpful-react";
 import { identity, startCase } from "lodash-es";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 
 export interface IZChoiceDropDownFashion
   extends IZComponentValue<ZFashionName>,

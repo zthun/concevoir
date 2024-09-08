@@ -1,6 +1,6 @@
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { IZBrand, ZBrandBuilder } from "@zthun/helpful-brands";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { ZIconFontAwesome } from "../icon/icon-font-awesome";
 import { ZCarousel } from "./carousel";
 

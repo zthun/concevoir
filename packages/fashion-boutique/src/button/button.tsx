@@ -1,5 +1,5 @@
 import { Button, Tooltip } from "@mui/material";
-import React, { ReactNode } from "react";
+import { MouseEvent, ReactNode } from "react";
 
 import { IZFashion, transparent } from "@zthun/fashion-theme";
 
@@ -35,7 +35,7 @@ export interface IZButton
   outline?: boolean;
   tooltip?: ReactNode;
 
-  onClick?: (e: React.MouseEvent) => any;
+  onClick?: (e: MouseEvent) => any;
 }
 
 const ButtonSizeChart = createSizeChartVariedCss();

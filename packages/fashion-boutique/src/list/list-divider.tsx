@@ -1,6 +1,5 @@
 import { Divider, ListItem } from "@mui/material";
 import { cssJoinDefined } from "@zthun/helpful-fn";
-import React from "react";
 import { IZListItem } from "./list-item.mjs";
 
 /**

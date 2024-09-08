@@ -8,7 +8,6 @@ import {
   ZYouTubeVideo,
 } from "@zthun/fashion-boutique";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
-import React from "react";
 import { ZFashionRouteYouTube } from "../../routes.mjs";
 
 /**

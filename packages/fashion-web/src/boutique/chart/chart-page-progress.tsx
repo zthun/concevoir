@@ -8,7 +8,7 @@ import {
   useFashionTheme,
 } from "@zthun/fashion-boutique";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 
 export function ZChartPageProgress() {
   const { success, error, secondary, warning, component } = useFashionTheme();

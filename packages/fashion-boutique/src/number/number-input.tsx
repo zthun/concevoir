@@ -3,7 +3,7 @@ import { ZCircusKeyboardQwerty } from "@zthun/cirque";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { cssJoinDefined } from "@zthun/helpful-fn";
 import { useAmbassadorState } from "@zthun/helpful-react";
-import React, { KeyboardEvent } from "react";
+import { KeyboardEvent } from "react";
 import { ZIconFontAwesome } from "../icon/icon-font-awesome";
 import { ZLabeled } from "../label/labeled";
 import { IZText, useText, withEnterCommit } from "../text/text";
