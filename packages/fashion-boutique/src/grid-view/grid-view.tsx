@@ -16,6 +16,7 @@ import { ZAlert } from "../alert/alert";
 import { IZButton, ZButton } from "../button/button";
 import { IZComponentDataSource } from "../component/component-data-source.mjs";
 import { IZComponentHeight } from "../component/component-height.mjs";
+import { IZComponentLoading } from "../component/component-loading.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 import { IZComponentValue } from "../component/component-value.mjs";
 import { IZComponentWidth } from "../component/component-width.mjs";
@@ -36,7 +37,7 @@ export interface IZGridView<T = any>
   GridProps?: Omit<IZGrid, "children">;
   SuspenseProps?: Omit<
     IZSuspense,
-    "loading" | keyof IZComponentWidth | keyof IZComponentHeight
+    keyof IZComponentLoading | keyof IZComponentWidth | keyof IZComponentHeight
   >;
   SearchProps?: Omit<IZText, "value" | "onValueChange">;
   MoreProps?: Omit<IZButton, "onClick" | "name">;
