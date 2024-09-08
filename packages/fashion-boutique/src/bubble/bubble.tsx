@@ -6,7 +6,7 @@ import {
 } from "@zthun/fashion-tailor";
 import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
 import { useKeyboardActivate } from "@zthun/helpful-react";
-import React, { KeyboardEvent, MouseEvent } from "react";
+import { KeyboardEvent, MouseEvent } from "react";
 import { IZComponentFashion } from "../component/component-fashion.mjs";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentName } from "../component/component-name.mjs";
@@ -18,7 +18,7 @@ import { createStyleHook } from "../theme/styled";
 export interface IZBubble
   extends IZComponentStyle,
     IZComponentName,
-    IZComponentWidth<ZSizeFixed>,
+    IZComponentWidth<ZSizeFixed, ZSizeFixed>,
     IZComponentHierarchy,
     IZComponentFashion {
   padding?: ZSizeFixed | ZSizeVoid;
@@ -27,7 +27,7 @@ export interface IZBubble
   onClick?: (event: MouseEvent | KeyboardEvent) => void;
 }
 
-const BubbleSizeChart = {
+const WidthChart = {
   ...createSizeChartFixedCss(createSizeChartFixedGeometric(2, 1), "rem"),
 };
 
@@ -41,7 +41,6 @@ const useBubbleStyles = createStyleHook(
       onClick,
     } = props;
 
-    const size = BubbleSizeChart[width];
     const cursor = onClick ? "pointer" : "default";
 
     return {
@@ -56,10 +55,10 @@ const useBubbleStyles = createStyleHook(
         clipPath: `circle()`,
         display: "flex",
         flexDirection: "column",
-        height: size,
+        height: WidthChart[width],
         justifyContent: "center",
         padding: tailor.gap(padding),
-        width: size,
+        width: WidthChart[width],
 
         "&:focus": {
           background: onClick
