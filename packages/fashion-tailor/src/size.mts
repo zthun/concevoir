@@ -22,7 +22,7 @@ export type ZSizeThickness = ZSizeFixed | ZSizeVoid;
 /**
  * Same as {@link ZSizeGap} but aliased for semantics.
  */
-export type ZSizeRounding = ZSizeFixed | ZSizeVoid;
+export type ZSizeRounding = ZSizeFixed | ZSizeVoid | ZSizeVaried.Full;
 
 /**
  * A sizing object that can be one any of the valid enum sizes.
