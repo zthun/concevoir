@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.0](https://github.com/zthun/fashion/compare/v3.0.0...v3.1.0) (2024-09-09)
+
+
+### Features
+
+* box now supports border radius ([5840338](https://github.com/zthun/fashion/commit/5840338231594dca468410d9ab4078d83114f253))
+* component dom events adds the synthetic event system to a component ([f7d33a4](https://github.com/zthun/fashion/commit/f7d33a413ccde73d470c150077f57abbddc3462a))
+
+
+### Bug Fixes
+
+* box border size should now properly be reflected ([d3fad54](https://github.com/zthun/fashion/commit/d3fad545f94faf75a817541771662b01baef6646))
+
+
+
 ## [3.0.0](https://github.com/zthun/fashion/compare/v2.7.1...v3.0.0) (2024-09-08)
 
 

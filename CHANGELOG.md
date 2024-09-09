@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.0](https://github.com/zthun/fashion/compare/v3.0.0...v3.1.0) (2024-09-09)
+
+
+### Features
+
+* box now supports border radius ([5840338](https://github.com/zthun/fashion/commit/5840338231594dca468410d9ab4078d83114f253))
+* component dom events adds the synthetic event system to a component ([f7d33a4](https://github.com/zthun/fashion/commit/f7d33a413ccde73d470c150077f57abbddc3462a))
+* size margin is just a gap size with support for auto ([e2594ad](https://github.com/zthun/fashion/commit/e2594ad00b6df19ba08e6052bac31dbaaa183a45))
+* tailor can now construct a gap of auto ([26b2511](https://github.com/zthun/fashion/commit/26b2511c7a8e4fbd1218c26d1b9ace624260a407))
+* tailor now supports standard border radius values ([fd31f67](https://github.com/zthun/fashion/commit/fd31f679389d8d52c5c256928bf2de0382faa836))
+* theme color boxes now have a small border radius ([eb9fa6d](https://github.com/zthun/fashion/commit/eb9fa6d225af9cd8b72e8a306670b722a31f5d2c))
+
+
+### Bug Fixes
+
+* box border size should now properly be reflected ([d3fad54](https://github.com/zthun/fashion/commit/d3fad545f94faf75a817541771662b01baef6646))
+
+
+
 ## [3.0.0](https://github.com/zthun/fashion/compare/v2.7.1...v3.0.0) (2024-09-08)
 
 

@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.0](https://github.com/zthun/fashion/compare/v3.0.0...v3.1.0) (2024-09-09)
+
+
+### Features
+
+* theme color boxes now have a small border radius ([eb9fa6d](https://github.com/zthun/fashion/commit/eb9fa6d225af9cd8b72e8a306670b722a31f5d2c))
+
+
+
 ## [3.0.0](https://github.com/zthun/fashion/compare/v2.7.1...v3.0.0) (2024-09-08)
 
 
