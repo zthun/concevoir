@@ -8,6 +8,13 @@ import { ZSizeVoid } from "./void/size-void.mjs";
 export type ZSizeGap = ZSizeFixed | ZSizeVoid;
 
 /**
+ * A gap sizing that includes support for auto.
+ *
+ * Mostly used for margins.
+ */
+export type ZSizeMargin = ZSizeGap | ZSizeVaried.Fit;
+
+/**
  * Same as {@link ZSizeGap} but aliased for semantics.
  */
 export type ZSizeThickness = ZSizeFixed | ZSizeVoid;
