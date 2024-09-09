@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.2](https://github.com/zthun/fashion/compare/v3.1.1...v3.1.2) (2024-09-09)
+
+
+### Bug Fixes
+
+* update boutique page boxes to be interactive ([91677de](https://github.com/zthun/fashion/commit/91677dea8b4d84102d85e89a4bae9cf1271ff922))
+
+
+
 ## [3.1.1](https://github.com/zthun/fashion/compare/v3.1.0...v3.1.1) (2024-09-09)
 
 **Note:** Version bump only for package @zthun/fashion-web

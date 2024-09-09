@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.2](https://github.com/zthun/fashion/compare/v3.1.1...v3.1.2) (2024-09-09)
+
+
+### Bug Fixes
+
+* default border style is now solid ([e09cfe4](https://github.com/zthun/fashion/commit/e09cfe4743aeeafde23d15e05eb3e46963ed3d73))
+
+
+
 ## [3.1.1](https://github.com/zthun/fashion/compare/v3.1.0...v3.1.1) (2024-09-09)
 
 
