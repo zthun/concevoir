@@ -1,3 +1,4 @@
+import { css } from "@emotion/css";
 import {
   createSizeChartFixedCss,
   createSizeChartFixedGeometric,
@@ -5,6 +6,9 @@ import {
   createSizeChartVoidCss,
   ZDeviceValues,
   ZSizeFixed,
+  ZSizeGap,
+  ZSizeMargin,
+  ZSizeRounding,
   ZSizeThickness,
   ZSizeVaried,
   ZSizeVoid,
@@ -14,27 +18,29 @@ import {
   cssJoinDefined,
   firstDefined,
   ZHorizontalAnchor,
+  ZQuadrilateralBuilder,
+  ZQuadrilateralCornersLike,
+  ZQuadrilateralLike,
 } from "@zthun/helpful-fn";
 import { Property } from "csstype";
-import { get } from "lodash-es";
-import { MouseEventHandler } from "react";
+import { IZComponentDomEvents } from "../component/component-dom-events.mjs";
 import { IZComponentFashion } from "../component/component-fashion.mjs";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 import { IZComponentWidth } from "../component/component-width.mjs";
-import { createStyleHook } from "../theme/styled";
+import {
+  useFashionDevice,
+  useFashionTailor,
+  useFashionTheme,
+} from "../theme/fashion.mjs";
 
-interface IZBorderProps
-  extends IZComponentWidth<ZSizeThickness, ZSizeThickness> {
-  style?: Property.BorderStyle;
+interface IZBorderProps {
+  width?: ZQuadrilateralLike<ZSizeThickness>;
+  style?: ZQuadrilateralLike<Property.BorderStyle>;
+  radius?: ZQuadrilateralCornersLike<ZSizeRounding>;
 }
 
-type ZDimensionProps<TSizes> =
-  | TSizes
-  | { x?: TSizes; y?: TSizes }
-  | { left?: TSizes; right?: TSizes; top?: TSizes; bottom?: TSizes };
-
-const BoxSizeChart = {
+const WidthChart = {
   ...createSizeChartFixedCss(createSizeChartFixedGeometric(1.4, 18), "rem"),
   ...createSizeChartVariedCss(),
   ...createSizeChartVoidCss(),
@@ -44,177 +50,126 @@ export interface IZBox
   extends IZComponentHierarchy,
     IZComponentStyle,
     IZComponentWidth,
-    IZComponentFashion {
+    IZComponentFashion,
+    IZComponentDomEvents<HTMLElement> {
   border?: IZBorderProps;
-
-  padding?: ZDimensionProps<ZSizeFixed | ZSizeVoid>;
-  margin?: ZDimensionProps<ZSizeFixed | ZSizeVaried.Fit | ZSizeVoid>;
-
+  cursor?: Property.Cursor;
+  interactive?: boolean;
   justification?: ZHorizontalAnchor;
-
-  onClick?: MouseEventHandler;
+  margin?: ZQuadrilateralLike<ZSizeMargin>;
+  padding?: ZQuadrilateralLike<ZSizeGap>;
 }
 
-const useBoxStyles = createStyleHook(
-  ({ theme, tailor, device }, props: IZBox) => {
-    const { transparent } = theme;
-    const {
-      padding,
-      margin,
-      border,
-      width,
-      fashion = transparent,
-      justification,
-      onClick,
-    } = props;
-
-    const _width = new ZDeviceValues(width, ZSizeVaried.Fit);
-    const _fashion = new ZColorPicker(fashion);
-
-    const asPadding = (pad: ZSizeFixed | ZSizeVoid | object) => {
-      const size = typeof pad === "object" ? ZSizeVoid.None : pad;
-      return tailor.gap(size);
-    };
-
-    const asMargin = (
-      margin: ZSizeFixed | ZSizeVoid | ZSizeVaried.Fit | object,
-    ) => {
-      if (typeof margin === "object") {
-        return tailor.gap(ZSizeVoid.None);
-      }
-
-      if (margin === ZSizeVaried.Fit) {
-        return "auto";
-      }
-
-      return tailor.gap(margin);
-    };
-
-    const dimensions = {
-      maxWidth: BoxSizeChart[_width.xl],
-
-      [device.break(ZSizeFixed.Large)]: {
-        maxWidth: BoxSizeChart[_width.lg],
-      },
-
-      [device.break(ZSizeFixed.Medium)]: {
-        maxWidth: BoxSizeChart[_width.md],
-      },
-
-      [device.break(ZSizeFixed.Small)]: {
-        maxWidth: BoxSizeChart[_width.sm],
-      },
-
-      [device.break(ZSizeFixed.ExtraSmall)]: {
-        maxWidth: BoxSizeChart[_width.xs],
-      },
-    };
-
-    const pLeft = firstDefined(
-      ZSizeVoid.None,
-      get(padding, "left"),
-      get(padding, "x"),
-      padding,
-    );
-    const pRight = firstDefined(
-      ZSizeVoid.None,
-      get(padding, "right"),
-      get(padding, "x"),
-      padding,
-    );
-    const pTop = firstDefined(
-      ZSizeVoid.None,
-      get(padding, "top"),
-      get(padding, "y"),
-      padding,
-    );
-    const pBottom = firstDefined(
-      ZSizeVoid.None,
-      get(padding, "bottom"),
-      get(padding, "y"),
-      padding,
-    );
-
-    const mLeft = firstDefined(
-      ZSizeVoid.None,
-      get(margin, "left"),
-      get(margin, "x"),
-      margin,
-    );
-    const mRight = firstDefined(
-      ZSizeVoid.None,
-      get(margin, "right"),
-      get(margin, "x"),
-      margin,
-    );
-    const mTop = firstDefined(
-      ZSizeVoid.None,
-      get(margin, "top"),
-      get(margin, "y"),
-      margin,
-    );
-    const mBottom = firstDefined(
-      ZSizeVoid.None,
-      get(margin, "bottom"),
-      get(margin, "y"),
-      margin,
-    );
-
-    return {
-      root: {
-        ...dimensions,
-        cursor: onClick ? "pointer" : "default",
-        borderWidth: border?.width,
-        borderStyle: border?.style,
-        borderColor: _fashion.idle.border,
-        backgroundColor: _fashion.idle.main,
-        color: _fashion.idle.contrast,
-
-        "&:focus": {
-          borderColor: _fashion.focus.border,
-          backgroundColor: _fashion.focus.main,
-          color: _fashion.focus.contrast,
-        },
-
-        "&:hover": {
-          borderColor: _fashion.hover.border,
-          backgroundColor: _fashion.hover.main,
-          color: _fashion.hover.contrast,
-        },
-
-        paddingLeft: asPadding(pLeft),
-        paddingRight: asPadding(pRight),
-        paddingTop: asPadding(pTop),
-        paddingBottom: asPadding(pBottom),
-        marginLeft: asMargin(mLeft),
-        marginRight: asMargin(mRight),
-        marginTop: asMargin(mTop),
-        marginBottom: asMargin(mBottom),
-        textAlign: justification,
-      },
-    };
-  },
-);
-
-/**
- * Just a box.
- *
- * @param props -
- *        The properties for the box
- *
- * @returns
- *        The JSX to render the box.
- */
 export function ZBox(props: IZBox) {
-  const { className, children, onClick } = props;
-  const { classes } = useBoxStyles(props);
-  const tabIndex = onClick ? 0 : undefined;
+  const device = useFashionDevice();
+  const tailor = useFashionTailor();
+  const { transparent } = useFashionTheme();
+
+  const {
+    border,
+    className,
+    children,
+    cursor,
+    fashion,
+    interactive,
+    justification,
+    margin,
+    padding,
+    width,
+    ...events
+  } = props;
+  const tabIndex = interactive ? 0 : undefined;
+  const picker = new ZColorPicker(firstDefined(transparent, fashion));
+  const trim = new ZQuadrilateralBuilder<Property.BorderStyle>("none")
+    .from(border?.style)
+    .build();
+  const edge = new ZQuadrilateralBuilder<ZSizeThickness>(ZSizeVoid.None)
+    .from(border?.width)
+    .build();
+  const _padding = new ZQuadrilateralBuilder<ZSizeGap>(ZSizeVoid.None)
+    .from(padding)
+    .build();
+  const _margin = new ZQuadrilateralBuilder<ZSizeMargin>(ZSizeVoid.None)
+    .from(margin)
+    .build();
+  const _width = new ZDeviceValues(width, ZSizeVaried.Fit);
+
+  const _className = css`
+    &.ZBox-root {
+      background-color: ${picker.idle.main};
+      border: ${picker.idle.border};
+
+      border-bottom-style: ${trim.bottom};
+      border-left-style: ${trim.left};
+      border-right-style: ${trim.right};
+      border-top-style: ${trim.top};
+
+      border-bottom-width: ${tailor.thickness(edge.bottom)};
+      border-left-width: ${tailor.thickness(edge.left)};
+      border-right-width: ${tailor.thickness(edge.right)};
+      border-top-width: ${tailor.thickness(edge?.top)};
+
+      display: block;
+      color: ${picker.idle.contrast};
+      cursor: ${cursor};
+
+      padding-bottom: ${tailor.gap(_padding.bottom)};
+      padding-left: ${tailor.gap(_padding.left)};
+      padding-right: ${tailor.gap(_padding.right)};
+      padding-top: ${tailor.gap(_padding.top)};
+
+      margin-bottom: ${tailor.gap(_margin.bottom)};
+      margin-left: ${tailor.gap(_margin.left)};
+      margin-right: ${tailor.gap(_margin.right)};
+      margin-top: ${tailor.gap(_margin.top)};
+
+      max-width: ${WidthChart[_width.xl]};
+
+      text-align: ${justification};
+    }
+
+    &.ZBox-root:focus {
+      background-color: ${interactive ? picker.focus.main : picker.idle.main};
+      border-color: ${interactive ? picker.focus.border : picker.idle.border};
+      color: ${interactive ? picker.focus.contrast : picker.idle.contrast};
+    }
+
+    &.ZBox-root:hover {
+      background-color: ${interactive ? picker.hover.main : picker.idle.main};
+      border-color: ${interactive ? picker.hover.border : picker.idle.border};
+      color: ${interactive ? picker.hover.contrast : picker.idle.contrast};
+    }
+
+    ${device.break(ZSizeFixed.Large)} {
+      &.ZBox-root {
+        max-width: ${WidthChart[_width.lg]};
+      }
+    }
+
+    ${device.break(ZSizeFixed.Medium)} {
+      &.ZBox-root {
+        max-width: ${WidthChart[_width.md]};
+      }
+    }
+
+    ${device.break(ZSizeFixed.Small)} {
+      &.ZBox-root {
+        max-width: ${WidthChart[_width.sm]};
+      }
+    }
+
+    ${device.break(ZSizeFixed.ExtraSmall)} {
+      &.ZBox-root {
+        max-width: ${WidthChart[_width.xs]};
+      }
+    }
+  `;
 
   return (
     <div
-      className={cssJoinDefined("ZBox-root", className, classes.root)}
+      {...events}
+      className={cssJoinDefined("ZBox-root", className, _className)}
       tabIndex={tabIndex}
-      onClick={onClick}
     >
       {children}
     </div>
