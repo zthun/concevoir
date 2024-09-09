@@ -74,11 +74,11 @@ describe("ZFashionTailor", () => {
       expect(actual).toEqual(expected);
     });
 
-    it("should return 0 for a void size", () => {
+    it("should return 0 for the default value", () => {
       // Arrange.
       const target = createTestTarget();
       // Act.
-      const actual = target.rounding(ZSizeVoid.None);
+      const actual = target.rounding();
       // Assert.
       expect(actual).toEqual("0");
     });

@@ -1,21 +1,13 @@
 import { ZCircusBy } from "@zthun/cirque";
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
-import { ZSizeFixed, ZSizeVaried } from "@zthun/fashion-tailor";
-import { Mock, describe, expect, it, vi } from "vitest";
-import { ZBox } from "./box";
+import { ZSizeFixed } from "@zthun/fashion-tailor";
+import { describe, expect, it, vi } from "vitest";
+import { IZBox, ZBox } from "./box";
 import { ZBoxComponentModel } from "./box.cm.mjs";
 
 describe("ZBox", () => {
-  let onClick: Mock | undefined;
-
-  async function createTestTarget() {
-    const element = (
-      <ZBox
-        padding={{ left: ZSizeFixed.Large, right: ZSizeFixed.ExtraLarge }}
-        margin={{ bottom: ZSizeVaried.Fit, top: ZSizeFixed.Medium }}
-        onClick={onClick}
-      />
-    );
+  async function createTestTarget(props?: Partial<IZBox>) {
+    const element = <ZBox {...props} />;
     const driver = await new ZCircusSetupRenderer(element).setup();
     return ZCircusBy.first(driver, ZBoxComponentModel);
   }
@@ -23,15 +15,22 @@ describe("ZBox", () => {
   it("should render the component", async () => {
     // Arrange.
     // Act.
-    const target = await createTestTarget();
+    const target = await createTestTarget({
+      padding: ZSizeFixed.Small,
+      margin: ZSizeFixed.Medium,
+    });
     // Assert.
     expect(target).toBeTruthy();
   });
 
   it("should raise the onClick event when the layout is clicked", async () => {
     // Arrange.
-    onClick = vi.fn();
-    const target = await createTestTarget();
+    const onClick = vi.fn();
+    const target = await createTestTarget({
+      onClick,
+      interactive: true,
+      cursor: "pointer",
+    });
     // Act.
     await target.click();
     // Assert.
