@@ -29,7 +29,10 @@ export function ZBanner(props: IZBanner) {
   `;
 
   return (
-    <div className={cssJoinDefined("ZBanner-root", className, _className)}>
+    <div
+      className={cssJoinDefined("ZBanner-root", className, _className)}
+      role="banner"
+    >
       {children}
     </div>
   );
