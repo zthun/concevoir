@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.1](https://github.com/zthun/fashion/compare/v3.1.0...v3.1.1) (2024-09-09)
+
+
+### Bug Fixes
+
+* role on alert should now be properly set ([a56f817](https://github.com/zthun/fashion/commit/a56f817db60f9b1134616c65af92f7d8075f4e1c))
+* role on banner should now be properly set ([5e602b1](https://github.com/zthun/fashion/commit/5e602b19a19bb83cb98187a53cfe47f970cdaf2b))
+
+
+
 ## [3.1.0](https://github.com/zthun/fashion/compare/v3.0.0...v3.1.0) (2024-09-09)
 
 
