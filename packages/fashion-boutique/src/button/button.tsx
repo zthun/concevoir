@@ -1,14 +1,15 @@
-import { Button, Tooltip } from "@mui/material";
 import { ReactNode } from "react";
 
-import { IZFashion, transparent } from "@zthun/fashion-theme";
+import { IZFashion, ZColorPicker } from "@zthun/fashion-theme";
 
+import { css, keyframes } from "@emotion/css";
 import {
   createSizeChartVariedCss,
+  ZDeviceValues,
   ZSizeFixed,
   ZSizeVaried,
 } from "@zthun/fashion-tailor";
-import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import { cssJoinDefined, firstDefined, ZOrientation } from "@zthun/helpful-fn";
 import { IZComponentAvatar } from "../component/component-avatar.mjs";
 import { IZComponentDisabled } from "../component/component-disabled.mjs";
 import { IZComponentDomEvents } from "../component/component-dom-events.mjs";
@@ -18,8 +19,12 @@ import { IZComponentLoading } from "../component/component-loading.mjs";
 import { IZComponentName } from "../component/component-name.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 import { IZComponentWidth } from "../component/component-width.mjs";
-import { ZSuspenseRotate } from "../suspense/suspense-rotate";
-import { createStyleHook } from "../theme/styled";
+import { ZStack } from "../stack/stack";
+import {
+  useFashionDevice,
+  useFashionTailor,
+  useFashionTheme,
+} from "../theme/fashion.mjs";
 
 export interface IZButton
   extends IZComponentAvatar,
@@ -37,96 +42,7 @@ export interface IZButton
   tooltip?: ReactNode;
 }
 
-const ButtonSizeChart = createSizeChartVariedCss();
-
-export const useButtonStyles = createStyleHook(
-  ({ theme, tailor }, props: IZButton) => {
-    const {
-      width = ZSizeVaried.Fit,
-      fashion = theme.component,
-      compact,
-    } = props;
-
-    const text = fashion.idle.contrast;
-    const main = fashion.idle.main;
-    const border = firstDefined(fashion.idle.main, fashion.idle.border);
-    const minWidth = compact ? 0 : undefined;
-
-    const borderless = {
-      border: 0,
-      outline: "none",
-      boxShadow: "none",
-    };
-
-    return {
-      wrapper: {
-        display: "inline-flex",
-        width: ButtonSizeChart[width],
-      },
-
-      button: {
-        display: "inline-flex",
-        alignItems: "center",
-        width: "100%",
-        color: text,
-        backgroundColor: main,
-        borderColor: border,
-        minWidth: minWidth,
-
-        "&:hover": {
-          outline: `${tailor.thickness()} solid ${firstDefined(fashion.idle.main, fashion.hover?.border)}`,
-          backgroundColor: firstDefined(fashion.idle.main, fashion.hover?.main),
-        },
-
-        "&:disabled": {
-          color: text,
-          backgroundColor: main,
-          opacity: "0.25",
-        },
-
-        "&.ZButton-outline": {
-          backgroundColor: transparent(),
-          color: main,
-          borderColor: main,
-
-          "&:disabled": {
-            color: "rgb(0, 0, 0, 0.25)",
-          },
-
-          "&:hover": {
-            backgroundColor: main,
-            color: text,
-          },
-        },
-
-        "&.ZButton-borderless": {
-          ...borderless,
-          "&:hover": borderless,
-          "&:active": borderless,
-        },
-
-        "&.ZButton-compact": {
-          padding: tailor.thickness(ZSizeFixed.ExtraSmall),
-
-          ".MuiButton-startIcon": {
-            marginLeft: 0,
-          },
-          ".MuiButton-endIcon": {
-            marginRight: 0,
-          },
-        },
-      },
-
-      content: {
-        display: "flex",
-      },
-
-      loading: {
-        marginLeft: tailor.gap(ZSizeFixed.ExtraSmall),
-      },
-    };
-  },
-);
+const WidthChart = createSizeChartVariedCss();
 
 /**
  * Represents a basic button component.
@@ -148,46 +64,123 @@ export function ZButton(props: IZButton) {
     label,
     name,
     outline,
-    tooltip,
+    width,
     ...dom
   } = props;
+  const device = useFashionDevice();
+  const { component } = useFashionTheme();
+  const tailor = useFashionTailor();
+  const picker = new ZColorPicker(firstDefined(component, fashion));
+  const _width = new ZDeviceValues(width, ZSizeVaried.Fit);
 
-  const { classes } = useButtonStyles(props);
-  const buttonClass = cssJoinDefined(
-    "ZButton-root",
-    ["ZButton-borderless", !!borderless],
-    ["ZButton-outline", !!outline],
-    ["ZButton-compact", !!compact],
-    className,
-    classes.button,
-  );
-  const contentClass = cssJoinDefined("ZButton-content", classes.content);
-  const variant = outline ? "outlined" : "contained";
+  const _gradient = keyframes`
+      0% { background-position-x: 0%; }
+      50% { background-position-x: 100%; }
+      100% { background-position-x: 0%; }
+  `;
 
-  const suspense = loading ? (
-    <ZSuspenseRotate
-      className={cssJoinDefined("ZButton-loading", classes.loading)}
-      width={ZSizeFixed.ExtraSmall}
-    />
-  ) : null;
+  const _className = css`
+    & {
+      border-radius: 0.375rem;
+      display: inline-flex;
+      font-family: inherit;
+      font-size: inherit;
+      gap: ${tailor.gap(ZSizeFixed.ExtraSmall)};
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      background: ${outline ? "transparent" : picker.idle.main};
+      border-color: ${picker.idle.main};
+      border-style: ${borderless ? "none" : "solid"};
+      color: ${outline ? picker.idle.main : picker.idle.contrast};
+      padding: ${compact ? 0 : tailor.gap(ZSizeFixed.ExtraSmall)};
+      width: ${WidthChart[_width.xl]};
+    }
+
+    &:focus {
+      outline-style: solid;
+      outline-width: ${tailor.thickness(ZSizeFixed.Medium)};
+      border-color: ${picker.focus.main};
+      outline-color: ${picker.focus.border};
+    }
+
+    &:hover:not([disabled]) {
+      background-color: ${picker.hover.main};
+      border-color: ${picker.hover.border};
+      color: ${picker.hover.contrast};
+      cursor: pointer;
+    }
+
+    &:active:not([disabled]) {
+      background-color: ${picker.active.main};
+      border-color: ${picker.active.border};
+      color: ${picker.active.contrast};
+    }
+
+    &:disabled {
+      opacity: 0.25;
+    }
+
+    &[data-loading="true"] {
+      animation: ${_gradient} 1.5s linear infinite;
+    }
+
+    &[data-loading="true"] {
+      background: linear-gradient(
+        90deg,
+        ${picker.idle.main},
+        ${picker.idle.border},
+        ${picker.idle.main}
+      );
+      background-size: 300% 100%;
+    }
+
+    ${device.break(ZSizeFixed.Large)} {
+      & {
+        width: ${WidthChart[_width.lg]};
+      }
+    }
+
+    ${device.break(ZSizeFixed.Medium)} {
+      & {
+        width: ${WidthChart[_width.md]};
+      }
+    }
+
+    ${device.break(ZSizeFixed.Small)} {
+      & {
+        width: ${WidthChart[_width.sm]};
+      }
+    }
+
+    ${device.break(ZSizeFixed.ExtraSmall)} {
+      & {
+        width: ${WidthChart[_width.xs]};
+      }
+    }
+  `;
 
   return (
-    <Tooltip title={tooltip}>
-      <span className={classes.wrapper}>
-        <Button
-          {...dom}
-          className={buttonClass}
-          variant={variant}
-          disabled={disabled}
-          name={name}
-          startIcon={avatar}
-          endIcon={suspense}
-          data-compact={compact}
-          data-fashion={fashion?.name}
-        >
-          <div className={contentClass}>{label}</div>
-        </Button>
-      </span>
-    </Tooltip>
+    <button
+      {...dom}
+      className={cssJoinDefined("ZButton-root", className, _className)}
+      disabled={disabled}
+      name={name}
+      data-borderless={borderless}
+      data-compact={compact}
+      data-fashion={fashion?.name}
+      data-loading={loading}
+      data-outline={outline}
+    >
+      <ZStack
+        alignItems="center"
+        orientation={ZOrientation.Horizontal}
+        gap={ZSizeFixed.Small}
+        inline
+      >
+        {avatar}
+        <div>{label}</div>
+      </ZStack>
+    </button>
   );
 }
