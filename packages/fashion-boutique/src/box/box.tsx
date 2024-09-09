@@ -81,7 +81,7 @@ export function ZBox(props: IZBox) {
   } = props;
   const tabIndex = interactive ? 0 : undefined;
   const picker = new ZColorPicker(firstDefined(transparent, fashion));
-  const trim = new ZQuadrilateralBuilder<Property.BorderStyle>("none")
+  const trim = new ZQuadrilateralBuilder<Property.BorderStyle>("solid")
     .from(border?.style)
     .build();
   const edge = new ZQuadrilateralBuilder<ZSizeThickness>(ZSizeVoid.None)
