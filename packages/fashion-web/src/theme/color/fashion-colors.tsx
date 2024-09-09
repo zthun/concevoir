@@ -22,9 +22,11 @@ export function ZFashionColors(props: IZFashionColors) {
   return (
     <ZBox
       className={cssJoinDefined("ZFashionColors-root")}
+      cursor="pointer"
       fashion={boxFashion}
       border={{ width: ZSizeFixed.ExtraLarge, style: "solid" }}
       padding={ZSizeFixed.Large}
+      interactive
       data-name={fashion.name}
       data-fashion={fashion.name}
     >
