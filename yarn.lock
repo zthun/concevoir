@@ -3498,7 +3498,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/fashion-boutique@npm:^3.1.0, @zthun/fashion-boutique@workspace:packages/fashion-boutique":
+"@zthun/fashion-boutique@npm:^3.1.1, @zthun/fashion-boutique@workspace:packages/fashion-boutique":
   version: 0.0.0-use.local
   resolution: "@zthun/fashion-boutique@workspace:packages/fashion-boutique"
   dependencies:
@@ -3599,7 +3599,7 @@ __metadata:
     "@zthun/cirque": "npm:^7.0.3"
     "@zthun/cirque-du-react": "npm:^7.0.3"
     "@zthun/cirque-du-selenium": "npm:^7.0.3"
-    "@zthun/fashion-boutique": "npm:^3.1.0"
+    "@zthun/fashion-boutique": "npm:^3.1.1"
     "@zthun/fashion-labs": "npm:^2.7.1"
     "@zthun/fashion-tailor": "npm:^3.1.0"
     "@zthun/fashion-theme": "npm:^3.1.0"
