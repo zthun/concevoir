@@ -75,6 +75,7 @@ export function ZAlert(props: IZAlert) {
       className={cssJoinDefined("ZAlert-root", className, _className)}
       data-name={name}
       data-fashion={fashion.name}
+      role="alert"
     >
       {avatar && <div className="ZAlert-avatar">{avatar}</div>}
       {heading && <div className="ZAlert-heading">{heading}</div>}
