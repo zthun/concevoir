@@ -19,6 +19,7 @@ import {
   firstDefined,
   ZHorizontalAnchor,
   ZQuadrilateralBuilder,
+  ZQuadrilateralCornersBuilder,
   ZQuadrilateralCornersLike,
   ZQuadrilateralLike,
 } from "@zthun/helpful-fn";
@@ -86,6 +87,9 @@ export function ZBox(props: IZBox) {
   const edge = new ZQuadrilateralBuilder<ZSizeThickness>(ZSizeVoid.None)
     .from(border?.width)
     .build();
+  const radius = new ZQuadrilateralCornersBuilder<ZSizeRounding>(ZSizeVoid.None)
+    .from(border?.radius)
+    .build();
   const _padding = new ZQuadrilateralBuilder<ZSizeGap>(ZSizeVoid.None)
     .from(padding)
     .build();
@@ -108,6 +112,11 @@ export function ZBox(props: IZBox) {
       border-left-width: ${tailor.thickness(edge.left)};
       border-right-width: ${tailor.thickness(edge.right)};
       border-top-width: ${tailor.thickness(edge?.top)};
+
+      border-bottom-left-radius: ${tailor.rounding(radius.bottomLeft)};
+      border-bottom-right-radius: ${tailor.rounding(radius.bottomRight)};
+      border-top-left-radius: ${tailor.rounding(radius.topLeft)};
+      border-top-right-radius: ${tailor.rounding(radius.topRight)};
 
       display: block;
       color: ${picker.idle.contrast};
