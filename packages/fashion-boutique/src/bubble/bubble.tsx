@@ -1,9 +1,13 @@
+import { css } from "@emotion/css";
 import {
+  ZDeviceValues,
   ZSizeFixed,
-  ZSizeVoid,
+  ZSizeGap,
+  ZSizeThickness,
   createSizeChartFixedCss,
   createSizeChartFixedGeometric,
 } from "@zthun/fashion-tailor";
+import { ZColorPicker } from "@zthun/fashion-theme";
 import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
 import { useKeyboardActivate } from "@zthun/helpful-react";
 import { KeyboardEvent, MouseEvent } from "react";
@@ -12,8 +16,11 @@ import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentName } from "../component/component-name.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 import { IZComponentWidth } from "../component/component-width.mjs";
-import { useFashionTheme } from "../theme/fashion.mjs";
-import { createStyleHook } from "../theme/styled";
+import {
+  useFashionDevice,
+  useFashionTailor,
+  useFashionTheme,
+} from "../theme/fashion.mjs";
 
 export interface IZBubble
   extends IZComponentStyle,
@@ -21,8 +28,8 @@ export interface IZBubble
     IZComponentWidth<ZSizeFixed, ZSizeFixed>,
     IZComponentHierarchy,
     IZComponentFashion {
-  padding?: ZSizeFixed | ZSizeVoid;
-  border?: ZSizeFixed | ZSizeVoid;
+  padding?: ZSizeGap;
+  border?: ZSizeThickness;
 
   onClick?: (event: MouseEvent | KeyboardEvent) => void;
 }
@@ -31,80 +38,91 @@ const WidthChart = {
   ...createSizeChartFixedCss(createSizeChartFixedGeometric(2, 1), "rem"),
 };
 
-const useBubbleStyles = createStyleHook(
-  ({ theme, tailor }, props: IZBubble) => {
-    const {
-      border = ZSizeVoid.None,
-      width = ZSizeFixed.Medium,
-      fashion = theme.component,
-      padding = ZSizeVoid.None,
-      onClick,
-    } = props;
-
-    const cursor = onClick ? "pointer" : "default";
-
-    return {
-      root: {
-        alignContent: "center",
-        alignItems: "center",
-        background: fashion.idle.main,
-        color: fashion.idle.contrast,
-        cursor,
-        border: `${tailor.thickness(border)} solid ${fashion.idle.border}`,
-        borderRadius: "50%",
-        clipPath: `circle()`,
-        display: "flex",
-        flexDirection: "column",
-        height: WidthChart[width],
-        justifyContent: "center",
-        padding: tailor.gap(padding),
-        width: WidthChart[width],
-
-        "&:focus": {
-          background: onClick
-            ? firstDefined(fashion.idle.main, fashion.focus?.main)
-            : undefined,
-          borderColor: onClick
-            ? firstDefined(fashion.idle.border, fashion.focus?.border)
-            : undefined,
-          color: onClick
-            ? firstDefined(fashion.idle.contrast, fashion.focus?.contrast)
-            : undefined,
-          outline: "none",
-        },
-
-        "&:hover": {
-          color: onClick
-            ? firstDefined(fashion.idle.contrast, fashion.hover?.contrast)
-            : undefined,
-          background: onClick
-            ? firstDefined(fashion.idle.main, fashion.hover?.main)
-            : undefined,
-          borderColor: onClick
-            ? firstDefined(fashion.idle.border, fashion.hover?.border)
-            : undefined,
-        },
-      },
-    };
-  },
-);
-
 export function ZBubble(props: IZBubble) {
+  const device = useFashionDevice();
+  const tailor = useFashionTailor();
   const { component } = useFashionTheme();
   const {
     children,
     className,
     name,
     border,
-    fashion = component,
+    fashion,
+    padding,
     onClick,
+    width,
   } = props;
-  const { classes } = useBubbleStyles(props);
+  const active = !!onClick;
   const { onKey, tabIndex } = useKeyboardActivate(onClick);
+
+  const picker = new ZColorPicker(firstDefined(component, fashion));
+  const _width = new ZDeviceValues(width, ZSizeFixed.Medium);
+
+  const _className = css`
+    &.ZBubble-root {
+      align-content: center;
+      align-items: center;
+      background: ${picker.idle.main};
+      color: ${picker.idle.contrast};
+      cursor: ${active ? "pointer" : "default"};
+      border-width: ${tailor.thickness(border)};
+      border-style: solid;
+      border-color: ${picker.idle.border};
+      border-radius: 50%;
+      clip-path: circle();
+      display: flex;
+      flex-direction: column;
+      height: ${WidthChart[_width.xl]};
+      justify-content: center;
+      padding: ${tailor.gap(padding)};
+      width: ${WidthChart[_width.xl]};
+    }
+
+    &.ZBubble-root:focus {
+      background: ${active ? picker.focus.main : picker.idle.main};
+      border-color: ${active ? picker.focus.border : picker.idle.border};
+      color: ${active ? picker.focus.contrast : picker.idle.contrast};
+      outline: "none";
+    }
+
+    &.ZBubble-root:hover {
+      background: ${active ? picker.hover.main : picker.idle.main};
+      border-color: ${active ? picker.hover.border : picker.idle.border};
+      color: ${active ? picker.hover.contrast : picker.idle.contrast};
+    }
+
+    ${device.break(ZSizeFixed.Large)} {
+      &.ZBubble-root {
+        height: ${WidthChart[_width.lg]};
+        width: ${WidthChart[_width.lg]};
+      }
+    }
+
+    ${device.break(ZSizeFixed.Medium)} {
+      &.ZBubble-root {
+        height: ${WidthChart[_width.md]};
+        width: ${WidthChart[_width.md]};
+      }
+    }
+
+    ${device.break(ZSizeFixed.Small)} {
+      &.ZBubble-root {
+        height: ${WidthChart[_width.sm]};
+        width: ${WidthChart[_width.sm]};
+      }
+    }
+
+    ${device.break(ZSizeFixed.ExtraSmall)} {
+      &.ZBubble-root {
+        height: ${WidthChart[_width.xs]};
+        width: ${WidthChart[_width.xs]};
+      }
+    }
+  `;
 
   return (
     <div
-      className={cssJoinDefined("ZBubble-root", className, classes.root)}
+      className={cssJoinDefined("ZBubble-root", className, _className)}
       data-name={name}
       data-border-size={border}
       data-fashion={fashion?.name}
