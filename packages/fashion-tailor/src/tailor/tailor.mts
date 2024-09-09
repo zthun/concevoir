@@ -1,10 +1,10 @@
 import { set } from "lodash-es";
-import { createSizeChartVariedCss } from "src/varied/size-chart-varied-css.mjs";
 import { createSizeChartFixedArithmetic } from "../fixed/size-chart-fixed-arithmetic.mjs";
 import { createSizeChartFixedCss } from "../fixed/size-chart-fixed-css.mjs";
 import { createSizeChartFixedFibonacci } from "../fixed/size-chart-fixed-fibonacci.mjs";
 import { ZSizeChartFixed, ZSizeFixed } from "../fixed/size-fixed.mjs";
 import { ZSizeMargin, ZSizeRounding, ZSizeThickness } from "../size.mjs";
+import { createSizeChartVariedCss } from "../varied/size-chart-varied-css.mjs";
 import { ZSizeVaried } from "../varied/size-varied.mjs";
 import { createSizeChartVoidCss } from "../void/size-chart-void-css.mjs";
 import { ZSizeVoid } from "../void/size-void.mjs";
