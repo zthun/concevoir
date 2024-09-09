@@ -1,8 +1,10 @@
 import { set } from "lodash-es";
+import { createSizeChartVariedCss } from "src/varied/size-chart-varied-css.mjs";
 import { createSizeChartFixedArithmetic } from "../fixed/size-chart-fixed-arithmetic.mjs";
 import { createSizeChartFixedCss } from "../fixed/size-chart-fixed-css.mjs";
 import { createSizeChartFixedFibonacci } from "../fixed/size-chart-fixed-fibonacci.mjs";
 import { ZSizeChartFixed, ZSizeFixed } from "../fixed/size-fixed.mjs";
+import { ZSizeMargin, ZSizeRounding, ZSizeThickness } from "../size.mjs";
 import { ZSizeVaried } from "../varied/size-varied.mjs";
 import { createSizeChartVoidCss } from "../void/size-chart-void-css.mjs";
 import { ZSizeVoid } from "../void/size-void.mjs";
@@ -14,7 +16,10 @@ export interface IZFashionTailor {
   /**
    * Converts a size enum to a spacing value.
    *
-   * This is mostly appropriate for margin and padding.
+   * This is mostly appropriate for margin, padding, and flex/grid gap.
+   * This does support a size of Fit, but that only truly works for
+   * margin, so be aware of that when requesting the size for padding
+   * and gap.
    *
    * @param size -
    *        The size to space out.
@@ -22,10 +27,10 @@ export interface IZFashionTailor {
    * @returns
    *        A CSS compatible size option.
    */
-  gap(size?: ZSizeFixed | ZSizeVoid | ZSizeVaried.Fit): string;
+  gap(size?: ZSizeMargin): string;
 
   /**
-   * Similar to gap, but uses a smaller multiplier and a smaller
+   * Similar to {@link gap}, but uses a smaller multiplier and a smaller
    * base conversion.
    *
    * This is mostly appropriate for border widths and outlines.
@@ -36,7 +41,18 @@ export interface IZFashionTailor {
    * @returns
    *        A CSS compatible size option.
    */
-  thickness(size?: ZSizeFixed | ZSizeVoid): string;
+  thickness(size?: ZSizeThickness): string;
+
+  /**
+   * Similar to {@link gap} but uses sizes that make sense for border radius values.
+   *
+   * @param size -
+   *        The size to round.
+   *
+   * @returns
+   *        A CSS compatible rounding option.
+   */
+  rounding(size?: ZSizeRounding): string;
 }
 
 export class ZFashionTailor {
@@ -54,6 +70,15 @@ export class ZFashionTailor {
     ...createSizeChartVoidCss(),
   };
 
+  private _rounding = {
+    ...createSizeChartFixedCss(
+      createSizeChartFixedArithmetic(0.25, 0.75),
+      "rem",
+    ),
+    ...createSizeChartVoidCss(),
+    [ZSizeVaried.Full]: "50%",
+  };
+
   private _sizeChart(
     path: keyof ZFashionTailor,
     chart: ZSizeChartFixed<string>,
@@ -61,6 +86,7 @@ export class ZFashionTailor {
     const _chart = {
       ...chart,
       ...createSizeChartVoidCss(),
+      ...createSizeChartVariedCss(),
     };
     const updated = new ZFashionTailor();
     set(updated, path, _chart);
@@ -69,14 +95,17 @@ export class ZFashionTailor {
 
   public gapsChart = this._sizeChart.bind(this, "_gaps");
   public thicknessChart = this._sizeChart.bind(this, "_thickness");
+  public roundingChart = this._sizeChart.bind(this, "_rounding");
 
-  gap(
-    size: ZSizeFixed | ZSizeVoid | ZSizeVaried.Fit = ZSizeFixed.Medium,
-  ): string {
+  public gap(size: ZSizeMargin = ZSizeFixed.Medium): string {
     return this._gaps[size];
   }
 
-  thickness(size: ZSizeFixed | ZSizeVoid = ZSizeFixed.ExtraSmall): string {
+  public thickness(size: ZSizeThickness = ZSizeFixed.ExtraSmall): string {
     return this._thickness[size];
+  }
+
+  public rounding(size: ZSizeRounding = ZSizeVoid.None): string {
+    return this._rounding[size];
   }
 }
