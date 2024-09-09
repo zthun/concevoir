@@ -179,7 +179,7 @@ export function ZButton(props: IZButton) {
         inline
       >
         {avatar}
-        <div>{label}</div>
+        <div className="ZButton-content">{label}</div>
       </ZStack>
     </button>
   );

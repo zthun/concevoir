@@ -173,7 +173,7 @@ describe("ZButton", () => {
       await assertBorderless(false, false);
     });
 
-    it("should keep the border if the borderless flag is true.", async () => {
+    it("should remove the border if the borderless flag is true.", async () => {
       await assertBorderless(true, true);
     });
   });
