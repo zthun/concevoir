@@ -1,5 +1,5 @@
 import { Button, Tooltip } from "@mui/material";
-import { MouseEvent, ReactNode } from "react";
+import { ReactNode } from "react";
 
 import { IZFashion, transparent } from "@zthun/fashion-theme";
 
@@ -9,9 +9,9 @@ import {
   ZSizeVaried,
 } from "@zthun/fashion-tailor";
 import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
-import { noop } from "lodash-es";
 import { IZComponentAvatar } from "../component/component-avatar.mjs";
 import { IZComponentDisabled } from "../component/component-disabled.mjs";
+import { IZComponentDomEvents } from "../component/component-dom-events.mjs";
 import { IZComponentFashion } from "../component/component-fashion.mjs";
 import { IZComponentLabel } from "../component/component-label.mjs";
 import { IZComponentLoading } from "../component/component-loading.mjs";
@@ -24,6 +24,7 @@ import { createStyleHook } from "../theme/styled";
 export interface IZButton
   extends IZComponentAvatar,
     IZComponentLabel,
+    IZComponentDomEvents<HTMLButtonElement>,
     IZComponentDisabled,
     IZComponentLoading,
     IZComponentStyle,
@@ -34,8 +35,6 @@ export interface IZButton
   compact?: boolean;
   outline?: boolean;
   tooltip?: ReactNode;
-
-  onClick?: (e: MouseEvent) => any;
 }
 
 const ButtonSizeChart = createSizeChartVariedCss();
@@ -150,7 +149,7 @@ export function ZButton(props: IZButton) {
     name,
     outline,
     tooltip,
-    onClick = noop,
+    ...dom
   } = props;
 
   const { classes } = useButtonStyles(props);
@@ -176,10 +175,10 @@ export function ZButton(props: IZButton) {
     <Tooltip title={tooltip}>
       <span className={classes.wrapper}>
         <Button
+          {...dom}
           className={buttonClass}
           variant={variant}
           disabled={disabled}
-          onClick={onClick}
           name={name}
           startIcon={avatar}
           endIcon={suspense}
