@@ -30,11 +30,13 @@ export function ZBoutiquePage() {
   const renderComponent = (route: IZRoute) => (
     <ZBox
       className={cssJoinDefined("ZBoutiquePage-component")}
-      key={route.path}
-      padding={ZSizeFixed.Medium}
+      border={{ width: ZSizeFixed.ExtraSmall, radius: ZSizeFixed.ExtraSmall }}
+      cursor="pointer"
       fashion={body}
-      border={{ width: ZSizeFixed.ExtraSmall }}
+      interactive
+      key={route.path}
       onClick={() => navigate(route.path)}
+      padding={ZSizeFixed.Medium}
     >
       <ZLineItem
         prefix={
