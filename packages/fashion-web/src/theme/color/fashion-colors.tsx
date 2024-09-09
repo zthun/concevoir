@@ -1,10 +1,4 @@
-import {
-  IZComponentFashion,
-  ZBox,
-  ZH4,
-  ZStack,
-  ZTextColor,
-} from "@zthun/fashion-boutique";
+import { IZComponentFashion, ZBox, ZH4, ZStack } from "@zthun/fashion-boutique";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { ZFashionBuilder } from "@zthun/fashion-theme";
 import { ZOrientation, cssJoinDefined } from "@zthun/helpful-fn";
@@ -35,9 +29,7 @@ export function ZFashionColors(props: IZFashionColors) {
       data-fashion={fashion.name}
     >
       <ZStack orientation={ZOrientation.Vertical} gap={ZSizeFixed.Small}>
-        <ZTextColor>
-          <ZH4 compact>{fashion.name}</ZH4>
-        </ZTextColor>
+        <ZH4 compact>{fashion.name}</ZH4>
       </ZStack>
     </ZBox>
   );
