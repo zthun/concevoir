@@ -3,8 +3,9 @@ import { createSizeChartFixedArithmetic } from "../fixed/size-chart-fixed-arithm
 import { createSizeChartFixedCss } from "../fixed/size-chart-fixed-css.mjs";
 import { createSizeChartFixedFibonacci } from "../fixed/size-chart-fixed-fibonacci.mjs";
 import { ZSizeChartFixed, ZSizeFixed } from "../fixed/size-fixed.mjs";
+import { ZSizeVaried } from "../varied/size-varied.mjs";
 import { createSizeChartVoidCss } from "../void/size-chart-void-css.mjs";
-import { ZSizeChartVoid, ZSizeVoid } from "../void/size-void.mjs";
+import { ZSizeVoid } from "../void/size-void.mjs";
 
 /**
  * Represents a tailor that calculates dimensions based on t-shirt sizes.
@@ -21,7 +22,7 @@ export interface IZFashionTailor {
    * @returns
    *        A CSS compatible size option.
    */
-  gap(size?: ZSizeFixed | ZSizeVoid): string;
+  gap(size?: ZSizeFixed | ZSizeVoid | ZSizeVaried.Fit): string;
 
   /**
    * Similar to gap, but uses a smaller multiplier and a smaller
@@ -39,12 +40,13 @@ export interface IZFashionTailor {
 }
 
 export class ZFashionTailor {
-  private _gaps: ZSizeChartFixed<string> & ZSizeChartVoid<string> = {
+  private _gaps = {
     ...createSizeChartFixedCss(createSizeChartFixedFibonacci(0.5, 1), "rem"),
     ...createSizeChartVoidCss(),
+    [ZSizeVaried.Fit]: "auto",
   };
 
-  private _thickness: ZSizeChartFixed<string> & ZSizeChartVoid<string> = {
+  private _thickness = {
     ...createSizeChartFixedCss(
       createSizeChartFixedArithmetic(0.0625, 0.0625),
       "rem",
@@ -68,7 +70,9 @@ export class ZFashionTailor {
   public gapsChart = this._sizeChart.bind(this, "_gaps");
   public thicknessChart = this._sizeChart.bind(this, "_thickness");
 
-  gap(size: ZSizeFixed | ZSizeVoid = ZSizeFixed.Medium): string {
+  gap(
+    size: ZSizeFixed | ZSizeVoid | ZSizeVaried.Fit = ZSizeFixed.Medium,
+  ): string {
     return this._gaps[size];
   }
 
