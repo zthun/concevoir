@@ -1,3 +1,4 @@
+import { css } from "@emotion/css";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { ZOrientation, cssJoinDefined } from "@zthun/helpful-fn";
 import { useAmbassadorState } from "@zthun/helpful-react";
@@ -10,7 +11,6 @@ import { IZComponentValue } from "../component/component-value.mjs";
 import { ZIconFontAwesome } from "../icon/icon-font-awesome";
 import { ZStack } from "../stack/stack";
 import { useFashionTheme } from "../theme/fashion.mjs";
-import { createStyleHook } from "../theme/styled";
 
 export interface IZCarousel
   extends IZComponentStyle,
@@ -25,27 +25,6 @@ export interface IZCarousel
   ForwardProps?: Omit<IZButton, "name" | "disabled" | "onClick">;
   ReverseProps?: Omit<IZButton, "name" | "disabled" | "onClick">;
 }
-
-const useCarouselStyles = createStyleHook((_, props: IZCarousel) => {
-  const { count } = props;
-  const opacity = 0.5;
-  const visibility = count <= 1 ? "hidden" : undefined;
-  return {
-    root: {
-      ".ZCarousel-navigation-forward,.ZCarousel-navigation-reverse": {
-        visibility,
-        opacity,
-        transition: "opacity .5s",
-      },
-
-      "&:hover": {
-        ".ZCarousel-navigation-forward,.ZCarousel-navigation-reverse": {
-          opacity: 1,
-        },
-      },
-    },
-  };
-});
 
 export function ZCarousel(props: IZCarousel) {
   const _renderEmpty = () => null;
@@ -64,11 +43,26 @@ export function ZCarousel(props: IZCarousel) {
   } = props;
   const [index, setIndex] = useAmbassadorState(value, onValueChange, 0);
   const { opposite } = useFashionTheme();
-  const { classes } = useCarouselStyles(props);
   const forward =
     orientation === ZOrientation.Horizontal ? "chevron-right" : "chevron-down";
   const reverse =
     orientation === ZOrientation.Horizontal ? "chevron-left" : "chevron-up";
+
+  const _className = css`
+    .ZCarousel-navigation-forward,
+    .ZCarousel-navigation-reverse {
+      visibility: ${count <= 1 ? "hidden" : undefined};
+      opacity: 0.5;
+      transition: "opacity .5s";
+    }
+
+    &:hover {
+      .ZCarousel-navigation-forward,
+      .ZCarousel-navigation-reverse {
+        opacity: 1;
+      }
+    }
+  `;
 
   const handleReverse = () => {
     setIndex((i) => {
@@ -86,7 +80,7 @@ export function ZCarousel(props: IZCarousel) {
 
   return (
     <div
-      className={cssJoinDefined("ZCarousel-root", className, classes.root)}
+      className={cssJoinDefined("ZCarousel-root", className, _className)}
       data-name={name}
       data-index={index}
       data-count={count}
