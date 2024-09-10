@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.0](https://github.com/zthun/fashion/compare/v3.1.3...v3.2.0) (2024-09-10)
+
+
+### Features
+
+* text color is now deprecated in favor of individual typography fashion ([d26f946](https://github.com/zthun/fashion/commit/d26f9461908dab24de7862bad3449f0e204ee480))
+* typography can now have individual fashion ([a92f435](https://github.com/zthun/fashion/commit/a92f4356bce5cb8f43ccd0d9f843e44072552226))
+
+
+
 ## [3.1.3](https://github.com/zthun/fashion/compare/v3.1.2...v3.1.3) (2024-09-09)
 
 **Note:** Version bump only for package @zthun/fashion
