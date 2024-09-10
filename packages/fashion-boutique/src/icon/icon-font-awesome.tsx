@@ -22,7 +22,7 @@ export function ZIconFontAwesome(props: IZIconFontAwesome) {
     fashion,
     tooltip,
   } = props;
-  const { classes } = useIconStyles(props);
+  const _className = useIconStyles(props);
   useIconProvider(ZIconFontAwesomeProvider);
   const { onKey, tabIndex } = useKeyboardActivate(onClick);
 
@@ -36,7 +36,7 @@ export function ZIconFontAwesome(props: IZIconFontAwesome) {
           `fa-${style}`,
           `fa-${name}`,
           className,
-          classes.root,
+          _className,
         )}
         onClick={onClick}
         onKeyDown={onKey}

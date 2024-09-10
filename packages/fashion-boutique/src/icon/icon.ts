@@ -1,15 +1,18 @@
+import { css } from "@emotion/css";
 import {
   ZDeviceValues,
   ZSizeFixed,
   createSizeChartFixedCss,
   createSizeChartFixedGeometric,
 } from "@zthun/fashion-tailor";
+import { ZColorPicker } from "@zthun/fashion-theme";
+import { firstDefined } from "@zthun/helpful-fn";
 import { KeyboardEvent, MouseEvent, ReactNode, useEffect } from "react";
 import { IZComponentFashion } from "../component/component-fashion.mjs";
 import { IZComponentName } from "../component/component-name.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 import { IZComponentWidth } from "../component/component-width.mjs";
-import { createStyleHook } from "../theme/styled";
+import { useFashionDevice, useFashionTheme } from "../theme/fashion.mjs";
 
 export interface IZIcon
   extends IZComponentName,
@@ -25,45 +28,49 @@ const IconSizeChart = createSizeChartFixedCss(
   "rem",
 );
 
-export const useIconStyles = createStyleHook(
-  ({ theme, device }, props: IZIcon) => {
-    const { primary } = theme;
-    const { width = ZSizeFixed.Small, fashion, onClick } = props;
-    const _width = new ZDeviceValues(width, ZSizeFixed.Small);
+export function useIconStyles(props: IZIcon) {
+  const { inherit } = useFashionTheme();
+  const device = useFashionDevice();
+  const { width = ZSizeFixed.Small, fashion, onClick } = props;
+  const _width = new ZDeviceValues(width, ZSizeFixed.Small);
+  const picker = new ZColorPicker(firstDefined(inherit, fashion));
 
-    const fontSize = {
-      fontSize: `${IconSizeChart[_width.xl]} !important`,
+  return css`
+    & {
+      color: ${picker.idle.main};
+      cursor: ${onClick ? "pointer" : "inherit"};
+      font-size: ${IconSizeChart[_width.xl]};
+    }
 
-      [device.break(ZSizeFixed.Large)]: {
-        fontSize: `${IconSizeChart[_width.lg]} !important`,
-      },
+    &:hover {
+      color: ${onClick ? picker.hover.main : undefined};
+    }
 
-      [device.break(ZSizeFixed.Medium)]: {
-        fontSize: `${IconSizeChart[_width.md]} !important`,
-      },
+    ${device.break(ZSizeFixed.Large)}: {
+      & {
+        font-size: ${IconSizeChart[_width.lg]};
+      }
+    }
 
-      [device.break(ZSizeFixed.Small)]: {
-        fontSize: `${IconSizeChart[_width.sm]} !important`,
-      },
+    ${device.break(ZSizeFixed.Medium)}: {
+      & {
+        font-size: ${IconSizeChart[_width.lg]};
+      }
+    }
 
-      [device.break(ZSizeFixed.ExtraSmall)]: {
-        fontSize: `${IconSizeChart[_width.xs]} !important`,
-      },
-    };
+    ${device.break(ZSizeFixed.Small)}: {
+      & {
+        font-size: ${IconSizeChart[_width.lg]};
+      }
+    }
 
-    return {
-      root: {
-        ...fontSize,
-        color: fashion?.idle.main,
-        cursor: onClick ? "pointer" : "inherit",
-
-        "&:hover": {
-          color: onClick ? primary.idle.main : undefined,
-        },
-      },
-    };
-  },
-);
+    ${device.break(ZSizeFixed.ExtraSmall)}: {
+      & {
+        font-size: ${IconSizeChart[_width.lg]};
+      }
+    }
+  `;
+}
 
 export function useIconProvider(provider: string) {
   const dom = document;

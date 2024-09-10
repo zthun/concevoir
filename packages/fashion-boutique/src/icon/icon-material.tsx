@@ -9,7 +9,7 @@ export const ZIconMaterialVendor = "material";
 
 export function ZIconMaterial(props: IZIcon) {
   const { name, fashion, className, onClick, tooltip } = props;
-  const { classes } = useIconStyles(props);
+  const _className = useIconStyles(props);
   useIconProvider(ZIconMaterialProvider);
   const { onKey, tabIndex } = useKeyboardActivate(onClick);
 
@@ -21,7 +21,7 @@ export function ZIconMaterial(props: IZIcon) {
           "ZIcon-material",
           "material-icons",
           className,
-          classes.root,
+          _className,
         )}
         onClick={onClick}
         onKeyDown={onKey}
