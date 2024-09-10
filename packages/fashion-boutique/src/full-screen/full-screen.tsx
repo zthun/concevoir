@@ -1,20 +1,23 @@
+import { css } from "@emotion/css";
+import { cssJoinDefined } from "@zthun/helpful-fn";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
-import { createStyleHook } from "../theme/styled";
-
-const useFullScreenStyles = createStyleHook(({ tailor }) => ({
-  screen: {
-    padding: tailor.gap(),
-    position: "absolute",
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-  },
-}));
+import { useFashionTailor } from "../theme/fashion.mjs";
 
 export function ZFullScreen(props: IZComponentHierarchy) {
+  const tailor = useFashionTailor();
   const { children } = props;
-  const { classes } = useFullScreenStyles();
 
-  return <div className={classes.screen}>{children}</div>;
+  const _className = css`
+    & {
+      padding: ${tailor.gap()};
+      position: absolute;
+      inset: 0;
+    }
+  `;
+
+  return (
+    <div className={cssJoinDefined("ZFullScreen-root", _className)}>
+      {children}
+    </div>
+  );
 }
