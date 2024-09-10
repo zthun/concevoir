@@ -32,8 +32,8 @@ Then(
     this: ZFashionWorld<ZTypographyPageComponentModel>,
     name: string,
   ) {
-    const color = await this.parameters.page.color();
-    const actual = await color.fashion();
+    const paragraph = await this.parameters.page.paragraph();
+    const actual = await paragraph.fashion();
     assert.equal(name, actual);
   },
 );
