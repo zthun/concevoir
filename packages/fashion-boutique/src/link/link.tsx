@@ -1,56 +1,61 @@
-import { Link } from "@mui/material";
-import { cssJoinDefined } from "@zthun/helpful-fn";
+import { css } from "@emotion/css";
+import { IZFashion, ZColorPicker } from "@zthun/fashion-theme";
+import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
 import { noop } from "lodash-es";
 import { IZComponentLabel } from "../component/component-label.mjs";
 import { IZComponentName } from "../component/component-name.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
+import { useFashionTheme } from "../theme/fashion.mjs";
+import { ZParagraph } from "../typography/typography";
 
-/**
- * Represents a link component (anchor tag).
- */
 export interface IZLink
   extends IZComponentStyle,
     IZComponentName,
     IZComponentLabel {
-  /**
-   * The link url.
-   */
+  fashion?: IZFashion;
   href?: string;
-
-  /**
-   * Occurs when the link is clicked.
-   *
-   * @param href -
-   *        The reference that is being navigated to.  This is mostly for
-   *        convenience.
-   */
   onClick?(href: string): void;
 }
 
-/**
- * Basically a wrapper for an anchor tag in the browser.
- *
- * @param props -
- *        The properties for this component.
- *
- * @returns
- *        The JSX to render this component.
- */
 export function ZLink(props: IZLink) {
-  const { className, name, href, label, onClick = noop } = props;
+  const { primary } = useFashionTheme();
+  const { className, name, href, fashion, label, onClick = noop } = props;
+  const picker = new ZColorPicker(firstDefined(primary, fashion));
+
+  const _className = css`
+    & {
+      color: ${picker.idle.main};
+      text-decoration: none;
+    }
+
+    &:active {
+      color: ${picker.active.main};
+    }
+
+    &:hover {
+      color: ${picker.hover.main};
+    }
+
+    &:focus {
+      color: ${picker.focus.main};
+    }
+  `;
 
   const handleClick = () => {
     onClick(href);
   };
 
   return (
-    <Link
-      className={cssJoinDefined("ZLink-root", className)}
+    <a
+      className={cssJoinDefined("ZLink-root", className, _className)}
       href={href}
       data-name={name}
       onClick={handleClick}
+      role="link"
     >
-      {label}
-    </Link>
+      <ZParagraph Element="div" compact>
+        {label}
+      </ZParagraph>
+    </a>
   );
 }
