@@ -1,7 +1,7 @@
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
 import { describe, expect, it } from "vitest";
 import {
-  IZTypographyProps,
+  IZTypographyNamed,
   ZCaption,
   ZH1,
   ZH2,
@@ -16,7 +16,7 @@ import {
 
 describe("Typography", () => {
   async function createTestTarget(
-    Typography: (props: IZTypographyProps) => JSX.Element,
+    Typography: (props: IZTypographyNamed) => JSX.Element,
   ) {
     const element = <Typography className="ZTypography-test"></Typography>;
     const driver = await new ZCircusSetupRenderer(element).setup();
@@ -25,7 +25,7 @@ describe("Typography", () => {
 
   async function assertTypography(
     expected: string,
-    Typography: (props: IZTypographyProps) => JSX.Element,
+    Typography: (props: IZTypographyNamed) => JSX.Element,
   ) {
     // Arrange
     const target = await createTestTarget(Typography);
@@ -67,15 +67,15 @@ describe("Typography", () => {
     });
 
     it("should render a subtitle", async () => {
-      await assertTypography("p", ZSubtitle);
+      await assertTypography("sub", ZSubtitle);
     });
 
     it("should render a caption", async () => {
-      await assertTypography("p", ZCaption);
+      await assertTypography("sub", ZCaption);
     });
 
     it("should render an overline", async () => {
-      await assertTypography("p", ZOverline);
+      await assertTypography("div", ZOverline);
     });
   });
 });

@@ -110,6 +110,7 @@ export * from "./theme/styled";
 export * from "./typography/text-color";
 export * from "./typography/text-color.cm.mjs";
 export * from "./typography/typography";
+export * from "./typography/typography.cm.mjs";
 export * from "./wizard/wizard";
 export * from "./wizard/wizard.cm.mjs";
 export * from "./you-tube/you-tube-video";
