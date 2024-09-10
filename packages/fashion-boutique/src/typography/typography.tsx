@@ -119,62 +119,102 @@ export function Typography(props: IZTypography) {
   );
 }
 
-export const ZH1 = (props: IZTypographyNamed) => (
+export const ZH1 = ({ className, ...props }: IZTypographyNamed) => (
   <Typography
     Element="h1"
     {...props}
+    className={cssJoinDefined("ZH1-root", className)}
     size={ZSizeFixed.ExtraLarge}
     weight="black"
   />
 );
 
-export const ZH2 = (props: IZTypographyNamed) => (
+export const ZH2 = ({ className, ...props }: IZTypographyNamed) => (
   <Typography
     Element="h2"
     {...props}
+    className={cssJoinDefined("ZH2-root", className)}
     size={ZSizeFixed.ExtraLarge}
     weight="medium"
   />
 );
 
-export const ZH3 = (props: IZTypographyNamed) => (
-  <Typography Element="h3" {...props} size={ZSizeFixed.Large} weight="black" />
+export const ZH3 = ({ className, ...props }: IZTypographyNamed) => (
+  <Typography
+    Element="h3"
+    {...props}
+    className={cssJoinDefined("ZH3-root", className)}
+    size={ZSizeFixed.Large}
+    weight="black"
+  />
 );
 
-export const ZH4 = (props: IZTypographyNamed) => (
-  <Typography Element="h4" {...props} size={ZSizeFixed.Large} weight="medium" />
+export const ZH4 = ({ className, ...props }: IZTypographyNamed) => (
+  <Typography
+    Element="h4"
+    {...props}
+    className={cssJoinDefined("ZH4-root", className)}
+    size={ZSizeFixed.Large}
+    weight="medium"
+  />
 );
 
-export const ZH5 = (props: IZTypographyNamed) => (
-  <Typography Element="h5" {...props} size={ZSizeFixed.Medium} weight="black" />
+export const ZH5 = ({ className, ...props }: IZTypographyNamed) => (
+  <Typography
+    Element="h5"
+    {...props}
+    className={cssJoinDefined("ZH5-root", className)}
+    size={ZSizeFixed.Medium}
+    weight="black"
+  />
 );
 
-export const ZH6 = (props: IZTypographyNamed) => (
+export const ZH6 = ({ className, ...props }: IZTypographyNamed) => (
   <Typography
     Element="h6"
     {...props}
+    className={cssJoinDefined("ZH6-root", className)}
     size={ZSizeFixed.Medium}
     weight="medium"
   />
 );
 
-export const ZParagraph = (props: IZTypographyNamed) => (
-  <Typography Element="p" {...props} size={ZSizeFixed.Small} weight="regular" />
+export const ZParagraph = ({ className, ...props }: IZTypographyNamed) => (
+  <Typography
+    Element="p"
+    {...props}
+    className={cssJoinDefined("ZParagraph-root", className)}
+    size={ZSizeFixed.Small}
+    weight="regular"
+  />
 );
 
-export const ZSubtitle = (props: IZTypographyNamed) => (
-  <Typography Element="sub" {...props} size={ZSizeFixed.Small} weight="bold" />
-);
-
-export const ZCaption = (props: IZTypographyNamed) => (
+export const ZSubtitle = ({ className, ...props }: IZTypographyNamed) => (
   <Typography
     Element="sub"
     {...props}
+    className={cssJoinDefined("ZSubtitle-root", className)}
+    size={ZSizeFixed.Small}
+    weight="bold"
+  />
+);
+
+export const ZCaption = ({ className, ...props }: IZTypographyNamed) => (
+  <Typography
+    Element="sub"
+    {...props}
+    className={cssJoinDefined("ZCaption-root", className)}
     size={ZSizeFixed.ExtraSmall}
     weight="medium"
   />
 );
 
-export const ZOverline = (props: IZTypographyNamed) => (
-  <Typography {...props} size={ZSizeFixed.ExtraSmall} weight="light" />
+export const ZOverline = ({ className, ...props }: IZTypographyNamed) => (
+  <Typography
+    Element="div"
+    {...props}
+    className={cssJoinDefined("ZOverline-root", className)}
+    size={ZSizeFixed.ExtraSmall}
+    weight="light"
+  />
 );
