@@ -1,3 +1,4 @@
+import { css } from "@emotion/css";
 import {
   createSizeChartFixedCss,
   createSizeChartFixedGeometric,
@@ -14,7 +15,7 @@ import { IZComponentName } from "../component/component-name.mjs";
 import { IZComponentSource } from "../component/component-source.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 import { IZComponentWidth } from "../component/component-width.mjs";
-import { createStyleHook } from "../theme/styled";
+import { useFashionDevice } from "../theme/fashion.mjs";
 
 export interface IZImageSource
   extends IZComponentSource,
@@ -29,54 +30,6 @@ const ImageSizeChart = {
   ...createSizeChartVoidCss(),
 };
 
-const useImageSourceStyles = createStyleHook(
-  ({ device }, props: IZImageSource) => {
-    const { height, width } = props;
-
-    const _height = new ZDeviceValues(height, ZSizeVaried.Fit);
-    const _width = new ZDeviceValues(width, ZSizeVaried.Fit);
-
-    const dimensions = {
-      width: ImageSizeChart[_width.xl],
-      height: ImageSizeChart[_height.xl],
-
-      [device.break(ZSizeFixed.Large)]: {
-        width: ImageSizeChart[_width.lg],
-        height: ImageSizeChart[_height.lg],
-      },
-
-      [device.break(ZSizeFixed.Medium)]: {
-        width: ImageSizeChart[_width.md],
-        height: ImageSizeChart[_height.md],
-      },
-
-      [device.break(ZSizeFixed.Small)]: {
-        width: ImageSizeChart[_width.sm],
-        height: ImageSizeChart[_height.sm],
-      },
-
-      [device.break(ZSizeFixed.ExtraSmall)]: {
-        width: ImageSizeChart[_width.xs],
-        height: ImageSizeChart[_height.xs],
-      },
-    };
-
-    return {
-      root: {
-        ...dimensions,
-
-        svg: {
-          ...dimensions,
-        },
-
-        img: {
-          ...dimensions,
-        },
-      },
-    };
-  },
-);
-
 /**
  * Represents an image.
  *
@@ -88,13 +41,57 @@ const useImageSourceStyles = createStyleHook(
  * @returns The jsx for this component.
  */
 export function ZImageSource(props: IZImageSource) {
-  const { className, src, name } = props;
-  const { classes } = useImageSourceStyles(props);
-  const imageClass = cssJoinDefined(
-    "ZImageSource-root",
-    className,
-    classes.root,
-  );
+  const device = useFashionDevice();
+  const { className, src, height, width, name } = props;
+  const _height = new ZDeviceValues(height, ZSizeVaried.Fit);
+  const _width = new ZDeviceValues(width, ZSizeVaried.Fit);
+
+  const _className = css`
+    &,
+    svg,
+    img {
+      width: ${ImageSizeChart[_width.xl]};
+      height: ${ImageSizeChart[_height.xl]};
+    }
+
+    ${device.break(ZSizeFixed.Large)} {
+      &,
+      svg,
+      img {
+        width: ${ImageSizeChart[_width.lg]};
+        height: ${ImageSizeChart[_height.lg]};
+      }
+    }
+
+    ${device.break(ZSizeFixed.Medium)} {
+      &,
+      svg,
+      img {
+        width: ${ImageSizeChart[_width.md]};
+        height: ${ImageSizeChart[_height.md]};
+      }
+    }
+
+    ${device.break(ZSizeFixed.Small)} {
+      &,
+      svg,
+      img {
+        width: ${ImageSizeChart[_width.sm]};
+        height: ${ImageSizeChart[_height.sm]};
+      }
+    }
+
+    ${device.break(ZSizeFixed.ExtraSmall)} {
+      &,
+      svg,
+      img {
+        width: ${ImageSizeChart[_width.xs]};
+        height: ${ImageSizeChart[_height.xs]};
+      }
+    }
+  `;
+
+  const imageClass = cssJoinDefined("ZImageSource-root", className, _className);
 
   if (!src) {
     return <div className={imageClass} data-name={name} />;
