@@ -1,7 +1,7 @@
 import { ZCircusBy, ZCircusComponentModel } from "@zthun/cirque";
 import {
   ZChoiceComponentModel,
-  ZTextColorComponentModel,
+  ZTypographyComponentModel,
 } from "@zthun/fashion-boutique";
 
 /**
@@ -10,14 +10,8 @@ import {
 export class ZTypographyPageComponentModel extends ZCircusComponentModel {
   public static readonly Selector = ".ZTypographyPage-root";
 
-  /**
-   * Gets information about the current text color.
-   *
-   * @returns
-   *        The current text color.
-   */
-  public color(): Promise<ZTextColorComponentModel> {
-    return ZCircusBy.first(this.driver, ZTextColorComponentModel, "color");
+  public paragraph(): Promise<ZTypographyComponentModel> {
+    return ZCircusBy.first(this.driver, ZTypographyComponentModel, "paragraph");
   }
 
   /**

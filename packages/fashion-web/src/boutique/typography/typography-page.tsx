@@ -57,7 +57,7 @@ export function ZTypographyPage() {
       <ZH6 fashion={fashion}>Headline 6</ZH6>
 
       <hr />
-      <ZParagraph fashion={fashion}>
+      <ZParagraph fashion={fashion} name="paragraph">
         Paragraph: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
         do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nec dui
         nunc mattis enim. Velit laoreet id donec ultrices tincidunt arcu. In

@@ -20,7 +20,8 @@ describe("ZTypographyPage", () => {
     const fashion = await target.fashion();
     // Act.
     await fashion.select(expected);
-    const actual = await (await target.color()).fashion();
+    const paragraph = await target.paragraph();
+    const actual = await paragraph.fashion();
     // Assert.
     expect(actual).toEqual(expected);
   }
