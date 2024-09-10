@@ -77,7 +77,7 @@ export function Typography(props: IZTypography) {
       font-weight: ${WeightChart[_weight]};
       font-size: ${PointChart[_size]};
       margin: 0;
-      margin-bottom: ${compact ? 0 : tailor.gap(ZSizeFixed.Large)};
+      margin-bottom: ${compact ? 0 : tailor.gap(ZSizeFixed.Medium)};
     }
 
     ${device.break(ZSizeFixed.Large)} {
