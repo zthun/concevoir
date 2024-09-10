@@ -1,4 +1,3 @@
-import { Tooltip } from "@mui/material";
 import { cssJoinDefined } from "@zthun/helpful-fn";
 import { useKeyboardActivate } from "@zthun/helpful-react";
 import { IZIcon, useIconProvider, useIconStyles } from "./icon";
@@ -20,33 +19,30 @@ export function ZIconFontAwesome(props: IZIconFontAwesome) {
     style = "solid",
     onClick,
     fashion,
-    tooltip,
   } = props;
   const _className = useIconStyles(props);
   useIconProvider(ZIconFontAwesomeProvider);
   const { onKey, tabIndex } = useKeyboardActivate(onClick);
 
   return (
-    <Tooltip title={tooltip}>
-      <span
-        className={cssJoinDefined(
-          "ZIcon-root",
-          "ZIcon-font-awesome",
-          `fa-${family}`,
-          `fa-${style}`,
-          `fa-${name}`,
-          className,
-          _className,
-        )}
-        onClick={onClick}
-        onKeyDown={onKey}
-        tabIndex={tabIndex}
-        data-fashion={fashion?.name}
-        data-family={family}
-        data-style={style}
-        data-name={name}
-        data-vendor={ZIconFontAwesomeVendor}
-      ></span>
-    </Tooltip>
+    <span
+      className={cssJoinDefined(
+        "ZIcon-root",
+        "ZIcon-font-awesome",
+        `fa-${family}`,
+        `fa-${style}`,
+        `fa-${name}`,
+        className,
+        _className,
+      )}
+      onClick={onClick}
+      onKeyDown={onKey}
+      tabIndex={tabIndex}
+      data-fashion={fashion?.name}
+      data-family={family}
+      data-style={style}
+      data-name={name}
+      data-vendor={ZIconFontAwesomeVendor}
+    />
   );
 }
