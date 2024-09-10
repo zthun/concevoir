@@ -99,9 +99,9 @@ export function ZBox(props: IZBox) {
   const _width = new ZDeviceValues(width, ZSizeVaried.Fit);
 
   const _className = css`
-    &.ZBox-root {
+    & {
       background-color: ${picker.idle.main};
-      border: ${picker.idle.border};
+      border-color: ${picker.idle.border};
 
       border-bottom-style: ${trim.bottom};
       border-left-style: ${trim.left};
@@ -137,38 +137,38 @@ export function ZBox(props: IZBox) {
       text-align: ${justification};
     }
 
-    &.ZBox-root:focus {
+    &:focus {
       background-color: ${interactive ? picker.focus.main : picker.idle.main};
       border-color: ${interactive ? picker.focus.border : picker.idle.border};
       color: ${interactive ? picker.focus.contrast : picker.idle.contrast};
     }
 
-    &.ZBox-root:hover {
+    &:hover {
       background-color: ${interactive ? picker.hover.main : picker.idle.main};
       border-color: ${interactive ? picker.hover.border : picker.idle.border};
       color: ${interactive ? picker.hover.contrast : picker.idle.contrast};
     }
 
     ${device.break(ZSizeFixed.Large)} {
-      &.ZBox-root {
+      & {
         max-width: ${WidthChart[_width.lg]};
       }
     }
 
     ${device.break(ZSizeFixed.Medium)} {
-      &.ZBox-root {
+      & {
         max-width: ${WidthChart[_width.md]};
       }
     }
 
     ${device.break(ZSizeFixed.Small)} {
-      &.ZBox-root {
+      & {
         max-width: ${WidthChart[_width.sm]};
       }
     }
 
     ${device.break(ZSizeFixed.ExtraSmall)} {
-      &.ZBox-root {
+      & {
         max-width: ${WidthChart[_width.xs]};
       }
     }
