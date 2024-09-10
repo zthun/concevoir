@@ -1,5 +1,4 @@
 import {
-  createStyleHook,
   useFashionTheme,
   useNavigate,
   ZBox,
@@ -7,29 +6,13 @@ import {
   ZCard,
   ZIconFontAwesome,
   ZParagraph,
+  ZStack,
 } from "@zthun/fashion-boutique";
 import { ZSizeFixed, ZSizeVaried } from "@zthun/fashion-tailor";
+import { ZHorizontalAnchor } from "@zthun/helpful-fn";
 import { ZFashionRouteBoutique, ZFashionRouteTheme } from "../routes.mjs";
 
-const useHomePageStyles = createStyleHook(({ tailor }) => ({
-  section: {
-    marginLeft: "auto",
-    marginRight: "auto",
-    marginBottom: tailor.gap(),
-  },
-
-  avatar: {
-    textAlign: "center",
-  },
-}));
-
-/**
- * Renders the home page.
- *
- * @returns The jsx that renders the home page.
- */
 export function ZHomePage() {
-  const { classes } = useHomePageStyles();
   const navigate = useNavigate();
   const { primary, secondary } = useFashionTheme();
 
@@ -44,15 +27,21 @@ export function ZHomePage() {
   );
 
   return (
-    <div className="ZHomePage-root">
+    <ZStack
+      className="ZHomePage-root"
+      alignItems="center"
+      gap={ZSizeFixed.Medium}
+    >
       <ZCard
-        className={classes.section}
         width={ZSizeFixed.ExtraLarge}
         heading={ZFashionRouteTheme.name}
         subHeading={ZFashionRouteTheme.description}
         footer={renderGetStarted("theme")}
       >
-        <ZBox className={classes.avatar} margin={{ bottom: ZSizeFixed.Medium }}>
+        <ZBox
+          justification={ZHorizontalAnchor.Center}
+          margin={{ bottom: ZSizeFixed.Medium }}
+        >
           <ZIconFontAwesome
             name={ZFashionRouteTheme.avatar}
             width={{ xl: ZSizeFixed.ExtraLarge, xs: ZSizeFixed.Large }}
@@ -86,13 +75,15 @@ export function ZHomePage() {
       </ZCard>
 
       <ZCard
-        className={classes.section}
         width={ZSizeFixed.ExtraLarge}
         heading={ZFashionRouteBoutique.name}
         subHeading={ZFashionRouteBoutique.description}
         footer={renderGetStarted("boutique")}
       >
-        <ZBox className={classes.avatar} margin={{ bottom: ZSizeFixed.Medium }}>
+        <ZBox
+          justification={ZHorizontalAnchor.Center}
+          margin={{ bottom: ZSizeFixed.Medium }}
+        >
           <ZIconFontAwesome
             name={ZFashionRouteBoutique.avatar}
             width={{ xl: ZSizeFixed.ExtraLarge, xs: ZSizeFixed.Large }}
@@ -107,6 +98,6 @@ export function ZHomePage() {
           across several single page applications, given a single theme.
         </ZParagraph>
       </ZCard>
-    </div>
+    </ZStack>
   );
 }
