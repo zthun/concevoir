@@ -19,13 +19,7 @@ const useTextColorStyles = createStyleHook((_, props: IZTextColor) => {
 });
 
 /**
- * A component that simply wraps a div and sets the inner text color.
- *
- * @param props -
- *        The properties for this component.
- *
- * @returns
- *        The jsx to render the component.
+ * @deprecated Use Typography fashion instead.
  */
 export function ZTextColor(props: IZTextColor) {
   const { children, className, fashion, name } = props;
