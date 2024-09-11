@@ -2,6 +2,7 @@ import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
 import { describe, expect, it } from "vitest";
 import {
   IZTypographyNamed,
+  Typography,
   ZCaption,
   ZH1,
   ZH2,
@@ -34,6 +35,12 @@ describe("Typography", () => {
     // Assert
     expect(actual).toEqual(expected);
   }
+
+  describe("Generic", () => {
+    it("should render generic typography", async () => {
+      await assertTypography("div", Typography);
+    });
+  });
 
   describe("Headers", () => {
     it("should render an h1 tag", async () => {
