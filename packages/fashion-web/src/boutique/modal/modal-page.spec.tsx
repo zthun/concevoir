@@ -1,7 +1,6 @@
 import { IZCircusDriver, IZCircusSetup, ZCircusBy } from "@zthun/cirque";
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
 import { ZButtonComponentModel } from "@zthun/fashion-boutique";
-import { ZSizeVaried } from "@zthun/fashion-tailor";
 import { ZFashionName, ZFashionPriority } from "@zthun/fashion-theme";
 import { required } from "@zthun/helpful-fn";
 import { lowerCase } from "lodash-es";
@@ -35,7 +34,7 @@ describe("ZModalPage", () => {
       // Act.
       const modal = await target.openModal();
       const actual = await modal.header();
-      await modal.escape();
+      await modal.close();
       // Assert.
       expect(!!actual).toEqual(expected);
     };
@@ -58,7 +57,7 @@ describe("ZModalPage", () => {
       // Act.
       const modal = await target.openModal();
       const actual = await modal.footer();
-      await modal.escape();
+      await modal.close();
       // Assert.
       expect(!!actual).toEqual(expected);
     };
@@ -72,29 +71,6 @@ describe("ZModalPage", () => {
     });
   });
 
-  describe("Full Screen", () => {
-    const shouldShowFullScreen = async (expected: ZSizeVaried) => {
-      // Arrange.
-      const target = await createTestTarget();
-      const fullScreen = await target.fullScreen();
-      await fullScreen.toggle(expected === ZSizeVaried.Full);
-      // Act.
-      const modal = await target.openModal();
-      const actual = await modal.width();
-      await modal.escape();
-      // Assert.
-      expect(actual).toEqual(expected);
-    };
-
-    it("should not show if the switch is off", async () => {
-      await shouldShowFullScreen(ZSizeVaried.Fit);
-    });
-
-    it("should show if the switch is on", async () => {
-      await shouldShowFullScreen(ZSizeVaried.Full);
-    });
-  });
-
   describe("Close", () => {
     const shouldCloseModal = async (name: "cancel" | "save") => {
       // Arrange.
@@ -103,10 +79,14 @@ describe("ZModalPage", () => {
       const modal = await target.openModal();
       const footer = await required(modal.footer());
       const button = await ZCircusBy.first(footer, ZButtonComponentModel, name);
+
       // Act.
       await button.click();
+      await modal.waitForClose();
+      const actual = await modal.opened();
+
       // Assert.
-      await target.driver.wait(() => target.opened().then((o) => !o));
+      expect(actual).toBeFalsy();
     };
 
     it("should be invoked with the cancel button", async () => {
@@ -127,7 +107,7 @@ describe("ZModalPage", () => {
       await fashion.select(expected);
       const modal = await target.openModal();
       const actual = await modal.fashion();
-      await modal.escape();
+      await modal.close();
       // Assert.
       expect(lowerCase(actual!)).toEqual(expected);
     };

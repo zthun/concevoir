@@ -5,6 +5,7 @@ import {
   ZCard,
   ZGrid,
   ZH3,
+  ZH5,
   ZIconFontAwesome,
   ZModal,
   ZParagraph,
@@ -28,15 +29,22 @@ export function ZModalPage() {
   const [open, setOpen] = useState(false);
   const [header, setHeader] = useState(true);
   const [footer, setFooter] = useState(true);
-  const [fullScreen, setFullScreen] = useState(false);
   const [fashion, fashionName, setFashion] = useFashionState();
 
   const { success, warning } = useFashionTheme();
 
-  const renderHeader = () => "Modal Header";
+  const renderHeader = () => (
+    <ZH5 Element="h3" compact>
+      Modal Header
+    </ZH5>
+  );
 
   const renderFooter = () => (
-    <ZStack orientation={ZOrientation.Horizontal} gap={ZSizeFixed.ExtraSmall}>
+    <ZStack
+      orientation={ZOrientation.Horizontal}
+      gap={ZSizeFixed.ExtraSmall}
+      justifyContent="flex-end"
+    >
       <ZButton
         fashion={warning}
         avatar={<ZIconFontAwesome name="close" width={ZSizeFixed.ExtraSmall} />}
@@ -94,7 +102,17 @@ export function ZModalPage() {
           renderHeader={header ? renderHeader : undefined}
           renderFooter={footer ? renderFooter : undefined}
           onClose={setOpen.bind(null, false)}
-          width={fullScreen ? ZSizeVaried.Full : ZSizeVaried.Fit}
+          width={{
+            xl: ZSizeFixed.ExtraLarge,
+            lg: ZSizeFixed.Large,
+            md: ZSizeFixed.Medium,
+            sm: ZSizeFixed.Small,
+            xs: ZSizeVaried.Full,
+          }}
+          height={{
+            xl: ZSizeVaried.Fit,
+            xs: ZSizeVaried.Full,
+          }}
           fashion={fashion}
           name="modal"
         >
@@ -119,12 +137,6 @@ export function ZModalPage() {
             onValueChange={setFooter}
             label="Footer"
             name="footer"
-          />
-          <ZBooleanSwitch
-            value={fullScreen}
-            onValueChange={setFullScreen}
-            label="Full Screen"
-            name="full-screen"
           />
         </ZGrid>
       </ZBox>

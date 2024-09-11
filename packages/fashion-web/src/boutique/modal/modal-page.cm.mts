@@ -3,30 +3,26 @@ import {
   ZBooleanComponentModel,
   ZButtonComponentModel,
   ZChoiceComponentModel,
-  ZModalComponentModel,
+  ZDialogComponentModel,
 } from "@zthun/fashion-boutique";
 
 export class ZModalPageComponentModel extends ZCircusComponentModel {
   public static readonly Selector = ".ZModalPage-root";
 
-  public async opened(): Promise<boolean> {
-    const body = await this.driver.body();
-    const modal = await ZCircusBy.optional(body, ZModalComponentModel, "modal");
-    return modal != null;
-  }
-
   public openButton(): Promise<ZButtonComponentModel> {
     return ZCircusBy.first(this.driver, ZButtonComponentModel, "open-modal");
   }
 
-  public async openModal(): Promise<ZModalComponentModel> {
+  public async modal(): Promise<ZDialogComponentModel> {
+    return ZCircusBy.first(this.driver, ZDialogComponentModel, "modal");
+  }
+
+  public async openModal(): Promise<ZDialogComponentModel> {
     const button = await this.openButton();
     await button.click();
-    return ZCircusBy.first(
-      await this.driver.body(),
-      ZModalComponentModel,
-      "modal",
-    );
+    const modal = await this.modal();
+    await modal.waitForOpen();
+    return modal;
   }
 
   public fashion(): Promise<ZChoiceComponentModel> {
@@ -39,9 +35,5 @@ export class ZModalPageComponentModel extends ZCircusComponentModel {
 
   public footer(): Promise<ZBooleanComponentModel> {
     return ZCircusBy.first(this.driver, ZBooleanComponentModel, "footer");
-  }
-
-  public fullScreen(): Promise<ZBooleanComponentModel> {
-    return ZCircusBy.first(this.driver, ZBooleanComponentModel, "full-screen");
   }
 }
