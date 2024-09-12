@@ -1,7 +1,7 @@
 import { css } from "@emotion/css";
 import { IZFashion, ZColorPicker } from "@zthun/fashion-theme";
 import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
-import { noop } from "lodash-es";
+import { IZComponentDomEvents } from "../component/component-dom-events.mjs";
 import { IZComponentLabel } from "../component/component-label.mjs";
 import { IZComponentName } from "../component/component-name.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
@@ -10,16 +10,16 @@ import { ZParagraph } from "../typography/typography";
 
 export interface IZLink
   extends IZComponentStyle,
+    IZComponentDomEvents<HTMLAnchorElement>,
     IZComponentName,
     IZComponentLabel {
   fashion?: IZFashion;
   href?: string;
-  onClick?(href: string): void;
 }
 
 export function ZLink(props: IZLink) {
   const { primary } = useFashionTheme();
-  const { className, name, href, fashion, label, onClick = noop } = props;
+  const { className, name, href, fashion, label, ...rest } = props;
   const picker = new ZColorPicker(firstDefined(primary, fashion));
 
   const _className = css`
@@ -41,16 +41,12 @@ export function ZLink(props: IZLink) {
     }
   `;
 
-  const handleClick = () => {
-    onClick(href);
-  };
-
   return (
     <a
+      {...rest}
       className={cssJoinDefined("ZLink-root", className, _className)}
       href={href}
       data-name={name}
-      onClick={handleClick}
       role="link"
     >
       <ZParagraph Element="div" compact>

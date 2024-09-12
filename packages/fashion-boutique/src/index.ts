@@ -68,8 +68,6 @@ export * from "./image/image-source";
 export * from "./image/image-source.cm.mjs";
 export * from "./label/label";
 export * from "./label/labeled";
-export * from "./line-item/line-item";
-export * from "./line-item/line-item.cm.mjs";
 export * from "./link/link";
 export * from "./link/link.cm.mjs";
 export * from "./list/list";
