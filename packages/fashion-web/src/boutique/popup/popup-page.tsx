@@ -1,22 +1,25 @@
 import {
-  ZBox,
+  ZButton,
   ZCard,
   ZH3,
   ZIconFontAwesome,
   ZParagraph,
-  ZPopupButton,
+  ZPopup,
   useFashionTheme,
 } from "@zthun/fashion-boutique";
-import { ZSizeFixed } from "@zthun/fashion-tailor";
-import { useMemo } from "react";
+import { ZSizeFixed, ZSizeVaried } from "@zthun/fashion-tailor";
+import { MouseEvent, useState } from "react";
 import { ZFashionRoutePopup } from "../../routes.mjs";
 
 export function ZPopupPage() {
-  const { success } = useFashionTheme();
-  const PopupButtonProps = useMemo(
-    () => ({ fashion: success, label: "Open" }),
-    [],
-  );
+  const { primary, success } = useFashionTheme();
+  const [open, setOpen] = useState(false);
+  const [attach, setAttach] = useState<HTMLElement>();
+
+  const openPopup = (e: MouseEvent<HTMLElement>) => {
+    setAttach(e.currentTarget);
+    setOpen(true);
+  };
 
   return (
     <ZCard
@@ -41,11 +44,33 @@ export function ZPopupPage() {
         conditions are met.
       </ZParagraph>
 
-      <ZPopupButton ButtonProps={PopupButtonProps}>
-        <ZBox padding={ZSizeFixed.Large}>
+      <ZButton
+        fashion={success}
+        outline
+        label="Open Popup"
+        onClick={openPopup}
+        width={ZSizeVaried.Full}
+        name="open-popup"
+      />
+
+      <ZPopup
+        attach={attach}
+        onClose={setOpen.bind(null, false)}
+        open={open}
+        renderHeader={() => <ZH3 compact>Popup</ZH3>}
+        renderFooter={() => (
+          <ZButton
+            name="close-popup"
+            label="Close Popup"
+            onClick={setOpen.bind(null, false)}
+            fashion={primary}
+          />
+        )}
+      >
+        <ZParagraph compact>
           You can put anything you want in popup content.
-        </ZBox>
-      </ZPopupButton>
+        </ZParagraph>
+      </ZPopup>
     </ZCard>
   );
 }

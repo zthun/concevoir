@@ -1,19 +1,21 @@
 import { ZCircusBy, ZCircusComponentModel } from "@zthun/cirque";
-import { ZPopupButtonComponentModel } from "@zthun/fashion-boutique";
+import {
+  ZButtonComponentModel,
+  ZDialogComponentModel,
+} from "@zthun/fashion-boutique";
 
-/**
- * Represents a component model for the popup page.
- */
 export class ZPopupPageComponentModel extends ZCircusComponentModel {
   public static readonly Selector = ".ZPopupPage-root";
 
-  /**
-   * Gets the popup button toggler.
-   *
-   * @returns
-   *        The popup button that toggles the popup.
-   */
-  public toggler(): Promise<ZPopupButtonComponentModel> {
-    return ZCircusBy.first(this.driver, ZPopupButtonComponentModel);
+  public open(): Promise<ZButtonComponentModel> {
+    return ZCircusBy.first(this.driver, ZButtonComponentModel, "open-popup");
+  }
+
+  public close(): Promise<ZButtonComponentModel> {
+    return ZCircusBy.first(this.driver, ZButtonComponentModel, "close-popup");
+  }
+
+  public popup(): Promise<ZDialogComponentModel> {
+    return ZCircusBy.first(this.driver, ZDialogComponentModel);
   }
 }
