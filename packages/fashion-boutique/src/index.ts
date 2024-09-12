@@ -86,8 +86,6 @@ export * from "./not-found/sad-face";
 export * from "./number/number";
 export * from "./number/number-input";
 export * from "./number/number.cm.mjs";
-export * from "./pagination/pagination";
-export * from "./pagination/pagination.cm.mjs";
 export * from "./router/router-dom.mjs";
 export * from "./stack/stack";
 export * from "./suspense/suspense-progress";
