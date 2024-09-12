@@ -29,7 +29,7 @@ export function ZHomePage() {
   return (
     <ZStack
       className="ZHomePage-root"
-      alignItems="center"
+      align={{ items: "center" }}
       gap={ZSizeFixed.Medium}
     >
       <ZCard

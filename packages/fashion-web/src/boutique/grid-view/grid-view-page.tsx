@@ -49,7 +49,10 @@ export function ZGridViewPage() {
       avatar={<ZIconFontAwesome name="hashtag" />}
       fashion={component}
     >
-      <ZStack justifyContent="center" orientation={ZOrientation.Horizontal}>
+      <ZStack
+        justify={{ content: "center" }}
+        orientation={ZOrientation.Horizontal}
+      >
         <ZIconFontAwesome
           family="brands"
           name={item.id}

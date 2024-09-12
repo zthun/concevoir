@@ -56,7 +56,7 @@ export function ZBubblePage() {
         <ZStack
           orientation={ZOrientation.Horizontal}
           gap={ZSizeFixed.ExtraSmall}
-          alignItems="center"
+          align={{ items: "center" }}
         >
           <ZBubble
             border={borderSize}

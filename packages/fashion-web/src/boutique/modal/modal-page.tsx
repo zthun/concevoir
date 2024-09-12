@@ -43,7 +43,7 @@ export function ZModalPage() {
     <ZStack
       orientation={ZOrientation.Horizontal}
       gap={ZSizeFixed.ExtraSmall}
-      justifyContent="flex-end"
+      justify={{ content: "flex-end" }}
     >
       <ZButton
         fashion={warning}

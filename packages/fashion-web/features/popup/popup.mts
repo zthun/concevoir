@@ -19,8 +19,8 @@ When(
   "I click the toggler button on the popup demo page",
   async function (this: ZFashionWorld<ZPopupPageComponentModel>) {
     const { page } = this.parameters;
-    const toggler = await page.toggler();
-    await toggler.open();
+    const toggler = await page.open();
+    await toggler.click();
   },
 );
 
@@ -28,8 +28,8 @@ Then(
   "the popup is opened on the popup demo page",
   async function (this: ZFashionWorld<ZPopupPageComponentModel>) {
     const { page } = this.parameters;
-    const toggler = await page.toggler();
-    const actual = await toggler.opened();
+    const popup = await page.popup();
+    const actual = await popup.opened();
     assert.ok(actual);
   },
 );
