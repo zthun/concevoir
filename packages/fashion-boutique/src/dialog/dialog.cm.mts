@@ -4,10 +4,14 @@ import {
   ZCircusComponentModel,
   ZCircusKeyboardQwerty,
 } from "@zthun/cirque";
-import { firstDefined } from "@zthun/helpful-fn";
+import { firstDefined, ZSideAnchor } from "@zthun/helpful-fn";
 
 export class ZDialogComponentModel extends ZCircusComponentModel {
   public static readonly Selector = ".ZDialog-root";
+
+  public async anchor(): Promise<ZSideAnchor | null> {
+    return await this.driver.attribute<ZSideAnchor>("data-anchor");
+  }
 
   public async opened(): Promise<boolean> {
     const open = await this.driver.attribute("open");
