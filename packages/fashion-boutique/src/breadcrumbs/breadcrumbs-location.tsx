@@ -43,7 +43,7 @@ const useBreadcrumbsStyles = createStyleHook(({ theme }) => ({
  *        The JSX that renders this component.
  */
 export function ZBreadcrumbsLocation(props: IZBreadcrumbsLocation) {
-  const { className, name, home, onClick } = props;
+  const { className, name, home, onPathSelected } = props;
   const location = useLocation();
   const sections = useMemo(() => {
     const all = location.pathname.split("/").filter((p) => !!p.trim());
@@ -63,16 +63,20 @@ export function ZBreadcrumbsLocation(props: IZBreadcrumbsLocation) {
   }, [location, home]);
   const { classes } = useBreadcrumbsStyles();
 
-  const renderSection = (s: { name: string; path: string }) => (
-    <ZLink
-      className="ZBreadcrumbs-item"
-      key={s.path}
-      href={`#${s.path}`}
-      name={s.path}
-      label={s.name}
-      onClick={onClick}
-    />
-  );
+  const renderSection = (s: { name: string; path: string }) => {
+    const href = `#${s.path}`;
+
+    return (
+      <ZLink
+        className="ZBreadcrumbs-item"
+        key={s.path}
+        href={href}
+        name={s.path}
+        label={s.name}
+        onClick={() => onPathSelected?.call(null, href)}
+      />
+    );
+  };
 
   return (
     <Breadcrumbs
