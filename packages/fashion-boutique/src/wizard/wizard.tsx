@@ -67,10 +67,10 @@ export function ZWizard(props: IZWizard) {
           <ZStack
             orientation={ZOrientation.Horizontal}
             gap={ZSizeFixed.Small}
-            alignItems="center"
+            align={{ items: "center" }}
           >
             <ZIconFontAwesome name="left-long" />
-            <ZH4>
+            <ZH4 compact>
               {firstDefined(
                 undefined,
                 _previous?.props["name"],
@@ -104,7 +104,7 @@ export function ZWizard(props: IZWizard) {
         <ZStack
           orientation={ZOrientation.Horizontal}
           gap={ZSizeFixed.Small}
-          alignItems="center"
+          align={{ items: "center" }}
         >
           <ZH4 compact>
             {firstDefined(

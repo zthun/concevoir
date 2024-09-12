@@ -1,64 +1,62 @@
-import { Stack } from "@mui/material";
-import {
-  createSizeChartFixedArithmetic,
-  createSizeChartVoidZero,
-  ZSizeFixed,
-  ZSizeVoid,
-} from "@zthun/fashion-tailor";
+import { css } from "@emotion/css";
+import { ZSizeFixed, ZSizeVoid } from "@zthun/fashion-tailor";
 import { cssJoinDefined, firstDefined, ZOrientation } from "@zthun/helpful-fn";
 import { Property } from "csstype";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentName } from "../component/component-name.mjs";
 import { IZComponentOrientation } from "../component/component-orientation.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
+import { useFashionTailor } from "../theme/fashion.mjs";
 
-/**
- * Represents a stack component.
- */
 interface IZStack
   extends IZComponentHierarchy,
     IZComponentStyle,
     IZComponentName,
     IZComponentOrientation {
-  alignItems?: Property.AlignItems;
+  align?: { items?: Property.AlignItems; content?: Property.AlignContent };
   gap?: ZSizeFixed | ZSizeVoid;
-  justifyContent?: Property.JustifyContent;
+  justify?: {
+    items?: Property.JustifyItems;
+    content?: Property.JustifyContent;
+  };
   inline?: boolean;
 }
-
-const GapChart = {
-  ...createSizeChartFixedArithmetic(1, 1),
-  ...createSizeChartVoidZero(),
-};
 
 export function ZStack(props: IZStack) {
   const {
     className,
-    alignItems,
-    justifyContent,
+    align,
+    justify,
     gap,
     name,
     orientation,
     children,
     inline,
   } = props;
-  const _gap = firstDefined(ZSizeVoid.None, gap);
-  const direction = orientation === ZOrientation.Horizontal ? "row" : "column";
-  const spacing = GapChart[_gap];
+  const tailor = useFashionTailor();
+
+  const _className = css`
+    & {
+      align-content: ${align?.content};
+      align-items: ${align?.items};
+      display: ${inline ? "inline-flex" : "flex"};
+      flex-direction: ${orientation === ZOrientation.Horizontal
+        ? "row"
+        : "column"};
+      gap: ${tailor.gap(firstDefined(ZSizeVoid.None, gap))};
+      justify-content: ${justify?.content};
+      justify-items: ${justify?.items};
+    }
+  `;
 
   return (
-    <Stack
-      className={cssJoinDefined("ZStack-root", className)}
-      alignItems={alignItems}
-      justifyContent={justifyContent}
-      spacing={spacing}
-      sx={{ display: inline ? "inline-flex" : "flex" }}
-      direction={direction}
+    <div
+      className={cssJoinDefined("ZStack-root", className, _className)}
       data-orientation={orientation}
       data-name={name}
       data-inline={inline}
     >
       {children}
-    </Stack>
+    </div>
   );
 }

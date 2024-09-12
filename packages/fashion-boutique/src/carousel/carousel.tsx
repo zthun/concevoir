@@ -89,7 +89,7 @@ export function ZCarousel(props: IZCarousel) {
       <ZStack
         orientation={orientation}
         gap={ZSizeFixed.ExtraSmall}
-        alignItems="center"
+        align={{ items: "center" }}
         inline
       >
         <ZButton

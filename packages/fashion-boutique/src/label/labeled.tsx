@@ -36,7 +36,7 @@ export function ZLabeled(props: ZLabeled) {
     <ZStack
       className={cssJoinDefined("ZLabeled-root", className)}
       orientation={orientation}
-      alignItems={align}
+      align={{ items: align }}
       gap={gap}
       name={name}
     >

@@ -173,7 +173,7 @@ export function ZButton(props: IZButton) {
       data-outline={outline}
     >
       <ZStack
-        alignItems="center"
+        align={{ items: "center" }}
         orientation={ZOrientation.Horizontal}
         gap={ZSizeFixed.Small}
         inline
