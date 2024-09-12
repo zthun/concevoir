@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.0](https://github.com/zthun/fashion/compare/v3.2.3...v4.0.0) (2024-09-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* breadcrumbs onClick is not onPathSelected
+* line item is no longer supported
+* stack align and justify now support align-content and justify-items
+* pagination component is no longer supported
+* popup now uses an html dialog element instead of mui
+* popup component model has been replaced by dialog component model
+* drawer now uses an html dialog instead of mui
+* modal has been converted to use an html dialog instead of a mui modal
+
+### Features
+
+* breadcrumbs onClick is not onPathSelected ([166973d](https://github.com/zthun/fashion/commit/166973d2c751c995c518667d86dd7bd51af12693))
+* line item is no longer supported ([83b609c](https://github.com/zthun/fashion/commit/83b609c1d29f34f9225c79211a84fb69aaad7e69))
+* modal has been converted to use an html dialog instead of a mui modal ([2509355](https://github.com/zthun/fashion/commit/25093554f5dd1e40c0ef97b72442ab25eaf1f179))
+* pagination component is no longer supported ([1e2529c](https://github.com/zthun/fashion/commit/1e2529c6d95cf20b78a55edb963a909eb0fb14e8))
+
+
+### Code Refactoring
+
+* drawer now uses an html dialog instead of mui ([8ecfa0c](https://github.com/zthun/fashion/commit/8ecfa0c0d8cc7144127a7fdafbff98a7c6d838ec))
+* popup component model has been replaced by dialog component model ([da6da5f](https://github.com/zthun/fashion/commit/da6da5fb7a2200e29e490ba9145e4a8c93f84c7c))
+* popup now uses an html dialog element instead of mui ([c99a30b](https://github.com/zthun/fashion/commit/c99a30bf36367b4b6bb703295bc450c6ecb6f038))
+* stack align and justify now support align-content and justify-items ([de3cc99](https://github.com/zthun/fashion/commit/de3cc994d613e56a648a6bd72b161d46c04e7ca5))
+
+
+
 ## [3.2.3](https://github.com/zthun/fashion/compare/v3.2.2...v3.2.3) (2024-09-10)
 
 **Note:** Version bump only for package @zthun/fashion-boutique

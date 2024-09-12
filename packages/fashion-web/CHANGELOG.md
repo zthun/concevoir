@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.0](https://github.com/zthun/fashion/compare/v3.2.3...v4.0.0) (2024-09-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* modal has been converted to use an html dialog instead of a mui modal
+
+### Features
+
+* modal has been converted to use an html dialog instead of a mui modal ([2509355](https://github.com/zthun/fashion/commit/25093554f5dd1e40c0ef97b72442ab25eaf1f179))
+
+
+
 ## [3.2.3](https://github.com/zthun/fashion/compare/v3.2.2...v3.2.3) (2024-09-10)
 
 **Note:** Version bump only for package @zthun/fashion-web
