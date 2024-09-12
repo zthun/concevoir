@@ -22,6 +22,7 @@ import { ZButtonComponentModel } from "../button/button.cm.mjs";
 import { ZDialogComponentModel } from "./dialog.cm.mjs";
 import { ZDrawer } from "./drawer";
 import { ZModal } from "./modal";
+import { ZPopup } from "./popup";
 import { IZDialog } from "./use-dialog";
 
 interface IZDialogTestComponent<T> {
@@ -342,6 +343,50 @@ describe("ZDialog", () => {
 
       it("should anchor to the bottom", async () => {
         await shouldAnchor(ZVerticalAnchor.Bottom);
+      });
+    });
+  });
+
+  describe("Popup", () => {
+    const Dialog = ZPopup;
+
+    describe("Header", () => {
+      it("should render if set", async () => {
+        await shouldRenderHeader(Dialog);
+      });
+
+      it("should not render if no render method is set", async () => {
+        await shouldNotRenderHeaderIfNoneSet(Dialog);
+      });
+    });
+
+    describe("Footer", () => {
+      it("should render if set", async () => {
+        await shouldRenderFooter(Dialog);
+      });
+
+      it("should not render if no render method is set", async () => {
+        await shouldNotRenderFooterIfNoneSet(Dialog);
+      });
+    });
+
+    describe("Close", () => {
+      it("should close the dialog", async () => {
+        await shouldCloseTheDialog(Dialog);
+      });
+
+      it("should not close the modal on non escape keys", async () => {
+        await shouldNotCloseTheDialogOnNonEscapeKeys(Dialog);
+      });
+
+      it("should no close if the modal is persistent", async () => {
+        await shouldNotCloseIfTheDialogIfPersistent(Dialog);
+      });
+    });
+
+    describe("Fashion", () => {
+      it("should set the fashion value", async () => {
+        await shouldSetTheDialogFashion(Dialog);
       });
     });
   });

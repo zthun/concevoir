@@ -20,13 +20,21 @@ export interface IZDialog
   renderFooter?: () => ReactNode;
 }
 
-export function useDialog(current: HTMLDialogElement | null, props: IZDialog) {
+export interface IUseDialogOptions {
+  onBeforeOpen?: () => Promise<void>;
+}
+
+export function useDialog(
+  current: HTMLDialogElement | null,
+  props: IZDialog,
+  options?: IUseDialogOptions,
+) {
   const { open, onClose, persistent } = props;
 
   const show = async () => {
+    await options?.onBeforeOpen?.call(null);
     current?.showModal?.call(current);
     current?.focus?.call(current);
-    await sleep(150);
   };
 
   const hide = async () => {
