@@ -7,6 +7,7 @@ import {
 import { cssJoinDefined } from "@zthun/helpful-fn";
 import { IZComponentAdornment } from "../component/component-adornment.mjs";
 import { IZComponentDisabled } from "../component/component-disabled.mjs";
+import { IZComponentDomEvents } from "../component/component-dom-events.mjs";
 import { IZComponentHeading } from "../component/component-heading.mjs";
 import { createStyleHook } from "../theme/styled";
 import { IZListItem } from "./list-item.mjs";
@@ -17,13 +18,9 @@ import { IZListItem } from "./list-item.mjs";
 export interface IZListLineItem
   extends IZListItem,
     IZComponentHeading,
+    IZComponentDomEvents<HTMLElement>,
     IZComponentAdornment,
-    IZComponentDisabled {
-  /**
-   * Occurs when the line item is clicked.
-   */
-  onClick?: () => any;
-}
+    IZComponentDisabled {}
 
 const useListLineItemStyles = createStyleHook(
   ({ tailor }, props: IZListLineItem) => {
