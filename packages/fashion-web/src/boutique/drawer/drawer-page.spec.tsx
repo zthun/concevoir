@@ -1,4 +1,4 @@
-import { ZCircusBy } from "@zthun/cirque";
+import { IZCircusDriver, IZCircusSetup, ZCircusBy } from "@zthun/cirque";
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
 import {
   ZHorizontalAnchor,
@@ -10,10 +10,13 @@ import { ZDrawerPage } from "./drawer-page";
 import { ZDrawerPageComponentModel } from "./drawer-page.cm.mjs";
 
 describe("ZDrawerPage", () => {
+  let _setup: IZCircusSetup;
+  let _driver: IZCircusDriver;
+
   async function createTestTarget() {
-    const element = <ZDrawerPage />;
-    const driver = await new ZCircusSetupRenderer(element).setup();
-    return ZCircusBy.first(driver, ZDrawerPageComponentModel);
+    _setup = new ZCircusSetupRenderer(<ZDrawerPage />);
+    _driver = await _setup.setup();
+    return ZCircusBy.first(_driver, ZDrawerPageComponentModel);
   }
 
   async function shouldPositionDrawer(expected: ZSideAnchor) {
@@ -21,23 +24,12 @@ describe("ZDrawerPage", () => {
     const target = await createTestTarget();
     await target.anchor(expected);
     // Act.
-    const drawer = await (await target.drawerButton()).open();
-    const actual = await drawer.anchor();
-    await target.close(drawer);
+    const button = await target.open();
+    await button.click();
+    const actual = await (await target.drawer()).anchor();
     // Assert.
     expect(actual).toEqual(expected);
   }
-
-  it("should open the drawer", async () => {
-    // Arrange.
-    const target = await createTestTarget();
-    const button = await target.drawerButton();
-    // Act.
-    await button.open();
-    const actual = await button.opened();
-    // Assert.
-    expect(actual).toBeTruthy();
-  });
 
   it("should position the drawer on the left", async () => {
     await shouldPositionDrawer(ZHorizontalAnchor.Left);
@@ -58,11 +50,16 @@ describe("ZDrawerPage", () => {
   it("should close the drawer", async () => {
     // Arrange.
     const target = await createTestTarget();
-    const button = await target.drawerButton();
-    const drawer = await button.open();
+    const open = await target.open();
+    await open.click();
+
     // Act.
-    await target.close(drawer);
-    const actual = await button.opened();
+    const close = await target.close();
+    await close.click();
+    const drawer = await target.drawer();
+    await drawer.waitForClose();
+    const actual = await (await target.drawer()).opened();
+
     // Assert.
     expect(actual).toBeFalsy();
   });
