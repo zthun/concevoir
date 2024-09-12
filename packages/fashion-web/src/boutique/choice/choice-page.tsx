@@ -9,7 +9,6 @@ import {
   ZGrid,
   ZH3,
   ZIconFontAwesome,
-  ZLineItem,
   ZParagraph,
 } from "@zthun/fashion-boutique";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
@@ -46,11 +45,15 @@ export function ZChoicePage() {
   const renderBrandDisplay = (h: IZBrand) => h.name;
 
   const renderBrand = (h: IZBrand) => (
-    <ZLineItem
+    <ZGrid
       className="ZChoicePage-hero"
-      prefix={renderBrandAvatar(h)}
-      body={renderBrandDisplay(h)}
-    />
+      columns="auto 1fr"
+      gap={ZSizeFixed.Small}
+      align={{ items: "center" }}
+    >
+      {renderBrandAvatar(h)}
+      {renderBrandDisplay(h)}
+    </ZGrid>
   );
 
   return (

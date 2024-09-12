@@ -5,7 +5,6 @@ import {
   ZGrid,
   ZH4,
   ZIconFontAwesome,
-  ZLineItem,
   ZList,
   ZListGroup,
   ZParagraph,
@@ -95,60 +94,53 @@ export function ZWizardPage() {
       >
         <ZList>
           <ZListGroup heading="Do" />
-          <ZLineItem
-            prefix={yes}
-            body={
-              <ZParagraph compact>
-                Split up large forms of user input into small categorized
-                chunks.
-              </ZParagraph>
-            }
-          />
-          <ZLineItem
-            prefix={yes}
-            body={
-              <ZParagraph compact>
-                Use images and videos that make the content easier to understand
-              </ZParagraph>
-            }
-          />
-          <ZLineItem
-            prefix={yes}
-            body={
-              <ZParagraph compact>
-                Have an intro and review page which helps describe what the user
-                is going to do and what the user has done respectively.
-              </ZParagraph>
-            }
-          />
+          <ZGrid columns="auto 1fr" align={{ items: "center" }}>
+            {yes}
+            <ZParagraph compact>
+              Split up large forms of user input into small categorized chunks.
+            </ZParagraph>
+          </ZGrid>
+
+          <ZGrid columns="auto 1fr" align={{ items: "center" }}>
+            {yes}
+            <ZParagraph compact>
+              Use images and videos that make the content easier to understand
+            </ZParagraph>
+          </ZGrid>
+
+          <ZGrid columns="auto 1fr" align={{ items: "center" }}>
+            {yes}
+            <ZParagraph compact>
+              Have an intro and review page which helps describe what the user
+              is going to do and what the user has done respectively.
+            </ZParagraph>
+          </ZGrid>
+
           <ZListGroup heading="Don't" />
-          <ZLineItem
-            prefix={no}
-            body={
-              <ZParagraph compact>
-                Have a single page wizard. That&apos;s not a wizard. That&apos;s
-                just a page or card of content.
-              </ZParagraph>
-            }
-          />
-          <ZLineItem
-            prefix={no}
-            body={
-              <ZParagraph compact>
-                Avoid graph or mystery meat wizards. Disable things that are not
-                relevant to the current selections
-              </ZParagraph>
-            }
-          />
-          <ZLineItem
-            prefix={no}
-            body={
-              <ZParagraph compact>
-                Prevent the user from moving backwards to correct mistakes or
-                review previous selections.
-              </ZParagraph>
-            }
-          />
+
+          <ZGrid columns="auto 1fr" align={{ items: "center" }}>
+            {no}
+            <ZParagraph compact>
+              Have a single page wizard. That&apos;s not a wizard. That&apos;s
+              just a page or card of content.
+            </ZParagraph>
+          </ZGrid>
+
+          <ZGrid columns="auto 1fr" align={{ items: "center" }}>
+            {no}
+            <ZParagraph compact>
+              Avoid graph or mystery meat wizards. Disable things that are not
+              relevant to the current selections
+            </ZParagraph>
+          </ZGrid>
+
+          <ZGrid columns="auto 1fr" align={{ items: "center" }}>
+            {no}
+            <ZParagraph compact>
+              Prevent the user from moving backwards to correct mistakes or
+              review previous selections.
+            </ZParagraph>
+          </ZGrid>
         </ZList>
       </div>
       <div
@@ -158,8 +150,8 @@ export function ZWizardPage() {
       >
         <ZStack
           orientation={ZOrientation.Vertical}
-          justifyContent="center"
-          alignItems="center"
+          justify={{ content: "center" }}
+          align={{ items: "center" }}
         >
           <ZBooleanSwitch
             label="The do's and don'ts of wizards make sense."

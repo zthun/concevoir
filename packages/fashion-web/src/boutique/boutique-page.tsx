@@ -7,7 +7,6 @@ import {
   ZGrid,
   ZH3,
   ZIconFontAwesome,
-  ZLineItem,
 } from "@zthun/fashion-boutique";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { cssJoinDefined } from "@zthun/helpful-fn";
@@ -38,21 +37,21 @@ export function ZBoutiquePage() {
       onClick={() => navigate(route.path)}
       padding={ZSizeFixed.Medium}
     >
-      <ZLineItem
-        prefix={
-          <ZIconFontAwesome
-            name={route.avatar}
-            family={route.family}
-            width={ZSizeFixed.Small}
-          />
-        }
-        body={
-          <>
-            <ZH3 compact>{route.name}</ZH3>
-            <ZCaption compact>{route.description}</ZCaption>
-          </>
-        }
-      />
+      <ZGrid
+        columns="auto 1fr"
+        align={{ items: "center" }}
+        gap={ZSizeFixed.Small}
+      >
+        <ZIconFontAwesome
+          name={route.avatar}
+          family={route.family}
+          width={ZSizeFixed.Small}
+        />
+        <div>
+          <ZH3 compact>{route.name}</ZH3>
+          <ZCaption compact>{route.description}</ZCaption>
+        </div>
+      </ZGrid>
     </ZBox>
   );
 
