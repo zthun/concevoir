@@ -30,7 +30,7 @@ When(
   "I check the {string} option on the button page",
   async function (
     this: ZFashionWorld<ZButtonPageComponentModel>,
-    name: "disabled" | "loading" | "outline" | "borderless",
+    name: "disabled" | "outline" | "borderless",
   ) {
     const option = await this.parameters.page[name]();
     await option.toggle(true);
@@ -64,18 +64,6 @@ Then(
   ) {
     const button = await this.parameters.page[name]();
     const actual = await button.disabled();
-    assert.equal(actual, true);
-  },
-);
-
-Then(
-  "the {string} button should be loading on the button page",
-  async function (
-    this: ZFashionWorld<ZButtonPageComponentModel>,
-    name: "button" | "iconButton",
-  ) {
-    const button = await this.parameters.page[name]();
-    const actual = await button.loading();
     assert.equal(actual, true);
   },
 );

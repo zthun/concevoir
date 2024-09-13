@@ -78,22 +78,6 @@ describe("ZButtonPage", () => {
     expect(actual).toEqual(expected);
   }
 
-  async function shouldBeLoading(
-    expected: boolean,
-    factory: ButtonPageFactory,
-  ) {
-    // Arrange
-    const target = await createTestTarget();
-    const loading = await target.loading();
-    await loading.toggle(!expected);
-    // Act.
-    await loading.toggle(expected);
-    const button = await factory(target);
-    const actual = await button.loading();
-    // Assert.
-    expect(actual).toEqual(expected);
-  }
-
   async function assertSetsFashion(
     coordination: IZFashion,
     factory: ButtonPageFactory,
@@ -137,14 +121,6 @@ describe("ZButtonPage", () => {
 
     it("should be borderless when the borderless option is checked.", async () => {
       await shouldBeBorderless(true, (t) => t.button());
-    });
-
-    it("should not be loading when the loading option is unchecked.", async () => {
-      await shouldBeLoading(false, (t) => t.button());
-    });
-
-    it("should be loading when the loading option is checked.", async () => {
-      await shouldBeLoading(true, (t) => t.button());
     });
 
     describe("Fashion", () => {
@@ -201,14 +177,6 @@ describe("ZButtonPage", () => {
 
     it("should be borderless when the borderless option is checked.", async () => {
       await shouldBeBorderless(true, (t) => t.iconButton());
-    });
-
-    it("should not be loading when the loading option is unchecked.", async () => {
-      await shouldBeLoading(false, (t) => t.iconButton());
-    });
-
-    it("should be loading when the loading option is checked.", async () => {
-      await shouldBeLoading(true, (t) => t.iconButton());
     });
 
     describe("Fashion", () => {

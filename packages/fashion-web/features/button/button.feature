@@ -21,13 +21,6 @@ Scenario: Should disable the buttons when the disabled option is checked
   And the "iconButton" button should be disabled on the button page
 
 @ButtonPage-Option
-@ButtonPage-Option-Loading
-Scenario: Should mark the buttons as loading when the loading option is checked
-  When I check the "loading" option on the button page
-  Then the "button" button should be loading on the button page
-  And the "iconButton" button should be loading on the button page
-
-@ButtonPage-Option
 @ButtonPage-Option-Borderless
 Scenario: Should mark the buttons as borderless when the borderless option is checked
   When I check the "borderless" option on the button page

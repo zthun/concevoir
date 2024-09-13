@@ -32,16 +32,6 @@ export class ZButtonPageComponentModel extends ZCircusComponentModel {
   }
 
   /**
-   * Gets the loading option switch.
-   *
-   * @returns
-   *        The loading option switch.
-   */
-  public async loading(): Promise<ZBooleanComponentModel> {
-    return ZCircusBy.first(this.driver, ZBooleanComponentModel, "loading");
-  }
-
-  /**
    * Gets the disabled option switch.
    *
    * @returns

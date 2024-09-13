@@ -22,7 +22,6 @@ import { useFashionState } from "../common/use-fashion-state.mjs";
  * @returns The JSX to render the alerts demo page.
  */
 export function ZButtonPage() {
-  const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [outline, setOutline] = useState(false);
   const [borderless, setBorderless] = useState(false);
@@ -72,7 +71,6 @@ export function ZButtonPage() {
         >
           <ZButton
             avatar={avatar}
-            loading={loading}
             disabled={disabled}
             borderless={borderless}
             compact={compact}
@@ -84,7 +82,6 @@ export function ZButtonPage() {
           />
 
           <ZButton
-            loading={loading}
             disabled={disabled}
             borderless={borderless}
             outline={outline}
@@ -105,13 +102,7 @@ export function ZButtonPage() {
 
       <ZBox padding={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Options</ZH3>
-        <ZGrid gap={ZSizeFixed.Medium}>
-          <ZBooleanSwitch
-            value={loading}
-            onValueChange={setLoading}
-            name="loading"
-            label="Loading"
-          />
+        <ZGrid gap={ZSizeFixed.ExtraSmall}>
           <ZBooleanSwitch
             value={disabled}
             onValueChange={setDisabled}
