@@ -46,27 +46,27 @@ export function useIconStyles(props: IZIcon) {
       color: ${onClick ? picker.hover.main : undefined};
     }
 
-    ${device.break(ZSizeFixed.Large)}: {
+    ${device.break(ZSizeFixed.Large)} {
       & {
         font-size: ${IconSizeChart[_width.lg]};
       }
     }
 
-    ${device.break(ZSizeFixed.Medium)}: {
+    ${device.break(ZSizeFixed.Medium)} {
       & {
-        font-size: ${IconSizeChart[_width.lg]};
+        font-size: ${IconSizeChart[_width.md]};
       }
     }
 
-    ${device.break(ZSizeFixed.Small)}: {
+    ${device.break(ZSizeFixed.Small)} {
       & {
-        font-size: ${IconSizeChart[_width.lg]};
+        font-size: ${IconSizeChart[_width.sm]};
       }
     }
 
-    ${device.break(ZSizeFixed.ExtraSmall)}: {
+    ${device.break(ZSizeFixed.ExtraSmall)} {
       & {
-        font-size: ${IconSizeChart[_width.lg]};
+        font-size: ${IconSizeChart[_width.xs]};
       }
     }
   `;
