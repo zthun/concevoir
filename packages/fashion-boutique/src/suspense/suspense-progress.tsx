@@ -17,7 +17,7 @@ export interface IZSuspenseProgress extends IZSuspense {
 }
 
 const HeightChart = createSizeChartFixedCss(
-  createSizeChartFixedArithmetic(0.25, 0.25),
+  createSizeChartFixedArithmetic(0.5, 1),
   "rem",
 );
 
