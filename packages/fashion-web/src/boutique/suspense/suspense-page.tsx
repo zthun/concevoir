@@ -2,7 +2,6 @@ import {
   ZBooleanSwitch,
   ZBox,
   ZCard,
-  ZChoiceDropDown,
   ZGrid,
   ZH3,
   ZIconFontAwesome,
@@ -11,8 +10,6 @@ import {
   ZSuspenseRotate,
 } from "@zthun/fashion-boutique";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
-import { setFirst } from "@zthun/helpful-fn";
-import { identity, startCase, values } from "lodash-es";
 import { useState } from "react";
 import { ZFashionRouteSuspense } from "../../routes.mjs";
 import { ZChoiceDropDownFashion } from "../common/choice-drop-down-fashion";
@@ -25,11 +22,8 @@ import { useFashionState } from "../common/use-fashion-state.mjs";
  *        The JSX to render the suspense page.
  */
 export function ZSuspensePage() {
-  const [size, setSize] = useState(ZSizeFixed.ExtraSmall);
   const [fashion, fashionName, setFashion] = useFashionState();
-  const [loading, setLoading] = useState<boolean>(true);
-  const sizes = values(ZSizeFixed);
-  const _setSize = setFirst.bind(null, setSize, ZSizeFixed.ExtraSmall);
+  const [disabled, setDisabled] = useState<boolean>(false);
 
   return (
     <ZCard
@@ -58,15 +52,27 @@ export function ZSuspensePage() {
 
         <ZGrid gap={ZSizeFixed.Medium}>
           <ZSuspenseRotate
-            loading={loading}
-            width={size}
+            disabled={disabled}
             fashion={fashion}
+            width={{
+              xl: ZSizeFixed.ExtraLarge,
+              lg: ZSizeFixed.Large,
+              md: ZSizeFixed.Medium,
+              sm: ZSizeFixed.Small,
+              xs: ZSizeFixed.ExtraSmall,
+            }}
             name="rotate"
           />
           <ZSuspenseProgress
-            loading={loading}
-            height={size}
+            disabled={disabled}
             fashion={fashion}
+            height={{
+              xl: ZSizeFixed.ExtraLarge,
+              lg: ZSizeFixed.Large,
+              md: ZSizeFixed.Medium,
+              sm: ZSizeFixed.Small,
+              xs: ZSizeFixed.ExtraSmall,
+            }}
             name="progress"
           />
         </ZGrid>
@@ -77,24 +83,15 @@ export function ZSuspensePage() {
 
         <ZGrid gap={ZSizeFixed.Medium}>
           <ZBooleanSwitch
-            value={loading}
-            onValueChange={setLoading}
-            label="Loading"
-            name="loading"
+            value={disabled}
+            onValueChange={setDisabled}
+            label="Disabled"
+            name="disabled"
           />
           <ZChoiceDropDownFashion
             value={fashionName}
             onValueChange={setFashion}
             name="fashion"
-          />
-          <ZChoiceDropDown
-            name="size"
-            value={[size]}
-            onValueChange={_setSize}
-            options={sizes}
-            renderOption={startCase}
-            identifier={identity}
-            label="Size"
           />
         </ZGrid>
       </ZBox>

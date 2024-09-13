@@ -17,8 +17,8 @@ export class ZSuspensePageComponentModel extends ZCircusComponentModel {
    * @returns
    *        The current suspense loader.
    */
-  public rotate(): Promise<ZSuspenseComponentModel | null> {
-    return ZCircusBy.optional(this.driver, ZSuspenseComponentModel, "rotate");
+  public rotate(): Promise<ZSuspenseComponentModel> {
+    return ZCircusBy.first(this.driver, ZSuspenseComponentModel, "rotate");
   }
 
   /**
@@ -27,18 +27,18 @@ export class ZSuspensePageComponentModel extends ZCircusComponentModel {
    * @returns
    *        The progress loader.
    */
-  public progress(): Promise<ZSuspenseComponentModel | null> {
-    return ZCircusBy.optional(this.driver, ZSuspenseComponentModel, "progress");
+  public progress(): Promise<ZSuspenseComponentModel> {
+    return ZCircusBy.first(this.driver, ZSuspenseComponentModel, "progress");
   }
 
   /**
-   * Gets the loading option.
+   * Gets the disabled option.
    *
    * @returns
-   *        The loading option.
+   *        The disabled option.
    */
-  public loading(): Promise<ZBooleanComponentModel> {
-    return ZCircusBy.first(this.driver, ZBooleanComponentModel, "loading");
+  public disabled(): Promise<ZBooleanComponentModel> {
+    return ZCircusBy.first(this.driver, ZBooleanComponentModel, "disabled");
   }
 
   /**
