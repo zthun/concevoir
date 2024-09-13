@@ -1,27 +1,29 @@
-import { CircularProgress } from "@mui/material";
+import { css, keyframes } from "@emotion/css";
 import {
   createSizeChartFixedArithmetic,
   createSizeChartFixedCss,
+  ZDeviceValue,
+  ZDeviceValues,
   ZSizeFixed,
   ZSizeVaried,
 } from "@zthun/fashion-tailor";
+import { ZColorPicker } from "@zthun/fashion-theme";
 import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
-import { createStyleHook } from "../theme/styled";
+import {
+  useFashionDevice,
+  useFashionTailor,
+  useFashionTheme,
+} from "../theme/fashion.mjs";
 import { IZSuspense } from "./suspense.mjs";
 
-const SuspenseRotateSizeChart = createSizeChartFixedCss(
+const WidthChart = createSizeChartFixedCss(
   createSizeChartFixedArithmetic(1, 1),
   "rem",
 );
 
-const useSuspenseRotateStyles = createStyleHook((_, props: IZSuspense) => {
-  const { fashion } = props;
-
-  const color = firstDefined("inherit", fashion?.idle.main);
-  return {
-    root: { color },
-  };
-});
+export interface IZSuspenseRotate extends IZSuspense {
+  width?: ZDeviceValue<ZSizeFixed>;
+}
 
 /**
  * Renders a rotating circle suspense.
@@ -31,32 +33,74 @@ const useSuspenseRotateStyles = createStyleHook((_, props: IZSuspense) => {
  *
  * @returns The jsx for the suspense.
  */
-export function ZSuspenseRotate(props: IZSuspense) {
-  const {
-    className,
-    loading = true,
-    name,
-    width = ZSizeFixed.ExtraSmall,
-    fashion,
-  } = props;
-  const size = SuspenseRotateSizeChart[width];
-  const { classes } = useSuspenseRotateStyles(props);
-  const _fashion = firstDefined("Inherit", fashion?.name);
+export function ZSuspenseRotate(props: IZSuspenseRotate) {
+  const { className, disabled, name, width, fashion } = props;
+  const { inherit } = useFashionTheme();
+  const device = useFashionDevice();
+  const tailor = useFashionTailor();
+  const _width = new ZDeviceValues(width, ZSizeFixed.Medium);
+  const _fashion = firstDefined(inherit, fashion);
+  const picker = new ZColorPicker(_fashion);
 
-  if (!loading) {
-    return null;
-  }
+  const rotating = keyframes`
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  `;
+
+  const _className = css`
+    & {
+      animation: ${rotating} 1s ease-in-out infinite;
+      border-color: ${picker.idle.border};
+      border-radius: ${tailor.rounding(ZSizeVaried.Full)};
+      border-style: dashed;
+      box-shadow: 0 0 0.25rem ${picker.idle.main};
+      display: ${disabled ? "none" : "block"};
+      height: ${WidthChart[_width.xl]};
+      width: ${WidthChart[_width.xl]};
+    }
+
+    ${device.break(ZSizeFixed.Large)} {
+      & {
+        height: ${WidthChart[_width.lg]};
+        width: ${WidthChart[_width.lg]};
+      }
+    }
+
+    ${device.break(ZSizeFixed.Medium)} {
+      & {
+        height: ${WidthChart[_width.md]};
+        width: ${WidthChart[_width.md]};
+      }
+    }
+
+    ${device.break(ZSizeFixed.Small)} {
+      & {
+        height: ${WidthChart[_width.sm]};
+        width: ${WidthChart[_width.sm]};
+      }
+    }
+
+    ${device.break(ZSizeFixed.ExtraSmall)} {
+      & {
+        height: ${WidthChart[_width.xs]};
+        width: ${WidthChart[_width.xs]};
+      }
+    }
+  `;
 
   return (
-    <CircularProgress
+    <div
       className={cssJoinDefined(
         "ZSuspense-root",
         "ZSuspense-rotate",
         className,
-        classes.root,
+        _className,
       )}
-      size={size}
-      color="inherit"
       data-name={name}
       data-width={width}
       data-height={ZSizeVaried.Fit}
