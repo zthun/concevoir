@@ -37,4 +37,11 @@ export class ZSuspenseComponentModel extends ZCircusComponentModel {
   public fashion(): Promise<string> {
     return this.driver.attribute("data-fashion", "Inherit");
   }
+
+  /**
+   * Waits for the component to finish loading.
+   */
+  public load(): Promise<void> {
+    return this.driver.wait(() => this.disabled());
+  }
 }
