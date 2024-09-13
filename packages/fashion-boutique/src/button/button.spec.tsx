@@ -1,86 +1,60 @@
-import { ZCircusBy } from "@zthun/cirque";
+import { IZCircusDriver, IZCircusSetup, ZCircusBy } from "@zthun/cirque";
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
-import { IZFashion, ZFashionBuilder } from "@zthun/fashion-theme";
-import { ReactNode } from "react";
-import { beforeEach, describe, expect, it, Mock, vi } from "vitest";
-import { ZButton } from "./button";
+import { ZFashionBuilder } from "@zthun/fashion-theme";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { IZButton, ZButton } from "./button";
 import { ZButtonComponentModel } from "./button.cm.mjs";
 
 describe("ZButton", () => {
-  let avatar: ReactNode | undefined;
-  let label: ReactNode | undefined;
-  let loading: boolean | undefined;
-  let disabled: boolean | undefined;
-  let outline: boolean | undefined;
-  let borderless: boolean | undefined;
-  let compact: boolean | undefined;
-  let fashion: IZFashion | undefined;
-  let name: string | undefined;
-  let onClick: Mock | undefined;
+  let _renderer: IZCircusSetup;
+  let _driver: IZCircusDriver;
 
-  async function createTestTarget() {
-    const element = (
-      <ZButton
-        avatar={avatar}
-        disabled={disabled}
-        loading={loading}
-        outline={outline}
-        borderless={borderless}
-        compact={compact}
-        onClick={onClick}
-        label={label}
-        name={name}
-        fashion={fashion}
-      />
-    );
-
-    const driver = await new ZCircusSetupRenderer(element).setup();
-    return await ZCircusBy.first(driver, ZButtonComponentModel);
+  async function createTestTarget(props?: IZButton) {
+    _renderer = new ZCircusSetupRenderer(<ZButton {...props} />);
+    _driver = await _renderer.setup();
+    return await ZCircusBy.first(_driver, ZButtonComponentModel);
   }
 
-  beforeEach(() => {
-    avatar = undefined;
-    loading = undefined;
-    outline = undefined;
-    compact = undefined;
-    label = undefined;
-    name = undefined;
-    fashion = undefined;
-    onClick = undefined;
+  afterEach(async () => {
+    await _driver?.destroy?.call(_driver);
+    await _renderer?.destroy?.call(_renderer);
   });
 
   describe("Content", () => {
     it("should render the button content", async () => {
       // Arrange
-      label = "Test Button";
-      const target = await createTestTarget();
+      const label = "Test Button";
+      const target = await createTestTarget({ label });
+
       // Act
       const actual = await target.text();
+
       // Assert
       expect(actual).toEqual(label);
     });
 
     it("should name the button", async () => {
       // Arrange.
-      name = "button-name";
-      const target = await createTestTarget();
+      const name = "button-name";
+      const target = await createTestTarget({ name });
+
       // Act.
       const actual = await target.name();
+
       // Assert.
       expect(actual).toEqual(name);
     });
   });
 
   describe("Click", () => {
-    beforeEach(() => {
-      onClick = vi.fn();
-    });
-
     it("should raise the onClick event when the button is clicked.", async () => {
       // Arrange.
-      const target = await createTestTarget();
+      const onClick = vi.fn();
+      const target = await createTestTarget({ onClick });
+
       // Act.
       await target.click();
+
       // Assert
       expect(onClick).toHaveBeenCalledTimes(1);
     });
@@ -89,13 +63,14 @@ describe("ZButton", () => {
   describe("Disabled", () => {
     async function assertDisabled(
       expected: boolean,
-      _disabled: boolean | undefined,
+      disabled: boolean | undefined,
     ) {
       // Arrange
-      disabled = _disabled;
-      const target = await createTestTarget();
+      const target = await createTestTarget({ disabled });
+
       // Act
       const actual = await target.disabled();
+
       // Assert
       expect(actual).toEqual(expected);
     }
@@ -113,56 +88,10 @@ describe("ZButton", () => {
     });
   });
 
-  describe("Loading", () => {
-    async function assertIsLoading(
-      expected: boolean,
-      _loading: boolean | undefined,
-    ) {
-      // Arrange
-      loading = _loading;
-      const target = await createTestTarget();
-      // Act
-      const actual = await target.loading();
-      // Assert
-      expect(!!actual).toEqual(expected);
-    }
-
-    it("should render the loader when true.", async () => {
-      await assertIsLoading(true, true);
-    });
-
-    it("should not render loader when false.", async () => {
-      await assertIsLoading(false, false);
-    });
-
-    it("should not render the loader when undefined.", async () => {
-      await assertIsLoading(false, undefined);
-    });
-
-    it("should reject if the button never stops loading.", async () => {
-      // Arrange
-      loading = true;
-      const target = await createTestTarget();
-      // Act
-      // Assert
-      await expect(target.load()).rejects.toBeTruthy();
-    });
-
-    it("should continue if the button completes loading.", async () => {
-      // Arrange
-      loading = false;
-      const target = await createTestTarget();
-      // Act
-      // Assert
-      await expect(target.load()).resolves.toBeUndefined();
-    });
-  });
-
   describe("Borderless", () => {
-    async function assertBorderless(expected: boolean, _borderless: boolean) {
+    async function assertBorderless(expected: boolean, borderless: boolean) {
       // Arrange
-      borderless = _borderless;
-      const target = await createTestTarget();
+      const target = await createTestTarget({ borderless });
       // Act.
       const actual = await target.borderless();
       // Assert
@@ -179,12 +108,13 @@ describe("ZButton", () => {
   });
 
   describe("Compact", () => {
-    async function assertCompact(expected: boolean, _compact: boolean) {
+    async function assertCompact(expected: boolean, compact: boolean) {
       // Arrange
-      compact = _compact;
-      const target = await createTestTarget();
+      const target = await createTestTarget({ compact });
+
       // Act.
       const actual = await target.compact();
+
       // Assert
       expect(!!actual).toEqual(expected);
     }
@@ -201,13 +131,14 @@ describe("ZButton", () => {
   describe("Outline", () => {
     async function assertOutline(
       expected: boolean,
-      _outline: boolean | undefined,
+      outline: boolean | undefined,
     ) {
       // Arrange
-      outline = _outline;
-      const target = await createTestTarget();
+      const target = await createTestTarget({ outline });
+
       // Act
       const actual = await target.outlined();
+
       // Assert
       expect(!!actual).toEqual(expected);
     }
@@ -226,15 +157,14 @@ describe("ZButton", () => {
   });
 
   describe("Fashion", () => {
-    beforeEach(() => {
-      fashion = new ZFashionBuilder().name("Test Fashion").build();
-    });
-
     it("should set the fashion", async () => {
       // Arrange.
-      const target = await createTestTarget();
+      const fashion = new ZFashionBuilder().name("Test Fashion").build();
+      const target = await createTestTarget({ fashion });
+
       // Act.
       const actual = await target.fashion();
+
       // Assert.
       expect(actual).toEqual(fashion?.name);
     });

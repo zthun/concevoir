@@ -17,17 +17,6 @@ export class ZButtonComponentModel extends ZCircusComponentModel {
   }
 
   /**
-   * Gets whether the button is in the loading state.
-   *
-   * @returns
-   *        True if the button is in the loading state.  False otherwise.
-   */
-  public async loading(): Promise<boolean> {
-    const c = await this.driver.attribute("data-loading");
-    return c === "true";
-  }
-
-  /**
    * Gets whether the button is disabled.
    *
    * @returns
@@ -100,15 +89,5 @@ export class ZButtonComponentModel extends ZCircusComponentModel {
   public click(): Promise<void> {
     const act = new ZCircusActBuilder().click().build();
     return this.driver.perform(act);
-  }
-
-  /**
-   * Waits for the loading indicator to go away.
-   *
-   * @returns
-   *        A promise that resolves once the button is ready.
-   */
-  public load(): Promise<void> {
-    return this.driver.wait(() => this.loading().then((l) => !l));
   }
 }

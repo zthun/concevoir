@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 import { IZFashion, ZColorPicker } from "@zthun/fashion-theme";
 
-import { css, keyframes } from "@emotion/css";
+import { css } from "@emotion/css";
 import {
   createSizeChartVariedCss,
   ZDeviceValues,
@@ -15,11 +15,11 @@ import { IZComponentDisabled } from "../component/component-disabled.mjs";
 import { IZComponentDomEvents } from "../component/component-dom-events.mjs";
 import { IZComponentFashion } from "../component/component-fashion.mjs";
 import { IZComponentLabel } from "../component/component-label.mjs";
-import { IZComponentLoading } from "../component/component-loading.mjs";
 import { IZComponentName } from "../component/component-name.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 import { IZComponentWidth } from "../component/component-width.mjs";
 import { ZStack } from "../stack/stack";
+import { IZSuspenseRotate } from "../suspense/suspense-rotate";
 import {
   useFashionDevice,
   useFashionTailor,
@@ -31,7 +31,6 @@ export interface IZButton
     IZComponentLabel,
     IZComponentDomEvents<HTMLButtonElement>,
     IZComponentDisabled,
-    IZComponentLoading,
     IZComponentStyle,
     IZComponentName,
     IZComponentFashion<IZFashion>,
@@ -40,6 +39,8 @@ export interface IZButton
   compact?: boolean;
   outline?: boolean;
   tooltip?: ReactNode;
+
+  LoadingProps?: Omit<IZSuspenseRotate, "disabled">;
 }
 
 const WidthChart = createSizeChartVariedCss();
@@ -60,7 +61,6 @@ export function ZButton(props: IZButton) {
     compact,
     disabled,
     fashion,
-    loading,
     label,
     name,
     outline,
@@ -72,12 +72,6 @@ export function ZButton(props: IZButton) {
   const tailor = useFashionTailor();
   const picker = new ZColorPicker(firstDefined(component, fashion));
   const _width = new ZDeviceValues(width, ZSizeVaried.Fit);
-
-  const _gradient = keyframes`
-      0% { background-position-x: 0%; }
-      50% { background-position-x: 100%; }
-      100% { background-position-x: 0%; }
-  `;
 
   const _className = css`
     & {
@@ -121,20 +115,6 @@ export function ZButton(props: IZButton) {
       opacity: 0.25;
     }
 
-    &[data-loading="true"] {
-      animation: ${_gradient} 1.5s linear infinite;
-    }
-
-    &[data-loading="true"] {
-      background: linear-gradient(
-        90deg,
-        ${picker.idle.main},
-        ${picker.idle.border},
-        ${picker.idle.main}
-      );
-      background-size: 300% 100%;
-    }
-
     ${device.break(ZSizeFixed.Large)} {
       & {
         width: ${WidthChart[_width.lg]};
@@ -169,7 +149,6 @@ export function ZButton(props: IZButton) {
       data-borderless={borderless}
       data-compact={compact}
       data-fashion={fashion?.name}
-      data-loading={loading}
       data-outline={outline}
     >
       <ZStack
