@@ -19,7 +19,6 @@ import { IZComponentName } from "../component/component-name.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 import { IZComponentWidth } from "../component/component-width.mjs";
 import { ZStack } from "../stack/stack";
-import { IZSuspenseRotate } from "../suspense/suspense-rotate";
 import {
   useFashionDevice,
   useFashionTailor,
@@ -39,8 +38,6 @@ export interface IZButton
   compact?: boolean;
   outline?: boolean;
   tooltip?: ReactNode;
-
-  LoadingProps?: Omit<IZSuspenseRotate, "disabled">;
 }
 
 const WidthChart = createSizeChartVariedCss();
