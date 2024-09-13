@@ -10,13 +10,17 @@ import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
 import { createStyleHook } from "../theme/styled";
 import { IZSuspense } from "./suspense.mjs";
 
+export interface IZSuspenseProgress extends IZSuspense {
+  height?: ZSizeVaried.Full | ZSizeFixed;
+}
+
 const SuspenseProgressSizeChart = createSizeChartFixedCss(
   createSizeChartFixedArithmetic(0.25, 0.25),
   "rem",
 );
 
 const useSuspenseProgressStyles = createStyleHook(
-  (_, props: IZSuspense<ZSizeVaried.Full, ZSizeFixed>) => {
+  (_, props: IZSuspenseProgress) => {
     const { height, fashion } = props;
     const _height = new ZDeviceValues(height, ZSizeFixed.ExtraSmall);
     const color = firstDefined("inherit", fashion?.idle.main);
@@ -38,12 +42,10 @@ const useSuspenseProgressStyles = createStyleHook(
  *
  * @returns The jsx for the component.
  */
-export function ZSuspenseProgress(
-  props: IZSuspense<ZSizeVaried.Full, ZSizeFixed>,
-) {
+export function ZSuspenseProgress(props: IZSuspenseProgress) {
   const {
     className,
-    loading = true,
+    disabled,
     height = ZSizeFixed.ExtraSmall,
     name,
     fashion,
@@ -51,7 +53,7 @@ export function ZSuspenseProgress(
   const { classes } = useSuspenseProgressStyles(props);
   const _fashion = firstDefined("Inherit", fashion?.name);
 
-  if (!loading) {
+  if (disabled) {
     return null;
   }
 
