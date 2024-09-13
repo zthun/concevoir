@@ -1,20 +1,10 @@
 import { css } from "@emotion/css";
-import {
-  createSizeChartFixedArithmetic,
-  createSizeChartFixedCss,
-  ZDeviceValue,
-  ZSizeFixed,
-} from "@zthun/fashion-tailor";
+import { ZDeviceValue, ZSizeFixed } from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
 import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
 import { ZIconFontAwesome } from "src/icon/icon-font-awesome";
 import { useFashionTheme } from "../theme/fashion.mjs";
 import { IZSuspense } from "./suspense.mjs";
-
-const WidthChart = createSizeChartFixedCss(
-  createSizeChartFixedArithmetic(1, 1),
-  "rem",
-);
 
 export interface IZSuspenseRotate extends IZSuspense {
   width?: ZDeviceValue<ZSizeFixed>;
@@ -49,6 +39,7 @@ export function ZSuspenseRotate(props: IZSuspenseRotate) {
         className,
         _className,
       )}
+      data-disabled={disabled}
       data-name={name}
       data-fashion={_fashion.name}
     >
