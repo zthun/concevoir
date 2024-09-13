@@ -2,7 +2,7 @@ import { css } from "@emotion/css";
 import { ZDeviceValue, ZSizeFixed } from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
 import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
-import { ZIconFontAwesome } from "src/icon/icon-font-awesome";
+import { ZIconFontAwesome } from "../icon/icon-font-awesome";
 import { useFashionTheme } from "../theme/fashion.mjs";
 import { IZSuspense } from "./suspense.mjs";
 
