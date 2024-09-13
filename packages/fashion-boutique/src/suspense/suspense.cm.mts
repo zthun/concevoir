@@ -1,9 +1,4 @@
-import {
-  IZCircusDriver,
-  ZCircusBy,
-  ZCircusComponentModel,
-} from "@zthun/cirque";
-import { ZSize, ZSizeFixed, ZSizeVaried } from "@zthun/fashion-tailor";
+import { ZCircusComponentModel } from "@zthun/cirque";
 
 /**
  * Represents a component model for suspense.
@@ -12,23 +7,25 @@ export class ZSuspenseComponentModel extends ZCircusComponentModel {
   public static readonly Selector = ".ZSuspense-root";
 
   /**
-   * Gets the size of the suspense.
+   * Gets whether or not the suspense is disabled.
    *
    * @returns
-   *        The size height of the suspense.
+   *        True if the suspense is not displayed, false otherwise.
    */
-  public width(): Promise<ZSize> {
-    return this.driver.attribute("data-width", ZSizeFixed.ExtraSmall);
+  public async disabled(): Promise<boolean> {
+    const disabled = await this.driver.attribute("data-disabled", "false");
+    return disabled !== "false";
   }
 
   /**
-   * Gets the height of the suspense.
+   * Alias for opposite of disabled.
    *
    * @returns
-   *      The size height of the suspense.
+   *        False if the suspense is disabled, true otherwise.
    */
-  public height(): Promise<ZSize> {
-    return this.driver.attribute("data-height", ZSizeVaried.Fit);
+  public async loading(): Promise<boolean> {
+    const disabled = await this.disabled();
+    return !disabled;
   }
 
   /**
@@ -39,46 +36,5 @@ export class ZSuspenseComponentModel extends ZCircusComponentModel {
    */
   public fashion(): Promise<string> {
     return this.driver.attribute("data-fashion", "Inherit");
-  }
-
-  /**
-   * Gets whether there is suspense in a specific driver container.
-   *
-   * @param driver -
-   *        The driver that can contain the suspense.
-   * @param name -
-   *        The optional name of the suspense to look for.
-   *
-   * @returns
-   *        True if there exists a suspense in the driver.  If the name
-   *        is supplied, then a targeted suspense is checked.
-   */
-  public static async loading(
-    driver: IZCircusDriver,
-    name?: string,
-  ): Promise<boolean> {
-    const suspense = await ZCircusBy.optional(
-      driver,
-      ZSuspenseComponentModel,
-      name,
-    );
-    return suspense != null;
-  }
-
-  /**
-   * Waits for the suspense component found in driver to finish loading.
-   *
-   * @param driver -
-   *        The driver that can contain the suspense.
-   * @param name -
-   *        The targeted name of the suspense object.
-   */
-  public static async load(
-    driver: IZCircusDriver,
-    name?: string,
-  ): Promise<void> {
-    await driver.wait(() =>
-      ZSuspenseComponentModel.loading(driver, name).then((c) => !c),
-    );
   }
 }
