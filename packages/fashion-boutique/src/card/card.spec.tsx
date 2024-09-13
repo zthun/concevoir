@@ -1,48 +1,33 @@
-import { ZCircusBy } from "@zthun/cirque";
+import { IZCircusDriver, IZCircusSetup, ZCircusBy } from "@zthun/cirque";
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
-import { ReactNode } from "react";
-import { beforeEach, describe, expect, it } from "vitest";
-import { ZCard } from "./card";
+import { afterEach, describe, expect, it } from "vitest";
+import { IZCard, ZCard } from "./card";
 import { ZCardComponentModel } from "./card.cm.mjs";
 
 describe("ZCard", () => {
-  let footer: ReactNode | undefined;
-  let heading: ReactNode | undefined;
-  let content: ReactNode | undefined;
-  let subHeading: ReactNode | undefined;
-  let loading: boolean | undefined;
+  let _renderer: IZCircusSetup;
+  let _driver: IZCircusDriver;
 
-  async function createTestTarget() {
-    const element = (
-      <ZCard
-        heading={heading}
-        subHeading={subHeading}
-        footer={footer}
-        loading={loading}
-      >
-        {content}
-      </ZCard>
-    );
-
-    const driver = await new ZCircusSetupRenderer(element).setup();
-    return ZCircusBy.first(driver, ZCardComponentModel);
+  async function createTestTarget(props?: Partial<IZCard>) {
+    _renderer = new ZCircusSetupRenderer(<ZCard {...props} />);
+    _driver = await _renderer.setup();
+    return ZCircusBy.first(_driver, ZCardComponentModel);
   }
 
-  beforeEach(() => {
-    footer = undefined;
-    heading = undefined;
-    subHeading = undefined;
-    content = undefined;
-    loading = undefined;
+  afterEach(async () => {
+    await _driver?.destroy?.call(_driver);
+    await _renderer?.destroy?.call(_renderer);
   });
 
   describe("Header", () => {
     it("should render the heading", async () => {
       // Arrange.
-      heading = "Test Heading";
-      const target = await createTestTarget();
+      const heading = "Test Heading";
+      const target = await createTestTarget({ heading });
+
       // Act.
       const actual = await target.heading();
+
       // Assert
       expect(actual).toEqual(heading);
     });
@@ -50,18 +35,22 @@ describe("ZCard", () => {
     it("should return null if no heading is supplied", async () => {
       // Arrange.
       const target = await createTestTarget();
+
       // Act.
       const actual = await target.heading();
+
       // Assert
       expect(actual).toEqual("");
     });
 
     it("should render the subheading", async () => {
       // Arrange.
-      subHeading = "Test Sub Heading";
-      const target = await createTestTarget();
+      const subHeading = "Test Sub Heading";
+      const target = await createTestTarget({ subHeading });
+
       // Act.
       const actual = await target.subHeading();
+
       // Assert
       expect(actual).toEqual(subHeading);
     });
@@ -69,8 +58,10 @@ describe("ZCard", () => {
     it("should return null if no subHeading is supplied", async () => {
       // Arrange.
       const target = await createTestTarget();
+
       // Act.
       const actual = await target.subHeading();
+
       // Assert
       expect(actual).toEqual("");
     });
@@ -79,46 +70,28 @@ describe("ZCard", () => {
   describe("Content", () => {
     it("should render the content", async () => {
       // Arrange.
-      content = "Test Content";
-      const target = await createTestTarget();
+      const children = "Test Content";
+      const target = await createTestTarget({ children });
+
       // Act.
       const _content = await target.content();
       const actual = await _content.text();
-      // Assert.
-      expect(actual).toEqual(content);
-    });
 
-    it("should render as loading", async () => {
-      // Arrange.
-      loading = true;
-      const target = await createTestTarget();
-      // Act.
-      const actual = await target.loading();
       // Assert.
-      expect(actual).toBeTruthy();
-    });
-
-    it("should not render content if loading", async () => {
-      // Arrange.
-      content = "Test Content";
-      loading = true;
-      const target = await createTestTarget();
-      // Act.
-      const _content = await target.content();
-      const actual = await _content.text();
-      // Assert.
-      expect(actual).toBeFalsy();
+      expect(actual).toEqual(children);
     });
   });
 
   describe("Footer", () => {
     it("should render the footer if supplied", async () => {
       // Arrange.
-      footer = "Test Footer";
-      const target = await createTestTarget();
+      const footer = "Test Footer";
+      const target = await createTestTarget({ footer });
+
       // Act.
       const _footer = await target.footer();
       const actual = await _footer?.text();
+
       // Assert.
       expect(actual).toEqual(footer);
     });
@@ -126,8 +99,10 @@ describe("ZCard", () => {
     it("should not render the footer if it is undefined", async () => {
       // Arrange.
       const target = await createTestTarget();
+
       // Act.
       const actual = await target.footer();
+
       // Assert
       expect(actual).toBeNull();
     });

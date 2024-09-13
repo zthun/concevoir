@@ -1,5 +1,4 @@
 import { IZCircusDriver, ZCircusComponentModel } from "@zthun/cirque";
-import { ZSuspenseComponentModel } from "../suspense/suspense.cm.mjs";
 
 /**
  * Represents a component model for a ZCard component.
@@ -37,14 +36,6 @@ export class ZCardComponentModel extends ZCircusComponentModel {
   public async subHeading(): Promise<string> {
     const subHeading = await this.driver.select(".ZCard-header-subheading");
     return subHeading.text();
-  }
-
-  /**
-   * Gets whether the card is in a loading state.
-   */
-  public async loading(): Promise<boolean> {
-    const content = await this.content();
-    return ZSuspenseComponentModel.loading(content, "card-loading");
   }
 
   /**

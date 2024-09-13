@@ -17,11 +17,9 @@ import { IZComponentFashion } from "../component/component-fashion.mjs";
 import { IZComponentHeading } from "../component/component-heading.mjs";
 import { IZComponentHeight } from "../component/component-height.mjs";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
-import { IZComponentLoading } from "../component/component-loading.mjs";
 import { IZComponentName } from "../component/component-name.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 import { IZComponentWidth } from "../component/component-width.mjs";
-import { ZSuspenseProgress } from "../suspense/suspense-progress";
 import { useFashionTheme } from "../theme/fashion.mjs";
 import { createStyleHook } from "../theme/styled";
 import { ZCaption, ZH2 } from "../typography/typography";
@@ -30,7 +28,6 @@ export interface IZCard
   extends IZComponentHeading,
     IZComponentAvatar,
     IZComponentHierarchy,
-    IZComponentLoading,
     IZComponentFashion,
     IZComponentStyle,
     IZComponentName,
@@ -132,7 +129,6 @@ export function ZCard(props: IZCard) {
     footer,
     heading,
     subHeading,
-    loading,
     fashion = surface,
     name,
   } = props;
@@ -158,21 +154,11 @@ export function ZCard(props: IZCard) {
     />
   );
 
-  const renderContent = () => {
-    const renderLoading = () => (
-      <ZSuspenseProgress
-        className="ZCard-loading"
-        name="card-loading"
-        height={ZSizeFixed.Medium}
-      />
-    );
-
-    return (
-      <CardContent className={cssJoinDefined("ZCard-content", classes.content)}>
-        {loading ? renderLoading() : children}
-      </CardContent>
-    );
-  };
+  const renderContent = () => (
+    <CardContent className={cssJoinDefined("ZCard-content", classes.content)}>
+      {children}
+    </CardContent>
+  );
 
   const renderFooter = () =>
     footer ? (
