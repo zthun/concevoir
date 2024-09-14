@@ -44,8 +44,9 @@ describe("ZWizard", () => {
         // Arrange.
         const target = await createTestTarget();
         const current = await target.page();
+        const next = await target.next();
         // Act.
-        await (await target.next())?.click();
+        await next?.click();
         const actual = await target.page();
         // Assert.
         expect(actual).toEqual(current + 1);

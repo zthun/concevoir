@@ -46,13 +46,13 @@ export function ZWizard(props: IZWizard) {
   const _current = _children[_page];
   const _name = firstDefined(
     undefined,
-    CardProps?.heading,
+    CardProps?.TitleProps?.heading,
     _current?.props["name"],
     _current?.props["data-name"],
   );
   const _description = firstDefined(
     undefined,
-    CardProps?.subHeading,
+    CardProps?.TitleProps?.subHeading,
     _current?.props["description"],
     _current?.props["data-description"],
   );
@@ -118,7 +118,7 @@ export function ZWizard(props: IZWizard) {
       );
 
       const handleNext = () => {
-        setPage(() => _page + 1);
+        setPage((page) => page + 1);
       };
 
       return (
@@ -171,8 +171,10 @@ export function ZWizard(props: IZWizard) {
         CardProps?.className,
         className,
       )}
-      heading={_name}
-      subHeading={_description}
+      TitleProps={{
+        heading: _name,
+        subHeading: _description,
+      }}
       name={name}
       footer={renderFooter()}
       data-page={_page}
