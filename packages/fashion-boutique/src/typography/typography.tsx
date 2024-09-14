@@ -2,7 +2,9 @@ import { css } from "@emotion/css";
 import { ZSizeChartFixed, ZSizeFixed } from "@zthun/fashion-tailor";
 import { IZFashion, ZColorPicker } from "@zthun/fashion-theme";
 import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import { Property } from "csstype";
 import { ElementType } from "react";
+import { IZComponentDomEvents } from "../component/component-dom-events.mjs";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 import {
@@ -13,6 +15,7 @@ import {
 
 export interface IZTypographyNamed
   extends IZComponentHierarchy,
+    IZComponentDomEvents<HTMLElement>,
     IZComponentStyle {
   compact?: boolean;
   Element?: ElementType;
@@ -31,6 +34,7 @@ export type FontWeight =
 export interface IZTypography extends IZTypographyNamed {
   size?: ZSizeFixed;
   weight?: FontWeight;
+  transform?: Property.TextTransform;
 }
 
 const PointChart: ZSizeChartFixed<string> = {
@@ -38,7 +42,7 @@ const PointChart: ZSizeChartFixed<string> = {
   sm: "1rem",
   md: "1.3rem",
   lg: "2rem",
-  xl: "2.3rem",
+  xl: "2.5rem",
 };
 
 const WeightChart: Record<FontWeight, number> = {
@@ -63,6 +67,7 @@ export function Typography(props: IZTypography) {
     fashion,
     name,
     size,
+    transform,
     weight,
   } = props;
 
@@ -75,44 +80,47 @@ export function Typography(props: IZTypography) {
       color: ${picker.idle.main};
       font-family: Roboto, Arial, sans-serif;
       font-weight: ${WeightChart[_weight]};
-      font-size: ${PointChart[_size]};
+      font-size: calc(${PointChart[_size]} * 1.2);
       margin: 0;
       margin-bottom: ${compact ? 0 : tailor.gap(ZSizeFixed.Medium)};
+      text-transform: ${transform};
     }
 
     ${device.break(ZSizeFixed.Large)} {
       & {
-        font-size: calc(${PointChart[_size]} * 0.95);
+        font-size: calc(${PointChart[_size]} * 1.15);
       }
     }
 
     ${device.break(ZSizeFixed.Medium)} {
       & {
-        font-size: calc(${PointChart[_size]} * 0.9);
+        font-size: calc(${PointChart[_size]} * 1.1);
       }
     }
 
     ${device.break(ZSizeFixed.Small)} {
       & {
-        font-size: calc(${PointChart[_size]} * 0.85);
+        font-size: calc(${PointChart[_size]} * 1.05);
       }
     }
 
     ${device.break(ZSizeFixed.ExtraSmall)} {
       & {
-        font-size: calc(${PointChart[_size]} * 0.8);
+        font-size: ${PointChart[_size]};
       }
     }
   `;
 
   return (
     <Element
+      {...props}
       className={cssJoinDefined("ZTypography-root", className, _className)}
       data-compact={compact}
       data-fashion={fashion?.name}
       data-name={name}
       data-size={size}
       data-weight={weight}
+      data-transform={transform}
     >
       {children}
     </Element>
@@ -134,8 +142,8 @@ export const ZH2 = ({ className, ...props }: IZTypographyNamed) => (
     Element="h2"
     {...props}
     className={cssJoinDefined("ZH2-root", className)}
-    size={ZSizeFixed.ExtraLarge}
-    weight="medium"
+    size={ZSizeFixed.Large}
+    weight="bold"
   />
 );
 
@@ -145,7 +153,7 @@ export const ZH3 = ({ className, ...props }: IZTypographyNamed) => (
     {...props}
     className={cssJoinDefined("ZH3-root", className)}
     size={ZSizeFixed.Large}
-    weight="black"
+    weight="regular"
   />
 );
 
@@ -154,8 +162,8 @@ export const ZH4 = ({ className, ...props }: IZTypographyNamed) => (
     Element="h4"
     {...props}
     className={cssJoinDefined("ZH4-root", className)}
-    size={ZSizeFixed.Large}
-    weight="medium"
+    size={ZSizeFixed.Medium}
+    weight="black"
   />
 );
 
@@ -164,7 +172,8 @@ export const ZH5 = ({ className, ...props }: IZTypographyNamed) => (
     Element="h5"
     {...props}
     className={cssJoinDefined("ZH5-root", className)}
-    size={ZSizeFixed.Medium}
+    size={ZSizeFixed.Small}
+    transform="uppercase"
     weight="black"
   />
 );
@@ -174,7 +183,8 @@ export const ZH6 = ({ className, ...props }: IZTypographyNamed) => (
     Element="h6"
     {...props}
     className={cssJoinDefined("ZH6-root", className)}
-    size={ZSizeFixed.Medium}
+    size={ZSizeFixed.Small}
+    transform="uppercase"
     weight="medium"
   />
 );
@@ -189,6 +199,16 @@ export const ZParagraph = ({ className, ...props }: IZTypographyNamed) => (
   />
 );
 
+export const ZCaption = ({ className, ...props }: IZTypographyNamed) => (
+  <Typography
+    Element="sub"
+    {...props}
+    className={cssJoinDefined("ZCaption-root", className)}
+    size={ZSizeFixed.ExtraSmall}
+    weight="regular"
+  />
+);
+
 export const ZSubtitle = ({ className, ...props }: IZTypographyNamed) => (
   <Typography
     Element="sub"
@@ -199,22 +219,13 @@ export const ZSubtitle = ({ className, ...props }: IZTypographyNamed) => (
   />
 );
 
-export const ZCaption = ({ className, ...props }: IZTypographyNamed) => (
-  <Typography
-    Element="sub"
-    {...props}
-    className={cssJoinDefined("ZCaption-root", className)}
-    size={ZSizeFixed.ExtraSmall}
-    weight="medium"
-  />
-);
-
-export const ZOverline = ({ className, ...props }: IZTypographyNamed) => (
+export const ZButtonText = ({ className, ...props }: IZTypographyNamed) => (
   <Typography
     Element="div"
     {...props}
-    className={cssJoinDefined("ZOverline-root", className)}
-    size={ZSizeFixed.ExtraSmall}
-    weight="light"
+    className={cssJoinDefined("ZButtonText-root", className)}
+    size={ZSizeFixed.Small}
+    weight="bold"
+    transform="uppercase"
   />
 );

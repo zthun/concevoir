@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   IZTypographyNamed,
   Typography,
+  ZButtonText,
   ZCaption,
   ZH1,
   ZH2,
@@ -10,7 +11,6 @@ import {
   ZH4,
   ZH5,
   ZH6,
-  ZOverline,
   ZParagraph,
   ZSubtitle,
 } from "./typography";
@@ -81,8 +81,8 @@ describe("Typography", () => {
       await assertTypography("sub", ZCaption);
     });
 
-    it("should render an overline", async () => {
-      await assertTypography("div", ZOverline);
+    it("should render an button text", async () => {
+      await assertTypography("div", ZButtonText);
     });
   });
 });

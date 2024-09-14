@@ -1,5 +1,6 @@
 // cspell:disable
 import {
+  ZButtonText,
   ZCaption,
   ZCard,
   ZGrid,
@@ -10,7 +11,6 @@ import {
   ZH5,
   ZH6,
   ZIconFontAwesome,
-  ZOverline,
   ZParagraph,
   ZSubtitle,
 } from "@zthun/fashion-boutique";
@@ -85,9 +85,9 @@ export function ZTypographyPage() {
       </ZCaption>
 
       <hr />
-      <ZOverline fashion={fashion}>
-        Overline: Pretium quam vulputate dignissim suspendisse.
-      </ZOverline>
+      <ZButtonText fashion={fashion}>
+        Button: Pretium quam vulputate dignissim suspendisse.
+      </ZButtonText>
 
       <ZH3>Options</ZH3>
       <ZGrid gap={ZSizeFixed.Medium}>
