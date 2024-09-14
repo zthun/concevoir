@@ -163,15 +163,16 @@ describe("ZGridView", () => {
       expect(actual).toBeTruthy();
     });
 
-    it("should not render the more button", async () => {
+    it("should disable the more button", async () => {
       // Arrange.
       const target = await createTestTarget({ dataSource });
 
       // Act.
-      const actual = await target.more();
+      const more = await target.more();
+      const actual = await more?.disabled();
 
       // Assert.
-      expect(actual).toBeFalsy();
+      expect(actual).toBeTruthy();
     });
   });
 });

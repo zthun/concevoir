@@ -109,7 +109,7 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
   };
 
   const renderMore = () => {
-    return complete ? null : (
+    return (
       <>
         <ZSuspenseProgress
           {...SuspenseProps}
@@ -118,15 +118,17 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
           disabled={!isStateLoading(last)}
           name="grid-loading"
         />
-        <ZButton
-          label="More..."
-          disabled={isStateLoading(last) || isStateErrored(last)}
-          fashion={theme.secondary}
-          {...MoreProps}
-          className={cssJoinDefined("ZGridView-more", MoreProps?.className)}
-          onClick={more}
-          name="grid-more"
-        />
+        {!complete && (
+          <ZButton
+            label="More..."
+            disabled={isStateLoading(last) || isStateErrored(last)}
+            fashion={theme.secondary}
+            {...MoreProps}
+            className={cssJoinDefined("ZGridView-more", MoreProps?.className)}
+            onClick={more}
+            name="grid-more"
+          />
+        )}
       </>
     );
   };
