@@ -10,7 +10,11 @@ import {
   ZSizeVaried,
 } from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
-import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import {
+  cssJoinDefined,
+  firstDefined,
+  pickDataAttributes,
+} from "@zthun/helpful-fn";
 import { IZComponentFashion } from "../component/component-fashion.mjs";
 import { IZComponentFooter } from "../component/component-footer.mjs";
 import { IZComponentHeight } from "../component/component-height.mjs";
@@ -127,6 +131,7 @@ export function ZCard(props: IZCard) {
       className={cssJoinDefined("ZCard-root", className, _className)}
       name={name}
       gap={ZSizeFixed.Medium}
+      {...pickDataAttributes(props)}
       data-fashion={_fashion.name}
     >
       <ZContentTitle {...TitleProps} className="ZCard-header" />
