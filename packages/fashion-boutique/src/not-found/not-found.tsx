@@ -34,8 +34,10 @@ export function ZNotFound(props: IZNotFound) {
         height={ZSizeVaried.Full}
       >
         <ZCard
-          avatar={<ZSadFace />}
-          heading={title}
+          TitleProps={{
+            avatar: <ZSadFace />,
+            heading: title,
+          }}
           footer={
             <ZButton
               className="ZNotFound-back"
