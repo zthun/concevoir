@@ -3,7 +3,6 @@ import {
   ZBannerMain,
   ZBreadcrumbsOutlet,
   ZButton,
-  ZCaption,
   ZFashionThemeContext,
   ZH1,
   ZIconFontAwesome,
@@ -80,12 +79,9 @@ export function ZFashionApp() {
   );
   const [theme, setTheme] = useState(darkTheme);
   const { dark, light } = theme;
-  const prefix = (
-    <div className="ZFashionApp-description">
-      <ZH1 compact>{ZFashionRouteHome.name}</ZH1>
-      <ZCaption compact>{ZFashionRouteHome.description}</ZCaption>
-    </div>
-  );
+
+  const heading = <ZH1 compact>{ZFashionRouteHome.name}</ZH1>;
+  const subHeading = ZFashionRouteHome.description;
 
   const breadcrumbs: IZBreadcrumbsLocation = useMemo(
     () => ({ home: { name: "home" } }),
@@ -112,7 +108,7 @@ export function ZFashionApp() {
   return (
     <ZRouter>
       <ZFashionThemeContext.Provider value={theme}>
-        <ZBannerMain avatar={avatar} prefix={prefix} suffix={suffix}>
+        <ZBannerMain TitleProps={{ avatar, heading, subHeading, suffix }}>
           <ZRouteMap>
             <ZRoute path={ZFashionRouteHome.path} element={<ZHomePage />} />
             <ZRoute
