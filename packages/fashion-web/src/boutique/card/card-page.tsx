@@ -81,23 +81,6 @@ export function ZCardPage() {
           </ZCard>
 
           <ZCard
-            name="loading"
-            heading="Loading"
-            subHeading="Content not ready yet"
-            fashion={fashion}
-            loading
-            avatar={<ZIconFontAwesome name="house" width={ZSizeFixed.Medium} />}
-            footer={
-              <ZButton
-                label="Footer"
-                width={ZSizeVaried.Full}
-                fashion={success}
-                disabled
-              />
-            }
-          />
-
-          <ZCard
             name="image"
             heading="Graphics"
             subHeading="Card with an image"

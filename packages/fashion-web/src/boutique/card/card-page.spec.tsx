@@ -36,18 +36,6 @@ describe("CardPage", () => {
     });
   });
 
-  describe("Loading", () => {
-    it("should be loading", async () => {
-      // Arrange.
-      const target = await createTestTarget();
-      // Act.
-      const loading = await target.loading();
-      const actual = await loading?.loading();
-      // Assert.
-      expect(actual).toBeTruthy();
-    });
-  });
-
   describe("Fashion", () => {
     async function shouldSetFashion(expected: string) {
       // Arrange.
@@ -57,14 +45,11 @@ describe("CardPage", () => {
       await fashion.select(expected);
       const card = await target.card();
       const image = await target.image();
-      const loading = await target.loading();
       const cardFashion = await card.fashion();
       const imageFashion = await image.fashion();
-      const loadingFashion = await loading.fashion();
       // Assert.
       expect(cardFashion).toEqual(expected);
       expect(imageFashion).toEqual(expected);
-      expect(loadingFashion).toEqual(expected);
     }
 
     it("should set the color to Primary", async () => {
