@@ -4,7 +4,7 @@ export class ZContentTitleComponentModel extends ZCircusComponentModel {
   public static readonly Selector = ".ZContentTitle-root";
 
   private async part(
-    name: "avatar" | "heading" | "subHeading" | "prefix" | "suffix",
+    name: "avatar" | "heading" | "sub-heading" | "prefix" | "suffix",
   ): Promise<IZCircusDriver | null> {
     const [part] = await this.driver.query(`.ZContentTitle-${name}`);
     return part || null;
@@ -19,7 +19,7 @@ export class ZContentTitleComponentModel extends ZCircusComponentModel {
   }
 
   public subHeading(): Promise<IZCircusDriver | null> {
-    return this.part("subHeading");
+    return this.part("sub-heading");
   }
 
   public prefix(): Promise<IZCircusDriver | null> {

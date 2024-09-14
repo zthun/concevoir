@@ -1,6 +1,7 @@
 import { IZCircusDriver, IZCircusSetup, ZCircusBy } from "@zthun/cirque";
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
 import { describe, expect, it } from "vitest";
+import { ZH3 } from "../typography/typography";
 import { IZContentTitle, ZContentTitle } from "./content-title";
 import { ZContentTitleComponentModel } from "./content-title.cm";
 
@@ -53,6 +54,19 @@ describe("ZContentTitle", () => {
       expect(actual).toEqual(node);
     });
 
+    it("should render custom typography", async () => {
+      // Arrange.
+      const target = await createTestTarget({
+        heading: <ZH3 compact>{node}</ZH3>,
+      });
+
+      // Act.
+      const actual = await (await target.heading())?.text();
+
+      // Assert.
+      expect(actual).toEqual(node);
+    });
+
     it("should not render if not set", async () => {
       // Arrange.
       const target = await createTestTarget();
@@ -69,6 +83,19 @@ describe("ZContentTitle", () => {
     it("should render if set", async () => {
       // Arrange.
       const target = await createTestTarget({ subHeading: node });
+
+      // Act.
+      const actual = await (await target.subHeading())?.text();
+
+      // Assert.
+      expect(actual).toEqual(node);
+    });
+
+    it("should render custom typography", async () => {
+      // Arrange.
+      const target = await createTestTarget({
+        subHeading: <ZH3 compact>{node}</ZH3>,
+      });
 
       // Act.
       const actual = await (await target.subHeading())?.text();
