@@ -25,31 +25,19 @@ describe("CardPage", () => {
     });
   });
 
-  describe("Image", () => {
-    it("should render the card", async () => {
-      // Arrange.
-      const target = await createTestTarget();
-      // Act.
-      const actual = await target.image();
-      // Assert.
-      expect(actual).toBeTruthy();
-    });
-  });
-
   describe("Fashion", () => {
     async function shouldSetFashion(expected: string) {
       // Arrange.
       const target = await createTestTarget();
       const fashion = await target.fashion();
+
       // Act.
       await fashion.select(expected);
       const card = await target.card();
-      const image = await target.image();
-      const cardFashion = await card.fashion();
-      const imageFashion = await image.fashion();
+      const actual = await card.fashion();
+
       // Assert.
-      expect(cardFashion).toEqual(expected);
-      expect(imageFashion).toEqual(expected);
+      expect(actual).toEqual(expected);
     }
 
     it("should set the color to Primary", async () => {

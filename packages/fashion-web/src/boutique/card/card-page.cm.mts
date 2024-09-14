@@ -11,10 +11,6 @@ export class ZCardPageComponentModel extends ZCircusComponentModel {
     return ZCircusBy.first(this.driver, ZCardComponentModel, "card");
   }
 
-  public image(): Promise<ZCardComponentModel> {
-    return ZCircusBy.first(this.driver, ZCardComponentModel, "image");
-  }
-
   public fashion(): Promise<ZChoiceComponentModel> {
     return ZCircusBy.first(this.driver, ZChoiceComponentModel, "fashion");
   }

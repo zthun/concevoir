@@ -5,13 +5,11 @@ import {
   ZGrid,
   ZH3,
   ZIconFontAwesome,
-  ZImageSource,
   ZParagraph,
   useFashionTheme,
 } from "@zthun/fashion-boutique";
 import { ZSizeFixed, ZSizeVaried } from "@zthun/fashion-tailor";
 import { ZFashionArea } from "@zthun/fashion-theme";
-import { ZHorizontalAnchor } from "@zthun/helpful-fn";
 import { ZFashionRouteCard } from "../../routes.mjs";
 import { ZChoiceDropDownFashion } from "../common/choice-drop-down-fashion";
 import { useFashionState } from "../common/use-fashion-state.mjs";
@@ -78,28 +76,6 @@ export function ZCardPage() {
             }
           >
             <ZParagraph compact>{LOREM}</ZParagraph>
-          </ZCard>
-
-          <ZCard
-            name="image"
-            heading="Graphics"
-            subHeading="Card with an image"
-            fashion={fashion}
-            avatar={<ZIconFontAwesome name="house" width={ZSizeFixed.Medium} />}
-          >
-            <ZBox
-              margin={{ bottom: ZSizeFixed.Small }}
-              justification={ZHorizontalAnchor.Center}
-            >
-              <ZImageSource
-                src="/images/svg/plant.svg"
-                height={ZSizeFixed.ExtraLarge}
-              />
-            </ZBox>
-
-            <ZParagraph>
-              Image with descriptions can make for great links and launchers.
-            </ZParagraph>
           </ZCard>
         </ZGrid>
       </ZBox>
