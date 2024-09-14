@@ -97,7 +97,7 @@ export function ZBox(props: IZBox) {
   const _margin = new ZQuadrilateralBuilder<ZSizeMargin>(ZSizeVoid.None)
     .from(margin)
     .build();
-  const _width = new ZDeviceValues(width, ZSizeVaried.Fit);
+  const _width = new ZDeviceValues(width, ZSizeVaried.Full);
 
   const _className = css`
     & {
