@@ -97,8 +97,6 @@ export * from "./text/text-input-reveal";
 export * from "./text/text.cm.mjs";
 export * from "./theme/fashion.mjs";
 export * from "./theme/styled";
-export * from "./typography/text-color";
-export * from "./typography/text-color.cm.mjs";
 export * from "./typography/typography";
 export * from "./typography/typography.cm.mjs";
 export * from "./wizard/wizard";
