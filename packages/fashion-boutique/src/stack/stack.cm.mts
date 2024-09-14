@@ -16,6 +16,6 @@ export class ZStackComponentModel extends ZCircusComponentModel {
       "data-inline",
       "false",
     );
-    return inline === "true";
+    return inline !== "false";
   }
 }
