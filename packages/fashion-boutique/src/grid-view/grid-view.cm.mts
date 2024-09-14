@@ -22,11 +22,15 @@ export class ZGridViewComponentModel extends ZCircusComponentModel {
     return ZCircusBy.optional(this.driver, ZAlertComponentModel, "grid-error");
   }
 
-  public async loading(): Promise<boolean> {
-    return ZSuspenseComponentModel.loading(this.driver, "grid-loading");
+  public async suspense(): Promise<ZSuspenseComponentModel> {
+    return ZCircusBy.first(
+      this.driver,
+      ZSuspenseComponentModel,
+      "grid-loading",
+    );
   }
 
   public async load(): Promise<void> {
-    await ZSuspenseComponentModel.load(this.driver, "grid-loading");
+    await (await this.suspense()).load();
   }
 }

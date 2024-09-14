@@ -1,4 +1,4 @@
-import { ZSizeFixed, ZSizeVaried } from "@zthun/fashion-tailor";
+import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { cssJoinDefined } from "@zthun/helpful-fn";
 import {
   IZDataRequest,
@@ -109,32 +109,25 @@ export function ZGridView<T = any>(props: IZGridView<T>) {
   };
 
   const renderMore = () => {
-    if (isStateLoading(last)) {
-      return (
+    return complete ? null : (
+      <>
         <ZSuspenseProgress
           {...SuspenseProps}
           className="ZGridView-loading"
-          loading
-          width={ZSizeVaried.Full}
           height={ZSizeFixed.Medium}
+          disabled={!isStateLoading(last)}
           name="grid-loading"
         />
-      );
-    }
-
-    if (complete) {
-      return null;
-    }
-
-    return (
-      <ZButton
-        label="More..."
-        fashion={theme.secondary}
-        {...MoreProps}
-        className={cssJoinDefined("ZGridView-more", MoreProps?.className)}
-        onClick={more}
-        name="grid-more"
-      />
+        <ZButton
+          label="More..."
+          disabled={isStateLoading(last) || isStateErrored(last)}
+          fashion={theme.secondary}
+          {...MoreProps}
+          className={cssJoinDefined("ZGridView-more", MoreProps?.className)}
+          onClick={more}
+          name="grid-more"
+        />
+      </>
     );
   };
 
