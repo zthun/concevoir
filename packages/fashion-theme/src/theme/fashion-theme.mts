@@ -81,11 +81,26 @@ export enum ZFashionContrast {
   Opposite = "opposite",
 }
 
+/**
+ * Intrinsic fashions.
+ */
+export enum ZFashionIntrinsic {
+  /**
+   * Inherit the parent colors.
+   */
+  Inherit = "inherit",
+  /**
+   * No color.
+   */
+  Transparent = "transparent",
+}
+
 export type ZFashionName =
   | ZFashionPriority
   | ZFashionSeverity
   | ZFashionArea
-  | ZFashionContrast;
+  | ZFashionContrast
+  | ZFashionIntrinsic;
 export type ZFashionRecord = Record<ZFashionName, IZFashion>;
 
 /**
