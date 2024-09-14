@@ -1,6 +1,11 @@
 import { css } from "@emotion/css";
 import { ZSizeFixed, ZSizeVoid } from "@zthun/fashion-tailor";
-import { cssJoinDefined, firstDefined, ZOrientation } from "@zthun/helpful-fn";
+import {
+  cssJoinDefined,
+  firstDefined,
+  pickDataAttributes,
+  ZOrientation,
+} from "@zthun/helpful-fn";
 import { Property } from "csstype";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentName } from "../component/component-name.mjs";
@@ -52,6 +57,7 @@ export function ZStack(props: IZStack) {
   return (
     <div
       className={cssJoinDefined("ZStack-root", className, _className)}
+      {...pickDataAttributes(props)}
       data-orientation={orientation}
       data-name={name}
       data-inline={inline}
