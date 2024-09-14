@@ -20,50 +20,19 @@ describe("ZCard", () => {
   });
 
   describe("Header", () => {
-    it("should render the heading", async () => {
+    it("should render the title", async () => {
       // Arrange.
       const heading = "Test Heading";
-      const target = await createTestTarget({ heading });
+      const target = await createTestTarget({
+        TitleProps: { heading },
+      });
 
       // Act.
-      const actual = await target.heading();
+      const title = await target.title();
+      const actual = await (await title.heading())?.text();
 
       // Assert
       expect(actual).toEqual(heading);
-    });
-
-    it("should return null if no heading is supplied", async () => {
-      // Arrange.
-      const target = await createTestTarget();
-
-      // Act.
-      const actual = await target.heading();
-
-      // Assert
-      expect(actual).toEqual("");
-    });
-
-    it("should render the subheading", async () => {
-      // Arrange.
-      const subHeading = "Test Sub Heading";
-      const target = await createTestTarget({ subHeading });
-
-      // Act.
-      const actual = await target.subHeading();
-
-      // Assert
-      expect(actual).toEqual(subHeading);
-    });
-
-    it("should return null if no subHeading is supplied", async () => {
-      // Arrange.
-      const target = await createTestTarget();
-
-      // Act.
-      const actual = await target.subHeading();
-
-      // Assert
-      expect(actual).toEqual("");
     });
   });
 

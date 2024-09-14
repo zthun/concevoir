@@ -1,10 +1,25 @@
-import { IZCircusDriver, ZCircusComponentModel } from "@zthun/cirque";
+import {
+  IZCircusDriver,
+  ZCircusBy,
+  ZCircusComponentModel,
+} from "@zthun/cirque";
+import { ZContentTitleComponentModel } from "../content-title/content-title.cm";
 
 /**
  * Represents a component model for a ZCard component.
  */
 export class ZCardComponentModel extends ZCircusComponentModel {
   public static readonly Selector = ".ZCard-root";
+
+  /**
+   * Gets the card title.
+   *
+   * @returns
+   *        The card title.
+   */
+  public title(): Promise<ZContentTitleComponentModel> {
+    return ZCircusBy.first(this.driver, ZContentTitleComponentModel);
+  }
 
   /**
    * Gets the fashion name of the card.
@@ -14,28 +29,6 @@ export class ZCardComponentModel extends ZCircusComponentModel {
    */
   public fashion(): Promise<string> {
     return this.driver.attribute("data-fashion", "Surface");
-  }
-
-  /**
-   * Gets the text content of the heading.
-   *
-   * @returns
-   *        The text content of the heading.
-   */
-  public async heading(): Promise<string> {
-    const heading = await this.driver.select(".ZCard-header-heading");
-    return heading.text();
-  }
-
-  /**
-   * Gets the text content of the sub heading.
-   *
-   * @returns
-   *        The text content of the sub heading.
-   */
-  public async subHeading(): Promise<string> {
-    const subHeading = await this.driver.select(".ZCard-header-subheading");
-    return subHeading.text();
   }
 
   /**
