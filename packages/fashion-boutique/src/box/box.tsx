@@ -45,6 +45,7 @@ const WidthChart = {
   ...createSizeChartFixedCss(createSizeChartFixedGeometric(1.4, 18), "rem"),
   ...createSizeChartVariedCss(),
   ...createSizeChartVoidCss(),
+  [ZSizeVaried.Fit]: "fit-content",
 };
 
 export interface IZBox
