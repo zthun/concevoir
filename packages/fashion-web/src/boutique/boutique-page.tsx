@@ -8,7 +8,7 @@ import {
   ZH3,
   ZIconFontAwesome,
 } from "@zthun/fashion-boutique";
-import { ZSizeFixed } from "@zthun/fashion-tailor";
+import { ZSizeFixed, ZSizeVaried } from "@zthun/fashion-tailor";
 import { cssJoinDefined } from "@zthun/helpful-fn";
 import { IZRoute } from "../route/route.mjs";
 import {
@@ -36,6 +36,7 @@ export function ZBoutiquePage() {
       key={route.path}
       onClick={() => navigate(route.path)}
       padding={ZSizeFixed.Medium}
+      width={ZSizeVaried.Full}
     >
       <ZGrid
         columns="auto 1fr"
