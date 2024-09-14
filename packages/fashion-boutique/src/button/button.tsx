@@ -24,6 +24,7 @@ import {
   useFashionTailor,
   useFashionTheme,
 } from "../theme/fashion.mjs";
+import { ZButtonText } from "../typography/typography";
 
 export interface IZButton
   extends IZComponentAvatar,
@@ -155,7 +156,9 @@ export function ZButton(props: IZButton) {
         inline
       >
         {avatar}
-        <div className="ZButton-content">{label}</div>
+        <ZButtonText Element="div" compact className="ZButton-content">
+          {label}
+        </ZButtonText>
       </ZStack>
     </button>
   );
