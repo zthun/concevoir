@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.0](https://github.com/zthun/fashion/compare/v4.0.0...v5.0.0) (2024-09-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* overline is now button text
+* banner main avatar, prefix, and suffix have been collapsed into TitleProps
+* card heading, subHeading, and avatar have been extracted into TitleProps
+* text color has been removed
+* card no longer supports an internal loading state
+* button no longer supports an internal loading state
+* suspense component model no longer supports width or height
+* suspense progress no longer uses mui
+* suspense loading has been renamed to disabled
+
+### Features
+
+* component footer adds footer support to a component ([2025daa](https://github.com/zthun/fashion/commit/2025daabb8af34b6b774d8d622b61156868e0e00))
+* content title adds a standard for how to display horizontal title content ([8b3889f](https://github.com/zthun/fashion/commit/8b3889f8f65983b8c49b5d31740d22b3d7177ecd))
+* flex allows for grow and shrink in a flex supported container ([aac7009](https://github.com/zthun/fashion/commit/aac70091c63d900a14dc30f5058ed7ec9b66aaa2))
+* font awesome can now have animations ([c4f9473](https://github.com/zthun/fashion/commit/c4f9473404642d9a9788f2b3a31e18bdc630b68b))
+* stack now supports passing data attributes ([e777d3a](https://github.com/zthun/fashion/commit/e777d3acd52bd0b18de882c847b72b78b7fc70ed))
+* stack now supports wrap ([30b0d76](https://github.com/zthun/fashion/commit/30b0d76dec06e13a2fab3fa0ac848f0e2222fd16))
+* suspense component model no longer supports width or height ([0515063](https://github.com/zthun/fashion/commit/05150639191ac67404c11ec5076cb52f7fa03ce3))
+* text color has been removed ([30ec464](https://github.com/zthun/fashion/commit/30ec4646c9f3b3acc0e354c5f2d1fec530d5beef))
+
+
+### Bug Fixes
+
+* auto box now properly scales to the content ([9f77734](https://github.com/zthun/fashion/commit/9f77734837e294b685d39646ca69ef4a353a7523))
+* box now defaults to full width to support old bug ([e1494ba](https://github.com/zthun/fashion/commit/e1494bab8da07c38d299a01376a6cbdf6e5837d7))
+* icon sizes ([c3707cc](https://github.com/zthun/fashion/commit/c3707ccc2acdf4484841df0babf9e6bb988791d2))
+
+
+### Code Refactoring
+
+* banner main avatar, prefix, and suffix have been collapsed into TitleProps ([6b8be3b](https://github.com/zthun/fashion/commit/6b8be3b60c2ba01e6e74ba4eb1923111ed38e392))
+* button no longer supports an internal loading state ([7875e64](https://github.com/zthun/fashion/commit/7875e64f64820ee64bf415e26e0ac88eaab9f66a))
+* card heading, subHeading, and avatar have been extracted into TitleProps ([0357f54](https://github.com/zthun/fashion/commit/0357f542a95a6886ccdbf81a86e8840b5d5499c0))
+* card no longer supports an internal loading state ([be65ca1](https://github.com/zthun/fashion/commit/be65ca11faffd15a7f5d3498644531d0496fe741))
+* overline is now button text ([a218611](https://github.com/zthun/fashion/commit/a218611fc0b0828b9630ea3e4d10a247fe019dfa))
+* suspense loading has been renamed to disabled ([3522105](https://github.com/zthun/fashion/commit/3522105ab290a12d1247f8eebbfbafda9f25cf1b))
+* suspense progress no longer uses mui ([40da57a](https://github.com/zthun/fashion/commit/40da57ad3f21ec23287a211b49616ae8e73a77d3))
+
+
+
 ## [4.0.0](https://github.com/zthun/fashion/compare/v3.2.3...v4.0.0) (2024-09-12)
 
 

@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.0](https://github.com/zthun/fashion/compare/v4.0.0...v5.0.0) (2024-09-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* overline is now button text
+* card demo no longer needs image
+* card page no longer has support for internal loading
+* button no longer supports an internal loading state
+
+### Features
+
+* card demo no longer needs image ([dd30a0d](https://github.com/zthun/fashion/commit/dd30a0ddcb5e6cdf79ea9485a212a9505eea5acb))
+
+
+### Bug Fixes
+
+* box sizing for boutique page is now correct ([48c0f29](https://github.com/zthun/fashion/commit/48c0f293df2564a2cd9ec279f00e79faaf2ad1a4))
+
+
+### Code Refactoring
+
+* button no longer supports an internal loading state ([05781d9](https://github.com/zthun/fashion/commit/05781d957fa408cd12b08d9c25cc3240f3b9317a))
+* card page no longer has support for internal loading ([e08e796](https://github.com/zthun/fashion/commit/e08e79640215ab7b0a5089072c253b693c097758))
+* overline is now button text ([a218611](https://github.com/zthun/fashion/commit/a218611fc0b0828b9630ea3e4d10a247fe019dfa))
+
+
+
 ## [4.0.0](https://github.com/zthun/fashion/compare/v3.2.3...v4.0.0) (2024-09-12)
 
 
