@@ -48,6 +48,7 @@ export function ZContentTitle(props: IZContentTitle) {
 
   return (
     <ZStack
+      align={{ items: "center" }}
       className={cssJoinDefined("ZContentTitle-root", className)}
       orientation={ZOrientation.Horizontal}
       gap={ZSizeFixed.Small}
