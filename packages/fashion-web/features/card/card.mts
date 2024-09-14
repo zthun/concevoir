@@ -26,11 +26,8 @@ Then(
   async function (this: ZFashionWorld<ZCardPageComponentModel>, color: string) {
     const { page } = this.parameters;
     const card = await page.card();
-    const image = await page.image();
-    const cardFashion = await card.fashion();
-    const imageFashion = await image.fashion();
+    const actual = await card.fashion();
 
-    assert.equal(cardFashion, color);
-    assert.equal(imageFashion, color);
+    assert.equal(actual, color);
   },
 );

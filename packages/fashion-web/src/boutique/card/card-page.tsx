@@ -2,10 +2,10 @@ import {
   ZBox,
   ZButton,
   ZCard,
-  ZGrid,
   ZH3,
   ZIconFontAwesome,
   ZParagraph,
+  ZStack,
   useFashionTheme,
 } from "@zthun/fashion-boutique";
 import { ZSizeFixed, ZSizeVaried } from "@zthun/fashion-tailor";
@@ -31,7 +31,7 @@ const LOREM =
  * @returns The JSX to render the alerts demo page.
  */
 export function ZCardPage() {
-  const { success } = useFashionTheme();
+  const { success, opposite } = useFashionTheme();
   const [fashion, fashionName, setFashion] = useFashionState(
     ZFashionArea.Component,
   );
@@ -57,9 +57,10 @@ export function ZCardPage() {
           experiences for your users.
         </ZParagraph>
 
-        <ZGrid
-          columns={{ xl: "1fr 1fr 1fr", md: "1fr" }}
-          gap={ZSizeFixed.Small}
+        <ZBox
+          padding={ZSizeFixed.ExtraSmall}
+          fashion={opposite}
+          width={ZSizeVaried.Fit}
         >
           <ZCard
             name="card"
@@ -74,23 +75,35 @@ export function ZCardPage() {
                 fashion={success}
               />
             }
+            width={{
+              xl: ZSizeFixed.ExtraLarge,
+              lg: ZSizeFixed.Large,
+              md: ZSizeFixed.Medium,
+              sm: ZSizeFixed.Small,
+              xs: ZSizeFixed.ExtraSmall,
+            }}
+            height={{
+              xl: ZSizeFixed.ExtraLarge,
+              lg: ZSizeFixed.Large,
+              md: ZSizeFixed.Medium,
+              sm: ZSizeFixed.Small,
+              xs: ZSizeFixed.ExtraSmall,
+            }}
           >
             <ZParagraph compact>{LOREM}</ZParagraph>
           </ZCard>
-        </ZGrid>
+        </ZBox>
       </ZBox>
 
-      <ZBox padding={{ bottom: ZSizeFixed.Large }}>
-        <ZH3>Options</ZH3>
+      <ZStack gap={ZSizeFixed.Large}>
+        <ZH3 compact>Options</ZH3>
 
-        <ZGrid gap={ZSizeFixed.Medium}>
-          <ZChoiceDropDownFashion
-            value={fashionName}
-            onValueChange={setFashion}
-            name="fashion"
-          />
-        </ZGrid>
-      </ZBox>
+        <ZChoiceDropDownFashion
+          value={fashionName}
+          onValueChange={setFashion}
+          name="fashion"
+        />
+      </ZStack>
     </ZCard>
   );
 }
