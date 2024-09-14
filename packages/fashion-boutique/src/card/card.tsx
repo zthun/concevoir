@@ -88,7 +88,7 @@ export function ZCard(props: IZCard) {
     }
 
     > .ZCard-content {
-      padding: 0 ${tailor.gap(ZSizeFixed.Small)};
+      padding: ${tailor.gap(ZSizeFixed.Small)};
     }
 
     > .ZCard-footer {
