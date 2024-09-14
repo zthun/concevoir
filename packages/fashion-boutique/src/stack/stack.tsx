@@ -56,10 +56,6 @@ export function ZStack(props: IZStack) {
         flexWrap: wrap,
       }}
       {...pickDataAttributes(props)}
-      data-align-content={align?.content}
-      data-align-items={align?.items}
-      data-justify-content={justify?.content}
-      data-justify-items={justify?.items}
       data-orientation={orientation}
       data-name={name}
       data-inline={inline}
