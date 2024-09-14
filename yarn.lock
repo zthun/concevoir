@@ -3629,17 +3629,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/helpful-fn@npm:^6.0.0, @zthun/helpful-fn@npm:^6.2.0":
-  version: 6.2.0
-  resolution: "@zthun/helpful-fn@npm:6.2.0"
-  dependencies:
-    lodash-es: "npm:^4.17.21"
-    uuid: "npm:^10.0.0"
-  checksum: e48ce1667ebe4cb8c3c4330b6aa27e26bec2ce5535583f4538171014c09824816b2a0b3f35bc20a418c6d2904dc871fd6b0c62f9fced19c27cd50af3b54f6234
-  languageName: node
-  linkType: hard
-
-"@zthun/helpful-fn@npm:^6.3.0":
+"@zthun/helpful-fn@npm:^6.0.0, @zthun/helpful-fn@npm:^6.3.0":
   version: 6.3.0
   resolution: "@zthun/helpful-fn@npm:6.3.0"
   dependencies:
@@ -3648,17 +3638,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/helpful-query@npm:^6.0.0, @zthun/helpful-query@npm:^6.2.0":
-  version: 6.2.0
-  resolution: "@zthun/helpful-query@npm:6.2.0"
-  dependencies:
-    "@zthun/helpful-fn": "npm:^6.2.0"
-    lodash-es: "npm:^4.17.21"
-  checksum: 426551f431def981572a14f636d6c074a1659e3e2788117dfb14d1988f9723efb53f95a51325e9d8b19f482a4bfa84ee547a79cb8b607c1faa1188f0b9350cda
-  languageName: node
-  linkType: hard
-
-"@zthun/helpful-query@npm:^6.3.0":
+"@zthun/helpful-query@npm:^6.0.0, @zthun/helpful-query@npm:^6.3.0":
   version: 6.3.0
   resolution: "@zthun/helpful-query@npm:6.3.0"
   dependencies:
@@ -3668,26 +3648,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/helpful-react@npm:^6.0.0":
-  version: 6.2.0
-  resolution: "@zthun/helpful-react@npm:6.2.0"
-  dependencies:
-    "@zthun/helpful-fn": "npm:^6.2.0"
-    "@zthun/helpful-query": "npm:^6.2.0"
-    lodash-es: "npm:^4.17.21"
-    rxjs: "npm:^7.8.1"
-  peerDependencies:
-    react: ^18.3.1
-    react-dom: ^18.3.1
-    rxjs: ^7.8.1
-  peerDependenciesMeta:
-    rxjs:
-      optional: true
-  checksum: 79f0c1b34d1e29d10106f8070048fce75d0d6b52f90df9d77acf0cb456ebbe456a28f3c2f0937a18b0ddc0fc2020efef7c3e25a27d14c1c9ca8d0b9e78d29620
-  languageName: node
-  linkType: hard
-
-"@zthun/helpful-react@npm:^6.3.0":
+"@zthun/helpful-react@npm:^6.0.0, @zthun/helpful-react@npm:^6.3.0":
   version: 6.3.0
   resolution: "@zthun/helpful-react@npm:6.3.0"
   dependencies:
