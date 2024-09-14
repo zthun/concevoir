@@ -69,6 +69,7 @@ export function Typography(props: IZTypography) {
     size,
     transform,
     weight,
+    ...dom
   } = props;
 
   const picker = new ZColorPicker(firstDefined(inherit, fashion));
@@ -113,7 +114,7 @@ export function Typography(props: IZTypography) {
 
   return (
     <Element
-      {...props}
+      {...dom}
       className={cssJoinDefined("ZTypography-root", className, _className)}
       data-compact={compact}
       data-fashion={fashion?.name}
