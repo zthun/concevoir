@@ -24,14 +24,16 @@ export function ZPopupPage() {
   return (
     <ZCard
       className="ZPopupPage-root"
-      heading={ZFashionRoutePopup.name}
-      subHeading={ZFashionRoutePopup.description}
-      avatar={
-        <ZIconFontAwesome
-          name={ZFashionRoutePopup.avatar}
-          width={ZSizeFixed.Medium}
-        />
-      }
+      TitleProps={{
+        heading: ZFashionRoutePopup.name,
+        subHeading: ZFashionRoutePopup.description,
+        avatar: (
+          <ZIconFontAwesome
+            name={ZFashionRoutePopup.avatar}
+            width={ZSizeFixed.Medium}
+          />
+        ),
+      }}
     >
       <ZH3>Description</ZH3>
 

@@ -35,14 +35,16 @@ export function ZListPage() {
   return (
     <ZCard
       className="ZListPage-root"
-      heading={ZFashionRouteList.name}
-      subHeading={ZFashionRouteList.description}
-      avatar={
-        <ZIconFontAwesome
-          name={ZFashionRouteList.avatar}
-          width={ZSizeFixed.Medium}
-        />
-      }
+      TitleProps={{
+        heading: ZFashionRouteList.name,
+        subHeading: ZFashionRouteList.description,
+        avatar: (
+          <ZIconFontAwesome
+            name={ZFashionRouteList.avatar}
+            width={ZSizeFixed.Medium}
+          />
+        ),
+      }}
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

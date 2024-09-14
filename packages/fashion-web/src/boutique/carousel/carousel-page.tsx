@@ -60,14 +60,16 @@ export function ZCarouselPage() {
   return (
     <ZCard
       className="ZCarouselPage-root"
-      heading={ZFashionRouteCarousel.name}
-      subHeading={ZFashionRouteCarousel.description}
-      avatar={
-        <ZIconFontAwesome
-          name={ZFashionRouteCarousel.avatar}
-          width={ZSizeFixed.Medium}
-        />
-      }
+      TitleProps={{
+        heading: ZFashionRouteCarousel.name,
+        subHeading: ZFashionRouteCarousel.description,
+        avatar: (
+          <ZIconFontAwesome
+            name={ZFashionRouteCarousel.avatar}
+            width={ZSizeFixed.Medium}
+          />
+        ),
+      }}
     >
       <ZBox padding={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

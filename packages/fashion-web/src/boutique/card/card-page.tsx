@@ -39,14 +39,16 @@ export function ZCardPage() {
   return (
     <ZCard
       className="ZCardPage-root"
-      heading={ZFashionRouteCard.name}
-      subHeading={ZFashionRouteCard.description}
-      avatar={
-        <ZIconFontAwesome
-          name={ZFashionRouteCard.avatar}
-          width={ZSizeFixed.Medium}
-        />
-      }
+      TitleProps={{
+        heading: ZFashionRouteCard.name,
+        subHeading: ZFashionRouteCard.description,
+        avatar: (
+          <ZIconFontAwesome
+            name={ZFashionRouteCard.avatar}
+            width={ZSizeFixed.Medium}
+          />
+        ),
+      }}
     >
       <ZBox padding={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>
@@ -64,10 +66,14 @@ export function ZCardPage() {
         >
           <ZCard
             name="card"
-            heading="Header"
-            subHeading="Sub Header"
+            TitleProps={{
+              heading: "Header",
+              subHeading: "Sub Header",
+              avatar: (
+                <ZIconFontAwesome name="mask" width={ZSizeFixed.Medium} />
+              ),
+            }}
             fashion={fashion}
-            avatar={<ZIconFontAwesome name="mask" width={ZSizeFixed.Medium} />}
             footer={
               <ZButton
                 label="Footer"

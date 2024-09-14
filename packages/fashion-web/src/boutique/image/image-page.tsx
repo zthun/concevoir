@@ -28,14 +28,16 @@ export function ZImagePage() {
   return (
     <ZCard
       className="ZImagePage-root"
-      heading={ZFashionRouteImage.name}
-      subHeading={ZFashionRouteImage.description}
-      avatar={
-        <ZIconFontAwesome
-          name={ZFashionRouteImage.avatar}
-          width={ZSizeFixed.Medium}
-        />
-      }
+      TitleProps={{
+        heading: ZFashionRouteImage.name,
+        subHeading: ZFashionRouteImage.description,
+        avatar: (
+          <ZIconFontAwesome
+            name={ZFashionRouteImage.avatar}
+            width={ZSizeFixed.Medium}
+          />
+        ),
+      }}
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

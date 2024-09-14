@@ -67,14 +67,16 @@ export function ZModalPage() {
   return (
     <ZCard
       className="ZModalPage-root"
-      heading={ZFashionRouteModal.name}
-      subHeading={ZFashionRouteModal.description}
-      avatar={
-        <ZIconFontAwesome
-          name={ZFashionRouteModal.avatar}
-          width={ZSizeFixed.Medium}
-        />
-      }
+      TitleProps={{
+        heading: ZFashionRouteModal.name,
+        subHeading: ZFashionRouteModal.description,
+        avatar: (
+          <ZIconFontAwesome
+            name={ZFashionRouteModal.avatar}
+            width={ZSizeFixed.Medium}
+          />
+        ),
+      }}
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

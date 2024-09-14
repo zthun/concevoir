@@ -28,14 +28,16 @@ export function ZAlertPage() {
   return (
     <ZCard
       className="ZAlertPage-root"
-      heading={ZFashionRouteAlert.name}
-      subHeading={ZFashionRouteAlert.description}
-      avatar={
-        <ZIconFontAwesome
-          name={ZFashionRouteAlert.avatar}
-          width={ZSizeFixed.Medium}
-        />
-      }
+      TitleProps={{
+        heading: ZFashionRouteAlert.name,
+        subHeading: ZFashionRouteAlert.description,
+        avatar: (
+          <ZIconFontAwesome
+            name={ZFashionRouteAlert.avatar}
+            width={ZSizeFixed.Medium}
+          />
+        ),
+      }}
     >
       <ZH3>Description</ZH3>
 

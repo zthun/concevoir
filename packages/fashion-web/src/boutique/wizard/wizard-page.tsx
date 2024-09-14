@@ -38,13 +38,15 @@ export function ZWizardPage() {
     <ZWizard
       className="ZWizardPage-root"
       CardProps={{
-        avatar: (
-          <ZIconFontAwesome
-            name={ZFashionRouteWizard.avatar}
-            family={ZFashionRouteWizard.family}
-            width={ZSizeFixed.Medium}
-          />
-        ),
+        TitleProps: {
+          avatar: (
+            <ZIconFontAwesome
+              name={ZFashionRouteWizard.avatar}
+              family={ZFashionRouteWizard.family}
+              width={ZSizeFixed.Medium}
+            />
+          ),
+        },
         height: ZSizeFixed.ExtraLarge,
       }}
       FinishButtonProps={{

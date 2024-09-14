@@ -59,14 +59,16 @@ export function ZChoicePage() {
   return (
     <ZCard
       className="ZChoicePage-root"
-      heading={ZFashionRouteChoice.name}
-      subHeading={ZFashionRouteChoice.description}
-      avatar={
-        <ZIconFontAwesome
-          name={ZFashionRouteChoice.avatar}
-          width={ZSizeFixed.Medium}
-        />
-      }
+      TitleProps={{
+        heading: ZFashionRouteChoice.name,
+        subHeading: ZFashionRouteChoice.description,
+        avatar: (
+          <ZIconFontAwesome
+            name={ZFashionRouteChoice.avatar}
+            width={ZSizeFixed.Medium}
+          />
+        ),
+      }}
     >
       <ZBox padding={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

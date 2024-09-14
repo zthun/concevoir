@@ -35,14 +35,16 @@ export function ZBubblePage() {
   return (
     <ZCard
       className="ZBubblePage-root"
-      heading={ZFashionRouteButton.name}
-      subHeading={ZFashionRouteButton.description}
-      avatar={
-        <ZIconFontAwesome
-          name={ZFashionRouteButton.avatar}
-          width={ZSizeFixed.Medium}
-        />
-      }
+      TitleProps={{
+        heading: ZFashionRouteButton.name,
+        subHeading: ZFashionRouteButton.description,
+        avatar: (
+          <ZIconFontAwesome
+            name={ZFashionRouteButton.avatar}
+            width={ZSizeFixed.Medium}
+          />
+        ),
+      }}
     >
       <ZBox padding={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

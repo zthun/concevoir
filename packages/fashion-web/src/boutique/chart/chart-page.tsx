@@ -19,14 +19,16 @@ export function ZChartPage() {
   return (
     <ZCard
       className="ZChartPage-root"
-      heading={ZFashionRouteChart.name}
-      subHeading={ZFashionRouteChart.description}
-      avatar={
-        <ZIconFontAwesome
-          name={ZFashionRouteChart.avatar}
-          width={ZSizeFixed.Medium}
-        />
-      }
+      TitleProps={{
+        heading: ZFashionRouteChart.name,
+        subHeading: ZFashionRouteChart.description,
+        avatar: (
+          <ZIconFontAwesome
+            name={ZFashionRouteChart.avatar}
+            width={ZSizeFixed.Medium}
+          />
+        ),
+      }}
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

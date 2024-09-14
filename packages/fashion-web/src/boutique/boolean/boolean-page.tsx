@@ -32,14 +32,16 @@ export function ZBooleanPage() {
   return (
     <ZCard
       className="ZBooleanPage-root"
-      heading={ZFashionRouteBoolean.name}
-      subHeading={ZFashionRouteBoolean.description}
-      avatar={
-        <ZIconFontAwesome
-          name={ZFashionRouteBoolean.avatar}
-          width={ZSizeFixed.Medium}
-        />
-      }
+      TitleProps={{
+        heading: ZFashionRouteBoolean.name,
+        subHeading: ZFashionRouteBoolean.description,
+        avatar: (
+          <ZIconFontAwesome
+            name={ZFashionRouteBoolean.avatar}
+            width={ZSizeFixed.Medium}
+          />
+        ),
+      }}
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

@@ -25,14 +25,16 @@ export function ZNumberPage() {
   return (
     <ZCard
       className="ZNumberPage-root"
-      heading={ZFashionRouteNumber.name}
-      subHeading={ZFashionRouteNumber.description}
-      avatar={
-        <ZIconFontAwesome
-          name={ZFashionRouteNumber.avatar}
-          width={ZSizeFixed.Medium}
-        />
-      }
+      TitleProps={{
+        heading: ZFashionRouteNumber.name,
+        subHeading: ZFashionRouteNumber.description,
+        avatar: (
+          <ZIconFontAwesome
+            name={ZFashionRouteNumber.avatar}
+            width={ZSizeFixed.Medium}
+          />
+        ),
+      }}
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

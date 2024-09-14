@@ -33,14 +33,16 @@ export function ZThemePage() {
   return (
     <ZCard
       className="ZThemePage-root"
-      heading={ZFashionRouteTheme.name}
-      subHeading={ZFashionRouteTheme.description}
-      avatar={
-        <ZIconFontAwesome
-          name={ZFashionRouteTheme.avatar}
-          width={ZSizeFixed.Medium}
-        />
-      }
+      TitleProps={{
+        heading: ZFashionRouteTheme.name,
+        subHeading: ZFashionRouteTheme.description,
+        avatar: (
+          <ZIconFontAwesome
+            name={ZFashionRouteTheme.avatar}
+            width={ZSizeFixed.Medium}
+          />
+        ),
+      }}
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

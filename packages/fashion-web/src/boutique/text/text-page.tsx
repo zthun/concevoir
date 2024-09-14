@@ -37,14 +37,16 @@ export function ZTextPage() {
   return (
     <ZCard
       className="ZTextPage-root"
-      heading={ZFashionRouteText.name}
-      subHeading={ZFashionRouteText.description}
-      avatar={
-        <ZIconFontAwesome
-          name={ZFashionRouteText.avatar}
-          width={ZSizeFixed.Medium}
-        />
-      }
+      TitleProps={{
+        heading: ZFashionRouteText.name,
+        subHeading: ZFashionRouteText.description,
+        avatar: (
+          <ZIconFontAwesome
+            name={ZFashionRouteText.avatar}
+            width={ZSizeFixed.Medium}
+          />
+        ),
+      }}
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

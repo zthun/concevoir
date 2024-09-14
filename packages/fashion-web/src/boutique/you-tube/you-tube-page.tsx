@@ -19,15 +19,17 @@ export function ZYouTubePage() {
   return (
     <ZCard
       className="ZYouTubePage-root"
-      heading={ZFashionRouteYouTube.name}
-      subHeading={ZFashionRouteYouTube.description}
-      avatar={
-        <ZIconFontAwesome
-          name={ZFashionRouteYouTube.avatar}
-          family={ZFashionRouteYouTube.family}
-          width={ZSizeFixed.Medium}
-        />
-      }
+      TitleProps={{
+        heading: ZFashionRouteYouTube.name,
+        subHeading: ZFashionRouteYouTube.description,
+        avatar: (
+          <ZIconFontAwesome
+            name={ZFashionRouteYouTube.avatar}
+            family={ZFashionRouteYouTube.family}
+            width={ZSizeFixed.Medium}
+          />
+        ),
+      }}
     >
       <ZH3>Description</ZH3>
 

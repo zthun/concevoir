@@ -30,14 +30,16 @@ export function ZTypographyPage() {
   return (
     <ZCard
       className="ZTypographyPage-root"
-      heading={ZFashionRouteTypography.name}
-      subHeading={ZFashionRouteTypography.description}
-      avatar={
-        <ZIconFontAwesome
-          name={ZFashionRouteTypography.avatar}
-          width={ZSizeFixed.Medium}
-        />
-      }
+      TitleProps={{
+        heading: ZFashionRouteTypography.name,
+        subHeading: ZFashionRouteTypography.description,
+        avatar: (
+          <ZIconFontAwesome
+            name={ZFashionRouteTypography.avatar}
+            width={ZSizeFixed.Medium}
+          />
+        ),
+      }}
     >
       <ZH3>Description</ZH3>
 

@@ -34,8 +34,10 @@ export function ZHomePage() {
     >
       <ZCard
         width={ZSizeFixed.ExtraLarge}
-        heading={ZFashionRouteTheme.name}
-        subHeading={ZFashionRouteTheme.description}
+        TitleProps={{
+          heading: ZFashionRouteTheme.name,
+          subHeading: ZFashionRouteTheme.description,
+        }}
         footer={renderGetStarted("theme")}
       >
         <ZBox
@@ -76,8 +78,10 @@ export function ZHomePage() {
 
       <ZCard
         width={ZSizeFixed.ExtraLarge}
-        heading={ZFashionRouteBoutique.name}
-        subHeading={ZFashionRouteBoutique.description}
+        TitleProps={{
+          heading: ZFashionRouteBoutique.name,
+          subHeading: ZFashionRouteBoutique.description,
+        }}
         footer={renderGetStarted("boutique")}
       >
         <ZBox

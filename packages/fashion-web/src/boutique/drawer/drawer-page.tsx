@@ -40,14 +40,16 @@ export function ZDrawerPage() {
   return (
     <ZCard
       className="ZDrawerPage-root"
-      heading={ZFashionRouteDrawer.name}
-      subHeading={ZFashionRouteDrawer.description}
-      avatar={
-        <ZIconFontAwesome
-          name={ZFashionRouteDrawer.avatar}
-          width={ZSizeFixed.Medium}
-        />
-      }
+      TitleProps={{
+        heading: ZFashionRouteDrawer.name,
+        subHeading: ZFashionRouteDrawer.description,
+        avatar: (
+          <ZIconFontAwesome
+            name={ZFashionRouteDrawer.avatar}
+            width={ZSizeFixed.Medium}
+          />
+        ),
+      }}
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

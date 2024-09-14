@@ -59,14 +59,16 @@ export function ZBoutiquePage() {
   return (
     <ZCard
       className="ZBoutiquePage-root"
-      heading={ZFashionRouteBoutique.name}
-      subHeading={ZFashionRouteBoutique.description}
-      avatar={
-        <ZIconFontAwesome
-          name={ZFashionRouteBoutique.avatar}
-          width={ZSizeFixed.Medium}
-        />
-      }
+      TitleProps={{
+        heading: ZFashionRouteBoutique.name,
+        subHeading: ZFashionRouteBoutique.description,
+        avatar: (
+          <ZIconFontAwesome
+            name={ZFashionRouteBoutique.avatar}
+            width={ZSizeFixed.Medium}
+          />
+        ),
+      }}
     >
       <ZGrid
         columns={{

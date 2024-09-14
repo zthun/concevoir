@@ -28,14 +28,16 @@ export function ZSuspensePage() {
   return (
     <ZCard
       className="ZSuspensePage-root"
-      heading={ZFashionRouteSuspense.name}
-      subHeading={ZFashionRouteSuspense.description}
-      avatar={
-        <ZIconFontAwesome
-          name={ZFashionRouteSuspense.avatar}
-          width={ZSizeFixed.Medium}
-        />
-      }
+      TitleProps={{
+        heading: ZFashionRouteSuspense.name,
+        subHeading: ZFashionRouteSuspense.description,
+        avatar: (
+          <ZIconFontAwesome
+            name={ZFashionRouteSuspense.avatar}
+            width={ZSizeFixed.Medium}
+          />
+        ),
+      }}
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>

@@ -45,8 +45,10 @@ export function ZGridViewPage() {
   const renderItem = (item: IZBrand) => (
     <ZCard
       key={item.id}
-      heading={item.name}
-      avatar={<ZIconFontAwesome name="hashtag" />}
+      TitleProps={{
+        heading: item.name,
+        avatar: <ZIconFontAwesome name="hashtag" />,
+      }}
       fashion={component}
     >
       <ZStack
@@ -71,14 +73,16 @@ export function ZGridViewPage() {
   return (
     <ZCard
       className="ZGridViewPage-root"
-      heading={ZFashionRouteGridView.name}
-      subHeading={ZFashionRouteGridView.description}
-      avatar={
-        <ZIconFontAwesome
-          name={ZFashionRouteGridView.avatar}
-          width={ZSizeFixed.Medium}
-        />
-      }
+      TitleProps={{
+        heading: ZFashionRouteGridView.name,
+        subHeading: ZFashionRouteGridView.description,
+        avatar: (
+          <ZIconFontAwesome
+            name={ZFashionRouteGridView.avatar}
+            width={ZSizeFixed.Medium}
+          />
+        ),
+      }}
     >
       <ZBox margin={{ bottom: ZSizeFixed.Large }}>
         <ZH3>Description</ZH3>
