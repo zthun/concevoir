@@ -13,7 +13,7 @@ import {
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { ZOrientation } from "@zthun/helpful-fn";
 import { useState } from "react";
-import { ZFashionRouteButton } from "../../routes.mjs";
+import { ZFashionRouteBubble } from "../../routes.mjs";
 import { ZChoiceDropDownFashion } from "../common/choice-drop-down-fashion";
 import { ZChoiceDropDownSize } from "../common/choice-drop-down-size";
 import { useFashionState } from "../common/use-fashion-state.mjs";
@@ -36,11 +36,11 @@ export function ZBubblePage() {
     <ZCard
       className="ZBubblePage-root"
       TitleProps={{
-        heading: ZFashionRouteButton.name,
-        subHeading: ZFashionRouteButton.description,
+        heading: ZFashionRouteBubble.name,
+        subHeading: ZFashionRouteBubble.description,
         avatar: (
           <ZIconFontAwesome
-            name={ZFashionRouteButton.avatar}
+            name={ZFashionRouteBubble.avatar}
             width={ZSizeFixed.Medium}
           />
         ),
