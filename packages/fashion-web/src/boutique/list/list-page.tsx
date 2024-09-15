@@ -71,7 +71,6 @@ export function ZListPage() {
               <ZContentTitle
                 heading={<ZH4 compact>Alpha</ZH4>}
                 subHeading={<ZCaption compact>The first of a series</ZCaption>}
-                avatar={<ZIconFontAwesome name="a" />}
                 suffix={suffix}
               />
             </ZListItem>
@@ -79,7 +78,6 @@ export function ZListPage() {
               <ZContentTitle
                 heading={<ZH4 compact>Beta</ZH4>}
                 subHeading={<ZCaption compact>The second of a series</ZCaption>}
-                avatar={<ZIconFontAwesome name="b" width={ZSizeFixed.Small} />}
               />
             </ZListItem>
             <ZListItem name="charlie">
@@ -88,7 +86,6 @@ export function ZListPage() {
                 subHeading={
                   <ZCaption compact>He inherited a chocolate factory</ZCaption>
                 }
-                avatar={<ZIconFontAwesome name="c" width={ZSizeFixed.Small} />}
               />
             </ZListItem>
             <ZListItem compact>
@@ -108,7 +105,6 @@ export function ZListPage() {
                 subHeading={
                   <ZCaption compact>A finite increment in a variable</ZCaption>
                 }
-                avatar={<ZIconFontAwesome name="d" />}
                 suffix={suffix}
               />
             </ZListItem>
@@ -121,7 +117,6 @@ export function ZListPage() {
               <ZContentTitle
                 heading={<ZH4 compact>Echo</ZH4>}
                 subHeading={<ZCaption compact>Repetition of a sound</ZCaption>}
-                avatar={<ZIconFontAwesome name="e" />}
                 suffix={suffix}
               />
             </ZListItem>
@@ -134,7 +129,6 @@ export function ZListPage() {
               <ZContentTitle
                 heading={<ZH4 compact>Foxtrot</ZH4>}
                 subHeading={<ZCaption compact>A ballroom dance</ZCaption>}
-                avatar={<ZIconFontAwesome name="f" />}
                 suffix={suffix}
               />
             </ZListItem>
