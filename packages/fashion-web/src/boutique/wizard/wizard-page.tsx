@@ -4,9 +4,10 @@ import {
   ZBubble,
   ZGrid,
   ZH4,
+  ZH6,
   ZIconFontAwesome,
   ZList,
-  ZListGroup,
+  ZListItem,
   ZParagraph,
   ZStack,
   ZWizard,
@@ -95,7 +96,9 @@ export function ZWizardPage() {
         data-description="Some general guidelines"
       >
         <ZList>
-          <ZListGroup heading="Do" />
+          <ZListItem compact>
+            <ZH6>Do</ZH6>
+          </ZListItem>
           <ZGrid columns="auto 1fr" align={{ items: "center" }}>
             {yes}
             <ZParagraph compact>
@@ -118,7 +121,9 @@ export function ZWizardPage() {
             </ZParagraph>
           </ZGrid>
 
-          <ZListGroup heading="Don't" />
+          <ZListItem compact>
+            <ZH6>Don&apos;t</ZH6>
+          </ZListItem>
 
           <ZGrid columns="auto 1fr" align={{ items: "center" }}>
             {no}
