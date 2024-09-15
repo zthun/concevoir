@@ -144,7 +144,7 @@ export const ZH2 = ({ className, ...props }: IZTypographyNamed) => (
     {...props}
     className={cssJoinDefined("ZH2-root", className)}
     size={ZSizeFixed.Large}
-    weight="bold"
+    weight="black"
   />
 );
 
@@ -153,8 +153,8 @@ export const ZH3 = ({ className, ...props }: IZTypographyNamed) => (
     Element="h3"
     {...props}
     className={cssJoinDefined("ZH3-root", className)}
-    size={ZSizeFixed.Large}
-    weight="regular"
+    size={ZSizeFixed.Medium}
+    weight="black"
   />
 );
 
@@ -164,7 +164,7 @@ export const ZH4 = ({ className, ...props }: IZTypographyNamed) => (
     {...props}
     className={cssJoinDefined("ZH4-root", className)}
     size={ZSizeFixed.Medium}
-    weight="black"
+    weight="medium"
   />
 );
 
@@ -175,7 +175,7 @@ export const ZH5 = ({ className, ...props }: IZTypographyNamed) => (
     className={cssJoinDefined("ZH5-root", className)}
     size={ZSizeFixed.Small}
     transform="uppercase"
-    weight="black"
+    weight="bold"
   />
 );
 
