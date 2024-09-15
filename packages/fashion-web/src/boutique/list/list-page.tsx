@@ -3,12 +3,14 @@ import {
   ZBox,
   ZCaption,
   ZCard,
+  ZContentTitle,
   ZDivider,
   ZH3,
+  ZH4,
+  ZH6,
   ZIconFontAwesome,
   ZList,
-  ZListGroup,
-  ZListLineItem,
+  ZListItem,
   ZParagraph,
 } from "@zthun/fashion-boutique";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
@@ -25,12 +27,13 @@ export function ZListPage() {
   const { body } = useFashionTheme();
   const [count, setCount] = useState(0);
 
-  const prefix = <ZIconFontAwesome name="mask" width={ZSizeFixed.Small} />;
   const suffix = (
     <ZIconFontAwesome name="magnifying-glass" width={ZSizeFixed.Small} />
   );
 
-  const incrementCount = () => setCount((c) => c + 1);
+  const incrementCount = () => {
+    setCount((c) => c + 1);
+  };
 
   return (
     <ZCard
@@ -52,47 +55,89 @@ export function ZListPage() {
         <ZParagraph>
           Lists help with displaying arrays and collections of data. You can
           think of a list component as an unordered list (&lt;ul&gt;) in html.
-          The most basic kind of list item comes in the form of a line item. A
-          line item is a basic 0-1-0 flex container that shows an avatar, a text
-          header with a sub header, and an end adornment.
-        </ZParagraph>
-
-        <ZParagraph>
-          Line items can be clickable or readonly and this can be toggled by
-          simply setting or not setting the onClick event to a truthy or falsy
-          value respectively.
         </ZParagraph>
 
         <ZBox fashion={body} border={{ width: ZSizeFixed.ExtraSmall }}>
           <ZList>
-            <ZListGroup heading="Without Click Support" />
-            <ZListLineItem
-              prefix={prefix}
-              name="avatar-and-text"
-              heading="Prefix and Text (No Click)"
-            />
-            <ZListLineItem
-              prefix={prefix}
-              name="avatar-text-and-adornment"
-              heading="Prefix, Text, and Suffix (No Click)"
-              suffix={suffix}
-            />
-            <ZDivider />
-            <ZListGroup heading="With Click Support"></ZListGroup>
-            <ZListLineItem
-              prefix={prefix}
-              suffix={suffix}
-              name="everything"
-              heading="Line Item Everything"
-              subHeading="Line item with header, sub header, prefix, and suffix"
+            <ZListItem compact>
+              <ZH6>Alpha - Charlie</ZH6>
+            </ZListItem>
+            <ZListItem
+              cursor="pointer"
+              name="alpha"
+              interactive
               onClick={incrementCount}
-            />
-            <ZListLineItem
-              name="text-only"
-              heading="Text only line item"
-              subHeading="Line item with just text"
+            >
+              <ZContentTitle
+                heading={<ZH4 compact>Alpha</ZH4>}
+                subHeading={<ZCaption compact>The first of a series</ZCaption>}
+                avatar={<ZIconFontAwesome name="a" />}
+                suffix={suffix}
+              />
+            </ZListItem>
+            <ZListItem name="beta">
+              <ZContentTitle
+                heading={<ZH4 compact>Beta</ZH4>}
+                subHeading={<ZCaption compact>The second of a series</ZCaption>}
+                avatar={<ZIconFontAwesome name="b" width={ZSizeFixed.Small} />}
+              />
+            </ZListItem>
+            <ZListItem name="charlie">
+              <ZContentTitle
+                heading={<ZH4 compact>Charlie</ZH4>}
+                subHeading={
+                  <ZCaption compact>He inherited a chocolate factory</ZCaption>
+                }
+                avatar={<ZIconFontAwesome name="c" width={ZSizeFixed.Small} />}
+              />
+            </ZListItem>
+            <ZListItem compact>
+              <ZDivider compact />
+            </ZListItem>
+            <ZListItem compact>
+              <ZH6>Delta - Foxtrot</ZH6>
+            </ZListItem>
+            <ZListItem
+              cursor="pointer"
+              name="delta"
+              interactive
               onClick={incrementCount}
-            />
+            >
+              <ZContentTitle
+                heading={<ZH4 compact>Delta</ZH4>}
+                subHeading={
+                  <ZCaption compact>A finite increment in a variable</ZCaption>
+                }
+                avatar={<ZIconFontAwesome name="d" />}
+                suffix={suffix}
+              />
+            </ZListItem>
+            <ZListItem
+              cursor="pointer"
+              name="echo"
+              interactive
+              onClick={incrementCount}
+            >
+              <ZContentTitle
+                heading={<ZH4 compact>Echo</ZH4>}
+                subHeading={<ZCaption compact>Repetition of a sound</ZCaption>}
+                avatar={<ZIconFontAwesome name="e" />}
+                suffix={suffix}
+              />
+            </ZListItem>
+            <ZListItem
+              cursor="pointer"
+              name="foxtrot"
+              interactive
+              onClick={incrementCount}
+            >
+              <ZContentTitle
+                heading={<ZH4 compact>Foxtrot</ZH4>}
+                subHeading={<ZCaption compact>A ballroom dance</ZCaption>}
+                avatar={<ZIconFontAwesome name="f" />}
+                suffix={suffix}
+              />
+            </ZListItem>
           </ZList>
         </ZBox>
 
