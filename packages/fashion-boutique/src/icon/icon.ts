@@ -40,6 +40,7 @@ export function useIconStyles(props: IZIcon) {
       color: ${picker.idle.main};
       cursor: ${onClick ? "pointer" : "inherit"};
       font-size: ${IconSizeChart[_width.xl]};
+      min-width: ${IconSizeChart[_width.xl]};
     }
 
     &:hover {
