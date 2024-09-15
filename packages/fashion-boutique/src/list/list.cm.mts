@@ -1,10 +1,6 @@
 import { ZCircusComponentModel } from "@zthun/cirque";
 import { ZListItemComponentModel } from "./list-item.cm.mjs";
 
-export type ZListItemConstructor<T> = new (
-  originator: ZListItemComponentModel,
-) => T;
-
 /**
  * Represents a component model for a list.
  */
