@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.0](https://github.com/zthun/fashion/compare/v5.0.0...v6.0.0) (2024-09-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* list line item has been consolidated into list item
+* list group has been consolidated into list item
+* list divider is now simply divider
+
+### Features
+
+* list group has been consolidated into list item ([f036e1e](https://github.com/zthun/fashion/commit/f036e1e535d5d1548f76ce50d99988e895936786))
+* list item is now the sole child of a list component ([471c55e](https://github.com/zthun/fashion/commit/471c55e265ead1730150797bad7fac2b7e41dbe6))
+* list line item has been consolidated into list item ([a67885a](https://github.com/zthun/fashion/commit/a67885afe2f3ec8f136a6cdfe64e8d57227b1cba))
+
+
+### Bug Fixes
+
+* icon now has a min width that matches the icon font size ([fd7cffe](https://github.com/zthun/fashion/commit/fd7cffe96752edb9c5f47592cb18130be83a1c64))
+
+
+### Code Refactoring
+
+* list divider is now simply divider ([8ba8fa7](https://github.com/zthun/fashion/commit/8ba8fa723e31098b91a1f90e2daeb265cc810cc3))
+
+
+
 ## [5.0.0](https://github.com/zthun/fashion/compare/v4.0.0...v5.0.0) (2024-09-14)
 
 

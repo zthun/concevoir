@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.0](https://github.com/zthun/fashion/compare/v5.0.0...v6.0.0) (2024-09-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* list divider is now simply divider
+
+### Code Refactoring
+
+* list divider is now simply divider ([8ba8fa7](https://github.com/zthun/fashion/commit/8ba8fa723e31098b91a1f90e2daeb265cc810cc3))
+
+
+
 ## [5.0.0](https://github.com/zthun/fashion/compare/v4.0.0...v5.0.0) (2024-09-14)
 
 
