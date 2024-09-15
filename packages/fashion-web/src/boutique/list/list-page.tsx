@@ -3,10 +3,10 @@ import {
   ZBox,
   ZCaption,
   ZCard,
+  ZDivider,
   ZH3,
   ZIconFontAwesome,
   ZList,
-  ZListDivider,
   ZListGroup,
   ZListLineItem,
   ZParagraph,
@@ -77,7 +77,7 @@ export function ZListPage() {
               heading="Prefix, Text, and Suffix (No Click)"
               suffix={suffix}
             />
-            <ZListDivider />
+            <ZDivider />
             <ZListGroup heading="With Click Support"></ZListGroup>
             <ZListLineItem
               prefix={prefix}
