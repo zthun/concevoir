@@ -9,5 +9,7 @@ Scenario: An alert is opened when the supported list items are clicked
   Then the count should increment on the list demo page
   Examples:
   |item|
-  |everything|
-  |text-only|
+  |alpha|
+  |delta|
+  |echo|
+  |foxtrot|

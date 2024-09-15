@@ -1,5 +1,4 @@
 import { Then, When } from "@cucumber/cucumber";
-import { ZListLineItemComponentModel } from "@zthun/fashion-boutique";
 import assert from "assert";
 import { ZListPageComponentModel } from "../../src/boutique/list/list-page.cm.mjs";
 import { ZFashionRouteBoutique, ZFashionRouteList } from "../../src/routes.mjs";
@@ -19,8 +18,7 @@ When(
     const { page } = this.parameters;
     const list = await page.list();
     const item = await list.item(name);
-    const lineItem = new ZListLineItemComponentModel(item!);
-    await lineItem.click();
+    await item?.click();
   },
 );
 
