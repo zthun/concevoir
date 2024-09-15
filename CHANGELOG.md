@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.1](https://github.com/zthun/fashion/compare/v6.0.0...v6.0.1) (2024-09-15)
+
+
+### Bug Fixes
+
+* bubble page title is now correct ([2405df1](https://github.com/zthun/fashion/commit/2405df179e679ef4eb92911bab395e416ed25cde))
+* remove avatars on list cause they do not line up properly ([bebb0fc](https://github.com/zthun/fashion/commit/bebb0fcfdaf14a59b5ad852074dba6b7dbd20777))
+
+
+### Reverts
+
+* min-width for icon ([2bcc14c](https://github.com/zthun/fashion/commit/2bcc14cfea22ea023b1d75d2dd3a661261431fc9))
+
+
+
 ## [6.0.0](https://github.com/zthun/fashion/compare/v5.0.0...v6.0.0) (2024-09-15)
 
 
