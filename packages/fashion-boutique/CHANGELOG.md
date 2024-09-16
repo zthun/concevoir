@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.2](https://github.com/zthun/fashion/compare/v6.0.1...v6.0.2) (2024-09-16)
+
+
+### Bug Fixes
+
+* list and list item now have correct roles ([cb59947](https://github.com/zthun/fashion/commit/cb599473d79f152b496e19d9cadb9d76f872f422))
+
+
+
 ## [6.0.1](https://github.com/zthun/fashion/compare/v6.0.0...v6.0.1) (2024-09-15)
 
 
