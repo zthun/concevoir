@@ -60,6 +60,7 @@ export function ZList(props: IZList) {
       className={cssJoinDefined("ZList-root", className, _className)}
       data-name={name}
       data-fashion={_fashion.name}
+      role="list"
     >
       {children}
     </ul>

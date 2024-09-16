@@ -44,6 +44,7 @@ export function ZListItem(props: IZListItem) {
       data-name={name}
       data-interactive={interactive}
       tabIndex={interactive ? 0 : undefined}
+      role="listitem"
     >
       {children}
     </li>
