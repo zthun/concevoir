@@ -1,20 +1,25 @@
-import { LinearProgress } from "@mui/material";
+import { css } from "@emotion/css";
 import {
   ZDeviceValues,
   ZSizeFixed,
   createSizeChartFixedArithmetic,
   createSizeChartFixedCss,
 } from "@zthun/fashion-tailor";
+import { ZColorPicker } from "@zthun/fashion-theme";
 import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
 import { useMemo } from "react";
 import { IZComponentHeight } from "../component/component-height.mjs";
 import { ZGrid } from "../grid/grid";
 import { ZLabeled } from "../label/labeled";
-import { createStyleHook } from "../theme/styled";
+import {
+  useFashionDevice,
+  useFashionTailor,
+  useFashionTheme,
+} from "../theme/fashion.mjs";
 import { IZChart } from "./chart.mjs";
 import { IZDataPoint } from "./data-point.mjs";
 
-const progressHeightChart = {
+const HeightChart = {
   ...createSizeChartFixedCss(createSizeChartFixedArithmetic(1, 1), "rem"),
 };
 
@@ -22,33 +27,15 @@ export interface IZChartProgress
   extends IZChart<IZDataPoint>,
     IZComponentHeight<ZSizeFixed> {}
 
-const useChartProgressStyles = createStyleHook(
-  ({ theme, tailor }, props: IZChartProgress) => {
-    const { height, points } = props;
-    const { primary, transparent } = theme;
-    const { fashion = primary } = points;
-    const _height = new ZDeviceValues(height, ZSizeFixed.Medium);
-
-    const border = firstDefined(fashion.idle.main, fashion.idle.border);
-
-    return {
-      bar: {
-        height: progressHeightChart[_height.xl],
-        backgroundColor: transparent.idle.main,
-        border: `${tailor.thickness()} solid ${border}`,
-
-        ".MuiLinearProgress-bar": {
-          backgroundColor: fashion.idle.main,
-        },
-      },
-    };
-  },
-);
-
 export function ZChartProgress(props: IZChartProgress) {
-  const { points, name } = props;
+  const { primary } = useFashionTheme();
+  const device = useFashionDevice();
+  const tailor = useFashionTailor();
+  const { className, points, name, height } = props;
   const { x, y, name: label, fashion } = points;
-  const { classes } = useChartProgressStyles(props);
+  const _height = new ZDeviceValues(height, ZSizeFixed.Medium);
+  const _fashion = firstDefined(primary, fashion);
+  const picker = new ZColorPicker(_fashion);
 
   const _y = useMemo(() => Math.max(y, 0), [y]);
   const _x = useMemo(() => Math.max(x, 0), [x]);
@@ -56,9 +43,52 @@ export function ZChartProgress(props: IZChartProgress) {
 
   const _label = useMemo(() => `${label} (${_x} / ${_y})`, [label, _x, _y]);
 
+  const _className = css`
+    .ZChart-bar {
+      border-color: ${picker.idle.border};
+      border-style: solid;
+      border-width: ${tailor.thickness()};
+      position: relative;
+    }
+
+    .ZChart-point {
+      height: ${HeightChart[_height.xl]};
+      background-color: ${picker.idle.main};
+    }
+
+    ${device.break(ZSizeFixed.Large)} {
+      .ZChart-point {
+        height: ${HeightChart[_height.lg]};
+      }
+    }
+
+    ${device.break(ZSizeFixed.Medium)} {
+      .ZChart-point {
+        height: ${HeightChart[_height.md]};
+      }
+    }
+
+    ${device.break(ZSizeFixed.Small)} {
+      .ZChart-point {
+        height: ${HeightChart[_height.sm]};
+      }
+    }
+
+    ${device.break(ZSizeFixed.ExtraSmall)} {
+      .ZChart-point {
+        height: ${HeightChart[_height.xs]};
+      }
+    }
+  `;
+
   return (
     <div
-      className={cssJoinDefined("ZChart-root", "ZChart-progress")}
+      className={cssJoinDefined(
+        "ZChart-root",
+        "ZChart-progress",
+        className,
+        _className,
+      )}
       data-name={name}
     >
       <ZLabeled label={_label}>
@@ -67,15 +97,17 @@ export function ZChartProgress(props: IZChartProgress) {
           gap={ZSizeFixed.Small}
           align={{ items: "center" }}
         >
-          <LinearProgress
-            className={cssJoinDefined("ZChart-point", classes.bar)}
-            variant="determinate"
-            value={_per}
-            data-x={_x}
-            data-y={_y}
-            data-name={label}
-            data-fashion={fashion?.name}
-          />
+          <section className="ZChart-bar">
+            <div
+              className="ZChart-point"
+              data-value={_per}
+              data-x={_x}
+              data-y={_y}
+              data-name={label}
+              data-fashion={fashion?.name}
+              style={{ width: `${_per}%` }}
+            />
+          </section>
         </ZGrid>
       </ZLabeled>
     </div>
