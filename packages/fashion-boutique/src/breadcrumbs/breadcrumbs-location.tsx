@@ -1,9 +1,11 @@
-import { Breadcrumbs } from "@mui/material";
+import { css } from "@emotion/css";
+import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { cssJoinDefined } from "@zthun/helpful-fn";
-import { useMemo } from "react";
+import { Fragment, useMemo } from "react";
 import { ZLink } from "../link/link";
 import { useLocation } from "../router/router-dom.mjs";
-import { createStyleHook } from "../theme/styled";
+import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
+import { ZParagraph } from "../typography/typography";
 import { IZBreadcrumbs } from "./breadcrumbs.mjs";
 
 /**
@@ -22,12 +24,6 @@ export interface IZBreadcrumbsLocation extends IZBreadcrumbs {
   home?: { name: string; path?: string };
 }
 
-const useBreadcrumbsStyles = createStyleHook(({ theme }) => ({
-  root: {
-    color: theme.body.idle.contrast,
-  },
-}));
-
 /**
  * Represents a breadcrumbs component that uses the current location pathname.
  *
@@ -43,6 +39,8 @@ const useBreadcrumbsStyles = createStyleHook(({ theme }) => ({
  *        The JSX that renders this component.
  */
 export function ZBreadcrumbsLocation(props: IZBreadcrumbsLocation) {
+  const { body } = useFashionTheme();
+  const tailor = useFashionTailor();
   const { className, name, home, onPathSelected } = props;
   const location = useLocation();
   const sections = useMemo(() => {
@@ -61,34 +59,44 @@ export function ZBreadcrumbsLocation(props: IZBreadcrumbsLocation) {
 
     return _home ? [_home, ..._sections] : _sections;
   }, [location, home]);
-  const { classes } = useBreadcrumbsStyles();
 
-  const renderSection = (s: { name: string; path: string }) => {
+  const _className = css`
+    & {
+      color: ${body.idle.contrast};
+      display: flex;
+      flex-wrap: nowrap;
+      gap: ${tailor.gap(ZSizeFixed.ExtraSmall)};
+    }
+  `;
+
+  const renderSection = (s: { name: string; path: string }, index: number) => {
     const href = `#${s.path}`;
 
     return (
-      <ZLink
-        className="ZBreadcrumbs-item"
-        key={s.path}
-        href={href}
-        name={s.path}
-        label={s.name}
-        onClick={() => onPathSelected?.call(null, href)}
-      />
+      <Fragment key={s.path}>
+        <ZLink
+          className="ZBreadcrumbs-item"
+          href={href}
+          label={s.name}
+          name={s.path}
+          onClick={() => onPathSelected?.call(null, href)}
+        />
+        {index < sections.length - 1 && <ZParagraph compact>/</ZParagraph>}
+      </Fragment>
     );
   };
 
   return (
-    <Breadcrumbs
+    <div
       className={cssJoinDefined(
         "ZBreadcrumbs-root",
         "ZBreadcrumbs-location",
-        classes.root,
+        _className,
         className,
       )}
       data-name={name}
     >
       {sections.map(renderSection)}
-    </Breadcrumbs>
+    </div>
   );
 }
