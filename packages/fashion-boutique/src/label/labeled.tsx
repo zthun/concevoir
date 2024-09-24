@@ -8,7 +8,7 @@ import { IZComponentStyle } from "../component/component-style.mjs";
 import { ZStack } from "../stack/stack";
 import { IZLabel, ZLabel } from "./label";
 
-export interface ZLabeled
+export interface IZLabeled
   extends IZComponentName,
     IZComponentLabel,
     IZComponentStyle,
@@ -18,7 +18,7 @@ export interface ZLabeled
   gap?: ZSizeVoid | ZSizeFixed;
 }
 
-export function ZLabeled(props: ZLabeled) {
+export function ZLabeled(props: IZLabeled) {
   const {
     children,
     className,
