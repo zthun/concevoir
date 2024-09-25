@@ -94,7 +94,6 @@ export * from "./suspense/suspense.mjs";
 export * from "./text/text";
 export * from "./text/text-area";
 export * from "./text/text-input";
-export * from "./text/text-input-reveal";
 export * from "./text/text.cm.mjs";
 export * from "./theme/fashion.mjs";
 export * from "./theme/styled";
