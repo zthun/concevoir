@@ -47,7 +47,9 @@ function onChange(
  * @returns
  *        The JSX to render the component.
  */
-export function useText<T extends { value: string }>(props: IZText) {
+export function useText<T extends HTMLElement & { value: string }>(
+  props: IZText,
+) {
   const {
     name,
     disabled,
@@ -100,11 +102,15 @@ export function withEnterCommit(
   const { value, onValueChange = noop } = props;
 
   return (e: KeyboardEvent<HTMLElement>) => {
-    if (e.code === ZCircusKeyboardQwerty.enter.code) {
-      const current = get(e.target, "value", "");
-      onChange(current || "", value || "", onValueChange);
+    if (e.isPropagationStopped()) {
+      return;
     }
 
     onKeyDown(e);
+
+    if (!e.defaultPrevented && e.code === ZCircusKeyboardQwerty.enter.code) {
+      const current = get(e.target, "value", "");
+      onChange(current || "", value || "", onValueChange);
+    }
   };
 }

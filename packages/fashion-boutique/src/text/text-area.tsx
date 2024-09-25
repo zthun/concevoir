@@ -6,12 +6,19 @@ import {
 } from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
 import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import { TextareaHTMLAttributes } from "react";
 import { IZComponentHeight } from "../component/component-height.mjs";
 import { ZLabeled } from "../label/labeled";
 import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
 import { IZText, useText } from "./text";
 
-export interface IZTextArea extends IZText, IZComponentHeight<ZSizeFixed> {}
+export interface IZTextArea
+  extends IZText,
+    Omit<
+      TextareaHTMLAttributes<HTMLTextAreaElement>,
+      "prefix" | "type" | "value"
+    >,
+    IZComponentHeight<ZSizeFixed> {}
 
 const TextAreaRows = createSizeChartFixedArithmetic(2, 2);
 
@@ -36,6 +43,7 @@ export function ZTextArea(props: IZTextArea) {
     orientation,
     prefix,
     suffix,
+    ...attributes
   } = props;
   const InputProps = useText(props);
   const _height = new ZDeviceValues(height, ZSizeFixed.Medium);
@@ -108,7 +116,12 @@ export function ZTextArea(props: IZTextArea) {
     >
       <div className="ZText-area" data-disabled={InputProps.disabled}>
         {prefix && <div className="ZText-prefix">{prefix}</div>}
-        <textarea {...InputProps} rows={rows} data-required={required} />
+        <textarea
+          {...attributes}
+          {...InputProps}
+          rows={rows}
+          data-required={required}
+        />
         {suffix && <div className="ZText-suffix">{suffix}</div>}
       </div>
     </ZLabeled>

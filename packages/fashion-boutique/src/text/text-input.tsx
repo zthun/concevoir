@@ -2,6 +2,7 @@ import { css } from "@emotion/css";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
 import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import { InputHTMLAttributes } from "react";
 import { ZLabeled } from "../label/labeled";
 import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
 import { IZText, useText, withEnterCommit } from "./text";
@@ -26,7 +27,9 @@ export enum ZTextType {
 /**
  * Represents props for the text input.
  */
-export interface IZTextInput extends IZText {
+export interface IZTextInput
+  extends IZText,
+    Omit<InputHTMLAttributes<HTMLInputElement>, "prefix" | "type" | "value"> {
   /**
    * The optional type of text.
    */
@@ -53,10 +56,12 @@ export function ZTextInput(props: IZTextInput) {
     orientation,
     prefix,
     suffix,
+    onKeyDown,
+    ...attributes
   } = props;
   const tailor = useFashionTailor();
   const InputProps = useText(props);
-  const handleKeyDown = withEnterCommit(props);
+  const handleKeyDown = withEnterCommit(props, onKeyDown);
   const { component, primary } = useFashionTheme();
   const _fashion = firstDefined(primary, fashion);
   const picker = new ZColorPicker(_fashion);
@@ -126,7 +131,12 @@ export function ZTextInput(props: IZTextInput) {
     >
       <div className="ZText-input" data-disabled={InputProps.disabled}>
         {prefix && <div className="ZText-prefix">{prefix}</div>}
-        <input {...InputProps} type={type} onKeyDown={handleKeyDown} />
+        <input
+          {...attributes}
+          {...InputProps}
+          type={type}
+          onKeyDown={handleKeyDown}
+        />
         {suffix && <div className="ZText-suffix">{suffix}</div>}
       </div>
     </ZLabeled>
