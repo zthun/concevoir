@@ -72,7 +72,7 @@ export class ZFashionTailor {
 
   private _rounding = {
     ...createSizeChartFixedCss(
-      createSizeChartFixedArithmetic(0.25, 0.75),
+      createSizeChartFixedArithmetic(0.15, 0.25),
       "rem",
     ),
     ...createSizeChartVoidCss(),
