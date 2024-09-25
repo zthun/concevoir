@@ -4,7 +4,6 @@ import { ReactNode } from "react";
 import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
 import { ZTextArea } from "./text-area";
 import { ZTextInput, ZTextType } from "./text-input";
-import { ZTextInputReveal } from "./text-input-reveal";
 import { ZTextComponentModel } from "./text.cm.mjs";
 
 // cspell: disable-next-line
@@ -269,116 +268,6 @@ describe("ZText", () => {
         true,
         createTestTarget.bind(null, ZTextType.Password),
       );
-    });
-
-    it("should not be able to toggle revealed text", async () => {
-      // Arrange.
-      const target = await createTestTarget(ZTextType.Text);
-      await target.reveal();
-      // Act.
-      const actual = await target.mask();
-      // Assert.
-      expect(actual).toBeFalsy();
-    });
-
-    it("should not be able to toggle masked text", async () => {
-      // Arrange.
-      const target = await createTestTarget(ZTextType.Password);
-      await target.mask();
-      // Act.
-      const actual = await target.reveal();
-      // Assert.
-      expect(actual).toBeFalsy();
-    });
-  });
-
-  describe("Reveal", () => {
-    async function createTestTarget() {
-      const element = (
-        <ZTextInputReveal
-          value={value}
-          disabled={disabled}
-          required={required}
-          readOnly={readOnly}
-          prefix={prefix}
-          suffix={suffix}
-          label={label}
-          onValueChange={onValueChange}
-        />
-      );
-      const driver = await new ZCircusSetupRenderer(element).setup();
-      return ZCircusBy.first(driver, ZTextComponentModel);
-    }
-
-    it("should render the text value", async () => {
-      await shouldRenderTextValue(createTestTarget);
-    });
-
-    it("should update the value as the user types", async () => {
-      await shouldUpdateTextValue(createTestTarget);
-    });
-
-    it("should raise the onValueChange event when the user types a value and commits with tab", async () => {
-      await shouldRaiseOnValueChange(createTestTarget);
-    });
-
-    it("should raise the onValueChange event when the user types a value and commits with enter", async () => {
-      await shouldRaiseOnValueChange(
-        createTestTarget,
-        ZCircusKeyboardQwerty.enter,
-      );
-    });
-
-    it("should not raise the onValueChange until the user commits the value", async () => {
-      await shouldNotRaiseOnValueChange(createTestTarget);
-    });
-
-    it("should not raise the onValueChange if the user commits when the value is the same", async () => {
-      await shouldNotRaiseOnValueChangeIfActualValueIsTheSame(createTestTarget);
-    });
-
-    it("should be disabled", async () => {
-      await shouldBeDisabled(createTestTarget);
-    });
-
-    it("should be readOnly", async () => {
-      await shouldBeReadOnly(createTestTarget);
-    });
-
-    it("should be required", async () => {
-      await shouldBeRequired(createTestTarget);
-    });
-
-    it("should start as masked", async () => {
-      await shouldBeMasked(true, createTestTarget);
-    });
-
-    it("should render the prefix adornment", async () => {
-      await shouldRenderPrefix(createTestTarget);
-    });
-
-    it("should render the suffix adornment", async () => {
-      await shouldRenderSuffix(createTestTarget);
-    });
-
-    it("should toggle the text from masked to revealed", async () => {
-      // Arrange
-      const target = await createTestTarget();
-      await target.mask();
-      // Act
-      const actual = await target.reveal();
-      // Assert
-      expect(actual).toBeTruthy();
-    });
-
-    it("should toggle the text from revealed to masked", async () => {
-      // Arrange
-      const target = await createTestTarget();
-      await target.reveal();
-      // Act
-      const actual = await target.mask();
-      // Assert
-      expect(actual).toBeTruthy();
     });
   });
 

@@ -29,19 +29,6 @@ export class ZTextComponentModel extends ZCircusComponentModel {
   }
 
   /**
-   * Gets the revealer for this component.
-   *
-   * @returns
-   *        The revealer for the text component.
-   *        Returns null if the component does not support
-   *        toggling text masking.
-   */
-  private async _revealer(): Promise<IZCircusDriver | null> {
-    const [revealer] = await this.driver.query(".ZText-revealer");
-    return firstDefined(null, revealer);
-  }
-
-  /**
    * Gets the value of the component model.
    *
    * @returns
@@ -189,73 +176,6 @@ export class ZTextComponentModel extends ZCircusComponentModel {
   }
 
   /**
-   * Attempts to toggle the text mask state.
-   *
-   * If the component does not support a text mask
-   * state, then this method does nothing.
-   *
-   * @returns
-   *        True if the toggle was attempted, false if this
-   *        component does not support the toggle operation.
-   */
-  public async toggle(): Promise<boolean> {
-    const revealer = await this._revealer();
-
-    if (revealer) {
-      await revealer.perform(new ZCircusActBuilder().click().build());
-      return true;
-    }
-
-    return false;
-  }
-
-  /**
-   * Attempts to reveal or mask the text.
-   *
-   * @param mask -
-   *        True to mask the text, false to reveal it.
-   *
-   * @returns
-   *        True if the text is masked, false otherwise.
-   */
-  private async _mask(mask: boolean): Promise<boolean> {
-    const masked = await this.masked();
-
-    if (masked !== mask) {
-      await this.toggle();
-    }
-
-    return this.masked();
-  }
-
-  /**
-   * Attempts to reveal masked text.
-   *
-   * If the text is not masked, then this method does
-   * nothing.
-   *
-   * @returns
-   *        True if the text is revealed, false if masked.
-   */
-  public async reveal(): Promise<boolean> {
-    return this._mask(false).then((m) => !m);
-  }
-
-  /**
-   * Attempts to mask the text.
-   *
-   * If this text is already masked, then this method does
-   * nothing.
-   *
-   * @returns
-   *        True if the text is masked, false if revealed.
-   *
-   */
-  public async mask(): Promise<boolean> {
-    return this._mask(true);
-  }
-
-  /**
    * Gets an adornment container.
    *
    * @param which -
@@ -265,9 +185,9 @@ export class ZTextComponentModel extends ZCircusComponentModel {
    *        The adornment container or null if no such container exists.
    */
   private async _adornment(
-    which: "start" | "end",
+    which: "prefix" | "suffix",
   ): Promise<IZCircusDriver | null> {
-    const query = `.ZText-adornment-${which}`;
+    const query = `.ZText-${which}`;
     const [adornment] = await this.driver.query(query);
     return adornment || null;
   }
@@ -279,10 +199,7 @@ export class ZTextComponentModel extends ZCircusComponentModel {
    *        The prefix adornment container or undefined if there is no
    *        such adornment.
    */
-  public prefix: () => Promise<IZCircusDriver | null> = this._adornment.bind(
-    this,
-    "start",
-  );
+  public prefix = this._adornment.bind(this, "prefix");
 
   /**
    * Gets the suffix adornment container.
@@ -291,8 +208,5 @@ export class ZTextComponentModel extends ZCircusComponentModel {
    *        The suffix adornment container or undefined if there is no
    *        such adornment.
    */
-  public suffix: () => Promise<IZCircusDriver | null> = this._adornment.bind(
-    this,
-    "end",
-  );
+  public suffix = this._adornment.bind(this, "suffix");
 }

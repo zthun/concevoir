@@ -9,7 +9,6 @@ import {
   ZParagraph,
   ZTextArea,
   ZTextInput,
-  ZTextInputReveal,
   ZTextType,
 } from "@zthun/fashion-boutique";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
@@ -60,7 +59,7 @@ export function ZTextPage() {
         <ZBox margin={{ bottom: ZSizeFixed.Medium }}>
           <ZGrid
             align={{ items: "center" }}
-            columns={{ xl: "1fr 1fr 1fr", sm: "1fr" }}
+            columns={{ xl: "1fr 1fr", sm: "1fr" }}
             gap={ZSizeFixed.Medium}
           >
             <ZTextInput
@@ -85,18 +84,6 @@ export function ZTextPage() {
               onValueChange={setValue}
               label="Password"
               type={ZTextType.Password}
-              prefix={adornments ? flag : null}
-              suffix={adornments ? search : null}
-            />
-            <ZTextInputReveal
-              disabled={disabled}
-              readOnly={readOnly}
-              value={value}
-              required={required}
-              name="reveal"
-              placeholder="Reveal Password"
-              onValueChange={setValue}
-              label="Reveal"
               prefix={adornments ? flag : null}
               suffix={adornments ? search : null}
             />

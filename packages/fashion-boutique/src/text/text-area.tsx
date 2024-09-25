@@ -1,25 +1,19 @@
-import { OutlinedInput } from "@mui/material";
+import { css } from "@emotion/css";
 import {
   ZDeviceValues,
   ZSizeFixed,
   createSizeChartFixedArithmetic,
 } from "@zthun/fashion-tailor";
-import { cssJoinDefined } from "@zthun/helpful-fn";
+import { ZColorPicker } from "@zthun/fashion-theme";
+import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
 import { IZComponentHeight } from "../component/component-height.mjs";
 import { ZLabeled } from "../label/labeled";
-import { createStyleHook } from "../theme/styled";
+import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
 import { IZText, useText } from "./text";
 
 export interface IZTextArea extends IZText, IZComponentHeight<ZSizeFixed> {}
 
 const TextAreaRows = createSizeChartFixedArithmetic(2, 2);
-
-const useTextAreaStyles = createStyleHook(({ theme }) => ({
-  input: {
-    color: theme.surface.idle.contrast,
-    backgroundColor: theme.surface.idle.main,
-  },
-}));
 
 /**
  * Represents a text input that supports multiline.
@@ -31,27 +25,92 @@ const useTextAreaStyles = createStyleHook(({ theme }) => ({
  *        The JSX to render this component.
  */
 export function ZTextArea(props: IZTextArea) {
-  const { className, name, required, height, label, orientation } = props;
-  const InputProps = useText(props, "");
+  const tailor = useFashionTailor();
+  const {
+    className,
+    name,
+    fashion,
+    required,
+    height,
+    label,
+    orientation,
+    prefix,
+    suffix,
+  } = props;
+  const InputProps = useText(props);
   const _height = new ZDeviceValues(height, ZSizeFixed.Medium);
   const rows = TextAreaRows[_height.xl];
-  const { classes } = useTextAreaStyles();
+  const { component, primary } = useFashionTheme();
+  const _fashion = firstDefined(primary, fashion);
+  const picker = new ZColorPicker(_fashion);
+
+  const _className = css`
+    textarea {
+      background: transparent;
+      border: none;
+      color: inherit;
+      width: 100%;
+      outline: none;
+      padding: 0;
+      margin: 0;
+      resize: none;
+    }
+
+    textarea:focus,
+    textarea:focus-visible,
+    textarea:focus-within {
+      border: none;
+    }
+
+    .ZText-area[data-disabled="true"] {
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    .ZText-area {
+      align-items: flex-start;
+      background-color: ${component.idle.main};
+      border-radius: ${tailor.rounding(ZSizeFixed.ExtraSmall)};
+      border-style: solid;
+      border-width: ${tailor.thickness(ZSizeFixed.Medium)};
+      display: flex;
+      color: ${component.idle.contrast};
+      gap: ${tailor.gap(ZSizeFixed.ExtraSmall)};
+      outline: none;
+      padding: ${tailor.gap(ZSizeFixed.ExtraSmall)};
+    }
+
+    .ZText-area:hover:not([data-disabled="true"]) {
+      border-color: ${picker.hover.border};
+    }
+
+    .ZText-area:focus-within {
+      border-color: ${picker.idle.border};
+    }
+
+    .ZText-area:active:not([data-disabled="true"]) {
+      border-color: ${picker.active.border};
+    }
+
+    .ZText-prefix,
+    .ZText-suffix {
+      display: inline-flex;
+    }
+  `;
 
   return (
     <ZLabeled
-      className={cssJoinDefined("ZText-root", "ZText-area", className)}
+      className={cssJoinDefined("ZText-root", _className, className)}
       label={label}
       LabelProps={{ required, className: "ZText-label" }}
       name={name}
       orientation={orientation}
     >
-      <OutlinedInput
-        {...InputProps}
-        className={cssJoinDefined("ZText-area", classes.input)}
-        multiline
-        rows={rows}
-        data-required={required}
-      />
+      <div className="ZText-area" data-disabled={InputProps.disabled}>
+        {prefix && <div className="ZText-prefix">{prefix}</div>}
+        <textarea {...InputProps} rows={rows} data-required={required} />
+        {suffix && <div className="ZText-suffix">{suffix}</div>}
+      </div>
     </ZLabeled>
   );
 }

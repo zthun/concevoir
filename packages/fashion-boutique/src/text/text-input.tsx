@@ -1,7 +1,9 @@
-import { OutlinedInput } from "@mui/material";
-import { cssJoinDefined } from "@zthun/helpful-fn";
+import { css } from "@emotion/css";
+import { ZSizeFixed } from "@zthun/fashion-tailor";
+import { ZColorPicker } from "@zthun/fashion-theme";
+import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
 import { ZLabeled } from "../label/labeled";
-import { createStyleHook } from "../theme/styled";
+import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
 import { IZText, useText, withEnterCommit } from "./text";
 
 /**
@@ -24,19 +26,12 @@ export enum ZTextType {
 /**
  * Represents props for the text input.
  */
-export interface IZTextInput extends IZText<string> {
+export interface IZTextInput extends IZText {
   /**
    * The optional type of text.
    */
   type?: ZTextType;
 }
-
-const useTextInputStyles = createStyleHook(({ theme }) => ({
-  input: {
-    color: theme.surface.idle.contrast,
-    backgroundColor: theme.surface.idle.main,
-  },
-}));
 
 /**
  * Represents a free form text component that just displays an html input.
@@ -50,30 +45,90 @@ const useTextInputStyles = createStyleHook(({ theme }) => ({
 export function ZTextInput(props: IZTextInput) {
   const {
     className,
+    fashion,
     type = ZTextType.Text,
     name,
     label,
     required,
     orientation,
+    prefix,
+    suffix,
   } = props;
-  const InputProps = useText(props, "");
+  const tailor = useFashionTailor();
+  const InputProps = useText(props);
   const handleKeyDown = withEnterCommit(props);
-  const { classes } = useTextInputStyles();
+  const { component, primary } = useFashionTheme();
+  const _fashion = firstDefined(primary, fashion);
+  const picker = new ZColorPicker(_fashion);
+
+  const _className = css`
+    input {
+      background: transparent;
+      border: none;
+      color: inherit;
+      width: 100%;
+      height: 100%;
+      outline: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    input:focus,
+    input:focus-visible,
+    input:focus-within {
+      border: none;
+    }
+
+    .ZText-input {
+      align-items: center;
+      background-color: ${component.idle.main};
+      border-radius: ${tailor.rounding(ZSizeFixed.ExtraSmall)};
+      border-style: solid;
+      border-width: ${tailor.thickness(ZSizeFixed.Medium)};
+      display: flex;
+      color: ${component.idle.contrast};
+      gap: ${tailor.gap(ZSizeFixed.ExtraSmall)};
+      height: 2.5rem;
+      outline: none;
+      padding: 0 ${tailor.gap(ZSizeFixed.ExtraSmall)};
+    }
+
+    .ZText-input[data-disabled="true"] {
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    .ZText-input:hover:not([data-disabled="true"]) {
+      border-color: ${picker.hover.border};
+    }
+
+    .ZText-input:focus-within {
+      border-color: ${picker.idle.border};
+    }
+
+    .ZText-input:active:not([data-disabled="true"]) {
+      border-color: ${picker.active.border};
+    }
+
+    .ZText-prefix,
+    .ZText-suffix {
+      display: inline-flex;
+    }
+  `;
 
   return (
     <ZLabeled
-      className={cssJoinDefined("ZText-root", className)}
+      className={cssJoinDefined("ZText-root", _className, className)}
       label={label}
       LabelProps={{ required, className: "ZText-label" }}
       orientation={orientation}
       name={name}
     >
-      <OutlinedInput
-        {...InputProps}
-        type={type}
-        className={cssJoinDefined("ZText-input", classes.input)}
-        onKeyDown={handleKeyDown}
-      />
+      <div className="ZText-input" data-disabled={InputProps.disabled}>
+        {prefix && <div className="ZText-prefix">{prefix}</div>}
+        <input {...InputProps} type={type} onKeyDown={handleKeyDown} />
+        {suffix && <div className="ZText-suffix">{suffix}</div>}
+      </div>
     </ZLabeled>
   );
 }

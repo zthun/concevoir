@@ -1,10 +1,9 @@
-import { InputAdornment, InputBaseProps } from "@mui/material";
 import { ZCircusKeyboardQwerty } from "@zthun/cirque";
-import { cssJoinDefined } from "@zthun/helpful-fn";
 import { get, noop } from "lodash-es";
-import { KeyboardEvent, ReactNode, useEffect, useState } from "react";
+import { FormEvent, KeyboardEvent, useEffect, useState } from "react";
 import { IZComponentAdornment } from "../component/component-adornment.mjs";
 import { IZComponentDisabled } from "../component/component-disabled.mjs";
+import { IZComponentFashion } from "../component/component-fashion.mjs";
 import { IZComponentLabel } from "../component/component-label.mjs";
 import { IZComponentName } from "../component/component-name.mjs";
 import { IZComponentOrientation } from "../component/component-orientation.mjs";
@@ -15,10 +14,11 @@ import { IZComponentValue } from "../component/component-value.mjs";
 /**
  * Represents an input for free form text
  */
-export interface IZText<T = string>
+export interface IZText
   extends IZComponentDisabled,
     IZComponentName,
-    IZComponentValue<T>,
+    IZComponentFashion,
+    IZComponentValue<string>,
     IZComponentLabel,
     IZComponentAdornment,
     IZComponentOrientation,
@@ -28,7 +28,11 @@ export interface IZText<T = string>
   placeholder?: string;
 }
 
-function onChange<T>(current: T, value: T, onValueChange: (val: T) => void) {
+function onChange(
+  current: string,
+  value: string,
+  onValueChange: (val: string) => void,
+) {
   if (current !== value) {
     onValueChange(current);
   }
@@ -39,16 +43,11 @@ function onChange<T>(current: T, value: T, onValueChange: (val: T) => void) {
  *
  * @param props -
  *        The properties for the IZText component.
- * @param initial -
- *        The initial value for the text field.
  *
  * @returns
  *        The JSX to render the component.
  */
-export function useText<T extends string>(
-  props: IZText<T>,
-  initial: T,
-): InputBaseProps {
+export function useText<T extends { value: string }>(props: IZText) {
   const {
     name,
     disabled,
@@ -56,46 +55,28 @@ export function useText<T extends string>(
     required,
     placeholder,
     readOnly,
-    prefix,
-    suffix,
     onValueChange = noop,
   } = props;
-
-  const [current, setCurrent] = useState(value || initial);
+  const [current, setCurrent] = useState(value || "");
 
   useEffect(() => {
-    setCurrent(value || initial);
-  }, [value, initial]);
+    setCurrent(value || "");
+  }, [value]);
 
-  const getValue = (e: any): T => {
-    return get(e, "value");
-  };
-
+  /*
   const renderAdornment = (adornment: ReactNode, position: "start" | "end") =>
-    adornment == null ? null : (
-      <InputAdornment
-        className={cssJoinDefined(
-          "ZText-adornment",
-          `ZText-adornment-${position}`,
-        )}
-        position={position}
-      >
-        {adornment}
-      </InputAdornment>
-    );
+    null;
+  */
 
   return {
     disabled,
     value: current,
     name,
-    fullWidth: true,
     required,
     placeholder: placeholder,
     readOnly,
-    startAdornment: renderAdornment(prefix, "start"),
-    endAdornment: renderAdornment(suffix, "end"),
     onBlur: () => onChange(current || "", value || "", onValueChange),
-    onInput: (e) => setCurrent(getValue(e.target)),
+    onInput: (e: FormEvent<T>) => setCurrent(e.currentTarget.value),
   };
 }
 
@@ -112,8 +93,8 @@ export function useText<T extends string>(
  *        other key handler.
  *
  */
-export function withEnterCommit<T>(
-  props: IZText<T>,
+export function withEnterCommit(
+  props: IZText,
   onKeyDown: (e: KeyboardEvent<HTMLElement>) => any = noop,
 ) {
   const { value, onValueChange = noop } = props;
