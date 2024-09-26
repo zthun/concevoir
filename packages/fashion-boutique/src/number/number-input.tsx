@@ -1,4 +1,4 @@
-import { OutlinedInput } from "@mui/material";
+import { css } from "@emotion/css";
 import { ZCircusKeyboardQwerty } from "@zthun/cirque";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { cssJoinDefined } from "@zthun/helpful-fn";
@@ -6,49 +6,8 @@ import { useAmbassadorState } from "@zthun/helpful-react";
 import { KeyboardEvent } from "react";
 import { ZIconFontAwesome } from "../icon/icon-font-awesome";
 import { ZLabeled } from "../label/labeled";
-import { IZText, useText, withEnterCommit } from "../text/text";
-import { createStyleHook } from "../theme/styled";
+import { ZTextInput } from "../text/text-input";
 import { IZNumber } from "./number";
-
-export const useNumberInputStyles = createStyleHook(({ theme }) => {
-  return {
-    input: {
-      color: theme.surface.idle.contrast,
-      backgroundColor: theme.surface.idle.main,
-    },
-    spinner: {
-      display: "flex",
-      flexDirection: "column",
-      flexWrap: "nowrap",
-      alignItems: "center",
-      justifyContent: "center",
-    },
-
-    spin: {
-      width: "1.5rem",
-      height: "1.5rem",
-      padding: 0,
-      margin: 0,
-      fontSize: "inherit",
-      border: 0,
-
-      svg: {
-        width: "100%",
-        height: "100%",
-      },
-    },
-
-    up: {
-      borderTopLeftRadius: "50%",
-      borderTopRightRadius: "50%",
-    },
-
-    down: {
-      borderBottomLeftRadius: "50%",
-      borderBottomRightRadius: "50%",
-    },
-  };
-});
 
 /**
  * Represents an input that takes a number value.
@@ -69,11 +28,45 @@ export function ZNumberInput(props: IZNumber<number | null>) {
     value,
     label,
     required,
+    fashion,
     onValueChange,
   } = props;
   const [_value, _setValue] = useAmbassadorState(value, onValueChange, null);
-  const { classes } = useNumberInputStyles();
   const __value = _value != null ? String(_value) : "";
+
+  const _className = css`
+    .ZNumber-spinner button {
+      width: 1rem;
+      height: 1rem;
+      padding: 0;
+      margin: 0;
+      font-size: inherit;
+      border: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    svg: {
+      width: 100%;
+      height: 100%;
+    }
+
+    .ZNumber-spinner-chevron {
+      display: inline-flex;
+    }
+
+    .ZNumber-spinner-increment {
+      border-top-left-radius: 50%;
+      border-top-right-radius: 50%;
+      justify-self: flex-start;
+    }
+
+    .ZNumber-spinner-decrement {
+      border-bottom-left-radius: 50%;
+      border-bottom-right-radius: 50%;
+      justify-self: flex-end;
+    }
+  `;
 
   const handleCommit = (update: string) => {
     _setValue(update?.trim() === "" ? null : +update);
@@ -98,41 +91,33 @@ export function ZNumberInput(props: IZNumber<number | null>) {
   };
 
   const adornment = (
-    <div className={cssJoinDefined("ZNumber-spinner", classes.spinner)}>
+    <div className={cssJoinDefined("ZNumber-spinner")}>
       <button
-        className={cssJoinDefined(
-          "ZNumber-spinner-increment",
-          classes.spin,
-          classes.up,
-        )}
+        className={cssJoinDefined("ZNumber-spinner-increment")}
         onClick={handleSpin.bind(null, 1)}
         onKeyDown={handleSpinOnEnter.bind(null, 1)}
       >
-        <ZIconFontAwesome name="chevron-up" width={ZSizeFixed.ExtraSmall} />
+        <ZIconFontAwesome
+          className="ZNumber-spinner-chevron"
+          name="chevron-up"
+          width={ZSizeFixed.ExtraSmall}
+        />
       </button>
       <button
-        className={cssJoinDefined(
-          "ZNumber-spinner-decrement",
-          classes.spin,
-          classes.down,
-        )}
+        className={cssJoinDefined("ZNumber-spinner-decrement")}
         onClick={handleSpin.bind(null, -1)}
         onKeyDown={handleSpinOnEnter.bind(null, -1)}
       >
-        <ZIconFontAwesome name="chevron-down" width={ZSizeFixed.ExtraSmall} />
+        <ZIconFontAwesome
+          className="ZNumber-spinner-chevron"
+          name="chevron-down"
+          width={ZSizeFixed.ExtraSmall}
+        />
       </button>
     </div>
   );
 
-  const _propsForText: IZText = {
-    ...props,
-    value: __value,
-    onValueChange: handleCommit,
-    suffix: adornment,
-  };
-  const _text = useText<string>(_propsForText, "");
-
-  const handleKeyDown = withEnterCommit(_propsForText, (e: KeyboardEvent) => {
+  const handleKeyDown = (e: KeyboardEvent) => {
     if (e.code === ZCircusKeyboardQwerty.upArrow.code) {
       e.preventDefault();
       handleSpin(1);
@@ -142,20 +127,25 @@ export function ZNumberInput(props: IZNumber<number | null>) {
       e.preventDefault();
       handleSpin(-1);
     }
-  });
+  };
 
   return (
     <ZLabeled
-      className={cssJoinDefined("ZNumber-root", className)}
+      className={cssJoinDefined("ZNumber-root", _className, className)}
       label={label}
       LabelProps={{ required, className: "ZNumber-label" }}
       name={name}
     >
-      <OutlinedInput
-        {..._text}
-        className={cssJoinDefined("ZNumber-input", classes.input)}
+      <ZTextInput
+        className={cssJoinDefined("ZNumber-input")}
+        fashion={fashion}
+        min={min}
+        max={max}
+        step={step}
         onKeyDown={handleKeyDown}
-        inputProps={{ min, max, step }}
+        value={__value}
+        onValueChange={handleCommit}
+        suffix={adornment}
       />
     </ZLabeled>
   );
