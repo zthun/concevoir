@@ -51,13 +51,16 @@ export function ZNumberPage() {
           margin={{ top: ZSizeFixed.ExtraLarge, bottom: ZSizeFixed.ExtraLarge }}
         >
           <ZGrid
-            columns={{ xl: "1fr 3fr", md: "1fr 2fr", sm: "1fr 1fr", xs: "1fr" }}
+            columns={{
+              xl: "auto 1fr",
+              xs: "1fr",
+            }}
           >
             <ZNumberInput
               step={1}
               min={-Infinity}
               max={Infinity}
-              label="Input"
+              label="Number"
               value={value}
               onValueChange={setValue}
               name="spinner"
