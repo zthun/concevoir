@@ -1,4 +1,5 @@
 import { IZComponentDisabled } from "../component/component-disabled.mjs";
+import { IZComponentFashion } from "../component/component-fashion.mjs";
 import { IZComponentLabel } from "../component/component-label.mjs";
 import { IZComponentName } from "../component/component-name.mjs";
 import { IZComponentRange } from "../component/component-range.mjs";
@@ -12,6 +13,7 @@ import { IZComponentValue } from "../component/component-value.mjs";
 export interface IZNumber<T = number>
   extends IZComponentValue<T>,
     IZComponentDisabled,
+    IZComponentFashion,
     IZComponentRange<number>,
     IZComponentName,
     IZComponentLabel,
