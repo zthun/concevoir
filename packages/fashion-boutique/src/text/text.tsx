@@ -102,10 +102,6 @@ export function withEnterCommit(
   const { value, onValueChange = noop } = props;
 
   return (e: KeyboardEvent<HTMLElement>) => {
-    if (e.isPropagationStopped()) {
-      return;
-    }
-
     onKeyDown(e);
 
     if (!e.defaultPrevented && e.code === ZCircusKeyboardQwerty.enter.code) {
