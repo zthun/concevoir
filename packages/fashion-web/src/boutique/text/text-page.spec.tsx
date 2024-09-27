@@ -193,46 +193,6 @@ describe("ZTextPage", () => {
     });
   });
 
-  describe("Reveal", () => {
-    const factory: TextInputFactory = (t) => t.reveal();
-
-    it("should set the value", async () => {
-      await shouldSetTheValue(LOREM, factory);
-    });
-
-    it("should set the value on the enter key", async () => {
-      await shouldSetTheValue(LOREM, factory, ZCircusKeyboardQwerty.enter);
-    });
-
-    it("should be disabled when the disabled option is checked", async () => {
-      await shouldBeDisabled(true, factory);
-    });
-
-    it("should not be disabled when the disabled option is unchecked", async () => {
-      await shouldBeDisabled(false, factory);
-    });
-
-    it("should be readOnly when the read only option is checked", async () => {
-      await shouldBeReadOnly(true, factory);
-    });
-
-    it("should not be readOnly when the read only option is unchecked", async () => {
-      await shouldBeReadOnly(false, factory);
-    });
-
-    it("should be required when the required option is checked", async () => {
-      await shouldBeRequired(true, factory);
-    });
-
-    it("should not be required when the required option is unchecked", async () => {
-      await shouldBeRequired(false, factory);
-    });
-
-    it("should have adornments when the adornments option is checked", async () => {
-      await shouldHaveAdornments(factory);
-    });
-  });
-
   describe("Text Area", () => {
     const factory: TextInputFactory = (t) => t.area();
 

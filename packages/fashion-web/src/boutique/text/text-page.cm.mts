@@ -45,16 +45,6 @@ export class ZTextPageComponentModel extends ZCircusComponentModel {
   }
 
   /**
-   * Gets the reveal text input.
-   *
-   * @returns
-   *        The reveal text input.
-   */
-  public reveal(): Promise<ZTextComponentModel> {
-    return ZCircusBy.first(this.driver, ZTextComponentModel, "reveal");
-  }
-
-  /**
    * Gets the text area input.
    *
    * @returns
