@@ -57,6 +57,8 @@ export function ZTextInput(props: IZTextInput) {
     prefix,
     suffix,
     onKeyDown,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    onValueChange,
     ...attributes
   } = props;
   const tailor = useFashionTailor();

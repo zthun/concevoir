@@ -43,6 +43,8 @@ export function ZTextArea(props: IZTextArea) {
     orientation,
     prefix,
     suffix,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    onValueChange,
     ...attributes
   } = props;
   const InputProps = useText(props);
