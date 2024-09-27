@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.0](https://github.com/zthun/fashion/compare/v6.0.2...v7.0.0) (2024-09-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* text-input-reveal is no longer supported
+
+### Features
+
+* add fashion to number ([653a72f](https://github.com/zthun/fashion/commit/653a72fb0a158e5f22465c49d024d6ab7e934abe))
+* you can now set most attributes for textarea and input ([dcb5f10](https://github.com/zthun/fashion/commit/dcb5f1059e705f2179091d1ba3caa8df51dfe7d4))
+
+
+### Bug Fixes
+
+* labeled as props renamed properly to IZLabeled ([59fb7e1](https://github.com/zthun/fashion/commit/59fb7e1f4ec118b5305de620126b6af306b3db2a))
+
+
+### Code Refactoring
+
+* text-input-reveal is no longer supported ([5a1c3af](https://github.com/zthun/fashion/commit/5a1c3af4c41ce4f8eaa76c67d28bf7c4fbbfc4bd))
+
+
+
 ## [6.0.2](https://github.com/zthun/fashion/compare/v6.0.1...v6.0.2) (2024-09-16)
 
 

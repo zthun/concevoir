@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.0](https://github.com/zthun/fashion/compare/v6.0.2...v7.0.0) (2024-09-27)
+
+
+### Bug Fixes
+
+* number layout ([08607bb](https://github.com/zthun/fashion/commit/08607bb5f4fdbe1d335b3f7e80f89cd4bd301ce8))
+
+
+
 ## [6.0.2](https://github.com/zthun/fashion/compare/v6.0.1...v6.0.2) (2024-09-16)
 
 **Note:** Version bump only for package @zthun/fashion-web
