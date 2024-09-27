@@ -4,7 +4,7 @@ import { ZTextPageComponentModel } from "../../src/boutique/text/text-page.cm.mj
 import { ZFashionRouteBoutique, ZFashionRouteText } from "../../src/routes.mjs";
 import { ZFashionWorld } from "../fashion-world.mjs";
 
-type FieldName = "text" | "password" | "reveal" | "area";
+type FieldName = "text" | "password" | "area";
 type OptionName = "disabled" | "readOnly" | "required" | "adornments";
 
 // cspell:disable
@@ -50,15 +50,6 @@ When(
   ) {
     const option = await this.parameters.page[name]();
     await option.toggle(true);
-  },
-);
-
-When(
-  "I click the reveal button on the reveal field on the text demo page",
-  async function (this: ZFashionWorld<ZTextPageComponentModel>) {
-    const reveal = await this.parameters.page.reveal();
-    await reveal.keyboard("Secret Text");
-    await reveal.reveal();
   },
 );
 
@@ -132,14 +123,5 @@ Then(
     const expected = [LOREM1, LOREM2, LOREM3].join(sep).concat(sep);
     const value = await this.parameters.page.value();
     assert.equal(value, expected);
-  },
-);
-
-Then(
-  "I should be able to see the text on the reveal field on the text demo page",
-  async function (this: ZFashionWorld<ZTextPageComponentModel>) {
-    const reveal = await this.parameters.page.reveal();
-    const actual = await reveal.masked();
-    assert.equal(actual, false);
   },
 );
