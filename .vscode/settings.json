@@ -6,5 +6,6 @@
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
   "cucumber.features": ["packages/**/features/**/*.feature"],
-  "cucumber.glue": ["packages/**/features/**/*.mts"]
+  "cucumber.glue": ["packages/**/features/**/*.mts"],
+  "typescript.preferences.importModuleSpecifier": "project-relative"
 }
