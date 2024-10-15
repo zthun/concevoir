@@ -86,6 +86,7 @@ export function ZBooleanSwitch(props: IZBoolean<boolean>) {
       name={name}
       required={required}
       data-name={name}
+      data-required={required}
       data-fashion={fashion.name}
     />
   );
