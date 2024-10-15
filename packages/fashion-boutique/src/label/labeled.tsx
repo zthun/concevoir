@@ -14,8 +14,9 @@ export interface IZLabeled
     IZComponentStyle,
     IZComponentOrientation,
     IZComponentHierarchy {
-  LabelProps?: Omit<IZLabel, "id">;
+  LabelProps?: IZLabel;
   gap?: ZSizeVoid | ZSizeFixed;
+  position?: "prefix" | "suffix";
 }
 
 export function ZLabeled(props: IZLabeled) {
@@ -27,10 +28,12 @@ export function ZLabeled(props: IZLabeled) {
     gap = ZSizeFixed.ExtraSmall,
     orientation = ZOrientation.Vertical,
     LabelProps,
+    position = "prefix",
   } = props;
   const align = orientation === ZOrientation.Horizontal ? "center" : undefined;
 
-  const renderLabel = () => label && <ZLabel {...LabelProps}>{label}</ZLabel>;
+  const renderLabel = (_position: "prefix" | "suffix") =>
+    position === _position && label && <ZLabel {...LabelProps}>{label}</ZLabel>;
 
   return (
     <ZStack
@@ -40,8 +43,9 @@ export function ZLabeled(props: IZLabeled) {
       gap={gap}
       name={name}
     >
-      {renderLabel()}
+      {renderLabel("prefix")}
       <div>{children}</div>
+      {renderLabel("suffix")}
     </ZStack>
   );
 }
