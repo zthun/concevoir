@@ -1,6 +1,6 @@
 {
   "name": "@zthun/fashion-boutique",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "A UI library for react components that are very fashionable.",
   "type": "module",
   "main": "dist/index.cjs",

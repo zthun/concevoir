@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.0](https://github.com/zthun/fashion/compare/v7.0.0...v7.1.0) (2024-10-15)
+
+
+### Features
+
+* you can now pass dom elements to label, labeled, and stack ([5b970ae](https://github.com/zthun/fashion/commit/5b970ae16106705ca5b4b4726a429f01dab37a4c))
+* you can now render the position of a label as a prefix or suffix ([5f95823](https://github.com/zthun/fashion/commit/5f95823c694bf62a2d597cb42af5cc4b26ddb40f))
+
+
+### Bug Fixes
+
+* clicking on label now focuses the text inputs ([99e6989](https://github.com/zthun/fashion/commit/99e69893858b3030637739aae517921bb290a9b9))
+* label now passes through the data attributes ([8576629](https://github.com/zthun/fashion/commit/85766290c87019b3a6e1384efc2f25de7a8e6dd6))
+
+
+
 ## [7.0.0](https://github.com/zthun/fashion/compare/v6.0.2...v7.0.0) (2024-09-27)
 
 
