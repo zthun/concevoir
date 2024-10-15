@@ -73,6 +73,7 @@ describe("ZBoolean", () => {
     // Act.
     await target.toggle();
     // Assert.
+    expect(onCheckChanged).toHaveBeenCalledTimes(1);
     expect(onCheckChanged).toHaveBeenCalledWith(expected);
   }
 
@@ -86,6 +87,21 @@ describe("ZBoolean", () => {
     await target.toggle(start);
     // Act.
     await target.toggle();
+    const actual = await target.value();
+    // Assert.
+    expect(actual).toEqual(expected);
+  }
+
+  async function assertChangesStateOnLabel(
+    createTestTarget: () => Promise<ZBooleanComponentModel>,
+    expected: boolean,
+    start: boolean,
+  ) {
+    // Arrange.
+    const target = await createTestTarget();
+    await target.toggle(start);
+    // Act.
+    await (await target.label())?.click();
     const actual = await target.value();
     // Assert.
     expect(actual).toEqual(expected);
@@ -157,6 +173,10 @@ describe("ZBoolean", () => {
 
     it("should raise onValueChange from indeterminate to true when clicked.", async () => {
       await assertRaisesOnValueChange(createTestTarget.bind(null, null), true);
+    });
+
+    it("should flip the state from true to false, when the label is clicked", async () => {
+      await assertChangesStateOnLabel(createTestTarget, false, true);
     });
 
     it("should flip the state from true to false internally if no value is provided from the outside.", async () => {
