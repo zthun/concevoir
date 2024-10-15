@@ -1,8 +1,10 @@
 import {
   IZCircusDriver,
   ZCircusActBuilder,
+  ZCircusBy,
   ZCircusComponentModel,
 } from "@zthun/cirque";
+import { ZLabelComponentModel } from "../label/label.cm.mjs";
 
 /**
  * Represents a react component model for the ZBoolean component.
@@ -10,14 +12,13 @@ import {
 export class ZBooleanComponentModel extends ZCircusComponentModel {
   public static readonly Selector = ".ZBoolean-root";
 
-  /**
-   * Gets the underlying input element.
-   *
-   * @returns
-   *        The underlying input element.
-   */
   private async _input(): Promise<IZCircusDriver> {
     return this.driver.select('input[type="checkbox"]');
+  }
+
+  private async _value(): Promise<IZCircusDriver> {
+    const [value] = await this.driver.query(".ZBoolean-value");
+    return value;
   }
 
   /**
@@ -29,6 +30,16 @@ export class ZBooleanComponentModel extends ZCircusComponentModel {
    */
   public async disabled(): Promise<boolean> {
     return (await this._input()).disabled();
+  }
+
+  /**
+   * Gets the underlying label.
+   *
+   * @returns
+   *      The label for the boolean.  Null if there is no label.
+   */
+  public async label(): Promise<ZLabelComponentModel | null> {
+    return ZCircusBy.optional(this.driver, ZLabelComponentModel);
   }
 
   /**
@@ -84,8 +95,8 @@ export class ZBooleanComponentModel extends ZCircusComponentModel {
       return;
     }
 
-    const input = await this._input();
+    const target = (await this._value()) || (await this._input());
     const act = new ZCircusActBuilder().click().build();
-    await input.perform(act);
+    await target.perform(act);
   }
 }
