@@ -1,6 +1,6 @@
 import { css } from "@emotion/css";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
-import { cssJoinDefined } from "@zthun/helpful-fn";
+import { cssJoinDefined, pickDataAttributes } from "@zthun/helpful-fn";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentRequired } from "../component/component-required.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
@@ -33,6 +33,7 @@ export function ZLabel(props: IZLabel) {
 
   return (
     <label
+      {...pickDataAttributes(props)}
       className={cssJoinDefined("ZLabel-root", className, _className)}
       htmlFor={htmlFor}
       data-required={required}
