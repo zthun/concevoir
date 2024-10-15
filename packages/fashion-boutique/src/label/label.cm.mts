@@ -1,4 +1,4 @@
-import { ZCircusComponentModel } from "@zthun/cirque";
+import { ZCircusActBuilder, ZCircusComponentModel } from "@zthun/cirque";
 
 /**
  * Represents the component model for the label.
@@ -25,5 +25,13 @@ export class ZLabelComponentModel extends ZCircusComponentModel {
   public async required(): Promise<boolean> {
     const _required = await this.driver.attribute("data-required");
     return _required === "true";
+  }
+
+  /**
+   * Clicks on the label.
+   */
+  public async click(): Promise<void> {
+    const act = new ZCircusActBuilder().click().build();
+    await this.driver.perform(act);
   }
 }
