@@ -38,7 +38,8 @@ export class ZBooleanComponentModel extends ZCircusComponentModel {
    *        True if the component is required.
    */
   public async required(): Promise<boolean> {
-    return this.driver.peek(".MuiFormControlLabel-asterisk");
+    const required = await this.driver.attribute("data-required", "false");
+    return required !== "false";
   }
 
   /**
