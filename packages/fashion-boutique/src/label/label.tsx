@@ -24,7 +24,7 @@ export function ZLabel(props: IZLabel) {
   const _typography = useTypographyCss({
     compact: true,
     weight: "bold",
-    size: ZSizeFixed.Medium,
+    size: ZSizeFixed.Small,
   });
 
   const _className = css`
