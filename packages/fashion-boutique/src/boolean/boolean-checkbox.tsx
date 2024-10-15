@@ -144,7 +144,6 @@ export function ZBooleanCheckbox(props: IZBoolean<boolean | null>) {
       name={name}
       data-disabled={disabled}
       data-fashion={fashion?.name}
-      data-required={required}
       onClick={focusInput}
     >
       <input
