@@ -6,6 +6,7 @@ import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentRequired } from "../component/component-required.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
+import { useTypographyCss } from "../typography/typography";
 
 export interface IZLabel
   extends IZComponentHierarchy,
@@ -20,10 +21,15 @@ export function ZLabel(props: IZLabel) {
   const tailor = useFashionTailor();
   const { children, className, required, htmlFor, ...dom } = props;
 
+  const _typography = useTypographyCss({
+    compact: true,
+    weight: "bold",
+    size: ZSizeFixed.Medium,
+  });
+
   const _className = css`
     & {
       display: block;
-      font-weight: bold;
     }
 
     &[data-required="true"]::after {
@@ -36,7 +42,12 @@ export function ZLabel(props: IZLabel) {
   return (
     <label
       {...dom}
-      className={cssJoinDefined("ZLabel-root", className, _className)}
+      className={cssJoinDefined(
+        "ZLabel-root",
+        _className,
+        _typography,
+        className,
+      )}
       htmlFor={htmlFor}
       data-required={required}
     >
