@@ -54,29 +54,19 @@ const WeightChart: Record<FontWeight, number> = {
   black: 900,
 };
 
-export function Typography(props: IZTypography) {
-  const tailor = useFashionTailor();
-  const device = useFashionDevice();
+export function useTypographyCss(props: IZTypography) {
   const { inherit } = useFashionTheme();
 
-  const {
-    Element = "div",
-    children,
-    className,
-    compact,
-    fashion,
-    name,
-    size,
-    transform,
-    weight,
-    ...dom
-  } = props;
+  const tailor = useFashionTailor();
+  const device = useFashionDevice();
+
+  const { compact, fashion, size, transform, weight } = props;
 
   const picker = new ZColorPicker(firstDefined(inherit, fashion));
   const _weight = firstDefined("regular", weight);
   const _size = firstDefined(ZSizeFixed.Medium, size);
 
-  const _className = css`
+  return css`
     & {
       color: ${picker.idle.main};
       font-family: Roboto, Arial, sans-serif;
@@ -111,6 +101,23 @@ export function Typography(props: IZTypography) {
       }
     }
   `;
+}
+
+export function Typography(props: IZTypography) {
+  const {
+    Element = "div",
+    children,
+    className,
+    compact,
+    fashion,
+    name,
+    size,
+    transform,
+    weight,
+    ...dom
+  } = props;
+
+  const _className = useTypographyCss(props);
 
   return (
     <Element
