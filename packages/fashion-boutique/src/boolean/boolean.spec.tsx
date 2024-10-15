@@ -57,8 +57,9 @@ describe("ZBoolean", () => {
     // Arrange.
     required = expected;
     const target = await createTestTarget();
+    const label = await target.label();
     // Act.
-    const actual = await target.required();
+    const actual = await label?.required();
     // Assert.
     expect(actual).toEqual(expected);
   }
@@ -238,6 +239,10 @@ describe("ZBoolean", () => {
 
     it("should raise onValueChange from false to true when the falsy radio is clicked.", async () => {
       await assertRaisesOnValueChange(createTestTarget.bind(null, false), true);
+    });
+
+    it("should flip the state from true to false, when the label is clicked", async () => {
+      await assertChangesStateOnLabel(createTestTarget, false, true);
     });
 
     it("should flip the state from true to false internally if no value is provided from the outside.", async () => {

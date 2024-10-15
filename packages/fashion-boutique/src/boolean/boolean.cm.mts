@@ -43,17 +43,6 @@ export class ZBooleanComponentModel extends ZCircusComponentModel {
   }
 
   /**
-   * Gets whether this boolean is required.
-   *
-   * @returns
-   *        True if the component is required.
-   */
-  public async required(): Promise<boolean> {
-    const required = await this.driver.attribute("data-required", "false");
-    return required !== "false";
-  }
-
-  /**
    * Gets the fashion name.
    *
    * @returns
@@ -95,7 +84,7 @@ export class ZBooleanComponentModel extends ZCircusComponentModel {
       return;
     }
 
-    const target = (await this._value()) || (await this._input());
+    const target = await this._value();
     const act = new ZCircusActBuilder().click().build();
     await target.perform(act);
   }
