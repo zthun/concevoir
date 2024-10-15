@@ -1,9 +1,6 @@
 import { ZSizeFixed, ZSizeVoid } from "@zthun/fashion-tailor";
-import {
-  ZOrientation,
-  cssJoinDefined,
-  pickDataAttributes,
-} from "@zthun/helpful-fn";
+import { ZOrientation, cssJoinDefined } from "@zthun/helpful-fn";
+import { IZComponentDomEvents } from "../component/component-dom-events.mjs";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentLabel } from "../component/component-label.mjs";
 import { IZComponentName } from "../component/component-name.mjs";
@@ -16,6 +13,7 @@ export interface IZLabeled
   extends IZComponentName,
     IZComponentLabel,
     IZComponentStyle,
+    IZComponentDomEvents<HTMLDivElement>,
     IZComponentOrientation,
     IZComponentHierarchy {
   LabelProps?: IZLabel;
@@ -33,13 +31,14 @@ export function ZLabeled(props: IZLabeled) {
     orientation = ZOrientation.Vertical,
     LabelProps,
     position = "prefix",
+    ...dom
   } = props;
   const renderLabel = (_position: "prefix" | "suffix") =>
     position === _position && label && <ZLabel {...LabelProps}>{label}</ZLabel>;
 
   return (
     <ZStack
-      {...pickDataAttributes(props)}
+      {...dom}
       className={cssJoinDefined("ZLabeled-root", className)}
       orientation={orientation}
       gap={gap}

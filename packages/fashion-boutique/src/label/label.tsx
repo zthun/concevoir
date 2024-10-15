@@ -1,6 +1,7 @@
 import { css } from "@emotion/css";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
-import { cssJoinDefined, pickDataAttributes } from "@zthun/helpful-fn";
+import { cssJoinDefined } from "@zthun/helpful-fn";
+import { IZComponentDomEvents } from "../component/component-dom-events.mjs";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentRequired } from "../component/component-required.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
@@ -8,6 +9,7 @@ import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
 
 export interface IZLabel
   extends IZComponentHierarchy,
+    IZComponentDomEvents<HTMLLabelElement>,
     IZComponentStyle,
     IZComponentRequired {
   htmlFor?: string;
@@ -16,7 +18,7 @@ export interface IZLabel
 export function ZLabel(props: IZLabel) {
   const { error } = useFashionTheme();
   const tailor = useFashionTailor();
-  const { children, className, required, htmlFor } = props;
+  const { children, className, required, htmlFor, ...dom } = props;
 
   const _className = css`
     & {
@@ -33,7 +35,7 @@ export function ZLabel(props: IZLabel) {
 
   return (
     <label
-      {...pickDataAttributes(props)}
+      {...dom}
       className={cssJoinDefined("ZLabel-root", className, _className)}
       htmlFor={htmlFor}
       data-required={required}

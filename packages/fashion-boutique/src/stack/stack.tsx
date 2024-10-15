@@ -1,11 +1,7 @@
 import { ZSizeFixed, ZSizeVoid } from "@zthun/fashion-tailor";
-import {
-  cssJoinDefined,
-  firstDefined,
-  pickDataAttributes,
-  ZOrientation,
-} from "@zthun/helpful-fn";
+import { cssJoinDefined, firstDefined, ZOrientation } from "@zthun/helpful-fn";
 import { Property } from "csstype";
+import { IZComponentDomEvents } from "../component/component-dom-events.mjs";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentName } from "../component/component-name.mjs";
 import { IZComponentOrientation } from "../component/component-orientation.mjs";
@@ -16,6 +12,7 @@ export interface IZStack
   extends IZComponentHierarchy,
     IZComponentStyle,
     IZComponentName,
+    IZComponentDomEvents<HTMLDivElement>,
     IZComponentOrientation {
   align?: { items?: Property.AlignItems; content?: Property.AlignContent };
   gap?: ZSizeFixed | ZSizeVoid;
@@ -38,6 +35,7 @@ export function ZStack(props: IZStack) {
     children,
     inline,
     wrap,
+    ...dom
   } = props;
   const tailor = useFashionTailor();
 
@@ -55,7 +53,7 @@ export function ZStack(props: IZStack) {
         justifyItems: justify?.items,
         flexWrap: wrap,
       }}
-      {...pickDataAttributes(props)}
+      {...dom}
       data-orientation={orientation}
       data-name={name}
       data-inline={inline}
