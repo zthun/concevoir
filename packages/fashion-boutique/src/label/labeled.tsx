@@ -33,12 +33,14 @@ export function ZLabeled(props: IZLabeled) {
     position = "prefix",
     ...dom
   } = props;
+  const items = orientation === ZOrientation.Horizontal ? "center" : undefined;
   const renderLabel = (_position: "prefix" | "suffix") =>
     position === _position && label && <ZLabel {...LabelProps}>{label}</ZLabel>;
 
   return (
     <ZStack
       {...dom}
+      align={{ items }}
       className={cssJoinDefined("ZLabeled-root", className)}
       orientation={orientation}
       gap={gap}
