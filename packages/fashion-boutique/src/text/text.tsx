@@ -1,6 +1,6 @@
 import { ZCircusKeyboardQwerty } from "@zthun/cirque";
 import { get, noop } from "lodash-es";
-import { FormEvent, KeyboardEvent, useEffect, useState } from "react";
+import { FormEvent, KeyboardEvent, useEffect, useId, useState } from "react";
 import { IZComponentAdornment } from "../component/component-adornment.mjs";
 import { IZComponentDisabled } from "../component/component-disabled.mjs";
 import { IZComponentFashion } from "../component/component-fashion.mjs";
@@ -59,16 +59,12 @@ export function useText<T extends HTMLElement & { value: string }>(
     readOnly,
     onValueChange = noop,
   } = props;
+  const id = useId();
   const [current, setCurrent] = useState(value || "");
 
   useEffect(() => {
     setCurrent(value || "");
   }, [value]);
-
-  /*
-  const renderAdornment = (adornment: ReactNode, position: "start" | "end") =>
-    null;
-  */
 
   return {
     disabled,
@@ -77,6 +73,7 @@ export function useText<T extends HTMLElement & { value: string }>(
     required,
     placeholder: placeholder,
     readOnly,
+    id,
     onBlur: () => onChange(current || "", value || "", onValueChange),
     onInput: (e: FormEvent<T>) => setCurrent(e.currentTarget.value),
   };

@@ -127,7 +127,11 @@ export function ZTextInput(props: IZTextInput) {
     <ZLabeled
       className={cssJoinDefined("ZText-root", _className, className)}
       label={label}
-      LabelProps={{ required, className: "ZText-label" }}
+      LabelProps={{
+        required,
+        className: "ZText-label",
+        htmlFor: InputProps.id,
+      }}
       orientation={orientation}
       name={name}
     >
