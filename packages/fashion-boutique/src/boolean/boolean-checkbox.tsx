@@ -10,7 +10,7 @@ import { useAmbassadorState, useKeyboardActivate } from "@zthun/helpful-react";
 import { ChangeEvent, useId, useMemo, useRef } from "react";
 import { ZIconFontAwesome } from "../icon/icon-font-awesome";
 import { ZLabeled } from "../label/labeled";
-import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
+import { useFashionTheme } from "../theme/fashion.mjs";
 import { IZBoolean } from "./boolean";
 
 /**
@@ -35,7 +35,6 @@ export function ZBooleanCheckbox(props: IZBoolean<boolean | null>) {
     required,
   } = props;
   const { component } = useFashionTheme();
-  const tailor = useFashionTailor();
   const _fashion = useMemo(() => new ZColorPicker(fashion), [fashion]);
   const id = useId();
   const input = useRef<HTMLDivElement>(null);
@@ -82,20 +81,11 @@ export function ZBooleanCheckbox(props: IZBoolean<boolean | null>) {
       color: ${_fashion.hover.contrast};
     }
 
-    &:focus .ZBoolean-value,
-    &:focus-visible .ZBoolean-value,
-    &:focus-within .ZBoolean-value,
-    &:focus input:checked + .ZBoolean-value,
-    &:focus-visible
-      input:checked
-      + .ZBoolean-value
-      &:focus-within
-      input:checked
-      + .ZBoolean-value {
-      background-color: ${_fashion.focus.main};
-      color: ${_fashion.focus.contrast};
-      outline-width: ${tailor.thickness(ZSizeFixed.ExtraSmall)};
-      outline-color: ${_fashion.focus.border};
+    &:focus-within .ZBoolean-value {
+      background-color: ${_fashion.focus.main} !important;
+      color: ${_fashion.focus.contrast} !important;
+      outline: none;
+      box-shadow: 0 0 0.25rem 0.25rem ${_fashion.focus.border};
     }
   `;
 
