@@ -40,7 +40,7 @@ export function ZBooleanCheckbox(props: IZBoolean<boolean | null>) {
   const input = useRef<HTMLDivElement>(null);
 
   const [_value, _setValue] = useAmbassadorState(value, onValueChange);
-  const checked = _value == null ? true : _value;
+  const checked = _value === null ? true : _value;
   const indeterminate = _value === null;
 
   const _className = css`
@@ -53,7 +53,6 @@ export function ZBooleanCheckbox(props: IZBoolean<boolean | null>) {
     &[data-disabled="true"] .ZLabel-root {
       cursor: default;
       opacity: 0.65;
-      pointer-events: none;
     }
 
     input {
@@ -98,7 +97,9 @@ export function ZBooleanCheckbox(props: IZBoolean<boolean | null>) {
   };
 
   const handleToggle = () => {
-    handleChecked(!checked);
+    if (!disabled) {
+      handleChecked(!checked);
+    }
   };
 
   const { tabIndex, onKey } = useKeyboardActivate(handleToggle);
@@ -135,6 +136,7 @@ export function ZBooleanCheckbox(props: IZBoolean<boolean | null>) {
       data-disabled={disabled}
       data-fashion={fashion?.name}
       onClick={focusInput}
+      aria-disabled={disabled}
     >
       <input
         id={id}
