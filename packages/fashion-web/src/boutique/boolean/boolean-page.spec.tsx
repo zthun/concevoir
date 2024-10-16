@@ -73,7 +73,8 @@ describe("ZBooleanPage", () => {
     // Act.
     await required.toggle(expected);
     const bool = await factoryDemo(target);
-    const actual = await bool.required();
+    const label = await bool.label();
+    const actual = await label?.required();
     // Assert.
     expect(actual).toEqual(expected);
   }
