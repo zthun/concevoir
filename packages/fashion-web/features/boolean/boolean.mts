@@ -7,8 +7,6 @@ import {
 } from "../../src/routes.mjs";
 import { ZFashionWorld } from "../fashion-world.mjs";
 
-type BooleanPageOption = "disabled" | "required";
-
 Given(
   "I have navigated to the boolean demo page",
   async function (this: ZFashionWorld<ZBooleanPageComponentModel>) {
@@ -48,7 +46,7 @@ When(
   "I toggle the switch for the {string} option to {string} on the boolean page",
   async function (
     this: ZFashionWorld<ZBooleanPageComponentModel>,
-    option: BooleanPageOption,
+    option: "disabled" | "required",
     value: "on" | "off",
   ) {
     const { page } = this.parameters;
@@ -87,18 +85,34 @@ Then(
 );
 
 Then(
-  "all demo components are {string} {string} on the boolean page",
+  "all demo components are disabled {string} on the boolean page",
   async function (
     this: ZFashionWorld<ZBooleanPageComponentModel>,
-    option: BooleanPageOption,
     value: "on" | "off",
   ) {
     const { page } = this.parameters;
     const checkbox = await page.checkbox();
     const switcher = await page.switch();
     const expected = value === "on";
-    const checkboxState = await checkbox[option]();
-    const switchState = await switcher[option]();
+    const checkboxState = await checkbox.disabled();
+    const switchState = await switcher.disabled();
+    assert.equal(checkboxState, expected);
+    assert.equal(switchState, expected);
+  },
+);
+
+Then(
+  "all demo components are required {string} on the boolean page",
+  async function (
+    this: ZFashionWorld<ZBooleanPageComponentModel>,
+    value: "on" | "off",
+  ) {
+    const { page } = this.parameters;
+    const checkbox = await page.checkbox();
+    const switcher = await page.switch();
+    const expected = value === "on";
+    const checkboxState = await (await checkbox.label())?.required();
+    const switchState = await (await switcher.label())?.required();
     assert.equal(checkboxState, expected);
     assert.equal(switchState, expected);
   },

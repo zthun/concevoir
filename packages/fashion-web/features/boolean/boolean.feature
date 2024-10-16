@@ -32,22 +32,22 @@ Scenario: The switch should toggle off when clicked while on
 @BooleanPage-Disabled
 Scenario: The disabled option should disable all components when on
   When I toggle the switch for the "disabled" option to "on" on the boolean page
-  Then all demo components are "disabled" "on" on the boolean page
+  Then all demo components are disabled "on" on the boolean page
 
 @BooleanPage-Disabled
 Scenario: The disabled option should enable all components when off
   When I toggle the switch for the "disabled" option to "off" on the boolean page
-  Then all demo components are "disabled" "off" on the boolean page
+  Then all demo components are disabled "off" on the boolean page
 
 @BooleanPage-Required
 Scenario: The required option should mark all components required when on
   When I toggle the switch for the "required" option to "on" on the boolean page
-  Then all demo components are "required" "on" on the boolean page
+  Then all demo components are required "on" on the boolean page
 
 @BooleanPage-Required
 Scenario: The disabled option should enable all components when off
   When I toggle the switch for the "required" option to "off" on the boolean page
-  Then all demo components are "required" "off" on the boolean page
+  Then all demo components are required "off" on the boolean page
 
 @BooleanPage-Fashion
 Scenario: Should select the correct fashion
