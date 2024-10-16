@@ -176,6 +176,11 @@ describe("ZBoolean", () => {
       await assertRaisesOnValueChange(createTestTarget.bind(null, null), true);
     });
 
+    it("should not flip the state if the component is disabled", async () => {
+      disabled = true;
+      await assertChangesState(createTestTarget, false, false);
+    });
+
     it("should flip the state from true to false, when the label is clicked", async () => {
       await assertChangesStateOnLabel(createTestTarget, false, true);
     });
@@ -239,6 +244,11 @@ describe("ZBoolean", () => {
 
     it("should raise onValueChange from false to true when the falsy radio is clicked.", async () => {
       await assertRaisesOnValueChange(createTestTarget.bind(null, false), true);
+    });
+
+    it("should not flip the state if the component is disabled", async () => {
+      disabled = true;
+      await assertChangesState(createTestTarget, false, false);
     });
 
     it("should flip the state from true to false, when the label is clicked", async () => {

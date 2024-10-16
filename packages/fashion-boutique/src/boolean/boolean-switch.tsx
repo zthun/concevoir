@@ -96,7 +96,9 @@ export function ZBooleanSwitch(props: IZBoolean<boolean>) {
   `;
 
   const handleToggle = () => {
-    _setValue(!checked);
+    if (!disabled) {
+      _setValue(!checked);
+    }
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) =>
