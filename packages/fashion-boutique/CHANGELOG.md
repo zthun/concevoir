@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.0](https://github.com/zthun/fashion/compare/v7.1.0...v7.2.0) (2024-10-16)
+
+
+### Features
+
+* extract typography css into a hook for consumption on other components ([2ae70d8](https://github.com/zthun/fashion/commit/2ae70d8e44f629090a127c5810f80bbd1825a131))
+
+
+### Bug Fixes
+
+* checkbox should not start as indeterminate if value is undefined ([c2f9adc](https://github.com/zthun/fashion/commit/c2f9adc499281d9b6f14779e51d3e94a972862c5))
+* label alignment should be centered ([788f740](https://github.com/zthun/fashion/commit/788f740570923fd956f0fe952c6b8744d73ed85c))
+* label typography should now be consistent with other typography ([b3bc2d1](https://github.com/zthun/fashion/commit/b3bc2d1222db7568f70dc25427b351d407c6fd6f))
+
+
+
 ## [7.1.0](https://github.com/zthun/fashion/compare/v7.0.0...v7.1.0) (2024-10-15)
 
 
