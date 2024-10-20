@@ -27,6 +27,7 @@ export function ZPopup(props: IZPopup) {
     attach,
     attachOrigin = [ZVerticalAnchor.Bottom, ZHorizontalAnchor.Left],
     popupOrigin = [ZVerticalAnchor.Top, ZHorizontalAnchor.Left],
+    name,
     renderHeader,
     renderFooter,
   } = props;
