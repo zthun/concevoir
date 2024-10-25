@@ -51,7 +51,7 @@ export function ZChoiceToggle<O, V>(props: IZChoice<O, V>) {
   const { choices, value, display, render, setValue } = useChoice(props);
   const { classes } = useToggleStyles();
 
-  const isValueSelected = (option: V, value: V[] | undefined) => {
+  const isValueSelected = (option: V, value: V[] | undefined | null) => {
     return !!value && value.indexOf(option) >= 0;
   };
 

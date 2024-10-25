@@ -38,7 +38,6 @@ export interface IZChoiceApi<O, V> {
   readonly lookup: Map<O | V | string, IZChoiceOption<O, V>>;
   readonly value: V[] | undefined | null;
 
-  cast(value: V[] | undefined | null, fallback: any): V | V[] | null;
   display(option: O): string;
   render(option: O): ReactNode;
   setValue(value: V[] | null): void;
@@ -113,7 +112,6 @@ export function useChoice<O = any, V = O>(
     lookup,
     value: __value,
 
-    cast,
     display,
     render: renderOption,
     setValue: _setValue,
