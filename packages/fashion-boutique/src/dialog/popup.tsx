@@ -9,7 +9,7 @@ import {
   cssJoinDefined,
   firstDefined,
 } from "@zthun/helpful-fn";
-import { useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
 import { IZDialog, useDialog } from "./use-dialog";
 
@@ -36,7 +36,7 @@ export function ZPopup(props: IZPopup) {
   const popup = useRef<HTMLDialogElement>(document.createElement("dialog"));
   const picker = new ZColorPicker(firstDefined(component, fashion));
 
-  const onBeforeOpen = () => {
+  const onBeforeOpen = useCallback(() => {
     const _popup = popup.current;
     const _attach = firstDefined(document.body, attach, _popup.parentElement);
 
@@ -64,7 +64,7 @@ export function ZPopup(props: IZPopup) {
     _popup.style.width = `${tq.width}px`;
 
     return Promise.resolve();
-  };
+  }, [popup.current]);
 
   const { closeOnBackdropClick, closeOnEscapeKey } = useDialog(
     popup.current,
@@ -110,6 +110,20 @@ export function ZPopup(props: IZPopup) {
       flex-grow: 1;
     }
   `;
+
+  useEffect(() => {
+    return ((onRedraw) => {
+      window.removeEventListener("resize", onRedraw);
+      window.removeEventListener("scroll", onRedraw);
+      window.addEventListener("resize", onRedraw);
+      window.addEventListener("scroll", onRedraw);
+
+      return () => {
+        window.removeEventListener("resize", onRedraw);
+        window.removeEventListener("scroll", onRedraw);
+      };
+    })(onBeforeOpen);
+  }, [onBeforeOpen]);
 
   return (
     <dialog
