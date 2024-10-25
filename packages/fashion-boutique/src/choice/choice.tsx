@@ -1,6 +1,6 @@
 import { createGuid } from "@zthun/helpful-fn";
 import { useAmbassadorState } from "@zthun/helpful-react";
-import { first, identity } from "lodash-es";
+import { castArray, first, identity } from "lodash-es";
 import { ReactNode, useMemo } from "react";
 import { IZComponentDisabled } from "../component/component-disabled.mjs";
 import { IZComponentLabel } from "../component/component-label.mjs";
@@ -19,7 +19,7 @@ export interface IZChoiceOption<O = any, V = O> {
 export interface IZChoice<O = any, V = O>
   extends IZComponentDisabled,
     IZComponentStyle,
-    IZComponentValue<V[]>,
+    IZComponentValue<V[] | V | null>,
     IZComponentLabel,
     IZComponentRequired,
     IZComponentOrientation,
@@ -36,12 +36,12 @@ export interface IZChoice<O = any, V = O>
 export interface IZChoiceApi<O, V> {
   readonly choices: IZChoiceOption<O, V>[];
   readonly lookup: Map<O | V | string, IZChoiceOption<O, V>>;
-  readonly value: V[] | undefined;
+  readonly value: V[] | undefined | null;
 
-  cast(value: V[] | undefined, fallback: any): V | V[];
+  cast(value: V[] | undefined | null, fallback: any): V | V[] | null;
   display(option: O): string;
   render(option: O): ReactNode;
-  setValue(value: V[]): void;
+  setValue(value: V[] | null): void;
 }
 
 /**
@@ -66,16 +66,17 @@ export function useChoice<O = any, V = O>(
     renderOption = display,
   } = props;
 
-  const [_value, _setValue] = useAmbassadorState(value, onValueChange);
+  const _value: V[] | null = value == null ? null : castArray(value);
+  const _onValueChange = (val: V[] | null) => {
+    onValueChange?.call(null, cast(val, null));
+  };
+  const [__value, _setValue] = useAmbassadorState(
+    value === undefined ? undefined : _value,
+    _onValueChange,
+    null,
+  );
   const [choices, lookup] = useMemo(_choices, [options, identifier]);
 
-  /**
-   * Converts from the initial options to the option list with a lookup table.
-   *
-   * @returns
-   *        A tuple with the first being the options list and the second being
-   *        a lookup table to map keys to options.
-   */
   function _choices(): [
     IZChoiceOption<O, V>[],
     Map<O | V | string, IZChoiceOption<O, V>>,
@@ -97,33 +98,11 @@ export function useChoice<O = any, V = O>(
     return [optionList, lookup];
   }
 
-  /**
-   * Returns the default display text of an option.
-   *
-   * @param option -
-   *        The option to retrieve the display text for.
-   *
-   * @returns
-   *        The option converted to a string.
-   */
   function _display(option: O) {
     return String(option);
   }
 
-  /**
-   * Casts the value to the first value in the array or the array itself if multiple is on.
-   *
-   * @param value -
-   *        The value to cast or undefined if there is currently no value.
-   * @param fallback -
-   *        The fallback value to use if value is undefined.
-   *
-   * @returns
-   *        The empty array if value is undefined.  Value if multiple
-   *        is true, or the first value in the array if multiple is false.
-   *        Returns fallback if the array is empty and multiple is false.
-   */
-  function cast(value: V[] | undefined, fallback: any): V | V[] {
+  function cast(value: V[] | undefined | null, fallback: any): V | V[] | null {
     const actual = value ?? [];
     const firstValue = first(actual) || fallback;
     return multiple ? actual : firstValue;
@@ -132,7 +111,7 @@ export function useChoice<O = any, V = O>(
   return {
     choices,
     lookup,
-    value: _value,
+    value: __value,
 
     cast,
     display,
