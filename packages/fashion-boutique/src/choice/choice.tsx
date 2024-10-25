@@ -10,13 +10,13 @@ import { IZComponentRequired } from "../component/component-required.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 import { IZComponentValue } from "../component/component-value.mjs";
 
-export interface IZChoiceOption<O, V> {
+export interface IZChoiceOption<O = any, V = O> {
   key: string;
   value: V;
   option: O;
 }
 
-export interface IZChoice<O, V>
+export interface IZChoice<O = any, V = O>
   extends IZComponentDisabled,
     IZComponentStyle,
     IZComponentValue<V[]>,
