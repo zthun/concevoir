@@ -2,7 +2,7 @@ import { css } from "@emotion/css";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
 import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
-import { InputHTMLAttributes } from "react";
+import { ForwardedRef, forwardRef, InputHTMLAttributes } from "react";
 import { ZLabeled } from "../label/labeled";
 import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
 import { IZText, useText, withEnterCommit } from "./text";
@@ -45,7 +45,10 @@ export interface IZTextInput
  * @returns
  *        The JSX to render the component.
  */
-export function ZTextInput(props: IZTextInput) {
+export const ZTextInput = forwardRef(function _ZTextInput(
+  props: IZTextInput,
+  ref: ForwardedRef<HTMLInputElement>,
+) {
   const {
     className,
     fashion,
@@ -142,9 +145,10 @@ export function ZTextInput(props: IZTextInput) {
           {...InputProps}
           type={type}
           onKeyDown={handleKeyDown}
+          ref={ref}
         />
         {suffix && <div className="ZText-suffix">{suffix}</div>}
       </div>
     </ZLabeled>
   );
-}
+});
