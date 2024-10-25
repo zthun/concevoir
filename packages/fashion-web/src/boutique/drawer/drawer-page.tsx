@@ -3,7 +3,7 @@ import {
   ZBox,
   ZButton,
   ZCard,
-  ZChoiceDropDown,
+  ZChoiceSelect,
   ZDrawer,
   ZGrid,
   ZH3,
@@ -100,7 +100,7 @@ export function ZDrawerPage() {
         <ZH3>Options</ZH3>
 
         <ZGrid gap={ZSizeFixed.Medium}>
-          <ZChoiceDropDown
+          <ZChoiceSelect
             value={[anchor]}
             onValueChange={setFirst.bind(
               null,

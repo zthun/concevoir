@@ -1,7 +1,7 @@
 import {
   IZComponentName,
   IZComponentValue,
-  ZChoiceDropDown,
+  ZChoiceSelect,
 } from "@zthun/fashion-boutique";
 import {
   ZSize,
@@ -43,7 +43,7 @@ export function ZChoiceDropDownSize<TSize = ZSize>(
   const _setSize = setFirst.bind(null, _setValue, undefined);
 
   return (
-    <ZChoiceDropDown
+    <ZChoiceSelect
       label={label}
       value={size}
       onValueChange={_setSize}

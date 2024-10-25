@@ -3,8 +3,7 @@ import {
   ZBox,
   ZCaption,
   ZCard,
-  ZChoiceAutocomplete,
-  ZChoiceDropDown,
+  ZChoiceSelect,
   ZChoiceToggle,
   ZGrid,
   ZH3,
@@ -13,6 +12,7 @@ import {
 } from "@zthun/fashion-boutique";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { IZBrand, ZBrands } from "@zthun/helpful-brands";
+import { castArray } from "lodash-es";
 import { useMemo, useState } from "react";
 import { ZFashionRouteChoice } from "../../routes.mjs";
 
@@ -24,14 +24,17 @@ import { ZFashionRouteChoice } from "../../routes.mjs";
 export function ZChoicePage() {
   const allBrands = useMemo(() => ZBrands.slice(), []);
   const someBrands = useMemo(() => ZBrands.slice(0, 4), []);
-  const [values, setValues] = useState([allBrands[2].id]);
+  const [values, setValues] = useState<string[] | string | null>([
+    allBrands[2].id,
+  ]);
   const [disabled, setDisabled] = useState(false);
   const [multiple, setMultiple] = useState(false);
   const [indelible, setIndelible] = useState(false);
   const [required, setRequired] = useState(false);
 
   function renderSelected() {
-    return values.map((s) => (
+    const _values = values == null ? [] : castArray(values);
+    return _values.map((s) => (
       <li key={s} className="ZChoicePage-value">
         {s}
       </li>
@@ -85,12 +88,12 @@ export function ZChoicePage() {
 
         <ZGrid
           align={{ items: "center" }}
-          columns={{ xl: "1fr 1fr", sm: "1fr" }}
+          columns={{ xl: "1fr 1fr 1fr", sm: "1fr" }}
           gap={ZSizeFixed.Large}
         >
-          <ZChoiceDropDown
+          <ZChoiceSelect
             disabled={disabled}
-            label="Drop Down"
+            label="Select"
             indelible={indelible}
             multiple={multiple}
             required={required}
@@ -100,22 +103,7 @@ export function ZChoicePage() {
             onValueChange={setValues}
             options={allBrands}
             renderOption={renderBrand}
-            name="dropdown"
-          />
-
-          <ZChoiceAutocomplete
-            disabled={disabled}
-            label="Autocomplete"
-            indelible={indelible}
-            multiple={multiple}
-            required={required}
-            value={values}
-            identifier={getBrandId}
-            display={renderBrandDisplay}
-            onValueChange={setValues}
-            options={allBrands}
-            renderOption={renderBrand}
-            name="autocomplete"
+            name="select"
           />
 
           <ZChoiceToggle

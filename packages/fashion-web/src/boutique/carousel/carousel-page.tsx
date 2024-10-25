@@ -3,7 +3,7 @@ import {
   ZBubble,
   ZCard,
   ZCarousel,
-  ZChoiceDropDown,
+  ZChoiceSelect,
   ZChoiceToggle,
   ZH3,
   ZIconFontAwesome,
@@ -107,7 +107,7 @@ export function ZCarouselPage() {
             identifier={identity}
             name="count"
           />
-          <ZChoiceDropDown
+          <ZChoiceSelect
             options={orientations}
             value={orientation}
             onValueChange={setOrientation}

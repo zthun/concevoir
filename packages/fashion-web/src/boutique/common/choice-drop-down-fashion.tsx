@@ -1,7 +1,7 @@
 import {
   IZComponentName,
   IZComponentValue,
-  ZChoiceDropDown,
+  ZChoiceSelect,
 } from "@zthun/fashion-boutique";
 import {
   ZFashionArea,
@@ -41,7 +41,7 @@ export function ZChoiceDropDownFashion(props: IZChoiceDropDownFashion) {
   ];
 
   return (
-    <ZChoiceDropDown
+    <ZChoiceSelect
       label="Fashion"
       value={fashion}
       onValueChange={_setFashion}

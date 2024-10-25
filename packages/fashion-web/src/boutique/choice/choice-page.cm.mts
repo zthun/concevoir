@@ -23,23 +23,13 @@ export class ZChoicePageComponentModel extends ZCircusComponentModel {
   }
 
   /**
-   * Gets the drop down choice component.
+   * Gets the drop down (select) choice component.
    *
    * @returns
    *        The drop down choice component.
    */
   public dropdown(): Promise<ZChoiceComponentModel> {
-    return ZCircusBy.first(this.driver, ZChoiceComponentModel, "dropdown");
-  }
-
-  /**
-   * Gets the auto complete choice component.
-   *
-   * @returns
-   *        The auto complete choice component.
-   */
-  public autocomplete(): Promise<ZChoiceComponentModel> {
-    return ZCircusBy.first(this.driver, ZChoiceComponentModel, "autocomplete");
+    return ZCircusBy.first(this.driver, ZChoiceComponentModel, "select");
   }
 
   /**
