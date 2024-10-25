@@ -1,6 +1,6 @@
 import { createGuid } from "@zthun/helpful-fn";
 import { useAmbassadorState } from "@zthun/helpful-react";
-import { first } from "lodash-es";
+import { first, identity } from "lodash-es";
 import { ReactNode, useMemo } from "react";
 import { IZComponentDisabled } from "../component/component-disabled.mjs";
 import { IZComponentLabel } from "../component/component-label.mjs";
@@ -26,9 +26,9 @@ export interface IZChoice<O, V>
     IZComponentName {
   multiple?: boolean;
   indelible?: boolean;
-  options: Array<O>;
+  options?: Array<O>;
 
-  identifier: (option: O) => V;
+  identifier?: (option: O) => V;
   display?: (option: O) => string;
   renderOption?: (option: O) => ReactNode;
 }
@@ -59,8 +59,8 @@ export function useChoice<O = any, V = O>(
   const {
     value,
     onValueChange,
-    options,
-    identifier,
+    options = [],
+    identifier = identity as (option: O) => V,
     display = _display,
     multiple,
     renderOption = display,

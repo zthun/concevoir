@@ -5,7 +5,7 @@ import {
 } from "@mui/material";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { cssJoinDefined } from "@zthun/helpful-fn";
-import { castArray, first } from "lodash-es";
+import { castArray, first, identity } from "lodash-es";
 import { HTMLAttributes, SyntheticEvent } from "react";
 import { ZLabeled } from "../label/labeled";
 import { createStyleHook } from "../theme/styled";
@@ -84,7 +84,7 @@ export function ZChoiceAutocomplete<O, V>(props: IZChoice<O, V>) {
     indelible,
     orientation,
     required,
-    identifier,
+    identifier = identity as (option: O) => V,
   } = props;
   const { choices, value, lookup, render, display, setValue } =
     useChoice(props);
