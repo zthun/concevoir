@@ -22,6 +22,7 @@ export interface IZDialog
 
 export interface IUseDialogOptions {
   onBeforeOpen?: () => Promise<void>;
+  onAfterOpen?: () => Promise<void>;
 }
 
 export function useDialog(
@@ -34,6 +35,7 @@ export function useDialog(
   const show = async () => {
     await options?.onBeforeOpen?.call(null);
     current?.showModal?.call(current);
+    await options?.onAfterOpen?.call(null);
     current?.focus?.call(current);
   };
 
