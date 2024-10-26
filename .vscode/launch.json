@@ -11,6 +11,16 @@
       "console": "integratedTerminal",
       "program": "${workspaceRoot}/node_modules/@cucumber/cucumber/bin/cucumber-js",
       "args": ["--tags", "@debug"]
+    },
+    {
+      "name": "Launch Chrome",
+      "request": "launch",
+      "type": "chrome",
+      "url": "http://localhost:5173",
+      "trace": true,
+      "sourceMaps": true,
+      "perScriptSourcemaps": "yes",
+      "webRoot": "${workspaceFolder}"
     }
   ]
 }
