@@ -1,24 +1,44 @@
 import { css } from "@emotion/css";
-import { ZSizeFixed } from "@zthun/fashion-tailor";
+import {
+  createSizeChartFixedArithmetic,
+  createSizeChartFixedCss,
+  createSizeChartVariedCss,
+  ZDeviceValues,
+  ZSizeFixed,
+  ZSizeVaried,
+} from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
 import {
+  cssJoinDefined,
+  firstDefined,
   ZHorizontalAnchor,
   ZQuadrilateralBuilder,
   ZRectangle,
   ZVerticalAnchor,
-  cssJoinDefined,
-  firstDefined,
 } from "@zthun/helpful-fn";
 import { useWindowService } from "@zthun/helpful-react";
 import { useCallback, useEffect, useRef } from "react";
-import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
+import { IZComponentHeight } from "../component/component-height.mjs";
+import {
+  useFashionDevice,
+  useFashionTailor,
+  useFashionTheme,
+} from "../theme/fashion.mjs";
 import { IZDialog, useDialog } from "./use-dialog";
 
-export interface IZPopup extends IZDialog {
+export interface IZPopup
+  extends IZDialog,
+    IZComponentHeight<ZSizeFixed | ZSizeVaried> {
   attach?: Element | null;
   attachOrigin?: [ZVerticalAnchor, ZHorizontalAnchor];
   popupOrigin?: [ZVerticalAnchor, ZHorizontalAnchor];
 }
+
+const HeightChart = {
+  ...createSizeChartFixedCss(createSizeChartFixedArithmetic(5, 10), "rem"),
+  ...createSizeChartVariedCss(),
+  [ZSizeVaried.Fit]: "fit-content",
+};
 
 export function ZPopup(props: IZPopup) {
   const {
@@ -29,14 +49,17 @@ export function ZPopup(props: IZPopup) {
     attachOrigin = [ZVerticalAnchor.Bottom, ZHorizontalAnchor.Left],
     popupOrigin = [ZVerticalAnchor.Top, ZHorizontalAnchor.Left],
     name,
+    height,
     renderHeader,
     renderFooter,
   } = props;
   const { component } = useFashionTheme();
+  const device = useFashionDevice();
   const tailor = useFashionTailor();
   const popup = useRef<HTMLDialogElement>(document.createElement("dialog"));
   const picker = new ZColorPicker(firstDefined(component, fashion));
   const _window = useWindowService();
+  const _height = new ZDeviceValues(height, ZSizeVaried.Fit);
 
   const onBeforeOpen = useCallback(() => {
     const _popup = popup.current;
@@ -110,6 +133,24 @@ export function ZPopup(props: IZPopup) {
 
     .ZDialog-content {
       flex-grow: 1;
+      overflow: auto;
+      max-height: ${HeightChart[_height.xl]};
+    }
+
+    ${device.break(ZSizeFixed.Large)} {
+      max-height: ${HeightChart[_height.lg]};
+    }
+
+    ${device.break(ZSizeFixed.Medium)} {
+      max-height: ${HeightChart[_height.md]};
+    }
+
+    ${device.break(ZSizeFixed.Small)} {
+      max-height: ${HeightChart[_height.sm]};
+    }
+
+    ${device.break(ZSizeFixed.ExtraSmall)} {
+      max-height: ${HeightChart[_height.xs]};
     }
   `;
 
