@@ -48,27 +48,16 @@ export function ZChoiceToggle<O, V>(props: IZChoice<O, V>) {
     orientation,
     required,
   } = props;
-  const { choices, value, display, render, setValue, isValueSelected } =
-    useChoice(props);
+  const {
+    choices,
+    value,
+    display,
+    render,
+    setValue,
+    isValueSelected,
+    toggleValue,
+  } = useChoice(props);
   const { classes } = useToggleStyles();
-
-  const toggleValue = (_: any, v: V) => {
-    const selected = isValueSelected(v);
-
-    if (indelible && !multiple && selected) {
-      return;
-    }
-
-    let next: V[] = value || [];
-
-    if (selected) {
-      next = next.filter((current) => current !== v);
-    } else {
-      next = multiple ? [...next, v] : [v];
-    }
-
-    setValue(next);
-  };
 
   const renderClear = () => {
     if (indelible || !value?.length) {
@@ -103,7 +92,7 @@ export function ZChoiceToggle<O, V>(props: IZChoice<O, V>) {
         className={className}
         value={_value}
         selected={selected}
-        onClick={toggleValue}
+        onClick={(_: any, v) => toggleValue(v)}
         data-value={choice.value}
       >
         <Tooltip title={_display}>

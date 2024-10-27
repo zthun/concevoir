@@ -1,4 +1,4 @@
-import { createGuid } from "@zthun/helpful-fn";
+import { createGuid, firstDefined } from "@zthun/helpful-fn";
 import { useAmbassadorState } from "@zthun/helpful-react";
 import { castArray, first, identity } from "lodash-es";
 import { ReactNode, useMemo } from "react";
@@ -42,6 +42,7 @@ export interface IZChoiceApi<O, V> {
   display(option: O): string;
   render(option: O): ReactNode;
   setValue(value: V[] | null): void;
+  toggleValue(value: V): void;
 }
 
 /**
@@ -63,6 +64,7 @@ export function useChoice<O = any, V = O>(
     identifier = identity as (option: O) => V,
     display = _display,
     multiple,
+    indelible,
     renderOption = display,
   } = props;
 
@@ -112,6 +114,24 @@ export function useChoice<O = any, V = O>(
     return !!__value && __value.indexOf(candidate) >= 0;
   }
 
+  function toggleValue(candidate: V) {
+    const selected = isValueSelected(candidate);
+
+    if (indelible && !multiple && selected) {
+      return;
+    }
+
+    let next: V[] = firstDefined([], __value);
+
+    if (selected) {
+      next = next.filter((current) => current !== candidate);
+    } else {
+      next = multiple ? [...next, candidate] : [candidate];
+    }
+
+    _setValue(next);
+  }
+
   return {
     choices,
     lookup,
@@ -120,6 +140,7 @@ export function useChoice<O = any, V = O>(
     display,
     render: renderOption,
     isValueSelected,
+    toggleValue,
     setValue: _setValue,
   };
 }
