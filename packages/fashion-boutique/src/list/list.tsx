@@ -1,7 +1,8 @@
 import { css } from "@emotion/css";
-import { ZSizeFixed } from "@zthun/fashion-tailor";
+import { ZSizeFixed, ZSizeVoid } from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
 import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import { IZComponentCompact } from "../component/component-compact.mjs";
 import { IZComponentFashion } from "../component/component-fashion.mjs";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentName } from "../component/component-name.mjs";
@@ -13,6 +14,7 @@ import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
  */
 export interface IZList
   extends IZComponentHierarchy,
+    IZComponentCompact,
     IZComponentStyle,
     IZComponentFashion,
     IZComponentName {}
@@ -29,7 +31,7 @@ export interface IZList
 export function ZList(props: IZList) {
   const { primary } = useFashionTheme();
   const tailor = useFashionTailor();
-  const { className, children, fashion, name } = props;
+  const { className, children, fashion, name, compact } = props;
   const _fashion = firstDefined(primary, fashion);
   const picker = new ZColorPicker(_fashion);
 
@@ -38,7 +40,7 @@ export function ZList(props: IZList) {
       border: ${tailor.thickness(ZSizeFixed.ExtraSmall)} solid transparent;
       list-style: none;
       margin: 0;
-      padding: ${tailor.gap(ZSizeFixed.ExtraSmall)};
+      padding: ${tailor.gap(compact ? ZSizeVoid.None : ZSizeFixed.ExtraSmall)};
     }
 
     li[data-interactive]:hover {

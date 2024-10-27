@@ -53,7 +53,7 @@ describe("ZList", () => {
 
     it("should not render an item that does not exist", async () => {
       // Arrange.
-      const target = await createTestTarget();
+      const target = await createTestTarget({ compact: true });
       // Act.
       const actual = await target.item("missing");
       // Assert.
