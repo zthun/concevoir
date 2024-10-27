@@ -36,8 +36,9 @@ export interface IZChoice<O = any, V = O>
 export interface IZChoiceApi<O, V> {
   readonly choices: IZChoiceOption<O, V>[];
   readonly lookup: Map<O | V | string, IZChoiceOption<O, V>>;
-  readonly value: V[] | undefined | null;
+  readonly value: V[] | null;
 
+  isValueSelected(value: V): boolean;
   display(option: O): string;
   render(option: O): ReactNode;
   setValue(value: V[] | null): void;
@@ -107,6 +108,10 @@ export function useChoice<O = any, V = O>(
     return multiple ? actual : firstValue;
   }
 
+  function isValueSelected(candidate: V) {
+    return !!__value && __value.indexOf(candidate) >= 0;
+  }
+
   return {
     choices,
     lookup,
@@ -114,6 +119,7 @@ export function useChoice<O = any, V = O>(
 
     display,
     render: renderOption,
+    isValueSelected,
     setValue: _setValue,
   };
 }

@@ -48,15 +48,12 @@ export function ZChoiceToggle<O, V>(props: IZChoice<O, V>) {
     orientation,
     required,
   } = props;
-  const { choices, value, display, render, setValue } = useChoice(props);
+  const { choices, value, display, render, setValue, isValueSelected } =
+    useChoice(props);
   const { classes } = useToggleStyles();
 
-  const isValueSelected = (option: V, value: V[] | undefined | null) => {
-    return !!value && value.indexOf(option) >= 0;
-  };
-
   const toggleValue = (_: any, v: V) => {
-    const selected = isValueSelected(v, value);
+    const selected = isValueSelected(v);
 
     if (indelible && !multiple && selected) {
       return;
@@ -92,7 +89,7 @@ export function ZChoiceToggle<O, V>(props: IZChoice<O, V>) {
   const renderChoice = (choice: IZChoiceOption<O, V>) => {
     const _value = choice.value as any;
     const _display = display(choice.option);
-    const selected = isValueSelected(choice.value, value);
+    const selected = isValueSelected(choice.value);
 
     const className = cssJoinDefined("ZChoice-option", classes.toggle, [
       "ZChoice-value",
