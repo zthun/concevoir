@@ -34,9 +34,6 @@ const useToggleStyles = createStyleHook(({ theme }) => ({
   },
 }));
 
-/**
- * Represents a type of choice component that switches between a toggled button group.
- */
 export function ZChoiceToggle<O, V>(props: IZChoice<O, V>) {
   const {
     className,
