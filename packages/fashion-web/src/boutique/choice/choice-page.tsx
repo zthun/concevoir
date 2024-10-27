@@ -42,7 +42,11 @@ export function ZChoicePage() {
   }
 
   const renderBrandAvatar = (h: IZBrand) => (
-    <ZIconFontAwesome family="brands" name={h.id} width={ZSizeFixed.Small} />
+    <ZIconFontAwesome
+      family="brands"
+      name={h.id}
+      width={ZSizeFixed.ExtraSmall}
+    />
   );
   const getBrandId = (h: IZBrand) => h.id;
   const renderBrandDisplay = (h: IZBrand) => h.name;
