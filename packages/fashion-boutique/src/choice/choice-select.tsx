@@ -11,7 +11,7 @@ import { ZList } from "../list/list";
 import { ZListItem } from "../list/list-item";
 import { ZStack } from "../stack/stack";
 import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
-import { IZChoice, IZChoiceOption, useChoice } from "./choice";
+import { IZChoice, useChoice } from "./choice";
 
 export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
   const { component, primary, transparent } = useFashionTheme();
@@ -25,7 +25,8 @@ export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
 
   const onToggle = () => setOpen((o) => !o);
   const { tabIndex, onKey } = useKeyboardActivate(onToggle);
-  const { choices, render, value, lookup, setValue } = useChoice(props);
+  const { choices, render, value, lookup, setValue, toggleValue } =
+    useChoice(props);
 
   const _className = css`
     &[data-disabled="true"] {
@@ -123,11 +124,10 @@ export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
     );
   };
 
-  const handleSelect = (option: IZChoiceOption<O, V>) => {
-    if (multiple) {
-      setOpen(true);
-    } else {
-      setValue([option.value]);
+  const handleSelect = (value: V) => {
+    toggleValue(value);
+
+    if (!multiple) {
       setOpen(false);
     }
   };
@@ -180,7 +180,7 @@ export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
               cursor="pointer"
               interactive
               data-value={choice.value}
-              onClick={handleSelect.bind(null, choice)}
+              onClick={handleSelect.bind(null, choice.value)}
             >
               {render(choice.option)}
             </ZListItem>
