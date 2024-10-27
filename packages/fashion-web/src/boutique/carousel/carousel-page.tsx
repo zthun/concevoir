@@ -25,10 +25,7 @@ import { ZFashionRouteCarousel } from "../../routes.mjs";
  */
 export function ZCarouselPage() {
   const [index, setIndex] = useState(0);
-  const [orientation, setOrientation] = useStateAsArray(
-    ZOrientation.Horizontal,
-  );
-  const [_orientation] = orientation;
+  const [orientation, setOrientation] = useState(ZOrientation.Horizontal);
   const orientations = useMemo(() => Object.values(ZOrientation), []);
   const [count, setCount] = useStateAsArray(ZBrands.length);
   const [_count] = count;
@@ -85,7 +82,7 @@ export function ZCarouselPage() {
           onValueChange={setIndex}
           renderAtIndex={renderBrand}
           renderEmpty={renderQuestion}
-          orientation={_orientation}
+          orientation={orientation}
         />
 
         <ZBox margin={{ top: ZSizeFixed.Small }}>

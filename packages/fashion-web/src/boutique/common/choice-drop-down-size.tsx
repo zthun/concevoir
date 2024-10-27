@@ -9,10 +9,8 @@ import {
   ZSizeVaried,
   ZSizeVoid,
 } from "@zthun/fashion-tailor";
-import { setFirst } from "@zthun/helpful-fn";
-import { useAmbassadorState } from "@zthun/helpful-react";
 import { identity, startCase } from "lodash-es";
-import { ReactNode, useMemo } from "react";
+import { ReactNode } from "react";
 
 export const ZFixedSizes = Object.values(ZSizeFixed);
 export const ZVariedSizes = Object.values(ZSizeVaried);
@@ -38,15 +36,12 @@ export function ZChoiceDropDownSize<TSize = ZSize>(
   props: IZChoiceDropDownSize<TSize>,
 ) {
   const { value, onValueChange, name, sizes, label } = props;
-  const [_value, _setValue] = useAmbassadorState(value, onValueChange);
-  const size = useMemo(() => (_value ? [_value] : undefined), [_value]);
-  const _setSize = setFirst.bind(null, _setValue, undefined);
 
   return (
     <ZChoiceSelect
       label={label}
-      value={size}
-      onValueChange={_setSize}
+      value={value}
+      onValueChange={onValueChange}
       options={sizes}
       renderOption={(s) => startCase(String(s))}
       identifier={identity}

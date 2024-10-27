@@ -12,7 +12,6 @@ import {
 } from "@zthun/fashion-boutique";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import {
-  setFirst,
   ZHorizontalAnchor,
   ZSideAnchor,
   ZVerticalAnchor,
@@ -101,12 +100,8 @@ export function ZDrawerPage() {
 
         <ZGrid gap={ZSizeFixed.Medium}>
           <ZChoiceSelect
-            value={[anchor]}
-            onValueChange={setFirst.bind(
-              null,
-              setAnchor,
-              ZHorizontalAnchor.Left,
-            )}
+            value={anchor}
+            onValueChange={setAnchor}
             options={anchors}
             label="Anchor"
             identifier={identity}
