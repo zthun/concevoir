@@ -45,9 +45,8 @@ describe("ZChoice", () => {
     const options = ["One", "Two", "Three", "Four", "Five"];
     const expected = "EXPECTED: ";
     const renderOption = (op: IZChoiceOption) => `${expected}${op}`;
-    const target = await createTestTarget(
-      createElement({ renderOption, options }),
-    );
+    const element = createElement({ renderOption, options });
+    const target = await createTestTarget(element);
 
     // Act.
     const _options = await target.open();
@@ -63,9 +62,8 @@ describe("ZChoice", () => {
   ) {
     // Arrange.
     const options = [1, 2, 3];
-    const target = await createTestTarget(
-      createElement({ disabled: true, options }),
-    );
+    const element = createElement({ disabled: true, options });
+    const target = await createTestTarget(element);
 
     // Act.
     const actual = await target.disabled();
@@ -83,9 +81,8 @@ describe("ZChoice", () => {
     const display = (op) => op.name;
     const [, expected] = options;
     const value = [expected.id];
-    const target = await createTestTarget(
-      createElement({ options, identifier, display, value }),
-    );
+    const element = createElement({ options, identifier, display, value });
+    const target = await createTestTarget(element);
 
     // Act.
     const [_selected] = await target.selected();
@@ -119,15 +116,14 @@ describe("ZChoice", () => {
     const options = ["One", "Two", "Three", "Four", "Five"];
     const value = options;
     const onValueChange = vi.fn();
-    const target = await createTestTarget(
-      createElement({
-        indelible: true,
-        multiple: true,
-        value,
-        onValueChange,
-        options,
-      }),
-    );
+    const element = createElement({
+      indelible: true,
+      multiple: true,
+      value,
+      onValueChange,
+      options,
+    });
+    const target = await createTestTarget(element);
 
     // Act.
     await target.clear();
@@ -143,9 +139,8 @@ describe("ZChoice", () => {
     const options = ["One", "Two", "Three", "Four", "Five"];
     const value = options;
     const onValueChange = vi.fn();
-    const target = await createTestTarget(
-      createElement({ value, onValueChange, options }),
-    );
+    const element = createElement({ value, onValueChange, options });
+    const target = await createTestTarget(element);
 
     // Act.
     await target.clear();
@@ -159,12 +154,10 @@ describe("ZChoice", () => {
   ) {
     // Arrange.
     const options = ["One", "Two", "Three", "Four", "Five"];
-    const value = undefined;
-    const onValueChange = undefined;
     const multiple = false;
     const identifier = identity;
     const target = await createTestTarget(
-      createElement({ value, onValueChange, multiple, identifier, options }),
+      createElement({ multiple, identifier, options }),
     );
     const expected = [options[1]];
 
@@ -183,12 +176,9 @@ describe("ZChoice", () => {
   ) {
     // Arrange.
     const options = ["One", "Two", "Three", "Four", "Five"];
-    const value = undefined;
-    const onValueChange = undefined;
     const multiple = true;
-    const target = await createTestTarget(
-      createElement({ value, onValueChange, multiple, options }),
-    );
+    const element = createElement({ multiple, options });
+    const target = await createTestTarget(element);
     const expected = options.slice(0, 2);
 
     // Act.
@@ -206,11 +196,7 @@ describe("ZChoice", () => {
     createElement: (props: Partial<IZChoice<any, any>>) => ReactElement,
   ) {
     // Arrange.
-    const value = undefined;
-    const onValueChange = undefined;
-    const target = await createTestTarget(
-      createElement({ value, onValueChange }),
-    );
+    const target = await createTestTarget(createElement({}));
 
     // Act.
     await target.select("not-an-option");
@@ -224,12 +210,12 @@ describe("ZChoice", () => {
     createElement: (props: Partial<IZChoice<any, any>>) => ReactElement,
   ) {
     // Arrange.
-    const label = "Choice Test";
-    const required = true;
-    const target = await createTestTarget(createElement({ label, required }));
+    const element = createElement({ label: "Choice Test", required: true });
+    const target = await createTestTarget(element);
+    const label = await target.label();
 
     // Act.
-    const actual = await (await target.label())?.required();
+    const actual = await label?.required();
 
     // Assert.
     expect(actual).toBeTruthy();
@@ -239,8 +225,7 @@ describe("ZChoice", () => {
     createElement: (props: Partial<IZChoice<any, any>>) => ReactElement,
   ) {
     // Arrange.
-    const label = undefined;
-    const target = await createTestTarget(createElement({ label }));
+    const target = await createTestTarget(createElement({}));
     // Act.
     const actual = await target.label();
     // Assert.
