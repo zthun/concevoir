@@ -45,6 +45,7 @@ export function ZPopup(props: IZPopup) {
   const {
     className,
     children,
+    compact,
     fashion,
     attach,
     attachOrigin = [ZVerticalAnchor.Bottom, ZHorizontalAnchor.Left],
@@ -160,7 +161,9 @@ export function ZPopup(props: IZPopup) {
     .ZDialog-header,
     .ZDialog-footer,
     .ZDialog-content {
-      padding: ${tailor.gap(ZSizeFixed.Small)};
+      padding: ${tailor.gap(
+        compact ? ZSizeFixed.ExtraSmall : ZSizeFixed.Small,
+      )};
     }
 
     .ZDialog-header {

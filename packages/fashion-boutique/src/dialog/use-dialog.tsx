@@ -1,6 +1,7 @@
 import { ZCircusKeyboardQwerty } from "@zthun/cirque";
 import { sleep } from "@zthun/helpful-fn";
 import { KeyboardEvent, MouseEvent, ReactNode, useEffect } from "react";
+import { IZComponentCompact } from "../component/component-compact.mjs";
 import { IZComponentFashion } from "../component/component-fashion.mjs";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentName } from "../component/component-name.mjs";
@@ -10,6 +11,7 @@ export interface IZDialog
   extends IZComponentFashion,
     IZComponentHierarchy,
     IZComponentName,
+    IZComponentCompact,
     IZComponentStyle {
   open: boolean;
   persistent?: boolean;
