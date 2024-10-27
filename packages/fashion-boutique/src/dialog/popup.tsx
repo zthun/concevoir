@@ -32,6 +32,7 @@ export interface IZPopup
   attach?: Element | null;
   attachOrigin?: [ZVerticalAnchor, ZHorizontalAnchor];
   popupOrigin?: [ZVerticalAnchor, ZHorizontalAnchor];
+  scrollContainer?: Element;
 }
 
 const HeightChart = {
@@ -50,6 +51,7 @@ export function ZPopup(props: IZPopup) {
     popupOrigin = [ZVerticalAnchor.Top, ZHorizontalAnchor.Left],
     name,
     height,
+    scrollContainer = document.documentElement,
     renderHeader,
     renderFooter,
   } = props;
@@ -61,40 +63,75 @@ export function ZPopup(props: IZPopup) {
   const _window = useWindowService();
   const _height = new ZDeviceValues(height, ZSizeVaried.Fit);
 
-  const onBeforeOpen = useCallback(() => {
+  const _getAttach = useCallback(
+    () => firstDefined(document.body, attach, popup.current?.parentElement),
+    [attach],
+  );
+
+  const _resize = useCallback(() => {
     const _popup = popup.current;
-    const _attach = firstDefined(document.body, attach, _popup.parentElement);
+    const _attach = _getAttach();
 
-    const [anchorY, anchorX] = attachOrigin;
-    const [originY, originX] = popupOrigin;
+    const attachRectangle = new ZQuadrilateralBuilder(0)
+      .copy(_attach.getBoundingClientRect())
+      .build();
 
-    const tq = _attach.getBoundingClientRect();
-    const cq = _popup.getBoundingClientRect();
+    _popup.style.minWidth = `${new ZRectangle(attachRectangle).width()}px`;
 
-    const targetRectangle = new ZRectangle(
-      new ZQuadrilateralBuilder(0).right(tq.width).bottom(tq.height).build(),
+    return Promise.resolve();
+  }, [_getAttach]);
+
+  const _reposition = useCallback(() => {
+    const _popup = popup.current;
+    const _attach = _getAttach();
+
+    const attachRectangle = new ZQuadrilateralBuilder(0)
+      .copy(_attach.getBoundingClientRect())
+      .build();
+    const popupRectangle = new ZQuadrilateralBuilder(0)
+      .copy(_popup.getBoundingClientRect())
+      .build();
+
+    const { left, top } = new ZRectangle(attachRectangle).attach(
+      attachOrigin,
+      popupRectangle,
+      popupOrigin,
     );
-    const contentRectangle = new ZRectangle(
-      new ZQuadrilateralBuilder(0).right(cq.width).bottom(cq.height).build(),
-    );
-
-    const { x: ax, y: ay } = targetRectangle.point([anchorY, anchorX]);
-    const { x: ox, y: oy } = contentRectangle.point([originY, originX]);
-
-    const left: number = tq.left + ax - ox;
-    const top: number = tq.top + ay - oy;
 
     _popup.style.left = `${left}px`;
     _popup.style.top = `${top}px`;
-    _popup.style.width = `${tq.width}px`;
 
     return Promise.resolve();
-  }, [popup.current]);
+  }, [_getAttach]);
+
+  const _adjust = useCallback(async () => {
+    const container = new ZQuadrilateralBuilder(0)
+      .bottom(scrollContainer.clientHeight)
+      .right(scrollContainer.clientWidth)
+      .build();
+
+    const popupRectangle = new ZQuadrilateralBuilder(0)
+      .copy(popup.current.getBoundingClientRect())
+      .build();
+
+    const adjusted = new ZRectangle(container).offsetToFit(popupRectangle);
+
+    popup.current.style.left = `${adjusted.left}px`;
+    popup.current.style.top = `${adjusted.top}px`;
+
+    return Promise.resolve();
+  }, [scrollContainer]);
+
+  const onAfterOpen = useCallback(async () => {
+    await _resize();
+    await _reposition();
+    await _adjust();
+  }, [attach, popup.current, scrollContainer]);
 
   const { closeOnBackdropClick, closeOnEscapeKey } = useDialog(
     popup.current,
     props,
-    { onBeforeOpen },
+    { onAfterOpen },
   );
 
   const _className = css`
@@ -165,8 +202,8 @@ export function ZPopup(props: IZPopup) {
         _window.removeEventListener("resize", onRedraw);
         _window.removeEventListener("scroll", onRedraw);
       };
-    })(onBeforeOpen);
-  }, [onBeforeOpen, _window]);
+    })(onAfterOpen);
+  }, [onAfterOpen, _window]);
 
   return (
     <dialog
