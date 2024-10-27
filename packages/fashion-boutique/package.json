@@ -33,12 +33,12 @@
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^6.1.0",
     "@mui/system": "^6.1.0",
-    "@zthun/cirque": "^7.0.3",
+    "@zthun/cirque": "^7.0.4",
     "@zthun/fashion-tailor": "^7.2.0",
     "@zthun/fashion-theme": "^7.2.0",
-    "@zthun/helpful-fn": "^6.3.0",
-    "@zthun/helpful-query": "^6.3.0",
-    "@zthun/helpful-react": "^6.3.0",
+    "@zthun/helpful-fn": "^6.4.0",
+    "@zthun/helpful-query": "^6.4.0",
+    "@zthun/helpful-react": "^6.4.0",
     "@zthun/webigail-http": "^2.4.2",
     "@zthun/webigail-url": "^2.4.2",
     "csstype": "^3.1.3",
@@ -48,9 +48,9 @@
     "tss-react": "^4.9.13"
   },
   "devDependencies": {
-    "@zthun/cirque-du-react": "^7.0.3",
-    "@zthun/helpful-brands": "^6.3.0",
-    "vite": "^5.4.9",
+    "@zthun/cirque-du-react": "^7.0.4",
+    "@zthun/helpful-brands": "^6.4.0",
+    "vite": "^5.4.10",
     "vitest": "^2.1.3"
   },
   "peerDependencies": {
