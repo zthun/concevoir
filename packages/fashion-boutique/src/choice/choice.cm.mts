@@ -3,10 +3,10 @@ import {
   ZCircusBy,
   ZCircusComponentModel,
   ZCircusKeyboardQwerty,
-  ZCircusWaitOptionsBuilder,
 } from "@zthun/cirque";
 import { firstDefined } from "@zthun/helpful-fn";
 import { findIndex } from "lodash-es";
+import { ZDialogComponentModel } from "../dialog/dialog.cm.mjs";
 import { ZLabelComponentModel } from "../label/label.cm.mjs";
 import { ZChoiceOptionComponentModel } from "./choice-option.cm.mjs";
 
@@ -47,8 +47,10 @@ export class ZChoiceComponentModel extends ZCircusComponentModel {
    */
   public async disabled(): Promise<boolean> {
     // Choices can currently render inputs or buttons.
-    const input = await this.driver.select("input,button");
-    return input.disabled();
+    const [input] = await this.driver.query("input,button");
+    const attribute = await this.driver.attribute("data-disabled", "false");
+    const disabled = await input?.disabled();
+    return disabled || attribute !== "false";
   }
 
   /**
@@ -61,6 +63,10 @@ export class ZChoiceComponentModel extends ZCircusComponentModel {
   public async closable() {
     const alwaysOpen = await this.driver.classes(["ZChoice-always-open"]);
     return alwaysOpen.length === 0;
+  }
+
+  private _popup() {
+    return ZCircusBy.first(this.driver, ZDialogComponentModel, "choice-popup");
   }
 
   /**
@@ -76,8 +82,8 @@ export class ZChoiceComponentModel extends ZCircusComponentModel {
       return true;
     }
 
-    const body = await this.driver.body();
-    return body.peek(".ZChoice-options-popup");
+    const popup = await this._popup();
+    return popup.opened();
   }
 
   /**
@@ -95,21 +101,15 @@ export class ZChoiceComponentModel extends ZCircusComponentModel {
       );
       const act = new ZCircusActBuilder().click().build();
       await toggler.perform(act);
-      const waitOptions = new ZCircusWaitOptionsBuilder()
-        .timeout(2500)
-        .description("Attempting to open the choice component")
-        .debounce(500)
-        .build();
-      await toggler.wait(() => this.opened(), waitOptions);
     }
 
     const closable = await this.closable();
 
     if (closable) {
-      // The options should be on the body in a popup.
-      const body = await this.driver.body();
-      const menu = await body.select(".ZChoice-options-popup");
-      const options = await menu.query(".ZChoice-option");
+      const popup = await this._popup();
+      await popup.waitForOpen();
+
+      const options = await popup.driver.query(".ZChoice-option");
       return options.map((e) => new ZChoiceOptionComponentModel(e));
     }
 
