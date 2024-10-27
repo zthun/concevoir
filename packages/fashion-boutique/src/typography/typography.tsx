@@ -4,6 +4,7 @@ import { IZFashion, ZColorPicker } from "@zthun/fashion-theme";
 import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
 import { Property } from "csstype";
 import { ElementType } from "react";
+import { IZComponentCompact } from "../component/component-compact.mjs";
 import { IZComponentDomEvents } from "../component/component-dom-events.mjs";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
@@ -15,9 +16,9 @@ import {
 
 export interface IZTypographyNamed
   extends IZComponentHierarchy,
+    IZComponentCompact,
     IZComponentDomEvents<HTMLElement>,
     IZComponentStyle {
-  compact?: boolean;
   Element?: ElementType;
   fashion?: IZFashion;
   name?: string;

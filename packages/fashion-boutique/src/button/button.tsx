@@ -11,6 +11,7 @@ import {
 } from "@zthun/fashion-tailor";
 import { cssJoinDefined, firstDefined, ZOrientation } from "@zthun/helpful-fn";
 import { IZComponentAvatar } from "../component/component-avatar.mjs";
+import { IZComponentCompact } from "../component/component-compact.mjs";
 import { IZComponentDisabled } from "../component/component-disabled.mjs";
 import { IZComponentDomEvents } from "../component/component-dom-events.mjs";
 import { IZComponentFashion } from "../component/component-fashion.mjs";
@@ -29,6 +30,7 @@ import { ZButtonText } from "../typography/typography";
 export interface IZButton
   extends IZComponentAvatar,
     IZComponentLabel,
+    IZComponentCompact,
     IZComponentDomEvents<HTMLButtonElement>,
     IZComponentDisabled,
     IZComponentStyle,
@@ -36,7 +38,6 @@ export interface IZButton
     IZComponentFashion<IZFashion>,
     IZComponentWidth<ZSizeVaried, ZSizeVaried> {
   borderless?: boolean;
-  compact?: boolean;
   outline?: boolean;
   tooltip?: ReactNode;
 }

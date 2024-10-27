@@ -33,6 +33,7 @@ export * from "./choice/choice-toggle";
 export * from "./choice/choice.cm.mjs";
 export * from "./component/component-adornment.mjs";
 export * from "./component/component-avatar.mjs";
+export * from "./component/component-compact.mjs";
 export * from "./component/component-data-source.mjs";
 export * from "./component/component-disabled.mjs";
 export * from "./component/component-dom-events.mjs";

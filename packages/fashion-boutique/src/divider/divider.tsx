@@ -1,11 +1,10 @@
 import { css } from "@emotion/css";
 import { cssJoinDefined } from "@zthun/helpful-fn";
+import { IZComponentCompact } from "../component/component-compact.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 import { useFashionTailor } from "../theme/fashion.mjs";
 
-export interface IZDivider extends IZComponentStyle {
-  compact?: boolean;
-}
+export interface IZDivider extends IZComponentStyle, IZComponentCompact {}
 
 export function ZDivider(props: IZDivider) {
   const tailor = useFashionTailor();
