@@ -82,7 +82,7 @@ export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
         gap={ZSizeFixed.ExtraSmall}
         wrap="wrap"
       >
-        {values.map((value) => {
+        {values.map((value, index) => {
           const option = lookup.get(value);
           const key = option == null ? String(value) : option.key;
           const _value = option == null ? value : option.value;
@@ -92,6 +92,10 @@ export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
           const handleRemove = (e: MouseEvent) => {
             e.preventDefault();
             e.stopPropagation();
+
+            const next = values.slice();
+            next.splice(index, 1);
+            setValue(next);
           };
 
           return (
@@ -103,6 +107,7 @@ export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
               suffix={
                 indelible ? null : (
                   <ZIconFontAwesome
+                    className="ZChoice-clear"
                     name="xmark"
                     width={ZSizeFixed.ExtraSmall}
                     onClick={handleRemove}
