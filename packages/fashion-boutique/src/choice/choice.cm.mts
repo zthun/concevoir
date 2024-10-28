@@ -2,7 +2,6 @@ import {
   ZCircusActBuilder,
   ZCircusBy,
   ZCircusComponentModel,
-  ZCircusKeyboardQwerty,
 } from "@zthun/cirque";
 import { firstDefined } from "@zthun/helpful-fn";
 import { findIndex } from "lodash-es";
@@ -86,6 +85,12 @@ export class ZChoiceComponentModel extends ZCircusComponentModel {
     return popup.opened();
   }
 
+  private async _toggle(): Promise<void> {
+    const toggler = await this.driver.select(".ZChoice-root .ZChoice-toggler");
+    const act = new ZCircusActBuilder().click().build();
+    await toggler.perform(act);
+  }
+
   /**
    * Force shows the options in the case that they are hidden.
    *
@@ -96,11 +101,7 @@ export class ZChoiceComponentModel extends ZCircusComponentModel {
     const opened = await this.opened();
 
     if (!opened) {
-      const toggler = await this.driver.select(
-        ".ZChoice-root .ZChoice-toggler",
-      );
-      const act = new ZCircusActBuilder().click().build();
-      await toggler.perform(act);
+      await this._toggle();
     }
 
     const closable = await this.closable();
@@ -135,11 +136,9 @@ export class ZChoiceComponentModel extends ZCircusComponentModel {
       return;
     }
 
-    const act = new ZCircusActBuilder()
-      .press(ZCircusKeyboardQwerty.escape)
-      .build();
-    await this.driver.perform(act);
-    await this.driver.wait(() => this.opened().then((b) => !b));
+    await this._toggle();
+    const popup = await this._popup();
+    await popup.waitForClose();
   }
 
   /**
@@ -169,8 +168,6 @@ export class ZChoiceComponentModel extends ZCircusComponentModel {
       const act = new ZCircusActBuilder().click().build();
       await context.driver.perform(act);
     }
-
-    await this.close();
   }
 
   /**
