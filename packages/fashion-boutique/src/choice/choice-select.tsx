@@ -26,15 +26,8 @@ export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
 
   const onToggle = () => setOpen((o) => !o);
   const { tabIndex, onKey } = useKeyboardActivate(onToggle);
-  const {
-    choices,
-    render,
-    value,
-    lookup,
-    setValue,
-    toggleValue,
-    isValueSelected,
-  } = useChoice(props);
+  const { choices, render, value, lookup, toggleValue, isValueSelected } =
+    useChoice(props);
 
   const _className = css`
     &[data-disabled="true"] {
@@ -91,7 +84,7 @@ export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
         gap={ZSizeFixed.ExtraSmall}
         wrap="wrap"
       >
-        {values.map((value, index) => {
+        {values.map((value) => {
           const option = lookup.get(value);
           const key = option == null ? String(value) : option.key;
           const _value = option == null ? value : option.value;
@@ -99,12 +92,8 @@ export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
             option == null ? String(value) : render(option.option);
 
           const handleRemove = (e: MouseEvent) => {
-            e.preventDefault();
             e.stopPropagation();
-
-            const next = values.slice();
-            next.splice(index, 1);
-            setValue(next);
+            toggleValue(value);
           };
 
           return (
