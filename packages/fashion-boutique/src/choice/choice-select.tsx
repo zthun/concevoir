@@ -9,6 +9,7 @@ import { ZIconFontAwesome } from "../icon/icon-font-awesome";
 import { ZLabeled } from "../label/labeled";
 import { ZList } from "../list/list";
 import { ZListItem } from "../list/list-item";
+import { ZFlex } from "../stack/flex";
 import { ZStack } from "../stack/stack";
 import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
 import { IZChoice, useChoice } from "./choice";
@@ -25,8 +26,15 @@ export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
 
   const onToggle = () => setOpen((o) => !o);
   const { tabIndex, onKey } = useKeyboardActivate(onToggle);
-  const { choices, render, value, lookup, setValue, toggleValue } =
-    useChoice(props);
+  const {
+    choices,
+    render,
+    value,
+    lookup,
+    setValue,
+    toggleValue,
+    isValueSelected,
+  } = useChoice(props);
 
   const _className = css`
     &[data-disabled="true"] {
@@ -154,7 +162,7 @@ export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
           tabIndex={tabIndex}
           onKeyDown={onKey}
         >
-          <div style={{ flexGrow: 1 }}>{renderSelection()}</div>
+          <ZFlex grow={1}>{renderSelection()}</ZFlex>
           <ZIconFontAwesome
             className="ZChoice-toggler"
             name={icon}
@@ -179,6 +187,7 @@ export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
               compact
               cursor="pointer"
               interactive
+              highlight={isValueSelected(choice.value)}
               data-value={choice.value}
               onClick={handleSelect.bind(null, choice.value)}
             >
