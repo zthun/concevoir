@@ -15,7 +15,7 @@ import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
 import { IZChoice, useChoice } from "./choice";
 
 export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
-  const { component, primary, transparent } = useFashionTheme();
+  const { component, primary, transparent, error } = useFashionTheme();
   const tailor = useFashionTailor();
   const { className, label, multiple, required, disabled, indelible, name } =
     props;
@@ -55,6 +55,10 @@ export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
 
     .ZChoice-toggler {
       display: inline-flex;
+    }
+
+    .ZChoice-clear:hover {
+      color: ${error.idle.main};
     }
 
     .ZChoice-value {
