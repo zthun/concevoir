@@ -17,12 +17,21 @@ export interface IZListItem
     IZComponentDomEvents<HTMLLIElement> {
   cursor?: Property.Cursor;
   interactive?: boolean;
+  highlight?: boolean;
 }
 
 export function ZListItem(props: IZListItem) {
   const tailor = useFashionTailor();
-  const { children, className, compact, cursor, interactive, name, ...dom } =
-    props;
+  const {
+    children,
+    className,
+    compact,
+    cursor,
+    interactive,
+    name,
+    highlight,
+    ...dom
+  } = props;
 
   const py = compact
     ? tailor.gap(ZSizeFixed.ExtraSmall)
@@ -46,6 +55,7 @@ export function ZListItem(props: IZListItem) {
       className={cssJoinDefined("ZListItem-root", _className, className)}
       data-name={name}
       data-interactive={interactive}
+      data-highlight={highlight}
       tabIndex={interactive ? 0 : undefined}
       role="listitem"
     >

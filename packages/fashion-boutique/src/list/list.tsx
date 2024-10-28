@@ -43,6 +43,12 @@ export function ZList(props: IZList) {
       padding: ${tailor.gap(compact ? ZSizeVoid.None : ZSizeFixed.ExtraSmall)};
     }
 
+    li[data-highlight="true"] {
+      background-color: ${picker.idle.main};
+      border-color: ${picker.idle.border};
+      color: ${picker.idle.contrast};
+    }
+
     li[data-interactive]:hover {
       background-color: ${picker.hover.main};
       border-color: ${picker.hover.border};
