@@ -136,9 +136,12 @@ export class ZChoiceComponentModel extends ZCircusComponentModel {
       return;
     }
 
-    await this._toggle();
     const popup = await this._popup();
-    await popup.waitForClose();
+
+    if (await popup.opened()) {
+      await this._toggle();
+      await popup.waitForClose();
+    }
   }
 
   /**

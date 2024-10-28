@@ -66,6 +66,7 @@ describe("ZChoicePage", () => {
     await choice.clear();
     await choice.select(first);
     await choice.select(second);
+    await choice.close();
     const actual = await target.value();
     // assert.
     expect(actual).toEqual(expected);
@@ -100,7 +101,7 @@ describe("ZChoicePage", () => {
     expect(actual).toBeTruthy();
   }
 
-  describe("Drop Down", () => {
+  describe("Select", () => {
     const factory = (t: ZChoicePageComponentModel) => t.dropdown();
 
     it("should select the value", async () => {
