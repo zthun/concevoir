@@ -26,8 +26,15 @@ export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
 
   const onToggle = () => setOpen((o) => !o);
   const { tabIndex, onKey } = useKeyboardActivate(onToggle);
-  const { choices, render, value, lookup, toggleValue, isValueSelected } =
-    useChoice(props);
+  const {
+    choices,
+    render,
+    value,
+    lookup,
+    toggleValue,
+    isValueSelected,
+    setValue,
+  } = useChoice(props);
 
   const _className = css`
     &[data-disabled="true"] {
@@ -107,9 +114,9 @@ export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
               fashion={multiple ? primary : transparent}
               data-value={_value}
               suffix={
-                indelible ? null : (
+                indelible || !multiple ? null : (
                   <ZIconFontAwesome
-                    className="ZChoice-clear"
+                    className="ZChoice-remove"
                     name="xmark"
                     width={ZSizeFixed.ExtraSmall}
                     onClick={handleRemove}
@@ -131,6 +138,11 @@ export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
     if (!multiple) {
       setOpen(false);
     }
+  };
+
+  const handleClear = (e: MouseEvent) => {
+    e.stopPropagation();
+    setValue(null);
   };
 
   return (
@@ -156,6 +168,14 @@ export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
           onKeyDown={onKey}
         >
           <ZFlex grow={1}>{renderSelection()}</ZFlex>
+          {!indelible && !!value?.length && (
+            <ZIconFontAwesome
+              className="ZChoice-clear"
+              name="xmark"
+              width={ZSizeFixed.ExtraSmall}
+              onClick={handleClear}
+            />
+          )}
           <ZIconFontAwesome
             className="ZChoice-toggler"
             name={icon}
