@@ -36,12 +36,12 @@ export interface IZChoice<O = any, V = O>
 export interface IZChoiceApi<O, V> {
   readonly choices: IZChoiceOption<O, V>[];
   readonly lookup: Map<O | V | string, IZChoiceOption<O, V>>;
-  readonly value: V[] | null;
+  readonly value: V[];
 
   isValueSelected(value: V): boolean;
   display(option: O): string;
   render(option: O): ReactNode;
-  setValue(value: V[] | null): void;
+  setValue(value: V[]): void;
   toggleValue(value: V): void;
 }
 
@@ -68,15 +68,23 @@ export function useChoice<O = any, V = O>(
     renderOption = display,
   } = props;
 
-  const _value: V[] | null = value == null ? null : castArray(value);
-  const _onValueChange = (val: V[] | null) => {
-    onValueChange?.call(null, cast(val, null));
+  const _value: V[] | undefined =
+    value === undefined ? undefined : castArray(firstDefined([], value));
+
+  const _onValueChange = (val: V[]) => {
+    if (!val.length) {
+      onValueChange?.call(null, null);
+    }
+
+    if (multiple) {
+      onValueChange?.call(null, val);
+    }
+
+    onValueChange?.call(null, first(val)!);
   };
-  const [__value, _setValue] = useAmbassadorState(
-    value === undefined ? undefined : _value,
-    _onValueChange,
-    null,
-  );
+
+  const [__value, _setValue] = useAmbassadorState(_value, _onValueChange, []);
+
   const [choices, lookup] = useMemo(_choices, [options, identifier]);
 
   function _choices(): [
@@ -102,12 +110,6 @@ export function useChoice<O = any, V = O>(
 
   function _display(option: O) {
     return String(option);
-  }
-
-  function cast(value: V[] | undefined | null, fallback: any): V | V[] | null {
-    const actual = value ?? [];
-    const firstValue = first(actual) || fallback;
-    return multiple ? actual : firstValue;
   }
 
   function isValueSelected(candidate: V) {

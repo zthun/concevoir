@@ -1,6 +1,6 @@
 import { css } from "@emotion/css";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
-import { cssJoinDefined, firstDefined, ZOrientation } from "@zthun/helpful-fn";
+import { cssJoinDefined, ZOrientation } from "@zthun/helpful-fn";
 import { useKeyboardActivate } from "@zthun/helpful-react";
 import { MouseEvent, ReactNode, useRef, useState } from "react";
 import { ZChip } from "../chip/chip";
@@ -77,8 +77,41 @@ export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
     }
   `;
 
+  const renderValue = (value: V) => {
+    const option = lookup.get(value);
+    const key = option == null ? String(value) : option.key;
+    const _value = option == null ? value : option.value;
+    const element = option == null ? String(value) : render(option.option);
+
+    const handleRemove = (e: MouseEvent) => {
+      e.stopPropagation();
+      toggleValue(value);
+    };
+
+    const remove = (
+      <ZIconFontAwesome
+        className="ZChoice-remove"
+        name="xmark"
+        width={ZSizeFixed.ExtraSmall}
+        onClick={handleRemove}
+      />
+    );
+
+    return (
+      <ZChip
+        key={key}
+        className="ZChoice-value"
+        fashion={multiple ? primary : transparent}
+        data-value={_value}
+        suffix={multiple ? remove : null}
+      >
+        {element}
+      </ZChip>
+    );
+  };
+
   const renderSelection = (): ReactNode | ReactNode[] => {
-    let values = firstDefined([], value);
+    let values = value;
 
     if (!values.length) {
       return null;
@@ -95,39 +128,7 @@ export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
         gap={ZSizeFixed.ExtraSmall}
         wrap="wrap"
       >
-        {values.map((value) => {
-          const option = lookup.get(value);
-          const key = option == null ? String(value) : option.key;
-          const _value = option == null ? value : option.value;
-          const element =
-            option == null ? String(value) : render(option.option);
-
-          const handleRemove = (e: MouseEvent) => {
-            e.stopPropagation();
-            toggleValue(value);
-          };
-
-          return (
-            <ZChip
-              key={key}
-              className="ZChoice-value"
-              fashion={multiple ? primary : transparent}
-              data-value={_value}
-              suffix={
-                indelible || !multiple ? null : (
-                  <ZIconFontAwesome
-                    className="ZChoice-remove"
-                    name="xmark"
-                    width={ZSizeFixed.ExtraSmall}
-                    onClick={handleRemove}
-                  />
-                )
-              }
-            >
-              {element}
-            </ZChip>
-          );
-        })}
+        {values.map(renderValue)}
       </ZStack>
     );
   };
@@ -142,7 +143,7 @@ export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
 
   const handleClear = (e: MouseEvent) => {
     e.stopPropagation();
-    setValue(null);
+    setValue([]);
   };
 
   return (
