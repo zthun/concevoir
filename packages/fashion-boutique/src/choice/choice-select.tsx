@@ -1,7 +1,10 @@
 import { css } from "@emotion/css";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { cssJoinDefined, ZOrientation } from "@zthun/helpful-fn";
-import { useKeyboardActivate } from "@zthun/helpful-react";
+import {
+  createKeyboardActivate,
+  useKeyboardActivate,
+} from "@zthun/helpful-react";
 import { MouseEvent, ReactNode, useRef, useState } from "react";
 import { ZChip } from "../chip/chip";
 import { ZPopup } from "../dialog/popup";
@@ -64,7 +67,8 @@ export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
       display: inline-flex;
     }
 
-    .ZChoice-clear:hover {
+    .ZChoice-clear:hover,
+    .ZChoice-remove:hover {
       color: ${error.idle.main};
     }
 
@@ -204,6 +208,9 @@ export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
               highlight={isValueSelected(choice.value)}
               data-value={choice.value}
               onClick={handleSelect.bind(null, choice.value)}
+              onKeyDown={createKeyboardActivate(
+                handleSelect.bind(null, choice.value),
+              )}
             >
               {render(choice.option)}
             </ZListItem>
