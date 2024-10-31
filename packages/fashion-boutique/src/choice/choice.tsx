@@ -64,7 +64,6 @@ export function useChoice<O = any, V = O>(
     identifier = identity as (option: O) => V,
     display = _display,
     multiple,
-    indelible,
     renderOption = display,
   } = props;
 
@@ -74,10 +73,12 @@ export function useChoice<O = any, V = O>(
   const _onValueChange = (val: V[]) => {
     if (!val.length) {
       onValueChange?.call(null, null);
+      return;
     }
 
     if (multiple) {
       onValueChange?.call(null, val);
+      return;
     }
 
     onValueChange?.call(null, first(val)!);
@@ -119,7 +120,7 @@ export function useChoice<O = any, V = O>(
   function toggleValue(candidate: V) {
     const selected = isValueSelected(candidate);
 
-    if (indelible && !multiple && selected) {
+    if (!multiple && selected) {
       return;
     }
 
