@@ -77,10 +77,12 @@ export function ZChoiceToggle<O, V>(props: IZChoice<O, V>) {
     const _display = display(choice.option);
     const selected = isValueSelected(choice.value);
 
-    const className = cssJoinDefined("ZChoice-option", classes.toggle, [
-      "ZChoice-value",
-      selected,
-    ]);
+    const className = cssJoinDefined(
+      "ZChoice-option",
+      classes.toggle,
+      ["ZChoice-value", selected],
+      ["ZChoice-remove", !!multiple && selected],
+    );
 
     return (
       <ToggleButton
