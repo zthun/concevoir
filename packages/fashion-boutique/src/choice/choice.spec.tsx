@@ -139,7 +139,12 @@ describe("ZChoice", () => {
     const options = ["One", "Two", "Three", "Four", "Five"];
     const value = options;
     const onValueChange = vi.fn();
-    const element = createElement({ value, onValueChange, options });
+    const element = createElement({
+      value,
+      onValueChange,
+      options,
+      multiple: true,
+    });
     const target = await createTestTarget(element);
 
     // Act.
@@ -226,10 +231,38 @@ describe("ZChoice", () => {
   ) {
     // Arrange.
     const target = await createTestTarget(createElement({}));
+
     // Act.
     const actual = await target.label();
+
     // Assert.
     expect(actual).toBeNull();
+  }
+
+  async function shouldRemoveSelection(
+    createElement: (props: Partial<IZChoice<any, any>>) => ReactElement,
+  ) {
+    // Arrange.
+    const one = "One";
+    const two = "Two";
+    const options = [one, two, "Three"];
+    const onValueChange = vi.fn();
+    const element = createElement({ multiple: true, options, onValueChange });
+    const target = await createTestTarget(element);
+    await target.select(one);
+    await target.select(two);
+    await target.close();
+    onValueChange.mockClear();
+
+    // Act.
+    const selected = await target.selected();
+    await Promise.all(selected.map((select) => select.remove()));
+    const actual = await target.selected();
+
+    // Assert.
+    expect(actual).toEqual([]);
+    expect(onValueChange).toHaveBeenCalledWith([two]);
+    expect(onValueChange).toHaveBeenCalledWith(null);
   }
 
   describe("Select", () => {
@@ -237,63 +270,81 @@ describe("ZChoice", () => {
       <ZChoiceSelect {...props} />
     );
 
-    it("should render all options when opened", async () => {
-      await shouldRenderAllOptionsWhenOpened(createElement);
+    describe("Render", () => {
+      it("should render all options when opened", async () => {
+        await shouldRenderAllOptionsWhenOpened(createElement);
+      });
+
+      it("should render a custom display for an option", async () => {
+        await shouldRenderCustomOptionDisplay(createElement);
+      });
+
+      it("should not render a label if none is provided", async () => {
+        await shouldNotRenderALabelIfNoneProvided(createElement);
+      });
+
+      it("should render a required label", async () => {
+        await shouldRenderARequiredLabel(createElement);
+      });
     });
 
-    it("should render a custom display for an option", async () => {
-      await shouldRenderCustomOptionDisplay(createElement);
+    describe("Select", () => {
+      it("should select by an identifier", async () => {
+        await shouldSelectByIdentifier(createElement);
+      });
+
+      it("should select by the entire object", async () => {
+        await shouldSelectByTheEntireObject(createElement);
+      });
+
+      it("should append selection is multiple is on", async () => {
+        await shouldAppendSelectionIfMultipleOn(createElement);
+      });
+
+      it("should change the selection to a single item if multiple is off", async () => {
+        await shouldChangeSelectionToSingleIfMultipleOff(createElement);
+      });
+
+      it("should not select anything if the selected option is not available", async () => {
+        await shouldSelectNothingIfOptionIsUnavailable(createElement);
+      });
+
+      it("should select the raw value if there is no option for the value", async () => {
+        // Arrange.
+        const expected = "not-a-value";
+        const warn = vi.spyOn(console, "warn");
+        warn.mockImplementation(noop);
+        const value = [expected];
+        const target = await createTestTarget(createElement({ value }));
+        // Act.
+        const [_selected] = await target.selected();
+        const actual = await _selected.text();
+        warn.mockRestore();
+        // Assert.
+        expect(actual).toEqual(expected);
+      });
     });
 
-    it("should select by an identifier", async () => {
-      await shouldSelectByIdentifier(createElement);
+    describe("Clear", () => {
+      it("should not be able to clear if the choice is indelible", async () => {
+        await shouldNotBeAbleToClearIfTheChoiceIsIndelible(createElement);
+      });
+
+      it("should clear the selection", async () => {
+        await shouldClearTheSelection(createElement);
+      });
     });
 
-    it("should select by the entire object", async () => {
-      await shouldSelectByTheEntireObject(createElement);
+    describe("Remove", () => {
+      it("should remove a value", async () => {
+        await shouldRemoveSelection(createElement);
+      });
     });
 
-    it("should not be able to clear if the choice is indelible", async () => {
-      await shouldNotBeAbleToClearIfTheChoiceIsIndelible(createElement);
-    });
-
-    it("should clear the selection", async () => {
-      await shouldClearTheSelection(createElement);
-    });
-
-    it("should change the selection to a single item if multiple is off", async () => {
-      await shouldChangeSelectionToSingleIfMultipleOff(createElement);
-    });
-
-    it("should not render a label if none is provided", async () => {
-      await shouldNotRenderALabelIfNoneProvided(createElement);
-    });
-
-    it("should render a required label", async () => {
-      await shouldRenderARequiredLabel(createElement);
-    });
-
-    it("should disable if disabled is true", async () => {
-      await shouldRenderDisabled(createElement);
-    });
-
-    it("should not select anything if the selected option is not available", async () => {
-      await shouldSelectNothingIfOptionIsUnavailable(createElement);
-    });
-
-    it("should select the raw value if there is no option for the value", async () => {
-      // Arrange.
-      const expected = "not-a-value";
-      const warn = vi.spyOn(console, "warn");
-      warn.mockImplementation(noop);
-      const value = [expected];
-      const target = await createTestTarget(createElement({ value }));
-      // Act.
-      const [_selected] = await target.selected();
-      const actual = await _selected.text();
-      warn.mockRestore();
-      // Assert.
-      expect(actual).toEqual(expected);
+    describe("Disabled", () => {
+      it("should disable if disabled is true", async () => {
+        await shouldRenderDisabled(createElement);
+      });
     });
   });
 
@@ -301,80 +352,66 @@ describe("ZChoice", () => {
     const createElement = (props?: Partial<IZChoice<any, any>>) => (
       <ZChoiceToggle {...props} />
     );
+    describe("Render", () => {
+      it("should render all options when opened", async () => {
+        await shouldRenderAllOptionsWhenOpened(createElement);
+      });
 
-    it("should render all options when opened", async () => {
-      await shouldRenderAllOptionsWhenOpened(createElement);
+      it("should render a custom display for an option", async () => {
+        await shouldRenderCustomOptionDisplay(createElement);
+      });
+
+      it("should not render a label if none is provided", async () => {
+        await shouldNotRenderALabelIfNoneProvided(createElement);
+      });
+
+      it("should render a required label", async () => {
+        await shouldRenderARequiredLabel(createElement);
+      });
     });
 
-    it("should render a custom display for an option", async () => {
-      await shouldRenderCustomOptionDisplay(createElement);
+    describe("Select", () => {
+      it("should select by an identifier", async () => {
+        await shouldSelectByIdentifier(createElement);
+      });
+
+      it("should select by the entire object", async () => {
+        await shouldSelectByTheEntireObject(createElement);
+      });
+
+      it("should append selection is multiple is on", async () => {
+        await shouldAppendSelectionIfMultipleOn(createElement);
+      });
+
+      it("should change the selection to a single item if multiple is off", async () => {
+        await shouldChangeSelectionToSingleIfMultipleOff(createElement);
+      });
+
+      it("should not select anything if the selected option is not available", async () => {
+        await shouldSelectNothingIfOptionIsUnavailable(createElement);
+      });
     });
 
-    it("should select by an identifier", async () => {
-      await shouldSelectByIdentifier(createElement);
+    describe("Clear", () => {
+      it("should not be able to clear if the choice is indelible", async () => {
+        await shouldNotBeAbleToClearIfTheChoiceIsIndelible(createElement);
+      });
+
+      it("should clear the selection", async () => {
+        await shouldClearTheSelection(createElement);
+      });
     });
 
-    it("should select by the entire object", async () => {
-      await shouldSelectByTheEntireObject(createElement);
+    describe("Remove", () => {
+      it("should remove a value", async () => {
+        await shouldRemoveSelection(createElement);
+      });
     });
 
-    it("should change the selection to a single item if multiple is off", async () => {
-      await shouldChangeSelectionToSingleIfMultipleOff(createElement);
-    });
-
-    it("should append selections if multiple is turned on", async () => {
-      await shouldAppendSelectionIfMultipleOn(createElement);
-    });
-
-    it("should disable if disabled is true", async () => {
-      await shouldRenderDisabled(createElement);
-    });
-
-    it("should not render a label if none is provided", async () => {
-      await shouldNotRenderALabelIfNoneProvided(createElement);
-    });
-
-    it("should render a required label", async () => {
-      await shouldRenderARequiredLabel(createElement);
-    });
-
-    it("should not select anything if the selected option is not available", async () => {
-      await shouldSelectNothingIfOptionIsUnavailable(createElement);
-    });
-
-    it("should clear the selection", async () => {
-      await shouldClearTheSelection(createElement);
-    });
-
-    it("should remove the selection when clicked again", async () => {
-      // Arrange.
-      const options = ["One", "Two", "Three", "Four", "Five"];
-      const [, value] = options;
-      const target = await createTestTarget(createElement({ options }));
-      await target.select(value);
-      // Act.
-      await target.select(value);
-      const actual = await target.selected();
-      // Assert.
-      expect(actual.length).toEqual(0);
-    });
-
-    it("should not remove the selection when the indelible flag is on and the mode is singular", async () => {
-      // Arrange.
-      const options = ["One", "Two", "Three", "Four", "Five"];
-      const multiple = false;
-      const indelible = true;
-      const [, value] = options;
-      const target = await createTestTarget(
-        createElement({ value, options, multiple, indelible }),
-      );
-      await target.select(value);
-      // Act.
-      await target.select(value);
-      const selection = await target.selected();
-      const [actual] = await Promise.all(selection.map((s) => s.value()));
-      // Assert.
-      expect(actual).toEqual(value);
+    describe("Disabled", () => {
+      it("should disable if disabled is true", async () => {
+        await shouldRenderDisabled(createElement);
+      });
     });
   });
 });
