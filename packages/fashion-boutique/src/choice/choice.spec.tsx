@@ -270,6 +270,36 @@ describe("ZChoice", () => {
       <ZChoiceSelect {...props} />
     );
 
+    describe("Open", () => {
+      it("should open if closed", async () => {
+        // Arrange.
+        const target = await createTestTarget(createElement());
+        await target.close();
+
+        // Act.
+        await target.open();
+        const actual = await target.opened();
+
+        // Assert.
+        expect(actual).toBeTruthy();
+      });
+
+      it("should close if closing on open", async () => {
+        // Arrange.
+        const target = await createTestTarget(createElement());
+        await target.close();
+
+        // Act.
+        await target.open();
+        await target.open();
+        await target.close();
+        const actual = await target.opened();
+
+        // Assert.
+        expect(actual).toBeFalsy();
+      });
+    });
+
     describe("Render", () => {
       it("should render all options when opened", async () => {
         await shouldRenderAllOptionsWhenOpened(createElement);
@@ -405,6 +435,20 @@ describe("ZChoice", () => {
     describe("Remove", () => {
       it("should remove a value", async () => {
         await shouldRemoveSelection(createElement);
+      });
+
+      it("should not remove if not selected", async () => {
+        // Arrange.
+        const element = createElement({ options: ["One", "Two"] });
+        const target = await createTestTarget(element);
+        const [option] = await target.open();
+
+        // Act.
+        await option.remove();
+        const selected = await target.selected();
+
+        // Assert.
+        expect(selected.length).toEqual(0);
       });
     });
 
