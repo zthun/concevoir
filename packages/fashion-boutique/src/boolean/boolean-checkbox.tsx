@@ -39,7 +39,7 @@ export function ZBooleanCheckbox(props: IZBoolean<boolean | null>) {
   const id = useId();
   const input = useRef<HTMLDivElement>(null);
 
-  const [_value, _setValue] = useAmbassadorState(value, onValueChange);
+  const [_value, _setValue] = useAmbassadorState(value, onValueChange, false);
   const checked = _value === null ? true : _value;
   const indeterminate = _value === null;
 

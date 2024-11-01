@@ -31,7 +31,7 @@ export function ZBooleanSwitch(props: IZBoolean<boolean>) {
   } = props;
   const tailor = useFashionTailor();
   const input = useRef<HTMLSpanElement>(null);
-  const [_value, _setValue] = useAmbassadorState(value, onValueChange);
+  const [_value, _setValue] = useAmbassadorState(value, onValueChange, false);
   const _fashion = useMemo(() => new ZColorPicker(fashion), [fashion]);
   const checked = !!_value;
   const id = useId();
