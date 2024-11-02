@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.0](https://github.com/zthun/fashion/compare/v7.2.0...v8.0.0) (2024-11-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* choice component model select no longer auto closes the popup
+* useChoice cast is no longer exported
+* choice drop down and choice auto complete have been merged to choice select
+* choice value is now null for no selection
+
+### Features
+
+* chip displays things in a colorful blob ([f591b32](https://github.com/zthun/fashion/commit/f591b32b52da5ad838d3c9f2d4c664baf23bbeaf))
+* choice select combines choice autocomplete and choice drop down ([a62525d](https://github.com/zthun/fashion/commit/a62525dbeb7026e0e34fa95accd4b365f4d1dc60))
+* dialog components can now be marked compact to reduce padding ([37b9b63](https://github.com/zthun/fashion/commit/37b9b63bf8a26e71820c35907ea14d6f9b6551ed))
+* text input can now forward a ref ([b471a1a](https://github.com/zthun/fashion/commit/b471a1ab4453f4f5679284379afb69dd29c4d411))
+* useDialog can now raise an even after the dialog is opened ([bfccf74](https://github.com/zthun/fashion/commit/bfccf74771314c10a52c6a38c7f89bd129988758))
+* you can now constrain the height of a popup ([700bb3e](https://github.com/zthun/fashion/commit/700bb3ea978551331cf7b1edd3724c4045a13ee8))
+* you can now create a compact list where the padding is removed ([5752a0b](https://github.com/zthun/fashion/commit/5752a0b6b60b90e8e4690a0228d579ebfb3e7867))
+* you can now highlight list items ([17ced63](https://github.com/zthun/fashion/commit/17ced630284005fdf20cab68f7137aacf277a2be))
+
+
+### Bug Fixes
+
+* boolean states now default to false ([22b2e4d](https://github.com/zthun/fashion/commit/22b2e4d245a8f3e02319099785212206f03150a7))
+* choice component model select no longer auto closes the popup ([7222b2c](https://github.com/zthun/fashion/commit/7222b2cc012aca6c2e016e65d421468c6da2fd08))
+* popup name is now correctly set ([1d101c9](https://github.com/zthun/fashion/commit/1d101c9ea7ed4162f2474785f4d259f6023d245e))
+* popup now adjusts its position to always fit into the client area ([9425204](https://github.com/zthun/fashion/commit/94252043015fe9479d4ec9acc35ba9c2c90fce83))
+* popup now retains its position on scroll and resize ([d2c89e0](https://github.com/zthun/fashion/commit/d2c89e034e6e3ebc9d5b27b81f3cbcb6d601b18e))
+
+
+### Code Refactoring
+
+* choice drop down and choice auto complete have been merged to choice select ([7581ff2](https://github.com/zthun/fashion/commit/7581ff2ccb9bdf332db5224b25baa6c8e41074df))
+* choice value is now null for no selection ([f21c8ed](https://github.com/zthun/fashion/commit/f21c8ed7ea646b6578d4dbe1b3855708c28a2260))
+* useChoice cast is no longer exported ([a9f49ff](https://github.com/zthun/fashion/commit/a9f49ff4c16983949cb6dc57e0517f12b7540342))
+
+
+
 ## [7.2.0](https://github.com/zthun/fashion/compare/v7.1.0...v7.2.0) (2024-10-16)
 
 

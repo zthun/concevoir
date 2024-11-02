@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.0](https://github.com/zthun/fashion/compare/v7.2.0...v8.0.0) (2024-11-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* choice drop down and choice auto complete have been merged to choice select
+
+### Code Refactoring
+
+* choice drop down and choice auto complete have been merged to choice select ([7581ff2](https://github.com/zthun/fashion/commit/7581ff2ccb9bdf332db5224b25baa6c8e41074df))
+
+
+
 ## [7.2.0](https://github.com/zthun/fashion/compare/v7.1.0...v7.2.0) (2024-10-16)
 
 **Note:** Version bump only for package @zthun/fashion-web
