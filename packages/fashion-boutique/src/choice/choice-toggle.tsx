@@ -1,38 +1,10 @@
-import { ToggleButton, ToggleButtonGroup, Tooltip } from "@mui/material";
-import { ZOrientation, cssJoinDefined } from "@zthun/helpful-fn";
+import { css } from "@emotion/css";
+import { ZSizeFixed } from "@zthun/fashion-tailor";
+import { ZColorPicker } from "@zthun/fashion-theme";
+import { cssJoinDefined } from "@zthun/helpful-fn";
 import { ZLabeled } from "../label/labeled";
-import { ZStack } from "../stack/stack";
-import { createStyleHook } from "../theme/styled";
+import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
 import { IZChoice, IZChoiceOption, useChoice } from "./choice";
-
-const useToggleStyles = createStyleHook(({ theme }) => ({
-  toggle: {
-    color: theme.surface.idle.contrast,
-    backgroundColor: theme.surface.idle.main,
-
-    "&:hover": {
-      backgroundColor: theme.primary.hover?.main,
-      color: theme.primary.hover?.contrast,
-    },
-
-    "&.ZChoice-value": {
-      backgroundColor: theme.primary.idle.main,
-      color: theme.primary.idle.contrast,
-
-      "&:hover": {
-        backgroundColor: theme.primary.hover?.main,
-        color: theme.primary.hover?.main,
-      },
-    },
-
-    "&.ZChoice-clear": {
-      "&:hover": {
-        backgroundColor: theme.error.idle.main,
-        color: theme.error.idle.contrast,
-      },
-    },
-  },
-}));
 
 export function ZChoiceToggle<O, V>(props: IZChoice<O, V>) {
   const {
@@ -54,7 +26,63 @@ export function ZChoiceToggle<O, V>(props: IZChoice<O, V>) {
     isValueSelected,
     toggleValue,
   } = useChoice(props);
-  const { classes } = useToggleStyles();
+  const { component, primary, error } = useFashionTheme();
+  const tailor = useFashionTailor();
+  const picker = new ZColorPicker(primary);
+
+  const _className = css`
+    .ZChoice-options {
+      align-items: stretch;
+      display: flex;
+      flex-wrap: nowrap;
+    }
+
+    .ZChoice-option {
+      color: ${component.idle.contrast};
+      cursor: pointer;
+      background-color: ${component.idle.main};
+      border-style: solid;
+      border-width: ${tailor.thickness(ZSizeFixed.ExtraSmall)};
+      padding: ${tailor.gap(ZSizeFixed.Small)};
+    }
+
+    .ZChoice-option:first-child {
+      border-top-left-radius: ${tailor.rounding(ZSizeFixed.ExtraSmall)};
+      border-bottom-left-radius: ${tailor.rounding(ZSizeFixed.ExtraSmall)};
+    }
+
+    .ZChoice-option:last-child {
+      border-top-right-radius: ${tailor.rounding(ZSizeFixed.ExtraSmall)};
+      border-bottom-right-radius: ${tailor.rounding(ZSizeFixed.ExtraSmall)};
+    }
+
+    .ZChoice-value {
+      background-color: ${picker.idle.main};
+      color: ${picker.idle.contrast};
+    }
+
+    .ZChoice-option:hover,
+    .ZChoice-value:hover {
+      background-color: ${picker.hover.main};
+      color: ${picker.hover.contrast};
+    }
+
+    .ZChoice-clear {
+      padding: ${tailor.gap(ZSizeFixed.Small)}
+        ${tailor.gap(ZSizeFixed.ExtraSmall)};
+    }
+
+    .ZChoice-clear:hover {
+      background-color: ${error.idle.main};
+      color: ${error.idle.contrast};
+    }
+
+    .ZChoice-option:disabled,
+    .ZChoice-clear:disabled {
+      opacity: 0.35;
+      pointer-events: none;
+    }
+  `;
 
   const renderClear = () => {
     if (indelible || !value?.length) {
@@ -62,13 +90,13 @@ export function ZChoiceToggle<O, V>(props: IZChoice<O, V>) {
     }
 
     return (
-      <ToggleButton
-        className={cssJoinDefined("ZChoice-clear", classes.toggle)}
+      <button
+        className={cssJoinDefined("ZChoice-option", "ZChoice-clear")}
+        disabled={disabled}
         onClick={setValue.bind(null, [])}
-        value={[]}
       >
         X
-      </ToggleButton>
+      </button>
     );
   };
 
@@ -79,25 +107,20 @@ export function ZChoiceToggle<O, V>(props: IZChoice<O, V>) {
 
     const className = cssJoinDefined(
       "ZChoice-option",
-      classes.toggle,
       ["ZChoice-value", selected],
       ["ZChoice-remove", !!multiple && selected],
     );
 
     return (
-      <ToggleButton
+      <button
         key={choice.key}
         disabled={disabled}
         className={className}
-        value={_value}
-        selected={selected}
-        onClick={(_: any, v) => toggleValue(v)}
+        onClick={() => toggleValue(_value)}
         data-value={choice.value}
       >
-        <Tooltip title={_display}>
-          <span>{render(choice.option)}</span>
-        </Tooltip>
-      </ToggleButton>
+        <span title={_display}>{render(choice.option)}</span>
+      </button>
     );
   };
 
@@ -107,6 +130,7 @@ export function ZChoiceToggle<O, V>(props: IZChoice<O, V>) {
         "ZChoice-root",
         "ZChoice-toggle",
         "ZChoice-always-open",
+        _className,
         className,
       )}
       label={label}
@@ -114,16 +138,10 @@ export function ZChoiceToggle<O, V>(props: IZChoice<O, V>) {
       name={name}
       orientation={orientation}
     >
-      <ZStack orientation={ZOrientation.Horizontal}>
-        <ToggleButtonGroup
-          disabled={disabled}
-          exclusive={!multiple}
-          className="ZChoice-options"
-        >
-          {choices.map(renderChoice)}
-          {renderClear()}
-        </ToggleButtonGroup>
-      </ZStack>
+      <div className="ZChoice-options">
+        {choices.map(renderChoice)}
+        {renderClear()}
+      </div>
     </ZLabeled>
   );
 }
