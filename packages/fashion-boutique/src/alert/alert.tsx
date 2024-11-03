@@ -1,7 +1,6 @@
-import { css } from "@emotion/css";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
-import { cssJoinDefined } from "@zthun/helpful-fn";
+import { css, cssJoinDefined } from "@zthun/helpful-fn";
 import { ReactNode } from "react";
 import { IZComponentAvatar } from "../component/component-avatar.mjs";
 import { IZComponentFashion } from "../component/component-fashion.mjs";
@@ -9,6 +8,7 @@ import { IZComponentHeading } from "../component/component-heading.mjs";
 import { IZComponentName } from "../component/component-name.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 
 export interface IZAlert
   extends Omit<IZComponentHeading, "subHeading">,
@@ -38,7 +38,7 @@ export function ZAlert(props: IZAlert) {
   const px = tailor.gap(ZSizeFixed.Small);
   const py = tailor.gap(ZSizeFixed.ExtraSmall);
 
-  const _className = css`
+  const _className = useCss(css`
     &.ZAlert-root {
       align-items: center;
       background: ${picker.idle.main};
@@ -68,7 +68,7 @@ export function ZAlert(props: IZAlert) {
     .ZAlert-message {
       grid-area: message;
     }
-  `;
+  `);
 
   return (
     <div

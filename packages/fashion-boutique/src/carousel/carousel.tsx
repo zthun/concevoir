@@ -1,6 +1,5 @@
-import { css } from "@emotion/css";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
-import { ZOrientation, cssJoinDefined } from "@zthun/helpful-fn";
+import { ZOrientation, css, cssJoinDefined } from "@zthun/helpful-fn";
 import { useAmbassadorState } from "@zthun/helpful-react";
 import { ReactNode } from "react";
 import { IZButton, ZButton } from "../button/button";
@@ -11,6 +10,7 @@ import { IZComponentValue } from "../component/component-value.mjs";
 import { ZIconFontAwesome } from "../icon/icon-font-awesome";
 import { ZStack } from "../stack/stack";
 import { useFashionTheme } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 
 export interface IZCarousel
   extends IZComponentStyle,
@@ -48,7 +48,7 @@ export function ZCarousel(props: IZCarousel) {
   const reverse =
     orientation === ZOrientation.Horizontal ? "chevron-left" : "chevron-up";
 
-  const _className = css`
+  const _className = useCss(css`
     .ZCarousel-navigation-forward,
     .ZCarousel-navigation-reverse {
       visibility: ${count <= 1 ? "hidden" : undefined};
@@ -62,7 +62,7 @@ export function ZCarousel(props: IZCarousel) {
         opacity: 1;
       }
     }
-  `;
+  `);
 
   const handleReverse = () => {
     setIndex((i) => {

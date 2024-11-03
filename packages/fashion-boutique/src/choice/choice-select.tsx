@@ -1,6 +1,5 @@
-import { css } from "@emotion/css";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
-import { cssJoinDefined, ZOrientation } from "@zthun/helpful-fn";
+import { css, cssJoinDefined, ZOrientation } from "@zthun/helpful-fn";
 import {
   createKeyboardActivate,
   useKeyboardActivate,
@@ -15,6 +14,7 @@ import { ZListItem } from "../list/list-item";
 import { ZFlex } from "../stack/flex";
 import { ZStack } from "../stack/stack";
 import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 import { IZChoice, useChoice } from "./choice";
 
 export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
@@ -39,7 +39,7 @@ export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
     setValue,
   } = useChoice(props);
 
-  const _className = css`
+  const _className = useCss(css`
     &[data-disabled="true"] {
       pointer-events: none;
     }
@@ -79,7 +79,7 @@ export function ZChoiceSelect<O = any, V = O>(props: IZChoice<O, V>) {
     &[data-multiple="true"] .ZChoice-value {
       flex-grow: 0;
     }
-  `;
+  `);
 
   const renderValue = (value: V) => {
     const option = lookup.get(value);

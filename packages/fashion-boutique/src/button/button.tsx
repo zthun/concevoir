@@ -2,14 +2,18 @@ import { ReactNode } from "react";
 
 import { IZFashion, ZColorPicker } from "@zthun/fashion-theme";
 
-import { css } from "@emotion/css";
 import {
   createSizeChartVariedCss,
   ZDeviceValues,
   ZSizeFixed,
   ZSizeVaried,
 } from "@zthun/fashion-tailor";
-import { cssJoinDefined, firstDefined, ZOrientation } from "@zthun/helpful-fn";
+import {
+  css,
+  cssJoinDefined,
+  firstDefined,
+  ZOrientation,
+} from "@zthun/helpful-fn";
 import { IZComponentAvatar } from "../component/component-avatar.mjs";
 import { IZComponentCompact } from "../component/component-compact.mjs";
 import { IZComponentDisabled } from "../component/component-disabled.mjs";
@@ -25,6 +29,7 @@ import {
   useFashionTailor,
   useFashionTheme,
 } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 import { ZButtonText } from "../typography/typography";
 
 export interface IZButton
@@ -72,7 +77,7 @@ export function ZButton(props: IZButton) {
   const picker = new ZColorPicker(firstDefined(component, fashion));
   const _width = new ZDeviceValues(width, ZSizeVaried.Fit);
 
-  const _className = css`
+  const _className = useCss(css`
     & {
       border-radius: 0.375rem;
       display: inline-flex;
@@ -137,7 +142,7 @@ export function ZButton(props: IZButton) {
         width: ${WidthChart[_width.xs]};
       }
     }
-  `;
+  `);
 
   return (
     <button

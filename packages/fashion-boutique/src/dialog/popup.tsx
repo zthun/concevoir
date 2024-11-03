@@ -1,4 +1,3 @@
-import { css } from "@emotion/css";
 import {
   createSizeChartFixedArithmetic,
   createSizeChartFixedCss,
@@ -9,6 +8,7 @@ import {
 } from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
 import {
+  css,
   cssJoinDefined,
   firstDefined,
   ZHorizontalAnchor,
@@ -24,6 +24,7 @@ import {
   useFashionTailor,
   useFashionTheme,
 } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 import { IZDialog, useDialog } from "./use-dialog";
 
 export interface IZPopup
@@ -135,7 +136,7 @@ export function ZPopup(props: IZPopup) {
     { onAfterOpen },
   );
 
-  const _className = css`
+  const _className = useCss(css`
     & {
       background-color: ${component.idle.main};
       border-color: ${component.idle.border};
@@ -192,7 +193,7 @@ export function ZPopup(props: IZPopup) {
     ${device.break(ZSizeFixed.ExtraSmall)} {
       max-height: ${HeightChart[_height.xs]};
     }
-  `;
+  `);
 
   useEffect(() => {
     return ((onRedraw) => {

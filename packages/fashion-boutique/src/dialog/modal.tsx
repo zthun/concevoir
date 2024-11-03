@@ -1,4 +1,4 @@
-import { css, keyframes } from "@emotion/css";
+import { keyframes } from "@emotion/css";
 import {
   createSizeChartFixedArithmetic,
   createSizeChartFixedCss,
@@ -7,7 +7,7 @@ import {
   ZSizeVaried,
 } from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
-import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import { css, cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
 import { useRef } from "react";
 import { IZComponentHeight } from "../component/component-height.mjs";
 import { IZComponentWidth } from "../component/component-width.mjs";
@@ -16,6 +16,7 @@ import {
   useFashionTailor,
   useFashionTheme,
 } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 import { IZDialog, useDialog } from "./use-dialog";
 
 export interface IZModal
@@ -71,7 +72,7 @@ export function ZModal(props: IZModal) {
     }
   `;
 
-  const _className = css`
+  const _className = useCss(css`
     & {
       background-color: ${surface.idle.main};
       border: 0;
@@ -175,7 +176,7 @@ export function ZModal(props: IZModal) {
         }
       }
     }
-  `;
+  `);
 
   const jsx = (
     <dialog

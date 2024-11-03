@@ -1,7 +1,7 @@
-import { css } from "@emotion/css";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
 import {
+  css,
   cssJoinDefined,
   pickDataAttributes,
   ZOrientation,
@@ -11,6 +11,7 @@ import { ChangeEvent, useId, useMemo, useRef } from "react";
 import { ZIconFontAwesome } from "../icon/icon-font-awesome";
 import { ZLabeled } from "../label/labeled";
 import { useFashionTheme } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 import { IZBoolean } from "./boolean";
 
 /**
@@ -43,7 +44,7 @@ export function ZBooleanCheckbox(props: IZBoolean<boolean | null>) {
   const checked = _value === null ? true : _value;
   const indeterminate = _value === null;
 
-  const _className = css`
+  const _className = useCss(css`
     &,
     & .ZLabel-root {
       cursor: pointer;
@@ -86,7 +87,7 @@ export function ZBooleanCheckbox(props: IZBoolean<boolean | null>) {
       outline: none;
       box-shadow: 0 0 0.25rem 0.25rem ${_fashion.focus.border};
     }
-  `;
+  `);
 
   const handleChecked = (checked: boolean) => {
     if (indeterminate) {

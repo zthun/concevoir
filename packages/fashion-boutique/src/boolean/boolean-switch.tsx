@@ -1,11 +1,11 @@
-import { css } from "@emotion/css";
 import { ZSizeFixed, ZSizeVaried } from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
-import { cssJoinDefined, ZOrientation } from "@zthun/helpful-fn";
+import { css, cssJoinDefined, ZOrientation } from "@zthun/helpful-fn";
 import { useAmbassadorState, useKeyboardActivate } from "@zthun/helpful-react";
 import { ChangeEvent, useId, useMemo, useRef } from "react";
 import { ZLabeled } from "../label/labeled";
 import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 import { IZBoolean } from "./boolean";
 
 /**
@@ -40,7 +40,7 @@ export function ZBooleanSwitch(props: IZBoolean<boolean>) {
   const sliderWidth = "2rem";
   const sliderHeight = "0.75rem";
 
-  const _className = css`
+  const _className = useCss(css`
     & .ZLabel-root {
       cursor: pointer;
     }
@@ -93,7 +93,7 @@ export function ZBooleanSwitch(props: IZBoolean<boolean>) {
       background-color: ${_fashion.focus.main};
       box-shadow: 0 0 0.25rem 0.25rem ${_fashion.focus.border};
     }
-  `;
+  `);
 
   const handleToggle = () => {
     if (!disabled) {

@@ -1,7 +1,8 @@
-import { css, keyframes } from "@emotion/css";
+import { keyframes } from "@emotion/css";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { black, ZColorPicker } from "@zthun/fashion-theme";
 import {
+  css,
   cssJoinDefined,
   firstDefined,
   ZHorizontalAnchor,
@@ -10,6 +11,7 @@ import {
 } from "@zthun/helpful-fn";
 import { useRef } from "react";
 import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 import { IZDialog, useDialog } from "./use-dialog";
 
 export interface IZDrawer extends IZDialog {
@@ -74,7 +76,7 @@ export function ZDrawer(props: IZDrawer) {
     }
   `;
 
-  const _className = css`
+  const _className = useCss(css`
     & {
       background-color: ${surface.idle.main};
       border: 0;
@@ -123,7 +125,7 @@ export function ZDrawer(props: IZDrawer) {
       flex-grow: 1;
       overflow: auto;
     }
-  `;
+  `);
 
   return (
     <dialog

@@ -1,8 +1,8 @@
-import { css } from "@emotion/css";
-import { cssJoinDefined } from "@zthun/helpful-fn";
+import { css, cssJoinDefined } from "@zthun/helpful-fn";
 import { ZUrlBuilder, ZYouTubeApi } from "@zthun/webigail-url";
 import { IZComponentName } from "../component/component-name.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
+import { useCss } from "../theme/styled";
 
 export interface IZYouTubeVideo extends IZComponentName, IZComponentStyle {
   identity: string;
@@ -25,7 +25,7 @@ export function ZYouTubeVideo(props: IZYouTubeVideo) {
   // for more information.
   const padding = "56.25%";
 
-  const _className = css`
+  const _className = useCss(css`
     & {
       overflow: hidden;
       padding-bottom: ${padding};
@@ -41,7 +41,7 @@ export function ZYouTubeVideo(props: IZYouTubeVideo) {
       position: absolute;
       border: 0;
     }
-  `;
+  `);
 
   return (
     <div

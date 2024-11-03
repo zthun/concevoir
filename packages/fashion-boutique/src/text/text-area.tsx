@@ -1,15 +1,15 @@
-import { css } from "@emotion/css";
 import {
   ZDeviceValues,
   ZSizeFixed,
   createSizeChartFixedArithmetic,
 } from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
-import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import { css, cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
 import { TextareaHTMLAttributes } from "react";
 import { IZComponentHeight } from "../component/component-height.mjs";
 import { ZLabeled } from "../label/labeled";
 import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 import { IZText, useText } from "./text";
 
 export interface IZTextArea
@@ -54,7 +54,7 @@ export function ZTextArea(props: IZTextArea) {
   const _fashion = firstDefined(primary, fashion);
   const picker = new ZColorPicker(_fashion);
 
-  const _className = css`
+  const _className = useCss(css`
     textarea {
       background: transparent;
       border: none;
@@ -106,7 +106,7 @@ export function ZTextArea(props: IZTextArea) {
     .ZText-suffix {
       display: inline-flex;
     }
-  `;
+  `);
 
   return (
     <ZLabeled

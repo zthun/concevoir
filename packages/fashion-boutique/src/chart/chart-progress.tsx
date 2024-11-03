@@ -1,4 +1,3 @@
-import { css } from "@emotion/css";
 import {
   ZDeviceValues,
   ZSizeFixed,
@@ -6,7 +5,7 @@ import {
   createSizeChartFixedCss,
 } from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
-import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import { css, cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
 import { useMemo } from "react";
 import { IZComponentHeight } from "../component/component-height.mjs";
 import { ZGrid } from "../grid/grid";
@@ -16,6 +15,7 @@ import {
   useFashionTailor,
   useFashionTheme,
 } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 import { IZChart } from "./chart.mjs";
 import { IZDataPoint } from "./data-point.mjs";
 
@@ -43,7 +43,7 @@ export function ZChartProgress(props: IZChartProgress) {
 
   const _label = useMemo(() => `${label} (${_x} / ${_y})`, [label, _x, _y]);
 
-  const _className = css`
+  const _className = useCss(css`
     .ZChart-bar {
       border-color: ${picker.idle.border};
       border-style: solid;
@@ -79,7 +79,7 @@ export function ZChartProgress(props: IZChartProgress) {
         height: ${HeightChart[_height.xs]};
       }
     }
-  `;
+  `);
 
   return (
     <div

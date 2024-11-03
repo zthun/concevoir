@@ -1,7 +1,7 @@
-import { css } from "@emotion/css";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
 import {
+  css,
   cssJoinDefined,
   firstDefined,
   pickDataAttributes,
@@ -14,6 +14,7 @@ import { IZComponentStyle } from "../component/component-style.mjs";
 import { ZFlex } from "../stack/flex";
 import { ZStack } from "../stack/stack";
 import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 
 export interface IZChip
   extends IZComponentFashion,
@@ -27,7 +28,7 @@ export function ZChip(props: IZChip) {
   const { children, className, fashion, prefix, suffix } = props;
   const picker = new ZColorPicker(firstDefined(component, fashion));
 
-  const _className = css`
+  const _className = useCss(css`
     & {
       background-color: ${picker.idle.main};
       border-radius: ${tailor.rounding(ZSizeFixed.Small)};
@@ -39,7 +40,7 @@ export function ZChip(props: IZChip) {
     .ZChip-suffix {
       display: inline-flex;
     }
-  `;
+  `);
 
   return (
     <ZStack

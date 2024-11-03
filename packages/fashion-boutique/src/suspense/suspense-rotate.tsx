@@ -1,9 +1,9 @@
-import { css } from "@emotion/css";
 import { ZDeviceValue, ZSizeFixed } from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
-import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import { css, cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
 import { ZIconFontAwesome } from "../icon/icon-font-awesome";
 import { useFashionTheme } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 import { IZSuspense } from "./suspense.mjs";
 
 export interface IZSuspenseRotate extends IZSuspense {
@@ -24,12 +24,12 @@ export function ZSuspenseRotate(props: IZSuspenseRotate) {
   const _fashion = firstDefined(inherit, fashion);
   const picker = new ZColorPicker(_fashion);
 
-  const _className = css`
+  const _className = useCss(css`
     & {
       color: ${picker.idle.main};
       display: ${disabled ? "none" : "block"};
     }
-  `;
+  `);
 
   return (
     <div

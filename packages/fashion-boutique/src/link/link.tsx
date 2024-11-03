@@ -1,11 +1,11 @@
-import { css } from "@emotion/css";
 import { IZFashion, ZColorPicker } from "@zthun/fashion-theme";
-import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import { css, cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
 import { IZComponentDomEvents } from "../component/component-dom-events.mjs";
 import { IZComponentLabel } from "../component/component-label.mjs";
 import { IZComponentName } from "../component/component-name.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 import { useFashionTheme } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 import { ZParagraph } from "../typography/typography";
 
 export interface IZLink
@@ -22,7 +22,7 @@ export function ZLink(props: IZLink) {
   const { className, name, href, fashion, label, ...rest } = props;
   const picker = new ZColorPicker(firstDefined(primary, fashion));
 
-  const _className = css`
+  const _className = useCss(css`
     & {
       color: ${picker.idle.main};
       text-decoration: none;
@@ -39,12 +39,12 @@ export function ZLink(props: IZLink) {
     &:focus {
       color: ${picker.focus.main};
     }
-  `;
+  `);
 
   return (
     <a
       {...rest}
-      className={cssJoinDefined("ZLink-root", className, _className)}
+      className={cssJoinDefined("ZLink-root", _className, className)}
       href={href}
       data-name={name}
       role="link"

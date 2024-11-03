@@ -1,4 +1,3 @@
-import { css } from "@emotion/css";
 import {
   createSizeChartFixedCss,
   createSizeChartFixedGeometric,
@@ -15,6 +14,7 @@ import {
 } from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
 import {
+  css,
   cssJoinDefined,
   firstDefined,
   ZHorizontalAnchor,
@@ -34,6 +34,7 @@ import {
   useFashionTailor,
   useFashionTheme,
 } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 
 interface IZBorderProps {
   width?: ZQuadrilateralLike<ZSizeThickness>;
@@ -99,7 +100,7 @@ export function ZBox(props: IZBox) {
     .build();
   const _width = new ZDeviceValues(width, ZSizeVaried.Full);
 
-  const _className = css`
+  const _className = useCss(css`
     & {
       background-color: ${picker.idle.main};
       border-color: ${picker.idle.border};
@@ -173,7 +174,7 @@ export function ZBox(props: IZBox) {
         max-width: ${WidthChart[_width.xs]};
       }
     }
-  `;
+  `);
 
   return (
     <div

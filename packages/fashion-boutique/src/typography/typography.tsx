@@ -1,7 +1,6 @@
-import { css } from "@emotion/css";
 import { ZSizeChartFixed, ZSizeFixed } from "@zthun/fashion-tailor";
 import { IZFashion, ZColorPicker } from "@zthun/fashion-theme";
-import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import { css, cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
 import { Property } from "csstype";
 import { ElementType } from "react";
 import { IZComponentCompact } from "../component/component-compact.mjs";
@@ -13,6 +12,7 @@ import {
   useFashionTailor,
   useFashionTheme,
 } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 
 export interface IZTypographyNamed
   extends IZComponentHierarchy,
@@ -67,7 +67,7 @@ export function useTypographyCss(props: IZTypography) {
   const _weight = firstDefined("regular", weight);
   const _size = firstDefined(ZSizeFixed.Medium, size);
 
-  return css`
+  return useCss(css`
     & {
       color: ${picker.idle.main};
       font-family: Roboto, Arial, sans-serif;
@@ -101,7 +101,7 @@ export function useTypographyCss(props: IZTypography) {
         font-size: ${PointChart[_size]};
       }
     }
-  `;
+  `);
 }
 
 export function Typography(props: IZTypography) {

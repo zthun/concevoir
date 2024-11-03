@@ -1,10 +1,10 @@
-import { css } from "@emotion/css";
 import { ZDeviceValue, ZDeviceValues, ZSizeFixed } from "@zthun/fashion-tailor";
-import { cssJoinDefined } from "@zthun/helpful-fn";
+import { css, cssJoinDefined } from "@zthun/helpful-fn";
 import { Property } from "csstype";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 import { useFashionDevice } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 
 export interface IZGridSpan extends IZComponentHierarchy, IZComponentStyle {
   columnStart?: ZDeviceValue<Property.GridColumnStart>;
@@ -24,7 +24,7 @@ export function ZGridSpan(props: IZGridSpan) {
   const _rowStart = new ZDeviceValues(rowStart, undefined);
   const _rowEnd = new ZDeviceValues(rowEnd, undefined);
 
-  const _className = css`
+  const _className = useCss(css`
     &.ZGridSpan-root {
       grid-column-start: ${_columnStart.xl};
       grid-column-end: ${_columnEnd.xl};
@@ -67,7 +67,7 @@ export function ZGridSpan(props: IZGridSpan) {
         grid-row-end: ${_rowEnd.xs};
       }
     }
-  `;
+  `);
 
   return (
     <div className={cssJoinDefined("ZGridSpan-root", className, _className)}>

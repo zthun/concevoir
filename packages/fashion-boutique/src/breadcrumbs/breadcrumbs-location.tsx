@@ -1,10 +1,10 @@
-import { css } from "@emotion/css";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
-import { cssJoinDefined } from "@zthun/helpful-fn";
+import { css, cssJoinDefined } from "@zthun/helpful-fn";
 import { Fragment, useMemo } from "react";
 import { ZLink } from "../link/link";
 import { useLocation } from "../router/router-dom.mjs";
 import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 import { ZParagraph } from "../typography/typography";
 import { IZBreadcrumbs } from "./breadcrumbs.mjs";
 
@@ -60,14 +60,14 @@ export function ZBreadcrumbsLocation(props: IZBreadcrumbsLocation) {
     return _home ? [_home, ..._sections] : _sections;
   }, [location, home]);
 
-  const _className = css`
+  const _className = useCss(css`
     & {
       color: ${body.idle.contrast};
       display: flex;
       flex-wrap: nowrap;
       gap: ${tailor.gap(ZSizeFixed.ExtraSmall)};
     }
-  `;
+  `);
 
   const renderSection = (s: { name: string; path: string }, index: number) => {
     const href = `#${s.path}`;

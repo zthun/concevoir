@@ -1,4 +1,3 @@
-import { css } from "@emotion/css";
 import {
   createSizeChartFixedArithmetic,
   createSizeChartFixedCss,
@@ -11,6 +10,7 @@ import {
 } from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
 import {
+  css,
   cssJoinDefined,
   firstDefined,
   pickDataAttributes,
@@ -29,6 +29,7 @@ import {
   useFashionTailor,
   useFashionTheme,
 } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 
 export interface IZCard
   extends IZComponentHierarchy,
@@ -72,7 +73,7 @@ export function ZCard(props: IZCard) {
   const _width = new ZDeviceValues(width, ZSizeVaried.Fit);
   const _height = new ZDeviceValues(height, ZSizeVaried.Fit);
 
-  const _className = css`
+  const _className = useCss(css`
     & {
       background-color: ${surface.idle.main};
       box-shadow: 0 0.2rem 8pt #101010;
@@ -123,7 +124,7 @@ export function ZCard(props: IZCard) {
         min-height: ${HeightChart[_height.xs]};
       }
     }
-  `;
+  `);
 
   return (
     <ZStack

@@ -1,10 +1,10 @@
-import { css } from "@emotion/css";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
-import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import { css, cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
 import { ForwardedRef, forwardRef, InputHTMLAttributes } from "react";
 import { ZLabeled } from "../label/labeled";
 import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 import { IZText, useText, withEnterCommit } from "./text";
 
 /**
@@ -71,7 +71,7 @@ export const ZTextInput = forwardRef(function _ZTextInput(
   const _fashion = firstDefined(primary, fashion);
   const picker = new ZColorPicker(_fashion);
 
-  const _className = css`
+  const _className = useCss(css`
     input {
       background: transparent;
       border: none;
@@ -124,7 +124,7 @@ export const ZTextInput = forwardRef(function _ZTextInput(
     .ZText-suffix {
       display: inline-flex;
     }
-  `;
+  `);
 
   return (
     <ZLabeled

@@ -1,4 +1,3 @@
-import { css } from "@emotion/css";
 import {
   ZDeviceValues,
   ZSizeFixed,
@@ -6,13 +5,14 @@ import {
   createSizeChartFixedGeometric,
 } from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
-import { firstDefined } from "@zthun/helpful-fn";
+import { css, firstDefined } from "@zthun/helpful-fn";
 import { KeyboardEvent, MouseEvent, ReactNode, useEffect } from "react";
 import { IZComponentFashion } from "../component/component-fashion.mjs";
 import { IZComponentName } from "../component/component-name.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 import { IZComponentWidth } from "../component/component-width.mjs";
 import { useFashionDevice, useFashionTheme } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 
 export interface IZIcon
   extends IZComponentName,
@@ -35,7 +35,7 @@ export function useIconStyles(props: IZIcon) {
   const _width = new ZDeviceValues(width, ZSizeFixed.Small);
   const picker = new ZColorPicker(firstDefined(inherit, fashion));
 
-  return css`
+  return useCss(css`
     & {
       color: ${picker.idle.main};
       cursor: ${onClick ? "pointer" : "inherit"};
@@ -69,7 +69,7 @@ export function useIconStyles(props: IZIcon) {
         font-size: ${IconSizeChart[_width.xs]};
       }
     }
-  `;
+  `);
 }
 
 export function useIconProvider(provider: string) {

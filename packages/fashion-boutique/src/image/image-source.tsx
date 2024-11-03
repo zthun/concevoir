@@ -1,4 +1,3 @@
-import { css } from "@emotion/css";
 import {
   createSizeChartFixedCss,
   createSizeChartFixedGeometric,
@@ -8,7 +7,7 @@ import {
   ZSizeFixed,
   ZSizeVaried,
 } from "@zthun/fashion-tailor";
-import { cssJoinDefined } from "@zthun/helpful-fn";
+import { css, cssJoinDefined } from "@zthun/helpful-fn";
 import { ZDataUrlBuilder } from "@zthun/webigail-url";
 import { IZComponentHeight } from "../component/component-height.mjs";
 import { IZComponentName } from "../component/component-name.mjs";
@@ -16,6 +15,7 @@ import { IZComponentSource } from "../component/component-source.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 import { IZComponentWidth } from "../component/component-width.mjs";
 import { useFashionDevice } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 
 export interface IZImageSource
   extends IZComponentSource,
@@ -46,7 +46,7 @@ export function ZImageSource(props: IZImageSource) {
   const _height = new ZDeviceValues(height, ZSizeVaried.Fit);
   const _width = new ZDeviceValues(width, ZSizeVaried.Fit);
 
-  const _className = css`
+  const _className = useCss(css`
     &,
     svg,
     img {
@@ -89,7 +89,7 @@ export function ZImageSource(props: IZImageSource) {
         height: ${ImageSizeChart[_height.xs]};
       }
     }
-  `;
+  `);
 
   const imageClass = cssJoinDefined("ZImageSource-root", className, _className);
 

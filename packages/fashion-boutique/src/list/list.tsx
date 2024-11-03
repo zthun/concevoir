@@ -1,13 +1,13 @@
-import { css } from "@emotion/css";
 import { ZSizeFixed, ZSizeVoid } from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
-import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import { css, cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
 import { IZComponentCompact } from "../component/component-compact.mjs";
 import { IZComponentFashion } from "../component/component-fashion.mjs";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentName } from "../component/component-name.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 
 /**
  * Represents properties for the ZList component.
@@ -35,7 +35,7 @@ export function ZList(props: IZList) {
   const _fashion = firstDefined(primary, fashion);
   const picker = new ZColorPicker(_fashion);
 
-  const _className = css`
+  const _className = useCss(css`
     & {
       border: ${tailor.thickness(ZSizeFixed.ExtraSmall)} solid transparent;
       list-style: none;
@@ -61,7 +61,7 @@ export function ZList(props: IZList) {
       color: ${picker.focus.contrast};
       outline: none;
     }
-  `;
+  `);
 
   return (
     <ul

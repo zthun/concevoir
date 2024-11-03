@@ -1,12 +1,12 @@
-import { css } from "@emotion/css";
 import { ZCircusKeyboardQwerty } from "@zthun/cirque";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
-import { cssJoinDefined } from "@zthun/helpful-fn";
+import { css, cssJoinDefined } from "@zthun/helpful-fn";
 import { useAmbassadorState } from "@zthun/helpful-react";
 import { KeyboardEvent } from "react";
 import { ZIconFontAwesome } from "../icon/icon-font-awesome";
 import { ZLabeled } from "../label/labeled";
 import { ZTextInput } from "../text/text-input";
+import { useCss } from "../theme/styled";
 import { IZNumber } from "./number";
 
 /**
@@ -34,7 +34,7 @@ export function ZNumberInput(props: IZNumber<number | null>) {
   const [_value, _setValue] = useAmbassadorState(value, onValueChange, null);
   const __value = _value != null ? String(_value) : "";
 
-  const _className = css`
+  const _className = useCss(css`
     .ZNumber-spinner button {
       width: 1rem;
       height: 1rem;
@@ -66,7 +66,7 @@ export function ZNumberInput(props: IZNumber<number | null>) {
       border-bottom-right-radius: 50%;
       justify-self: flex-end;
     }
-  `;
+  `);
 
   const handleCommit = (update: string) => {
     _setValue(update?.trim() === "" ? null : +update);

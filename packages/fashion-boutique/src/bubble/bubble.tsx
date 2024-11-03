@@ -1,4 +1,3 @@
-import { css } from "@emotion/css";
 import {
   ZDeviceValues,
   ZSizeFixed,
@@ -8,7 +7,7 @@ import {
   createSizeChartFixedGeometric,
 } from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
-import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import { css, cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
 import { useKeyboardActivate } from "@zthun/helpful-react";
 import { KeyboardEvent, MouseEvent } from "react";
 import { IZComponentFashion } from "../component/component-fashion.mjs";
@@ -21,6 +20,7 @@ import {
   useFashionTailor,
   useFashionTheme,
 } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 
 export interface IZBubble
   extends IZComponentStyle,
@@ -58,7 +58,7 @@ export function ZBubble(props: IZBubble) {
   const picker = new ZColorPicker(firstDefined(component, fashion));
   const _width = new ZDeviceValues(width, ZSizeFixed.Medium);
 
-  const _className = css`
+  const _className = useCss(css`
     &.ZBubble-root {
       align-content: center;
       align-items: center;
@@ -118,7 +118,7 @@ export function ZBubble(props: IZBubble) {
         width: ${WidthChart[_width.xs]};
       }
     }
-  `;
+  `);
 
   return (
     <div

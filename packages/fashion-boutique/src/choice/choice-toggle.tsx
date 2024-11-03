@@ -1,9 +1,9 @@
-import { css } from "@emotion/css";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
-import { cssJoinDefined } from "@zthun/helpful-fn";
+import { css, cssJoinDefined } from "@zthun/helpful-fn";
 import { ZLabeled } from "../label/labeled";
 import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 import { IZChoice, IZChoiceOption, useChoice } from "./choice";
 
 export function ZChoiceToggle<O, V>(props: IZChoice<O, V>) {
@@ -30,7 +30,7 @@ export function ZChoiceToggle<O, V>(props: IZChoice<O, V>) {
   const tailor = useFashionTailor();
   const picker = new ZColorPicker(primary);
 
-  const _className = css`
+  const _className = useCss(css`
     .ZChoice-options {
       align-items: stretch;
       display: flex;
@@ -82,7 +82,7 @@ export function ZChoiceToggle<O, V>(props: IZChoice<O, V>) {
       opacity: 0.35;
       pointer-events: none;
     }
-  `;
+  `);
 
   const renderClear = () => {
     if (indelible || !value?.length) {

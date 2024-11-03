@@ -1,4 +1,4 @@
-import { css, keyframes } from "@emotion/css";
+import { keyframes } from "@emotion/css";
 import {
   createSizeChartFixedArithmetic,
   createSizeChartFixedCss,
@@ -8,8 +8,9 @@ import {
   ZSizeVaried,
 } from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
-import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import { css, cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
 import { useFashionDevice, useFashionTheme } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 import { IZSuspense } from "./suspense.mjs";
 
 export interface IZSuspenseProgress extends IZSuspense {
@@ -46,7 +47,7 @@ export function ZSuspenseProgress(props: IZSuspenseProgress) {
     }
   `;
 
-  const _className = css`
+  const _className = useCss(css`
     & {
       background-color: currentcolor;
       box-sizing: border-box;
@@ -85,7 +86,7 @@ export function ZSuspenseProgress(props: IZSuspenseProgress) {
         height: ${HeightChart[_height.xs]};
       }
     }
-  `;
+  `);
 
   return (
     <div

@@ -1,4 +1,3 @@
-import { css } from "@emotion/css";
 import {
   createSizeChartVariedCss,
   ZDeviceValue,
@@ -8,13 +7,14 @@ import {
   ZSizeVaried,
   ZSizeVoid,
 } from "@zthun/fashion-tailor";
-import { cssJoinDefined } from "@zthun/helpful-fn";
+import { css, cssJoinDefined } from "@zthun/helpful-fn";
 import { Property } from "csstype";
 import { IZComponentHeight } from "../component/component-height.mjs";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 import { IZComponentWidth } from "../component/component-width.mjs";
 import { useFashionDevice, useFashionTailor } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 
 export interface IZGrid
   extends IZComponentStyle,
@@ -62,7 +62,7 @@ export function ZGrid(props: IZGrid) {
   const _columns = new ZDeviceValues(columns, undefined);
   const _gap = new ZDeviceValues(gap, ZSizeVoid.None);
 
-  const _className = css`
+  const _className = useCss(css`
     &.ZGrid-root {
       align-content: ${align?.content};
       align-items: ${align?.items};
@@ -112,7 +112,7 @@ export function ZGrid(props: IZGrid) {
         width: ${DimensionChart[_width.xs]};
       }
     }
-  `;
+  `);
 
   return (
     <div className={cssJoinDefined("ZGrid-root", className, _className)}>

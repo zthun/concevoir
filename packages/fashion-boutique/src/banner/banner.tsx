@@ -1,11 +1,11 @@
-import { css } from "@emotion/css";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { ZColorPicker } from "@zthun/fashion-theme";
-import { cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
+import { css, cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
 import { IZComponentFashion } from "../component/component-fashion.mjs";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
+import { useCss } from "../theme/styled";
 
 export interface IZBanner
   extends IZComponentHierarchy,
@@ -18,7 +18,7 @@ export function ZBanner(props: IZBanner) {
 
   const { children, className, fashion } = props;
   const picker = new ZColorPicker(firstDefined(primary, fashion));
-  const _className = css`
+  const _className = useCss(css`
     &.ZBanner-root {
       background: ${picker.idle.main};
       box-sizing: border-box;
@@ -31,7 +31,7 @@ export function ZBanner(props: IZBanner) {
       top: 0;
       z-index: 1100;
     }
-  `;
+  `);
 
   return (
     <div

@@ -1,8 +1,8 @@
-import { css } from "@emotion/css";
-import { cssJoinDefined } from "@zthun/helpful-fn";
+import { css, cssJoinDefined } from "@zthun/helpful-fn";
+import { useCss } from "../theme/styled";
 
 export function ZSadFace() {
-  const _className = css`
+  const _className = useCss(css`
     & {
       height: 3rem;
     }
@@ -22,7 +22,7 @@ export function ZSadFace() {
     .d {
       fill: #26a9e0;
     }
-  `;
+  `);
 
   return (
     <svg
