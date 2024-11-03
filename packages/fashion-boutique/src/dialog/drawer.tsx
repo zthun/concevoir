@@ -1,4 +1,3 @@
-import { keyframes } from "@emotion/css";
 import { ZSizeFixed } from "@zthun/fashion-tailor";
 import { black, ZColorPicker } from "@zthun/fashion-theme";
 import {
@@ -11,7 +10,7 @@ import {
 } from "@zthun/helpful-fn";
 import { useRef } from "react";
 import { useFashionTailor, useFashionTheme } from "../theme/fashion.mjs";
-import { useCss } from "../theme/styled";
+import { useCss, useKeyframes } from "../theme/styled";
 import { IZDialog, useDialog } from "./use-dialog";
 
 export interface IZDrawer extends IZDialog {
@@ -67,14 +66,14 @@ export function ZDrawer(props: IZDrawer) {
     width = "100%";
   }
 
-  const _slideIn = keyframes`
+  const _slideIn = useKeyframes(css`
     from {
       transform: ${transformHide};
     }
     to {
       transform: ${transformShow};
     }
-  `;
+  `);
 
   const _className = useCss(css`
     & {

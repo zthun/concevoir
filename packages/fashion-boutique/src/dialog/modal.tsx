@@ -1,4 +1,3 @@
-import { keyframes } from "@emotion/css";
 import {
   createSizeChartFixedArithmetic,
   createSizeChartFixedCss,
@@ -16,7 +15,7 @@ import {
   useFashionTailor,
   useFashionTheme,
 } from "../theme/fashion.mjs";
-import { useCss } from "../theme/styled";
+import { useCss, useKeyframes } from "../theme/styled";
 import { IZDialog, useDialog } from "./use-dialog";
 
 export interface IZModal
@@ -63,14 +62,14 @@ export function ZModal(props: IZModal) {
     props,
   );
 
-  const fade = keyframes`
+  const fade = useKeyframes(css`
     from {
       opacity: 0;
     }
     to {
       opacity: 1;
     }
-  `;
+  `);
 
   const _className = useCss(css`
     & {

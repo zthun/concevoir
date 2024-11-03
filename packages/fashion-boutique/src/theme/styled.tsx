@@ -1,4 +1,4 @@
-import { css as _css } from "@emotion/css";
+import { css as _css, keyframes as _keyframes } from "@emotion/css";
 import { serializeStyles } from "@emotion/serialize";
 import { StyleSheet } from "@emotion/sheet";
 import { css, cssJoinDefined } from "@zthun/helpful-fn";
@@ -8,6 +8,19 @@ import { compile, middleware, rulesheet, serialize, stringify } from "stylis";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
 import { useFashionTheme } from "./fashion.mjs";
+
+/**
+ * Injects css into the head tag for animations into the document.
+ *
+ * @param css -
+ *        The keyframe css to inject.
+ *
+ * @returns
+ *        The class name for the css.
+ */
+export function useKeyframes(css: string) {
+  return _keyframes(css);
+}
 
 /**
  * Injects css into the head tag on the document.

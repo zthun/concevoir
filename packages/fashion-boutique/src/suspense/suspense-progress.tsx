@@ -1,4 +1,3 @@
-import { keyframes } from "@emotion/css";
 import {
   createSizeChartFixedArithmetic,
   createSizeChartFixedCss,
@@ -10,7 +9,7 @@ import {
 import { ZColorPicker } from "@zthun/fashion-theme";
 import { css, cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
 import { useFashionDevice, useFashionTheme } from "../theme/fashion.mjs";
-import { useCss } from "../theme/styled";
+import { useCss, useKeyframes } from "../theme/styled";
 import { IZSuspense } from "./suspense.mjs";
 
 export interface IZSuspenseProgress extends IZSuspense {
@@ -38,14 +37,14 @@ export function ZSuspenseProgress(props: IZSuspenseProgress) {
   const _height = new ZDeviceValues(height, ZSizeFixed.Medium);
   const picker = new ZColorPicker(_fashion);
 
-  const scroll = keyframes`
+  const scroll = useKeyframes(css`
     from {
       transform: translateX(-100%);
     }
     to {
       transform: translateX(400%);
     }
-  `;
+  `);
 
   const _className = useCss(css`
     & {
