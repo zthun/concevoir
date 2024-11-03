@@ -100,7 +100,7 @@ export function ZImageSource(props: IZImageSource) {
   if (src.startsWith("data:image/svg+xml")) {
     // SVG images can go into html directly.
     const info = new ZDataUrlBuilder().parse(src).info();
-    const __html = info.buffer.toString();
+    const __html = new TextDecoder().decode(info.buffer);
     return (
       <div
         className={imageClass}
