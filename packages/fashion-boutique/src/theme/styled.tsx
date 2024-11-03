@@ -1,7 +1,7 @@
 import { serializeStyles } from "@emotion/serialize";
 import { StyleSheet } from "@emotion/sheet";
 import { css, cssJoinDefined } from "@zthun/helpful-fn";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { compile, middleware, rulesheet, serialize, stringify } from "stylis";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
 import { IZComponentStyle } from "../component/component-style.mjs";
@@ -16,8 +16,9 @@ import { useFashionTheme } from "./fashion.mjs";
 export function useGlobalCss(css: string) {
   const flush = useRef<() => void>();
 
-  useEffect(() => {
-    flush.current?.call(null);
+  // See https://github.com/emotion-js/emotion/issues/2131 for more information about
+  // this issue.
+  const injectGlobal = useCallback(() => {
     const { name, styles } = serializeStyles(css as any);
     const sheet = new StyleSheet({
       key: `global-${name}`,
@@ -34,9 +35,16 @@ export function useGlobalCss(css: string) {
         ]),
       );
     stylis(styles);
-    flush.current = () => sheet.flush();
-    return () => flush.current?.call(null);
+
+    return () => sheet.flush();
   }, [css]);
+
+  useEffect(() => {
+    flush.current?.call(null);
+    flush.current = injectGlobal();
+
+    return () => flush.current?.call(null);
+  }, [injectGlobal]);
 }
 
 /**
