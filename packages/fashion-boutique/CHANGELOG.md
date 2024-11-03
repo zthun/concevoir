@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.2](https://github.com/zthun/fashion/compare/v8.0.1...v8.0.2) (2024-11-03)
+
+
+### Bug Fixes
+
+* styled will now properly revert the global styles when switching themes ([c52a24c](https://github.com/zthun/fashion/commit/c52a24cc9d29bb66b76f0aa8a32d94fa798a5921))
+
+
+
 ## [8.0.1](https://github.com/zthun/fashion/compare/v8.0.0...v8.0.1) (2024-11-02)
 
 **Note:** Version bump only for package @zthun/fashion-boutique
