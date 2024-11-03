@@ -7,7 +7,7 @@ import {
 } from "../../src/routes.mjs";
 import { ZFashionWorld } from "../fashion-world.mjs";
 
-type ChoiceDemo = "dropdown" | "autocomplete" | "toggle";
+type ChoiceDemo = "dropdown" | "toggle";
 type OptionCheckbox = "multiple" | "disabled" | "indelible" | "required";
 
 When(
@@ -22,9 +22,9 @@ When(
   "I clear the existing selection on the {string} on the choice demo page",
   async function (
     this: ZFashionWorld<ZChoicePageComponentModel>,
-    name: "dropdown" | "autocomplete",
+    demo: ChoiceDemo,
   ) {
-    const choice = await this.parameters.page[name]();
+    const choice = await this.parameters.page[demo]();
     await choice.clear();
   },
 );

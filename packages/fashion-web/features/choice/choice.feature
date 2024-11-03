@@ -13,7 +13,6 @@ Scenario: Selecting an item updates the value
   Examples:
   |choice|text|values|
   |dropdown|tiktok|tiktok|
-  |autocomplete|facebook|facebook|
   |toggle|x-twitter|x-twitter|
 
 @ChoicePage-Select
@@ -27,7 +26,6 @@ Scenario: Selection multiple items updates the values
   Examples:
   |choice|first|second|values|
   |dropdown|facebook|tiktok|facebook,tiktok|
-  |autocomplete|instagram|x-twitter|instagram,x-twitter|
   |toggle|facebook|x-twitter|facebook,x-twitter|
 
 @ChoicePage-Option
@@ -35,7 +33,6 @@ Scenario: Selection multiple items updates the values
 Scenario: Checking the disabled option disables the choice demos
   When I check the "disabled" option on the choice demo page
   Then the "dropdown" should be disabled on the choice demo page
-  And the "autocomplete" should be disabled on the choice demo page
   And the "toggle" should be disabled on the choice demo page
 
 @ChoicePage-Option
@@ -43,7 +40,6 @@ Scenario: Checking the disabled option disables the choice demos
 Scenario: Checking the indelible option removes the clear button
   When I check the "indelible" option on the choice demo page
   Then the "dropdown" should be indelible on the choice demo page
-  And the "autocomplete" should be indelible on the choice demo page
   And the "toggle" should be indelible on the choice demo page
 
 @ChoicePage-Option
@@ -51,5 +47,4 @@ Scenario: Checking the indelible option removes the clear button
 Scenario: Checking the required option flags the labels as required
   When I check the "required" option on the choice demo page
   Then the "dropdown" label should be required on the choice demo page
-  And the "autocomplete" label should be required on the choice demo page
   And the "toggle" label should be required on the choice demo page
