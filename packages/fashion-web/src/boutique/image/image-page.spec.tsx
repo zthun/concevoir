@@ -1,4 +1,3 @@
-/* eslint-disable require-jsdoc */
 import { ZCircusBy } from "@zthun/cirque";
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
 import { describe, expect, it } from "vitest";
