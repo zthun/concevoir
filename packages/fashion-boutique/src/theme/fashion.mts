@@ -15,8 +15,8 @@ export const ZFashionThemeContext = createContext(
   new ZFashionThemeBuilder().build(),
 );
 
-export function useFashionTheme<T extends object = {}>() {
-  return useContext(ZFashionThemeContext) as IZFashionTheme<T>;
+export function useFashionTheme() {
+  return useContext(ZFashionThemeContext) as IZFashionTheme;
 }
 
 export function useFashion(name: ZFashionName | undefined) {
