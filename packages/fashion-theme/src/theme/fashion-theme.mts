@@ -106,8 +106,7 @@ export type ZFashionRecord = Record<ZFashionName, IZFashion>;
 /**
  * Represents a general fashion design that includes the common types.
  */
-export interface IZFashionTheme<TCustom extends object = {}>
-  extends ZFashionRecord {
+export interface IZFashionTheme extends ZFashionRecord {
   /**
    * The optional name of the design.
    */
@@ -122,11 +121,6 @@ export interface IZFashionTheme<TCustom extends object = {}>
    * Inherit fashion.
    */
   readonly inherit: IZFashion;
-
-  /**
-   * Custom fashions.
-   */
-  readonly custom: TCustom;
 }
 
 /**
@@ -138,9 +132,9 @@ export interface IZFashionTheme<TCustom extends object = {}>
  * If all you do with this is override the palette, then you
  * should have a generally good scheme for your fashion needs.
  */
-export class ZFashionThemeBuilder<TCustom extends object = {}> {
+export class ZFashionThemeBuilder {
   private _design: {
-    -readonly [P in keyof IZFashionTheme<TCustom>]: IZFashionTheme<TCustom>[P];
+    -readonly [P in keyof IZFashionTheme]: IZFashionTheme[P];
   };
 
   /**
@@ -175,7 +169,6 @@ export class ZFashionThemeBuilder<TCustom extends object = {}> {
         .transparent()
         .build(),
       inherit: new ZFashionBuilder().name("Inherit").inherit().build(),
-      custom: {} as TCustom,
     };
   }
 
@@ -362,22 +355,6 @@ export class ZFashionThemeBuilder<TCustom extends object = {}> {
   }
 
   /**
-   * Sets the custom theme.
-   *
-   * @param custom -
-   *        The custom theme to set.
-   *
-   * @returns
-   *        A new builder with a newly typed custom
-   *        theme.
-   */
-  public custom<T extends object>(custom: T): ZFashionThemeBuilder<T> {
-    const next = new ZFashionThemeBuilder<T>().copy(this._design);
-    next._design.custom = custom;
-    return next;
-  }
-
-  /**
    * Copies another design into this design.
    *
    * @param other -
@@ -397,7 +374,7 @@ export class ZFashionThemeBuilder<TCustom extends object = {}> {
    * @returns
    *        A deep copy of the built design.
    */
-  public build(): IZFashionTheme<TCustom> {
+  public build(): IZFashionTheme {
     return Object.freeze(JSON.parse(JSON.stringify(this._design)));
   }
 }

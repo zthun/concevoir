@@ -1,7 +1,7 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 import { black, white } from "../color/rgb.mjs";
 import { ZFashionStateBuilder } from "../fashion/fashion-state.mjs";
-import { IZFashion, ZFashionBuilder } from "../fashion/fashion.mjs";
+import { ZFashionBuilder } from "../fashion/fashion.mjs";
 import { createDarkTheme } from "./dark.mjs";
 import { ZFashionThemeBuilder } from "./fashion-theme.mjs";
 import { createLightTheme } from "./light.mjs";
@@ -111,27 +111,6 @@ describe("ZFashionDesignBuilder", () => {
       expect(createTestTarget().opposite(expected).build().opposite).toEqual(
         expected,
       );
-    });
-  });
-
-  describe("Custom", () => {
-    let custom: { c1: IZFashion; c2: IZFashion };
-
-    beforeEach(() => {
-      custom = {
-        c1: new ZFashionBuilder().build(),
-        c2: new ZFashionBuilder().build(),
-      };
-    });
-
-    it("should set custom", () => {
-      // Arrange.
-      const target = createTestTarget();
-      // Act.
-      const actual = target.custom(custom).build();
-      // Assert.
-      expect(actual.custom.c1).toEqual(custom.c1);
-      expect(actual.custom.c2).toEqual(custom.c2);
     });
   });
 
