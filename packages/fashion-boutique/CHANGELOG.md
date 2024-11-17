@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.0](https://github.com/zthun/fashion/compare/v8.0.4...v9.0.0) (2024-11-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* a fashion theme no longer supports custom
+
+### Code Refactoring
+
+* a fashion theme no longer supports custom ([0ae4c9c](https://github.com/zthun/fashion/commit/0ae4c9cd590532b10bf3503d715341c32f0d2a76))
+
+
+
 ## [8.0.4](https://github.com/zthun/fashion/compare/v8.0.3...v8.0.4) (2024-11-06)
 
 **Note:** Version bump only for package @zthun/fashion-boutique
