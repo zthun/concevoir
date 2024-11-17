@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.1](https://github.com/zthun/fashion/compare/v9.0.0...v9.0.1) (2024-11-17)
+
+
+### Bug Fixes
+
+* export fashion state ([fb913ed](https://github.com/zthun/fashion/commit/fb913ed83bc165cfedfe5f66a6373cc293736def))
+
+
+
 ## [9.0.0](https://github.com/zthun/fashion/compare/v8.0.4...v9.0.0) (2024-11-06)
 
 
