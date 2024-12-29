@@ -33,7 +33,7 @@
     "@vitest/coverage-istanbul": "^2.1.8",
     "@zthun/lint-janitor": "^18.0.5",
     "@zthun/lint-janitor-config": "^18.0.5",
-    "happy-dom": "^15.11.7",
+    "happy-dom": "^16.0.1",
     "husky": "^9.1.7",
     "lerna": "^8.1.9",
     "lodash-es": "^4.17.21",
