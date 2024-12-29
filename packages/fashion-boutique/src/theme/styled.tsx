@@ -3,6 +3,7 @@ import { serializeStyles } from "@emotion/serialize";
 import { StyleSheet } from "@emotion/sheet";
 import { css, cssJoinDefined } from "@zthun/helpful-fn";
 import { useWindowService } from "@zthun/helpful-react";
+import { noop } from "lodash-es";
 import { useCallback, useEffect, useRef } from "react";
 import { compile, middleware, rulesheet, serialize, stringify } from "stylis";
 import { IZComponentHierarchy } from "../component/component-hierarchy.mjs";
@@ -42,7 +43,7 @@ export function useCss(css: string) {
  *        The global css to inject.
  */
 export function useGlobalCss(css: string) {
-  const flush = useRef<() => void>();
+  const flush = useRef<() => void>(noop);
   const window = useWindowService();
 
   // See https://github.com/emotion-js/emotion/issues/2131 for more information about

@@ -1,4 +1,5 @@
 import { ZCircusSetupRenderer } from "@zthun/cirque-du-react";
+import { ReactElement } from "react";
 import { describe, expect, it } from "vitest";
 import {
   IZTypographyNamed,
@@ -17,7 +18,7 @@ import {
 
 describe("Typography", () => {
   async function createTestTarget(
-    Typography: (props: IZTypographyNamed) => JSX.Element,
+    Typography: (props: IZTypographyNamed) => ReactElement,
   ) {
     const element = <Typography className="ZTypography-test"></Typography>;
     const driver = await new ZCircusSetupRenderer(element).setup();
@@ -26,7 +27,7 @@ describe("Typography", () => {
 
   async function assertTypography(
     expected: string,
-    Typography: (props: IZTypographyNamed) => JSX.Element,
+    Typography: (props: IZTypographyNamed) => ReactElement,
   ) {
     // Arrange
     const target = await createTestTarget(Typography);

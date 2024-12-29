@@ -2,7 +2,7 @@ import { ZSizeFixed, ZSizeVaried } from "@zthun/fashion-tailor";
 import { ZOrientation, cssJoinDefined, firstDefined } from "@zthun/helpful-fn";
 import { useAmbassadorState } from "@zthun/helpful-react";
 import { castArray } from "lodash-es";
-import { ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 import { IZButton, ZButton } from "../button/button";
 import { IZCard, ZCard } from "../card/card";
 import { IZComponentName } from "../component/component-name.mjs";
@@ -14,11 +14,19 @@ import { ZStack } from "../stack/stack";
 import { useFashionTheme } from "../theme/fashion.mjs";
 import { ZH4 } from "../typography/typography";
 
+export interface IZWizardPage {
+  name?: string;
+  description?: string;
+  "data-name"?: string;
+  "data-description"?: string;
+  "data-next-disabled": boolean;
+}
+
 export interface IZWizard
   extends IZComponentStyle,
     IZComponentName,
     IZComponentValue<number> {
-  children: JSX.Element | JSX.Element[];
+  children: ReactElement<IZWizardPage> | ReactElement<IZWizardPage>[];
 
   CardProps?: Omit<IZCard, "name" | "children" | "footer">;
   NextButtonProps?: Omit<IZButton, "name">;
@@ -47,13 +55,13 @@ export function ZWizard(props: IZWizard) {
   const _name = firstDefined(
     undefined,
     CardProps?.TitleProps?.heading,
-    _current?.props["name"],
+    _current?.props.name,
     _current?.props["data-name"],
   );
   const _description = firstDefined(
     undefined,
     CardProps?.TitleProps?.subHeading,
-    _current?.props["description"],
+    _current?.props.description,
     _current?.props["data-description"],
   );
   const _disabled = !!_current?.props["data-next-disabled"];
