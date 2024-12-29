@@ -10,7 +10,7 @@ import { describe, expect, it } from "vitest";
 import { ZAlertPage } from "./alert-page";
 import { ZAlertPageComponentModel } from "./alert-page.cm.mjs";
 
-describe("ZBooleanPage", () => {
+describe("ZAlertPage", () => {
   async function createTestTarget() {
     const element = <ZAlertPage />;
 

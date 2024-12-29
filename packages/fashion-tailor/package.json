@@ -25,12 +25,12 @@
     "access": "public"
   },
   "dependencies": {
-    "@zthun/helpful-fn": "^6.5.2",
+    "@zthun/helpful-fn": "^6.7.0",
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
     "vite": "^5.4.11",
-    "vitest": "^2.1.5"
+    "vitest": "^2.1.8"
   },
   "files": [
     "dist"
