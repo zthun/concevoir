@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.1.1](https://github.com/zthun/fashion/compare/v9.1.0...v9.1.1) (2025-01-03)
+
+**Note:** Version bump only for package @zthun/fashion-boutique
+
+
+
+
+
 ## [9.1.0](https://github.com/zthun/fashion/compare/v9.0.2...v9.1.0) (2024-12-29)
 
 
