@@ -3,13 +3,13 @@
   "version": "9.1.0",
   "description": "A UI library for react components that are very fashionable.",
   "type": "module",
+  "types": "dist/index.d.ts",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
-  "types": "dist/index.d.ts",
   "exports": {
+    "types": "./dist/index.d.ts",
     "require": "./dist/index.cjs",
-    "import": "./dist/index.js",
-    "types": "./dist/index.d.ts"
+    "import": "./dist/index.js"
   },
   "repository": {
     "type": "git",
